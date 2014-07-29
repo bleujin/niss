@@ -3,12 +3,20 @@ package net.ion.niss.apps;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.Repository;
 import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.framework.util.FileUtil;
+import net.ion.framework.util.ListUtil;
+import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.cjk.CJKAnalyzer;
+import org.apache.lucene.analysis.cn.ChineseAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.util.Version;
 
@@ -46,6 +54,11 @@ public class CollectionApp {
 
 	public void shutdown() {
 		r.shutdown() ;
+	}
+
+	private List<Class<? extends Analyzer>> analyzers = ListUtil.<Class<? extends Analyzer>>toList(MyKoreanAnalyzer.class, StandardAnalyzer.class, CJKAnalyzer.class, WhitespaceAnalyzer.class) ; 
+	public List<Class<? extends Analyzer>> analyzers() {
+		return analyzers ;
 	}
 	
 }

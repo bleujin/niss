@@ -27,6 +27,11 @@ public class TestNewIndexCollection extends TestCase {
 		ca.shutdown() ;
 		super.tearDown();
 	}
+	
+	
+	public void testAvailableAnalyzer() throws Exception {
+		assertEquals(true, ca.analyzers().size() > 3) ;
+	}
 
 	
 	public void testAnalyzer() throws Exception {
