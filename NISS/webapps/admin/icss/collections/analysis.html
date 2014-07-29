@@ -1,0 +1,101 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Index Analysis
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<button class="close" data-dismiss="alert">
+					x
+			</button>
+
+			<blockquote>
+			  <p>Analysis </p>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
+				<fieldset>					
+					<section>
+						<label class="label">Text Value(Index)</label>
+						<label class="textarea textarea-resizable">
+							<textarea id="query" name="query" rows="3"></textarea>
+						</label>
+					</section>
+					<section>
+						<label class="label">Analyzer Type</label>
+						<label class="select">
+							<select name="interested">
+							    <option value="1">Korean</option>
+							    <option value="1">Japen</option>
+							    <option value="2">Standard</option>
+							</select>
+						</label>
+					</section>
+					
+					<section>
+						<label class="checkbox"><input type="checkbox" id="template" name="debug" /><i></i>Searche Query</label>
+					</section>
+					
+				</fieldset>
+				
+				<footer>
+					<button class="btn btn-primary" type="submit">Analyze Value</button>
+				</footer>
+				
+				<div class="message">
+					<i class="fa fa-thumbs-up"></i>
+					<p>Your message was successfully sent!</p>
+				</div>
+			</form>
+		</article>
+		
+	</div>
+
+	<!-- row -->
+	<div class="row">
+
+		<!-- a blank row to get started -->
+		<div class="col-sm-12">
+			<!-- your contents here -->
+		</div>
+			
+	</div>
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+		
+	};
+
+	// run pagefunction on load
+	pagefunction();
+
+</script>

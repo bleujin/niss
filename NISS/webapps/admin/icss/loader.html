@@ -1,0 +1,196 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Loader
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<button class="close" data-dismiss="alert">
+					x
+			</button>
+			<h1 class="semi-bold">What are "Loader"</h1>
+		<p>SmartAdmin comes with a fully customized grid system catered specifically for building form layouts. Its not technically "better" than the bootstrap 3 built in grid system, 
+			but rather more simplified for rapid form layout and faster development. Idealy you would use either the <strong>bootstrap</strong> grid or the <strong>smart-form</strong> grid, 
+			when building your form layouts. It is important not to mix elements from two seperate classes as it can cause conflict.  
+		</p>
+		
+		<p>You can explore some of the <a href="#ajax/form-templates.html" title="Go to Bootstrap Forms">layouts</a> made using Smart Forms grid system or if you are not comfortable with this grid system you can simply stick to the default <a href="#ajax/bootstrap-forms.html" title="Go to Bootstrap Forms">Bootstrap forms</a></p>
+		</div>
+
+		
+	</div>
+</div>
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+
+	<!-- START ROW -->
+
+	<div class="row">
+
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-0" data-widget-deletebutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Loader Script</h2>
+				</header>
+
+				<!-- widget div-->
+				<div>
+
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+						<input class="form-control" type="text">
+						<span class="note"><i class="fa fa-check text-success"></i> Change title to update and save instantly!</span>
+					</div>
+
+					<div class="widget-body no-padding">
+
+						<form action="" class="smart-form">
+							<fieldset>
+								
+								<section>
+									<label class="label">Select Reserved Script</label>
+									<label class="select">
+										<select>
+											<option value="0">Choose name</option>
+											<option value="1">Sample - From DB</option>
+											<option value="2">Sample - ICS</option>
+											<option value="3">Sample - Crawler</option>
+										</select> <i></i> </label>
+								</section>
+
+								<section>
+									<label class="label">Script Content</label>
+									<label class="textarea textarea-resizable">
+										<i class="icon-append fa fa-question-circle"/> 										
+										<textarea rows="10" class="custom-scroll" placeholder="script content"></textarea>
+										<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Some helpful information</b> 
+									</label>
+								</section>
+
+
+							</fieldset>
+
+							<footer>
+								<button type="submit" class="btn btn-primary"> Run </button>
+								<button type="button" class="btn btn-default" onclick="window.history.back();"> Stop </button>
+							</footer>
+						</form>
+					</div>
+					
+					<div class="widget-body btn-group">
+						<a href="javascript:void(0);" class="btn btn-default">Save</a>
+						<a href="javascript:void(0);" class="btn btn-default">Save As...</a>
+						<a href="javascript:void(0);" class="btn btn-default">Cancel</a>
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+		</article>
+		<!-- END COL -->
+
+		<!-- NEW COL START -->
+		<article class="col-sm-12 col-md-12 col-lg-6">
+
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget" id="wid-id-1" data-widget-deletebutton="false">
+				<!-- widget options:
+				usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+				data-widget-colorbutton="false"
+				data-widget-editbutton="false"
+				data-widget-togglebutton="false"
+				data-widget-deletebutton="false"
+				data-widget-fullscreenbutton="false"
+				data-widget-custombutton="false"
+				data-widget-collapsed="true"
+				data-widget-sortable="false"
+
+				-->
+				
+			
+				
+				<header>
+					<span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+					<h2>Monitor</h2>
+
+				</header>
+
+				<!-- widget div-->
+				<div style="overflow: scroll; height: 485px;">
+
+					<!-- widget edit box -->
+					<div class="jarviswidget-editbox">
+						<!-- This area used as dropdown edit box -->
+
+					</div>
+					<!-- end widget edit box -->
+
+					<!-- widget content -->
+					<div class="widget-body">
+
+						bla.bla..
+
+					</div>
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+		</article>
+		<!-- END COL -->
+
+	</div>
+
+	<!-- END ROW -->
+
+
+</section>
+<!-- end widget grid -->
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+		
+	};
+
+	// run pagefunction on load
+	pagefunction();
+
+</script>

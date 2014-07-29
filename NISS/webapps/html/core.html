@@ -1,0 +1,399 @@
+<html><head>
+    
+  <title>Solr Admin</title>
+    
+  <link href="img/favicon.ico?_=4.9.0" type="image/ico" rel="icon">
+
+  <link href="css/styles/common.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/analysis.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/cloud.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/cores.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/dashboard.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/dataimport.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/files.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/index.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/java-properties.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/logging.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/menu.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/plugins.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/documents.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/query.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/replication.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/schema-browser.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/styles/threads.css?_=4.9.0" type="text/css" rel="stylesheet">
+  <link href="css/chosen.css?_=4.9.0" type="text/css" rel="stylesheet">
+
+  <meta content="IE=9" http-equiv="x-ua-compatible">
+    
+  <script type="text/javascript">
+    
+  var app_config = {};
+    
+  app_config.solr_path = '\/solr';
+  app_config.core_admin_path = '\/admin\/cores';
+    
+  </script>
+    
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="js/main.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="lib/order" src="js/lib/order.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/console" src="js/lib/console.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.cookie" src="js/lib/jquery.cookie.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.form" src="js/lib/jquery.form.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.jstree" src="js/lib/jquery.jstree.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.sammy" src="js/lib/jquery.sammy.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.timeago" src="js/lib/jquery.timeago.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.ajaxfileupload" src="js/lib/jquery.ajaxfileupload.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/jquery.blockUI" src="js/lib/jquery.blockUI.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/highlight" src="js/lib/highlight.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/linker" src="js/lib/linker.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/ZeroClipboard" src="js/lib/ZeroClipboard.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/d3" src="js/lib/d3.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="lib/chosen" src="js/lib/chosen.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/app" src="js/scripts/app.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/analysis" src="js/scripts/analysis.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/cloud" src="js/scripts/cloud.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/cores" src="js/scripts/cores.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/documents" src="js/scripts/documents.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/dataimport" src="js/scripts/dataimport.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/dashboard" src="js/scripts/dashboard.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/files" src="js/scripts/files.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/index" src="js/scripts/index.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/java-properties" src="js/scripts/java-properties.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/logging" src="js/scripts/logging.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/ping" src="js/scripts/ping.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/plugins" src="js/scripts/plugins.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/query" src="js/scripts/query.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/replication" src="js/scripts/replication.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/schema-browser" src="js/scripts/schema-browser.js?_=4.9.0"></script>
+<script type="text/javascript" charset="utf-8" data-requirecontext="_" data-requiremodule="scripts/threads" src="js/scripts/threads.js?_=4.9.0"></script>
+
+<style type="text/css">.jstree ul, .jstree li { display:block; margin:0 0 0 0; padding:0 0 0 0; list-style-type:none; } .jstree li { display:block; min-height:18px; line-height:18px; white-space:nowrap; margin-left:18px; } .jstree-rtl li { margin-left:0; margin-right:18px; } .jstree &gt; ul &gt; li { margin-left:0px; } .jstree-rtl &gt; ul &gt; li { margin-right:0px; } .jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } .jstree a { display:inline-block; line-height:16px; height:16px; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } .jstree a:focus { outline: none; } .jstree a &gt; ins { height:16px; width:16px; } .jstree a &gt; .jstree-icon { margin-right:3px; } .jstree-rtl a &gt; .jstree-icon { margin-left:3px; margin-right:0; } li.jstree-open &gt; ul { display:block; } li.jstree-closed &gt; ul { display:none; } </style><style type="text/css">#vakata-dragged { display:block; margin:0 0 0 0; padding:4px 4px 4px 24px; position:absolute; top:-2000px; line-height:16px; z-index:10000; } </style><style type="text/css">#vakata-dragged ins { display:block; text-decoration:none; width:16px; height:16px; margin:0 0 0 0; padding:0; position:absolute; top:4px; left:4px; } #vakata-dragged .jstree-ok { background:green; } #vakata-dragged .jstree-invalid { background:red; } #jstree-marker { padding:0; margin:0; line-height:12px; font-size:1px; overflow:hidden; height:12px; width:8px; position:absolute; top:-30px; z-index:10000; background-repeat:no-repeat; display:none; background-color:silver; } </style><style type="text/css">#vakata-contextmenu { display:none; position:absolute; margin:0; padding:0; min-width:180px; background:#ebebeb; border:1px solid silver; z-index:10000; *width:180px; } #vakata-contextmenu ul { min-width:180px; *width:180px; } #vakata-contextmenu ul, #vakata-contextmenu li { margin:0; padding:0; list-style-type:none; display:block; } #vakata-contextmenu li { line-height:20px; min-height:20px; position:relative; padding:0px; } #vakata-contextmenu li a { padding:1px 6px; line-height:17px; display:block; text-decoration:none; margin:1px 1px 0 1px; } #vakata-contextmenu li ins { float:left; width:16px; height:16px; text-decoration:none; margin-right:2px; } #vakata-contextmenu li a:hover, #vakata-contextmenu li.vakata-hover &gt; a { background:gray; color:white; } #vakata-contextmenu li ul { display:none; position:absolute; top:-2px; left:100%; background:#ebebeb; border:1px solid gray; } #vakata-contextmenu .right { right:100%; left:auto; } #vakata-contextmenu .bottom { bottom:-1px; top:auto; } #vakata-contextmenu li.vakata-separator { min-height:0; height:1px; line-height:1px; font-size:1px; overflow:hidden; margin:0 2px; background:silver; /* border-top:1px solid #fefefe; */ padding:0; } </style>
+<style type="text/css">.jstree .ui-icon { overflow:visible; } .jstree a { padding:0 2px; }</style></head>
+<body>
+    
+  <div id="wrapper">
+    
+    <div id="header">
+            
+      <a id="solr" href="./"><span>Apache SOLR</span></a>
+
+      <p id="environment">&nbsp;</p>
+
+    </div>
+
+    <div class="clearfix" id="main">
+    
+      <div id="init-failures" style="display: block;">
+
+          <h2>SolrCore Initialization Failures</h2>
+          <ul><li><strong>new_core:</strong>
+org.apache.solr.common.SolrException:org.apache.solr.common.SolrException: Could not load core configuration for core new_core
+</li></ul>
+          <p>Please check your logs for more information</p>
+                
+      </div>
+
+      <div id="content-wrapper">
+        <div id="content"><!--
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<div class="clearfix" id="cores">
+
+  <div id="ui-block" style="opacity: 0.7; width: 1161px; height: 470px; display: none;">&nbsp;</div>
+
+  <div id="frame">
+
+    <div class="actions clearfix" id="actions">
+      
+      <button class="action" id="add"><span>Add Core</span></button>
+      <button class="warn requires-core" id="unload"><span>Unload</span></button>
+      <button class="action requires-core" id="rename"><span>Rename</span></button>
+      <button class="action requires-core" id="swap"><span>Swap</span></button>
+      <button class="requires-core" id="reload"><span>Reload</span></button>
+      <button class="requires-core" id="optimize" style="display: inline-block;"><span>Optimize</span></button>
+
+      <div data-rel="add" class="action add" style="display: none;">
+
+        <form>
+
+          <input type="hidden" value="CREATE" name="action">
+
+          <p class="clearfix"><label for="add_name">name:</label>
+          <input type="text" value="new_core" id="add_name" name="name"></p>
+
+          <p class="clearfix"><label for="add_instanceDir">instanceDir:</label>
+          <input type="text" value="new_core" id="add_instanceDir" name="instanceDir"></p>
+
+          <p class="clearfix"><label for="add_dataDir">dataDir:</label>
+          <input type="text" value="data" id="dataDir" name="dataDir"></p>
+
+          <p class="clearfix"><label for="add_config">config:</label>
+          <input type="text" value="solrconfig.xml" id="add_config" name="config"></p>
+
+          <p class="clearfix"><label for="add_schema">schema:</label>
+          <input type="text" value="schema.xml" id="add_schema" name="schema"></p>
+
+          <div class="cloud">
+
+            <p class="clearfix"><label for="add_collection">collection:</label>
+            <input type="text" id="add_collection" name="collection"></p>
+
+            <p class="clearfix"><label for="add_shard">shard:</label>
+            <input type="text" id="shard" name="shard"></p>
+
+          </div>
+
+          <p class="clearfix note directory-note">
+
+            <span><code>instanceDir</code> and <code>dataDir</code> need to exist before you can create the core</span>
+
+          </p>
+
+          <p class="clearfix note error">
+
+            <span></span>
+
+          </p>
+
+          <p class="clearfix buttons">
+            <button class="submit" type="submit"><span>Add Core</span></button>
+            <button class="reset" type="reset"><span>Cancel</span></button>
+          </p>
+
+        </form>
+
+      </div>
+
+      <div data-rel="rename" class="action rename" style="display: none; left: 272.15px;">
+
+        <form>
+
+          <input type="hidden" value="RENAME" name="action">
+          <input type="hidden" data-core="current" name="core" value="col1">
+
+          <p class="clearfix"><label for="rename_other">New Name:</label>
+          <input type="text" id="rename_other" data-core="current" name="other"></p>
+
+          <p class="clearfix buttons">
+            <button class="submit" type="submit"><span>Rename Core</span></button>
+            <button class="reset" type="reset"><span>Cancel</span></button>
+          </p>
+
+        </form>
+
+      </div>
+
+      <div data-rel="swap" class="action swap" style="display: none;">
+
+        <form>
+
+          <input type="hidden" value="SWAP" name="action">
+
+          <p class="clearfix"><label for="swap_core">this:</label>
+          <input type="text" readonly="readonly" data-core="current" name="core" id="swap_core"></p>
+
+          <p class="clearfix"><label for="swap_other">and:</label>
+          <select class="other" id="swap_other" name="other"></select></p>
+
+          <p class="clearfix buttons">
+            <button class="submit" type="submit"><span>Swap Cores</span></button>
+            <button class="reset" type="reset"><span>Cancel</span></button>
+          </p>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <div class="requires-core" id="data">
+
+      <div id="core-data" class="block">
+
+          <h2><span>Core</span></h2>
+          
+          <div class="message-container">
+              <div class="message"></div>
+          </div>
+
+          <div class="content">
+
+          <ul>
+
+            <li class="startTime"><dl class="clearfix">
+              <dt><span>startTime:</span></dt>
+                <dd class="timeago" title="2014-07-09T07:50:08.92Z">2014-07-09T07:50:08.92Z</dd>
+            </dl></li>
+
+            <li class="instanceDir odd"><dl class="clearfix">
+              <dt><span>instanceDir:</span></dt>
+                <dd>C:\temp\solr-4.9.0\example\solr\collection1\</dd>
+            </dl></li>
+
+            <li class="dataDir"><dl class="clearfix">
+              <dt><span>dataDir:</span></dt>
+                <dd>C:\temp\solr-4.9.0\example\solr\collection1\data\</dd>
+            </dl></li>
+        
+          </ul>
+        
+        </div>
+      </div>
+
+      <div id="index-data" class="block">
+
+          <h2><span>Index</span></h2>
+          
+          <div class="message-container">
+              <div class="message"></div>
+          </div>
+
+          <div class="content">
+          
+          <ul>
+
+            <li class="lastModified"><dl class="clearfix">
+              <dt><span>lastModified:</span></dt>
+                <dd class="timeago" title="2014-07-09T08:05:08.915Z">about an hour ago</dd>
+            </dl></li>
+
+            <li class="version odd"><dl class="clearfix">
+              <dt><span>version:</span></dt>
+                <dd>5</dd>
+            </dl></li>
+
+            <li class="numDocs"><dl class="clearfix">
+              <dt><span>numDocs:</span></dt>
+                <dd>2</dd>
+            </dl></li>
+
+            <li class="maxDoc odd"><dl class="clearfix">
+              <dt><span>maxDoc:</span></dt>
+                <dd>2</dd>
+            </dl></li>
+
+            <li class="deletedDocs"><dl class="clearfix">
+              <dt><span>deletedDocs:</span></dt>
+                <dd>-</dd>
+            </dl></li>
+
+            <li class="optimized odd"><dl class="clearfix">
+              <dt><span>optimized:</span></dt>
+                <dd class="ico ico-1"><span>yes</span></dd>
+            </dl></li>
+
+            <li class="current"><dl class="clearfix">
+              <dt><span>current:</span></dt>
+                <dd class="ico ico-1"><span>yes</span></dd>
+            </dl></li>
+
+            <li class="directory odd"><dl class="clearfix">
+              <dt><span>directory:</span></dt>
+                <dd>org.apache.lucene.store.NRTCachingDirectory:&#8203;NRTCachingDirectory(SimpleFSDirectory@&#8203;C:&#8203;\temp\solr-4.9.0\example\solr\collection1\data\index lockFactory=NativeFSLockFactory@&#8203;C:&#8203;\temp\solr-4.9.0\example\solr\collection1\data\index; maxCacheMB=48.0 maxMergeSizeMB=4.0)</dd>
+            </dl></li>
+          
+          </ul>
+        
+        </div>
+      </div>
+
+    </div>
+  
+  </div>
+
+  <div class="requires-core clearfix" id="navigation"><ul>
+<li class="current"><a href="#/~cores/col1">col1</a></li></ul></div>
+
+</div></div>
+      </div>
+            
+      <div id="menu-wrapper">
+        <div>
+                  
+          <ul id="menu">
+
+            <li class="global" id="index"><p><a href="#/">Dashboard</a></p></li>
+
+            <li class="global" id="logging"><p><a href="#/~logging">Logging</a></p>
+              <ul>
+                <li class="level"><a href="#/~logging/level">Level</a></li>
+              </ul>
+            </li>
+
+            <li class="global optional" id="cloud"><p><a href="#/~cloud">Cloud</a></p>
+              <ul>
+                <li class="tree"><a href="#/~cloud?view=tree">Tree</a></li>
+                <li class="graph"><a href="#/~cloud">Graph</a></li>
+                <li class="rgraph"><a href="#/~cloud?view=rgraph">Graph (Radial)</a></li>
+                <li class="dump"><a href="#/~cloud">Dump</a></li>
+              </ul>
+            </li>
+
+            <li class="global active" id="cores"><p><a href="#/~cores">Core Admin</a></p></li>
+
+            <li class="global" id="java-properties"><p><a href="#/~java-properties">Java Properties</a></p></li>
+
+            <li class="global" id="threads"><p><a href="#/~threads">Thread Dump</a></p></li>
+            
+          </ul>
+
+          <div id="core-selector">
+            <div id="has-cores">
+              <select data-placeholder="Core Selector" id="selCDO" style="display: none;" class="chzn-done"><option></option>
+<option title="col1" value="#/col1" config="solrconfig.xml" schema="schema.xml" data-basepath="/solr/col1" class="" id="col1">col1</option></select><div id="selCDO_chzn" class="chzn-container chzn-container-single" style="width: 140px;"><a class="chzn-single chzn-default" href="javascript:void(0)" tabindex="0"><span>Core Selector</span><div><b></b></div></a><div style="left: -9000px; width: 138px; top: 24px;" class="chzn-drop"><div class="chzn-search"><input type="search" autocomplete="off" style="width: 130px;" tabindex="-1"></div><ul class="chzn-results"><li style="" class="active-result" id="selCDO_chzn_o_1">col1</li></ul></div></div>
+            </div>
+            <p id="has-no-cores" style="display: none;"><a href="#/~cores">
+              No cores available
+              <span>Go and create one</span>
+            </a></p>
+          </div>
+          <div id="core-menu">
+            <ul style="display: none;"></ul>
+          </div>
+                  
+        </div>
+      </div>
+            
+      <div id="meta">
+                
+        <ul>
+                    
+          <li class="documentation"><a href="http://lucene.apache.org/solr/"><span>Documentation</span></a></li>
+          <li class="issues"><a href="http://issues.apache.org/jira/browse/SOLR"><span>Issue Tracker</span></a></li>
+          <li class="irc"><a href="http://webchat.freenode.net/?channels=#solr"><span>IRC Channel</span></a></li>
+          <li class="mailinglist"><a href="http://wiki.apache.org/solr/UsingMailingLists"><span>Community forum</span></a></li>
+          <li class="wiki-query-syntax"><a href="http://wiki.apache.org/solr/SolrQuerySyntax"><span>Solr Query Syntax</span></a></li>
+                    
+        </ul>
+                
+      </div>
+            
+    </div>
+    
+  </div>
+
+  <div id="connection_status">
+
+    <span>Connection lost ¡¦</span>
+
+  </div>
+  
+  <script type="text/javascript"> var require = { urlArgs: '_=4.9.0' }; </script>
+  <script data-main="js/main" src="js/require.js?_=4.9.0"></script>
+
+
+
+<div id="jstree-marker" style="display: none;"></div><div id="vakata-contextmenu"></div></body></html>

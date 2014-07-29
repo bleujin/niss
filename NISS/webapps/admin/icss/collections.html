@@ -1,0 +1,174 @@
+<div class="inbox-nav-bar no-content-padding">
+
+	<h1 class="page-title pull-right txt-color-blueDark hidden-tablet">
+		<select class="input-sm">
+			<option value="">Choose Collection</option>
+			<option value="1">Alexandra</option>
+			<option value="2">Alice</option>
+			<option value="3">Anastasia</option>
+			<option value="4">.New Collection</option>
+		</select>
+		</label>
+		
+	</h1>
+
+
+
+
+	<div class="btn-group hidden-desktop visible-tablet">
+		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			Sections <i class="fa fa-caret-down"></i>
+		</button>
+		<ul class="dropdown-menu pull-left">
+			<li><a class="overview-load" href="javascript:void(0);">Overview <i class="fa fa-check"></i></a></li>
+			<li><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
+			<li><a class="file-load" href="javascript:void(0);">Files</a></li>
+			<li><a class="document-load" href="javascript:void(0);">Documents</a></li>
+			<li class="divider"></li>
+			<li><a class="query-load" href="javascript:void(0);">Query</a></li>
+			<li><a class="index-load" href="javascript:void(0);">Index Browsing</a></li>
+		</ul>
+
+	</div>
+
+
+</div>
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
+			<li class="submenu"><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
+			<li class="submenu"><a class="file-load" href="javascript:void(0);">Files</a></li>
+			<li class="submenu"><a class="document-load" href="javascript:void(0);">Documents</a></li>
+
+			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
+			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index Browsing</a></li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+			3.5GB of <strong>10GB</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 34%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+
+	</div>
+
+
+</div>
+
+<script type="text/javascript">
+	/* DO NOT REMOVE : GLOBAL FUNCTIONS!
+	 *
+	 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
+	 *
+	 * // activate tooltips
+	 * $("[rel=tooltip]").tooltip();
+	 *
+	 * // activate popovers
+	 * $("[rel=popover]").popover();
+	 *
+	 * // activate popovers with hover states
+	 * $("[rel=popover-hover]").popover({ trigger: "hover" });
+	 *
+	 * // activate inline charts
+	 * runAllCharts();
+	 *
+	 * // setup widgets
+	 * setup_widgets_desktop();
+	 *
+	 * // run form elements
+	 * runAllForms();
+	 *
+	 ********************************
+	 *
+	 * pageSetUp() is needed whenever you load a page.
+	 * It initializes and checks for all basic elements of the page
+	 * and makes rendering easier.
+	 *
+	 */
+
+	pageSetUp();
+
+	// PAGE RELATED SCRIPTS
+
+	// pagefunction
+	
+	var pagefunction = function() {
+
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		})
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			}
+
+		}
+
+		//LOAD INBOX MESSAGES
+		loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+		$("li.submenu").click(function() {
+		    $(this).toggleClass("active");
+		    $(this).siblings().removeClass("active");
+		});
+
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap'))
+		});
+		$(".analysis-load").click(function() {
+			loadURL("icss/collections/analysis.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".file-load").click(function() {
+			loadURL("icss/collections/file.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".document-load").click(function() {
+			loadURL("icss/collections/document.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".query-load").click(function() {
+			loadURL("icss/collections/query.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".index-load").click(function() {
+			loadURL("icss/collections/index.html", $('#inbox-content > .table-wrap')) ;
+		});
+	
+	};
+	
+	// end pagefunction
+	
+	// load delete row plugin and run pagefunction
+
+	loadScript("js/plugin/delete-table-row/delete-table-row.min.js", pagefunction);
+	
+</script>
