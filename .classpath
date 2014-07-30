@@ -16,6 +16,8 @@
 	<classpathentry kind="lib" path="lib/ref/isearcher_4.4.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/jsr311_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/icrawler_0.5.jar"/>
+	<classpathentry kind="lib" path="lib/imsi/solr-core-4.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/imsi/solr-solrj-4.9.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

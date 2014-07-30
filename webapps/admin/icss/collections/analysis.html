@@ -12,9 +12,7 @@
 	<div class="col-sm-12">
 		
 		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
+			<button class="close" data-dismiss="alert">x</button>
 
 			<blockquote>
 			  <p>Analysis </p>
@@ -45,7 +43,7 @@
 					<section>
 						<label class="label">Analyzer Type</label>
 						<label class="select">
-							<select name="interested">
+							<select name="interested" id="analyzer">
 							    <option value="1">Korean</option>
 							    <option value="1">Japen</option>
 							    <option value="2">Standard</option>
@@ -92,7 +90,25 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		
+		$('#analyzer').change(function(){
+			$.ajax({
+	            url:'/admin/collection/analyzer',
+	            dataType:'json',
+	            success:function(data){
+	                var str = '';
+	                for(var name in data){
+	                    str += '<li>'+data[name]+'</li>';
+	                }
+	                $('#timezones').html('<ul>'+str+'</ul>');
+	            }, 
+	            error:function(request,status,error){
+	            	console.log('response', request, status, error) ;
+	            	// alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	            	// $('#analyzer').append(new Option('Foo', 'foo', true, true));
+	            	// $('#analyzer').selectpicker('refresh');
+	            }
+	        }) ;
+	    }) ;
 	};
 
 	// run pagefunction on load

@@ -1,25 +1,21 @@
 package net.ion.niss.apps;
 
-import junit.framework.TestCase;
-import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.ListUtil;
-import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 
-public class TestNewIndexCollection extends TestCase {
+import junit.framework.TestCase;
 
+public class TestIndexCollectionCreate extends TestCase {
 	private CollectionApp ca;
-	private IndexCollection ic;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
 		this.ca = CollectionApp.create() ;
-		this.ic = ca.newCollection("col1") ;
 	}
 	
 	@Override
@@ -28,13 +24,11 @@ public class TestNewIndexCollection extends TestCase {
 		super.tearDown();
 	}
 	
-	
-	public void testAvailableAnalyzer() throws Exception {
-		assertEquals(true, ca.analyzers().size() > 3) ;
-	}
-
-	
 	public void testAnalyzer() throws Exception {
+		assertEquals(false, ca.hasCollection("temp")) ;
+		IndexCollection ic = ca.newCollection("temp"); ;
+		assertEquals(true, ca.hasCollection("temp")) ;
+		
 		assertEquals(MyKoreanAnalyzer.class, ic.indexAnalyzer().getClass());
 		assertEquals(MyKoreanAnalyzer.class, ic.queryAnalyzer().getClass());
 
@@ -47,21 +41,11 @@ public class TestNewIndexCollection extends TestCase {
 		
 		assertEquals(CJKAnalyzer.class.getCanonicalName(), ic.infoNode().property("indexanalyzer").asString()) ;
 		assertEquals(CJKAnalyzer.class.getCanonicalName(), ic.infoNode().property("queryanalyzer").asString()) ;
-	}
-	
-	
-	public void testUpdateDocument() throws Exception {
-		JsonObject jo = JsonObject.create().put("name", "bleujin").put("age", 20) ;
 		
-		ic.mergeDocument("bleujin", jo) ;
+		ca.removeCollection("temp") ;
 		
-		ReadDocument rdoc = ic.findNode("bleujin") ;
-		assertEquals("bleujin", rdoc.get("name")) ;
-		assertEquals(20, rdoc.getAsLong("age"));
+		
+		assertEquals(false, ca.hasCollection("temp")) ;
 	}
-	
-	
-	
-	
 	
 }
