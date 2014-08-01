@@ -1,12 +1,12 @@
 <div class="inbox-nav-bar no-content-padding">
 
 	<h1 class="page-title pull-right txt-color-blueDark hidden-tablet">
-		<select class="input-sm">
-			<option value="">Choose Collection</option>
-			<option value="1">Alexandra</option>
+		<select class="input-sm" id="collection">
+			<option value="-blank" disabled="">Choose Collection</option>
+			<option value="col1" selected>Alexandra</option>
 			<option value="2">Alice</option>
 			<option value="3">Anastasia</option>
-			<option value="4">.New Collection</option>
+			<option value="-new">.New Collection</option>
 		</select>
 		</label>
 		
@@ -68,42 +68,12 @@
 </div>
 
 <script type="text/javascript">
-	/* DO NOT REMOVE : GLOBAL FUNCTIONS!
-	 *
-	 * pageSetUp(); WILL CALL THE FOLLOWING FUNCTIONS
-	 *
-	 * // activate tooltips
-	 * $("[rel=tooltip]").tooltip();
-	 *
-	 * // activate popovers
-	 * $("[rel=popover]").popover();
-	 *
-	 * // activate popovers with hover states
-	 * $("[rel=popover-hover]").popover({ trigger: "hover" });
-	 *
-	 * // activate inline charts
-	 * runAllCharts();
-	 *
-	 * // setup widgets
-	 * setup_widgets_desktop();
-	 *
-	 * // run form elements
-	 * runAllForms();
-	 *
-	 ********************************
-	 *
-	 * pageSetUp() is needed whenever you load a page.
-	 * It initializes and checks for all basic elements of the page
-	 * and makes rendering easier.
-	 *
-	 */
 
 	pageSetUp();
 
 	// PAGE RELATED SCRIPTS
 
 	// pagefunction
-	
 	var pagefunction = function() {
 
 		// fix table height

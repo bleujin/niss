@@ -1,6 +1,8 @@
-package net.ion.niss.apps;
+package net.ion.niss.apps.cols;
 
 import net.ion.framework.util.ListUtil;
+import net.ion.niss.apps.CollectionApp;
+import net.ion.niss.apps.IndexCollection;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;

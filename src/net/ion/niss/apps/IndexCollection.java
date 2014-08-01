@@ -12,8 +12,13 @@ import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
+import net.ion.framework.parse.gson.JsonArray;
+import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.stream.JsonReader;
 import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.MapUtil;
+import net.ion.nsearcher.common.FieldIndexingStrategy.FieldType;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.config.Central;
@@ -21,6 +26,7 @@ import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
+import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -119,66 +125,116 @@ public class IndexCollection implements Closeable {
 		return colNode;
 	}
 	
+	public IndexCollection index(JsonObject json) {
+		return index(FieldSchema.DEFAULT, json) ;
+	}
 
-	public IndexCollection mergeDocument(final String id, final JsonObject values) {
+	public IndexCollection index(FieldSchema fieldSchema, JsonObject son) {
+		return index(fieldSchema, new JsonArray().add(son)) ;
+	}
+
+	public IndexCollection index(final FieldSchema fieldSchema, final JsonArray jarray) {
 		central.newIndexer().index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
-				
-				
-				WriteDocument wdoc = isession.newDocument(id).add(values) ;
-				isession.updateDocument(wdoc) ;
+				for(JsonElement jelement : jarray.toArray()){
+					JsonObject json = jelement.getAsJsonObject() ;
+					
+					WriteDocument wdoc = json.has("id") ? isession.newDocument(json.asString("id")) : isession.newDocument() ; 
+					for (String key : json.keySet()) {
+//						if ("id".equals(key)) continue ;
+						JsonElement value = json.get(key);
+						if (value.isJsonArray()){
+							for(JsonElement jele : value.getAsJsonArray().toArray()){
+								wdoc.add(fieldSchema.toMyField(key, jele.getAsJsonPrimitive())) ;
+							}
+						} else if (value.isJsonPrimitive()){
+							wdoc.add(fieldSchema.toMyField(key, value.getAsJsonPrimitive())) ;
+						} else { //
+							continue ;
+						}
+					}
+					
+					isession.updateDocument(wdoc) ;
+				}
 				return null;
 			}
 		}) ;
-//		colNode.session().tran(new TransactionJob<Void>() {
-//			@Override
-//			public Void handle(WriteSession wsession) throws Exception {
-//				wsession.pathBy(colNode.fqn()).child("nodes").child(id).fromJson(values) ;
-//				return null;
-//			}
-//		}) ;
 
 		return this ;
 	}
-
-	public ReadDocument findNode(String id) throws IOException, ParseException {
-//		return colNode.child("nodes").child(id) ;
-		return central.newSearcher().createRequestByKey(id).findOne() ;
+	
+	public IndexCollection index(final FieldSchema fieldSchema, final JsonReader jreader) {
+		central.newIndexer().index(new IndexJob<Void>() {
+			@Override
+			public Void handle(IndexSession isession) throws Exception {
+				jreader.beginArray(); 
+				while(jreader.hasNext()){
+					JsonObject json = jreader.nextJsonObject() ;
+					
+					WriteDocument wdoc = json.has("id") ? isession.newDocument(json.asString("id")) : isession.newDocument() ; 
+					for (String key : json.keySet()) {
+//						if ("id".equals(key)) continue ;
+						JsonElement value = json.get(key);
+						if (value.isJsonArray()){
+							for(JsonElement jele : value.getAsJsonArray().toArray()){
+								if (! jele.isJsonPrimitive()) continue ;
+								wdoc.add(fieldSchema.toMyField(key, jele.getAsJsonPrimitive())) ;
+							}
+						} else if (value.isJsonPrimitive()){
+							wdoc.add(fieldSchema.toMyField(key, value.getAsJsonPrimitive())) ;
+						} else { //
+							continue ;
+						}
+					}
+					
+					isession.updateDocument(wdoc) ;
+				}
+				jreader.endArray(); 
+				return null;
+			}
+		}) ;		
+		return this ;
 	}
+
+
+	public Searcher searcher() throws IOException{
+		return central.newSearcher() ;
+	}
+	
 
 	public <T> T info(InfoHandler<T> infoHandler) throws IOException {
 		return central.newReader().info(infoHandler) ;
 	}
 
-	public Map<String, Object> status() throws IOException {
-		return info(new InfoHandler<Map<String, Object>>() {
+	public JsonObject status() throws IOException {
+		return info(new InfoHandler<JsonObject>() {
 			@Override
-			public Map<String, Object> view(IndexReader ireader, DirectoryReader dreader) throws IOException {
-				Map<String, Object> map = new LinkedHashMap<String, Object>() ;
+			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
+				JsonObject json = new JsonObject() ;
 				
-				map.put("Max Doc", dreader.maxDoc()) ;
-				map.put("Nums Docs", dreader.numDocs()) ;
-				map.put("Deleted Docs",  dreader.numDeletedDocs()) ;
-				map.put("Version", dreader.getVersion()) ;
-				map.put("Segment Count", dreader.getIndexCommit().getSegmentCount()) ;
-				map.put("Current", dreader.isCurrent()) ;
+				json.put("Max Doc", dreader.maxDoc()) ;
+				json.put("Nums Docs", dreader.numDocs()) ;
+				json.put("Deleted Docs",  dreader.numDeletedDocs()) ;
+				json.put("Version", dreader.getVersion()) ;
+				json.put("Segment Count", dreader.getIndexCommit().getSegmentCount()) ;
+				json.put("Current", dreader.isCurrent()) ;
 				
-				return map;
+				return json;
 			}
 		});
 	}
 
-	public Map<String, Object> dirInfo() throws IOException {
-		return info(new InfoHandler<Map<String, Object>>() {
+	public JsonObject dirInfo() throws IOException {
+		return info(new InfoHandler<JsonObject>() {
 			@Override
-			public Map<String, Object> view(IndexReader ireader, DirectoryReader dreader) throws IOException {
-				Map<String, Object> map = new LinkedHashMap<String, Object>() ;
+			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
+				JsonObject json = new JsonObject() ;
 				
-				map.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
-				map.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
+				json.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
+				json.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
 				
-				return map;
+				return json;
 			}
 		});
 	}
@@ -195,6 +251,8 @@ public class IndexCollection implements Closeable {
 		close(); 
 		app.removeCollection(colNode, colId, this);
 	}
+
+
 
 
 

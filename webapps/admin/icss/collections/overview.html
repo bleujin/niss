@@ -48,22 +48,7 @@
 				<div id="myTabContent1" class="tab-content padding-10">
 					<div class="tab-pane fade in active" id="s1">
 					<dl class="dl-horizontal" id="overview_status">
-				        <dt>Last Modified</dt>
-				        	<dd>8 days ago</dd>
-				        <dt>Num Docs</dt>
-				        	<dd>2</dd>
-				        <dt>Max Doc</dt>
-				        	<dd>2</dd>
-				        <dt>Heap Memory</dt>
-				        	<dd>4728</dd>
-				        <dt>Deleted Docs</dt>
-				        	<dd>0</dd>
-				        <dt>Version</dt>
-				        	<dd>7</dd>
-				        <dt>Segment Count</dt>
-				        	<dd>1</dd>
-				        <dt>Optimized</dt>
-				        	<dd><i class="fa fa-check"></i></dd>
+				        
 				    </dl>
 					</div>
 					
@@ -110,7 +95,21 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		$("<dt>Last Modified</dt><dd>1</dd>").appendTo($("#overview_status")) ;
+		var colId = $("#collection option:selected").val() ;
+		
+		$.ajax({
+            url:'/admin/collections/' + colId +'/status',
+            dataType:'json',
+            success:function(data){
+                var str = '';
+                for(var name in data){
+                    $('<dt>'+name+'</dt><dd>'+data[name]+'</dd>').appendTo($("#overview_status")) ;
+                }
+            }, 
+            error:function(request,status,error){
+            	console.log('response', request, status, error) ;
+            }
+        }) ;
 	};
 
 	// run pagefunction on load
