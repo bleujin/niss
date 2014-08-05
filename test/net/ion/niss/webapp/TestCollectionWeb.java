@@ -4,6 +4,7 @@ import org.infinispan.util.InfinispanCollections;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.InfinityThread;
+import net.ion.niss.webapp.collection.CollectionWeb;
 import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
 import net.ion.nradon.stub.StubHttpResponse;

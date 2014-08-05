@@ -6,8 +6,8 @@ import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
-import net.ion.niss.apps.CollectionApp;
-import net.ion.niss.apps.IndexCollection;
+import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.nsearcher.common.ReadDocument;
 
 public class TestDocument extends TestCase {

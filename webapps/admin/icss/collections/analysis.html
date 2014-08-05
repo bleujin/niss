@@ -2,7 +2,7 @@
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
 			<i class="fa fa-edit fa-fw "></i> 
-				Index Analysis
+				Index Analyzer
 		</h1>
 	</div>
 	
@@ -12,12 +12,15 @@
 	<div class="col-sm-12">
 		
 		<div class="well">
-			<button class="close" data-dismiss="alert">x</button>
-
 			<blockquote>
-			  <p>Analysis </p>
+			  <div id="info" class="click2edit"></div>
 			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
 
 		
@@ -32,27 +35,23 @@
 		
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
+			<form class="smart-form" id="document-form" method="post" action="collection/analysis" novalidate="novalidate">
 				<fieldset>					
 					<section>
 						<label class="label">Text Value(Index)</label>
 						<label class="textarea textarea-resizable">
-							<textarea id="query" name="query" rows="3"></textarea>
+							<textarea id="content" name="content" rows="3"></textarea>
 						</label>
 					</section>
 					<section>
 						<label class="label">Analyzer Type</label>
 						<label class="select">
-							<select name="interested" id="analyzer">
-							    <option value="1">Korean</option>
-							    <option value="1">Japen</option>
-							    <option value="2">Standard</option>
-							</select>
+							<select id="analyzer" name="analyzer"></select>
 						</label>
 					</section>
 					
 					<section>
-						<label class="checkbox"><input type="checkbox" id="template" name="debug" /><i></i>Searche Query</label>
+						<label class="checkbox"><input type="checkbox" id="chk_stopword" name="stopword"/><i></i>Apply Stopword</label>
 					</section>
 					
 				</fieldset>
@@ -90,25 +89,49 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		$('#analyzer').change(function(){
+		var colId = $("#collection option:selected").val() ;
+		
+		$.ajax({
+            url:'/admin/collections/' + colId +'/analysis',
+            dataType:'json',
+            success:function(data){
+            	var info = data['info'];
+            	var analyzer = data['analyzer'] ;
+            	
+            	$("#info").html(info) ;
+            	
+                for(var idx in analyzer){
+                	var a = analyzer[idx] ;
+                    var option = $('<option value="'+a['clz']+'">'+a['name']+'</dd>') ;
+                    if (a['selected']) option.attr('selected', 'selected');
+                    option.appendTo($("#analyzer")) ;
+                }
+
+            }, 
+            error:function(request,status,error){
+            	console.log('response', request, status, error) ;
+            }
+        }) ;
+		
+		
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
 			$.ajax({
-	            url:'/admin/collections/col1/status',
-	            dataType:'json',
-	            success:function(data){
-	                var str = '';
-	                for(var name in data){
-	                    str += '<li>'+data[name]+'</li>';
-	                }
-	                $('#timezones').html('<ul>'+str+'</ul>');
-	            }, 
-	            error:function(request,status,error){
-	            	console.log('response', request, status, error) ;
-	            	// alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	            	// $('#analyzer').append(new Option('Foo', 'foo', true, true));
-	            	// $('#analyzer').selectpicker('refresh');
-	            }
-	        }) ;
-	    }) ;
+				type: "POST",
+				url: "/admin/collections/" + colId + "/fields/info",
+				data: { content: aHTML, field: "analysis" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
 	};
 
 	// run pagefunction on load

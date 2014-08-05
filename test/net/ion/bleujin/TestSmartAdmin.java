@@ -4,8 +4,10 @@ import org.apache.commons.lang.SystemUtils;
 
 import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
-import net.ion.niss.apps.CollectionApp;
-import net.ion.niss.webapp.CollectionWeb;
+import net.ion.niss.apps.AppLogSink;
+import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.webapp.collection.CollectionWeb;
+import net.ion.niss.webapp.collection.MiscWeb;
 import net.ion.nradon.Radon;
 import net.ion.nradon.authentication.WhoAmIHttpHandler;
 import net.ion.nradon.config.RadonConfiguration;
@@ -23,10 +25,10 @@ public class TestSmartAdmin extends TestCase {
 		builder.rootContext(CollectionApp.class.getSimpleName(), CollectionApp.create()) ;
 		
 		builder
-			.add(new LoggingHandler(new SimpleLogSink()))
+			.add(new LoggingHandler(new AppLogSink()))
 			.add(new SimpleStaticFileHandler("./webapps/admin/"))
 //			.add(new WhoAmIHttpHandler())
-			.add("/admin/*", new PathHandler(CollectionWeb.class).prefixURI("/admin"))
+			.add("/admin/*", new PathHandler(CollectionWeb.class, MiscWeb.class).prefixURI("/admin"))
 			;
 		
 		Radon radon = builder.start().get() ;

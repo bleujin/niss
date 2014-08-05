@@ -6,8 +6,8 @@ import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
-import net.ion.niss.apps.CollectionApp;
-import net.ion.niss.apps.IndexCollection;
+import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.nsearcher.common.ReadDocument;
 
 public class TestOverview extends TestCase {
@@ -52,6 +52,12 @@ public class TestOverview extends TestCase {
 	}
 	
 	
+	public void testExplain() throws Exception {
+		String value = "<pre>Collection은 Index를 관리하는 곳입니다.</pre>";
+		ic.updateExplain("overview", value);
+		
+		assertEquals(value, ic.propAsString("overview")) ;
+	}
 
 	
 }

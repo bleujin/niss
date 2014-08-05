@@ -12,14 +12,15 @@
 	<div class="col-sm-12">
 		
 		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
-
 			<blockquote>
-			  <p>Collection은 물리적 저장소 입니다. </p>
+			  <div id="info" class="click2edit"></div>
 			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -41,7 +42,7 @@
 						<a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i>Status</a>
 					</li>
 					<li>
-						<a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Instance</a>
+						<a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Directory</a>
 					</li>
 				</ul>
 				
@@ -53,24 +54,35 @@
 					</div>
 					
 					<div class="tab-pane fade" id="s2">
-					<dl class="dl-horizontal">
-				        <dt>Working Dir</dt>
-				        	<dd>C:\temp\solr-4.9.0\example</dd>
-				        <dt>Instance</dt>
-				        	<dd>C:\temp\solr-4.9.0\example\solr\collection1</dd>
-				        <dt>Data</dt>
-				        	<dd>C:\temp\solr-4.9.0\example\solr\collection1\data</dd>
-				        <dt>Index</dt>
-				        	<dd>C:\temp\solr-4.9.0\example\solr\collection1\data\index</dd>
-				    </dl>
-					<dl class="dl-horizontal">
-				        <dt>Impl</dt>
-				        	<dd>org.apache.solr.core.NRTCachingDirectoryFactory</dd>
+					<dl class="dl-horizontal" id="overview_dirinfo">
 				    </dl>
 					</div>
 				</div>
 
 			</div>
+			
+			<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
+				<fieldset>					
+					<section>
+						<label class="label">Index Analyzer</label>
+						<label class="select">
+							<select id="analyzer">
+							    <option value="1">Korean</option>
+							    <option value="1">Japen</option>
+							    <option value="2">Standard</option>
+							</select>
+						</label>
+					</section>
+					<section>
+						<label class="checkbox"><input type="checkbox" id="chk_stopword" /><i></i>Apply Stopword</label>
+					</section>
+				</fieldset>
+				
+				<div class="message">
+					<i class="fa fa-thumbs-up"></i>
+					<p>Your message was successfully sent!</p>
+				</div>
+			</form>
 		</article>
 		
 	</div>
@@ -98,21 +110,52 @@
 		var colId = $("#collection option:selected").val() ;
 		
 		$.ajax({
-            url:'/admin/collections/' + colId +'/status',
+            url:'/admin/collections/' + colId +'/overview',
             dataType:'json',
             success:function(data){
-                var str = '';
-                for(var name in data){
-                    $('<dt>'+name+'</dt><dd>'+data[name]+'</dd>').appendTo($("#overview_status")) ;
+            	var info = data['info'];
+            	var sinfo = data['status'] ;
+            	var dinfo = data['dirInfo'] ;
+            	
+            	$("#info").html(info) ;
+            	
+                for(var name in sinfo){
+                    $('<dt>'+name+'</dt><dd>'+sinfo[name]+'</dd>').appendTo($("#overview_status")) ;
                 }
+
+                for(var name in dinfo){
+                    $('<dt>'+name+'</dt><dd>'+dinfo[name]+'</dd>').appendTo($("#overview_dirinfo")) ;
+                }
+
             }, 
             error:function(request,status,error){
             	console.log('response', request, status, error) ;
             }
         }) ;
+		
+		
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/collections/" + colId + "/fields/info",
+				data: { content: aHTML, field: "overview" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+
 	};
 
 	// run pagefunction on load
-	pagefunction();
+	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
 
 </script>

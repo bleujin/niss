@@ -5,9 +5,9 @@ import net.ion.crawler.util.StringUtil;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.ObjectUtil;
-import net.ion.niss.apps.CollectionApp;
-import net.ion.niss.apps.FieldSchema;
-import net.ion.niss.apps.IndexCollection;
+import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.FieldSchema;
+import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.nsearcher.common.MyField;
 
 public class TestFieldSchema extends TestCase {

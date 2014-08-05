@@ -1,0 +1,83 @@
+[
+	{
+		"link": "http://bleujin.tistory.com/163",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "그들이 위임했을뿐",
+		"title": "<title>Life is Simple, Thinking is High :: 그들이 위임했을뿐</title>",
+		"subject": "그들이 위임했을뿐",
+		"date": "2012/12/19 21:17",
+		"content": "LemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/147",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "AL Client (XUL Sample)",
+		"title": "<title>Life is Simple, Thinking is High :: AL Client (XUL Sample)</title>",
+		"subject": "AL Client (XUL Sample)",
+		"date": "2009/07/26 13:27",
+		"content": "anotherLore_client.jar\n해당디렉토리프롬프트창에서java-jaranotherLore_client.jar를실행하면된다.(jar확장자가인식되면dblClick로도실행)\n최근어느책에서본건데24시간무정지시스템은달리는자동차에서엔진을교체하는것과같다고한다.그러나그보다최악은달리는자동차의엔진을만드는일이다.나는이전에그런경험을하면서다시는그와비슷한일이발생하지않도록엔진을만들때여러개의MockUp자동차를만들기로했고WebSample의AL의찰흙로만든자동차라면XULExample는나무로만든자동차같다.\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/146",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "AL Ver 0.1",
+		"title": "<title>Life is Simple, Thinking is High :: AL Ver 0.1</title>",
+		"subject": "AL Ver 0.1",
+		"date": "2009/07/24 09:37",
+		"content": "이전과다른점은Oracle을사용하지않아도샘플의실행과테스트의용이성을위해서File에write를한다.십만건이상에Session이많을경우DB를써야하겠지만그이하라면파일로도처리가가능.\n다만File저장소는테스트용으로만들어서write가많이일어나는경우동시성이취약함.테스트용이성을위해만들었지만데이타캐쉬나분산연산등의역할을담당할수도있는추가적인장점이많이있어서보완중.\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/102",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "AL의 첫 테스트 버전",
+		"title": "<title>Life is Simple, Thinking is High :: AL의 첫 테스트 버전</title>",
+		"subject": "AL의 첫 테스트 버전",
+		"date": "2009/04/12 23:42",
+		"content": "실행방법:1.파일을다운로드받는다(http://drop.io/datptht/asset/anotherlore-jaranotherLore.jar약30M)2.알집으로열어서webapps/디렉토리만현재디렉토리에압축을푼다.현재디렉토리에다운받은jar파일하나와webaspps디렉토리가있어야한다.현재디렉토리-anotherLore.jar-webapps/3.command창에서java-jaranotherLore.jar로실행(requireJRE1.5higher)한다.(jettyserver가기동한다.)4.http://localhost:8080/board/로접속한다..끝.-ㅅ-(중단하려면Ctrl+c를누른다.)\n==============4월12일\n1.noticeType은versionable시키지않았기에상관없지만generalBoard는versionablecode로되어있었는데버전을3번수정하는PK오류가나는걸수정.\n2.불필요하게nodeType을매번억세스하는걸수정.\n3.Property.Type에virtualText,referenceType추가.\n예컨데generalBoard의2번째Textarea는VirtualTextType으로되어있는데벨로시티템플릿을사용한다.\n아래와같이입력/수정할경우..\n$node.getUUIDString()br/br/\n#foreach($nin$node.getNodeByPath('/').getChildNode())\n$nbr/\nView화면에서는위의템플릿이적용된다른내용이보이게된다.$node는현재node를가르키지만이를통해모든node를억세스가능하다.\n4.파일공유사이트바꿈.\n===============4월5일\nAL은DataStore를확인할수있는NodeTypeInfo,NodeInfoPage가있고\nAL로만든간단한SampleProgram인Notice,GeneralBoard,Diagram3가지가있다.\nAL은게시판을만들어주는어드민모드프로그램이아니라프로그램를만드는프로그램이다.3가지의다른데이타모델을사용하는샘플프로그램은모두같은인터페이스모델로저장이된다.\n모든DataModel은NodeType으로쉽게만들수있다.\nanotherLore.jar의com.bleuji.lore.impl.board에위의3개의샘플프로그램소스가있는데예를들어데이타모델은아래와같이만들면된다.\nprivatevoidinitBoard(AnotherLorelore)throwsRepositoryException{UserSessionsession=lore.login(newTestCredential(admin),localhost);globalStore=session.getGlobalStore();NodeTypeobjectType=globalStore.createNodeType(NodeType.NO_SUPERTYPE,_object,newPropertyDefinition[0]);Noderoot=session.createNode(Node.NO_PARENT,objectType,/);NodeanonymousRoot=session.createNode(root,objectType,anonymous);//noticeDataModelNodeTypenoticeBoardType=globalStore.createNodeType(objectType,notice_board,newPropertyDefinition[0]);PropertyDefinitionboardNo=createProperty(BOARDNO,Property.Type.LONG);PropertyDefinitionsubject=createProperty(SUBJECT,Property.Type.STRING);PropertyDefinitionregUserId=createProperty(REGUSERID,Property.Type.STRING);PropertyDefinitionregDate=createProperty(REGDATE,Property.Type.DATE);PropertyDefinitioncontent=createProperty(CONTENT,Property.Type.STRING);PropertyDefinition[]noticeProperties=newPropertyDefinition[]{boardNo,subject,regUserId,regDate,content};NodeTypenoticeType=globalStore.createNodeType(objectType,notice,noticeProperties);noticeType.addPropertyConstraint(boardNo,newNumberConstraint());noticeType.addPropertyConstraint(subject,newRangeByteLengthConstraint(1,200));noticeType.addPropertyConstraint(regUserId,newRequireConstraint());noticeType.addPropertyConstraint(regDate,newRequireConstraint());noticeBoardType.setMemberType(noticeType);NodenoticeBoardRootNode=session.createNode(root,noticeBoardType,noticeboard);//extendboardDataModelNodeTypegeneralBoardType=globalStore.createNodeType(objectType,general_board,newPropertyDefinition[0]);NodeTypearticleType=globalStore.createNodeType(noticeType,article,newPropertyDefinition[]{createProperty(ATTACH_FILE,Property.Type.BINARY),createProperty(FORMET_TEXT,Property.Type.VIRTUAL_TEXT)});articleType.addPropertyConstraint(boardNo,newNumberConstraint());articleType.addPropertyConstraint(subject,newRangeByteLengthConstraint(1,200));articleType.addPropertyConstraint(regUserId,newRequireConstraint());articleType.addPropertyConstraint(regDate,newRequireConstraint());PropertyDefinitioncomment=createProperty(COMMENT,Property.Type.STRING);NodeTypecommentType=globalStore.createNodeType(objectType,comment,newPropertyDefinition[]{comment,regUserId,regDate});commentType.addPropertyConstraint(comment,newRangeByteLengthConstraint(10,4000));commentType.addPropertyConstraint(regUserId,newRequireConstraint());commentType.addPropertyConstraint(regDate,newRequireConstraint());articleType.setMemberType(commentType);NodegeneralBoardRootNode=session.createNode(root,generalBoardType,generalboard);generalBoardType.setMemberType(articleType);//webnote(diagram)DataModelPropertyDefinitionname=createProperty(name,Property.Type.STRING);PropertyDefinitionnextNoteNum=createProperty(nextNoteNum,Property.Type.INTEGER);NodeTypeworkspaceType=globalStore.createNodeType(objectType,workspace_type,newPropertyDefinition[]{name,nextNoteNum});workspaceType.addPropertyConstraint(name,newRequireConstraint());workspaceType.addPropertyConstraint(nextNoteNum,newRequireConstraint());PropertyDefinitionnote_content=createProperty(note_content,Property.Type.STRING);NodeTypenoteType=globalStore.createNodeType(objectType,note_type,newPropertyDefinition[]{note_content});noteType.addPropertyConstraint(content,newRequireConstraint());Nodeworkspace=session.createNode(session.getNodeByPath(/),workspaceType,workspace);session.save();session.logout();}privatePropertyDefinitioncreateProperty(Stringpid,Property.TyperequireType)throwsRepositoryException{returnglobalStore.createPropertyDefinition(pid,requireType);}}\nAPI는가능한jcr170과비슷하게하려고는했지만여러가지자잘한이유로조금씩변경했다.\nnewRequireConstraint()라는constraint는실제로는데이타베이스에configured-object\nclass-namecom.bleujin.lore.core.constraint.RequireConstraint/class-name\n/configured-object\n와같은XML형태로저장이된다.\nwebapps/board/WEB-INF/default-config.xml파일을열어서\n1.root.database-controller.database-manager에userId,userPassword,jdbcURL을설정하고\n(해당아이디는connect,resource권한을가지고있어야한다.)\n2.root.license.startmode를oracle:recreate로바꿔주고재시동하면된다.\n오라클을DataStore로사용했을경우root.license.startmode에는\noracle:recreate,oracle:reset,oracle:none3가지를적용할수있는데,\n1)oracle:recreate는시작할때관련테이블과sequence를모두지우고(없으면무시)다시테이블등의세그먼트를만든다.\n2)oracle:reset세그먼트를다시만들지는않지만테이블의데이타는모두지우고시작한다.\n3)oracle:none이미오라클에관련테이블이있다면그냥아무짓안하고시작한다.(이전에저장했던데이타가남는다.)\n처음오라클모드로시작하는거면oracle:recreate로시작한다.(가능한쉬운기동을위해과정을단순하게만들려고했다.)\ngeneralBoard를통해업데이트되는Binary형태의Property는root.file-repository-path를수정하지않으면/another/data/property에저장이되고파일정보만AL에저장된다.\n실제많은사용자를버티려면TypeCache를적용해야하지만NoCacheJIT상태로도그럭저럭빠른속도를보여준다.나중에자세한성능테스트자료를올리겠음.(국내에30M정도를공유할수있는쓸만한웹하드사이트가없다는걸이글작성하면서처음알았다-ㅅ-)\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/41",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "Framework - Source",
+		"title": "<title>Life is Simple, Thinking is High :: Framework - Source</title>",
+		"subject": "Framework - Source",
+		"date": "2009/02/19 23:31",
+		"content": "db쪽은mssql,oracle,h2,mysql,hsql등을지원하기때문에해당JDBC라이브러리들이필요하다.\n그밖에zsql.jar,jericho-html.jar,jmock-core.jar,junit.jar등이필요함.\n같이올릴려고했는데10M용량제한때문에못올렸다.\n도움말이그닥충실하게되어있지않기때문에그냥참고만하고실제이용을한다면그냥jar를하는게좋다-ㅅ-\n원래사이즈는더컸는데..일부기능은framework_ext로별도로빼버렸다.\nClosedCursor때문에이전에jdevelopersite에서일부소스를가져왔는데.java1.5에서WebRowset이interface로추가되었다.internal한구현이있어java1.5의인터페이스를상속해서만들기엔어려움이있어아직도1.4impl버전을사용해야한다.\nrowset.jar\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/12",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "Bleujin Framework Jar",
+		"title": "<title>Life is Simple, Thinking is High :: Bleujin Framework Jar</title>",
+		"subject": "Bleujin Framework Jar",
+		"date": "2009/01/15 08:44",
+		"content": "2003년에처음작성아직까지잘쓰고있는Java로작성된SystemFramework..\n개인적으로는Apache어느오픈소스와비교해도설계사상과코드품질에대해서는자신이있는..\n언젠가이와관련한글을올릴수있기를...\n전체를모두올렸다가잘사용하지않는부분은ext부분으로따로빼버리고\n-Configuration\n-Database\n-exceptionhandling\n-logging\n-parse.html\n-schedule\n만따로묶었다.\nhttps://github.com/bleujin/ionframework로프로젝트이동.\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/162",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "thinking...",
+		"title": "<title>Life is Simple, Thinking is High :: thinking...</title>",
+		"subject": "thinking...",
+		"date": "2012/08/27 01:35",
+		"content": "LemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/161",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "작업중인 Project",
+		"title": "<title>Life is Simple, Thinking is High :: 작업중인 Project</title>",
+		"subject": "작업중인 Project",
+		"date": "2012/06/19 22:18",
+		"content": "ionFramework\nHome:https://github.com/bleujin/ionframework\ngitURL:https://github.com/bleujin/ionframework.gitdoc:http://bleujin.springnote.com/pages/11948044\nmongoNode\nHome:https://github.com/bleujin/mongoNode\nmongoSearchHome:https://github.com/bleujin/mongoSearch\ngitURL:https://github.com/bleujin/mongoNode.git\nmongoGitURL:https://github.com/bleujin/mongoSearch.git\ndoc:http://bleujin.springnote.com/pages/8134200\nISearcher\nHome:https://github.com/bleujin/ISearcher\ngitURL:https://github.com/bleujin/ISearcher.git\ndoc:http://bleujin.springnote.com/pages/11944056\nAradon\nServerHome:https://github.com/bleujin/aradon\nClientHome:https://github.com/bleujin/aradonClient\nExtendHome:https://github.com/bleujin/aradonExtend\nAgentHome:...\nServerGitURL:https://github.com/bleujin/aradon.git.git\nClientGitURL:https://github.com/bleujin/aradonClient.git\nExtendGitURL:https://github.com/bleujin/aradonExtend.git\ndoc:http://bleujin.springnote.com/pages/8011148\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	},
+	{
+		"link": "http://bleujin.tistory.com/160",
+		"referer": "http://bleujin.tistory.com/",
+		"anchor": "아키텍트의 역할2.",
+		"title": "<title>Life is Simple, Thinking is High :: 아키텍트의 역할2</title>",
+		"subject": "아키텍트의 역할2",
+		"date": "2012/06/19 22:07",
+		"content": "지휘자란다양한개성을가진연주가들의집단(오케스트라)을한데모으는머리의역할기계와는달리버튼을누르면움직이는게아니므로말하는것을듣게하는것도큰일이다.그래서무섭거나상냥하거나깐깐하거나친구같기도하는등여러가지타입의지휘자가생겨난다.\n지휘관타입\n가장지휘자다운것이지휘관타입오케스트라를군대처럼취급하여한치의흐트러짐없는작전수행이가능하도록훈련을게을리하지않고실수나명령무시를결코인정하지않는다.또한단원의채용이나해고등인사권도발동하여미소한번짓지않고모든것을장악하는무서운타입어떤의미로는최강의지휘자이지만조금이라도약점을보이거나실수라도저지르면권위가실추되어모반이일어날위험도크다.때문에한순간의방심도용납할수없어스트레스가쌓인다.덕분에현대에는거의전멸한타입BOSS타입\n다음은보스타입,\n어떤때는엄격하게,어떤때는상냥하게채찍과당근을절묘한밸런스로반복해어느새이사람의말이라면뭐든듣겠어라는생각을가지게된다.지휘의테크닉과함께사람의마음을장악(꼬시기)하는테크닉을아울러지니고있어마에스트로(가장)또는보스라는애칭으로불리면서마음을한데모으고즐기며음악과사람을컨트롤한다.젊어서는미워할수없는타입혹은사랑받는타입으로서실적으로올리고연륜을쌓으면아무말하지않아도오케스트라가따라오는거장으로승격할수있는이상적인지휘자중간관리자타입한편작곡가(사장)와오케스트라(사원)사이에끼어서양쪽에머리를숙이며사이를중재하는것이중간관리자타입.지휘자라고하면오케스트라에뭐든명령할수있다고생각할지모르나수많은대가들과공연경험이있는대선배연주가나혹은지식이풍부하여이론만내세우는시끄로운연주가\n그리고소리치면울어버리는젊은연주가도있다.그들모두를따르게하는것은여간어려운일이아닐수없다.따라서오케스트라를치켜세워서좋은연주를끌어내는수단이필요하게된다.예를들면안돼이렇게해가아니라죄송합니다만여긴이런식으로연주해주시겠어요라든가매우멋진연주였습니다.하지만조금더이런느낌으로해주신다면더욱멋진연주가될것같은데어떠신가요?라고말하는식이다.지휘자는위에서들볶고,밑에서규탄받는힘든일이기도하다.이런이유로최근이런타입이많아진것같기도하다.학자타입다른노선으로작곡가가쓴악보를100%재현하는것이최고라며모든것을쿨하게해내는것이학자타입,음악에대한열정등의애매한말은하지않고악보에적혀있는포르테나피아노,템포나다이내믹을정확하게음으로내는것에목숨을건다.이른바컴퓨터같은과학자타입,말하는것은이성적이고엄격하지만,작품연구에전력을다하기때문에설득력이있어서오케스트라도말하는바를잘듣는다.(라기보다는들을수밖에없다.)덕분에틀리거나감정이흘러가는일이없어연주는편차가없고안정적이지만,너무이지적이라음악의열정(과미소)는조금부족할지도모르는것이옥의티.\nfrom피아노의숲\n.......\n이제지휘자를아키텍트로바꿔서읽어보자..\nLemairedeBo...MujerTimberland2012\nWhenflyingfr...﻿timberland2012\nveryniceblog...ManagementThesistopic2012\n주옥같은글입...돕스날다2011\n"
+	}
+]
