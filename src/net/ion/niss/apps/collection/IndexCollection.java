@@ -3,6 +3,7 @@ package net.ion.niss.apps.collection;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,24 +14,32 @@ import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
+import net.ion.craken.tree.Fqn;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonReader;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.nsearcher.common.FieldIndexingStrategy.FieldType;
 import net.ion.nsearcher.common.ReadDocument;
+import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
+import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
 import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -41,12 +50,14 @@ public class IndexCollection implements Closeable {
 	private CollectionApp app;
 	private ColId colId;
 	private Central central;
-	private ReadNode colNode;
+	private ReadSession session;
+	private final Fqn fqn;
 	private IndexCollection(CollectionApp app, ColId colId, Central central, ReadNode colNode) {
 		this.app = app ;
 		this.colId = colId ;
 		this.central = central ;
-		this.colNode = colNode ;
+		this.session = colNode.session() ;
+		this.fqn = colNode.fqn() ;
 	}
 
 	public static IndexCollection load(CollectionApp app, ColId colId, ReadNode colNode) throws Exception{
@@ -91,11 +102,12 @@ public class IndexCollection implements Closeable {
 	}
 
 	private WriteNode pathBy(WriteSession wsession) {
-		return wsession.pathBy(colNode.fqn());
+		return wsession.pathBy(fqn);
 	}
 	
-	
-	
+	public ReadNode infoNode() {
+		return session.pathBy(fqn);
+	}
 
 	public Analyzer indexAnalyzer() {
 		return central.indexConfig().indexAnalyzer() ;
@@ -106,11 +118,11 @@ public class IndexCollection implements Closeable {
 	}
 	
 	public IndexCollection indexAnalyzer(final Analyzer analyzer) throws Exception {
-		colNode = colNode.session().tranSync(new TransactionJob<ReadNode>() {
+		session.tranSync(new TransactionJob<Void>() {
 			@Override
-			public ReadNode handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(colNode.fqn()).property("indexanalyzer", analyzer.getClass().getCanonicalName()) ;
-				return wsession.readSession().pathBy(colNode.fqn());
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(fqn).property("indexanalyzer", analyzer.getClass().getCanonicalName()) ;
+				return null ;
 			}
 		}) ;
 		
@@ -120,11 +132,11 @@ public class IndexCollection implements Closeable {
 	
 
 	public IndexCollection queryAnalyzer(final Analyzer analyzer) throws Exception {
-		colNode = colNode.session().tranSync(new TransactionJob<ReadNode>() {
+		session.tranSync(new TransactionJob<Void>() {
 			@Override
-			public ReadNode handle(WriteSession wsession) throws Exception {
+			public Void handle(WriteSession wsession) throws Exception {
 				pathBy(wsession).property("queryanalyzer", analyzer.getClass().getCanonicalName()) ;
-				return wsession.readSession().pathBy(colNode.fqn());
+				return null;
 			}
 
 		}) ;
@@ -134,9 +146,6 @@ public class IndexCollection implements Closeable {
 	}
 	
 
-	public ReadNode infoNode() {
-		return colNode;
-	}
 	
 	public IndexCollection index(JsonObject json) {
 		return index(FieldSchema.DEFAULT, json) ;
@@ -262,15 +271,15 @@ public class IndexCollection implements Closeable {
 
 	public void removeSelf() throws Exception {
 		close(); 
-		app.removeCollection(colNode, colId, this);
+		app.removeCollection(session, fqn, colId, this);
 	}
 
 	public String updateExplain(final String field, final String content) throws Exception {
-		colNode = colNode.session().tranSync(new TransactionJob<ReadNode>() {
+		session.tranSync(new TransactionJob<Void>() {
 			@Override
-			public ReadNode handle(WriteSession wsession) throws Exception {
+			public Void handle(WriteSession wsession) throws Exception {
 				pathBy(wsession).property(field, content) ;
-				return wsession.readSession().pathBy(colNode.fqn());
+				return null;
 			}
 
 		}) ;
@@ -278,7 +287,7 @@ public class IndexCollection implements Closeable {
 	}
 
 	public String propAsString(String field) {
-		return colNode.property(field).asString();
+		return session.pathBy(fqn).property(field).asString();
 	}
 
 
@@ -292,6 +301,30 @@ public class IndexCollection implements Closeable {
 		}
 
 		return result ;
+	}
+
+	public JsonArray termAnalyzer(String content, String clzName, boolean stopword) throws IOException, IllegalArgumentException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException, ClassNotFoundException {
+		Class<? extends Analyzer> aclz = (Class<? extends Analyzer>) Class.forName(clzName) ;
+		Analyzer analyzer = aclz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion) ;
+		
+		TokenStream tokenStream = analyzer.tokenStream("text", content);
+		OffsetAttribute offsetAttribute = tokenStream.getAttribute(OffsetAttribute.class);
+		CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+		tokenStream.reset();
+
+		JsonArray result = new JsonArray() ;
+		while (tokenStream.incrementToken()) {
+		    int startOffset = offsetAttribute.startOffset();
+		    int endOffset = offsetAttribute.endOffset();
+		    result.add(new JsonObject().put("term", charTermAttribute.toString()).put("start", startOffset).put("end", endOffset));
+		}
+		IOUtil.close(tokenStream);
+		IOUtil.close(analyzer);
+		return result ;
+	}
+
+	public Indexer indexer() {
+		return central.newIndexer() ;
 	}
 
 

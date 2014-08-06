@@ -1,4 +1,4 @@
-package net.ion.niss.webapp.collection;
+package net.ion.niss.webapp.misc;
 
 import java.io.IOException;
 

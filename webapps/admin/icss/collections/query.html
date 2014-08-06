@@ -35,13 +35,7 @@
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
 			<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
-				<fieldset>					
-					<section>
-						<label class="label">Query Handler</label>
-						<label class="input">
-							<input type="text" id="hadler" name="handler" value="/select" />
-						</label>
-					</section>
+				<fieldset style="padding: 0px">					
 					<section>
 						<label class="label">Query</label>
 						<label class="textarea textarea-resizable">
@@ -49,7 +43,7 @@
 						</label>
 					</section>
 					<section>
-						<label class="label">Sort</label>
+						<label class="label">Sort(ex: name, id desc)</label>
 						<label class="input">
 							<input type="text" id="sort" name="sort"/>
 						</label>
@@ -105,9 +99,7 @@
 		</article>
 		
 		<article class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
-			<div class="alert alert-info alert-block">
-				http://127.0.0.1:8983/solr/col1/select?q=*%3A*+AND+id%3Ableujin&wt=json&indent=true
-			</div>
+			<div class="alert alert-info alert-block"></div>
 			<div>...</div>
 		</article>
 	</div>

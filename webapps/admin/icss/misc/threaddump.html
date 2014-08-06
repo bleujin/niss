@@ -118,7 +118,7 @@
                 		$('<li>' + traces[t] + '</li>').appendTo($("#thread-" + thread["id"] + " div ul")) ;
                 	}
                 	$('<h6>' + thread['name'] + '(' + thread['id'] + ') - ' + thread['state'] + '</h6>').prependTo($("#thread-" + thread["id"])) ;
-                	$("#thread-" + thread["id"]).next().text(thread['cpuTime'] + '/' + thread['userTime']);
+                	$("#thread-" + thread["id"]).next().html(thread['cpuTime'] + '<br>' + thread['userTime']);
                 	
                     console.log(dump) ;
                 }

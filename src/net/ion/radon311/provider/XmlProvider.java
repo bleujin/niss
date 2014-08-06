@@ -1,5 +1,6 @@
 package net.ion.radon311.provider;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -14,13 +15,16 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 
+import org.apache.ecs.xml.XML;
+import org.apache.ecs.xml.XMLDocument;
+
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
 
-public class JsonProvider implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
+public class XmlProvider implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 
 	@Override
 	public long getSize(Object arg0, Class<?> clz, Type arg2, Annotation[] arg3, MediaType mtype) {
@@ -29,7 +33,7 @@ public class JsonProvider implements MessageBodyReader<Object>, MessageBodyWrite
 
 	@Override
 	public boolean isWriteable(Class<?> clz, Type type, Annotation[] annotation, MediaType mtype) {
-		return mtype.isCompatible(MediaType.APPLICATION_JSON_TYPE) && (JsonObject.class.isAssignableFrom(clz) || IJsonCompatable.class.isAssignableFrom(clz));
+		return mtype.isCompatible(MediaType.APPLICATION_XML_TYPE) && (XML.class.isAssignableFrom(clz));
 	}
 
 	@Override
@@ -40,17 +44,13 @@ public class JsonProvider implements MessageBodyReader<Object>, MessageBodyWrite
 
 	@Override
 	public void writeTo(Object obj, Class<?> clz, Type type, Annotation[] annotations, MediaType mtype, MultivaluedMap<String, Object> mmap, OutputStream output) throws IOException, WebApplicationException {
-
-		JsonObject json = JsonObject.fromObject(obj) ;
-		JsonWriter jwriter = new JsonWriter(new OutputStreamWriter(output, "UTF-8")) ;
-//		jwriter.setIndent("  ");
+		XML xml = (XML) obj ;
+		BufferedWriter xwriter = new BufferedWriter(new OutputStreamWriter(output, "UTF-8")) ;
 		
-		jwriter.beginObject() ;
-		for (Entry<String, JsonElement> entry : json.entrySet()) {
-			writeJsonElement(jwriter, json, entry.getKey(), entry.getValue()) ; 
-		}
-		jwriter.endObject() ;
-		jwriter.flush(); 
+		XMLDocument doc = new XMLDocument() ;
+		doc.addElement(xml) ;
+		
+		doc.output(output);
 	}
 
 	@Override

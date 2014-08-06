@@ -21,12 +21,12 @@
 		</button>
 		<ul class="dropdown-menu pull-left">
 			<li><a class="overview-load" href="javascript:void(0);">Overview <i class="fa fa-check"></i></a></li>
-			<li><a class="analysis-load" href="javascript:void(0);">Index Analyzer</a></li>
+			<li><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
 			<li><a class="file-load" href="javascript:void(0);">Files</a></li>
-			<li><a class="document-load" href="javascript:void(0);">Documents</a></li>
+			<li><a class="index-load" href="javascript:void(0);">Index</a></li>
 			<li class="divider"></li>
 			<li><a class="query-load" href="javascript:void(0);">Query</a></li>
-			<li><a class="index-load" href="javascript:void(0);">Index Browsing</a></li>
+			<li><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
 		</ul>
 
 	</div>
@@ -40,12 +40,12 @@
 
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
-			<li class="submenu"><a class="analysis-load" href="javascript:void(0);">Index Analyzer</a></li>
+			<li class="submenu"><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
 			<li class="submenu"><a class="file-load" href="javascript:void(0);">Files</a></li>
-			<li class="submenu"><a class="document-load" href="javascript:void(0);">Documents</a></li>
+			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index</a></li>
 
 			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
-			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index Browsing</a></li>
+			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
 		</ul>
 
 		<div class="air air-bottom inbox-space">
@@ -123,14 +123,14 @@
 		$(".file-load").click(function() {
 			loadURL("icss/collections/file.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".document-load").click(function() {
-			loadURL("icss/collections/document.html", $('#inbox-content > .table-wrap')) ;
+		$(".index-load").click(function() {
+			loadURL("icss/collections/index.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".query-load").click(function() {
 			loadURL("icss/collections/query.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".index-load").click(function() {
-			loadURL("icss/collections/index.html", $('#inbox-content > .table-wrap')) ;
+		$(".browsing-load").click(function() {
+			loadURL("icss/collections/browsing.html", $('#inbox-content > .table-wrap')) ;
 		});
 	
 	};

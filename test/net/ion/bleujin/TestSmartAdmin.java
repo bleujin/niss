@@ -7,7 +7,7 @@ import net.ion.framework.util.InfinityThread;
 import net.ion.niss.apps.AppLogSink;
 import net.ion.niss.apps.collection.CollectionApp;
 import net.ion.niss.webapp.collection.CollectionWeb;
-import net.ion.niss.webapp.collection.MiscWeb;
+import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.nradon.Radon;
 import net.ion.nradon.authentication.WhoAmIHttpHandler;
 import net.ion.nradon.config.RadonConfiguration;

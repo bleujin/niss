@@ -42,21 +42,22 @@
 		</article>
 		
 		<article class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-			<div class="alert alert-info alert-block">
-				http://127.0.0.1:8983/solr/col1/select?q=*%3A*+AND+id%3Ableujin&wt=json&indent=true
-			</div>
-			<div><pre>au             |  a + le
-aux            |  a + les
-avec           |  with
-ce             |  this
-ces            |  these
-dans           |  with
-de             |  of
-des            |  de + les
-du             |  de + le
-elle           |  she
-en             |  `of them' etc
-et             |  and</pre></div>
+			<div>
+				<form class="smart-form" id="document-form" method="post" action="collections/analysis" novalidate="novalidate">
+				<fieldset style="padding: 0px">
+					<section>
+						<label class="label">File : </label>
+						<label class="textarea textarea-resizable">
+							<textarea id="textvalue" name="textvalue" rows="12"></textarea>
+						</label>
+					</section>
+				</fieldset>
+				
+				<footer>
+					<button class="btn btn-primary" type="button" id="btn_analyzer" >Save File</button>
+				</footer>
+				
+				</form></div>
 		</article>
 	</div>
 

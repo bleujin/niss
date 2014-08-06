@@ -1,5 +1,6 @@
 package net.ion.niss.apps.collection;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -17,6 +18,7 @@ import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
+import net.ion.craken.tree.Fqn;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
@@ -40,7 +42,7 @@ import org.infinispan.manager.DefaultCacheManager;
 
 import scala.collection.parallel.ParIterableLike.CreateScanTree;
 
-public class CollectionApp {
+public class CollectionApp implements Closeable{
 
 	private final File homeDir = new File("./resource/collection");
 	private final File dataDir = new File("./resource/data");
@@ -55,6 +57,10 @@ public class CollectionApp {
 
 	public Collection<File> listFiles(ColId cid) {
 		return FileUtil.listFiles(new File(homeDir, cid.idString()), new String[] { "txt" }, false);
+	}
+
+	public File viewFile(ColId cid, String fileName) {
+		return new File(new File(homeDir, cid.idString()), fileName);
 	}
 
 	public static CollectionApp create() throws CorruptIndexException, IOException {
@@ -84,6 +90,15 @@ public class CollectionApp {
 		return created;
 	}
 
+	
+	public void close(){
+		for (IndexCollection ic : colMaps.values()) {
+			ic.close(); 
+		}
+		r.shutdown() ;
+	}
+	
+	
 	private static RepositoryImpl createDis() throws IOException {
 		GlobalConfiguration gconfig = GlobalConfigurationBuilder.defaultClusteredBuilder()
 					.transport().clusterName("craken").nodeName("emanon").addProperty("configurationFile", "./resource/config/jgroups-udp.xml").build();
@@ -121,14 +136,14 @@ public class CollectionApp {
 		forRemove.removeSelf();
 	}
 
-	void removeCollection(final ReadNode colNode, ColId colId, IndexCollection indexCollection) throws Exception {
+	void removeCollection(ReadSession session, final Fqn fqn, ColId colId, IndexCollection indexCollection) throws Exception {
 		FileUtil.deleteDirectory(new File(homeDir, colId.idString()));
 		FileUtil.deleteDirectory(new File(dataDir, colId.idString()));
 
-		colNode.session().tranSync(new TransactionJob<Void>() {
+		session.tranSync(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession writesession) throws Exception {
-				writesession.pathBy(colNode.fqn()).removeSelf();
+				writesession.pathBy(fqn).removeSelf();
 				return null;
 			}
 		});

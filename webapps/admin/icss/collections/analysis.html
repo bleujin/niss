@@ -35,12 +35,12 @@
 		
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<form class="smart-form" id="document-form" method="post" action="collection/analysis" novalidate="novalidate">
-				<fieldset>					
+			<form class="smart-form" id="document-form" method="post" action="collections/analysis" novalidate="novalidate">
+				<fieldset style="padding: 0px">					
 					<section>
 						<label class="label">Text Value(Index)</label>
 						<label class="textarea textarea-resizable">
-							<textarea id="content" name="content" rows="3"></textarea>
+							<textarea id="textvalue" name="textvalue" rows="3">태극기가 바람에 펄럭입니다.</textarea>
 						</label>
 					</section>
 					<section>
@@ -51,13 +51,14 @@
 					</section>
 					
 					<section>
-						<label class="checkbox"><input type="checkbox" id="chk_stopword" name="stopword"/><i></i>Apply Stopword</label>
+						<label class="checkbox"><input type="checkbox" id="stopword" name="stopword" value="true"/><i></i>Apply Stopword</label>
 					</section>
 					
+					<div><ul id="terms" class="list-inline"></ul></div>
 				</fieldset>
 				
 				<footer>
-					<button class="btn btn-primary" type="submit">Analyze Value</button>
+					<button class="btn btn-primary" type="button" id="btn_analyzer" >Analyze Value</button>
 				</footer>
 				
 				<div class="message">
@@ -69,15 +70,6 @@
 		
 	</div>
 
-	<!-- row -->
-	<div class="row">
-
-		<!-- a blank row to get started -->
-		<div class="col-sm-12">
-			<!-- your contents here -->
-		</div>
-			
-	</div>
 
 </section>
 <!-- end widget grid -->
@@ -92,27 +84,44 @@
 		var colId = $("#collection option:selected").val() ;
 		
 		$.ajax({
-            url:'/admin/collections/' + colId +'/analysis',
-            dataType:'json',
-            success:function(data){
-            	var info = data['info'];
-            	var analyzer = data['analyzer'] ;
-            	
-            	$("#info").html(info) ;
-            	
-                for(var idx in analyzer){
-                	var a = analyzer[idx] ;
-                    var option = $('<option value="'+a['clz']+'">'+a['name']+'</dd>') ;
-                    if (a['selected']) option.attr('selected', 'selected');
-                    option.appendTo($("#analyzer")) ;
-                }
-
-            }, 
-            error:function(request,status,error){
-            	console.log('response', request, status, error) ;
-            }
-        }) ;
+			url:'/admin/collections/' + colId +'/analysis',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				var analyzer = data['analyzer'] ;
+				
+				$("#info").html(info) ;
+			
+				for(var idx in analyzer){
+					var a = analyzer[idx] ;
+					var option = $('<option value="'+a['clz']+'">'+a['name']+'</dd>') ;
+					if (a['selected']) option.attr('selected', 'selected');
+					option.appendTo($("#analyzer")) ;
+				}
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 		
+		$( "#btn_analyzer" ).click( function() {
+			$.ajax({
+				type: "POST",
+				url: "/admin/collections/" + colId + "/analysis",
+				dataType:'json', 
+				data: { content: $("#textvalue").val(), analyzer: $("#analyzer").val(), stopword: $("#stopword").is(":checked") ? true : false}, 
+				success : function(data) {
+					$("#terms li").remove();
+					for(var idx in data){
+						var term = data[idx] ;
+						$("<li class='text-success'>" + term["term"] + "("+ term["start"] + "," + term["end"] + ")</li>").appendTo($("#terms")) ;
+					}
+				}, 
+				error:function(request, status, error){
+					console.log('response', request, status, error) ;
+				}
+			})
+		});
 		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({

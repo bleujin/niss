@@ -6,6 +6,8 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ecs.xml.XML;
+
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -32,6 +34,21 @@ public class ResFns {
 			return json;
 		}
 	};
+
+	
+	public final static Function<ReadDocument, XML> ReadDocToXML = new Function<ReadDocument, XML>() {
+		@Override
+		public XML apply(ReadDocument rdoc) {
+			XML xml = new XML("doc") ;
+			String[] fields = rdoc.getFieldNames();
+			for (String field : fields) {
+				xml.addAttribute("name", field) ;
+				xml.addElement(rdoc.getField(field).stringValue());
+			}
+			return xml;
+		}
+	};
+
 
 	public final static Function<TransformerKey, JsonObject> ResponseToJson = new Function<TransformerKey, JsonObject>() {
 		@Override
