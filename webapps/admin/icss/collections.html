@@ -1,12 +1,8 @@
 <div class="inbox-nav-bar no-content-padding">
 
 	<h1 class="page-title pull-right txt-color-blueDark hidden-tablet">
-		<select class="input-sm" id="collection">
-			<option value="-blank" disabled="">Choose Collection</option>
-			<option value="col1" selected>Alexandra</option>
-			<option value="2">Alice</option>
-			<option value="3">Anastasia</option>
-			<option value="-new">.New Collection</option>
+		<select class="input-sm" id="collections">
+			<option value="-blank" disabled="disabled">Choose Collection</option>
 		</select>
 		</label>
 		
@@ -67,6 +63,10 @@
 
 </div>
 
+<div id="dialog-confirm" title="Create Index Collection">
+ 	<p>Collection ID : <input type="text" id="newId" name="cid" placeholder="new collection id" /></p>
+</div>
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -105,9 +105,68 @@
 			}
 
 		}
+		
+		$.ajax({
+			url:'/admin/collections',
+			dataType:'json',
+			success:function(data){
+				for(var idx in data){
+					var col = data[idx] ;
+					var option = $('<option value="'+col['cid']+'">'+col['name']+'</option>') ;
+					option.appendTo($("#collections")) ;
+				}
+				$("#collections option:eq(1)").attr("selected", "selected");
+				$('<option value="-new">.Create Collection</option>').appendTo($("#collections")) ;
+				
+				//LOAD INBOX MESSAGES
+				loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 
-		//LOAD INBOX MESSAGES
-		loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+		
+		$("#collections").change(function(){
+			if ($(this).val() == '-new'){
+				$(function() {
+				$( "#dialog-confirm" ).dialog({
+					resizable: false,
+					height:150,
+					modal: true,
+					buttons: {
+						"Create IndexCollection": function() {
+							var newId = $("#newId").val() ;
+							var win = $( this ) ;
+							if (newId > ' '){
+								$.ajax({
+									type: "POST",
+									dataType : 'text', 
+									url: "/admin/collections/" + newId,
+									data: { }, 
+									complete : function(){ 
+										// $("#query_url").text(this.url) ;
+									}, 
+									success :  function(data) {
+										$("#collections option:eq(0)").after('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+										loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+										win.dialog( "close" );
+									}
+								}) ;	
+							}
+							},
+						Cancel: function() {
+							$( this ).dialog( "close" );
+							}
+						}
+					});
+				});
+			} else {
+				loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+			}
+		}) ;
+
 		$("li.submenu").click(function() {
 		    $(this).toggleClass("active");
 		    $(this).siblings().removeClass("active");
@@ -134,11 +193,7 @@
 		});
 	
 	};
-	
-	// end pagefunction
-	
-	// load delete row plugin and run pagefunction
 
-	loadScript("js/plugin/delete-table-row/delete-table-row.min.js", pagefunction);
+	pagefunction();
 	
 </script>

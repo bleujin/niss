@@ -12,14 +12,15 @@
 	<div class="col-sm-12">
 		
 		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
-
 			<blockquote>
-			  <p>Files </p>
+			  <div id="info" class="click2edit"></div>
 			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
 
 		
@@ -34,42 +35,15 @@
 		
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-			<ul>
-				<li><a href="#" title="Stoword">Stopword.txt</a></li>
-				<li><a href="#" title="UserDic">UserDic.txt</a></li>
-				<li><a href="#" title="Synonyms">Synonyms.txt</a></li>
-			</ul>
+			<ul id="files"></ul>
 		</article>
 		
 		<article class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
-			<div>
-				<form class="smart-form" id="document-form" method="post" action="collections/analysis" novalidate="novalidate">
-				<fieldset style="padding: 0px">
-					<section>
-						<label class="label">File : </label>
-						<label class="textarea textarea-resizable">
-							<textarea id="textvalue" name="textvalue" rows="12"></textarea>
-						</label>
-					</section>
-				</fieldset>
-				
-				<footer>
-					<button class="btn btn-primary" type="button" id="btn_analyzer" >Save File</button>
-				</footer>
-				
-				</form></div>
+			<div class="alert alert-info alert-block" id="file_url"></div>
+			<div><pre id="filecontent"></pre></div>
 		</article>
 	</div>
 
-	<!-- row -->
-	<div class="row">
-
-		<!-- a blank row to get started -->
-		<div class="col-sm-12">
-			<!-- your contents here -->
-		</div>
-			
-	</div>
 
 </section>
 <!-- end widget grid -->
@@ -79,9 +53,85 @@
 <script type="text/javascript">
 
 	pageSetUp();
+	
+	String.prototype.endsWith = function(suffix) {
+	    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+	};
 
 	var pagefunction = function() {
+		var colId = $("#collections option:selected").val() ;
 		
+		function htmlToText(divId) {
+			var ce = $("<pre />").html($("#" + divId).html());
+			if($.browser.webkit)
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });    
+			if($.browser.msie)
+				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
+			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
+				ce.find("br").replaceWith("\n");
+			return ce.text();
+		} ;
+		
+		$.ajax({
+			url:'/admin/collections/' + colId +'/files',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				var files = data['files'] ;
+				
+				$("#info").html(info) ;
+				for(var idx in files){
+					var sfile = files[idx] ;
+					var option = $('<li><a href="javascript:void(0);" title="' +  sfile["path"]+ '">'+sfile['name']+'</a></li>') ;
+					option.appendTo($("#files")) ;
+				}
+
+				$("#files li a").click(function(e){
+					e.preventDefault();
+					var targetPath = "/admin/collections" + $(this).attr('title') ;
+					$("#filecontent").data("target", targetPath) ;
+					
+					$("#file_url").text(targetPath) ;
+					$("#filecontent").load(targetPath)  ;
+					$("#filecontent").attr("contenteditable", true) ;
+					
+					$('#filecontent').unbind('blur');
+					$("#filecontent").blur(function(){
+						if (targetPath == $("#filecontent").data("target")) {
+							$.ajax({
+								type: "POST",
+								url:targetPath,
+								data: { filecontent: htmlToText("filecontent")}
+								}) ;
+						}
+					}) ;
+				}) ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/collections/" + colId + "/info",
+				data: { content: aHTML, field: "files" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});		
 	};
 
 	// run pagefunction on load

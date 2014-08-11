@@ -5,7 +5,7 @@ import org.apache.commons.lang.SystemUtils;
 import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
 import net.ion.niss.apps.AppLogSink;
-import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.webapp.collection.CollectionWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.nradon.Radon;
@@ -22,7 +22,7 @@ public class TestSmartAdmin extends TestCase {
 	public void testRun() throws Exception {
 		
 		RadonConfigurationBuilder builder = RadonConfiguration.newBuilder(9000) ;
-		builder.rootContext(CollectionApp.class.getSimpleName(), CollectionApp.create()) ;
+		builder.rootContext(IndexCollectionApp.class.getSimpleName(), IndexCollectionApp.create()) ;
 		
 		builder
 			.add(new LoggingHandler(new AppLogSink()))

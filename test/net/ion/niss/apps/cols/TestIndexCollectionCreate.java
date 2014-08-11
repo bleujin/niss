@@ -1,7 +1,7 @@
 package net.ion.niss.apps.cols;
 
 import net.ion.framework.util.ListUtil;
-import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
@@ -11,13 +11,13 @@ import org.apache.lucene.analysis.util.CharArraySet;
 import junit.framework.TestCase;
 
 public class TestIndexCollectionCreate extends TestCase {
-	private CollectionApp ca;
+	private IndexCollectionApp ca;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		this.ca = CollectionApp.create() ;
+		this.ca = IndexCollectionApp.create() ;
 	}
 	
 	@Override

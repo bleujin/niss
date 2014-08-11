@@ -10,8 +10,12 @@ import javax.xml.transform.stream.StreamResult;
 
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.collection.IndexCollectionApp;
+import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.nradon.stub.StubHttpResponse;
+import net.ion.nsearcher.common.WriteDocument;
+import net.ion.nsearcher.index.IndexJob;
+import net.ion.nsearcher.index.IndexSession;
 import net.ion.radon.client.StubServer;
 
 import org.jboss.resteasy.util.HttpHeaderNames;
@@ -19,11 +23,10 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class TestQuery extends TestCase {
+public class TestQuery extends TestBaseWeb {
+
 
 	public void testJsonQuery() throws Exception {
-		StubServer ss = StubServer.create(CollectionWeb.class) ;
-		ss.treeContext().putAttribute(CollectionApp.class.getSimpleName(), CollectionApp.create()) ;
 		StubHttpResponse response = ss.request("/collections/col1/query.json?query=*%3A*&key1=val&key2=ddd").get() ; // indent=true&
 		
 		assertEquals("application/json", response.header(HttpHeaderNames.CONTENT_TYPE)) ;
@@ -31,25 +34,17 @@ public class TestQuery extends TestCase {
 	}
 	
 	public void testXmlQuery() throws Exception {
-		StubServer ss = StubServer.create(CollectionWeb.class) ;
-		ss.treeContext().putAttribute(CollectionApp.class.getSimpleName(), CollectionApp.create()) ;
-		
 		StubHttpResponse response = ss.request("/collections/col1/query.xml?query=*%3A*&key1=val&key2=ddd").get() ; // indent=true&
 		Debug.line(response.header(HttpHeaderNames.CONTENT_TYPE)) ;
 		Debug.line(response.contentsString()) ;
 	}
 
 	public void testCsvQuery() throws Exception {
-		StubServer ss = StubServer.create(CollectionWeb.class) ;
-		ss.treeContext().putAttribute(CollectionApp.class.getSimpleName(), CollectionApp.create()) ;
-		
 		StubHttpResponse response = ss.request("/collections/col1/query.csv?query=*%3A*&key1=val&key2=ddd").get() ; // indent=true&
 		Debug.line(response.header(HttpHeaderNames.CONTENT_TYPE)) ;
 		Debug.line(response.contentsString()) ;
 	}
 
-	
-	
 	public void testPrettyXML() throws Exception {
 		// Source xmlInput = new StreamSource(new StringReader("<a><b><c/><d>text D</d><e value='0'/></b></a>"));
 

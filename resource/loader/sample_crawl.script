@@ -1,0 +1,40 @@
+// Sample Crawl To Tistory
+
+new function(){
+	importPackage(net.ion.icrawler) 
+	importPackage(net.ion.icrawler.pipeline) 
+	importPackage(net.ion.icrawler.processor) 
+	importPackage(net.ion.icrawler.scheduler) 
+	
+	this.scheduler = function(){
+		return new MaxLimitScheduler(new QueueScheduler(), 10) ;
+	}, 
+	
+	this.processor = function(){
+		var urlPattern = "(" + "http://bleujin.tistory.com/*".replace(".", "\\.").replace("*", "[^\"'#]*") + ")";
+		
+		return new PageProcessor({
+			process : function(page){
+				try {
+					var requests = page.getHtml().links().regex(urlPattern).targets();
+					page.addTargets(requests); // add urls to fetch
+					page.putField("title", page.getHtml().xpath("//title")); // extract by XPath
+					page.putField("html", page.getHtml().toString());
+					page.putField("content", page.getHtml().smartContent()); // extract by Readability
+				} catch(ex){
+					java.lang.System.out.println(ex) ;
+				}
+			} 
+		});
+	}, 
+	
+	this.handle = function(){
+		try {
+			var spider = Site.create().sleepTime(50).newSpider(this.processor()).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
+	
+			spider.addPipeline(new DebugPipeline()).run();	
+		} catch(ex){
+			java.lang.System.out.println(ex) ;
+		}
+	}
+} ;

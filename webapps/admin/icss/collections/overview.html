@@ -66,15 +66,11 @@
 					<section>
 						<label class="label">Index Analyzer</label>
 						<label class="select">
-							<select id="analyzer">
-							    <option value="1">Korean</option>
-							    <option value="1">Japen</option>
-							    <option value="2">Standard</option>
-							</select>
+							<select id="analyzer"></select>
 						</label>
 					</section>
 					<section>
-						<label class="checkbox"><input type="checkbox" id="chk_stopword" /><i></i>Apply Stopword</label>
+						<label class="checkbox"><input type="checkbox" id="applystopword" /><i></i>Apply Stopword</label>
 					</section>
 				</fieldset>
 				
@@ -107,32 +103,64 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		var colId = $("#collection option:selected").val() ;
-		
+		var colId = $("#collections option:selected").val() ;
 		$.ajax({
-            url:'/admin/collections/' + colId +'/overview',
-            dataType:'json',
-            success:function(data){
-            	var info = data['info'];
-            	var sinfo = data['status'] ;
-            	var dinfo = data['dirInfo'] ;
-            	
-            	$("#info").html(info) ;
-            	
-                for(var name in sinfo){
-                    $('<dt>'+name+'</dt><dd>'+sinfo[name]+'</dd>').appendTo($("#overview_status")) ;
-                }
+			url:'/admin/collections/' + colId +'/overview',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				var sinfo = data['status'] ;
+				var dinfo = data['dirInfo'] ;
+				var analyzer = data['analyzer'] ;
+				var applystopword = data['applystopword'] ;
+				
+				$("#info").html(info) ;
+				
+				for(var name in sinfo){
+				    $('<dt>'+name+'</dt><dd>'+sinfo[name]+'</dd>').appendTo($("#overview_status")) ;
+				}
+				
+				for(var name in dinfo){
+				    $('<dt>'+name+'</dt><dd>'+dinfo[name]+'</dd>').appendTo($("#overview_dirinfo")) ;
+				}
+				for(var idx in analyzer){
+					var a = analyzer[idx] ;
+					var option = $('<option value="'+a['clz']+'">'+a['name']+'</option>') ;
+					if (a['selected']) option.attr('selected', 'selected');
+					option.appendTo($("#analyzer")) ;
+				}
 
-                for(var name in dinfo){
-                    $('<dt>'+name+'</dt><dd>'+dinfo[name]+'</dd>').appendTo($("#overview_dirinfo")) ;
-                }
-
-            }, 
-            error:function(request,status,error){
-            	console.log('response', request, status, error) ;
-            }
-        }) ;
+				$("#applystopword").attr("checked", applystopword ) ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 		
+		$("#analyzer").change(function(){
+		    $.ajax({
+				type: "POST",
+				url: "/admin/collections/" + colId + "/fields",
+				data: { content: $("#analyzer").val(), field: "indexanalyzer" }
+				})
+			.done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			});
+		});
+		
+		
+		$("#applystopword").click(function(){
+		    var chk = $(this).is(":checked");
+		    $.ajax({
+				type: "POST",
+				url: "/admin/collections/" + colId + "/fields",
+				data: { content: chk, field: "applystopword" }
+				})
+			.done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			});
+		});
 		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
@@ -144,7 +172,7 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/collections/" + colId + "/fields/info",
+				url: "/admin/collections/" + colId + "/info",
 				data: { content: aHTML, field: "overview" }
 				})
 				.done(function( msg ) {

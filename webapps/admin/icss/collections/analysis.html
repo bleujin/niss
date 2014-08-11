@@ -81,7 +81,7 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		var colId = $("#collection option:selected").val() ;
+		var colId = $("#collections option:selected").val() ;
 		
 		$.ajax({
 			url:'/admin/collections/' + colId +'/analysis',
@@ -133,7 +133,7 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/collections/" + colId + "/fields/info",
+				url: "/admin/collections/" + colId + "/info",
 				data: { content: aHTML, field: "analysis" }
 				})
 				.done(function( msg ) {

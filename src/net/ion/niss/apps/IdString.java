@@ -1,17 +1,17 @@
-package net.ion.niss.apps.collection;
+package net.ion.niss.apps;
 
 import net.ion.framework.util.StringUtil;
 
-public class ColId {
+public class IdString {
 
 	private String id;
-	public ColId(String id) {
+	public IdString(String id) {
 		this.id = id ;
 	}
 
-	public final static ColId create(String id){
+	public final static IdString create(String id){
 		if (StringUtil.isSmallAlphaNumUnderBar(id)){
-			return new ColId(id) ;
+			return new IdString(id) ;
 		} throw new IllegalArgumentException("not id type :" + id) ;
 	}
 	
@@ -22,8 +22,8 @@ public class ColId {
 	
 	@Override 
 	public boolean equals(Object cid){
-		if (cid instanceof ColId){
-			ColId that = (ColId) cid ;
+		if (cid instanceof IdString){
+			IdString that = (IdString) cid ;
 			return this.id.equals(that.id) ;
 		}
 		return false ;

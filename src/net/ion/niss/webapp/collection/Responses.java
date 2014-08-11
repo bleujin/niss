@@ -21,7 +21,7 @@ import net.ion.framework.util.StringUtil;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.TSearcher;
+import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.TransformerKey;
 
 import com.google.common.base.Function;
@@ -34,7 +34,7 @@ public class Responses {
 			public JsonObject apply(TransformerKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				TSearcher searcher = tkey.searcher();
+				ISearchable searcher = tkey.searcher();
 
 				JsonObject result = JsonObject.create();
 				JsonObject header = JsonObject.create();
@@ -71,7 +71,7 @@ public class Responses {
 			public XML apply(TransformerKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				TSearcher searcher = tkey.searcher();
+				ISearchable searcher = tkey.searcher();
 				XML result = new XML("response");
 
 				XML header = new XML("header");
@@ -121,7 +121,7 @@ public class Responses {
 
 					List<Integer> docs = tkey.docs();
 					SearchRequest request = tkey.request();
-					TSearcher searcher = tkey.searcher();
+					ISearchable searcher = tkey.searcher();
 
 					header.setAttribute("size", String.valueOf(docs.size()));
 					header.setAttribute("total", String.valueOf(response.totalCount()));

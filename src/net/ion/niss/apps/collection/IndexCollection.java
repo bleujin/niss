@@ -5,9 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
@@ -19,22 +17,16 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonReader;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.ListUtil;
-import net.ion.framework.util.MapUtil;
-import net.ion.nsearcher.common.FieldIndexingStrategy.FieldType;
-import net.ion.nsearcher.common.ReadDocument;
+import net.ion.niss.apps.IdString;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
 import net.ion.nsearcher.search.Searcher;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -42,17 +34,16 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.util.Version;
 
 public class IndexCollection implements Closeable {
 
-	private CollectionApp app;
-	private ColId colId;
+	private IndexCollectionApp app;
+	private IdString colId;
 	private Central central;
 	private ReadSession session;
 	private final Fqn fqn;
-	private IndexCollection(CollectionApp app, ColId colId, Central central, ReadNode colNode) {
+	private IndexCollection(IndexCollectionApp app, IdString colId, Central central, ReadNode colNode) {
 		this.app = app ;
 		this.colId = colId ;
 		this.central = central ;
@@ -60,45 +51,8 @@ public class IndexCollection implements Closeable {
 		this.fqn = colNode.fqn() ;
 	}
 
-	public static IndexCollection load(CollectionApp app, ColId colId, ReadNode colNode) throws Exception{
-		Class<?> indexAnalClz = Class.forName(colNode.property("indexanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName())) ;
-		Analyzer indexAnal = (Analyzer) indexAnalClz.getConstructor(Version.class).newInstance(app.version()) ;
-
-		Class<?> queryAnalClz = Class.forName(colNode.property("queryanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName())) ;
-		Analyzer queryAnal = (Analyzer) queryAnalClz.getConstructor(Version.class).newInstance(app.version()) ;
-
-		
-		Central central = CentralConfig.newLocalFile().dirFile(app.collectionHome(colId))
-				.indexConfigBuilder().indexAnalyzer(indexAnal).parent()
-				.searchConfigBuilder().queryAnalyzer(queryAnal)
-				.build() ;
-		
+	public static IndexCollection load(IndexCollectionApp app, Central central, IdString colId, ReadNode colNode) throws Exception{
 		return new IndexCollection(app, colId, central, colNode) ;
-	}
-	
-	public static IndexCollection createNew(CollectionApp app, ReadSession rsession, final ColId colId) throws Exception {
-		Central central = CentralConfig.newLocalFile().dirFile(app.collectionHome(colId)) //newRam()  
-				.indexConfigBuilder().indexAnalyzer(new MyKoreanAnalyzer(app.version())).parent()
-				.searchConfigBuilder().queryAnalyzer(new MyKoreanAnalyzer(app.version()))
-				.build() ;
-
-		
-		ReadNode colNode = rsession.tranSync(new TransactionJob<ReadNode>() {
-			@Override
-			public ReadNode handle(WriteSession wsession) {
-				pathBy(colId, wsession)
-						.property("indexanalyzer", MyKoreanAnalyzer.class.getCanonicalName())
-						.property("queryanalyzer", MyKoreanAnalyzer.class.getCanonicalName()) ;
-				return wsession.readSession().pathBy("/webapp/collections/" + colId.idString()) ;
-			}
-
-		});
-		
-		return new IndexCollection(app, colId, central, colNode);
-	}
-
-	private static WriteNode pathBy(final ColId colId, WriteSession wsession) {
-		return wsession.pathBy("/webapp/collections/" + colId.idString());
 	}
 
 	private WriteNode pathBy(WriteSession wsession) {
@@ -109,14 +63,6 @@ public class IndexCollection implements Closeable {
 		return session.pathBy(fqn);
 	}
 
-	public Analyzer indexAnalyzer() {
-		return central.indexConfig().indexAnalyzer() ;
-	}
-
-	public Analyzer queryAnalyzer() {
-		return central.searchConfig().queryAnalyzer() ;
-	}
-	
 	public IndexCollection indexAnalyzer(final Analyzer analyzer) throws Exception {
 		session.tranSync(new TransactionJob<Void>() {
 			@Override
@@ -143,6 +89,14 @@ public class IndexCollection implements Closeable {
 		
 		central.searchConfig().queryAnalyzer(analyzer) ;
 		return this ;
+	}
+	
+	public Analyzer indexAnalyzer() {
+		return central.indexConfig().indexAnalyzer() ;
+	}
+
+	public Analyzer queryAnalyzer() {
+		return central.searchConfig().queryAnalyzer() ;
 	}
 	
 
@@ -290,8 +244,7 @@ public class IndexCollection implements Closeable {
 		return session.pathBy(fqn).property(field).asString();
 	}
 
-
-	public JsonArray indexAnalyer(){
+	public JsonArray analyzerList(){
 		JsonArray result = new JsonArray() ;
 		List<Class<? extends Analyzer>> list = app.analyzers() ;
 		String selected = propAsString("indexanalyzer") ;
@@ -325,6 +278,10 @@ public class IndexCollection implements Closeable {
 
 	public Indexer indexer() {
 		return central.newIndexer() ;
+	}
+
+	public Central central() {
+		return central ;
 	}
 
 

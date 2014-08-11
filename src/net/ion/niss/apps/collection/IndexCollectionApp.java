@@ -6,6 +6,7 @@ import java.io.FileFilter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -19,10 +20,14 @@ import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.tree.Fqn;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
+import net.ion.niss.apps.IdString;
 import net.ion.nsearcher.common.SearchConstant;
+import net.ion.nsearcher.config.Central;
+import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.rosetta.query.Constants;
 
@@ -42,32 +47,33 @@ import org.infinispan.manager.DefaultCacheManager;
 
 import scala.collection.parallel.ParIterableLike.CreateScanTree;
 
-public class CollectionApp implements Closeable{
+public class IndexCollectionApp implements Closeable{
 
 	private final File homeDir = new File("./resource/collection");
 	private final File dataDir = new File("./resource/data");
 	private Repository r;
 	private String wname;
-	private Map<ColId, IndexCollection> colMaps = MapUtil.newMap();
-
-	private CollectionApp(Repository r, String wname) {
+	private Map<IdString, IndexCollection> colMaps = MapUtil.newMap();
+	private boolean testMode = false ;
+	
+	private IndexCollectionApp(Repository r, String wname) {
 		this.r = r;
 		this.wname = wname;
 	}
 
-	public Collection<File> listFiles(ColId cid) {
+	public Collection<File> listFiles(IdString cid) {
 		return FileUtil.listFiles(new File(homeDir, cid.idString()), new String[] { "txt" }, false);
 	}
 
-	public File viewFile(ColId cid, String fileName) {
+	public File viewFile(IdString cid, String fileName) {
 		return new File(new File(homeDir, cid.idString()), fileName);
 	}
 
-	public static CollectionApp create() throws CorruptIndexException, IOException {
+	public static IndexCollectionApp create() throws CorruptIndexException, IOException {
 
 		RepositoryImpl r = createSolo() ;
 		r.start();
-		final CollectionApp created = new CollectionApp(r, "admin");
+		final IndexCollectionApp created = new IndexCollectionApp(r, "admin");
 
 		ReadSession session = r.login("admin");
 		session.ghostBy("/webapp/collections/").children().eachNode(new ReadChildrenEach<Void>() {
@@ -76,8 +82,18 @@ public class CollectionApp implements Closeable{
 				while (iter.hasNext()) {
 					try {
 						ReadNode colNode = iter.next();
-						final ColId colId = ColId.create(colNode.fqn().name());
-						created.colMaps.put(colId, IndexCollection.load(created, colId, colNode));
+						final IdString colId = IdString.create(colNode.fqn().name());
+						
+						Class<?> indexAnalClz = Class.forName(colNode.property("indexanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName())) ;
+						Analyzer indexAnal = (Analyzer) indexAnalClz.getConstructor(Version.class).newInstance(created.version()) ;
+
+						Class<?> queryAnalClz = Class.forName(colNode.property("queryanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName())) ;
+						Analyzer queryAnal = (Analyzer) queryAnalClz.getConstructor(Version.class).newInstance(created.version()) ;
+
+						Central central = created.createCentral(created.collectionHome(colId), indexAnal, queryAnal) ;
+						
+						
+						created.colMaps.put(colId, IndexCollection.load(created, central, colId, colNode));
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -89,8 +105,61 @@ public class CollectionApp implements Closeable{
 
 		return created;
 	}
+	
+	public static IndexCollectionApp test() throws IOException {
+		RepositoryImpl r = RepositoryImpl.test(new DefaultCacheManager(), "niss");
+		r.defineWorkspaceForTest("admin", ISearcherWorkspaceConfig.create().location(""));
+		r.start();
+		
+		final IndexCollectionApp created = new IndexCollectionApp(r, "admin");
+		created.testMode = true ;
+		return created ;
+	}
 
 	
+	public IndexCollection newCollection(String cid) throws Exception {
+		if(hasCollection(cid)) return find(cid) ;
+		
+		
+		ReadSession rsession = r.login(wname);
+		final IdString colId = IdString.create(cid);
+		
+		Central central = createCentral(collectionHome(colId), new MyKoreanAnalyzer(version()), new MyKoreanAnalyzer(version())) ;
+
+		
+		ReadNode colNode = rsession.tranSync(new TransactionJob<ReadNode>() {
+			@Override
+			public ReadNode handle(WriteSession wsession) {
+				wsession.pathBy("/webapp/collections/" + colId.idString())
+						.property("indexanalyzer", MyKoreanAnalyzer.class.getCanonicalName())
+						.property("queryanalyzer", MyKoreanAnalyzer.class.getCanonicalName()) ;
+				return wsession.readSession().pathBy("/webapp/collections/" + colId.idString()) ;
+			}
+		});
+
+		IndexCollection created = IndexCollection.load(this, central, colId, colNode);
+		File collectionHome = new File(homeDir, colId.idString());
+		if (!collectionHome.exists()) {
+			collectionHome.mkdirs();
+			FileUtil.copyDirectory(homeDir, collectionHome, FileFilterUtils.suffixFileFilter(".txt"), false);
+		}
+
+		colMaps.put(colId, created);
+		return created;
+	}
+	
+	private Central createCentral(File collectionHome, Analyzer indexAnalyzer, Analyzer queryAnalyser) throws CorruptIndexException, IOException {
+		if (testMode) 
+			return CentralConfig.newRam() //newRam()  
+				.indexConfigBuilder().indexAnalyzer(indexAnalyzer).parent()
+				.searchConfigBuilder().queryAnalyzer(queryAnalyser)
+				.build() ; 
+		else return CentralConfig.newLocalFile().dirFile(collectionHome) //newRam()  
+			.indexConfigBuilder().indexAnalyzer(indexAnalyzer).parent()
+			.searchConfigBuilder().queryAnalyzer(queryAnalyser)
+			.build() ;
+	}
+
 	public void close(){
 		for (IndexCollection ic : colMaps.values()) {
 			ic.close(); 
@@ -113,30 +182,29 @@ public class CollectionApp implements Closeable{
 		return r;
 	}
 
-	public static CollectionApp test() throws CorruptIndexException, IOException {
-		RepositoryImpl r = RepositoryImpl.inmemoryCreateWithTest();
-		return new CollectionApp(r, "test");
-	}
-
 	public boolean hasCollection(String cid) {
-		return colMaps.containsKey(ColId.create(cid));
+		return colMaps.containsKey(IdString.create(cid));
 	}
 
+	public Map<IdString, IndexCollection> cols(){
+		return Collections.unmodifiableMap(colMaps) ;
+	}
+	
 	public IndexCollection find(String cid) {
-		IndexCollection result = colMaps.get(ColId.create(cid));
+		IndexCollection result = colMaps.get(IdString.create(cid));
 		if (result == null)
 			throw new IllegalArgumentException("not found collection : " + cid);
 		return result;
 	}
 
 	public void removeCollection(String cid) throws Exception {
-		IndexCollection forRemove = colMaps.remove(ColId.create(cid));
+		IndexCollection forRemove = colMaps.remove(IdString.create(cid));
 		if (forRemove == null)
 			return;
 		forRemove.removeSelf();
 	}
 
-	void removeCollection(ReadSession session, final Fqn fqn, ColId colId, IndexCollection indexCollection) throws Exception {
+	void removeCollection(ReadSession session, final Fqn fqn, IdString colId, IndexCollection indexCollection) throws Exception {
 		FileUtil.deleteDirectory(new File(homeDir, colId.idString()));
 		FileUtil.deleteDirectory(new File(dataDir, colId.idString()));
 
@@ -150,20 +218,7 @@ public class CollectionApp implements Closeable{
 
 	}
 
-	public IndexCollection newCollection(String cid) throws Exception {
-		ReadSession rsession = r.login(wname);
-		final ColId colId = ColId.create(cid);
 
-		IndexCollection created = IndexCollection.createNew(this, rsession, colId);
-		File collectionHome = new File(homeDir, colId.idString());
-		if (!collectionHome.exists()) {
-			collectionHome.mkdirs();
-			FileUtil.copyDirectory(homeDir, collectionHome, FileFilterUtils.suffixFileFilter(".txt"), false);
-		}
-
-		colMaps.put(colId, created);
-		return created;
-	}
 
 	public Version version() {
 		return SearchConstant.LuceneVersion;
@@ -182,7 +237,7 @@ public class CollectionApp implements Closeable{
 		return analyzers;
 	}
 
-	public File collectionHome(ColId colId) {
+	public File collectionHome(IdString colId) {
 		return new File(dataDir, colId.idString());
 	}
 

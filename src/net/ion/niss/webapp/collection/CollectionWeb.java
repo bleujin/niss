@@ -41,6 +41,7 @@ import org.jboss.netty.handler.codec.http.HttpMethod;
 import org.jboss.resteasy.spi.HttpRequest;
 import org.jboss.resteasy.spi.HttpResponse;
 
+import net.ion.craken.node.ReadNode;
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
@@ -53,10 +54,11 @@ import net.ion.framework.util.Debug;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
+import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
-import net.ion.niss.apps.collection.ColId;
-import net.ion.niss.apps.collection.CollectionApp;
+import net.ion.niss.apps.IdString;
+import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.apps.collection.IndexCollection;
 import net.ion.niss.webapp.Webapp;
 import net.ion.nsearcher.common.ReadDocument;
@@ -72,10 +74,37 @@ import net.ion.radon.util.csv.CsvWriter;
 @Path("/collections")
 public class CollectionWeb implements Webapp{
 
-	private CollectionApp app ;
-	public CollectionWeb(@ContextParam("CollectionApp") CollectionApp app){
+	private IndexCollectionApp app ;
+	public CollectionWeb(@ContextParam("IndexCollectionApp") IndexCollectionApp app){
 		this.app = app ;
 	}
+	
+	
+	// outer
+	@GET
+	@Path("")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonArray list(){
+		Map<IdString, IndexCollection> map = app.cols() ;
+		
+		JsonArray result = new JsonArray() ;
+		for (Entry<IdString, IndexCollection> entry : map.entrySet()) {
+			result.add(new JsonObject().put("cid", entry.getKey().idString()).put("name", entry.getKey().idString())) ;
+		}
+		
+		return result ;
+	}
+	
+	@POST
+	@Path("/{cid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String newIndexCollection(@PathParam("cid") String cid) throws Exception{
+		IndexCollection created = app.newCollection(cid);
+		
+		return cid + " created" ;
+	}
+	
+	
 	
 	// --- overview
 	@GET
@@ -106,20 +135,35 @@ public class CollectionWeb implements Webapp{
 		result.add("status", found.status());
 		result.add("dirInfo", found.dirInfo());
 		
+		ReadNode readNode = found.infoNode() ;
+		result.put("analyzer", found.analyzerList());
+		result.put("indexanalyzer", readNode.property("indexanalyzer").asString());
+		result.put("applystopword", readNode.property("applystopword").asBoolean());
+		
 		return result ;
 		
 	}
 	
 	
+	// prefix header
 	@POST
-	@Path("/{cid}/fields/info")
+	@Path("/{cid}/info")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String explain(@PathParam("cid") String cid, @FormParam("field") String field, @FormParam("content") String content) throws Exception{
+	public String editInfo(@PathParam("cid") String cid, @FormParam("field") String field, @FormParam("content") String content) throws Exception{
 		IndexCollection ic = indexCollection(cid);
 		ic.updateExplain(field, content.trim()) ;
-		return ic.propAsString(field) ;
+		return content.trim() ;
 	}
 
+	
+	@POST
+	@Path("/{cid}/fields")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String updateField(@PathParam("cid") String cid, @FormParam("field") String field, @FormParam("content") String content) throws Exception{
+		IndexCollection ic = indexCollection(cid);
+		ic.updateExplain(field, content.trim()) ;
+		return content.trim() ;
+	}
 	
 	
 	
@@ -133,7 +177,7 @@ public class CollectionWeb implements Webapp{
 		JsonObject result = new JsonObject() ;
 		IndexCollection found = indexCollection(cid);
 		result.put("info", found.propAsString("analysis")) ;
-		result.add("analyzer", found.indexAnalyer());
+		result.add("analyzer", found.analyzerList());
 		
 		return result ;
 	}
@@ -156,14 +200,16 @@ public class CollectionWeb implements Webapp{
 	@Path("/{cid}/files")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JsonObject files(@PathParam("cid") String cid){
-		Collection<File> files = app.listFiles(ColId.create(cid)) ;
+		Collection<File> files = app.listFiles(IdString.create(cid)) ;
 		
 		JsonArray array = new JsonArray() ;
 		for (File file : files) {
 			array.add(new JsonObject().put("name", file.getName()).put("path", "/" + cid + "/files/" + file.getName()));
 		}
+		JsonObject result = new JsonObject() ;
+		result.put("info", indexCollection(cid).propAsString("files")) ;
 		
-		return new JsonObject().put("files", array) ;
+		return result.put("files", array) ;
 	}
 	
 	
@@ -171,7 +217,7 @@ public class CollectionWeb implements Webapp{
 	@Path("/{cid}/files/{fileName}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public File viewFile(@PathParam("cid") String cid, @PathParam("fileName") String fileName){
-		File file = app.viewFile(ColId.create(cid), fileName);
+		File file = app.viewFile(IdString.create(cid), fileName);
 		if (! file.exists()) throw new WebApplicationException(404) ;
 		return file ;
 	}
@@ -179,8 +225,8 @@ public class CollectionWeb implements Webapp{
 	@POST
 	@Path("/{cid}/files/{fileName}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String editFile(@PathParam("cid") String cid, @PathParam("fileName") String fileName, @FormParam("content") String content) throws IOException{
-		File file = app.viewFile(ColId.create(cid), fileName);
+	public String editFile(@PathParam("cid") String cid, @PathParam("fileName") String fileName, @FormParam("filecontent") String content) throws IOException{
+		File file = app.viewFile(IdString.create(cid), fileName);
 		if (! file.exists()) throw new WebApplicationException(404) ;
 		
 		FileUtil.write(file, content);
@@ -279,16 +325,27 @@ public class CollectionWeb implements Webapp{
 	
 	
 	// --- query
+	
 	@GET
-	@POST
+	@Path("/{cid}/query")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject query(@PathParam("cid") String cid) throws IOException{
+		JsonObject result = new JsonObject() ;
+		IndexCollection found = indexCollection(cid);
+		result.put("info", found.propAsString("query")) ;
+		
+		return result ;
+	}
+	
+	@GET
 	@Path("/{cid}/query.json")
 	@Produces(MediaType.APPLICATION_JSON)
-	public StreamingOutput jquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") int skip, @DefaultValue("10") @QueryParam("offset") int offset, 
+	public StreamingOutput jquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
 		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
-		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(skip).offset(offset).find() ;
+		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 
 		JsonObject result = sresponse.transformer(Responses.toJson(map, sresponse)) ;
 		return new JsonStreamOut(result, indent) ;
@@ -296,15 +353,14 @@ public class CollectionWeb implements Webapp{
 	
 
 	@GET
-	@POST
 	@Path("/{cid}/query.xml")
 	@Produces(MediaType.APPLICATION_XML)
-	public StreamingOutput xquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") int skip, @DefaultValue("10") @QueryParam("offset") int offset, 
+	public StreamingOutput xquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
 		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
-		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(skip).offset(offset).find() ;
+		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 		
 		Source result = sresponse.transformer(Responses.toXMLSource(map, sresponse));
 		return new SourceStreamOut(result, indent) ;
@@ -312,15 +368,14 @@ public class CollectionWeb implements Webapp{
 	
 
 	@GET
-	@POST
 	@Path("/{cid}/query.csv")
 	@Produces(MediaType.TEXT_PLAIN)
-	public StreamingOutput cquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") int skip, @DefaultValue("10") @QueryParam("offset") int offset, 
+	public StreamingOutput cquery(@PathParam("cid") String cid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
 		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
-		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(skip).offset(offset).find() ;
+		SearchResponse sresponse = indexCollection(cid).searcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 		
 		return new CSVStreamOut(sresponse) ;
 	}

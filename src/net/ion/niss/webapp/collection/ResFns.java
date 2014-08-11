@@ -15,7 +15,7 @@ import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.TSearcher;
+import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.util.csv.CsvWriter;
 
@@ -55,7 +55,7 @@ public class ResFns {
 		public JsonObject apply(TransformerKey tkey) {
 			List<Integer> docs = tkey.docs();
 			SearchRequest request = tkey.request();
-			TSearcher searcher = tkey.searcher();
+			ISearchable searcher = tkey.searcher();
 			try {
 				JsonObject body = JsonObject.create();
 				body.put("numFound", docs.size());
@@ -108,7 +108,7 @@ public class ResFns {
 				
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				TSearcher searcher = tkey.searcher();
+				ISearchable searcher = tkey.searcher();
 				try {
 					boolean first = true ;
 					String[] fieldNames = null ;
