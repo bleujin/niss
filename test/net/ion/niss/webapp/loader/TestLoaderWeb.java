@@ -17,7 +17,7 @@ public class TestLoaderWeb extends TestCase{
 	}
 	
 	public void testScriptList() throws Exception {
-		StubHttpResponse response = ss.request("/loader").get() ;
+		StubHttpResponse response = ss.request("/loaders").get() ;
 		assertEquals(200, response.status());
 		Debug.line(response.contentsString());
 	}

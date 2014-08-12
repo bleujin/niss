@@ -20,7 +20,7 @@ import net.ion.niss.apps.Store;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
-@Path("/loader")
+@Path("/loaders")
 public class LoaderWeb implements Webapp{
 
 	private ReadSession r;
@@ -31,8 +31,8 @@ public class LoaderWeb implements Webapp{
 
 	
 	@POST
-	@Path("/{sid}")
-	public String createScript(@PathParam("sid") String sid, @FormParam("explain") String explain, @FormParam("scontent") String scontent){
+	@Path("/{lid}")
+	public String createScript(@PathParam("lid") String sid, @FormParam("explain") String explain, @FormParam("scontent") String scontent){
 		
 		return "working" ;
 	}

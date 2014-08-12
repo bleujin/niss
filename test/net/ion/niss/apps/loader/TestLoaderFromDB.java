@@ -42,7 +42,7 @@ public class TestLoaderFromDB extends TestCase {
 	}
 
 	public void testFromDB() throws Exception {
-		String script = IOUtil.toStringWithClose(getClass().getResourceAsStream("fromdb.script"));
+		String script = IOUtil.toStringWithClose(Loader.class.getResourceAsStream("./fromdb.script"));
 		Writer writer = new OutputStreamWriter(System.out, "EUC-KR");
 		
 		Loader.fromScript(script).executor(new WithinThreadExecutor()).run(writer) ;
