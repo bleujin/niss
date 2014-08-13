@@ -55,7 +55,7 @@ public class TestOverview extends TestBaseWeb  {
 	
 	
 	public void xtestServer() throws Exception {
-		Radon radon = RadonConfiguration.newBuilder(9500).add(new PathHandler(CollectionWeb.class).prefixURI("/admin")).start().get() ;
+		Radon radon = RadonConfiguration.newBuilder(9500).add(new PathHandler(OldCollectionWeb.class).prefixURI("/admin")).start().get() ;
 		new InfinityThread().startNJoin(); 
 	}
 }

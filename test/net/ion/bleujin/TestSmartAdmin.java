@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
 import net.ion.niss.apps.AppLogSink;
 import net.ion.niss.apps.collection.IndexCollectionApp;
-import net.ion.niss.webapp.collection.CollectionWeb;
+import net.ion.niss.webapp.collection.OldCollectionWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.nradon.Radon;
 import net.ion.nradon.authentication.WhoAmIHttpHandler;
@@ -28,7 +28,7 @@ public class TestSmartAdmin extends TestCase {
 			.add(new LoggingHandler(new AppLogSink()))
 			.add(new SimpleStaticFileHandler("./webapps/admin/"))
 //			.add(new WhoAmIHttpHandler())
-			.add("/admin/*", new PathHandler(CollectionWeb.class, MiscWeb.class).prefixURI("/admin"))
+			.add("/admin/*", new PathHandler(OldCollectionWeb.class, MiscWeb.class).prefixURI("/admin"))
 			;
 		
 		Radon radon = builder.start().get() ;

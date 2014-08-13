@@ -15,6 +15,7 @@ import org.infinispan.util.concurrent.WithinThreadExecutor;
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
+import net.ion.niss.apps.IdString;
 
 public class TestFromCrawler extends TestCase {
 
@@ -26,11 +27,13 @@ public class TestFromCrawler extends TestCase {
 		super.setUp();
 	}
 
-	public void testRunWithScript() throws Exception {
-		String script = IOUtil.toStringWithClose(getClass().getResourceAsStream("crawler.script"));
-		Writer writer = new OutputStreamWriter(System.out, "EUC-KR");
+	public void testCreate() throws Exception {
+		LoaderApp app = LoaderApp.create() ;
 		
-		Loader.fromScript(script).executor(new WithinThreadExecutor()).run(writer) ;
+		LoadScript script = app.createScript(IdString.create("crawl_db"), "Sample From Crawl", LoaderApp.class.getResourceAsStream("crawler.txt")) ;
+		
+		Writer writer =  new OutputStreamWriter(System.out, "EUC-KR");
+		script.run(writer) ;
 	}
 	
 	public void testTo() throws Exception {

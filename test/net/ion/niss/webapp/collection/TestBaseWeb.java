@@ -2,7 +2,7 @@ package net.ion.niss.webapp.collection;
 
 import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.apps.collection.IndexCollection;
-import net.ion.niss.webapp.collection.CollectionWeb;
+import net.ion.niss.webapp.collection.OldCollectionWeb;
 import net.ion.niss.webapp.loader.LoaderWeb;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
@@ -18,7 +18,7 @@ public class TestBaseWeb extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.ss = StubServer.create(CollectionWeb.class, LoaderWeb.class) ;
+		this.ss = StubServer.create(OldCollectionWeb.class, LoaderWeb.class) ;
 		this.ca = IndexCollectionApp.test();
 		ss.treeContext().putAttribute(IndexCollectionApp.class.getSimpleName(), ca) ;
 		

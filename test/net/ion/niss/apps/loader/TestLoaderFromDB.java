@@ -2,6 +2,7 @@ package net.ion.niss.apps.loader;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +10,9 @@ import java.sql.SQLException;
 import junit.framework.TestCase;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.stream.JsonWriter;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
+import net.ion.niss.apps.IdString;
 
 import org.infinispan.util.concurrent.WithinThreadExecutor;
 
@@ -41,10 +44,12 @@ public class TestLoaderFromDB extends TestCase {
 
 	}
 
-	public void testFromDB() throws Exception {
-		String script = IOUtil.toStringWithClose(Loader.class.getResourceAsStream("./fromdb.script"));
-		Writer writer = new OutputStreamWriter(System.out, "EUC-KR");
+	public void testCreate() throws Exception {
+		LoaderApp app = LoaderApp.create() ;
 		
-		Loader.fromScript(script).executor(new WithinThreadExecutor()).run(writer) ;
+		LoadScript script = app.createScript(IdString.create("sample_db"), "Sample From DB", LoaderApp.class.getResourceAsStream("fromdb.txt")) ;
+		
+		Writer writer =  new OutputStreamWriter(System.out, "EUC-KR");
+		script.run(writer) ;
 	}
 }
