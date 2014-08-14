@@ -1,4 +1,4 @@
-package net.ion.niss.apps.collection;
+package net.ion.niss.apps.old;
 
 import java.io.Closeable;
 import java.io.File;
@@ -47,7 +47,7 @@ import org.infinispan.manager.DefaultCacheManager;
 
 import scala.collection.parallel.ParIterableLike.CreateScanTree;
 
-public class IndexCollectionApp implements Closeable{
+public class IndexManager implements Closeable{
 
 	private final File homeDir = new File("./resource/collection");
 	private final File dataDir = new File("./resource/data");
@@ -56,7 +56,7 @@ public class IndexCollectionApp implements Closeable{
 	private Map<IdString, IndexCollection> colMaps = MapUtil.newMap();
 	private boolean testMode = false ;
 	
-	private IndexCollectionApp(Repository r, String wname) {
+	private IndexManager(Repository r, String wname) {
 		this.r = r;
 		this.wname = wname;
 	}
@@ -69,11 +69,11 @@ public class IndexCollectionApp implements Closeable{
 		return new File(new File(homeDir, cid.idString()), fileName);
 	}
 
-	public static IndexCollectionApp create() throws CorruptIndexException, IOException {
+	public static IndexManager create() throws CorruptIndexException, IOException {
 
 		RepositoryImpl r = createSolo() ;
 		r.start();
-		final IndexCollectionApp created = new IndexCollectionApp(r, "admin");
+		final IndexManager created = new IndexManager(r, "admin");
 
 		ReadSession session = r.login("admin");
 		session.ghostBy("/webapp/collections/").children().eachNode(new ReadChildrenEach<Void>() {
@@ -106,12 +106,12 @@ public class IndexCollectionApp implements Closeable{
 		return created;
 	}
 	
-	public static IndexCollectionApp test() throws IOException {
+	public static IndexManager test() throws IOException {
 		RepositoryImpl r = RepositoryImpl.test(new DefaultCacheManager(), "niss");
 		r.defineWorkspaceForTest("admin", ISearcherWorkspaceConfig.create().location(""));
 		r.start();
 		
-		final IndexCollectionApp created = new IndexCollectionApp(r, "admin");
+		final IndexManager created = new IndexManager(r, "admin");
 		created.testMode = true ;
 		return created ;
 	}

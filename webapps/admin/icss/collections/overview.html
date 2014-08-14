@@ -83,15 +83,6 @@
 		
 	</div>
 
-	<!-- row -->
-	<div class="row">
-
-		<!-- a blank row to get started -->
-		<div class="col-sm-12">
-			<!-- your contents here -->
-		</div>
-			
-	</div>
 
 </section>
 <!-- end widget grid -->
@@ -103,7 +94,31 @@
 	pageSetUp();
 
 	var pagefunction = function() {
+		
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/collections",
+				data: { content: aHTML, field: "overview" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		
 		var colId = $("#collections option:selected").val() ;
+		if (colId.indexOf('-') == 0) return ;
+		
 		$.ajax({
 			url:'/admin/collections/' + colId +'/overview',
 			dataType:'json',
@@ -162,24 +177,6 @@
 			});
 		});
 		
-		$( "#edit_explain" ).click(function() {
-			$('.click2edit').summernote({
-				focus : true
-			});
-		});
-
-		$( "#save_explain" ).click(function() {
-			var aHTML = $('.click2edit').code() ;
-			$.ajax({
-				type: "POST",
-				url: "/admin/collections/" + colId + "/info",
-				data: { content: aHTML, field: "overview" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
-			$('.click2edit').destroy();
-		});
 
 	};
 

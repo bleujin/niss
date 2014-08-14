@@ -45,6 +45,6 @@ public class MenuWeb implements Webapp{
 	@GET
 	@Path("/{menu}")
 	public String viewInfo(@PathParam("menu") final String menu, @DefaultValue("overview") @QueryParam("field") final String field){
-		return rsession.pathBy("/menus/" + menu).property(field).asString() ;
+		return rsession.ghostBy("/menus/" + menu).property(field).asString() ;
 	}
 }

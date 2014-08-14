@@ -10,8 +10,9 @@ import javax.xml.transform.stream.StreamResult;
 
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.niss.apps.collection.IndexCollectionApp;
-import net.ion.niss.apps.collection.IndexCollection;
+import net.ion.niss.apps.old.IndexCollection;
+import net.ion.niss.apps.old.IndexManager;
+import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
@@ -23,9 +24,31 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class TestQuery extends TestBaseWeb {
+public class TestQuery extends TestCase {
 
+	private StubServer ss;
+	private REntry entry;
 
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+
+		this.ss = StubServer.create(CollectionWeb.class);
+		this.entry = REntry.test();
+		ss.treeContext().putAttribute(REntry.EntryName, entry);
+
+		if (! entry.indexManager().hasIndex("col1")){
+			StubHttpResponse response = ss.request("/collections").postParam("cid", "col1").post();
+			assertEquals("created col1", response.contentsString());
+		}
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		ss.shutdown();
+		super.tearDown();
+	}
+	
 	public void testJsonQuery() throws Exception {
 		StubHttpResponse response = ss.request("/collections/col1/query.json?query=*%3A*&key1=val&key2=ddd").get() ; // indent=true&
 		

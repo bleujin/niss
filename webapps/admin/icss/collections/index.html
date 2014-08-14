@@ -131,8 +131,30 @@
 	var docSample = {'json' : '{"id":"change_me","title":"change.me"}', 'csv':'id,title\r\nchange_me,change.me', 'jarray':'[\r\n{"id":"change_me1","title":"change.me2"},\r\n{"id":"change_me2","title":"change.me2"}\r\n]'}
 
 	var pagefunction = function() {
-		var colId = $("#collections option:selected").val() ;
 		$("#documents").val(docSample['json']) ;
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/collections",
+				data: { content: aHTML, field: "index" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		var colId = $("#collections option:selected").val() ;
+		if (colId.indexOf('-') == 0) return ;
+		
 		
 		$( "#dtype" ).change(function() {
 			var selected = $("#dtype option:selected").val();
@@ -155,24 +177,6 @@
 			
 		});
 		
-		$( "#edit_explain" ).click(function() {
-			$('.click2edit').summernote({
-				focus : true
-			});
-		});
-
-		$( "#save_explain" ).click(function() {
-			var aHTML = $('.click2edit').code() ;
-			$.ajax({
-				type: "POST",
-				url: "/admin/collections/" + colId + "/info",
-				data: { content: aHTML, field: "index" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
-			$('.click2edit').destroy();
-		});
 	};
 
 	// run pagefunction on load

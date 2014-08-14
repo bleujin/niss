@@ -4,7 +4,6 @@
 		<select class="input-sm" id="collections">
 			<option value="-blank" disabled="disabled">Choose Collection</option>
 		</select>
-		</label>
 		
 	</h1>
 
@@ -17,8 +16,7 @@
 		</button>
 		<ul class="dropdown-menu pull-left">
 			<li><a class="overview-load" href="javascript:void(0);">Overview <i class="fa fa-check"></i></a></li>
-			<li><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
-			<li><a class="file-load" href="javascript:void(0);">Files</a></li>
+			<li><a class="schema-load" href="javascript:void(0);">Schema</a></li>
 			<li><a class="index-load" href="javascript:void(0);">Index</a></li>
 			<li class="divider"></li>
 			<li><a class="query-load" href="javascript:void(0);">Query</a></li>
@@ -36,8 +34,7 @@
 
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
-			<li class="submenu"><a class="analysis-load" href="javascript:void(0);">Analysis</a></li>
-			<li class="submenu"><a class="file-load" href="javascript:void(0);">Files</a></li>
+			<li class="submenu"><a class="schema-load" href="javascript:void(0);">Schema</a></li>
 			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index</a></li>
 
 			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
@@ -64,7 +61,16 @@
 </div>
 
 <div id="dialog-confirm" title="Create Index Collection">
- 	<p>Collection ID : <input type="text" id="newId" name="cid" placeholder="new collection id" /></p>
+	<form class="smart-form" id="document-form" method="post" action="collection/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Collection ID</label>
+				<label class="input">
+					<input type="text" id="newId" name="cid" placeholder="new collection id" />
+				</label>
+			</section>
+		</fieldset>
+	</form>
 </div>
 
 <script type="text/javascript">
@@ -132,8 +138,6 @@
 			if ($(this).val() == '-new'){
 				$(function() {
 				$( "#dialog-confirm" ).dialog({
-					resizable: false,
-					height:150,
 					modal: true,
 					buttons: {
 						"Create IndexCollection": function() {
@@ -179,8 +183,8 @@
 		$(".analysis-load").click(function() {
 			loadURL("icss/collections/analysis.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".file-load").click(function() {
-			loadURL("icss/collections/file.html", $('#inbox-content > .table-wrap')) ;
+		$(".schema-load").click(function() {
+			loadURL("icss/collections/schema.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".index-load").click(function() {
 			loadURL("icss/collections/index.html", $('#inbox-content > .table-wrap')) ;

@@ -1,14 +1,19 @@
 package net.ion.niss.webapp;
 
+import org.apache.lucene.analysis.util.CharArraySet;
+
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.ListUtil;
 import net.ion.niss.webapp.MenuWeb;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
+import net.ion.nsearcher.common.SearchConstant;
+import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.client.StubServer;
 
 public class TestEctWeb extends TestCase {
@@ -51,6 +56,16 @@ public class TestEctWeb extends TestCase {
 		assertEquals(true, json.has("clz"));
 		assertEquals(true, json.has("name"));
 	}
+
+	
+	public void testExecuteAnalysis() throws Exception {
+		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", MyKoreanAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
+		JsonArray array = JsonParser.fromString(response.contentsString()).getAsJsonArray() ;
+		
+		assertEquals(true, array.size() > 0);
+		Debug.line(response.contentsString()) ;
+	}
+	
 	
 	public void testTunnel() throws Exception {
 		StubHttpResponse response = ss.request("/tunnel/emps/bleujin").postParam("name", "bleujin").postParam("age", "20").post() ;

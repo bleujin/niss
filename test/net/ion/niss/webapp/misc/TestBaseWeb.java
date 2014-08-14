@@ -1,7 +1,7 @@
-package net.ion.niss.webapp.collection;
+package net.ion.niss.webapp.misc;
 
-import net.ion.niss.apps.collection.IndexCollectionApp;
-import net.ion.niss.apps.collection.IndexCollection;
+import net.ion.niss.apps.old.IndexCollection;
+import net.ion.niss.apps.old.IndexManager;
 import net.ion.niss.webapp.collection.OldCollectionWeb;
 import net.ion.niss.webapp.loader.LoaderWeb;
 import net.ion.nsearcher.common.WriteDocument;
@@ -13,14 +13,14 @@ import junit.framework.TestCase;
 public class TestBaseWeb extends TestCase{
 
 	protected StubServer ss;
-	protected IndexCollectionApp ca;
+	protected IndexManager ca;
 	
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(OldCollectionWeb.class, LoaderWeb.class) ;
-		this.ca = IndexCollectionApp.test();
-		ss.treeContext().putAttribute(IndexCollectionApp.class.getSimpleName(), ca) ;
+		this.ca = IndexManager.test();
+		ss.treeContext().putAttribute(IndexManager.class.getSimpleName(), ca) ;
 		
 		IndexCollection col1 = ca.newCollection("col1") ;
 		col1.indexer().index(new IndexJob<Void>() {

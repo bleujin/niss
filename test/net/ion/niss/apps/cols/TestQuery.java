@@ -9,23 +9,23 @@ import net.ion.framework.db.Page;
 import net.ion.framework.parse.gson.stream.JsonReader;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
-import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.apps.collection.FieldSchema;
-import net.ion.niss.apps.collection.IndexCollection;
+import net.ion.niss.apps.old.IndexCollection;
+import net.ion.niss.apps.old.IndexManager;
 import net.ion.niss.webapp.collection.ResFns;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.radon.util.csv.CsvWriter;
 
 public class TestQuery extends TestCase {
 
-	private IndexCollectionApp ca;
+	private IndexManager ca;
 	private IndexCollection ic;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		this.ca = IndexCollectionApp.create();
+		this.ca = IndexManager.create();
 		if (!ca.hasCollection("document")) {
 			ca.newCollection("document");
 		}

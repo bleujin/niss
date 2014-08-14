@@ -126,7 +126,7 @@ public class ResFns {
 						writer.endBlock(); 
 					}
 				} catch (IOException ex) {
-					
+					ex.printStackTrace(); 
 				}
 				// writer.writeField(field);
 

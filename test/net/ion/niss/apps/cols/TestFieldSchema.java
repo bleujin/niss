@@ -5,21 +5,21 @@ import net.ion.crawler.util.StringUtil;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.ObjectUtil;
-import net.ion.niss.apps.collection.IndexCollectionApp;
 import net.ion.niss.apps.collection.FieldSchema;
-import net.ion.niss.apps.collection.IndexCollection;
+import net.ion.niss.apps.old.IndexCollection;
+import net.ion.niss.apps.old.IndexManager;
 import net.ion.nsearcher.common.MyField;
 
 public class TestFieldSchema extends TestCase {
 
-	private IndexCollectionApp ca;
+	private IndexManager ca;
 	private IndexCollection ic;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
-		this.ca = IndexCollectionApp.create() ;
+		this.ca = IndexManager.create() ;
 		if (! ca.hasCollection("col1")){
 			ca.newCollection("col1") ;
 		}

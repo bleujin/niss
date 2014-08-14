@@ -58,8 +58,8 @@ import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.apps.IdString;
-import net.ion.niss.apps.collection.IndexCollectionApp;
-import net.ion.niss.apps.collection.IndexCollection;
+import net.ion.niss.apps.old.IndexCollection;
+import net.ion.niss.apps.old.IndexManager;
 import net.ion.niss.webapp.Webapp;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
@@ -74,8 +74,8 @@ import net.ion.radon.util.csv.CsvWriter;
 @Path("/collections")
 public class OldCollectionWeb implements Webapp{
 
-	private IndexCollectionApp app ;
-	public OldCollectionWeb(@ContextParam("IndexCollectionApp") IndexCollectionApp app){
+	private IndexManager app ;
+	public OldCollectionWeb(@ContextParam("IndexManager") IndexManager app){
 		this.app = app ;
 	}
 	
@@ -388,121 +388,5 @@ public class OldCollectionWeb implements Webapp{
 	@Path("/{cid}/hello")
 	public String hello(@PathParam("cid") String cid){
 		return cid ;
-	}
-}
-
-class CSVStreamOut implements StreamingOutput {
-
-	private SearchResponse sresponse;
-	public CSVStreamOut(SearchResponse sresponse) {
-		this.sresponse = sresponse ;
-	}
-
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		CsvWriter cwriter = new CsvWriter(new BufferedWriter(new OutputStreamWriter(output))) ;
-
-		Set<String> nameSet = SetUtil.newOrdereddSet() ;
-		for(ReadDocument doc : sresponse.getDocument()) {
-			nameSet.addAll(ListUtil.toList(doc.getFieldNames())) ;
-		}
-		
-		cwriter.writeLine(nameSet.toArray(new String[0]));
-		for(ReadDocument doc : sresponse.getDocument()) {
-			for (String fname : nameSet) {
-				String value = doc.get(fname);
-				cwriter.writeField(value == null ? "" : value);
-			}
-			cwriter.endBlock(); 
-		}
-		cwriter.flush(); 
-	}
-	
-}
-
-
-class SourceStreamOut implements StreamingOutput {
-
-	private Source source;
-	private boolean indent;
-
-	public SourceStreamOut(Source source, boolean indent) {
-		this.source = source ;
-		this.indent = indent ;
-	}
-
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		try {
-			StreamResult xmlOutput = new StreamResult(output);
-			Transformer transformer = SAXTransformerFactory.newInstance().newTransformer();
-			if (indent) {
-				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2") ;
-			}
-
-//			transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-			transformer.transform(source, xmlOutput);
-		} catch (TransformerException e) {
-			throw new IOException(e) ;
-		} catch (TransformerFactoryConfigurationError e) {
-			throw new IOException(e) ;
-		}
-	}
-	
-}
-
-
-class JsonStreamOut implements StreamingOutput {
-
-	private JsonObject json;
-	private boolean indent ;
-	public JsonStreamOut(JsonObject json, boolean indent) {
-		this.json = json ;
-		this.indent = indent ;
-	}
-	
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		JsonWriter jwriter = new JsonWriter(new OutputStreamWriter(output, "UTF-8")) ;
-		if(indent) jwriter.setIndent("  ");
-		
-		jwriter.beginObject() ;
-		for (Entry<String, JsonElement> entry : json.entrySet()) {
-			writeJsonElement(jwriter, json, entry.getKey(), entry.getValue()) ; 
-		}
-		jwriter.endObject() ;
-		jwriter.flush(); 
-	}
-	
-	
-	private void writeJsonElement(JsonWriter jwriter, JsonElement parent, String name, JsonElement json) throws IOException {
-		if (json.isJsonPrimitive()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			final JsonPrimitive preEle = json.getAsJsonPrimitive();
-			if (preEle.isBoolean()){
-				jwriter.value(preEle.getAsBoolean()) ;
-			} else if (preEle.isNumber()) {
-				jwriter.value(preEle.getAsNumber()) ;
-			} else {
-				jwriter.value(preEle.getAsString()) ;
-			} 
-		} else if (json.isJsonObject()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			jwriter.beginObject() ;
-			for(Entry<String, JsonElement> entry : json.getAsJsonObject().entrySet()){
-				writeJsonElement(jwriter, json, entry.getKey(), entry.getValue()) ;
-			}
-			jwriter.endObject() ;
-		} else if (json.isJsonArray()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			jwriter.beginArray() ;
-			for(JsonElement ele : json.getAsJsonArray()){
-				writeJsonElement(jwriter, json, name, ele) ;
-			} 
-			jwriter.endArray() ;
-		} else if (json.isJsonNull()){
-			; // ignore
-		}
 	}
 }
