@@ -1,17 +1,11 @@
 package net.ion.niss.webapp.collection;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.StringReader;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -26,42 +20,22 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.StreamingOutput;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.sax.SAXTransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-
-import org.apache.ecs.xml.XML;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jboss.netty.handler.codec.http.HttpMethod;
-import org.jboss.resteasy.spi.HttpRequest;
-import org.jboss.resteasy.spi.HttpResponse;
 
 import net.ion.craken.node.ReadNode;
-import net.ion.framework.parse.gson.Gson;
-import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
-import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
-import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.FileUtil;
-import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
-import net.ion.framework.util.SetUtil;
-import net.ion.framework.util.StringUtil;
 import net.ion.niss.apps.IdString;
 import net.ion.niss.apps.old.IndexCollection;
 import net.ion.niss.apps.old.IndexManager;
 import net.ion.niss.webapp.Webapp;
-import net.ion.nsearcher.common.ReadDocument;
+import net.ion.niss.webapp.common.CSVStreamOut;
+import net.ion.niss.webapp.common.JsonStreamOut;
+import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
@@ -69,7 +43,9 @@ import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
-import net.ion.radon.util.csv.CsvWriter;
+
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
 
 @Path("/collections")
 public class OldCollectionWeb implements Webapp{

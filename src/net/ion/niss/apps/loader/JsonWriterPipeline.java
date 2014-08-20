@@ -19,12 +19,10 @@ public class JsonWriterPipeline implements Pipeline{
 
 	private JsonWriter writer;
 	private Writer out;
-	private Gson gson;
 	
 	public JsonWriterPipeline(Writer out){
 		this.out = out ;
 		this.writer = new JsonWriter(out) ;
-		this.gson = new Gson() ;
 	}
 	
 	
@@ -43,17 +41,22 @@ public class JsonWriterPipeline implements Pipeline{
 	@Override
 	public void process(ResultItems ritems, Task task) {
 		Map<String, Object> items = ritems.getAll() ;
-		JsonObject json = new JsonObject();
 //		for(Entry<String, Object> entry : items.entrySet()){
 //			json.put(entry.getKey(), ObjectUtil.toString(entry.getValue())) ;
 //		}
 		
 		Request request = ritems.getRequest() ;
 		
-		json.put("uri", request.getUrl()) ;
-		json.put("title", ritems.asString("title")) ;
-		
-		gson.toJson(json, writer);
+		try {
+			writer.beginObject().name("uri").value(request.getUrl()).name("title").value(ritems.asString("title")).endObject() ;
+			writer.flush();
+		} catch (IOException e) {
+			try {
+				writer.name("exeption occured").value(e.getMessage()) ;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		} 
 	}
 
 }

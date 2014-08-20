@@ -10,7 +10,7 @@ import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.niss.webapp.MenuWeb;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.TemplateWeb;
+import net.ion.niss.webapp.section.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
@@ -50,11 +50,9 @@ public class TestEctWeb extends TestCase {
 	
 	public void testAnalysis() throws Exception {
 		StubHttpResponse response = ss.request("/analysis").get() ;
-		JsonArray array = JsonParser.fromString(response.contentsString()).getAsJsonArray() ;
-		JsonObject json = array.get(0).getAsJsonObject() ;
+		JsonObject json = JsonObject.fromString(response.contentsString());
 		
-		assertEquals(true, json.has("clz"));
-		assertEquals(true, json.has("name"));
+		assertEquals(true, json.has("analyzer"));
 	}
 
 	

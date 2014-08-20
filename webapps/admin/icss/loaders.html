@@ -4,17 +4,14 @@
 
 	<div class="inbox-side-bar">
 
-		<div class="well">Choose Section
-			<select class="input-sm" id="sections">
-				
-			</select>
+		<div class="well">Choose Loader
+			<select class="input-sm" id="loaders"></select>
 		</div>
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
-			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Section</a></li>
-			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
-			<li class="submenu"><a class="template-load" href="javascript:void(0);">Template</a></li>
-			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Index Browsing</a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Loader</a></li>
+			<li class="submenu"><a class="monitor-load" href="javascript:void(0);">Monitor</a></li>
+			<li class="submenu"><a class="history-load" href="javascript:void(0);">LogHistory</a></li>
 		</ul>
 
 		<div class="air air-bottom inbox-space">
@@ -30,24 +27,24 @@
 	<div class="table-wrap custom-scroll animated fast fadeInRight">
 		<!-- ajax will fill this area -->
 		LOADING...
-
 	</div>
 
 
 </div>
 
-<div id="new-section-confirm" title="Create Section">
-	<form class="smart-form" id="document-form" method="post" action="section/" novalidate="novalidate">
+<div id="new-loader-confirm" title="Create Loader">
+	<form class="smart-form" id="document-form" method="post" action="loader/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
-				<label class="label">Section ID</label>
+				<label class="label">Loader ID</label>
 				<label class="input">
-					<input type="text" id="newId" name="sid" placeholder="new section id" />
+					<input type="text" id="newId" name="lid" placeholder="new loader id" />
 				</label>
 			</section>
 		</fieldset>
 	</form>
 </div>
+
 
 <script type="text/javascript">
 
@@ -88,20 +85,22 @@
 
 		var lastColId = '' ;
 		$.ajax({
-			url:'/admin/sections',
+			url:'/admin/loaders',
 			dataType:'json',
 			success:function(data){
-				for(var idx in data){
-					var sec = data[idx] ;
-					var option = $('<option value="'+sec['sid']+'">'+sec['name']+'</option>') ;
-					option.appendTo($("#sections")) ;
+				var loaders = data['loaders'] ;
+				for(var idx in loaders ){
+					var loader = loaders [idx] ;
+					var option = $('<option value="'+loader['lid']+'">'+loader['name']+'</option>') ;
+					option.appendTo($("#loaders")) ;
 				}
-				$("#sections option:eq(0)").attr("selected", "selected");
-				$('<option value="-new">.Create Section</option>').appendTo($("#sections")) ;
+
+				$("#loaders option:eq(0)").attr("selected", "selected");
+				$('<option value="-new">.Create Loader</option>').appendTo($("#loaders")) ;
 				
 				//LOAD Overview MESSAGES
-				loadURL("icss/sections/overview.html", $('#inbox-content > .table-wrap')) ;
-				lastColId = $("#sections").val() ;
+				loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastColId = $("#loaders").val() ;
 				
 			}, 
 			error:function(request,status,error){
@@ -110,7 +109,7 @@
 		}) ;
 
 		
-		$("#sections").change(function(){
+		$("#loaders").change(function(){
 			if ($(this).val() == '-new'){
 				$(function() {
 				$( "#new-section-confirm" ).css('visibility', 'visible') ;
@@ -125,14 +124,14 @@
 								$.ajax({
 									type: "POST",
 									dataType : 'text', 
-									url: "/admin/sections/" + newId,
+									url: "/admin/loaders/" + newId,
 									data: { }, 
 									complete : function(){ 
 										// $("#query_url").text(this.url) ;
 									}, 
 									success :  function(data) {
-										$("#sections option:eq(0)").after('<option value="'+newId+'" selected="selected">'+newId+'</option>');
-										loadURL("icss/sections/overview.html", $('#inbox-content > .table-wrap')) ;
+										$("#loaders option:eq(0)").after('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+										loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
 										win.dialog( "close" );
 									}
 								}) ;	
@@ -144,10 +143,10 @@
 						}
 					});
 				});
-				if (lastColId > ' ') { $("#sections option[value='" + lastColId + "']").attr('selected', 'selected');  }
+				if (lastColId > ' ') { $("#loaders option[value='" + lastColId + "']").attr('selected', 'selected');  }
 				
 			} else {
-				loadURL("icss/sections/overview.html", $('#inbox-content > .table-wrap')) ;
+				loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
 			}
 		}) ;
 
@@ -166,20 +165,17 @@
 	
 		// Buttons (compose mail and inbox load)
 		$(".overview-load").click(function() {
-			loadURL("icss/sections/overview.html", $('#inbox-content > .table-wrap'))
+			loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap'))
 		});
 	
 		$(".defined-load").click(function() {
-			loadURL("icss/sections/defined.html", $('#inbox-content > .table-wrap')) ;
+			loadURL("icss/loaders/defined.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".query-load").click(function() {
-			loadURL("icss/sections/query.html", $('#inbox-content > .table-wrap')) ;
+		$(".monitor-load").click(function() {
+			loadURL("icss/loaders/monitor.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".template-load").click(function() {
-			loadURL("icss/sections/template.html", $('#inbox-content > .table-wrap')) ;
-		});
-		$(".browsing-load").click(function() {
-			loadURL("icss/sections/browsing.html", $('#inbox-content > .table-wrap')) ;
+		$(".history-load").click(function() {
+			loadURL("icss/loaders/history.html", $('#inbox-content > .table-wrap')) ;
 		});
 	
 	};

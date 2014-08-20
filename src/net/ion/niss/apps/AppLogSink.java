@@ -115,7 +115,7 @@ public class AppLogSink implements LogSink {
 	}
 
 	public void eventSourceOutboundData(EventSourceConnection connection, String data) {
-		custom(connection.httpRequest(), "EVENT-SOURCE-OUT", data);
+		// custom(connection.httpRequest(), "EVENT-SOURCE-OUT", data);
 	}
 
 	protected void flush() throws IOException {

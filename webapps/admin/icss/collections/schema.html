@@ -75,17 +75,11 @@
 						
 						<button class="btn btn-primary" type="button" id="createfield">Create Field</button>
 					</div>
-					<!-- end widget content -->
-
 					
 				</div>
-				<!-- end widget div -->
-
 				
-
 			</div>
-			<!-- end widget -->
-		
+	
 		</article>
 		
 		
@@ -193,13 +187,18 @@
 		} ;
 		
 		$.ajax({
-			url:'/admin/collections/' + colId +'/files',
+			url:'/admin/collections/' + colId +'/schema',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
-				var files = data['files'] ;
+				var fields = data['fields'] ;
 				
+				$("#info").html(info) ;
 
+				
+				
+				
+				
 				$("#files li a").click(function(e){
 					e.preventDefault();
 					var targetPath = "/admin/collections" + $(this).attr('title') ;

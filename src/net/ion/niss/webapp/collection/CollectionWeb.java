@@ -1,15 +1,10 @@
 package net.ion.niss.webapp.collection;
 
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.StringReader;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.Map.Entry;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -20,54 +15,34 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.StreamingOutput;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.sax.SAXTransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jboss.resteasy.spi.HttpRequest;
-
-import com.google.common.base.Function;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.tree.Fqn;
 import net.ion.framework.parse.gson.JsonArray;
-import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
-import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
-import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.apps.IdString;
 import net.ion.niss.apps.collection.IndexManager;
-import net.ion.niss.apps.old.IndexCollection;
 import net.ion.niss.webapp.AnalysisWeb;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
-import net.ion.nsearcher.common.ReadDocument;
+import net.ion.niss.webapp.common.CSVStreamOut;
+import net.ion.niss.webapp.common.JsonStreamOut;
+import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
@@ -77,7 +52,14 @@ import net.ion.nsearcher.search.SearchResponse;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
-import net.ion.radon.util.csv.CsvWriter;
+
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import com.google.common.base.Function;
 
 @Path("/collections")
 public class CollectionWeb implements Webapp {
@@ -112,32 +94,37 @@ public class CollectionWeb implements Webapp {
 
 	// create collection
 	@POST
-	@Path("")
+	@Path("/{cid}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String create(@FormParam("cid") final String cid, @DefaultValue("") @FormParam("action") final String action) {
-
-		if ("remove".equals(action)) {
-			rsession.tran(new TransactionJob<Void>() {
-				@Override
-				public Void handle(WriteSession wsession) throws Exception {
-					wsession.pathBy(fqnBy(cid)).removeSelf() ;
-					return null;
-				}
-			}) ;
-			
-			return "removed " + cid;
-		} else {
-			rsession.tran(new TransactionJob<Void>() {
-				@Override
-				public Void handle(WriteSession wsession) throws Exception {
-					wsession.pathBy(fqnBy(cid)).property("created", System.currentTimeMillis());
-					return null;
-				}
-			});
-			return "created " + cid;
-		}
-
+	public String create(@FormParam("cid") final String cid) {
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(fqnBy(cid)).property("created", System.currentTimeMillis());
+				return null;
+			}
+		});
+		return "created " + cid;
 	}
+	
+	
+	// remove colletion
+	@DELETE
+	@Path("/{cid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String remove(@PathParam("cid") final String cid){
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(fqnBy(cid)).removeSelf() ;
+				return null;
+			}
+		}) ;
+		
+		return "removed " + cid;
+	}
+	
+	
 
 	// --- overview
 	@GET
@@ -308,6 +295,16 @@ public class CollectionWeb implements Webapp {
 	
 	// --- index 
 	
+	@GET
+	@Path("/{cid}/index")
+	@Produces(MediaType.TEXT_PLAIN)
+	public JsonObject indexView(@PathParam("cid") String cid){
+		JsonObject result = new JsonObject() ;
+		result.put("info", rsession.ghostBy("/menus/collections").property("index").asString()) ;
+		return result ;
+	}
+	
+	
 	@POST
 	@Path("/{cid}/index.json")
 	@Produces(MediaType.TEXT_PLAIN)
@@ -469,118 +466,10 @@ public class CollectionWeb implements Webapp {
 
 
 
-class CSVStreamOut implements StreamingOutput {
-
-	private SearchResponse sresponse;
-	public CSVStreamOut(SearchResponse sresponse) {
-		this.sresponse = sresponse ;
-	}
-
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		CsvWriter cwriter = new CsvWriter(new BufferedWriter(new OutputStreamWriter(output))) ;
-
-		Set<String> nameSet = SetUtil.newOrdereddSet() ;
-		for(ReadDocument doc : sresponse.getDocument()) {
-			nameSet.addAll(ListUtil.toList(doc.getFieldNames())) ;
-		}
-		
-		cwriter.writeLine(nameSet.toArray(new String[0]));
-		for(ReadDocument doc : sresponse.getDocument()) {
-			for (String fname : nameSet) {
-				String value = doc.get(fname);
-				cwriter.writeField(value == null ? "" : value);
-			}
-			cwriter.endBlock(); 
-		}
-		cwriter.flush(); 
-	}
-	
-}
 
 
-class SourceStreamOut implements StreamingOutput {
-
-	private Source source;
-	private boolean indent;
-
-	public SourceStreamOut(Source source, boolean indent) {
-		this.source = source ;
-		this.indent = indent ;
-	}
-
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		try {
-			StreamResult xmlOutput = new StreamResult(output);
-			Transformer transformer = SAXTransformerFactory.newInstance().newTransformer();
-			if (indent) {
-				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-				transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2") ;
-			}
-
-//			transformer.setOutputProperty(OutputKeys.STANDALONE, "yes");
-			transformer.transform(source, xmlOutput);
-		} catch (TransformerException e) {
-			throw new IOException(e) ;
-		} catch (TransformerFactoryConfigurationError e) {
-			throw new IOException(e) ;
-		}
-	}
-	
-}
 
 
-class JsonStreamOut implements StreamingOutput {
 
-	private JsonObject json;
-	private boolean indent ;
-	public JsonStreamOut(JsonObject json, boolean indent) {
-		this.json = json ;
-		this.indent = indent ;
-	}
-	
-	@Override
-	public void write(OutputStream output) throws IOException, WebApplicationException {
-		JsonWriter jwriter = new JsonWriter(new OutputStreamWriter(output, "UTF-8")) ;
-		if(indent) jwriter.setIndent("  ");
-		
-		jwriter.beginObject() ;
-		for (Entry<String, JsonElement> entry : json.entrySet()) {
-			writeJsonElement(jwriter, json, entry.getKey(), entry.getValue()) ; 
-		}
-		jwriter.endObject() ;
-		jwriter.flush(); 
-	}
-	
-	
-	private void writeJsonElement(JsonWriter jwriter, JsonElement parent, String name, JsonElement json) throws IOException {
-		if (json.isJsonPrimitive()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			final JsonPrimitive preEle = json.getAsJsonPrimitive();
-			if (preEle.isBoolean()){
-				jwriter.value(preEle.getAsBoolean()) ;
-			} else if (preEle.isNumber()) {
-				jwriter.value(preEle.getAsNumber()) ;
-			} else {
-				jwriter.value(preEle.getAsString()) ;
-			} 
-		} else if (json.isJsonObject()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			jwriter.beginObject() ;
-			for(Entry<String, JsonElement> entry : json.getAsJsonObject().entrySet()){
-				writeJsonElement(jwriter, json, entry.getKey(), entry.getValue()) ;
-			}
-			jwriter.endObject() ;
-		} else if (json.isJsonArray()){
-			if (parent.isJsonObject()) jwriter.name(name) ;
-			jwriter.beginArray() ;
-			for(JsonElement ele : json.getAsJsonArray()){
-				writeJsonElement(jwriter, json, name, ele) ;
-			} 
-			jwriter.endArray() ;
-		} else if (json.isJsonNull()){
-			; // ignore
-		}
-	}
-}
+
+

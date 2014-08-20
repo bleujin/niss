@@ -45,11 +45,11 @@ public class TestLoaderFromDB extends TestCase {
 	}
 
 	public void testCreate() throws Exception {
-		LoaderApp app = LoaderApp.create() ;
+		JScriptEngine app = JScriptEngine.create() ;
 		
-		LoadScript script = app.createScript(IdString.create("sample_db"), "Sample From DB", LoaderApp.class.getResourceAsStream("fromdb.txt")) ;
+		InstantJavaScript script = app.createScript(IdString.create("sample_db"), "Sample From DB", JScriptEngine.class.getResourceAsStream("fromdb.txt")) ;
 		
 		Writer writer =  new OutputStreamWriter(System.out, "EUC-KR");
-		script.run(writer) ;
+		script.runAsync(writer, ExceptionHandler.DEFAULT) ;
 	}
 }

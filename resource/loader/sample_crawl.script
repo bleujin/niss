@@ -10,7 +10,7 @@ new function(){
 		return new MaxLimitScheduler(new QueueScheduler(), 10) ;
 	}, 
 	
-	this.processor = function(){
+	this.processor = function(writer){
 		var urlPattern = "(" + "http://bleujin.tistory.com/*".replace(".", "\\.").replace("*", "[^\"'#]*") + ")";
 		
 		return new PageProcessor({
@@ -22,19 +22,23 @@ new function(){
 					page.putField("html", page.getHtml().toString());
 					page.putField("content", page.getHtml().smartContent()); // extract by Readability
 				} catch(ex){
-					java.lang.System.out.println(ex) ;
+					writer.write(ex.getMessage()) ;
 				}
 			} 
 		});
 	}, 
 	
-	this.handle = function(){
+	this.handle = function(writer){
 		try {
-			var spider = Site.create().sleepTime(50).newSpider(this.processor()).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
+			var spider = Site.create().sleepTime(50).newSpider(this.processor(writer)).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
 	
-			spider.addPipeline(new DebugPipeline()).run();	
+			var jwriter = new net.ion.niss.apps.loader.JsonWriterPipeline(writer) ;
+			jwriter.begin() ;
+			spider.addPipeline(jwriter).run();
+			jwriter.end() ;	
+			
 		} catch(ex){
-			java.lang.System.out.println(ex) ;
+			writer.write("" + ex) ;
 		}
 	}
 } ;

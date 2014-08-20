@@ -1,6 +1,7 @@
 package net.ion.niss.webapp.collection;
 
 import junit.framework.TestCase;
+import net.ion.framework.util.Debug;
 import net.ion.niss.apps.old.IndexManager;
 import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
@@ -31,6 +32,14 @@ public class TestIndex extends TestCase {
 		ss.shutdown();
 		super.tearDown();
 	}
+	
+	
+	public void testIndexGet() throws Exception {
+		StubHttpResponse response = ss.request("/collections/col1/index").get() ;
+
+		Debug.line(response.contentsString());
+	}
+	
 	
 	public void testJsonUpdate() throws Exception {
 		StubHttpResponse response = ss.request("/collections/col1/index.json").postParam("documents", "{id:'json', name:'bleujin', age:20}").postParam("boost", "1.0").postParam("overwrite", "true").post() ;

@@ -3,12 +3,16 @@ package net.ion.niss.webapp;
 import java.io.Closeable;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.util.Version;
 import org.infinispan.manager.DefaultCacheManager;
+import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 import net.ion.craken.listener.CDDHandler;
 import net.ion.craken.listener.CDDModifiedEvent;
@@ -21,14 +25,20 @@ import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
+import net.ion.craken.node.crud.TreeNodeKey;
 import net.ion.craken.tree.PropertyId;
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.ListUtil;
 import net.ion.niss.apps.IdString;
 import net.ion.niss.apps.collection.IndexManager;
 import net.ion.niss.apps.collection.IndexManager;
+import net.ion.niss.apps.collection.SearchManager;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
+import net.ion.nsearcher.config.SearchConfig;
+import net.ion.nsearcher.search.CompositeSearcher;
+import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 public class REntry implements Closeable {
@@ -39,6 +49,8 @@ public class REntry implements Closeable {
 	private String wsName;
 	private IndexManager indexManager = new IndexManager();
 
+	private SearchManager searchManager = new SearchManager();
+
 	public REntry(RepositoryImpl r, String wsName) throws IOException {
 		this.r = r;
 		this.wsName = wsName;
@@ -48,6 +60,7 @@ public class REntry implements Closeable {
 
 	private void initCDDListener(final ReadSession session) {
 
+		// load index
 		session.ghostBy("/collections").children().eachNode(new ReadChildrenEach<Void>() {
 			@Override
 			public Void handle(ReadChildrenIterator iter) {
@@ -66,30 +79,85 @@ public class REntry implements Closeable {
 						indexManager.newIndex(cid, central);
 					}
 				} catch (Exception ex) {
-					ex.printStackTrace();
+					throw new IllegalStateException(ex);
 				}
 				return null;
 			}
 		});
 
-		session.ghostBy("/collection").children().eachNode(new ReadChildrenEach<Void>() {
+		// load searcher
+		session.ghostBy("/sections").children().eachNode(new ReadChildrenEach<Void>() {
 			@Override
-			public Void handle(final ReadChildrenIterator iter) {
-				session.tran(new TransactionJob<Void>() {
-					@Override
-					public Void handle(WriteSession wsession) throws Exception {
-						for (ReadNode node : iter) {
-							wsession.pathBy("/collections/" + node.fqn().name()).property("queryanalyzer", node.property("queryanalyzer").asString()).property("indexanalyzer", node.property("indexanalyzer").asString());
-						}
+			public Void handle(ReadChildrenIterator iter) {
 
-						wsession.pathBy("/collection").removeSelf();
-						return null;
+				try {
+					for (ReadNode sec : iter) {
+						IdString sid = IdString.create(sec.fqn().name());
+						Searcher searcher = null;
+						Set<String> cols = sec.property("collection").asSet();
+						if (cols.size() == 0) {
+							searcher = CompositeSearcher.createBlank();
+						} else {
+							List<Central> target = ListUtil.newList();
+							for (String colId : cols) {
+								if (indexManager.hasIndex(colId)) {
+									target.add(indexManager.index(colId));
+								}
+							}
+							SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
+							searcher = CompositeSearcher.create(nconfig, target);
+						}
+						searchManager.newSearch(sid, searcher);
 					}
-				});
+				} catch (IOException ex) {
+					throw new IllegalStateException(ex);
+				}
+
 				return null;
 			}
 		});
 
+		session.workspace().cddm().add(new CDDHandler() {
+			@Override
+			public String pathPattern() {
+				return "/sections/{sid}";
+			}
+
+			@Override
+			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
+				try {
+					TreeNodeKey key = cevent.getKey();
+					IdString sid = IdString.create(key.getFqn().name());
+					Searcher searcher = null;
+					Set<String> cols = cevent.getValue().get(PropertyId.normal("collection")).asSet();
+					if (cols.size() == 0) {
+						searcher = CompositeSearcher.createBlank();
+					} else {
+						List<Central> target = ListUtil.newList();
+						for (String colId : cols) {
+							if (indexManager.hasIndex(colId)) {
+								target.add(indexManager.index(colId));
+							}
+						}
+						SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
+						searcher = CompositeSearcher.create(nconfig, target);
+					}
+					searchManager.newSearch(sid, searcher);
+				} catch (IOException ex) {
+					throw new IllegalStateException(ex);
+				}
+				return null;
+			}
+
+			@Override
+			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
+				IdString sid = IdString.create(rmap.get("sid"));
+				searchManager.removeSearcher(sid);
+				return null;
+			}
+		});
+
+		// add index listener
 		session.workspace().cddm().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
@@ -105,19 +173,19 @@ public class REntry implements Closeable {
 
 						indexManager.newIndex(cid, central);
 					} else if (indexManager.hasIndex(cid)) {
-						Central saved = indexManager.index(cid) ;
-						for(PropertyId key : cevent.getValue().keySet()){
-							String modValue = cevent.getValue().get(key).asString() ;
-							if ("indexanalyzer".equals(key.idString()) && (! cevent.getValue().get(key).asString().equals(saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()))){
+						Central saved = indexManager.index(cid);
+						for (PropertyId key : cevent.getValue().keySet()) {
+							String modValue = cevent.getValue().get(key).asString();
+							if ("indexanalyzer".equals(key.idString()) && (!cevent.getValue().get(key).asString().equals(saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()))) {
 								Class<?> indexAnalClz = Class.forName(modValue);
 								Analyzer indexAnal = (Analyzer) indexAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
-								saved.indexConfig().indexAnalyzer(indexAnal) ;
-							} else if ("queryanalyzer".equals(key.idString())){
+								saved.indexConfig().indexAnalyzer(indexAnal);
+							} else if ("queryanalyzer".equals(key.idString())) {
 								Class<?> queryAnalClz = Class.forName(modValue);
 								Analyzer queryAnal = (Analyzer) queryAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
-								saved.searchConfig().queryAnalyzer(queryAnal) ;
-							} else if ("applystopword".equals(key.idString())){
-								
+								saved.searchConfig().queryAnalyzer(queryAnal);
+							} else if ("applystopword".equals(key.idString())) {
+
 							}
 						}
 
@@ -181,6 +249,10 @@ public class REntry implements Closeable {
 
 	public IndexManager indexManager() {
 		return indexManager;
+	}
+
+	public SearchManager searchManager() {
+		return searchManager;
 	}
 
 }

@@ -55,7 +55,7 @@
 									<section>
 										<label class="label">Stopword</label>
 										<label class="textarea textarea-resizable">
-											<textarea id="textvalue" name="textvalue" rows="5"></textarea>
+											<textarea id="stopword" name="stopword" rows="5"></textarea>
 										</label>
 									</section>
 									
@@ -92,11 +92,28 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		var colId = $("#collections option:selected").val() ;
-		
-		
+
+		$.ajax({
+			url:'/admin/analysis',
+			dataType:'json',
+			success:function(data){
+				console.log(data) ;
+				var analyzer = data['analyzer'] ;
+				
+				for(var idx in analyzer){
+					var a = analyzer[idx] ;
+					var option = $('<option value="'+a['clz']+'">'+a['name']+'</dd>') ;
+//					if (a['selected']) option.attr('selected', 'selected');
+					option.appendTo($("#analyzer")) ;
+				}
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 		
 		$( "#btn_analyzer" ).click( function() {
+			
 			$.ajax({
 				type: "POST",
 				url: "/admin/analysis",

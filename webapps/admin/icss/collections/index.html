@@ -51,12 +51,6 @@
 						<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
 							<fieldset style="padding: 0px">					
 								<section>
-									<label class="label">Request Handler</label>
-									<label class="input">
-										<input type="text" id="hadler" name="handler" value="/index" disabled="disabled"/>
-									</label>
-								</section>
-								<section>
 									<label class="label">Document Type</label>
 									<label class="select">
 										<select name="interested" id="dtype">
@@ -155,6 +149,17 @@
 		var colId = $("#collections option:selected").val() ;
 		if (colId.indexOf('-') == 0) return ;
 		
+		$.ajax({
+			url:'/admin/collections/' + colId +'/index',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 		
 		$( "#dtype" ).change(function() {
 			var selected = $("#dtype option:selected").val();

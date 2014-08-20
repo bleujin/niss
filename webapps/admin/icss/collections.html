@@ -1,37 +1,13 @@
-<div class="inbox-nav-bar no-content-padding">
 
-	<h1 class="page-title pull-right txt-color-blueDark hidden-tablet">
-		<select class="input-sm" id="collections">
-			<option value="-blank" disabled="disabled">Choose Collection</option>
-		</select>
-		
-	</h1>
-
-
-
-
-	<div class="btn-group hidden-desktop visible-tablet">
-		<button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-			Sections <i class="fa fa-caret-down"></i>
-		</button>
-		<ul class="dropdown-menu pull-left">
-			<li><a class="overview-load" href="javascript:void(0);">Overview <i class="fa fa-check"></i></a></li>
-			<li><a class="schema-load" href="javascript:void(0);">Schema</a></li>
-			<li><a class="index-load" href="javascript:void(0);">Index</a></li>
-			<li class="divider"></li>
-			<li><a class="query-load" href="javascript:void(0);">Query</a></li>
-			<li><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
-		</ul>
-
-	</div>
-
-
-</div>
 
 <div id="inbox-content" class="inbox-body no-content-padding">
 
 	<div class="inbox-side-bar">
-
+		<div class="well">Choose Collection
+			<select class="input-sm" id="collections">
+			</select>
+		</div>
+		
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
 			<li class="submenu"><a class="schema-load" href="javascript:void(0);">Schema</a></li>
@@ -42,9 +18,10 @@
 		</ul>
 
 		<div class="air air-bottom inbox-space">
-			3.5GB of <strong>10GB</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			FileSize : <strong>1G</strong><br>
+			DocCount : <strong>100</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
 			<div class="progress progress-micro">
-				<div class="progress-bar progress-primary" style="width: 34%;"></div>
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
 			</div>
 		</div>
 
@@ -60,7 +37,7 @@
 
 </div>
 
-<div id="dialog-confirm" title="Create Index Collection">
+<div id="new-collection-confirm" title="Create Index Collection">
 	<form class="smart-form" id="document-form" method="post" action="collection/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
@@ -86,7 +63,7 @@
 		tableHeightSize();
 
 		$(window).resize(function() {
-			tableHeightSize()
+			tableHeightSize() ;
 		})
 		function tableHeightSize() {
 			if ($('body').hasClass('menu-on-top')) {
@@ -112,6 +89,7 @@
 
 		}
 		
+		var lastColId = '' ;
 		$.ajax({
 			url:'/admin/collections',
 			dataType:'json',
@@ -121,11 +99,12 @@
 					var option = $('<option value="'+col['cid']+'">'+col['name']+'</option>') ;
 					option.appendTo($("#collections")) ;
 				}
-				$("#collections option:eq(1)").attr("selected", "selected");
+				$("#collections option:eq(0)").attr("selected", "selected");
 				$('<option value="-new">.Create Collection</option>').appendTo($("#collections")) ;
 				
 				//LOAD INBOX MESSAGES
 				loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastColId = $("#collections").val() ;
 				
 			}, 
 			error:function(request,status,error){
@@ -133,15 +112,15 @@
 			}
 		}) ;
 
-		
 		$("#collections").change(function(){
 			if ($(this).val() == '-new'){
 				$(function() {
-				$( "#dialog-confirm" ).dialog({
+				$( "#new-collection-confirm" ).css('visibility', 'visible') ;
+				$( "#new-collection-confirm" ).dialog({
 					modal: true,
 					buttons: {
 						"Create IndexCollection": function() {
-							var newId = $("#newId").val() ;
+							var newId = $("#newColId").val() ;
 							var win = $( this ) ;
 							if (newId > ' '){
 								$.ajax({
@@ -161,12 +140,14 @@
 							}
 							},
 						Cancel: function() {
-							$( this ).dialog( "close" );
-							}
-						}
+							$(this).dialog( "close" );
+						}}
 					});
 				});
+				if (lastColId > ' ') { $("#collections option[value='" + lastColId + "']").attr('selected', 'selected');  }
+				
 			} else {
+				lastColId = $(this).val() ;
 				loadURL("icss/collections/overview.html", $('#inbox-content > .table-wrap')) ;
 			}
 		}) ;

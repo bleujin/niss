@@ -8,6 +8,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
@@ -41,18 +43,23 @@ public class AnalysisWeb implements Webapp {
 	
 	@GET
 	@Path("")
-	public JsonArray list(){
-		JsonArray result = new JsonArray() ;
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject list(){
+		JsonObject result = new JsonObject() ;
 		
+		JsonArray analysis = new JsonArray() ;
 		for(Class<? extends Analyzer> clz : analyzers){
-			result.add(new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName())) ;
+			analysis.add(new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName())) ;
 		}
+		result.add("analyzer", analysis);
+		
 		return result ;
 	}
 	
 	
 	@POST
 	@Path("")
+	@Produces(MediaType.APPLICATION_JSON)
 	public JsonArray tokenAnalyzer(@DefaultValue("") @FormParam("content") String content, @FormParam("analyzer") String clzName, @DefaultValue("") @FormParam("stopword") String stopword) throws Exception{
 		Class<? extends Analyzer> aclz = (Class<? extends Analyzer>) Class.forName(clzName) ;
 		

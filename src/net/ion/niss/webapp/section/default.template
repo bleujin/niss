@@ -1,0 +1,20 @@
+
+<ul>
+	<li>elapsedTime : ${response.elapsedTime()}
+	<li>size : ${response.size()}
+	<li>totalCount : ${response.totalCount()}
+	<li>params : ${params}
+</ul>
+
+<table>
+<tr>
+	<th>Id</th>
+	<th>Title</th>
+</tr>
+${foreach response.getDocument() doc ,}
+<tr>
+	<td>${doc.get(id)}</td>
+	<td>${doc.get(title)}</td>
+</tr>
+${end}
+</table>

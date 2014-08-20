@@ -2,7 +2,7 @@
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
 			<i class="fa fa-edit fa-fw "></i> 
-				Overview
+				Template
 		</h1>
 	</div>
 	
@@ -12,14 +12,15 @@
 	<div class="col-sm-12">
 		
 		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
-			<h1 class="semi-bold">What are "Template"</h1>
-		<p>SmartAdmin comes with a fully customized grid system catered specifically for building form layouts. Its not technically "better" than the bootstrap 3 built in grid system, 
-			but rather more simplified for rapid form layout and faster development. Idealy you would use either the <strong>bootstrap</strong> grid or the <strong>smart-form</strong> grid, 
-			when building your form layouts. It is important not to mix elements from two seperate classes as it can cause conflict.  
-		</p>
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
 
 		
@@ -42,40 +43,20 @@
 					</div>
 
 					<div class="widget-body no-padding">
+						<form class="smart-form" id="document-form" method="post" action="sections/query" novalidate="novalidate">
+							<fieldset style="padding: 0px">	
+								<section>
+									<label class="textarea textarea-resizable"><textarea id="template" rows="20"></textarea></label>
+								</section>
+							</fieldset>
+							<footer>
+								<button class="btn btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>
+								<button class="btn btn-primary" type="button" id="btn_default"><i class="fa fa-times"></i> LoadDefault</button>
+							</footer>
+						</form>
 
-						<div class="summernote">dfdf
 
-<script type="text/javascript">
-	  var _gaq = _gaq || [];
-	  _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-	  _gaq.push(['_trackPageview']);
-	
-	  (function() {
-	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  })();
-		
-</script></div>
-						
-						<div class="widget-footer smart-form">
-						<div class="btn-group">
-							<button class="btn btn-sm btn-primary" type="button">
-								<i class="fa fa-times"></i> Cancel
-							</button>	
-						</div>
 
-						<div class="btn-group">
-							<button class="btn btn-sm btn-success" type="button">
-								<i class="fa fa-check"></i> Save
-							</button>	
-						</div>
-
-						<label class="checkbox pull-left">
-							<input type="checkbox" checked="checked" name="autosave" id="autosave">
-							<i></i>Auto Save 
-						</label> 
-						</div>
 						
 					</div>
 
@@ -92,13 +73,70 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		$('.summernote').summernote({
-			height : 400,
-			focus : false,
-			tabsize : 2
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/sections",
+				data: { content: aHTML, field: "template" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
 		});
 		
+		var secId = $("#sections option:selected").val() ;
+		if (secId.indexOf('-') == 0) return ;
+		
+		$.ajax({
+			url:'/admin/sections/' + secId +'/template',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+				$("#template").val(data['template']);
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+
+		$( ".btn-primary" ).click(function() {		
+			$.ajax({
+				type: "GET",
+				url: "/admin/sections/" + secId + "/template.default",
+				dataType:'text',
+				success:function(data){
+					$("#template").val(data);
+					console.log(data) ;
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
+				}
+			}) ;
+		});
+		
+		$( ".btn-success" ).click(function() {		
+			$.ajax({
+				type: "POST",
+				url: "/admin/sections/" + secId + "/template",
+				data: { template: $("#template").val() }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+		}) ;
+		
 	};
-	loadScript("js/plugin/summernote/summernote.min.js", pagefunction) ;
+	pagefunction() ;
 
 </script>
