@@ -48,7 +48,7 @@
 					</div>
 					
 					<div class="widget-body">
-					<form class="smart-form" id="section-form" method="post" action="sections/define" novalidate="novalidate">
+					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
 								<section>
 									<label class="label">Name</label>
@@ -63,6 +63,13 @@
 										<i class="icon-append fa fa-question-circle"/> 										
 										<textarea rows="12" class="custom-scroll" placeholder="script content" id="scontent"></textarea>
 										<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
+									</label>
+								</section>
+
+								<section>
+									<label class="label">Output</label>
+									<label class="textarea textarea-resizable">
+										<textarea rows="12" class="custom-scroll" placeholder="output" id="output"></textarea>
 									</label>
 								</section>
 
@@ -90,6 +97,8 @@
 		</article>
 		
 	</div>
+	
+
 
 
 </section>
@@ -159,12 +168,24 @@
 		});
 		
 		$( "#btn_run" ).click(function() {
-			console.log( Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime()) ;
-			return ;
+			var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
+			var es = new EventSource('/event/' + eventId);
+		       es.onopen = function() {
+		       	console.log('OPEN');
+		       };
+		       es.onmessage = function(e) {
+		       	var outputText = document.getElementById('output');
+			       outputText.value = outputText.value + e.data + '\n';
+			       outputText.scrollTop = textArea.scrollHeight;
+		       };
+		       es.onerror = function(e) {
+		       	console.log('ERROR');
+		       };
+			$( "#btn_run" ).attr('disabled', 'disabled') ;
 			$.ajax({
 				type: "POST",
 				dataType : 'text', 
-				url: "/admin/loaders/" + loaderId + "/run",
+				url: "/admin/loaders/" + loaderId + "/run/" + eventId,
 				data: { content: $("#scontent").val(),  name: $("#name").val() }, 
 				complete : function(){ 
 					

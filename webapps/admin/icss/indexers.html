@@ -1,0 +1,184 @@
+
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+		<div class="well">Choose Indexer
+			<select class="input-sm" id="indexers">
+			</select>
+		</div>
+		
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
+			<li class="submenu"><a class="schema-load" href="javascript:void(0);">Schema</a></li>
+			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index</a></li>
+
+			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
+			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+			FileSize : <strong>1G</strong><br>
+			DocCount : <strong>100</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+
+	</div>
+
+
+</div>
+
+<div id="new-indexer-confirm" title="Create Indexer" style="display:none">
+	<form class="smart-form" id="document-form" method="post" action="indexers/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Indexer ID</label>
+				<label class="input">
+					<input type="text" id="newId" name="iid" placeholder="new indexer id" />
+				</label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	// PAGE RELATED SCRIPTS
+
+	// pagefunction
+	var pagefunction = function() {
+
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize() ;
+		})
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			}
+
+		}
+		
+		var lastColId = '' ;
+		$.ajax({
+			url:'/admin/indexers',
+			dataType:'json',
+			success:function(data){
+				for(var idx in data){
+					var col = data[idx] ;
+					var option = $('<option value="'+col['iid']+'">'+col['name']+'</option>') ;
+					option.appendTo($("#indexers")) ;
+				}
+				$("#indexers option:eq(0)").attr("selected", "selected");
+				$('<option value="-new">.Create Indexer</option>').appendTo($("#indexers")) ;
+				
+				//LOAD INBOX MESSAGES
+				loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastColId = $("#indexers").val() ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+
+		$("#indexers").click(function(){
+			if ($(this).val() == '-new'){
+				$(function() {
+				$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
+				$( "#new-indexer-confirm" ).dialog({
+					modal: true,
+					buttons: {
+						"Create Indexer": function() {
+							var newId = $("#newId").val() ;
+							var win = $( this ) ;
+							if (newId > ' '){
+								$.ajax({
+									type: "POST",
+									dataType : 'text', 
+									url: "/admin/indexers/" + newId,
+									data: { }, 
+									complete : function(){ 
+										// $("#query_url").text(this.url) ;
+									}, 
+									success :  function(data) {
+										$("#indexers option:eq(0)").after('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+										loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+										win.dialog( "close" );
+									}
+								}) ;	
+							}
+							},
+						Cancel: function() {
+							$(this).dialog( "close" );
+						}}
+					});
+				});
+				if (lastColId > ' ') { $("#indexers option[value='" + lastColId + "']").attr('selected', 'selected');  }
+				
+			} else {
+				lastColId = $(this).val() ;
+				loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+			}
+		}) ;
+
+		$("li.submenu").click(function() {
+		    $(this).toggleClass("active");
+		    $(this).siblings().removeClass("active");
+		});
+
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap'))
+		});
+		$(".analysis-load").click(function() {
+			loadURL("icss/indexers/analysis.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".schema-load").click(function() {
+			loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".index-load").click(function() {
+			loadURL("icss/indexers/index.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".query-load").click(function() {
+			loadURL("icss/indexers/query.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".browsing-load").click(function() {
+			loadURL("icss/indexers/browsing.html", $('#inbox-content > .table-wrap')) ;
+		});
+	
+	};
+
+	pagefunction();
+	
+</script>

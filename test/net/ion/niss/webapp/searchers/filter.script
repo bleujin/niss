@@ -1,0 +1,23 @@
+
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.nsearcher.search.filter)
+	importPackage(net.ion.nsearcher.search.processor)  
+
+	this.filter = function(){
+		return new TermFilter("idx", "1") ;
+	} 
+	
+	this.postProcessor = function(){
+		return new net.ion.nsearcher.search.processor.PostProcessor({
+			postNotify : function(request, response){
+				System.out.println(request + " "+ response) ;
+			} 
+		});
+	} 
+	
+	this.handle = function(searcher){
+		return searcher.andFilter(this.filter()).addPostListener(this.postProcessor()) ;
+	}
+} ;

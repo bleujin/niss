@@ -4,7 +4,8 @@ new function(){
 	importPackage(net.ion.icrawler) 
 	importPackage(net.ion.icrawler.pipeline) 
 	importPackage(net.ion.icrawler.processor) 
-	importPackage(net.ion.icrawler.scheduler) 
+	importPackage(net.ion.icrawler.scheduler)
+	importPackage(net.ion.niss.webapp.loaders)  
 	
 	this.scheduler = function(){
 		return new MaxLimitScheduler(new QueueScheduler(), 10) ;
@@ -19,8 +20,8 @@ new function(){
 					var requests = page.getHtml().links().regex(urlPattern).targets();
 					page.addTargets(requests); // add urls to fetch
 					page.putField("title", page.getHtml().xpath("//title")); // extract by XPath
-					page.putField("html", page.getHtml().toString());
-					page.putField("content", page.getHtml().smartContent()); // extract by Readability
+					// page.putField("html", page.getHtml().toString());
+					// page.putField("content", page.getHtml().smartContent()); // extract by Readability
 				} catch(ex){
 					writer.write(ex.getMessage()) ;
 				}
@@ -32,11 +33,11 @@ new function(){
 		try {
 			var spider = Site.create().sleepTime(50).newSpider(this.processor(writer)).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
 	
-			var jwriter = new net.ion.niss.apps.loader.JsonWriterPipeline(writer) ;
+			var jwriter = new JsonWriterPipeline(writer) ;
 			jwriter.begin() ;
 			spider.addPipeline(jwriter).run();
 			jwriter.end() ;	
-			
+			spider.close() ;
 		} catch(ex){
 			writer.write("" + ex) ;
 		}

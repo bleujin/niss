@@ -6,8 +6,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.niss.apps.misc.PropertyInfo;
-import net.ion.niss.apps.misc.ThreadDumpInfo;
 import net.ion.niss.webapp.Webapp;
 
 @Path("/misc")

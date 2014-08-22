@@ -1,0 +1,194 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Define Searcher
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-purple" id="wid-id-stat" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+					<h2>Detail</h2>				
+				</header>
+
+				<div>
+					<div class="jarviswidget-editbox">
+						<input class="form-control" type="text">	
+					</div>
+					
+					<div class="widget-body">
+					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+						<fieldset>
+						
+							<div class="form-group">
+								<label>Target Indexer</label>
+								<select multiple style="width:100%" class="select2" id="target_indexer">
+									<optgroup label="Target Indexer" id="list_indexer">
+									</optgroup>
+								</select>
+								<hr class="simple">
+							</div>
+											
+							<section>
+								<label class="label">Handler</label>
+								<label class="textarea textarea-resizable">
+									<textarea id="handler" name="handler" rows="20">function(){}</textarea>
+								</label>
+								<label class="checkbox"><input type="checkbox" id="applyhandler" value="true" /><i></i>Apply Handler</label>
+							</section>
+
+							<hr class="simple">
+							
+						</fieldset>
+						
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>	
+							<button class="btn btn-primary" type="button" id="btn_default"><i class="fa fa-times"></i> LoadDefault</button>
+						</footer>
+						
+						<div class="message">
+							<i class="fa fa-thumbs-up"></i>
+							<p>Your message was successfully sent!</p>
+						</div>
+					</form>
+					</div>
+				</div>
+				
+			</div>
+		</article>
+		
+	</div>
+
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	
+	pageSetUp();
+	
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/searchers",
+				data: { content: aHTML, field: "define" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+
+		var secId = $("#searchers option:selected").val() ;
+		if (secId.indexOf('-') == 0) return ;
+		
+		$.ajax({
+			url:'/admin/searchers/' + secId +'/define',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				var indexers = data['indexers'];
+				var targets = data['target'];
+				$("#info").html(info) ;
+
+				for(var idx in indexers){
+					var indexId = indexers[idx] ;
+					var option = $('<option value="'+indexId+'">'+indexId+'</option>') ;
+					option.appendTo($("#list_indexer")) ;
+				}
+				$("#target_indexer").val(targets).select2();
+				
+				$("#handler").val(data["handler"]) ;
+				$("#applyhandler").attr('checked', data["applyhandler"]) ;
+				// pageSetUp();
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+
+		}) ;
+		
+		
+		$( ".btn-primary" ).click(function() {		
+			$.ajax({
+				type: "GET",
+				url: "/admin/searchers/" + secId + "/define.default",
+				dataType:'text',
+				success:function(data){
+					$("#handler").val(data);
+					console.log(data) ;
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
+				}
+			}) ;
+		});
+		
+		$( "#btn_save" ).click(function() {
+			var targets = [];
+    			$("#target_indexer").each(function(){ targets.push($(this).val()) });
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/searchers/" + secId + "/define",
+				data: { 'target': targets.toString(), 
+					handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, 
+					}, 
+				complete : function(){ 
+					$("#index_url").text(this.url) ;
+				}, 
+				success :  function(data) {
+					$("#index_result").text(data) ;
+				}
+			}) ;
+			
+		});
+		
+	};
+
+	// run pagefunction on load
+	pagefunction();
+	
+</script>

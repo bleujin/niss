@@ -18,9 +18,10 @@
 	<classpathentry kind="lib" path="lib/reflib/crawl_parse.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/jdbc_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/aradon311_0.9.jar"/>
-	<classpathentry kind="lib" path="lib/ref/isearcher_4.4.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search440_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/aclient_0.5.jar"/>
 	<classpathentry kind="lib" path="lib/common/crawl_apache_common.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ISearcher"/>
+	<classpathentry kind="lib" path="lib/ref/isearcher_4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

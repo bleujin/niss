@@ -1,7 +1,7 @@
 eclipse.preferences.version=1
-encoding//webapps/admin/icss/collections/_analysis.html=UTF-8
-encoding//webapps/admin/icss/collections/overview.html=UTF-8
+encoding//webapps/admin/icss/indexers/_analysis.html=UTF-8
+encoding//webapps/admin/icss/indexers/overview.html=UTF-8
 encoding//webapps/admin/icss/misc/analyzer.html=UTF-8
 encoding//webapps/admin/icss/misc/properties.html=UTF-8
-encoding//webapps/admin/icss/sections.html=UTF-8
+encoding//webapps/admin/icss/searchers.html=UTF-8
 encoding/<project>=UTF-8

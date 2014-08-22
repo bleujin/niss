@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-import net.ion.niss.apps.util.CopyOnWriteMap;
+import net.ion.niss.webapp.util.CopyOnWriteMap;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceMessage;
 
