@@ -1,5 +1,7 @@
-package net.ion.niss.webapp;
+package net.ion.niss.webapp.misc;
 
+import java.io.IOException;
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 import javax.ws.rs.DefaultValue;
@@ -11,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
@@ -26,6 +29,8 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
+import net.ion.framework.util.StringUtil;
+import net.ion.niss.webapp.Webapp;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
@@ -60,27 +65,56 @@ public class AnalysisWeb implements Webapp {
 	@POST
 	@Path("")
 	@Produces(MediaType.APPLICATION_JSON)
-	public JsonArray tokenAnalyzer(@DefaultValue("") @FormParam("content") String content, @FormParam("analyzer") String clzName, @DefaultValue("") @FormParam("stopword") String stopword) throws Exception{
-		Class<? extends Analyzer> aclz = (Class<? extends Analyzer>) Class.forName(clzName) ;
-		
-		CharArraySet set = new CharArraySet(SearchConstant.LuceneVersion, ListUtil.toList(stopword.split("\\s+")), true) ; 
-		Analyzer analyzer = aclz.getConstructor(Version.class, CharArraySet.class).newInstance(SearchConstant.LuceneVersion, set) ;
-		
+	public JsonObject tokenAnalyzer(@DefaultValue("") @FormParam("content") String content, @FormParam("analyzer") String clzNames, @DefaultValue("") @FormParam("stopword") String stopword) throws Exception{
+		JsonObject result = new JsonObject() ;
+		for (String clzName : StringUtil.split(clzNames, ",")) {
+			Class<? extends Analyzer> aclz = (Class<? extends Analyzer>) Class.forName(clzName) ;
+			
+			CharArraySet set = new CharArraySet(SearchConstant.LuceneVersion, ListUtil.toList(stopword.split("\\s+")), true) ;
+			
+			Constructor<? extends Analyzer> findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class, CharArraySet.class}) ;
+			Analyzer analyzer = null ;
+			if (findCon == null){
+				analyzer = aclz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion) ;
+			} else {
+				analyzer = findCon.newInstance(SearchConstant.LuceneVersion, set) ;
+			}
+			
+			TokenStream tokenStream = analyzer.tokenStream("text", content);
+			OffsetAttribute offsetAttribute = tokenStream.getAttribute(OffsetAttribute.class);
+			CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
+			tokenStream.reset();
+
+			JsonArray array = new JsonArray() ;
+			while (tokenStream.incrementToken()) {
+			    int startOffset = offsetAttribute.startOffset();
+			    int endOffset = offsetAttribute.endOffset();
+			    array.add(new JsonObject().put("term", charTermAttribute.toString()).put("start", startOffset).put("end", endOffset));
+			}
+			IOUtil.close(tokenStream);
+			IOUtil.close(analyzer);
+
+			result.add(aclz.getCanonicalName(), array);
+		}
+		return result ;
+	}
+	
+	
+	// util
+	public static final JsonArray analParse(Analyzer analyzer, String content) throws IOException{
 		TokenStream tokenStream = analyzer.tokenStream("text", content);
 		OffsetAttribute offsetAttribute = tokenStream.getAttribute(OffsetAttribute.class);
 		CharTermAttribute charTermAttribute = tokenStream.addAttribute(CharTermAttribute.class);
 		tokenStream.reset();
 
-		JsonArray result = new JsonArray() ;
+		JsonArray array = new JsonArray() ;
 		while (tokenStream.incrementToken()) {
 		    int startOffset = offsetAttribute.startOffset();
 		    int endOffset = offsetAttribute.endOffset();
-		    result.add(new JsonObject().put("term", charTermAttribute.toString()).put("start", startOffset).put("end", endOffset));
+		    array.add(new JsonObject().put("term", charTermAttribute.toString()).put("start", startOffset).put("end", endOffset));
 		}
 		IOUtil.close(tokenStream);
 		IOUtil.close(analyzer);
-
-		return result ;
+		return array ;
 	}
-	
 }

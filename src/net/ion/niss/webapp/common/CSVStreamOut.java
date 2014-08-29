@@ -28,13 +28,13 @@ public class CSVStreamOut implements StreamingOutput {
 
 		Set<String> nameSet = SetUtil.newOrdereddSet() ;
 		for(ReadDocument doc : sresponse.getDocument()) {
-			nameSet.addAll(ListUtil.toList(doc.getFieldNames())) ;
+			nameSet.addAll(ListUtil.toList(doc.fieldNames())) ;
 		}
 		
 		cwriter.writeLine(nameSet.toArray(new String[0]));
 		for(ReadDocument doc : sresponse.getDocument()) {
 			for (String fname : nameSet) {
-				String value = doc.get(fname);
+				String value = doc.asString(fname);
 				cwriter.writeField(value == null ? "" : value);
 			}
 			cwriter.endBlock(); 

@@ -31,3 +31,16 @@
 .ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
 .ui-draggable .ui-dialog-titlebar { cursor: move; }
 
+table.dataTable tbody tr.selected2 {
+  background-color: #b0bed9;
+}
+table.dataTable.stripe tbody tr.odd.selected2, table.dataTable.display tbody tr.odd.selected2 {
+  background-color: #abb9d3;
+}
+table.dataTable.hover tbody tr:hover.selected2,
+table.dataTable.hover tbody tr.odd:hover.selected2,
+table.dataTable.hover tbody tr.even:hover.selected2, table.dataTable.display tbody tr:hover.selected2,
+table.dataTable.display tbody tr.odd:hover.selected2,
+table.dataTable.display tbody tr.even:hover.selected2 {
+  background-color: #a9b7d1;
+}

@@ -138,7 +138,7 @@ public class Responses {
 					for (int did : docs) {
 						ReadDocument rdoc = searcher.doc(did, request);
 						Element doc = xmlDoc.createElement("doc") ;
-						String[] fields = rdoc.getFieldNames();
+						String[] fields = rdoc.fieldNames();
 						for (String field : fields) {
 							Element fieldEle = xmlDoc.createElement("field") ;
 							fieldEle.setAttribute("name", field) ;

@@ -1,6 +1,8 @@
+<div class="inbox-nav-bar no-content-padding"></div>
 
 
 <div id="inbox-content" class="inbox-body no-content-padding">
+
 
 	<div class="inbox-side-bar">
 		<div class="well">Choose Indexer
@@ -16,6 +18,7 @@
 			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
 			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
 		</ul>
+		
 
 		<div class="air air-bottom inbox-space">
 			FileSize : <strong>1G</strong><br>
@@ -50,6 +53,61 @@
 	</form>
 </div>
 
+<div id="create_schema_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Schema</h5></div>
+
+            <div class="modal-body">
+		<form class="smart-form" method="post" action="indexers/schema" novalidate="novalidate">
+		<fieldset style="padding: 0px">					
+			<section>
+				<label class="label">Schema Id</label>
+				<label class="input">
+					<input type="text" id="schemaid" name="schemaid"/>
+				</label>
+			</section>
+			<section>
+				<label class="label">Schema Type</label>
+				<label class="select">
+					<select name="schematype" id="schematype">
+					    <option value="text" selected="selected">Text</option>
+					    <option value="keyword">Keyword</option>
+					    <option value="number">Number</option>
+					    <option value="date">Date</option>
+					    <option value="manual">Manual</option>
+					</select>
+				</label>
+			</section>
+			<div class="row" id="schema_option" style="display:none">
+			<section class="col col-6">
+				<label class="checkbox"><input type="checkbox" id="schema_analyze" name="analyze" checked="false" /><i></i>Analyze</label>
+			</section>
+			<section class="col col-6">
+				<label class="checkbox"><input type="checkbox" id="schema_store" name="store" checked="false" /><i></i>Store</label>
+			</section>
+			</div>
+			<section>
+				<label class="label">Boost</label>
+				<label class="input">
+					<input type="text" id="boost" name="boost" placeholder="1.0"/>
+				</label>
+			</section>
+
+		</fieldset>
+		</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" id="btn_create_schema">Create Schema</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -58,6 +116,23 @@
 
 	// pagefunction
 	var pagefunction = function() {
+
+		$("#btn_create_schema").click(function(){
+			
+			var iid = $("#indexers").val() ;
+			
+			$.ajax({
+				type: "POST",
+				url: "/admin/indexers/" + iid + "/schema",
+				data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), schematype: $("#create_schema_form select[name=schematype]").val(),  analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
+			}).done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			}).success(function( msg ) {
+				$("#create_schema_form").modal('hide') ;
+				loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
+			});
+			
+		});
 
 		// fix table height
 		tableHeightSize();
@@ -149,6 +224,15 @@
 			} else {
 				lastColId = $(this).val() ;
 				loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+			}
+		}) ;
+		
+
+		$("#schematype").change(function(){
+			if ($("#schematype").val() == 'manual') {
+				$("#schema_option").show() ;
+			} else {
+				$("#schema_option").hide() ;
 			}
 		}) ;
 

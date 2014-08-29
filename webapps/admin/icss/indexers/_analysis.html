@@ -81,10 +81,10 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		var colId = $("#indexers option:selected").val() ;
+		var indexerId = $("#indexers option:selected").val() ;
 		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/analysis',
+			url:'/admin/indexers/' + indexerId +'/analysis',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -107,7 +107,7 @@
 		$( "#btn_analyzer" ).click( function() {
 			$.ajax({
 				type: "POST",
-				url: "/admin/indexers/" + colId + "/analysis",
+				url: "/admin/indexers/" + indexerId + "/analysis",
 				dataType:'json', 
 				data: { content: $("#textvalue").val(), analyzer: $("#analyzer").val(), stopword: $("#stopword").is(":checked") ? true : false}, 
 				success : function(data) {
@@ -133,7 +133,7 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/indexers/" + colId + "/info",
+				url: "/admin/indexers/" + indexerId + "/info",
 				data: { content: aHTML, field: "analysis" }
 				})
 				.done(function( msg ) {

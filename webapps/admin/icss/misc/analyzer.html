@@ -48,7 +48,10 @@
 									<section>
 										<label class="label">Analyzer Type</label>
 										<label class="select">
-											<select id="analyzer" name="analyzer"></select>
+											<select multiple style="width:100%" class="select2" id="target_analyzer">
+												<optgroup label="Target Indexer" id="analyzer">
+												</optgroup>
+											</select>
 										</label>
 									</section>
 									
@@ -59,7 +62,7 @@
 										</label>
 									</section>
 									
-									<div><ul id="terms" class="list-inline"></ul></div>
+									<div id="terms"></div>
 								</fieldset>
 								
 								<footer>
@@ -90,6 +93,30 @@
 <script type="text/javascript">
 
 	pageSetUp();
+	
+	String.prototype.substringBefore = function (separator){
+		var strArray = this.split(separator) ;
+		return strArray[0] ;
+	};
+	
+	String.prototype.substringAfter = function (separator){
+		var strArray = this.split(separator) ;
+		return this.substr(strArray[0].length+1) ;
+	};
+	
+	String.prototype.substringBeforeLast = function(separator){
+		var strArray = this.split(separator) ;
+		var result = '' ;
+		for(var i=0; i<strArray.length-1 ; i++){
+			result += (strArray[i] + separator) ;
+		}
+		return result.substring(0, (result.length - separator.length))  ;
+	};
+	
+	String.prototype.substringAfterLast = function (separator){
+		var strArray = this.split(separator) ;
+		return strArray[strArray.length - 1] ;
+	};
 
 	var pagefunction = function() {
 
@@ -114,17 +141,27 @@
 		
 		$( "#btn_analyzer" ).click( function() {
 			
+			var targets = [];
+    			$("#target_analyzer").each(function(){ targets.push($(this).val()) });
 			$.ajax({
 				type: "POST",
 				url: "/admin/analysis",
 				dataType:'json', 
-				data: { content: $("#textvalue").val(), analyzer: $("#analyzer").val(), stopword: $("#stopword").val()}, 
+				data: { content: $("#textvalue").val(), analyzer: targets.toString(), stopword: $("#stopword").val()}, 
 				success : function(data) {
-					$("#terms li").remove();
-					for(var idx in data){
-						var term = data[idx] ;
-						$("<li class='text-success'>" + term["term"] + "("+ term["start"] + "," + term["end"] + ")</li>").appendTo($("#terms")) ;
-					}
+					$("#terms ol").remove();
+					
+					
+					for(var clzName in data){
+						var terms = data[clzName] ;
+						var ulClz = $("<ol class='list-inline'>" + clzName.substringAfterLast('.')  + "</ol>");
+						for(var tidx in terms){
+							var term = terms[tidx] ;
+							$("<li class='text-success'>" + term["term"] + "("+ term["start"] + "," + term["end"] + ")</li>").appendTo(ulClz) ;
+						}
+						ulClz.appendTo($("#terms")) ;
+						console.log(clzName);
+					}	
 				}, 
 				error:function(request, status, error){
 					console.log('response', request, status, error) ;

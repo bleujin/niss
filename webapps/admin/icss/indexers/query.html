@@ -151,11 +151,11 @@
 			$('.click2edit').destroy();
 		});
 		
-		var colId = $("#indexers option:selected").val() ;
-		if (colId.indexOf('-') == 0) return ;
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId.indexOf('-') == 0) return ;
 		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/query',
+			url:'/admin/indexers/' + indexerId +'/query',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -170,7 +170,7 @@
 			$.ajax({
 				type: "GET",
 				dataType : 'text', 
-				url: "/admin/indexers/" + colId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
+				url: "/admin/indexers/" + indexerId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
 				data: { query: $("#query").val(), sort: $("#sort").val(), skip: $("#skip").val(), offset: $("#offset").val() , indent: $("#indent").is(":checked") ? true : false, debug: $("#debug").is(":checked") ? true : false}, 
 				complete : function(){ 
 					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";

@@ -158,8 +158,8 @@
 			$('.click2edit').destroy();
 		});
 		
-		var secId = $("#searchers option:selected").val() ;
-		if (secId.indexOf('-') == 0) return ;
+		var searcherId = $("#searchers option:selected").val() ;
+		if (searcherId.indexOf('-') == 0) return ;
 		
 		$.ajax({
 			url:'/admin/menus/searchers?field=query',
@@ -176,7 +176,7 @@
 			$.ajax({
 				type: "GET",
 				dataType : 'text', 
-				url: "/admin/searchers/" + secId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
+				url: "/admin/searchers/" + searcherId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
 				data: { query: $("#query").val(), sort: $("#sort").val(), skip: $("#skip").val(), offset: $("#offset").val() , indent: $("#indent").is(":checked") ? true : false, debug: $("#debug").is(":checked") ? true : false}, 
 				complete : function(){ 
 					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";

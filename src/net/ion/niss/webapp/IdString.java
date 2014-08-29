@@ -32,6 +32,9 @@ public class IdString {
 	public String idString() {
 		return id;
 	}
-	
+
+	public String toString(){
+		return "IdString:" + id ;
+	}
 	
 }

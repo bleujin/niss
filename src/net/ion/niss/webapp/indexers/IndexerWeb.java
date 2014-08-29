@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -32,21 +33,30 @@ import net.ion.craken.tree.Fqn;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
+import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
+import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.StringUtil;
-import net.ion.niss.webapp.AnalysisWeb;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
+import net.ion.niss.webapp.common.Def;
+import net.ion.niss.webapp.common.Def.Schema;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
+import net.ion.niss.webapp.misc.AnalysisWeb;
+import net.ion.nsearcher.common.FieldIndexingStrategy;
+import net.ion.nsearcher.common.IKeywordField;
+import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
+import net.ion.nsearcher.search.EachDocHandler;
+import net.ion.nsearcher.search.EachDocIterator;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.core.ContextParam;
@@ -196,15 +206,15 @@ public class IndexerWeb implements Webapp {
 				
 				JsonArray alist = new JsonArray() ;
 				List<Class<? extends Analyzer>> list = AnalysisWeb.analysis() ;
-				String selected = readNode.property("indexanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName()) ;
+				String selected = readNode.property(Def.Indexer.IndexAnalyzer).defaultValue(MyKoreanAnalyzer.class.getCanonicalName()) ;
 				for (Class<? extends Analyzer> clz : list) {
 					JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", clz.getCanonicalName().equals(selected)) ;
 					alist.add(json) ;
 				}
 				result.put("analyzer", alist);
 
-				result.put("indexanalyzer", readNode.property("indexanalyzer").asString());
-				result.put("applystopword", readNode.property("applystopword").asBoolean());
+				result.put(Def.Indexer.IndexAnalyzer, readNode.property(Def.Indexer.IndexAnalyzer).asString());
+				result.put(Def.Indexer.ApplyStopword , readNode.property(Def.Indexer.ApplyStopword).asBoolean());
 
 				
 				return result;
@@ -212,6 +222,20 @@ public class IndexerWeb implements Webapp {
 		});
 	}
 	
+	@POST
+	@Path("/{iid}/overview/stopword")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String addStopword(@PathParam("iid") final String iid, @DefaultValue("") @FormParam("stopwords") final String stopwords) throws IOException, InterruptedException, ExecutionException{
+		return rsession.tran(new TransactionJob<String>() {
+			@Override
+			public String handle(WriteSession wsession) throws Exception {
+				String[] words = StringUtil.split(stopwords, "\\s+");
+				wsession.pathBy(fqnBy(iid)).property(Def.Indexer.StopWord,  words) ;
+				return "stopword " + words.length + " added";
+			}
+		}).get() ;
+		
+	}
 	
 	@POST
 	@Path("/{iid}/fields")
@@ -237,23 +261,23 @@ public class IndexerWeb implements Webapp {
 		
 		JsonObject result = new JsonObject() ;
 		result.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString()) ;
-		JsonArray fields = rsession.ghostBy("/indexers/" + iid + "/schema").children().eachNode(new ReadChildrenEach<JsonArray>() {
+		JsonArray schemas = rsession.ghostBy(Schema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 			@Override
 			public JsonArray handle(ReadChildrenIterator iter) {
 				JsonArray result = new JsonArray() ;
 				for(ReadNode node : iter){
 					StringBuilder options = new StringBuilder() ;
-					options.append(node.property("store").asBoolean() ? "Store:Yes" : "Store:No") ;   
-					options.append(node.property("analyze").asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
-					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property("boost").asString(), "1.0")) ;   
+					options.append(node.property(Schema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
+					options.append(node.property(Schema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
+					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;   
 
-					result.add(new JsonObject().put("fieldid", node.fqn().name()).put("ftype", node.property("ftype").asString()).put("options", options.toString())) ;
+					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(Schema.SchemaType, node.property(Schema.SchemaType).asString()).put("options", options.toString())) ;
 				}
 				return result;
 			}
 		}) ;
 		
-		result.put("fields", fields) ;
+		result.put("schemas", schemas) ;
 		return result ;
 	}
 	
@@ -261,33 +285,35 @@ public class IndexerWeb implements Webapp {
 	@POST
 	@Path("/{iid}/schema")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String addSchema(@PathParam("iid") final String iid, @FormParam("fieldid") final String fieldid, @FormParam("ftype") final String ftype, @FormParam("analyze") final boolean analyzer, @FormParam("store") final boolean store, @FormParam("boost") final double boost){
+	public String addSchema(@PathParam("iid") final String iid, @FormParam("schemaid") final String schemaid, @FormParam("schematype") final String schematype, @FormParam("analyze") final boolean analyzer, @FormParam("store") final boolean store, 
+			@DefaultValue("1.0") @FormParam("boost") final String boost){
+		
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/" + iid + "/schema/" + fieldid)
-					.property("ftype", ftype).property("analyze", analyzer).property("store", store).property("boost", boost) ;
+				wsession.pathBy(Schema.path(iid, schemaid))
+					.property(Schema.SchemaType, schematype).property(Schema.Analyze, analyzer).property(Schema.Store, store).property(Schema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 				return null;
 			}
 		}) ;
 		
-		return "created schema " + fieldid ;
+		return "created schema " + schemaid ;
 	}
 	
 
 	@DELETE
-	@Path("/{iid}/schema/{fieldid}")
+	@Path("/{iid}/schema/{schemaid}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteSchema(@PathParam("iid") final String iid, @PathParam("fieldid") final String fieldid){
+	public String deleteSchema(@PathParam("iid") final String iid, @PathParam("schemaid") final String schemaid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/" + iid + "/schema/" + fieldid).removeSelf() ;
+				wsession.pathBy(Schema.path(iid, schemaid)).removeSelf() ;
 				return null;
 			}
 		}) ;
 		
-		return "removed schema " + fieldid ;
+		return "removed schema " + schemaid ;
 	}
 	
 	
@@ -307,7 +333,7 @@ public class IndexerWeb implements Webapp {
 	@POST
 	@Path("/{iid}/index.json")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String indexJson(@PathParam("iid") String iid, @FormParam("documents") final String documents, 
+	public String indexJson(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
 
@@ -315,18 +341,42 @@ public class IndexerWeb implements Webapp {
 		indexer.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
+				
+//				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+				
 				JsonObject json = JsonObject.fromString(documents) ;
-				WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
+				WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(json.asString("id"), new ObjectId().toString() ) ) ;
 				wdoc.add(json) ;
 				
 				if (overwrite) isession.updateDocument(wdoc) ;
 				else isession.insertDocument(wdoc) ;
 				return null;
 			}
+
 		}) ;
 		
 		return "1 indexed" ;
 	}
+
+	private FieldIndexingStrategy createIndexStrategy(String iid) {
+		
+		final Map<String, SchemaBean> schemas = MapUtil.newMap() ;
+		rsession.ghostBy("/indexers/" + iid + "/schema").children().eachNode(new ReadChildrenEach<Void>() {
+			@Override
+			public Void handle(ReadChildrenIterator iter) {
+				while(iter.hasNext()){
+					ReadNode snode = iter.next() ;
+					String sid = snode.fqn().name() ;
+					SchemaBean sb = new SchemaBean(snode.property(Def.Schema.SchemaType).asString(), snode.property(Def.Schema.Analyze).asBoolean(), snode.property(Def.Schema.Store).asBoolean(), snode.property(Def.Schema.SchemaType).asFloat(1.0f)) ;
+					schemas.put(sid, sb) ;
+				}
+				return null;
+			}
+		}) ;
+		
+		return FieldIndexingStrategy.DEFAULT ;
+	}
+
 	
 	@POST
 	@Path("/{iid}/index.jarray")
@@ -342,7 +392,7 @@ public class IndexerWeb implements Webapp {
 			public Void handle(IndexSession isession) throws Exception {
 				for (int i=0 ; i <jarray.size() ; i++) {
 					JsonObject json = jarray.get(i).getAsJsonObject() ;
-					WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
+					WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(json.asString("id"), new ObjectId().toString() ) ) ;
 					wdoc.add(json) ;
 					
 					if (overwrite) isession.updateDocument(wdoc) ;
@@ -378,7 +428,7 @@ public class IndexerWeb implements Webapp {
 					}
 					
 					count++ ;
-					WriteDocument wdoc = isession.newDocument(map.get("id")).add(map) ;
+					WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(map.get("id"), new ObjectId().toString())).add(map) ;
 					
 					if (overwrite) isession.updateDocument(wdoc) ;
 					else isession.insertDocument(wdoc) ;
@@ -446,6 +496,60 @@ public class IndexerWeb implements Webapp {
 	}
 	
 
+	@GET
+	@Path("/{iid}/browsing")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject browsing(@PathParam("iid") String iid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
+		JsonArray schemaName = new JsonArray().add(new JsonObject().put("title", "Id")) ;
+		final String[] names = rsession.ghostBy("/indexers/" + iid + "/schema").childrenNames().toArray(new String[0]) ;
+		for (String name : names) {
+			schemaName.add(new JsonObject().put("title", name)) ;
+		}
+		schemaName.add(new JsonObject().put("title", "_all")) ;
+		
+		JsonObject result = new JsonObject() ;
+		result.add("schemaName", schemaName);
+
+		SearchResponse response = imanager.index(iid).newSearcher().createRequest(query).offset(101).find() ;
+		JsonArray data = response.eachDoc(new EachDocHandler<JsonArray>() {
+			@Override
+			public JsonArray handle(EachDocIterator iter) {
+				JsonArray result = new JsonArray() ;
+				while(iter.hasNext()){
+					ReadDocument doc = iter.next() ;
+					JsonArray ja = new JsonArray() ;
+					ja.add(new JsonPrimitive(doc.asString("id", doc.reserved(IKeywordField.DocKey)))) ;
+					for (String name : names) {
+						ja.add(new JsonPrimitive(doc.asString(name, ""))) ;
+					}
+					ja.add(new JsonPrimitive(doc.transformer(ResFns.ReadDocToJson).toString())) ;
+					result.add(ja) ;
+				}
+				return result;
+			}
+		}) ;
+		
+		result.put("info", rsession.ghostBy("/menus/indexers").property("browsing").asString()) ;
+		result.add("data", data);
+		return result;
+	}
+	
+	@POST
+	@Path("/{iid}/browsing")
+	public String removeIndexRow(@PathParam("iid") String iid, @DefaultValue("") @FormParam("indexIds") final String indexIds){
+		Integer count = imanager.index(iid).newIndexer().index(new IndexJob<Integer>() {
+			@Override
+			public Integer handle(IndexSession isession) throws Exception {
+				String[] ids = StringUtil.split(indexIds, ",") ;
+				for (String id : ids) {
+					isession.deleteDocument(id) ;	
+				}
+				return ids.length;
+			}
+		}) ;
+		
+		return count + " removed" ;
+	}
 	
 	
 	
@@ -464,7 +568,51 @@ public class IndexerWeb implements Webapp {
 }
 
 
+class SchemaBean {
+	private String type ;
+	private boolean analyze ;
+	private boolean store ;
+	private float boost ;
+	
+	SchemaBean(String type, boolean analyze, boolean store, float boost){
+		this.type = type ;
+		this.analyze = analyze ;
+		this.store = store ;
+		this.boost = boost ;
+	}
+	
+	public boolean keywordType() {
+		return "keyword".equals(type);
+	}
+	
+	public boolean numberType() {
+		return "number".equals(type);
+	}
+	
+	public boolean textType() {
+		return "text".equals(type);
+	}
+	
+	public boolean manualType() {
+		return "manual".equals(type);
+	}
 
+	public String type(){
+		return type ;
+	}
+	
+	public boolean isAnalyze(){
+		return analyze ;
+	}
+	
+	public boolean isStore(){
+		return store ;
+	}
+	
+	public float boost(){
+		return boost ;
+	}
+}
 
 
 

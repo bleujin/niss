@@ -59,7 +59,7 @@
 	};
 
 	var pagefunction = function() {
-		var colId = $("#indexers option:selected").val() ;
+		var indexerId = $("#indexers option:selected").val() ;
 		
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
@@ -73,7 +73,7 @@
 		} ;
 		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/files',
+			url:'/admin/indexers/' + indexerId +'/files',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -124,7 +124,7 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/indexers/" + colId + "/info",
+				url: "/admin/indexers/" + indexerId + "/info",
 				data: { content: aHTML, field: "files" }
 				})
 				.done(function( msg ) {

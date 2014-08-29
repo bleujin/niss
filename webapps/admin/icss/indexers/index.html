@@ -146,11 +146,11 @@
 			$('.click2edit').destroy();
 		});
 		
-		var colId = $("#indexers option:selected").val() ;
-		if (colId.indexOf('-') == 0) return ;
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId.indexOf('-') == 0) return ;
 		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/index',
+			url:'/admin/indexers/' + indexerId +'/index',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -170,10 +170,16 @@
 			$.ajax({
 				type: "POST",
 				dataType : 'text', 
-				url: "/admin/indexers/" + colId + "/index." + $("#dtype").val() ,
+				url: "/admin/indexers/" + indexerId + "/index." + $("#dtype").val() ,
 				data: { documents: $("#documents").val(), within: $("#within").val(), boost: $("#boost").val(), overwrite: $("#overwrite").is(":checked") ? true : false}, 
 				complete : function(){ 
-					$("#index_url").text(this.url) ;
+					var result_text = 'Path : ' + this.url + '<br/>';
+					result_text += 'Form parameter : <br />' ;
+					result_text += ' - document : ...<br />' ;
+					result_text += ' - wihtin : ' + $("#within").val() + '<br />' ;
+					result_text += ' - boost : ' +  $("#boost").val()+ '<br />' ;
+					result_text += ' - overwrite : ' + ($("#overwrite").is(":checked") ? true : false) +'<br />' ;
+					$("#index_url").html(result_text) ;
 				}, 
 				success :  function(data) {
 					$("#index_result").text(data) ;

@@ -5,6 +5,9 @@ import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.concurrent.Executors;
 
+import org.apache.lucene.index.Term;
+import org.apache.lucene.queryparser.surround.parser.QueryParser;
+
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
@@ -12,13 +15,13 @@ import net.ion.craken.node.WriteSession;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.InfinityThread;
-import net.ion.niss.webapp.AnalysisWeb;
 import net.ion.niss.webapp.AppLogSink;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.LoaderWeb;
+import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
@@ -36,6 +39,9 @@ import net.ion.nradon.handler.AbstractHttpHandler;
 import net.ion.nradon.handler.SimpleStaticFileHandler;
 import net.ion.nradon.handler.event.ServerEvent.EventType;
 import net.ion.nradon.handler.logging.LoggingHandler;
+import net.ion.nsearcher.config.Central;
+import net.ion.nsearcher.index.IndexJob;
+import net.ion.nsearcher.index.IndexSession;
 import net.ion.radon.core.let.PathHandler;
 
 public class TestSmartAdmin extends TestCase {
@@ -85,6 +91,17 @@ public class TestSmartAdmin extends TestCase {
 			;
 		
 		Radon radon = builder.start().get() ;
+
+	
+		
+//		final Central cenCol1 = rentry.indexManager().index("col1");
+//		cenCol1.newIndexer().index(new IndexJob<Void>() {
+//			@Override
+//			public Void handle(IndexSession isession) throws Exception {
+//				isession.deleteQuery(cenCol1.searchConfig().parseQuery("*:* AND -id:[* TO *]")) ;
+//				return null;
+//			}
+//		}) ;
 		
 		new InfinityThread().startNJoin(); 
 		

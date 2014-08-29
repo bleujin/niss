@@ -38,24 +38,21 @@
 				<hr class="simple">
 				
 				<ul id="myTab1" class="nav nav-tabs bordered">
-					<li class="active">
-						<a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i>Status</a>
-					</li>
-					<li>
-						<a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Directory</a>
-					</li>
+					<li class="active"><a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i>Status</a></li>
+					<li><a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Directory</a></li>
+					<li><a href="#s3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-gear"></i> Stopword</a></li>
 				</ul>
 				
 				<div id="myTabContent1" class="tab-content padding-10">
 					<div class="tab-pane fade in active" id="s1">
-					<dl class="dl-horizontal" id="overview_status">
-				        
-				    </dl>
+					<dl class="dl-horizontal" id="overview_status"></dl>
 					</div>
 					
 					<div class="tab-pane fade" id="s2">
-					<dl class="dl-horizontal" id="overview_dirinfo">
-				    </dl>
+					<dl class="dl-horizontal" id="overview_dirinfo"></dl>
+					</div>
+					
+					<div class="tab-pane fade" id="s3"><pre id="stopword"></pre>
 					</div>
 				</div>
 
@@ -95,6 +92,16 @@
 
 	var pagefunction = function() {
 		
+		function htmlToText(divId) {
+			var ce = $("<pre />").html($("#" + divId).html());
+			if($.browser.webkit)
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });    
+			if($.browser.msie)
+				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
+			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
+				ce.find("br").replaceWith("\n");
+			return ce.text();
+		} ;
 
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
@@ -116,11 +123,11 @@
 		});
 		
 		
-		var colId = $("#indexers option:selected").val() ;
-		if (colId.indexOf('-') == 0) return ;
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId.indexOf('-') == 0) return ;
 		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/overview',
+			url:'/admin/indexers/' + indexerId +'/overview',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -146,6 +153,16 @@
 				}
 
 				$("#applystopword").attr("checked", applystopword ) ;
+				$("#stopword").attr("contenteditable", true) ;
+				
+				$('#stopword').unbind('blur');
+				$("#stopword").blur(function(){
+					$.ajax({
+						type: "POST",
+						url:"/admin/indexers/" + indexerId + "/overview/stopword",
+						data: { stopwords: htmlToText("stopword")}
+						}) ;
+				}) ;
 				
 			}, 
 			error:function(request,status,error){
@@ -156,7 +173,7 @@
 		$("#analyzer").change(function(){
 		    $.ajax({
 				type: "POST",
-				url: "/admin/indexers/" + colId + "/fields",
+				url: "/admin/indexers/" + indexerId + "/fields",
 				data: { content: $("#analyzer").val(), field: "indexanalyzer" }
 				})
 			.done(function( msg ) {
@@ -169,7 +186,7 @@
 		    var chk = $(this).is(":checked");
 		    $.ajax({
 				type: "POST",
-				url: "/admin/indexers/" + colId + "/fields",
+				url: "/admin/indexers/" + indexerId + "/fields",
 				data: { content: chk, field: "applystopword" }
 				})
 			.done(function( msg ) {

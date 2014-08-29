@@ -11,16 +11,19 @@
 <div class="row">
 	<div class="col-sm-12">
 		
+		
 		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
-
 			<blockquote>
-			  <p>Index Browsing </p>
+			  <div id="info" class="click2edit"></div>
 			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
+
 
 		
 	</div>
@@ -31,293 +34,179 @@
 
 	<!-- row -->
 	<div class="row">
-		
+
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table id="jqgrid"></table>
-			<div id="pjqgrid"></div>
+
+			<div class="jarviswidget jarviswidget-color-purple" id="search-browsing-0" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>Index Data Tables</h2>
+
+				</header>
+
+				<div>
+
+					<div class="jarviswidget-editbox"></div>
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+
+						
+						<table id="example" class="table table-bordered table-hover" width="100%">
+							
+						</table>
+					</div>
+					
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
 		</article>
-		
+		<!-- WIDGET END -->
+
 	</div>
 
-	<!-- row -->
-	<div class="row">
-
-		<!-- a blank row to get started -->
-		<div class="col-sm-12">
-			<!-- your contents here -->
-		</div>
-			
-	</div>
+	<!-- end row -->
 
 </section>
 <!-- end widget grid -->
 
-
-<!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
 
+
 	pageSetUp();
-
+	
+	// pagefunction	
 	var pagefunction = function() {
-		loadScript("js/plugin/jqgrid/jquery.jqGrid.min.js", run_jqgrid_function);
+		//console.log("cleared");
+		
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
 
-		function run_jqgrid_function() {
-
-
-			var jqgrid_data = [{
-				id : "1",
-				date : "2007-10-01",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "2",
-				date : "2007-10-02",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "3",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "4",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "5",
-				date : "2007-10-05",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "6",
-				date : "2007-09-06",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "7",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "8",
-				date : "2007-10-03",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "9",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "10",
-				date : "2007-10-01",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "11",
-				date : "2007-10-02",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "12",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "13",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "14",
-				date : "2007-10-05",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "15",
-				date : "2007-09-06",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}, {
-				id : "16",
-				date : "2007-10-04",
-				name : "test",
-				note : "note",
-				amount : "200.00",
-				tax : "10.00",
-				total : "210.00"
-			}, {
-				id : "17",
-				date : "2007-10-03",
-				name : "test2",
-				note : "note2",
-				amount : "300.00",
-				tax : "20.00",
-				total : "320.00"
-			}, {
-				id : "18",
-				date : "2007-09-01",
-				name : "test3",
-				note : "note3",
-				amount : "400.00",
-				tax : "30.00",
-				total : "430.00"
-			}];
-
-			jQuery("#jqgrid").jqGrid({
-				data : jqgrid_data,
-				datatype : "local",
-				height : 'auto',
-				colNames : ['Actions', 'Inv No', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
-				colModel : [
-					{ name : 'act', index:'act', sortable:false }, 
-					{ name : 'id', index : 'id' }, 
-					{ name : 'date', index : 'date', editable : true }, 
-					{ name : 'name', index : 'name', editable : true }, 
-					{ name : 'amount', index : 'amount', align : "right", editable : true }, 
-					{ name : 'tax', index : 'tax', align : "right", editable : true }, 
-					{ name : 'total', index : 'total', align : "right", editable : true }, 
-					{ name : 'note', index : 'note', sortable : false, editable : true }],
-				rowNum : 10,
-				rowList : [10, 20, 30],
-				pager : '#pjqgrid',
-				sortname : 'id',
-				toolbarfilter: true,
-				viewrecords : true,
-				sortorder : "asc",
-				gridComplete: function(){
-					var ids = jQuery("#jqgrid").jqGrid('getDataIDs');
-					for(var i=0;i < ids.length;i++){
-						var cl = ids[i];
-						be = "<button class='btn btn-xs btn-default' data-original-title='Edit Row' onclick=\"jQuery('#jqgrid').editRow('"+cl+"');\"><i class='fa fa-pencil'></i></button>"; 
-						se = "<button class='btn btn-xs btn-default' data-original-title='Save Row' onclick=\"jQuery('#jqgrid').saveRow('"+cl+"');\"><i class='fa fa-save'></i></button>";
-						ca = "<button class='btn btn-xs btn-default' data-original-title='Cancel' onclick=\"jQuery('#jqgrid').restoreRow('"+cl+"');\"><i class='fa fa-times'></i></button>";  
-						//ce = "<button class='btn btn-xs btn-default' onclick=\"jQuery('#jqgrid').restoreRow('"+cl+"');\"><i class='fa fa-times'></i></button>"; 
-						//jQuery("#jqgrid").jqGrid('setRowData',ids[i],{act:be+se+ce});
-						jQuery("#jqgrid").jqGrid('setRowData',ids[i],{act:be+se+ca});
-					}	
-				},
-				editurl : "dummy_server.html",
-				caption : "Index Browsing",
-				multiselect : true,
-				autowidth : true,
-
-				});
-				jQuery("#jqgrid").jqGrid('navGrid', "#pjqgrid", {
-					edit : false,
-					add : false,
-					del : false
-				});
-				jQuery("#jqgrid").jqGrid('inlineNav', "#pjqgrid");
-				/* Add tooltips */
-				$('.navtable .ui-pg-button').tooltip({
-					container : 'body'
-				});
-
-				jQuery("#m1").click(function() {
-					var s;
-					s = jQuery("#jqgrid").jqGrid('getGridParam', 'selarrrow');
-					alert(s);
-				});
-				jQuery("#m1s").click(function() {
-					jQuery("#jqgrid").jqGrid('setSelection', "13");
-				});
-				
-				// remove classes
-				$(".ui-jqgrid").removeClass("ui-widget ui-widget-content");
-			    $(".ui-jqgrid-view").children().removeClass("ui-widget-header ui-state-default");
-			    $(".ui-jqgrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
-			    $(".ui-jqgrid-pager").removeClass("ui-state-default");
-			    $(".ui-jqgrid").removeClass("ui-widget-content");
-			    
-			    // add classes
-			    $(".ui-jqgrid-htable").addClass("table table-bordered table-hover");
-			    $(".ui-jqgrid-btable").addClass("table table-bordered table-striped");
-			   
-			   
-			    $(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
-			    $(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
-			    $(".ui-icon.ui-icon-pencil").removeClass().addClass("fa fa-pencil");
-			    $(".ui-icon.ui-icon-trash").removeClass().addClass("fa fa-trash-o");
-			    $(".ui-icon.ui-icon-search").removeClass().addClass("fa fa-search");
-			    $(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
-			    $(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
-			    $(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
-			  
-				$( ".ui-icon.ui-icon-seek-prev" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
-				$(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
-				
-				$( ".ui-icon.ui-icon-seek-first" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
-			  	$(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");		  	
-	
-			  	$( ".ui-icon.ui-icon-seek-next" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
-			  	$(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
-			  	
-			  	$( ".ui-icon.ui-icon-seek-end" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
-			  	$(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
-			  	
-			  	
-			  
-			  
-			    // update buttons
-			    
-			    $(window).on('resize.jqGrid', function () {
-					jQuery("#jqgrid").jqGrid( 'setGridWidth', $("#content").width() );
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/indexers",
+				data: { content: aHTML, field: "browsing" }
 				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId.indexOf('-') == 0) return ;
+		
+		$.ajax({
+			url:"/admin/indexers/" + indexerId + "/browsing",
+			type:'GET', 
+			dataType:'json',
+			data : {'searchQuery':''}, 
+			success:function(data){
+				var nodes = data['data'];
+				$("#example")
+					.dataTable({
+					// "processing":true,
+					// "dom":'<"toolbar">frtip',
+					"data":nodes,
+					"searching":false, 
+					"columns": data['schemaName']
+				}) ;
+				
+				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
+				'				<fieldset class="smart-form">' +
+				'					<div class="row">' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_remove_index" value="Remove Row" disabled="disabled"/></section>' +
+				'						<section class="col col-3"><label class="input"><input type="text" id="searchQuery" placeholder="search Query"></label></section>' +
+				'					</div>' +
+				'				</fieldset>' +
+				'				</td></tr></tfoot>' ;
+				
+				$(tableFoot).appendTo($("#example")) ;
 
+				$("#info").html(data['info']) ;
+				
+				var table = $('#example').DataTable() ;
+				
+				$('#example tbody').on( 'click', 'tr', function () {
+					$(this).toggleClass('selected2');
+					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_remove_index').removeAttr("disabled") : $('#btn_remove_index').attr("disabled", "disabled") ;
+				} );
+				
+				$('#btn_remove_index').click( function () {
+					var targets = $('#example').DataTable().rows('.selected2') ;
+					var indexIds = '' ;
+					for(var i=0; i < targets.data().length ; i++){
+						indexIds += targets.data()[i][0] + ',';
+					}
+					 $.ajax({
+							url:"/admin/indexers/" + indexerId + "/browsing",
+							type:'POST', 
+							data : {'indexIds':indexIds}, 
+							success:function(data){
+								targets.remove().draw(false) ;			
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+					});
+				});
+				
+				$('#searchQuery').on('keypress', function (event) {
+					if(event.which == '13'){
+						console.log($("#searchQuery").val()) ;
+						table.destroy();
+						
+					       $.ajax({
+							url:"/admin/indexers/" + indexerId + "/browsing",
+							type:'GET', 
+							dataType:'json',
+							data : {'searchQuery':$("#searchQuery").val()}, 
+							success:function(data){
+								var nodes = data['data'];
+								$("#example")
+									.dataTable({
+									"data":nodes,
+									"searching":false, 
+									"columns": data['schemaName']
+								}) ;
+								
+								table = $('#example').DataTable() ;
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+						});
+						
+					}
+				});
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		/* BASIC ;*/
+		
+		/* END BASIC */
+	};
 
-			} // end function
-
-
-	}
+	// load related plugins
 	
-	loadScript("js/plugin/jqgrid/grid.locale-en.min.js", pagefunction);
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+	});
+
 
 </script>

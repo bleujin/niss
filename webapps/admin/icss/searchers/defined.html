@@ -121,11 +121,11 @@
 			$('.click2edit').destroy();
 		});
 
-		var secId = $("#searchers option:selected").val() ;
-		if (secId.indexOf('-') == 0) return ;
+		var searcherId = $("#searchers option:selected").val() ;
+		if (searcherId.indexOf('-') == 0) return ;
 		
 		$.ajax({
-			url:'/admin/searchers/' + secId +'/define',
+			url:'/admin/searchers/' + searcherId +'/define',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -134,8 +134,8 @@
 				$("#info").html(info) ;
 
 				for(var idx in indexers){
-					var indexId = indexers[idx] ;
-					var option = $('<option value="'+indexId+'">'+indexId+'</option>') ;
+					var indexerId = indexers[idx] ;
+					var option = $('<option value="'+indexerId+'">'+indexerId+'</option>') ;
 					option.appendTo($("#list_indexer")) ;
 				}
 				$("#target_indexer").val(targets).select2();
@@ -154,7 +154,7 @@
 		$( ".btn-primary" ).click(function() {		
 			$.ajax({
 				type: "GET",
-				url: "/admin/searchers/" + secId + "/define.default",
+				url: "/admin/searchers/" + searcherId + "/define.default",
 				dataType:'text',
 				success:function(data){
 					$("#handler").val(data);
@@ -172,7 +172,7 @@
 			$.ajax({
 				type: "POST",
 				dataType : 'text', 
-				url: "/admin/searchers/" + secId + "/define",
+				url: "/admin/searchers/" + searcherId + "/define",
 				data: { 'target': targets.toString(), 
 					handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, 
 					}, 

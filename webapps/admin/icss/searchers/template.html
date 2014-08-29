@@ -93,11 +93,11 @@
 			$('.click2edit').destroy();
 		});
 		
-		var secId = $("#searchers option:selected").val() ;
-		if (secId.indexOf('-') == 0) return ;
+		var searcherId = $("#searchers option:selected").val() ;
+		if (searcherId.indexOf('-') == 0) return ;
 		
 		$.ajax({
-			url:'/admin/searchers/' + secId +'/template',
+			url:'/admin/searchers/' + searcherId +'/template',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
@@ -113,7 +113,7 @@
 		$( ".btn-primary" ).click(function() {		
 			$.ajax({
 				type: "GET",
-				url: "/admin/searchers/" + secId + "/template.default",
+				url: "/admin/searchers/" + searcherId + "/template.default",
 				dataType:'text',
 				success:function(data){
 					$("#template").val(data);
@@ -128,7 +128,7 @@
 		$( ".btn-success" ).click(function() {		
 			$.ajax({
 				type: "POST",
-				url: "/admin/searchers/" + secId + "/template",
+				url: "/admin/searchers/" + searcherId + "/template",
 				data: { template: $("#template").val() }
 				})
 				.done(function( msg ) {

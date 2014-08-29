@@ -1,5 +1,7 @@
 package net.ion.niss.webapp.misc;
 
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 
 import junit.framework.TestCase;
@@ -8,7 +10,6 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
-import net.ion.niss.webapp.AnalysisWeb;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
@@ -65,6 +66,15 @@ public class TestEctWeb extends TestCase {
 		assertEquals(true, array.size() > 0);
 		Debug.line(response.contentsString()) ;
 	}
+	
+	public void testExecuteNoStopwordAnalyzer() throws Exception {
+		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", SimpleAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
+		JsonArray array = JsonParser.fromString(response.contentsString()).getAsJsonArray() ;
+		
+		assertEquals(true, array.size() > 0);
+		Debug.line(response.contentsString()) ;
+	}
+	
 	
 	
 	public void testTunnel() throws Exception {

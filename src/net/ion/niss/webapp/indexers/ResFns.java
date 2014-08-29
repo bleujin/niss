@@ -27,7 +27,7 @@ public class ResFns {
 		@Override
 		public JsonObject apply(ReadDocument rdoc) {
 			JsonObject json = JsonObject.create();
-			String[] fields = rdoc.getFieldNames();
+			String[] fields = rdoc.fieldNames();
 			for (String field : fields) {
 				json.put(field, rdoc.getField(field).stringValue());
 			}
@@ -40,7 +40,7 @@ public class ResFns {
 		@Override
 		public XML apply(ReadDocument rdoc) {
 			XML xml = new XML("doc") ;
-			String[] fields = rdoc.getFieldNames();
+			String[] fields = rdoc.fieldNames();
 			for (String field : fields) {
 				xml.addAttribute("name", field) ;
 				xml.addElement(rdoc.getField(field).stringValue());
@@ -115,13 +115,13 @@ public class ResFns {
 					for (int docId : docs) {
 						ReadDocument rdoc = searcher.doc(docId, request);
 						if (first){
-							fieldNames = rdoc.getFieldNames() ;
+							fieldNames = rdoc.fieldNames() ;
 							writer.writeLine(fieldNames);
 							first = false ;
 						}
 						
 						for (String fname : fieldNames) {
-							writer.writeField(rdoc.get(fname)) ;
+							writer.writeField(rdoc.asString(fname)) ;
 						}
 						writer.endBlock(); 
 					}

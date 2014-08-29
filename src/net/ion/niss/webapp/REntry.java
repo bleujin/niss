@@ -3,15 +3,19 @@ package net.ion.niss.webapp;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.StringReader;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import javax.script.ScriptException;
 
+import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.search.SearcherManager;
 import org.apache.lucene.util.Version;
@@ -30,10 +34,14 @@ import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.node.crud.TreeNodeKey;
+import net.ion.craken.tree.Fqn;
 import net.ion.craken.tree.PropertyId;
 import net.ion.craken.tree.PropertyValue;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
+import net.ion.framework.util.ObjectUtil;
+import net.ion.framework.util.StringUtil;
+import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
@@ -57,11 +65,14 @@ public class REntry implements Closeable {
 
 	private SearchManager searchManager = new SearchManager();
 
+	private ReadSession rsession;
+
 	public REntry(RepositoryImpl r, String wsName) throws IOException {
 		this.r = r;
 		this.wsName = wsName;
 
-		initCDDListener(login());
+		this.rsession = login();
+		initCDDListener(rsession);
 	}
 
 	private void initCDDListener(final ReadSession session) {
@@ -73,17 +84,17 @@ public class REntry implements Closeable {
 			@Override
 			public Void handle(ReadChildrenIterator iter) {
 				try {
-					for (ReadNode col : iter) {
-						IdString cid = IdString.create(col.fqn().name());
+					for (ReadNode indexNode : iter) {
+						IdString cid = IdString.create(indexNode.fqn().name());
 
-						Class<?> indexAnalClz = Class.forName(col.property("indexanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName()));
-						Analyzer indexAnal = (Analyzer) indexAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
+						Central central = CentralConfig.newLocalFile().dirFile("./resource/index/" + cid.idString()).build();
 
-						Class<?> queryAnalClz = Class.forName(col.property("queryanalyzer").defaultValue(MyKoreanAnalyzer.class.getCanonicalName()));
-						Analyzer queryAnal = (Analyzer) queryAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
+						Analyzer indexAnal = makeIndexAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
+						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
 
-						Central central = CentralConfig.newLocalFile().dirFile("./resource/index/" + cid.idString()).indexConfigBuilder().indexAnalyzer(indexAnal).parent().searchConfigBuilder().queryAnalyzer(queryAnal).build();
-
+						central.indexConfig().indexAnalyzer(indexAnal) ;
+						central.searchConfig().queryAnalyzer(queryAnal) ;
+						
 						indexManager.newIndex(cid, central);
 					}
 				} catch (Exception ex) {
@@ -100,46 +111,7 @@ public class REntry implements Closeable {
 
 				try {
 					for (ReadNode sec : iter) {
-						IdString sid = IdString.create(sec.fqn().name());
-						Searcher searcher = null;
-						Set<String> cols = sec.property("target").asSet();
-						if (cols.size() == 0) {
-							searcher = CompositeSearcher.createBlank();
-						} else {
-							List<Central> target = ListUtil.newList();
-							for (String colId : cols) {
-								if (indexManager.hasIndex(colId)) {
-									target.add(indexManager.index(colId));
-								}
-							}
-							SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
-							searcher = CompositeSearcher.create(nconfig, target);
-						}
-
-						if (sec.property("applyhandler").asBoolean()) {
-							StringReader scontent = new StringReader(sec.property("handler").asString());
-							try {
-								InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", scontent);
-								Searcher fsearcher = script.exec(new ResultHandler<Searcher>() {
-									@Override
-									public Searcher onSuccess(Object result, Object... args) {
-										return (Searcher) result;
-									}
-
-									@Override
-									public Searcher onFail(Exception ex, Object... args) {
-										ex.printStackTrace();
-										return (Searcher) args[0];
-									}
-								}, searcher, session);
-								searchManager.newSearch(sid, fsearcher);
-							} catch (Exception e) { // otherwise system cant started
-								e.printStackTrace(); 
-								searchManager.newSearch(sid, searcher);
-							}
-						} else {
-							searchManager.newSearch(sid, searcher);
-						}
+						registerSearcher(new RNodePropertyReadable(sec), jsengine) ;
 					}
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
@@ -147,6 +119,8 @@ public class REntry implements Closeable {
 
 				return null;
 			}
+
+
 		});
 
 		session.workspace().cddm().add(new CDDHandler() {
@@ -158,46 +132,8 @@ public class REntry implements Closeable {
 			@Override
 			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				try {
-					TreeNodeKey key = cevent.getKey();
-					IdString sid = IdString.create(key.getFqn().name());
-					Searcher searcher = null;
-					Set<String> cols = cevent.property("target").asSet();
-					if (cols.size() == 0) {
-						searcher = CompositeSearcher.createBlank();
-					} else {
-						List<Central> target = ListUtil.newList();
-						for (String colId : cols) {
-							if (indexManager.hasIndex(colId)) {
-								target.add(indexManager.index(colId));
-							}
-						}
-						SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
-						searcher = CompositeSearcher.create(nconfig, target);
-					}
-
-					if (cevent.property("applyhandler").asBoolean()) {
-						StringReader scontent = new StringReader(cevent.property("handler").asString());
-						InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", scontent);
-						Searcher fsearcher = script.exec(new ResultHandler<Searcher>() {
-							@Override
-							public Searcher onSuccess(Object result, Object... args) {
-								return (Searcher) result;
-							}
-
-							@Override
-							public Searcher onFail(Exception ex, Object... args) {
-								ex.printStackTrace();
-								return (Searcher) args[0];
-							}
-						}, searcher, session);
-						searchManager.newSearch(sid, fsearcher);
-					} else {
-						searchManager.newSearch(sid, searcher);
-					}
-
+					registerSearcher(new EventPropertyReadable(cevent), jsengine);
 				} catch (IOException ex) {
-					throw new IllegalStateException(ex);
-				} catch (ScriptException ex) {
 					throw new IllegalStateException(ex);
 				}
 				return null;
@@ -222,26 +158,21 @@ public class REntry implements Closeable {
 			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
-					if (cevent.getValue().containsKey(PropertyId.normal("created"))) { // created
+					if (! indexManager.hasIndex(iid)) { // created
 						Central central = CentralConfig.newLocalFile().dirFile("./resource/index/" + iid.idString()).build();
 
 						indexManager.newIndex(iid, central);
 					} else if (indexManager.hasIndex(iid)) {
+						
 						Central saved = indexManager.index(iid);
-						for (PropertyId key : cevent.getValue().keySet()) {
-							String modValue = cevent.getValue().get(key).asString();
-							if ("indexanalyzer".equals(key.idString()) && (!cevent.getValue().get(key).asString().equals(saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()))) {
-								Class<?> indexAnalClz = Class.forName(modValue);
-								Analyzer indexAnal = (Analyzer) indexAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
-								saved.indexConfig().indexAnalyzer(indexAnal);
-							} else if ("queryanalyzer".equals(key.idString())) {
-								Class<?> queryAnalClz = Class.forName(modValue);
-								Analyzer queryAnal = (Analyzer) queryAnalClz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion);
-								saved.searchConfig().queryAnalyzer(queryAnal);
-							} else if ("applystopword".equals(key.idString())) {
+						
 
-							}
-						}
+						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()) ; 
+						saved.indexConfig().indexAnalyzer(makeIndexAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
+
+						
+						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName()) ; 
+						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
 
 					} else {
 						throw new IllegalArgumentException("not have index " + iid.idString());
@@ -261,8 +192,6 @@ public class REntry implements Closeable {
 					throw new IllegalStateException(ex);
 				} catch (InvocationTargetException ex) {
 					throw new IllegalStateException(ex);
-				} catch (NoSuchMethodException ex) {
-					throw new IllegalStateException(ex);
 				}
 
 				return null;
@@ -278,13 +207,97 @@ public class REntry implements Closeable {
 			}
 		});
 	}
+	
+	private Analyzer makeIndexAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		
+		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
+		
+		Analyzer indexAnal = null ;
+		Constructor con = null ; 
+		if ( (con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class, CharArraySet.class})) != null){
+			
+			boolean useStopword = rnode.property(Def.Indexer.ApplyStopword).asBoolean() ;
+			Collection<String> stopWord = ListUtil.EMPTY ;
+			if (useStopword){
+				stopWord = rnode.property(Def.Indexer.StopWord).asSet() ;
+			}
+			
+			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false)) ;
+		} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class})) != null){
+			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion) ;
+		} else {
+			con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]) ;
+			indexAnal = (Analyzer) con.newInstance() ;
+		}
+		return indexAnal;
+	}
+	
+	private Analyzer makeQueryAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		Class<?> queryAnalClz = Class.forName(modValue);
+		
+		Analyzer queryAnal = null ;
+		Constructor con = null ; 
+		if ( (con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[]{Version.class, CharArraySet.class})) != null){
+			queryAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, ListUtil.EMPTY, false)) ;
+		} else if ((con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[]{Version.class})) != null){
+			queryAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion) ;
+		} else {
+			con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[0]) ;
+			queryAnal = (Analyzer) con.newInstance() ;
+		}
+		return queryAnal;
+	}
+	
+	
+	private void registerSearcher(PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException {
+		Set<String> cols = rnode.property("target").asSet();
+		IdString sid = IdString.create(rnode.fqn().name());
+		
+		Searcher searcher = null ;
+		if (cols.size() == 0) {
+			searcher = CompositeSearcher.createBlank();
+		} else {
+			List<Central> target = ListUtil.newList();
+			for (String colId : cols) {
+				if (indexManager.hasIndex(colId)) {
+					target.add(indexManager.index(colId));
+				}
+			}
+			SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
+			searcher = CompositeSearcher.create(nconfig, target);
+		}
 
+		if (rnode.property("applyhandler").asBoolean()) {
+			StringReader scontent = new StringReader(rnode.property("handler").asString());
+			try {
+				InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", scontent);
+				Searcher fsearcher = script.exec(new ResultHandler<Searcher>() {
+					@Override
+					public Searcher onSuccess(Object result, Object... args) {
+						return (Searcher) result;
+					}
+
+					@Override
+					public Searcher onFail(Exception ex, Object... args) {
+						ex.printStackTrace();
+						return (Searcher) args[0];
+					}
+				}, searcher, rsession);
+				searchManager.newSearch(sid, fsearcher);
+			} catch (Exception e) { // otherwise system cant started
+				e.printStackTrace(); 
+				searchManager.newSearch(sid, searcher);
+			}
+		} else {
+			searchManager.newSearch(sid, searcher);
+		}
+	}
+	
 	public final static REntry create() throws CorruptIndexException, IOException {
 		RepositoryImpl r = RepositoryImpl.test(new DefaultCacheManager(), "niss");
 		r.defineWorkspaceForTest("admin", ISearcherWorkspaceConfig.create().location("./resource/admin"));
 		r.start();
 
-		// RepositoryImpl r = RepositoryImpl.inmemoryCreateWithTest();
 		return new REntry(r, "admin");
 	}
 	
@@ -293,7 +306,6 @@ public class REntry implements Closeable {
 		r.defineWorkspaceForTest("test", ISearcherWorkspaceConfig.create().location(""));
 		r.start();
 
-		// RepositoryImpl r = RepositoryImpl.inmemoryCreateWithTest();
 		return new REntry(r, "test");
 	}
 
@@ -319,3 +331,54 @@ public class REntry implements Closeable {
 	}
 
 }
+
+interface PropertyReadable {
+	public PropertyValue property(String propId) ;
+	public PropertyValue property(PropertyId propId) ;
+	public Fqn fqn() ;
+}
+
+class EventPropertyReadable implements PropertyReadable {
+
+	private CDDModifiedEvent event;
+	public EventPropertyReadable(CDDModifiedEvent event) {
+		this.event = event ;
+	}
+	
+	@Override
+	public PropertyValue property(String propId) {
+		return event.property(propId);
+	}
+
+	@Override
+	public PropertyValue property(PropertyId propId) {
+		return event.property(propId);
+	}
+	
+	public Fqn fqn(){
+		return event.getKey().getFqn() ;
+	}
+}
+
+class RNodePropertyReadable implements PropertyReadable {
+
+	private ReadNode rnode;
+	public RNodePropertyReadable(ReadNode node) {
+		this.rnode = node ;
+	}
+	
+	@Override
+	public PropertyValue property(String propId) {
+		return rnode.property(propId);
+	}
+
+	@Override
+	public PropertyValue property(PropertyId propId) {
+		return rnode.propertyId(propId);
+	}
+	
+	public Fqn fqn(){
+		return rnode.fqn() ;
+	}
+} 
+

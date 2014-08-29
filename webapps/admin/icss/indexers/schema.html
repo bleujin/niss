@@ -32,7 +32,7 @@
 
 	<!-- row -->
 	<div class="row">
-		
+	
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<div class="jarviswidget jarviswidget-color-blueDark" id="schema-list-win" data-widget-editbutton="false">
 				<header>
@@ -48,32 +48,18 @@
 					<!-- widget content -->
 					<div class="widget-body">
 						<div class="table-responsive">
-						
 							<table class="table table-bordered">
 								<thead>
 									<tr><th>FieldId</th>
 										<th>Type</th>
 										<th>Options</th>
 										<th>Delete</th></tr></thead>
-								<tbody>
-									<tr><td>name</td>
-										<td>keyword</td>
-										<td>Store:Yes, Analyze:Yes, Boost:1.0</td>
-										<td>x</td></tr>
-									<tr><td>address</td>
-										<td>text</td>
-										<td>Store:Yes, Analyze:Yes, Boost:1.0</td>
-										<td>x</td></tr>
-									<tr><td>age</td>
-										<td>number</td>
-										<td>Store:Yes, Analyze:Yes, Boost:1.0</td>
-										<td>x</td></tr>
-								</tbody>
+								<tbody id="schema_tablebody"></tbody>
 							</table>
 							
 						</div>
 						
-						<button class="btn btn-primary" type="button" id="createfield">Create Field</button>
+						<button class="btn btn-primary" type="button" id="btn_cfield">Create Field</button>
 					</div>
 					
 				</div>
@@ -82,60 +68,8 @@
 	
 		</article>
 		
-		
-		
-		<article class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-			<div>
-			<form class="smart-form" id="document-form" method="post" action="indexers/index" novalidate="novalidate">
-				<fieldset style="padding: 0px">					
-					<section>
-						<label class="label">Field Id</label>
-						<label class="input">
-							<input type="text" id="fieldid" name="fieldid"/>
-						</label>
-					</section>
-					<section>
-						<label class="label">Field Type</label>
-						<label class="select">
-							<select name="fieldtype" id="fieldtype">
-							    <option value="json">Text</option>
-							    <option value="csv">Keyword</option>
-							    <option value="xml">Number</option>
-							    <option value="xml">Date</option>
-							    <option value="xml">Manual</option>
-							</select>
-						</label>
-					</section>
-					<div class="row">
-					<section class="col col-6">
-						<label class="checkbox"><input type="checkbox" id="aalyze" name="aalyze" checked="false" /><i></i>Analyze</label>
-					</section>
-					<section class="col col-6">
-						<label class="checkbox"><input type="checkbox" id="store" name="store" checked="false" /><i></i>Store</label>
-					</section>
-					</div>
-					<section>
-						<label class="label">Boost</label>
-						<label class="input">
-							<input type="text" id="boost" name="boost" placeholder="1.0"/>
-						</label>
-					</section>
 
-				</fieldset>
-				
-				<footer>
-					<button class="btn btn-primary" type="button" id="execQuery">Create Field</button>
-				</footer>
-				
-				<div class="message">
-					<i class="fa fa-thumbs-up"></i>
-					<p>Your message was successfully sent!</p>
-				</div>
-			</form>
-			
-			</div>
-		</article>
-		
+
 	</div>
 
 
@@ -143,6 +77,7 @@
 <!-- end widget grid -->
 
 
+				
 <!-- SCRIPTS ON PAGE EVENT -->
 <script type="text/javascript">
 
@@ -172,8 +107,8 @@
 			$('.click2edit').destroy();
 		});
 		
-		var colId = $("#indexers option:selected").val() ;
-		if (colId.indexOf('-') == 0) return ;
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId.indexOf('-') == 0) return ;
 		
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
@@ -186,36 +121,36 @@
 			return ce.text();
 		} ;
 		
+		
+		$('#btn_cfield').click(function(){
+			$('#create_schema_form').modal({
+				
+			});
+		});
+
+		
 		$.ajax({
-			url:'/admin/indexers/' + colId +'/schema',
+			url:'/admin/indexers/' + indexerId +'/schema',
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
-				var fields = data['fields'] ;
+				var schemas = data['schemas'] ;
 				
 				$("#info").html(info) ;
-
+				for(var idx in schemas){
+					var schema = schemas[idx] ;
+					$("<tr><td>" + schema['schemaid'] + "</td><td>" + schema['schematype'] + "</td><td>" + schema['options'] + "</td><td class='delete' data-id='" + schema['schemaid']+ "' >x</td></tr>").appendTo($("#schema_tablebody")) ;
+				}
 				
-				
-				
-				
-				$("#files li a").click(function(e){
-					e.preventDefault();
-					var targetPath = "/admin/indexers" + $(this).attr('title') ;
-					$("#filecontent").data("target", targetPath) ;
-					
-					$("#file_url").text(targetPath) ;
-					$("#filecontent").load(targetPath)  ;
-					$("#filecontent").attr("contenteditable", true) ;
-					
-					$('#filecontent').unbind('blur');
-					$("#filecontent").blur(function(){
-						if (targetPath == $("#filecontent").data("target")) {
-							$.ajax({
-								type: "POST",
-								url:targetPath,
-								data: { filecontent: htmlToText("filecontent")}
-								}) ;
+				$("#schema_tablebody .delete").click(function(e){
+					var targetPath = "/admin/indexers/" + indexerId + "/schema/" + $(this).data('id');
+					var self = $(this) ;
+					$.ajax({
+						type: "DELETE",
+						url:targetPath,
+						data: { }, 
+						success:function(data){
+							self.parent().remove() ;
 						}
 					}) ;
 				}) ;
