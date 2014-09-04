@@ -68,7 +68,7 @@
 
 								<section>
 									<label class="label">Output</label>
-									<label class="textarea textarea-resizable">
+									<label class="textarea textarea-resizable" readonly="readonly">
 										<textarea rows="12" class="custom-scroll" placeholder="output" id="output"></textarea>
 									</label>
 								</section>
@@ -174,12 +174,17 @@
 		       	console.log('OPEN');
 		       };
 		       es.onmessage = function(e) {
+			       if (e.data == eventId) {
+				    es.close();
+				    return ;
+				}
 		       	var outputText = document.getElementById('output');
 			       outputText.value = outputText.value + e.data + '\n';
-			       outputText.scrollTop = textArea.scrollHeight;
+			       outputText.scrollTop = outputText.scrollHeight;
 		       };
 		       es.onerror = function(e) {
-		       	console.log('ERROR');
+		       	console.log('ERROR : ' + e);
+		       	// es.close() ;
 		       };
 			$( "#btn_run" ).attr('disabled', 'disabled') ;
 			$.ajax({

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.concurrent.CopyOnWriteArraySet;
 
+import net.ion.craken.node.ReadSession;
+import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.util.CopyOnWriteMap;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceMessage;
@@ -44,6 +46,15 @@ public class EventSourceEntry implements Closeable{
 		EventSourceConnection conn = connMap.get(eventId) ;
 		if (conn != null) conn.send(new EventSourceMessage(data)) ;
 	}
+
+	public void closeEvent(String eventId) {
+		EventSourceConnection econn = connMap.get(eventId) ;
+		if (econn != null){
+			econn.send(new EventSourceMessage(eventId)) ;
+			econn.close() ;
+		}
+		
+	}
 }
 
 
@@ -59,19 +70,20 @@ class EventSourceWriter extends Writer{
 	}
 
 	@Override
-	public synchronized void write(char[] cbuf, int off, int len) throws IOException {
+	public void write(char[] cbuf, int off, int len) throws IOException {
 		buffer.append(cbuf, off, len) ;
 	}
 
 	@Override
-	public synchronized void flush() throws IOException {
+	public void flush() throws IOException {
 		ese.sendTo(eventId, buffer.toString()) ;
 		buffer = new StringBuilder() ;
 	}
 
 	@Override
 	public void close() throws IOException {
-		
+		flush(); 
+		ese.closeEvent(this.eventId) ;
 	}
 }
 

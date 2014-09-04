@@ -1,4 +1,4 @@
-package net.ion.niss.webapp.loaders;
+package net.ion.bleujin;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

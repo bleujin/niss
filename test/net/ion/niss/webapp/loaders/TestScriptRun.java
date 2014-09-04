@@ -5,7 +5,7 @@ import net.ion.niss.webapp.loaders.LoaderWeb;
 import net.ion.radon.client.StubServer;
 import junit.framework.TestCase;
 
-public class TestLoaderListener extends TestCase{
+public class TestScriptRun extends TestCase{
 
 	private StubServer ss;
 

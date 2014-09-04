@@ -36,7 +36,7 @@
 		<!-- NEW WIDGET START -->
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<!-- Widget ID (each widget will need unique ID)-->
-			<div class="jarviswidget jarviswidget-color-purple" id="wid-id-stat" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-purple" id="searcher-defined-win" data-widget-editbutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
 					<h2>Detail</h2>				
@@ -59,13 +59,28 @@
 								</select>
 								<hr class="simple">
 							</div>
+
+							<section>
+								<label class="label">Query Analyzer</label>
+								<label class="select">
+									<select id="query_analyzer"></select>
+								</label>
+							</section>
 											
 							<section>
 								<label class="label">Handler</label>
 								<label class="textarea textarea-resizable">
-									<textarea id="handler" name="handler" rows="20">function(){}</textarea>
+									<textarea id="handler" name="handler" rows="15">new function(){}</textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applyhandler" value="true" /><i></i>Apply Handler</label>
+								<label class="checkbox"><input type="checkbox" id="applyhandler" /><i></i>Apply Handler</label>
+							</section>
+
+							<section>
+								<label class="label">Stopword</label>
+								<label class="textarea textarea-resizable">
+									<textarea id="stopword" name="stopword" rows="8"></textarea>
+								</label>
+								<label class="checkbox"><input type="checkbox" id="applystopword"/><i></i>Apply Stopword</label>
 							</section>
 
 							<hr class="simple">
@@ -128,10 +143,11 @@
 			url:'/admin/searchers/' + searcherId +'/define',
 			dataType:'json',
 			success:function(data){
-				var info = data['info'];
 				var indexers = data['indexers'];
 				var targets = data['target'];
-				$("#info").html(info) ;
+				var query_analyzer = data['query_analyzer'] ;
+				
+				$("#info").html(data['info']) ;
 
 				for(var idx in indexers){
 					var indexerId = indexers[idx] ;
@@ -140,8 +156,19 @@
 				}
 				$("#target_indexer").val(targets).select2();
 				
+				
+				for(var idx in query_analyzer){
+					var analyzer = query_analyzer[idx] ;
+					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
+					if (analyzer['selected']) option.attr('selected', 'selected');
+					option.appendTo($("#query_analyzer")) ;
+				}
 				$("#handler").val(data["handler"]) ;
 				$("#applyhandler").attr('checked', data["applyhandler"]) ;
+
+				$("#stopword").val(data["stopword"]) ;
+				$("#applystopword").attr('checked', data["applystopword"]) ;
+
 				// pageSetUp();
 			}, 
 			error:function(request,status,error){
@@ -173,9 +200,7 @@
 				type: "POST",
 				dataType : 'text', 
 				url: "/admin/searchers/" + searcherId + "/define",
-				data: { 'target': targets.toString(), 
-					handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, 
-					}, 
+				data: { 'target': targets.toString(), queryanalyzer: $("#query_analyzer").val(), handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, stopword: $("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false}, 
 				complete : function(){ 
 					$("#index_url").text(this.url) ;
 				}, 

@@ -42,11 +42,6 @@ public class TestLoaderWeb extends TestCase {
 	}
 	
 	
-	public void testRun() throws Exception {
-		
-	}
-	
-	
 	public void testRemove() throws Exception {
 		StubHttpResponse response = ss.request("/loaders/123/define").postParam("name", "Sample From DB").postParam("content", "function(){}").post() ;
 		assertEquals(true, response.contentsString().startsWith("created "));

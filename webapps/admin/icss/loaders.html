@@ -10,7 +10,6 @@
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
 			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Loader</a></li>
-			<li class="submenu"><a class="history-load" href="javascript:void(0);">LogHistory</a></li>
 		</ul>
 
 		<div class="air air-bottom inbox-space">
@@ -31,7 +30,7 @@
 
 </div>
 
-<div id="new-loader-confirm" class="ui-dialog" title="Create Loader" style="display:none">
+<div id="new-loader-confirm" title="Create Loader" style="display:none">
 	<form class="smart-form" id="new-loader-form" method="post" action="loader/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
@@ -118,7 +117,6 @@
 						"Create Loader": function() {
 							var newId = $("#newId").val() ;
 							var win = $( this ) ;
-							console.log(newId + ' : ..' ) ;
 							if (newId > ' '){
 								$.ajax({
 									type: "POST",
@@ -135,10 +133,10 @@
 									}
 								}) ;	
 							}
-							},
+						},
 						Cancel: function() {
 							$( this ).dialog( "close" );
-							}
+						}
 						}
 					});
 				});

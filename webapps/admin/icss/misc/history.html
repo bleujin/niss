@@ -1,0 +1,209 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Loader Log Browsing
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+			<div class="jarviswidget jarviswidget-color-purple" id="search-browsing-0" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>Index Data Tables</h2>
+
+				</header>
+
+				<div>
+
+					<div class="jarviswidget-editbox"></div>
+
+					<!-- widget content -->
+					<div class="widget-body no-padding">
+
+						
+						<table id="example" class="table table-bordered table-hover" width="100%">
+							
+						</table>
+					</div>
+					
+					<!-- end widget content -->
+
+				</div>
+				<!-- end widget div -->
+
+			</div>
+			<!-- end widget -->
+
+		</article>
+		<!-- WIDGET END -->
+
+	</div>
+
+	<!-- end row -->
+
+</section>
+<!-- end widget grid -->
+
+<script type="text/javascript">
+
+
+	pageSetUp();
+	
+	// pagefunction	
+	var pagefunction = function() {
+		//console.log("cleared");
+		
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/loaders",
+				data: { content: aHTML, field: "history" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		$.ajax({
+			url:"/admin/loaders/history",
+			type:'GET', 
+			dataType:'json',
+			data : {'searchQuery':''}, 
+			success:function(data){
+				var nodes = data['history'];
+				$("#example")
+					.dataTable({
+					// "processing":true,
+					// "dom":'<"toolbar">frtip',
+					"data":nodes,
+					"searching":false, 
+					"columns": data['schemaName']
+				}) ;
+				
+				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
+				'				<fieldset class="smart-form">' +
+				'					<div class="row">' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_remove_index" value="Remove Row" disabled="disabled"/></section>' +
+				'						<section class="col col-3"><label class="input"><input type="text" id="searchQuery" placeholder="search Query"></label></section>' +
+				'					</div>' +
+				'				</fieldset>' +
+				'				</td></tr></tfoot>' ;
+				
+				$(tableFoot).appendTo($("#example")) ;
+
+				$("#info").html(data['info']) ;
+				
+				var table = $('#example').DataTable() ;
+				
+				$('#example tbody').on( 'click', 'tr', function () {
+					$(this).toggleClass('selected2');
+					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_remove_index').removeAttr("disabled") : $('#btn_remove_index').attr("disabled", "disabled") ;
+				} );
+				
+				$('#btn_remove_index').click( function () {
+					var targets = $('#example').DataTable().rows('.selected2') ;
+					var indexIds = '' ;
+					for(var i=0; i < targets.data().length ; i++){
+						indexIds += targets.data()[i][0] + ',';
+					}
+					 $.ajax({
+							url:"/admin/indexers/" + indexerId + "/browsing",
+							type:'POST', 
+							data : {'indexIds':indexIds}, 
+							success:function(data){
+								targets.remove().draw(false) ;			
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+					});
+				});
+				
+				$('#searchQuery').on('keypress', function (event) {
+					if(event.which == '13'){
+						console.log($("#searchQuery").val()) ;
+						table.destroy();
+						
+					       $.ajax({
+							url:"/admin/indexers/" + indexerId + "/browsing",
+							type:'GET', 
+							dataType:'json',
+							data : {'searchQuery':$("#searchQuery").val()}, 
+							success:function(data){
+								var nodes = data['data'];
+								$("#example")
+									.dataTable({
+									"data":nodes,
+									"searching":false, 
+									"columns": data['schemaName']
+								}) ;
+								
+								table = $('#example').DataTable() ;
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+						});
+						
+					}
+				});
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		/* BASIC ;*/
+		
+		/* END BASIC */
+	};
+
+	// load related plugins
+	
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+	});
+
+
+</script>

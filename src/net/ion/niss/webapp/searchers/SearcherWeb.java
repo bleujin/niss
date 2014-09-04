@@ -2,6 +2,7 @@ package net.ion.niss.webapp.searchers;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -35,13 +36,17 @@ import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
+import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
+import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.radon.core.ContextParam;
 
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpRequest;
 
@@ -111,12 +116,24 @@ public class SearcherWeb implements Webapp{
 		return rsession.pathBy(fqnBy(sid)).transformer(new Function<ReadNode, JsonObject>(){
 			@Override
 			public JsonObject apply(ReadNode node) {
-				return new JsonObject()
+				JsonObject result = new JsonObject()
 						.put("info", rsession.ghostBy("/menus/searchers").property("define").asString())
 						.put("indexers", colNames)
-						.put("target", node.property("target").asSet().toArray(new String[0]))
-						.put("handler", node.property("handler").asString()).put("applyhandler", node.property("applyhandler").asBoolean())
-							;
+						.put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
+						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0]))
+						.put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
+						.put(Def.Searcher.StopWord, node.property(Def.Searcher.StopWord).asString()).put(Def.Searcher.ApplyStopword, node.property(Def.Searcher.ApplyStopword).asBoolean()) ;
+				
+				JsonArray qarray = new JsonArray() ;
+				List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
+				String iselected = node.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()) ;
+				for (Class<? extends Analyzer> clz : ilist) {
+					JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", clz.getCanonicalName().equals(iselected)) ;
+					qarray.add(json) ;
+				}
+				result.put("query_analyzer", qarray);
+				
+				return result ;
 			}
 		}) ;
 	}
@@ -126,15 +143,18 @@ public class SearcherWeb implements Webapp{
 	@Path("/{sid}/define")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String defineSection(@PathParam("sid") final String sid, @FormParam("target") final String target
-				, @Context HttpRequest request
-				, @FormParam("handler") final String handler, @DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler) {
+				, @Context HttpRequest request,  @FormParam("queryanalyzer") final String queryAnalyzer
+				, @FormParam("handler") final String handler, @DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler
+				, @FormParam("stopword") final String stopword, @DefaultValue("false") @FormParam("applystopword") final boolean applyStopword) {
 		
 		final String[] targets = StringUtil.split(target, ",") ;
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode wnode = wsession.pathBy(fqnBy(sid)).property("target", targets)
-					.property("handler", handler).property("applyhandler", applyHandler) ;
+				WriteNode wnode = wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Target, targets)
+					.property(Def.Searcher.QueryAnalyzer, queryAnalyzer)
+					.property(Def.Searcher.Handler, handler).property(Def.Searcher.ApplyHandler, applyHandler)
+					.property(Def.Searcher.StopWord, stopword).property(Def.Searcher.ApplyStopword, applyStopword);
 
 				return null;
 			}
@@ -221,7 +241,7 @@ public class SearcherWeb implements Webapp{
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
 		SearchResponse sresponse = searchQuery(sid, query, sort, skip, offset, request, map);
 
-		String template = rsession.pathBy(fqnBy(sid)).property("template").asString() ;
+		String template = rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString() ;
 		
 		Engine engine = rsession.workspace().parseEngine();
 		return engine.transform(template, MapUtil.<String, Object>chainMap().put("response", sresponse).put("params", map).toMap()) ;
@@ -237,7 +257,7 @@ public class SearcherWeb implements Webapp{
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
 		SearchResponse sresponse = searchQuery(sid, query, sort, skip, offset, request, map);
 
-		String template = rsession.pathBy(fqnBy(sid)).property("template").asString() ;
+		String template = rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString() ;
 		
 		Engine engine = rsession.workspace().parseEngine();
 		return engine.transform(template, MapUtil.<String, Object>chainMap().put("response", sresponse).put("params", map).toMap()) ;
@@ -255,7 +275,7 @@ public class SearcherWeb implements Webapp{
 	public JsonObject viewTemplate(@PathParam("sid") final String sid){
 		JsonObject result = new JsonObject() ;
 		result.put("info", rsession.ghostBy("/menus/searchers").property("template").asString()) ;
-		result.put("template", rsession.pathBy(fqnBy(sid)).property("template").asString()) ;
+		result.put("template", rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString()) ;
 		return result ;
 	}
 	
@@ -273,7 +293,7 @@ public class SearcherWeb implements Webapp{
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(sid)).property("template", template) ;
+				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template, template) ;
 				return null;
 			}
 		}) ;

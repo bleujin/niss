@@ -1,0 +1,116 @@
+<div class="inbox-nav-bar no-content-padding"></div>
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="property-load" href="javascript:void(0);"> Java Properties </a></li>
+			<li class="submenu"><a class="thread-load" href="javascript:void(0);">Thread Dump</a></li>
+			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">Analyzer Confirm</a></li>
+			<li class="submenu"><a class="history-load" href="javascript:void(0);">Loader History</a></li>
+			<li class="submenu"><a class="logging-load" href="javascript:void(0);">Logging</a></li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+			3.5GB of <strong>10GB</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Remove Loader" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+	</div>
+
+
+</div>
+
+<div id="new-loader-confirm" title="Create Loader" style="display:none">
+	<form class="smart-form" id="new-loader-form" method="post" action="loader/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Loader ID</label>
+				<label class="input">
+					<input type="text" id="newId" name="lid" placeholder="new loader id" />
+				</label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	
+	var pagefunction = function() {
+
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		})
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			}
+
+		}
+
+		loadURL("icss/misc/properties.html", $('#inbox-content > .table-wrap')) ;
+		$("li.submenu").click(function() {
+		    $(this).toggleClass("active");
+		    $(this).siblings().removeClass("active");
+		});
+		
+		
+		// Buttons (compose mail and inbox load)
+		$(".property-load").click(function() {
+			loadURL("icss/misc/properties.html", $('#inbox-content > .table-wrap'))
+		});
+		$(".thread-load").click(function() {
+			loadURL("icss/misc/threaddump.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".analyzer-load").click(function() {
+			loadURL("icss/misc/analyzer.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".history-load").click(function() {
+			loadURL("icss/misc/history.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".logging-load").click(function() {
+			loadURL("icss/misc/logging.html", $('#inbox-content > .table-wrap')) ;
+		});
+	
+	};
+	
+	// end pagefunction
+	
+	// load delete row plugin and run pagefunction
+
+	pagefunction();
+	
+</script>

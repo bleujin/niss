@@ -21,19 +21,6 @@ public class TestOverview extends TestBaseIndexWeb {
 		Debug.line(response.contentsString());
 	}
 	
-	
-	public void testStopword() throws Exception {
-		StubHttpResponse response = ss.request("/indexers/col1/overview/stopword").postParam("stopwords", "bleu jin hero").post() ;
-		assertEquals("stopword 3 added", response.contentsString());
-	}
-	
-	
-	public void testApplyedStopword() throws Exception {
-		StubHttpResponse response = ss.request("/indexers/col1/overview/stopword").postParam("stopwords", "bleu jin hero").post() ;
 
-		Central cen = this.entry.indexManager().index("col1") ;
-		
-	}
-	
 		
 }

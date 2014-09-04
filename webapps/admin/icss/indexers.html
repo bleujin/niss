@@ -12,6 +12,7 @@
 		
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Indexer</a></li>
 			<li class="submenu"><a class="schema-load" href="javascript:void(0);">Schema</a></li>
 			<li class="submenu"><a class="index-load" href="javascript:void(0);">Index</a></li>
 
@@ -41,7 +42,7 @@
 </div>
 
 <div id="new-indexer-confirm" title="Create Indexer" style="display:none">
-	<form class="smart-form" id="document-form" method="post" action="indexers/" novalidate="novalidate">
+	<form class="smart-form" id="new-indexer-form" method="post" action="indexers/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
 				<label class="label">Indexer ID</label>
@@ -187,7 +188,7 @@
 			}
 		}) ;
 
-		$("#indexers").click(function(){
+		$("#indexers").change(function(){
 			if ($(this).val() == '-new'){
 				$(function() {
 				$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
@@ -244,6 +245,9 @@
 		// Buttons (compose mail and inbox load)
 		$(".overview-load").click(function() {
 			loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap'))
+		});
+		$(".defined-load").click(function() {
+			loadURL("icss/indexers/defined.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".analysis-load").click(function() {
 			loadURL("icss/indexers/analysis.html", $('#inbox-content > .table-wrap')) ;

@@ -63,6 +63,7 @@ import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -206,7 +207,7 @@ public class IndexerWeb implements Webapp {
 				
 				JsonArray alist = new JsonArray() ;
 				List<Class<? extends Analyzer>> list = AnalysisWeb.analysis() ;
-				String selected = readNode.property(Def.Indexer.IndexAnalyzer).defaultValue(MyKoreanAnalyzer.class.getCanonicalName()) ;
+				String selected = readNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()) ;
 				for (Class<? extends Analyzer> clz : list) {
 					JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", clz.getCanonicalName().equals(selected)) ;
 					alist.add(json) ;
@@ -222,20 +223,77 @@ public class IndexerWeb implements Webapp {
 		});
 	}
 	
+//	.postParam(Def.Indexer.IndexAnalyzer, MyKoreanAnalyzer.class.getCanonicalName())
+//	.postParam("stopwords", "bleu jin hero")
+//	.postParam("applystopword", "true")
+//	.postParam(Def.Indexer.QueryAnalyzer,  MyKoreanAnalyzer.class.getCanonicalName())
+	
 	@POST
-	@Path("/{iid}/overview/stopword")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String addStopword(@PathParam("iid") final String iid, @DefaultValue("") @FormParam("stopwords") final String stopwords) throws IOException, InterruptedException, ExecutionException{
+	@Path("/{iid}/defined")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String defineIndexer(@PathParam("iid") final String iid, @FormParam("indexanalyzer") final String ianalyzerName, 
+				@DefaultValue("") @FormParam("stopword") final String stopwords, @DefaultValue("false") @FormParam("applystopword") final boolean applystopword, 
+				@FormParam("queryanalyzer") final String qanalyzerName) throws IOException, InterruptedException, ExecutionException{
 		return rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
 				String[] words = StringUtil.split(stopwords, "\\s+");
-				wsession.pathBy(fqnBy(iid)).property(Def.Indexer.StopWord,  words) ;
-				return "stopword " + words.length + " added";
+				wsession.pathBy(fqnBy(iid))
+					.property(Def.Indexer.IndexAnalyzer, ianalyzerName)
+					.property(Def.Indexer.StopWord,  words).property(Def.Indexer.ApplyStopword, applystopword)
+					.property(Def.Indexer.QueryAnalyzer, qanalyzerName);
+				return "defined indexer : " + iid;
 			}
 		}).get() ;
 		
 	}
+	
+	@GET
+	@Path("/{iid}/defined")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject viewDefined(@PathParam("iid") String iid){
+		return rsession.ghostBy(fqnBy(iid)).transformer(new Function<ReadNode, JsonObject>(){
+			@Override
+			public JsonObject apply(ReadNode target) {
+				JsonObject result = new JsonObject() ;
+				result
+					.put("info", rsession.ghostBy("/menus/indexers").property("defined").asString())
+					.put(Def.Indexer.IndexAnalyzer, target.property(Def.Indexer.IndexAnalyzer).asString())
+					.put(Def.Indexer.StopWord, target.property(Def.Indexer.StopWord).asString())
+					.put(Def.Indexer.ApplyStopword, target.property(Def.Indexer.ApplyStopword).asBoolean())
+					.put(Def.Indexer.QueryAnalyzer, target.property(Def.Indexer.QueryAnalyzer).asString())
+					;
+				
+				JsonArray iarray = new JsonArray() ;
+				List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
+				String iselected = target.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()) ;
+				for (Class<? extends Analyzer> clz : ilist) {
+					JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", clz.getCanonicalName().equals(iselected)) ;
+					iarray.add(json) ;
+				}
+				result.put("index_analyzer", iarray);				
+
+				
+				JsonArray qarray = new JsonArray() ;
+				List<Class<? extends Analyzer>> alist = AnalysisWeb.analysis() ;
+				String qselected = target.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()) ;
+				for (Class<? extends Analyzer> clz : alist) {
+					JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", clz.getCanonicalName().equals(qselected)) ;
+					qarray.add(json) ;
+				}
+				result.put("query_analyzer", qarray);				
+
+				return result;
+			}
+			
+		}) ;
+	}
+	
+	
+	
+	
+	
+	
 	
 	@POST
 	@Path("/{iid}/fields")
@@ -392,11 +450,11 @@ public class IndexerWeb implements Webapp {
 			public Void handle(IndexSession isession) throws Exception {
 				for (int i=0 ; i <jarray.size() ; i++) {
 					JsonObject json = jarray.get(i).getAsJsonObject() ;
-					WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(json.asString("id"), new ObjectId().toString() ) ) ;
+					String idVlaue = StringUtil.isBlank(json.asString("id")) ? new ObjectId().toString() : json.asString("id") ;
+					WriteDocument wdoc = isession.newDocument(idVlaue) ;
 					wdoc.add(json) ;
 					
-					if (overwrite) isession.updateDocument(wdoc) ;
-					else isession.insertDocument(wdoc) ;
+					Void v = overwrite ? wdoc.updateVoid() : wdoc.insertVoid() ;
 				}
 				
 				return null;

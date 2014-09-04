@@ -29,5 +29,16 @@ public class Def {
 			return "/indexers/" + iid + "/schema";
 		}
 	}
+
+
+	public static class Searcher {
+		public static final String Target = "target" ;
+		public static final String Handler = "handler";
+		public static final String ApplyHandler = "applyhandler";
+		public static final String Template = "template";
+		public static final String StopWord = "stopword";
+		public static final String QueryAnalyzer = "queryanalyzer" ;
+		public static final String ApplyStopword = "applystopword";
+	}
 	
 }

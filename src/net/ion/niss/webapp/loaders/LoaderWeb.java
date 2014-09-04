@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.Writer;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.Future;
 
 import javax.script.ScriptException;
@@ -17,12 +18,15 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import net.ion.craken.node.IteratorList;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
+import net.ion.craken.node.crud.ChildQueryResponse;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.ObjectId;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.IdString;
@@ -30,6 +34,7 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpResponse;
 
 import com.google.common.base.Function;
@@ -123,6 +128,16 @@ public class LoaderWeb implements Webapp {
 	public String run(@PathParam("lid") String lid, @PathParam("eventId") String eventId, @FormParam("content") String content, @Context HttpResponse response) throws IOException, ScriptException{
 		InstantJavaScript script = jengine.createScript(IdString.create(lid), "run at " + System.currentTimeMillis(), new StringReader(content)) ;
 		
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				
+				
+				return null;
+			}
+		}) ;
+		
+		
 		final Writer writer = esentry.newWriter(eventId) ;
 		
 		Future<Object> future = script.runAsync(writer, new ExceptionHandler() {
@@ -141,4 +156,38 @@ public class LoaderWeb implements Webapp {
 
 	}
 
+	
+	@GET
+	@Path("/history")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject logHistory() throws IOException, ParseException{
+		
+		if (true){
+			return new JsonObject().put("info", "Hm..")
+					.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'name'},{'title':'age'}]").getAsJsonArray())
+					.put("history", new JsonArray().adds(new JsonArray().adds("NAME", "EXPLAIN", "USERID"))) ;
+		}
+		
+		JsonArray jarray = rsession.ghostBy("/loadhistory").childQuery("").offset(1000).find().transformer(new Function<ChildQueryResponse, JsonArray>(){
+			@Override
+			public JsonArray apply(ChildQueryResponse res) {
+				List<ReadNode> nodes = res.toList() ;
+				JsonArray his = new JsonArray() ;
+				for(ReadNode node : nodes){
+					JsonObject json = new JsonObject() ;
+					
+					his.add(json) ;
+				}
+
+				return his;
+			}
+		}) ;
+		
+		JsonObject result = new JsonObject() ;
+		result.add("history", jarray);
+		result.put("info", rsession.ghostBy("/menus/loaders").property("history").asString()) ;
+		return result ;
+	}
+	
+	
 }

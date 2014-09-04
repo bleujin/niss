@@ -62,7 +62,6 @@ public class REntry implements Closeable {
 	private RepositoryImpl r;
 	private String wsName;
 	private IndexManager indexManager = new IndexManager();
-
 	private SearchManager searchManager = new SearchManager();
 
 	private ReadSession rsession;
@@ -250,7 +249,7 @@ public class REntry implements Closeable {
 	
 	
 	private void registerSearcher(PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException {
-		Set<String> cols = rnode.property("target").asSet();
+		Set<String> cols = rnode.property(Def.Searcher.Target).asSet();
 		IdString sid = IdString.create(rnode.fqn().name());
 		
 		Searcher searcher = null ;
@@ -267,8 +266,8 @@ public class REntry implements Closeable {
 			searcher = CompositeSearcher.create(nconfig, target);
 		}
 
-		if (rnode.property("applyhandler").asBoolean()) {
-			StringReader scontent = new StringReader(rnode.property("handler").asString());
+		if (rnode.property(Def.Searcher.ApplyHandler).asBoolean()) {
+			StringReader scontent = new StringReader(rnode.property(Def.Searcher.Handler).asString());
 			try {
 				InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", scontent);
 				Searcher fsearcher = script.exec(new ResultHandler<Searcher>() {
