@@ -50,6 +50,9 @@ public class TestHttpCall extends TestCase {
 	            }
 	        }
 
+//	        out.write("HTTP/1.0 401\r\n");
+//	        out.write("WWW-Authenticate: Basic realm=\"Auth Required\"");
+
 	        out.write("HTTP/1.0 200 OK\r\n");
 	        out.write("Date: Fri, 31 Dec 1999 23:59:59 GMT\r\n");
 	        out.write("Server: myserver\r\n");
