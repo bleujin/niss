@@ -15,7 +15,7 @@ import net.ion.niss.webapp.misc.ThreadDumpInfo;
 import net.ion.niss.webapp.util.SimpleOrderedMap;
 import junit.framework.TestCase;
 
-public class TestThreadMisc extends TestCase {
+public class TestThreadDump extends TestCase {
 
 	public void testViewDump() {
 		ThreadMXBean bean = ManagementFactory.getThreadMXBean();
@@ -52,7 +52,7 @@ public class TestThreadMisc extends TestCase {
 	}
 	
 	public void testPackageInfo() throws Exception {
-		Debug.line(TestThreadMisc.class.getPackage().getSpecificationVersion()) ;
+		Debug.line(TestThreadDump.class.getPackage().getSpecificationVersion()) ;
 	}
 
 }

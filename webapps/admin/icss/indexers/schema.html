@@ -136,6 +136,14 @@
 				var info = data['info'];
 				var schemas = data['schemas'] ;
 				
+				var index_analyzer = data['index_analyzer'] ;
+				for(var idx in index_analyzer){
+					var analyzer = index_analyzer[idx] ;
+					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
+					if (analyzer['selected']) option.attr('selected', 'selected');
+					option.appendTo($("select[name=schema_analyzer]")) ;
+				}
+				
 				$("#info").html(info) ;
 				for(var idx in schemas){
 					var schema = schemas[idx] ;

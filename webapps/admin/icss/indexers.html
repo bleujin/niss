@@ -81,7 +81,17 @@
 					</select>
 				</label>
 			</section>
-			<div class="row" id="schema_option" style="display:none">
+			<div name="manual_option" style="display:none">
+			<section>
+				<label class="label">Analyzer</label>
+				<label class="select">
+					<select name="schema_analyzer">
+					    
+					</select>
+				</label>
+			</section>
+			</div>
+			<div class="row" name="manual_option" style="display:none">
 			<section class="col col-6">
 				<label class="checkbox"><input type="checkbox" id="schema_analyze" name="analyze" checked="false" /><i></i>Analyze</label>
 			</section>
@@ -125,7 +135,10 @@
 			$.ajax({
 				type: "POST",
 				url: "/admin/indexers/" + iid + "/schema",
-				data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), schematype: $("#create_schema_form select[name=schematype]").val(),  analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
+				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
+						schematype: $("#create_schema_form select[name=schematype]").val(),  
+						analyzer :$("#create_schema_form select[name=schema_analyzer]").val(), 
+						analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
 			}).done(function( msg ) {
 				console.log( "Data Saved: " + msg );
 			}).success(function( msg ) {
@@ -231,9 +244,9 @@
 
 		$("#schematype").change(function(){
 			if ($("#schematype").val() == 'manual') {
-				$("#schema_option").show() ;
+				$("div[name=manual_option]").show() ;
 			} else {
-				$("#schema_option").hide() ;
+				$("div[name=manual_option]").hide() ;
 			}
 		}) ;
 

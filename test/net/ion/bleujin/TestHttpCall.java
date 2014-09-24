@@ -11,6 +11,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.ws.rs.core.MediaType;
+
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import junit.framework.TestCase;
@@ -56,7 +58,7 @@ public class TestHttpCall extends TestCase {
 	        out.write("HTTP/1.0 200 OK\r\n");
 	        out.write("Date: Fri, 31 Dec 1999 23:59:59 GMT\r\n");
 	        out.write("Server: myserver\r\n");
-	        out.write("Content-Type: text/html\r\n");
+	        out.write("Content-Type: " + "text/html" + "\r\n");
 	        out.write("Content-Length: 30\r\n");
 //	        out.write("Expires: Sat, 01 Jan 2000 00:59:59 GMT\r\n");
 //	        out.write("Last-modified: Fri, 09 Aug 1996 14:21:40 GMT\r\n");

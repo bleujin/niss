@@ -22,6 +22,7 @@ import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.LoaderWeb;
 import net.ion.niss.webapp.misc.AnalysisWeb;
+import net.ion.niss.webapp.misc.CrakenLet;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
@@ -76,7 +77,7 @@ public class TestSmartAdmin extends TestCase {
 			.add(new LoggingHandler(new AppLogSink()))
 			.add(new SimpleStaticFileHandler("./webapps/admin/"))
 //			.add(new WhoAmIHttpHandler())
-			.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, MenuWeb.class, TemplateWeb.class, AnalysisWeb.class, TunnelWeb.class).prefixURI("/admin"))
+			.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TunnelWeb.class).prefixURI("/admin"))
 			.add("/event/{id}", new EventSourceHandler() {
 				@Override
 				public void onOpen(EventSourceConnection conn) throws Exception {

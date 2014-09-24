@@ -1,7 +1,15 @@
-/collections/{cid}
+
+/indexers/{iid}/schema/{schemaid} [schematype, analyzer, analyze, store, boost]
 /sections/{sid}
 /loaders/{lid}
-	/event/{eventid}
+
+
+/users/{userid : email pattern}
+	[name, password,registered]
+
+/events/loaders/{eventid}
+	@loader
+	status, content, exception
 
 /misc/[thread, properties]
 /templates/{tid}

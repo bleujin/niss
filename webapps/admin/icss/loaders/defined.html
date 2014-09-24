@@ -176,6 +176,7 @@
 		       es.onmessage = function(e) {
 			       if (e.data == eventId) {
 				    es.close();
+				    $( "#btn_run" ).removeAttr("disabled");
 				    return ;
 				}
 		       	var outputText = document.getElementById('output');

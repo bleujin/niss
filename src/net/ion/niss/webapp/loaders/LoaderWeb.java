@@ -35,6 +35,7 @@ import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.infinispan.affinity.RndKeyGenerator;
 import org.jboss.resteasy.spi.HttpResponse;
 
 import com.google.common.base.Function;
@@ -45,8 +46,10 @@ public class LoaderWeb implements Webapp {
 	private ReadSession rsession;
 	private JScriptEngine jengine;
 	private EventSourceEntry esentry;
+	private REntry rentry;
 
 	public LoaderWeb(@ContextParam("rentry") REntry rentry, @ContextParam("jsentry") JScriptEngine jengine, @ContextParam("esentry") EventSourceEntry esentry) throws IOException {
+		this.rentry = rentry ;
 		this.rsession = rentry.login();
 		this.jengine = jengine ;
 		this.esentry = esentry ;
@@ -125,25 +128,36 @@ public class LoaderWeb implements Webapp {
 	
 	@POST
 	@Path("/{lid}/run/{eventId}")
-	public String run(@PathParam("lid") String lid, @PathParam("eventId") String eventId, @FormParam("content") String content, @Context HttpResponse response) throws IOException, ScriptException{
+	public String run(@PathParam("lid") String lid, @PathParam("eventId") final String eventId, @FormParam("content") final String content, @Context HttpResponse response) throws IOException, ScriptException{
 		InstantJavaScript script = jengine.createScript(IdString.create(lid), "run at " + System.currentTimeMillis(), new StringReader(content)) ;
 		
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				
-				
+				wsession.pathBy("/events/loaders/" +eventId)
+					.property("script", content)
+					.property("status", "started").property("time", System.currentTimeMillis()) ;
 				return null;
 			}
 		}) ;
 		
 		
-		final Writer writer = esentry.newWriter(eventId) ;
+		final Writer writer = esentry.newWriter(rentry, lid, eventId) ;
 		
 		Future<Object> future = script.runAsync(writer, new ExceptionHandler() {
 			@Override
-			public Object handle(Exception ex) {
+			public Object handle(final Exception ex) {
 				try {
+					rsession.tran(new TransactionJob<Void>() {
+						@Override
+						public Void handle(WriteSession wsession) throws Exception {
+							wsession.pathBy("/events/loaders/" +eventId)
+								.property("status", "fail")
+								.property("exception", ex.getMessage()) ;
+							return null;
+						}
+					}) ;
+					
 					writer.write(ex.getMessage());
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -156,38 +170,6 @@ public class LoaderWeb implements Webapp {
 
 	}
 
-	
-	@GET
-	@Path("/history")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JsonObject logHistory() throws IOException, ParseException{
-		
-		if (true){
-			return new JsonObject().put("info", "Hm..")
-					.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'name'},{'title':'age'}]").getAsJsonArray())
-					.put("history", new JsonArray().adds(new JsonArray().adds("NAME", "EXPLAIN", "USERID"))) ;
-		}
-		
-		JsonArray jarray = rsession.ghostBy("/loadhistory").childQuery("").offset(1000).find().transformer(new Function<ChildQueryResponse, JsonArray>(){
-			@Override
-			public JsonArray apply(ChildQueryResponse res) {
-				List<ReadNode> nodes = res.toList() ;
-				JsonArray his = new JsonArray() ;
-				for(ReadNode node : nodes){
-					JsonObject json = new JsonObject() ;
-					
-					his.add(json) ;
-				}
-
-				return his;
-			}
-		}) ;
-		
-		JsonObject result = new JsonObject() ;
-		result.add("history", jarray);
-		result.put("info", rsession.ghostBy("/menus/loaders").property("history").asString()) ;
-		return result ;
-	}
 	
 	
 }

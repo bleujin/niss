@@ -58,7 +58,6 @@ import net.ion.nsearcher.reader.InfoReader.InfoHandler;
 import net.ion.nsearcher.search.EachDocHandler;
 import net.ion.nsearcher.search.EachDocIterator;
 import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
@@ -68,6 +67,8 @@ import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpRequest;
+
+import scala.Option;
 
 import com.google.common.base.Function;
 
@@ -327,13 +328,22 @@ public class IndexerWeb implements Webapp {
 					StringBuilder options = new StringBuilder() ;
 					options.append(node.property(Schema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
 					options.append(node.property(Schema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
-					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;   
+					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;
+					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(Schema.SchemaType).asString()) ? ", Analyzer:" + node.property(Schema.Analyzer).asString() : "") ;
 
 					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(Schema.SchemaType, node.property(Schema.SchemaType).asString()).put("options", options.toString())) ;
 				}
 				return result;
 			}
 		}) ;
+		
+		JsonArray iarray = new JsonArray() ;
+		List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
+		for (Class<? extends Analyzer> clz : ilist) {
+			JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", false) ;
+			iarray.add(json) ;
+		}
+		result.put("index_analyzer", iarray);
 		
 		result.put("schemas", schemas) ;
 		return result ;
@@ -343,14 +353,17 @@ public class IndexerWeb implements Webapp {
 	@POST
 	@Path("/{iid}/schema")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String addSchema(@PathParam("iid") final String iid, @FormParam("schemaid") final String schemaid, @FormParam("schematype") final String schematype, @FormParam("analyze") final boolean analyzer, @FormParam("store") final boolean store, 
+	public String addSchema(@PathParam("iid") final String iid, @FormParam("schemaid") final String schemaid, @FormParam("schematype") final String schematype,
+			@FormParam("analyzer") final String analyzer, @FormParam("analyze") final boolean analyze, @FormParam("store") final boolean store, 
 			@DefaultValue("1.0") @FormParam("boost") final String boost){
 		
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
 				wsession.pathBy(Schema.path(iid, schemaid))
-					.property(Schema.SchemaType, schematype).property(Schema.Analyze, analyzer).property(Schema.Store, store).property(Schema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
+					.property(Schema.SchemaType, schematype)
+					.property(Schema.Analyzer, "manual".equals(schematype) ? analyzer : "").property(Schema.Analyze, "manual".equals(schematype) ? analyze : false).property(Schema.Store, "manual".equals(schematype) ? store : false)
+					.property(Schema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 				return null;
 			}
 		}) ;
@@ -362,7 +375,7 @@ public class IndexerWeb implements Webapp {
 	@DELETE
 	@Path("/{iid}/schema/{schemaid}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deleteSchema(@PathParam("iid") final String iid, @PathParam("schemaid") final String schemaid){
+	public String removeSchema(@PathParam("iid") final String iid, @PathParam("schemaid") final String schemaid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
@@ -416,7 +429,8 @@ public class IndexerWeb implements Webapp {
 		return "1 indexed" ;
 	}
 
-	private FieldIndexingStrategy createIndexStrategy(String iid) {
+	// -- use test
+	FieldIndexingStrategy createIndexStrategy(String iid) {
 		
 		final Map<String, SchemaBean> schemas = MapUtil.newMap() ;
 		rsession.ghostBy("/indexers/" + iid + "/schema").children().eachNode(new ReadChildrenEach<Void>() {

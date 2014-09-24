@@ -30,6 +30,7 @@ import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
+import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
@@ -74,6 +75,14 @@ public class REntry implements Closeable {
 		initCDDListener(rsession);
 	}
 
+
+	// use test only (central not finished)
+	public void reload(){
+		indexManager = new IndexManager() ;
+		searchManager = new SearchManager() ;
+		initCDDListener(rsession);
+	}
+	
 	private void initCDDListener(final ReadSession session) {
 
 		final JScriptEngine jsengine = JScriptEngine.create();
@@ -94,7 +103,15 @@ public class REntry implements Closeable {
 						central.indexConfig().indexAnalyzer(indexAnal) ;
 						central.searchConfig().queryAnalyzer(queryAnal) ;
 						
+						ReadChildren schemas = session.pathBy(indexNode.fqn().toString() + "/schema").children() ;
+						for(ReadNode schemaNode : schemas.toList()) {
+							if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.Schema.SchemaType).asString())){
+								central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeIndexAnalyzer(schemaNode.property(Def.Schema.Analyzer).asString())) ;
+							}
+						}
+
 						indexManager.newIndex(cid, central);
+						
 					}
 				} catch (Exception ex) {
 					throw new IllegalStateException(ex);
@@ -145,6 +162,45 @@ public class REntry implements Closeable {
 				return null;
 			}
 		});
+		
+		session.workspace().cddm().add(new CDDHandler() {
+			@Override
+			public String pathPattern() {
+				return "/indexers/{iid}/schema/{schemaid}";
+			}
+
+			@Override
+			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent event) {
+				IdString iid = IdString.create(rmap.get("iid"));
+				String schemaid = rmap.get("schemaid") ;
+				if (! indexManager.hasIndex(iid)) return null ;
+				
+				Central saved = indexManager.index(iid);
+				saved.indexConfig().removeFieldAnalyzer(schemaid) ;
+				return null;
+			}
+
+			@Override
+			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent event) {
+				IdString iid = IdString.create(rmap.get("iid"));
+				String schemaid = rmap.get("schemaid") ;
+
+				if (! indexManager.hasIndex(iid)) return null ;
+				event.getValue() ;
+				if (Def.SchemaType.MANUAL.equals(event.property(Def.Schema.SchemaType).asString()) && StringUtil.isNotBlank(event.property(Def.Schema.Analyzer).asString())){
+					try {
+						Central saved = indexManager.index(iid);
+						Analyzer analClz = makeIndexAnalyzer(event.property(Def.Schema.Analyzer).asString());
+						saved.indexConfig().fieldAnalyzer(schemaid, analClz) ;
+						
+					} catch (Exception e) {
+						throw new IllegalStateException(e) ;
+					}
+				};
+
+				return null;
+			}
+		}) ;
 
 		// add index listener
 		session.workspace().cddm().add(new CDDHandler() {
@@ -164,12 +220,10 @@ public class REntry implements Closeable {
 					} else if (indexManager.hasIndex(iid)) {
 						
 						Central saved = indexManager.index(iid);
-						
 
 						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()) ; 
 						saved.indexConfig().indexAnalyzer(makeIndexAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
 
-						
 						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName()) ; 
 						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
 
@@ -230,6 +284,25 @@ public class REntry implements Closeable {
 		}
 		return indexAnal;
 	}
+	
+	private Analyzer makeIndexAnalyzer(String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		
+		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
+		
+		Analyzer indexAnal = null ;
+		Constructor con = null ; 
+		if ( (con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class, CharArraySet.class})) != null){
+			Collection<String> stopWord = ListUtil.EMPTY ;
+			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false)) ;
+		} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class})) != null){
+			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion) ;
+		} else {
+			con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]) ;
+			indexAnal = (Analyzer) con.newInstance() ;
+		}
+		return indexAnal;
+	}
+	
 	
 	private Analyzer makeQueryAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		Class<?> queryAnalClz = Class.forName(modValue);

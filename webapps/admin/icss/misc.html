@@ -10,14 +10,9 @@
 			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">Analyzer Confirm</a></li>
 			<li class="submenu"><a class="history-load" href="javascript:void(0);">Loader History</a></li>
 			<li class="submenu"><a class="logging-load" href="javascript:void(0);">Logging</a></li>
+			<li class="submenu"><a class="user-load" href="javascript:void(0);">User</a></li>
 		</ul>
 
-		<div class="air air-bottom inbox-space">
-			3.5GB of <strong>10GB</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Remove Loader" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
-			<div class="progress progress-micro">
-				<div class="progress-bar progress-primary" style="width: 0%;"></div>
-			</div>
-		</div>
 
 	</div>
 
@@ -30,18 +25,48 @@
 
 </div>
 
-<div id="new-loader-confirm" title="Create Loader" style="display:none">
-	<form class="smart-form" id="new-loader-form" method="post" action="loader/" novalidate="novalidate">
-		<fieldset style="padding: 0px">	
+
+<div id="create_user_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create User</h5></div>
+
+            <div class="modal-body">
+		<form class="smart-form" method="post" action="misc/user" novalidate="novalidate">
+		<fieldset style="padding: 0px">					
 			<section>
-				<label class="label">Loader ID</label>
+				<label class="label">User Id</label>
 				<label class="input">
-					<input type="text" id="newId" name="lid" placeholder="new loader id" />
+					<input type="text" name="userid"/>
 				</label>
 			</section>
+			<section>
+				<label class="label">User Name</label>
+				<label class="input">
+					<input type="text" name="name"/>
+				</label>
+			</section>
+			<section>
+				<label class="label">Password</label>
+				<label class="input">
+					<input type="password" name="password"/>
+				</label>
+			</section>
+
 		</fieldset>
-	</form>
+		</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_user">Create User</button>
+            </div>  
+
+       </div>
+	</div>
 </div>
+
 
 
 <script type="text/javascript">
@@ -50,6 +75,25 @@
 
 	
 	var pagefunction = function() {
+		
+		
+		
+		$("#create_user_form button[name=create_user]").click(function(){
+			var userid = $("#create_user_form input[name=userid]").val() ;
+			
+			$.ajax({
+				type: "POST",
+				url: "/admin/misc/users/" + userid,
+				data: { 'name': $("#create_user_form input[name=name]").val(), 'password': $("#create_user_form input[name=password]").val() }
+			}).done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			}).success(function( msg ) {
+				$("#create_user_form").modal('hide') ;
+				loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;
+			});
+			
+		});
+		
 
 		// fix table height
 		tableHeightSize();
@@ -103,6 +147,9 @@
 		});
 		$(".logging-load").click(function() {
 			loadURL("icss/misc/logging.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".user-load").click(function() {
+			loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;
 		});
 	
 	};

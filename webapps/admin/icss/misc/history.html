@@ -105,7 +105,7 @@
 		});
 		
 		$.ajax({
-			url:"/admin/loaders/history",
+			url:"/admin/misc/history",
 			type:'GET', 
 			dataType:'json',
 			data : {'searchQuery':''}, 
@@ -117,13 +117,14 @@
 					// "dom":'<"toolbar">frtip',
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName']
+					"columns": data['schemaName'], 
+					"order" : [[2, "desc"]]
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
-				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_remove_index" value="Remove Row" disabled="disabled"/></section>' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_detail_index" value="View Detail" disabled="disabled"/></section>' +
 				'						<section class="col col-3"><label class="input"><input type="text" id="searchQuery" placeholder="search Query"></label></section>' +
 				'					</div>' +
 				'				</fieldset>' +
@@ -136,12 +137,22 @@
 				var table = $('#example').DataTable() ;
 				
 				$('#example tbody').on( 'click', 'tr', function () {
-					$(this).toggleClass('selected2');
-					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_remove_index').removeAttr("disabled") : $('#btn_remove_index').attr("disabled", "disabled") ;
+					if ( $(this).hasClass('selected2') ) {
+				            $(this).removeClass('selected2');
+				        } else {
+				            table.$('tr.selected2').removeClass('selected2');
+				            $(this).addClass('selected2');
+				            ($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_detail_index').removeAttr("disabled") : $('#btn_detail_index').attr("disabled", "disabled") ;
+				        }
+					// window.open('http://www.pageresource.com/jscript/jex5.htm','mywindow','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
 				} );
 				
-				$('#btn_remove_index').click( function () {
+				$('#btn_detail_index').click( function () {
 					var targets = $('#example').DataTable().rows('.selected2') ;
+					var lid = targets.data()[0][0] ;
+					window.open('http://61.250.201.157:9000/admin/craken/events/loaders/' + lid + '.content','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
+					
+					/*
 					var indexIds = '' ;
 					for(var i=0; i < targets.data().length ; i++){
 						indexIds += targets.data()[i][0] + ',';
@@ -156,16 +167,15 @@
 							error:function(request,status,error){
 								console.log('response', request, status, error) ;
 							}
-					});
+					}); */
 				});
 				
 				$('#searchQuery').on('keypress', function (event) {
 					if(event.which == '13'){
-						console.log($("#searchQuery").val()) ;
 						table.destroy();
 						
 					       $.ajax({
-							url:"/admin/indexers/" + indexerId + "/browsing",
+							url:"/admin/misc/history",
 							type:'GET', 
 							dataType:'json',
 							data : {'searchQuery':$("#searchQuery").val()}, 

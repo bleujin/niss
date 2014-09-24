@@ -13,10 +13,19 @@ public class Def {
 	}
 	
 	
+	public static class SchemaType {
+		public static final String MANUAL = "manual" ;
+		public static final String TEXT = "text" ;
+		public static final String KEYWORD = "keyword" ;
+		public static final String NUMBER = "number" ;
+	}
+	
+	
 	public static class Schema {
 		// .property("schematype", schematype).property("analyze", analyzer).property("store", store).property("boost", Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 		
         public static final String SchemaType = "schematype";
+		public static final String Analyzer = "analyzer";
 		public static final String Analyze = "analyze";
 		public static final String Store = "store";
 		public static final String Boost = "boost";
