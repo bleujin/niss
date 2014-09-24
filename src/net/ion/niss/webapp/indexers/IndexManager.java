@@ -71,14 +71,10 @@ public class IndexManager {
 
 	public FieldIndexingStrategy fieldIndexStrategy(ReadSession session, String iid){
 	
-		List<SchemaInfo> sinfos = session.pathBy(Schema.path(iid)).children().transform(new Function<Iterator<ReadNode>, List<SchemaInfo>>(){
+		final SchemaInfos sinfos = session.ghostBy(Schema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
 			@Override
-			public List<SchemaInfo> apply(Iterator<ReadNode> iter) {
-				List<SchemaInfo> result = ListUtil.newList() ;
-				while(iter.hasNext()){
-					result.add(SchemaInfo.create(iter.next())) ;
-				}
-				return result;
+			public SchemaInfos apply(Iterator<ReadNode> iter) {
+				return SchemaInfos.create(iter) ;
 			}
 		}) ;
 		
@@ -86,28 +82,26 @@ public class IndexManager {
 		return new FieldIndexingStrategy() {
 			@Override
 			public void save(Document doc, MyField myField, final Field ifield) {
-				
-				
-				Debug.line(myField.name(), myField.myFieldtype(), myField.fieldType(), ifield.name()) ;
-				
-				
-				
+
+				final MyField newField = sinfos.myField(myField, ifield) ;
 				
 				final String fieldName = IKeywordField.Field.reservedId(ifield.name()) ? ifield.name() :  StringUtil.lowerCase(ifield.name());
 				
-				if (myField.myFieldtype() == MyFieldType.Number){
+				if (newField.myFieldtype() == MyFieldType.Number){
 					doc.add(new StringField(fieldName, ifield.stringValue(), Store.NO));
 				}
-				if (myField.myFieldtype() == MyFieldType.Unknown && NumberUtil.isNumber(ifield.stringValue())){
+				if (newField.myFieldtype() == MyFieldType.Unknown && NumberUtil.isNumber(ifield.stringValue())){
 					doc.add(new DoubleField(fieldName, Double.parseDouble(ifield.stringValue()), Store.NO));
 				}
-				if (myField.myFieldtype() == MyFieldType.Date){
+				if (newField.myFieldtype() == MyFieldType.Date){
 					// new Date().getTime();
 					Date date = DateUtil.stringToDate(ifield.stringValue(), "yyyyMMdd HHmmss") ;
 					doc.add(new StringField(fieldName, StringUtil.substringBefore(ifield.stringValue(), " "), Store.NO)) ;
 					doc.add(new StringField(fieldName, ifield.stringValue(), Store.NO)) ;
 					doc.add(new LongField(fieldName, Long.parseLong(DateUtil.dateToString(date, "yyyyMMdd")), Store.NO)) ;
 				}
+				
+				
 				
 				doc.add(new IndexableField() {
 					@Override
@@ -137,12 +131,12 @@ public class IndexManager {
 					
 					@Override
 					public IndexableFieldType fieldType() {
-						return ifield.fieldType();
+						return newField.fieldType(); // redefine
 					}
 					
 					@Override
 					public float boost() {
-						return ifield.boost();
+						return newField.boost();
 					}
 					
 					@Override

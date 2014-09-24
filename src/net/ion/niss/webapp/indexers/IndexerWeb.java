@@ -1,7 +1,9 @@
 package net.ion.niss.webapp.indexers;
 
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,7 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.DateUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
@@ -49,8 +52,10 @@ import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.IKeywordField;
+import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
+import net.ion.nsearcher.common.MyField.MyFieldType;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
@@ -62,10 +67,20 @@ import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.DoubleField;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.LongField;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.index.IndexableField;
+import org.apache.lucene.index.IndexableFieldType;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.util.BytesRef;
 import org.jboss.resteasy.spi.HttpRequest;
 
 import scala.Option;
@@ -413,7 +428,7 @@ public class IndexerWeb implements Webapp {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				
-//				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
 				
 				JsonObject json = JsonObject.fromString(documents) ;
 				WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(json.asString("id"), new ObjectId().toString() ) ) ;
@@ -431,29 +446,14 @@ public class IndexerWeb implements Webapp {
 
 	// -- use test
 	FieldIndexingStrategy createIndexStrategy(String iid) {
-		
-		final Map<String, SchemaBean> schemas = MapUtil.newMap() ;
-		rsession.ghostBy("/indexers/" + iid + "/schema").children().eachNode(new ReadChildrenEach<Void>() {
-			@Override
-			public Void handle(ReadChildrenIterator iter) {
-				while(iter.hasNext()){
-					ReadNode snode = iter.next() ;
-					String sid = snode.fqn().name() ;
-					SchemaBean sb = new SchemaBean(snode.property(Def.Schema.SchemaType).asString(), snode.property(Def.Schema.Analyze).asBoolean(), snode.property(Def.Schema.Store).asBoolean(), snode.property(Def.Schema.SchemaType).asFloat(1.0f)) ;
-					schemas.put(sid, sb) ;
-				}
-				return null;
-			}
-		}) ;
-		
-		return FieldIndexingStrategy.DEFAULT ;
+		return imanager.fieldIndexStrategy(rsession, iid) ;
 	}
 
 	
 	@POST
 	@Path("/{iid}/index.jarray")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String indexJarray(@PathParam("iid") String iid, @FormParam("documents") final String documents, 
+	public String indexJarray(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
 		Indexer indexer = imanager.index(iid).newIndexer() ;
@@ -462,6 +462,8 @@ public class IndexerWeb implements Webapp {
 		indexer.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
+				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+				
 				for (int i=0 ; i <jarray.size() ; i++) {
 					JsonObject json = jarray.get(i).getAsJsonObject() ;
 					String idVlaue = StringUtil.isBlank(json.asString("id")) ? new ObjectId().toString() : json.asString("id") ;
@@ -481,7 +483,7 @@ public class IndexerWeb implements Webapp {
 	@POST
 	@Path("/{iid}/index.csv")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String indexCsv(@PathParam("iid") String iid, @FormParam("documents") final String documents, 
+	public String indexCsv(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request) throws IOException{
 		Indexer indexer = imanager.index(iid).newIndexer() ;
@@ -493,6 +495,8 @@ public class IndexerWeb implements Webapp {
 			public Integer handle(IndexSession isession) throws Exception {
 				String[] fields ;
 				int count = 0 ;
+				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+				
 				while((fields = creader.readLine()) != null){
 					Map<String, String> map = MapUtil.newMap() ;
 					for (int i = 0 ; i < headers.length ; i++) {
@@ -637,53 +641,6 @@ public class IndexerWeb implements Webapp {
 		return Fqn.fromString("/indexers/" + IdString.create(iid).idString());
 	}
 
-}
-
-
-class SchemaBean {
-	private String type ;
-	private boolean analyze ;
-	private boolean store ;
-	private float boost ;
-	
-	SchemaBean(String type, boolean analyze, boolean store, float boost){
-		this.type = type ;
-		this.analyze = analyze ;
-		this.store = store ;
-		this.boost = boost ;
-	}
-	
-	public boolean keywordType() {
-		return "keyword".equals(type);
-	}
-	
-	public boolean numberType() {
-		return "number".equals(type);
-	}
-	
-	public boolean textType() {
-		return "text".equals(type);
-	}
-	
-	public boolean manualType() {
-		return "manual".equals(type);
-	}
-
-	public String type(){
-		return type ;
-	}
-	
-	public boolean isAnalyze(){
-		return analyze ;
-	}
-	
-	public boolean isStore(){
-		return store ;
-	}
-	
-	public float boost(){
-		return boost ;
-	}
 }
 
 

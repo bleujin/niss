@@ -1,27 +1,18 @@
 package net.ion.niss.webapp.indexers;
 
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-
-import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
-import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
-import net.ion.radon.client.StubServer;
 
 public class TestIndexerWeb extends TestBaseIndexWeb {
 
@@ -58,21 +49,35 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 	
 	
 	public void testApplySchema() throws Exception {
+		
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
 		Central im = rentry.indexManager().index("col1");
 		Indexer indexer = im.newIndexer() ;
-				
-		indexer.index(new IndexJob<Void>() {
+
+		ReadSession session = rentry.login() ;
+		session.tran(new TransactionJob<Void>() {
 			@Override
-			public Void handle(IndexSession isession) throws Exception {
-				isession.fieldIndexingStrategy(rentry.indexManager().fieldIndexStrategy(rentry.login(), "col1")) ;
-				
-				isession.newDocument("test.doc").add(MapUtil.chainKeyMap().put("name", "bleujin").put("age", 20).put("explain", "helloword").toMap()).update() ;
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy("/indexers/col1/schema/explain").property("schematype", "manual").property("analyze", false).property("store", true).property("boost", 2.0f) ;
 				return null;
 			}
 		}) ;
 		
 		
+		indexer.index(new IndexJob<Void>() {
+			@Override
+			public Void handle(IndexSession isession) throws Exception {
+				isession.fieldIndexingStrategy(rentry.indexManager().fieldIndexStrategy(rentry.login(), "col1")) ;
+				
+				isession.newDocument("test.doc").unknown(MapUtil.<String>chainKeyMap().put("name", "bleujin").put("age", "20").put("explain", "hello world").toMap()).update() ;
+				return null;
+			}
+		}) ;
+		
+		Searcher searcher = im.newSearcher() ;
+		
+		ReadDocument doc = searcher.search("hello").first() ;
+		assertEquals("hello world", doc.asString("explain"));
 	}
 
 }

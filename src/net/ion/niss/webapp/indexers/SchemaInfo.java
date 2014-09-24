@@ -3,6 +3,8 @@ package net.ion.niss.webapp.indexers;
 import net.ion.craken.node.ReadNode;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.Schema;
+import net.ion.nsearcher.common.MyField;
+import net.ion.nsearcher.common.MyField.MyFieldType;
 
 public class SchemaInfo {
 
@@ -37,7 +39,35 @@ public class SchemaInfo {
 	
 	public String analClz(){
 		return node.property(Schema.Analyzer).asString() ;
-				
 	}
+	
+	public String schemaType(){
+		return node.property(Schema.SchemaType).asString() ;
+	}
+	
+	
+	public String toString(){
+		return "Analyze:" + isAnalyze() + ",Store" + isStore() + ",Boost" + boost() +  ",AnalClz" + analClz() ; 
+	}
+
+	public MyFieldType getType() {
+		if ("text".equals(schemaType())){
+			return MyFieldType.Text ;
+		} else if ("keyword".equals(schemaType())){
+			return MyFieldType.Keyword ;
+		} else if ("number".equals(schemaType())){
+			return MyFieldType.Number ;
+		} else if ("date".equals(schemaType())){
+			return MyFieldType.Date ;
+		} else if ("manual".equals(schemaType())){
+			return MyFieldType.Unknown ;
+		}
+		return MyFieldType.Unknown ;
+	}
+
+	public boolean isManualType() {
+		return "manual".equals(schemaType());
+	}
+
 	
 }
