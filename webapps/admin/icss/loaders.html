@@ -36,7 +36,7 @@
 			<section>
 				<label class="label">Loader ID</label>
 				<label class="input">
-					<input type="text" id="newId" name="lid" placeholder="new loader id" />
+					<input type="text" id="newLoaderId" name="lid" placeholder="new loader id" />
 				</label>
 			</section>
 		</fieldset>
@@ -117,7 +117,7 @@
 					modal: true,
 					buttons: {
 						"Create Loader": function() {
-							var newId = $("#newId").val() ;
+							var newId = $("#newLoaderId").val() ;
 							var win = $( this ) ;
 							if (newId > ' '){
 								$.ajax({

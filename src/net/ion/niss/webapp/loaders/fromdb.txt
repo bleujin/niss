@@ -4,7 +4,7 @@ new function(){
 	importPackage(net.ion.framework.db.bean)  
 	importPackage(net.ion.framework.db.manager)
 	importPackage(net.ion.framework.db.procedure)
-	importPackage(net.ion.niss.apps.loader)
+	importPackage(net.ion.niss.webapp.loaders)
 	importPackage(net.ion.framework.parse.gson.stream)
 	
 	this.rshandler = function(writer){
