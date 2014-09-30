@@ -179,6 +179,8 @@
 		}
 		
 		var lastColId = '' ;
+		var lastMenuHTML = 'overview.html' ;
+		
 		$.ajax({
 			url:'/admin/indexers',
 			dataType:'json',
@@ -237,7 +239,7 @@
 				
 			} else {
 				lastColId = $(this).val() ;
-				loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+				loadURL("icss/indexers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 			}
 		}) ;
 		
@@ -257,25 +259,32 @@
 
 		// Buttons (compose mail and inbox load)
 		$(".overview-load").click(function() {
-			loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap'))
+			loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "overview.html" ;
 		});
 		$(".defined-load").click(function() {
 			loadURL("icss/indexers/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "defined.html" ;
 		});
 		$(".analysis-load").click(function() {
 			loadURL("icss/indexers/analysis.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "analysis.html" ;
 		});
 		$(".schema-load").click(function() {
 			loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "schema.html" ;
 		});
 		$(".index-load").click(function() {
 			loadURL("icss/indexers/index.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "index.html" ;
 		});
 		$(".query-load").click(function() {
 			loadURL("icss/indexers/query.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "query.html" ;
 		});
 		$(".browsing-load").click(function() {
 			loadURL("icss/indexers/browsing.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "browsing.html" ;
 		});
 	
 	};

@@ -42,7 +42,8 @@ public class TestLogin extends TestCase {
 	        .add("hero", "1");
 
 		builder.add(new LoggingHandler(new AppLogSink()))
-		        .add("/img/*", new BasicAuthenticationHandler(passwords))
+		        .add(new BasicAuthenticationHandler(passwords))
+//		        .add("/img/*", new BasicAuthenticationHandler(passwords))
 				.add("/whoami", new WhoAmIHttpHandler())
 				.add(new SimpleStaticFileHandler("./webapps/admin/")) ;
 

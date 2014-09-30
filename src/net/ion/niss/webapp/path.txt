@@ -4,6 +4,8 @@
 /loaders/{lid}
 
 
+/trace/{userId}
+
 /users/{userid : email pattern}
 	[name, password,registered]
 

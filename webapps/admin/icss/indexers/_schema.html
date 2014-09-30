@@ -47,9 +47,20 @@
 
 					<!-- widget content -->
 					<div class="widget-body">
-						<table id="example" class="table table-bordered table-hover" width="100%">
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr><th>FieldId</th>
+										<th>Type</th>
+										<th>Options</th>
+										<th>Delete</th></tr></thead>
+								<tbody id="schema_tablebody"></tbody>
+							</table>
 							
-						</table>
+						</div>
+						
+						<button class="btn btn-primary" type="button" id="btn_cfield">Create Field</button>
+						<button class="btn btn-primary" type="button" id="btn_dfield">Delete Field</button>
 					</div>
 					
 				</div>
@@ -112,7 +123,11 @@
 		} ;
 		
 		
-
+		$('#btn_cfield').click(function(){
+			$('#create_schema_form').modal({
+				
+			});
+		});
 
 		
 		$.ajax({
@@ -120,7 +135,7 @@
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
-				$("#info").html(info) ;
+				var schemas = data['schemas'] ;
 				
 				var index_analyzer = data['index_analyzer'] ;
 				for(var idx in index_analyzer){
@@ -130,64 +145,27 @@
 					option.appendTo($("select[name=schema_analyzer]")) ;
 				}
 				
-				var nodes = data['data'];
-				$("#example")
-					.dataTable({
-					// "processing":true,
-					// "dom":'<"toolbar">frtip',
-					"data":nodes,
-					"searching":false, 
-					"columns": data['schemaName']
+				$("#info").html(info) ;
+				for(var idx in schemas){
+					var schema = schemas[idx] ;
+					$("<tr><td>" + schema['schemaid'] + "</td><td>" + schema['schematype'] + "</td><td>" + schema['options'] + "</td><td class='delete' data-id='" + schema['schemaid']+ "' >x</td></tr>").appendTo($("#schema_tablebody")) ;
+				}
+				
+				
+				
+				
+				$("#schema_tablebody .delete").click(function(e){
+					var targetPath = "/admin/indexers/" + indexerId + "/schema/" + $(this).data('id');
+					var self = $(this) ;
+					$.ajax({
+						type: "DELETE",
+						url:targetPath,
+						data: { }, 
+						success:function(data){
+							self.parent().remove() ;
+						}
+					}) ;
 				}) ;
-				
-				
-				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
-				'				<fieldset class="smart-form">' +
-				'					<div class="row">' +
-				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_cfield" value="Create Field" /> <input type="button" class="btn btn-primary btn-sm" id="btn_dfield" value="Remove Field" disabled="disabled"/></section>' +
-				'						' +
-				'					</div>' +
-				'				</fieldset>' +
-				'				</td></tr></tfoot>' ;
-				
-				$(tableFoot).appendTo($("#example")) ;
-				
-				
-				$('#example tbody').on( 'click', 'tr', function () {
-					if ( $(this).hasClass('selected2') ) {
-				            $(this).removeClass('selected2');
-				       } else {
-				            $('#example').DataTable().$('tr.selected2').removeClass('selected2');
-				            $(this).addClass('selected2');
-				       }
-				       ($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_dfield').removeAttr("disabled") : $('#btn_dfield').attr("disabled", "disabled") ;
-				} );
-				
-				
-				$("#btn_dfield").click(function(e){
-					var targets = $('#example').DataTable().rows('.selected2') ;
-					var schemaId = '' ;
-					for(var i=0; i < targets.data().length ; i++){
-						schemaId = targets.data()[i][0] ;
-					}
-					 $.ajax({
-							url:"/admin/indexers/" + indexerId + "/schema/" + schemaId,
-							type:'DELETE', 
-							data : {}, 
-							success:function(data){
-								targets.remove().draw(false) ;			
-							}, 
-							error:function(request,status,error){
-								console.log('response', request, status, error) ;
-							}
-					});
-				}) ;
-				
-				$('#btn_cfield').click(function(){
-					$('#create_schema_form').modal({
-						
-					});
-				});
 				
 			}, 
 			error:function(request,status,error){
@@ -198,9 +176,6 @@
 	};
 
 	// run pagefunction on load
-
-	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
-		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
-	});
+	pagefunction();
 
 </script>

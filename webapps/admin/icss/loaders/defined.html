@@ -42,41 +42,47 @@
 					<h2>Detail</h2>				
 				</header>
 
+
 				<div>
 					<div class="jarviswidget-editbox">
 						<input class="form-control" type="text">	
 					</div>
+
 					
 					<div class="widget-body">
 					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
-								<section>
-									<label class="label">Name</label>
-									<label class="input">
-										<input type="text" id="name" placeholder="loader name"/>
-									</label>
-								</section>
+							<section>
+								<label class="label">Name</label>
+								<label class="input">
+									<input type="text" id="name" placeholder="loader name"/>
+								</label>
+							</section>
+							<section>
+								<label class="label">Script Content</label>
+								<label class="textarea textarea-resizable">
+									<i class="icon-append fa fa-question-circle"/> 										
+									<textarea rows="12" class="custom-scroll" placeholder="script content" id="scontent"></textarea>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
+								</label>
+							</section>
 
-								<section>
-									<label class="label">Script Content</label>
-									<label class="textarea textarea-resizable">
-										<i class="icon-append fa fa-question-circle"/> 										
-										<textarea rows="12" class="custom-scroll" placeholder="script content" id="scontent"></textarea>
-										<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
-									</label>
-								</section>
+							<section>
+								<label class="label">Output</label>
+								<label class="textarea textarea-resizable" readonly="readonly">
+									<textarea rows="12" class="custom-scroll" placeholder="output" id="output"></textarea>
+								</label>
+								
+							</section>
+							
+							<section>
+								<label class="label alert-info alert-block"><pre id="target_url"></pre></label>
+							</section>
 
-								<section>
-									<label class="label">Output</label>
-									<label class="textarea textarea-resizable" readonly="readonly">
-										<textarea rows="12" class="custom-scroll" placeholder="output" id="output"></textarea>
-									</label>
-								</section>
-
-
-							</fieldset>
+						</fieldset>
 						
 						<footer>
+						
 							<button class="btn btn-sm btn-success" type="button" id="btn_save">
 								<i class="fa fa-check"></i> Save
 							</button>	
@@ -194,7 +200,12 @@
 				url: "/admin/loaders/" + loaderId + "/run/" + eventId,
 				data: { content: $("#scontent").val(),  name: $("#name").val() }, 
 				complete : function(){ 
-					
+					var result_text = 'Path : ' + this.url + '<br/>';
+					result_text += 'Event Source : /event/' + eventId + '<br />' ;
+					result_text += 'Form parameter : <br />' ;
+					result_text += ' - scontent : ...<br />' ;
+					result_text += ' - name : ' + $("#name").val() + '<br />' ;
+					$("#target_url").html(result_text) ;
 				}, 
 				success :  function(data) {
 					console.log(data) ;

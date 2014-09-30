@@ -40,6 +40,7 @@ import net.ion.framework.util.DateUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
+import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
@@ -328,13 +329,46 @@ public class IndexerWeb implements Webapp {
 	
 
 	// --- schema
+//	@GET
+//	@Path("/{iid}/schema")
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public JsonObject schemaList(@PathParam("iid") String iid){
+//		
+//		JsonObject result = new JsonObject() ;
+//		result.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString()) ;
+//		JsonArray schemas = rsession.ghostBy(Schema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
+//			@Override
+//			public JsonArray handle(ReadChildrenIterator iter) {
+//				JsonArray result = new JsonArray() ;
+//				for(ReadNode node : iter){
+//					StringBuilder options = new StringBuilder() ;
+//					options.append(node.property(Schema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
+//					options.append(node.property(Schema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
+//					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;
+//					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(Schema.SchemaType).asString()) ? ", Analyzer:" + node.property(Schema.Analyzer).asString() : "") ;
+//
+//					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(Schema.SchemaType, node.property(Schema.SchemaType).asString()).put("options", options.toString())) ;
+//				}
+//				return result;
+//			}
+//		}) ;
+//		
+//		JsonArray iarray = new JsonArray() ;
+//		List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
+//		for (Class<? extends Analyzer> clz : ilist) {
+//			JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", false) ;
+//			iarray.add(json) ;
+//		}
+//		result.put("index_analyzer", iarray);
+//		
+//		result.put("schemas", schemas) ;
+//		return result ;
+//	}
+	
 	@GET
 	@Path("/{iid}/schema")
 	@Produces(MediaType.APPLICATION_JSON)
-	public JsonObject schemaList(@PathParam("iid") String iid){
-		
-		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString()) ;
+	public JsonObject listSchema(@PathParam("iid") String iid){
 		JsonArray schemas = rsession.ghostBy(Schema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 			@Override
 			public JsonArray handle(ReadChildrenIterator iter) {
@@ -346,11 +380,12 @@ public class IndexerWeb implements Webapp {
 					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;
 					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(Schema.SchemaType).asString()) ? ", Analyzer:" + node.property(Schema.Analyzer).asString() : "") ;
 
-					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(Schema.SchemaType, node.property(Schema.SchemaType).asString()).put("options", options.toString())) ;
+					result.add(new JsonArray().adds(node.fqn().name(), node.property(Schema.SchemaType).asString(), options.toString())) ;
 				}
 				return result;
 			}
 		}) ;
+		
 		
 		JsonArray iarray = new JsonArray() ;
 		List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
@@ -358,10 +393,12 @@ public class IndexerWeb implements Webapp {
 			JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", false) ;
 			iarray.add(json) ;
 		}
-		result.put("index_analyzer", iarray);
 		
-		result.put("schemas", schemas) ;
-		return result ;
+		return new JsonObject()
+				.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString())
+				.put("index_analyzer", iarray)
+				.put("schemaName", JsonParser.fromString("[{'title':'SchemaId'},{'title':'Type'},{'title':'Option'}]").getAsJsonArray())
+				.put("data", schemas) ;
 	}
 	
 	
@@ -594,7 +631,7 @@ public class IndexerWeb implements Webapp {
 				while(iter.hasNext()){
 					ReadDocument doc = iter.next() ;
 					JsonArray ja = new JsonArray() ;
-					ja.add(new JsonPrimitive(doc.asString("id", doc.reserved(IKeywordField.DocKey)))) ;
+					ja.add(new JsonPrimitive(doc.asString("id", ObjectUtil.coalesce(doc.reserved(IKeywordField.DocKey), "")))) ;
 					for (String name : names) {
 						ja.add(new JsonPrimitive(doc.asString(name, ""))) ;
 					}

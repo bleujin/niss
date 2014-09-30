@@ -82,6 +82,8 @@
 		}
 
 		var lastColId = '' ;
+		var lastMenuHTML = 'overview.html' ;
+		
 		$.ajax({
 			url:'/admin/loaders',
 			dataType:'json',
@@ -143,7 +145,7 @@
 				if (lastColId > ' ') { $("#loaders option[value='" + lastColId + "']").attr('selected', 'selected');  }
 				
 			} else {
-				loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
+				loadURL("icss/loaders/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 			}
 		}) ;
 
@@ -163,13 +165,16 @@
 		// Buttons (compose mail and inbox load)
 		$(".overview-load").click(function() {
 			loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap'))
+			lastMenuHTML = 'overview.html' ;
 		});
 	
 		$(".defined-load").click(function() {
 			loadURL("icss/loaders/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'defined.html' ;
 		});
 		$(".history-load").click(function() {
 			loadURL("icss/loaders/history.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'history.html' ;
 		});
 	
 	};

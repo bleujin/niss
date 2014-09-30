@@ -152,11 +152,16 @@
 			<!-- #PROJECTS: projects dropdown -->
 			<div class="project-context hidden-xs">
 
-				<span class="label">Projects:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+				<span class="label">Activity:</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent activity <i class="fa fa-angle-down"></i></span>
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu">
+					#set($path="/traces/$request.data('user')")
+					#foreach( $trace in $rsession.ghostBy($path).children().offset(3) )
+					    <li><a href="javascript:void(0);">$trace</a></li>
+					#end
+				
 					<li><a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a></li>
 					<li>
 						<a href="javascript:void(0);">Notes on pipeline upgradee</a>
@@ -238,18 +243,6 @@
 					"C",
 					"C++",
 					"Clojure",
-					"COBOL",
-					"ColdFusion",
-					"Erlang",
-					"Fortran",
-					"Groovy",
-					"Haskell",
-					"Java",
-					"JavaScript",
-					"Lisp",
-					"Perl",
-					"PHP",
-					"Python",
 					"Ruby",
 					"Scala",
 					"Scheme"]'>
@@ -269,17 +262,10 @@
 				<!-- multiple lang dropdown : find all flags in the flags page -->
 				<ul class="header-dropdown-list hidden-xs">
 					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-us" alt="United States"> <span> US </span> <i class="fa fa-angle-down"></i> </a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-kr" alt="Korea"> <span> KR </span> <i class="fa fa-angle-down"></i> </a>
 						<ul class="dropdown-menu pull-right">
-							<li class="active">
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> US</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-es" alt="Spanish"> Spanish</a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-de" alt="German"> German</a>
-							</li>
+							<!--li><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> US</a></li-->
+							<li class="active"><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Korea</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -303,7 +289,7 @@
 					<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 						<img src="img/avatars/sunny.png" alt="me" class="online" /> 
 						<span>
-							john.doe 
+							${request.data("user")} 
 						</span>
 						<i class="fa fa-angle-down"></i>
 					</a> 
@@ -319,11 +305,6 @@
 			will not initialize.
 			-->
 			<nav>
-				<!-- 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				-->
 
 				<ul>
 					<li class=""><a href="icss/dashboard.html" title="Dashboard"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span></a></li>
@@ -445,19 +426,19 @@
 		<div id="shortcut">
 			<ul>
 				<li>
-					<a href="#ajax/inbox.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-envelope fa-4x"></i> <span>Mail <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
+					<a href="#icss/dashboard.html" class="jarvismetro-tile big-cubes bg-color-blue"> <span class="iconbox"> <i class="fa fa-home fa-4x"></i> <span>Dashboard <span class="label pull-right bg-color-darken">14</span></span> </span> </a>
 				</li>
 				<li>
-					<a href="#ajax/calendar.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-calendar fa-4x"></i> <span>Calendar</span> </span> </a>
+					<a href="#icss/loaders.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-suitcase fa-4x"></i> <span>Loaders</span> </span> </a>
 				</li>
 				<li>
-					<a href="#ajax/gmap-xml.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-map-marker fa-4x"></i> <span>Maps</span> </span> </a>
+					<a href="#icss/indexers.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-upload fa-4x"></i> <span>Indexers</span> </span> </a>
 				</li>
 				<li>
-					<a href="#ajax/invoice.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-book fa-4x"></i> <span>Invoice <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
+					<a href="#icss/searchers.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-inbox fa-4x"></i> <span>Searchers <span class="label pull-right bg-color-darken">99</span></span> </span> </a>
 				</li>
 				<li>
-					<a href="#ajax/gallery.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-picture-o fa-4x"></i> <span>Gallery </span> </span> </a>
+					<a href="#icss/misc.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-windows fa-4x"></i> <span>Miscellaneous </span> </span> </a>
 				</li>
 				<li>
 					<a href="#ajax/profile.html" class="jarvismetro-tile big-cubes selected bg-color-pinkDark"> <span class="iconbox"> <i class="fa fa-user fa-4x"></i> <span>My Profile </span> </span> </a>
@@ -532,21 +513,6 @@
 
 		<!-- MAIN APP JS FILE -->
 		<script src="js/app.min.js"></script>
-
-		<!-- Your GOOGLE ANALYTICS CODE Below -->
-		<script type="text/javascript">
-		
-		  var _gaq = _gaq || [];
-		  _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
-		  _gaq.push(['_trackPageview']);
-		
-		  (function() {
-		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		  })();
-		
-		</script>
 
 	</body>
 

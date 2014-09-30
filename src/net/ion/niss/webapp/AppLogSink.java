@@ -42,11 +42,11 @@ public class AppLogSink implements LogSink {
 	}
 
 	public void httpStart(HttpRequest request) {
-		custom(request, "HTTP-START:" + request.method(), null);
+//		custom(request, "HTTP-START:" + request.method(), null);
 	}
 
 	public void httpEnd(HttpRequest request, HttpResponse response) {
-//		custom(request, "HTTP-END", null); // TODO: Time request
+		custom(request, "HTTP-END " + response.status(), null); // TODO: Time request
 	}
 
 	public void webSocketConnectionOpen(WebSocketConnection connection) {
@@ -140,6 +140,7 @@ public class AppLogSink implements LogSink {
 		formatValue(out, address(request.remoteAddress()));
 		formatValue(out, action);
 		formatValue(out, request.uri());
+		formatValue(out, request.method()) ;
 		formatValue(out, data);
 		for (String key : dataValuesToLog) {
 			formatValue(out, request.data(key));
@@ -156,6 +157,7 @@ public class AppLogSink implements LogSink {
 		formatValue(out, "RemoteHost");
 		formatValue(out, "Action");
 		formatValue(out, "Path");
+		formatValue(out, "Method") ;
 		formatValue(out, "Payload");
 		for (String key : dataValuesToLog) {
 			formatValue(out, "Data:" + key);

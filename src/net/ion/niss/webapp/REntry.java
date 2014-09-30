@@ -103,7 +103,7 @@ public class REntry implements Closeable {
 						central.indexConfig().indexAnalyzer(indexAnal) ;
 						central.searchConfig().queryAnalyzer(queryAnal) ;
 						
-						ReadChildren schemas = session.pathBy(indexNode.fqn().toString() + "/schema").children() ;
+						ReadChildren schemas = session.ghostBy(indexNode.fqn().toString() + "/schema").children() ;
 						for(ReadNode schemaNode : schemas.toList()) {
 							if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.Schema.SchemaType).asString())){
 								central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeIndexAnalyzer(schemaNode.property(Def.Schema.Analyzer).asString())) ;

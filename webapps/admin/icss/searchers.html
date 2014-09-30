@@ -87,6 +87,7 @@
 		}
 
 		var lastColId = '' ;
+		var lastMenuHTML = 'overview.html' ; 
 		$.ajax({
 			url:'/admin/searchers',
 			dataType:'json',
@@ -147,7 +148,7 @@
 				if (lastColId > ' ') { $("#searchers option[value='" + lastColId + "']").attr('selected', 'selected');  }
 				
 			} else {
-				loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+				loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 			}
 		}) ;
 
@@ -166,20 +167,24 @@
 	
 		// Buttons (compose mail and inbox load)
 		$(".overview-load").click(function() {
-			loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap'))
+			loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "overview.html" ;
 		});
-	
 		$(".defined-load").click(function() {
 			loadURL("icss/searchers/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "defined.html" ;
 		});
 		$(".query-load").click(function() {
 			loadURL("icss/searchers/query.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "query.html" ;
 		});
 		$(".template-load").click(function() {
 			loadURL("icss/searchers/template.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "template.html" ;
 		});
 		$(".browsing-load").click(function() {
 			loadURL("icss/searchers/browsing.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "browsing.html" ;
 		});
 	
 	};

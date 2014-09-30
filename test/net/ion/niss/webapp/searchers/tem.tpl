@@ -11,10 +11,10 @@
 	<th>Id</th>
 	<th>Title</th>
 </tr>
-${foreach response.getDocument() doc }
+${foreach response.getDocument() doc ,}
 <tr>
-	<td>${doc.getField(id).stringValue()}</td>
-	<td>${doc.getField(title).stringValue()}</td>
+	<td>${doc.getField(id).toString()}</td>
+	<td>${doc.getField(title).toString()}</td>
 </tr>
 ${end}
 </table>

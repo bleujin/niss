@@ -17,11 +17,13 @@
 	<classpathentry kind="lib" path="lib/imsi/solr-solrj-4.9.0.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/crawl_parse.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/jdbc_fat.jar"/>
-	<classpathentry kind="lib" path="lib/ref/aradon311_0.9.jar"/>
 	<classpathentry kind="lib" path="lib/ref/aclient_0.5.jar"/>
 	<classpathentry kind="lib" path="lib/common/crawl_apache_common.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/cglib-nodep-2.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/ref/isearcher_4.5.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search440_fat.jar"/>
+	<classpathentry kind="lib" path="lib/ref/aradon311_0.9.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/velocity-1.7.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/oro-2.0.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
