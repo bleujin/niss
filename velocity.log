@@ -1,0 +1,1121 @@
+2014-09-30 10:48:27,725 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:48:27,726 - Initializing Velocity, Calling init()...
+2014-09-30 10:48:27,726 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:48:27,726 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:48:27,726 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:48:27,726 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:48:27,726 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:48:27,726 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:48:27,730 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:48:27,731 - Do unicode file recognition:  false
+2014-09-30 10:48:27,731 - FileResourceLoader : adding path '.'
+2014-09-30 10:48:27,744 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:48:27,746 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:48:27,747 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:48:27,750 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:48:27,750 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:48:27,751 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:48:27,752 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:48:27,753 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:48:27,754 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:48:27,755 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:48:27,788 - Created '20' parsers.
+2014-09-30 10:48:27,793 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:48:27,793 - Velocimacro : Default library not found.
+2014-09-30 10:48:27,793 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:48:27,793 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:48:27,793 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:48:27,794 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:48:27,795 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:51:43,397 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:51:43,397 - Initializing Velocity, Calling init()...
+2014-09-30 10:51:43,397 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:51:43,397 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:51:43,397 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:51:43,397 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:51:43,397 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:51:43,397 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:51:43,402 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:51:43,403 - Do unicode file recognition:  false
+2014-09-30 10:51:43,403 - FileResourceLoader : adding path '.'
+2014-09-30 10:51:43,415 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:51:43,417 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:51:43,418 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:51:43,418 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:51:43,419 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:51:43,419 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:51:43,420 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:51:43,422 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:51:43,423 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:51:43,423 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:51:43,456 - Created '20' parsers.
+2014-09-30 10:51:43,461 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:51:43,461 - Velocimacro : Default library not found.
+2014-09-30 10:51:43,461 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:51:43,461 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:51:43,461 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:51:43,461 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:51:43,462 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:51:55,459 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:51:55,459 - Initializing Velocity, Calling init()...
+2014-09-30 10:51:55,459 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:51:55,460 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:51:55,460 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:51:55,460 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:51:55,460 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:51:55,460 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:51:55,464 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:51:55,465 - Do unicode file recognition:  false
+2014-09-30 10:51:55,465 - FileResourceLoader : adding path './net/ion/bleujin/velocity'
+2014-09-30 10:51:55,478 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:51:55,479 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:51:55,480 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:51:55,481 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:51:55,482 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:51:55,482 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:51:55,483 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:51:55,484 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:51:55,486 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:51:55,487 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:51:55,517 - Created '20' parsers.
+2014-09-30 10:51:55,523 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:51:55,523 - Velocimacro : Default library not found.
+2014-09-30 10:51:55,523 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:51:55,523 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:51:55,523 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:51:55,523 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:51:55,524 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:52:38,150 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:52:38,150 - Initializing Velocity, Calling init()...
+2014-09-30 10:52:38,151 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:52:38,151 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:52:38,151 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:52:38,151 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:52:38,151 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:52:38,151 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:52:38,155 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:52:38,156 - Do unicode file recognition:  false
+2014-09-30 10:52:38,156 - FileResourceLoader : adding path './net/ion/bleujin/velocity'
+2014-09-30 10:52:38,168 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:52:38,169 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:52:38,170 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:52:38,171 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:52:38,171 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:52:38,172 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:52:38,173 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:52:38,174 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:52:38,175 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:52:38,176 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:52:38,205 - Created '20' parsers.
+2014-09-30 10:52:38,211 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:52:38,211 - Velocimacro : Default library not found.
+2014-09-30 10:52:38,211 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:52:38,211 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:52:38,211 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:52:38,211 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:52:38,212 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:56:56,038 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:56:56,038 - Initializing Velocity, Calling init()...
+2014-09-30 10:56:56,038 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:56:56,038 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:56:56,038 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:56:56,038 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:56:56,038 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:56:56,038 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:56:56,043 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:56:56,044 - Do unicode file recognition:  false
+2014-09-30 10:56:56,044 - FileResourceLoader : adding path './net/ion/bleujin/velocity'
+2014-09-30 10:56:56,058 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:56:56,059 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:56:56,060 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:56:56,061 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:56:56,062 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:56:56,062 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:56:56,063 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:56:56,064 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:56:56,065 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:56:56,066 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:56:56,098 - Created '20' parsers.
+2014-09-30 10:56:56,103 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:56:56,103 - Velocimacro : Default library not found.
+2014-09-30 10:56:56,103 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:56:56,104 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:56:56,104 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:56:56,104 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:56:56,105 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:57:35,574 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:57:35,574 - Initializing Velocity, Calling init()...
+2014-09-30 10:57:35,574 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:57:35,574 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:57:35,574 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:57:35,574 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:57:35,575 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:57:35,575 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:57:35,579 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 10:57:35,579 - Do unicode file recognition:  false
+2014-09-30 10:57:35,580 - FileResourceLoader : adding path '/net/ion/bleujin/velocity'
+2014-09-30 10:57:35,592 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:57:35,594 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:57:35,595 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:57:35,595 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:57:35,596 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:57:35,597 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:57:35,598 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:57:35,599 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:57:35,600 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:57:35,601 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:57:35,632 - Created '20' parsers.
+2014-09-30 10:57:35,637 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:57:35,637 - Velocimacro : Default library not found.
+2014-09-30 10:57:35,637 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:57:35,637 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:57:35,637 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:57:35,637 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:57:35,638 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 10:58:23,664 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 10:58:23,664 - Initializing Velocity, Calling init()...
+2014-09-30 10:58:23,665 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 10:58:23,665 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 10:58:23,665 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 10:58:23,665 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 10:58:23,665 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:58:23,665 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 10:58:23,668 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2014-09-30 10:58:23,682 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 10:58:23,683 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 10:58:23,684 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 10:58:23,685 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 10:58:23,685 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 10:58:23,686 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 10:58:23,687 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 10:58:23,688 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 10:58:23,689 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 10:58:23,690 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 10:58:23,722 - Created '20' parsers.
+2014-09-30 10:58:23,727 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 10:58:23,727 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+2014-09-30 10:58:23,727 - Velocimacro : Default library not found.
+2014-09-30 10:58:23,728 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 10:58:23,728 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 10:58:23,728 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 10:58:23,728 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 10:58:23,729 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 11:00:04,094 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:00:04,094 - Initializing Velocity, Calling init()...
+2014-09-30 11:00:04,094 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:00:04,094 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:00:04,095 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:00:04,095 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:00:04,095 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:04,095 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:04,099 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:00:04,100 - Do unicode file recognition:  false
+2014-09-30 11:00:04,100 - FileResourceLoader : adding path 'D:\newgit\niss/net/ion/bleujin/velocity'
+2014-09-30 11:00:04,113 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:00:04,115 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:00:04,116 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:00:04,116 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:00:04,117 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:00:04,118 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:00:04,119 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:00:04,120 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:00:04,121 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:00:04,122 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:00:04,153 - Created '20' parsers.
+2014-09-30 11:00:04,158 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:00:04,159 - Velocimacro : Default library not found.
+2014-09-30 11:00:04,159 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:00:04,159 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:00:04,159 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:00:04,159 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 11:00:04,160 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 11:00:21,715 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:00:21,715 - Initializing Velocity, Calling init()...
+2014-09-30 11:00:21,715 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:00:21,715 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:00:21,715 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:00:21,715 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:00:21,715 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:21,715 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:21,720 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:00:21,721 - Do unicode file recognition:  false
+2014-09-30 11:00:21,721 - FileResourceLoader : adding path 'D:\newgit\niss/net/ion/bleujin/velocity'
+2014-09-30 11:00:21,735 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:00:21,737 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:00:21,739 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:00:21,741 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:00:21,741 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:00:21,742 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:00:21,743 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:00:21,752 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:00:21,753 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:00:21,754 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:00:21,790 - Created '20' parsers.
+2014-09-30 11:00:21,796 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:00:21,796 - Velocimacro : Default library not found.
+2014-09-30 11:00:21,796 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:00:21,796 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:00:21,796 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:00:21,796 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 11:00:21,804 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 11:00:40,241 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:00:40,242 - Initializing Velocity, Calling init()...
+2014-09-30 11:00:40,242 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:00:40,242 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:00:40,242 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:00:40,242 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:00:40,242 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:40,242 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:40,246 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:00:40,247 - Do unicode file recognition:  false
+2014-09-30 11:00:40,247 - FileResourceLoader : adding path 'D:\newgit\niss/test/net/ion/bleujin/velocity'
+2014-09-30 11:00:40,260 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:00:40,262 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:00:40,262 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:00:40,263 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:00:40,264 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:00:40,264 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:00:40,265 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:00:40,266 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:00:40,268 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:00:40,269 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:00:40,298 - Created '20' parsers.
+2014-09-30 11:00:40,304 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:00:40,304 - Velocimacro : Default library not found.
+2014-09-30 11:00:40,304 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:00:40,304 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:00:40,304 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:00:40,304 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 11:00:40,322 - ResourceManager : found hello.txt with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:00:47,413 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:00:47,413 - Initializing Velocity, Calling init()...
+2014-09-30 11:00:47,413 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:00:47,413 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:00:47,413 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:00:47,413 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:00:47,413 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:47,413 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:00:47,418 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:00:47,419 - Do unicode file recognition:  false
+2014-09-30 11:00:47,419 - FileResourceLoader : adding path '/test/net/ion/bleujin/velocity'
+2014-09-30 11:00:47,432 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:00:47,433 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:00:47,434 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:00:47,435 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:00:47,436 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:00:47,436 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:00:47,437 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:00:47,438 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:00:47,439 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:00:47,440 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:00:47,472 - Created '20' parsers.
+2014-09-30 11:00:47,478 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:00:47,478 - Velocimacro : Default library not found.
+2014-09-30 11:00:47,478 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:00:47,478 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:00:47,478 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:00:47,478 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 11:00:47,486 - ResourceManager : unable to find resource 'hello.txt' in any resource loader.
+2014-09-30 11:01:04,304 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:01:04,304 - Initializing Velocity, Calling init()...
+2014-09-30 11:01:04,304 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:01:04,304 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:01:04,304 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:01:04,304 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:01:04,305 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:01:04,305 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:01:04,309 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:01:04,310 - Do unicode file recognition:  false
+2014-09-30 11:01:04,310 - FileResourceLoader : adding path 'D:\newgit\niss/test/net/ion/bleujin/velocity'
+2014-09-30 11:01:04,323 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:01:04,324 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:01:04,325 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:01:04,326 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:01:04,326 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:01:04,327 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:01:04,328 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:01:04,329 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:01:04,330 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:01:04,331 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:01:04,359 - Created '20' parsers.
+2014-09-30 11:01:04,364 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:01:04,364 - Velocimacro : Default library not found.
+2014-09-30 11:01:04,364 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:01:04,364 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:01:04,364 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:01:04,364 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 11:01:04,380 - ResourceManager : found hello.txt with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:29:17,392 - Log4JLogChute initialized using file 'velocity.log'
+2014-09-30 11:29:17,392 - Initializing Velocity, Calling init()...
+2014-09-30 11:29:17,392 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2014-09-30 11:29:17,392 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2014-09-30 11:29:17,392 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2014-09-30 11:29:17,392 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2014-09-30 11:29:17,392 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:29:17,392 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2014-09-30 11:29:17,397 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2014-09-30 11:29:17,397 - Do unicode file recognition:  false
+2014-09-30 11:29:17,397 - FileResourceLoader : adding path 'D:\newgit\niss/webapps/admin'
+2014-09-30 11:29:17,410 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2014-09-30 11:29:17,412 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2014-09-30 11:29:17,413 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2014-09-30 11:29:17,413 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2014-09-30 11:29:17,414 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2014-09-30 11:29:17,414 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2014-09-30 11:29:17,416 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2014-09-30 11:29:17,417 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2014-09-30 11:29:17,418 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2014-09-30 11:29:17,419 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2014-09-30 11:29:17,449 - Created '20' parsers.
+2014-09-30 11:29:17,454 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2014-09-30 11:29:17,454 - Velocimacro : Default library not found.
+2014-09-30 11:29:17,454 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2014-09-30 11:29:17,454 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2014-09-30 11:29:17,454 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2014-09-30 11:29:17,454 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2014-09-30 14:34:18,356 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /index.html[line 160, column 90]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:34:25,601 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /index.html[line 160, column 90]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:37,524 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 81.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:37,525 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 81]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:43,106 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 81.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:43,107 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 81]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:48,753 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 81.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:48,754 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 81]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:55,628 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 81.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:36:55,629 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 81]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:41:29,706 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 77.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:41:29,706 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 77]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:41:35,648 - Parser Exception: /index.html
+org.apache.velocity.runtime.parser.ParseException: Encountered "user" at line 160, column 77.
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1972)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 14:41:35,648 - ResourceManager.getResource() exception
+org.apache.velocity.exception.ParseErrorException: Encountered "user" at /index.html[line 160, column 77]
+Was expecting one of:
+    <RPAREN> ...
+    <WHITESPACE> ...
+    "-" ...
+    "+" ...
+    "*" ...
+    "/" ...
+    "%" ...
+    <LOGICAL_AND> ...
+    <LOGICAL_OR> ...
+    <LOGICAL_LT> ...
+    <LOGICAL_LE> ...
+    <LOGICAL_GT> ...
+    <LOGICAL_GE> ...
+    <LOGICAL_EQUALS> ...
+    <LOGICAL_NOT_EQUALS> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.refreshResource(ResourceManagerImpl.java:569)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:319)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:48)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:04:44,131 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:04:50,787 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:04:58,330 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:29:14,410 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:29:20,919 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:29:28,439 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:29:35,960 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:29:43,381 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:31:47,810 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 17:31:53,421 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:31:19,706 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:31:26,093 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:32:44,431 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:32:51,097 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 942, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:37:13,174 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 913, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:37:18,619 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 913, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:38:37,045 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:38:43,626 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:49:20,829 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:49:26,177 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 87]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:50:19,309 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "(" (40), after : "" at /icss/dashboard.html[line 945, column 53]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 18:50:26,187 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "(" (40), after : "" at /icss/dashboard.html[line 945, column 53]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 19:04:18,777 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 88]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2014-09-30 19:04:26,260 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 88]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:51)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)

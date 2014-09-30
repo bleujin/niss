@@ -7,6 +7,7 @@ import java.nio.charset.Charset;
 
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.crud.ReadChildren;
+import net.ion.framework.util.ArrayUtil;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.handler.TemplateEngine;
 import net.ion.nradon.handler.authentication.BasicAuthenticationHandler;
@@ -42,10 +43,13 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		ve.init();
 	}
 
+	
+	private String[] template_html = new String[]{"/index.html"} ;
+	
 	@Override
 	public byte[] process(byte[] template, String templatePath, Object arg) throws RuntimeException {
 
-		if (templatePath.endsWith(".html")) {
+		if (ArrayUtil.contains(template_html, templatePath)) {
 			HttpRequest request = (HttpRequest) arg;
 
 			Template tpl = ve.getTemplate(templatePath);
