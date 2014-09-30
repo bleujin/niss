@@ -47,7 +47,7 @@
 			<section>
 				<label class="label">Indexer ID</label>
 				<label class="input">
-					<input type="text" id="newId" name="iid" placeholder="new indexer id" />
+					<input type="text" id="newIndexId" name="iid" placeholder="new indexer id" />
 				</label>
 			</section>
 		</fieldset>
@@ -203,7 +203,7 @@
 			}
 		}) ;
 
-		$("#indexers").change(function(){
+		$("#indexers").click(function(){
 			if ($(this).val() == '-new'){
 				$(function() {
 				$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
@@ -211,7 +211,7 @@
 					modal: true,
 					buttons: {
 						"Create Indexer": function() {
-							var newId = $("#newId").val() ;
+							var newId = $("#newIndexId").val() ;
 							var win = $( this ) ;
 							if (newId > ' '){
 								$.ajax({

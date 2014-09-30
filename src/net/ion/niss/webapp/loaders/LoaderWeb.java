@@ -81,9 +81,22 @@ public class LoaderWeb implements Webapp {
 	}
 
 
+	@POST
+	@Path("/{lid}")
+	public String newLoader(@PathParam("lid") final String lid) {
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy("/loaders/" + lid).property("name", lid).property("registered", System.currentTimeMillis());;
+				return null;
+			}
+		});
+		return "created " + lid;
+	}
+	
 	@DELETE
 	@Path("/{lid}")
-	public String removeScript(@PathParam("lid") final String lid) {
+	public String removeLoader(@PathParam("lid") final String lid) {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {

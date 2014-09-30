@@ -42,7 +42,7 @@
 			<section>
 				<label class="label">Searcher ID</label>
 				<label class="input">
-					<input type="text" id="newsid" name="newsid" placeholder="new searcher id" />
+					<input type="text" id="newSearchId" name="newsid" placeholder="new searcher id" />
 				</label>
 			</section>
 		</fieldset>
@@ -119,7 +119,7 @@
 					modal: true,
 					buttons: {
 						"Create Searcher": function() {
-							var newId = $("#newsid").val() ;
+							var newId = $("#newSearchId").val() ;
 							var win = $( this ) ;
 							console.log(newId + ' : ..' ) ;
 							if (newId > ' '){
