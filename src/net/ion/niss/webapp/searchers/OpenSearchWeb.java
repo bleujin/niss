@@ -1,6 +1,7 @@
 package net.ion.niss.webapp.searchers;
 
 import java.io.IOException;
+import java.io.StringWriter;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -38,10 +39,12 @@ import org.jboss.resteasy.spi.HttpRequest;
 public class OpenSearchWeb {
 	private ReadSession rsession;
 	private SearchManager smanager;
+	private QueryTemplateEngine qengine;
 
-	public OpenSearchWeb(@ContextParam("rentry") REntry rentry) throws IOException {
+	public OpenSearchWeb(@ContextParam("rentry") REntry rentry, @ContextParam("qtemplate") QueryTemplateEngine qengine) throws IOException {
 		this.rsession = rentry.login();
 		this.smanager = rentry.searchManager();
+		this.qengine = qengine ;
 	}
 
 	// --- query
@@ -109,12 +112,17 @@ public class OpenSearchWeb {
 			MultivaluedMap<String, String> map = request.getUri().getQueryParameters();
 			SearchResponse sresponse = searchQuery(sid, query, sort, skip, offset, request, map);
 
-			String template = rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString();
-
-			Engine engine = rsession.workspace().parseEngine();
-			return engine.transform(template, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap());
-		} catch (net.ion.framework.mte.message.ParseException tex) {
-			tex.printStackTrace();
+			String resourceName = fqnBy(sid).toString() + ".template" ;
+			StringWriter writer = new StringWriter();
+			qengine.merge(resourceName, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap(), writer);
+			
+			return writer.toString() ;
+			
+//			String template = rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString();
+//			Engine engine = rsession.workspace().parseEngine();
+//			return engine.transform(template, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap());
+		} catch (org.apache.velocity.exception.ParseErrorException tex) {
+			tex.printStackTrace(); 
 			return tex.getMessage();
 		}
 	}

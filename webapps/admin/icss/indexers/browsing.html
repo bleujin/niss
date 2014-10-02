@@ -41,7 +41,7 @@
 			<div class="jarviswidget jarviswidget-color-purple" id="search-browsing-0" data-widget-editbutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-					<h2>Index Data Tables</h2>
+					<h2>Index Data Tables(Max : 101)</h2>
 
 				</header>
 
@@ -49,32 +49,30 @@
 
 					<div class="jarviswidget-editbox"></div>
 
-					<!-- widget content -->
 					<div class="widget-body no-padding">
 
 						
 						<table id="example" class="table table-bordered table-hover" width="100%">
 							
 						</table>
+						<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+						</form>
 					</div>
-					
-					<!-- end widget content -->
 
 				</div>
-				<!-- end widget div -->
 
 			</div>
-			<!-- end widget -->
 
 		</article>
-		<!-- WIDGET END -->
 
 	</div>
 
-	<!-- end row -->
 
 </section>
-<!-- end widget grid -->
 
 <script type="text/javascript">
 
@@ -105,7 +103,7 @@
 		});
 		
 		var indexerId = $("#indexers option:selected").val() ;
-		if (indexerId.indexOf('-') == 0) return ;
+		if (indexerId == undefined) return ;
 		
 		$.ajax({
 			url:"/admin/indexers/" + indexerId + "/browsing",
@@ -154,7 +152,12 @@
 							type:'POST', 
 							data : {'indexIds':indexIds}, 
 							success:function(data){
-								targets.remove().draw(false) ;			
+								targets.remove().draw(false) ;
+								$("#save-message span").html(data) ;
+								$("#save-message").removeClass("message") ;
+								setTimeout(function() {
+									$("#save-message").addClass("message") ;
+								}, 2000);
 							}, 
 							error:function(request,status,error){
 								console.log('response', request, status, error) ;
@@ -197,9 +200,6 @@
 			}
 		}) ;
 		
-		/* BASIC ;*/
-		
-		/* END BASIC */
 	};
 
 	// load related plugins

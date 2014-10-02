@@ -23,13 +23,14 @@ public class HTMLTemplateEngine implements TemplateEngine {
 	private Charset utf8;
 	private VelocityEngine ve;
 	private ReadSession rsession;
+	private REntry rentry;
 
 	public HTMLTemplateEngine(TreeContext tcontext) throws IOException {
 		this.utf8 = Charset.forName("UTF-8") ;
 		this.ve = new VelocityEngine();
 		this.vcontext = new VelocityContext() ;
 		vcontext.put(TreeContext.class.getCanonicalName(), tcontext) ;
-		REntry rentry = tcontext.getAttributeObject(REntry.EntryName, REntry.class) ;
+		this.rentry = tcontext.getAttributeObject(REntry.EntryName, REntry.class) ;
 		this.rsession = rentry.login() ;
 
 		ve.setProperty("resource.loader", "file");
@@ -44,7 +45,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 	}
 
 	
-	private String[] template_html = new String[]{"/index.html"} ;
+	private String[] template_html = new String[]{"/index.html", "/indexers.html"} ;
 	
 	@Override
 	public byte[] process(byte[] template, String templatePath, Object arg) throws RuntimeException {
@@ -62,7 +63,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 			if (templatePath.equals("/index.html")) {
 				ReadChildren children = rsession.ghostBy("/traces/" + request.data(BasicAuthenticationHandler.USERNAME)).children() ;
 				vc.put("traces", children) ;
-			}
+			} 
 			
 			
 			

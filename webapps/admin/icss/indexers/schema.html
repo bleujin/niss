@@ -98,7 +98,7 @@
 		});
 		
 		var indexerId = $("#indexers option:selected").val() ;
-		if (indexerId.indexOf('-') == 0) return ;
+		if (indexerId == undefined) return ;
 		
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());

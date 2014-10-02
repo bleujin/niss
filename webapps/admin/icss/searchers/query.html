@@ -159,7 +159,7 @@
 		});
 		
 		var searcherId = $("#searchers option:selected").val() ;
-		if (searcherId.indexOf('-') == 0) return ;
+		if (searcherId == undefined) return ;
 		
 		$.ajax({
 			url:'/admin/menus/searchers?field=query',

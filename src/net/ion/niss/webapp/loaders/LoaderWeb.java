@@ -113,13 +113,14 @@ public class LoaderWeb implements Webapp {
 	@Path("/{lid}/define")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String createScript(@PathParam("lid") final String lid, @FormParam("name") final String name, @FormParam("content") final String content) {
-		return "created " + rsession.tran(new TransactionJob<String>() {
+		rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
 				wsession.pathBy("/loaders").child(lid).property("name", name).property("content", content).property("registered", System.currentTimeMillis());
 				return lid;
 			}
 		});
+		return "defined loader : " + lid;
 	}
 
 

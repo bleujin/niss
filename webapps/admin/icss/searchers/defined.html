@@ -87,6 +87,11 @@
 							
 						</fieldset>
 						
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+						
 						<footer>
 							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>	
 							<button class="btn btn-primary" type="button" id="btn_default"><i class="fa fa-times"></i> LoadDefault</button>
@@ -137,7 +142,7 @@
 		});
 
 		var searcherId = $("#searchers option:selected").val() ;
-		if (searcherId.indexOf('-') == 0) return ;
+		if (searcherId == undefined) return ;
 		
 		$.ajax({
 			url:'/admin/searchers/' + searcherId +'/define',
@@ -202,10 +207,14 @@
 				url: "/admin/searchers/" + searcherId + "/define",
 				data: { 'target': targets.toString(), queryanalyzer: $("#query_analyzer").val(), handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, stopword: $("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false}, 
 				complete : function(){ 
-					$("#index_url").text(this.url) ;
+					
 				}, 
 				success :  function(data) {
-					$("#index_result").text(data) ;
+					$("#save-message span").html(data) ;
+					$("#save-message").removeClass("message") ;
+					setTimeout(function() {
+						$("#save-message").addClass("message") ;
+					}, 2000);
 				}
 			}) ;
 			

@@ -147,7 +147,7 @@
 		});
 		
 		var indexerId = $("#indexers option:selected").val() ;
-		if (indexerId.indexOf('-') == 0) return ;
+		if (indexerId == undefined) return ;
 		
 		$.ajax({
 			url:'/admin/indexers/' + indexerId +'/index',

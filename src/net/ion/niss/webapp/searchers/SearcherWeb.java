@@ -1,8 +1,11 @@
 package net.ion.niss.webapp.searchers;
 
 import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -28,10 +31,12 @@ import net.ion.craken.tree.Fqn;
 import net.ion.framework.mte.Engine;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
+import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
@@ -40,17 +45,24 @@ import net.ion.niss.webapp.common.CSVStreamOut;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
+import net.ion.niss.webapp.indexers.ResFns;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
+import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJobs;
+import net.ion.nsearcher.search.ISearchable;
+import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
+import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 
+import org.apache.commons.collections.list.SetUniqueList;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpRequest;
 
@@ -61,10 +73,12 @@ public class SearcherWeb implements Webapp {
 
 	private ReadSession rsession;
 	private SearchManager smanager;
+	private QueryTemplateEngine qengine;
 
-	public SearcherWeb(@ContextParam("rentry") REntry rentry) throws IOException {
+	public SearcherWeb(@ContextParam("rentry") REntry rentry, @ContextParam("qtemplate") QueryTemplateEngine qengine) throws IOException {
 		this.rsession = rentry.login();
 		this.smanager = rentry.searchManager();
+		this.qengine = qengine ;
 	}
 
 	@GET
@@ -149,7 +163,7 @@ public class SearcherWeb implements Webapp {
 			}
 		});
 
-		return "modified " + sid;
+		return "defined searcher : " + sid;
 	}
 
 	@GET
@@ -224,11 +238,12 @@ public class SearcherWeb implements Webapp {
 			MultivaluedMap<String, String> map = request.getUri().getQueryParameters();
 			SearchResponse sresponse = searchQuery(sid, query, sort, skip, offset, request, map);
 
-			String template = rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString();
-
-			Engine engine = rsession.workspace().parseEngine();
-			return engine.transform(template, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap());
-		} catch (net.ion.framework.mte.message.ParseException tex) {
+			String resourceName = fqnBy(sid).toString() + ".template" ;
+			StringWriter writer = new StringWriter();
+			qengine.merge(resourceName, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap(), writer);
+			
+			return writer.toString() ;
+		} catch (org.apache.velocity.exception.ParseErrorException tex) {
 			tex.printStackTrace(); 
 			return tex.getMessage();
 		}
@@ -262,9 +277,75 @@ public class SearcherWeb implements Webapp {
 				return null;
 			}
 		});
-		return "modified template";
+		return "modified template : " + sid;
 	}
 
+	
+	@GET
+	@Path("/{sid}/browsing")
+	public JsonObject browsing(@PathParam("sid") final String sid, @DefaultValue("") @QueryParam("searchQuery") final String searchQuery, @DefaultValue("101") @QueryParam("offset") final int offset) throws IOException, ParseException{
+		
+		final SearchResponse response = smanager.searcher(sid).createRequest(searchQuery).offset(offset).find() ;
+		
+		return response.transformer(new Function<TransformerKey, JsonObject>() {
+			@Override
+			public JsonObject apply(TransformerKey tkey) {
+				List<Integer> docs = tkey.docs();
+				SearchRequest request = tkey.request();
+				ISearchable searcher = tkey.searcher();
+
+				JsonObject result = JsonObject.create();
+				JsonObject header = JsonObject.create();
+				result.add("header", header);
+
+				header.put("size", docs.size());
+				header.put("total", response.totalCount());
+				header.put("skip", request.skip());
+				header.put("offset", request.offset());
+
+				header.put("elapsedTime", response.elapsedTime());
+				JsonArray jarray = new JsonArray();
+				result.put("data", jarray);
+				result.put("info", rsession.ghostBy("/menus/searchers").property("browsing").asString()) ;
+
+				try {
+					
+					Set<String> fnames = SetUtil.newOrdereddSet() ;
+					fnames.add("id") ;
+					for (int did : docs) {
+						ReadDocument rdoc = searcher.doc(did, request);
+						for(String fname : rdoc.fieldNames()){
+							fnames.add(fname) ;
+						}
+					} // define fnames
+					
+					JsonArray schemaNames = new JsonArray();
+					for (String fname : fnames) {
+						schemaNames.add(new JsonObject().put("title", fname)) ;
+					}
+					result.put("schemaName", schemaNames) ;
+					
+					
+					for (int did : docs) {
+						ReadDocument rdoc = searcher.doc(did, request);
+						JsonArray rowArray = new JsonArray() ;
+						for(String fname : fnames){
+							rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
+						}
+						jarray.add(rowArray);
+					}
+
+					return result;
+				} catch (IOException ex) {
+					header.put("exception", ex.getMessage());
+					return result;
+				}
+			}
+		});
+	}
+	
+	
+	
 	private Fqn fqnBy(String sid) {
 		return Fqn.fromString("/searchers/" + IdString.create(sid).idString());
 	}

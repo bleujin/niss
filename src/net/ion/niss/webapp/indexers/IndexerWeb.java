@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.DELETE;
@@ -41,6 +42,7 @@ import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.ObjectUtil;
+import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
@@ -63,7 +65,10 @@ import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
 import net.ion.nsearcher.search.EachDocHandler;
 import net.ion.nsearcher.search.EachDocIterator;
+import net.ion.nsearcher.search.ISearchable;
+import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
+import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
@@ -613,38 +618,54 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/browsing")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JsonObject browsing(@PathParam("iid") String iid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
-		JsonArray schemaName = new JsonArray().add(new JsonObject().put("title", "Id")) ;
-		final String[] names = rsession.ghostBy("/indexers/" + iid + "/schema").childrenNames().toArray(new String[0]) ;
-		for (String name : names) {
-			schemaName.add(new JsonObject().put("title", name)) ;
-		}
-		schemaName.add(new JsonObject().put("title", "_all")) ;
-		
-		JsonObject result = new JsonObject() ;
-		result.add("schemaName", schemaName);
+		final JsonObject result = new JsonObject() ;
+
+		result.put("info", rsession.ghostBy("/menus/indexers").property("browsing").asString()) ;
 
 		SearchResponse response = imanager.index(iid).newSearcher().createRequest(query).offset(101).find() ;
-		JsonArray data = response.eachDoc(new EachDocHandler<JsonArray>() {
+		return response.transformer(new Function<TransformerKey, JsonObject>(){
 			@Override
-			public JsonArray handle(EachDocIterator iter) {
-				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadDocument doc = iter.next() ;
-					JsonArray ja = new JsonArray() ;
-					ja.add(new JsonPrimitive(doc.asString("id", ObjectUtil.coalesce(doc.reserved(IKeywordField.DocKey), "")))) ;
-					for (String name : names) {
-						ja.add(new JsonPrimitive(doc.asString(name, ""))) ;
+			public JsonObject apply(TransformerKey tkey) {
+				List<Integer> docs = tkey.docs();
+				SearchRequest request = tkey.request();
+				ISearchable searcher = tkey.searcher();
+				
+				try {
+					
+					Set<String> fnames = SetUtil.newOrdereddSet() ;
+					fnames.add("id") ;
+					for (int did : docs) {
+						ReadDocument rdoc = searcher.doc(did, request);
+						for(String fname : rdoc.fieldNames()){
+							fnames.add(fname) ;
+						}
+					} // define fnames
+					
+					JsonArray schemaNames = new JsonArray();
+					for (String fname : fnames) {
+						schemaNames.add(new JsonObject().put("title", fname)) ;
 					}
-					ja.add(new JsonPrimitive(doc.transformer(ResFns.ReadDocToJson).toString())) ;
-					result.add(ja) ;
+					result.put("schemaName", schemaNames) ;
+					
+					
+					JsonArray dataArray = new JsonArray() ;
+					for (int did : docs) {
+						ReadDocument rdoc = searcher.doc(did, request);
+						JsonArray rowArray = new JsonArray() ;
+						for(String fname : fnames){
+							rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
+						}
+						dataArray.add(rowArray);
+					}
+					result.put("data", dataArray) ;
+
+					return result;
+				} catch (IOException ex) {
+					result.put("exception", ex.getMessage());
+					return result;
 				}
-				return result;
 			}
 		}) ;
-		
-		result.put("info", rsession.ghostBy("/menus/indexers").property("browsing").asString()) ;
-		result.add("data", data);
-		return result;
 	}
 	
 	@POST

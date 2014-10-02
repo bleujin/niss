@@ -6,8 +6,7 @@
 
 	<div class="inbox-side-bar">
 		<div class="well">Choose Indexer
-			<select class="input-sm" id="indexers">
-			</select>
+			<select class="input-sm choose-sub" id="indexers"></select>
 		</div>
 		
 		<ul class="inbox-menu-lg">
@@ -18,12 +17,18 @@
 
 			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
 			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Browsing</a></li>
+			
+			<li><br /><br /><li>
+			<li class="dd-item" data-id="1">
+				<div class="dd-handle create-open">
+					Create <span> Indexer</span>
+				</div>
+			</li>
 		</ul>
 		
 
 		<div class="air air-bottom inbox-space">
-			FileSize : <strong>1G</strong><br>
-			DocCount : <strong>100</strong><a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			&nbsp;<a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Remove Indexer" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
 			<div class="progress progress-micro">
 				<div class="progress-bar progress-primary" style="width: 0%;"></div>
 			</div>
@@ -49,6 +54,16 @@
 				<label class="input">
 					<input type="text" id="newIndexId" name="iid" placeholder="new indexer id" />
 				</label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+<div id="remove-indexer-confirm" title="Remove Indexer" style="display:none">
+	<form class="smart-form" id="remove-indexer-form" method="post" action="indexers/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Indexer : <span id="removeIndexerId"></span></label>
 			</section>
 		</fieldset>
 	</form>
@@ -178,7 +193,7 @@
 
 		}
 		
-		var lastColId = '' ;
+		var lastIndexerId = '' ;
 		var lastMenuHTML = 'overview.html' ;
 		
 		$.ajax({
@@ -190,12 +205,10 @@
 					var option = $('<option value="'+col['iid']+'">'+col['name']+'</option>') ;
 					option.appendTo($("#indexers")) ;
 				}
-				$("#indexers option:eq(0)").attr("selected", "selected");
-				$('<option value="-new">.Create Indexer</option>').appendTo($("#indexers")) ;
 				
 				//LOAD INBOX MESSAGES
 				loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
-				lastColId = $("#indexers").val() ;
+				lastIndexerId = $("#indexers").val() ;
 				
 			}, 
 			error:function(request,status,error){
@@ -203,45 +216,44 @@
 			}
 		}) ;
 
-		$("#indexers").click(function(){
-			if ($(this).val() == '-new'){
-				$(function() {
-				$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
-				$( "#new-indexer-confirm" ).dialog({
-					modal: true,
-					buttons: {
-						"Create Indexer": function() {
-							var newId = $("#newIndexId").val() ;
-							var win = $( this ) ;
-							if (newId > ' '){
-								$.ajax({
-									type: "POST",
-									dataType : 'text', 
-									url: "/admin/indexers/" + newId,
-									data: { }, 
-									complete : function(){ 
-										// $("#query_url").text(this.url) ;
-									}, 
-									success :  function(data) {
-										$("#indexers option:eq(0)").after('<option value="'+newId+'" selected="selected">'+newId+'</option>');
-										loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
-										win.dialog( "close" );
-									}
-								}) ;	
-							}
-							},
-						Cancel: function() {
-							$(this).dialog( "close" );
-						}}
-					});
-				});
-				if (lastColId > ' ') { $("#indexers option[value='" + lastColId + "']").attr('selected', 'selected');  }
-				
-			} else {
-				lastColId = $(this).val() ;
-				loadURL("icss/indexers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
-			}
+		$(".choose-sub").change(function(){
+			loadURL("icss/indexers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+			lastIndexerId = $("#indexers").val() ;
 		}) ;
+		
+		$(".fa-trash-o").click(function(){
+			$("#remove-indexer-confirm" ).css('visibility', 'visible') ;
+			$("#removeIndexerId").html($("#indexers option:selected" ).text()) ;
+			$("#remove-indexer-confirm" ).dialog({
+				modal: true,
+				buttons: {
+					"Remove Indexer": function() {
+						var removeId = lastIndexerId ;
+						var win = $( this ) ;
+						if (removeId > ' '){
+							$.ajax({
+								type: "DELETE",
+								dataType : 'text', 
+								url: "/admin/indexers/" + removeId,
+								data: { }, 
+								complete : function(){ 
+									// $("#query_url").text(this.url) ;
+								}, 
+								success :  function(data) {
+									$("#indexers option:selected").remove();
+									loadURL("icss/indexers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+									win.dialog( "close" );
+								}
+							}) ;	
+						}
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}) ;
+		
 		
 
 		$("#schematype").change(function(){
@@ -287,6 +299,38 @@
 			lastMenuHTML = "browsing.html" ;
 		});
 	
+		
+		$(".create-open").click(function() {
+			$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
+			$( "#new-indexer-confirm" ).dialog({
+				modal: true,
+				buttons: {
+					"Create Indexer": function() {
+						var newId = $("#new-indexer-confirm #newIndexId").val() ;
+						
+						var win = $( this ) ;
+						if (newId > ' '){
+							$.ajax({
+								type: "POST",
+								dataType : 'text', 
+								url: "/admin/indexers/" + newId,
+								data: { }, 
+								complete : function(){ 
+									// $("#query_url").text(this.url) ;
+								}, 
+								success :  function(data) {
+									$("#indexers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+									loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+									win.dialog("close");
+								}
+							}) ;	
+						}
+						},
+					Cancel: function() {
+						$(this).dialog( "close" );
+					}}
+			});
+		});
 	};
 
 	pagefunction();

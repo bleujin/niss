@@ -1,9 +1,9 @@
 
 <ul>
-	<li>elapsedTime : ${response.elapsedTime()}
-	<li>size : ${response.size()}
-	<li>totalCount : ${response.totalCount()}
-	<li>params : ${params}
+	<li>elapsedTime : $response.elapsedTime()
+	<li>size : $response.size()
+	<li>totalCount : $response.totalCount()
+	<li>params : $params
 </ul>
 
 <table>
@@ -11,10 +11,11 @@
 	<th>Id</th>
 	<th>Title</th>
 </tr>
-${foreach response.getDocument() doc }
+
+#foreach($doc in $response.getDocument())
 <tr>
-	<td>${doc.getField(id).stringValue()}</td>
-	<td>${doc.getField(title).stringValue()}</td>
+	<td>$doc.getField("id").stringValue()</td>
+	<td>$doc.getField("title").stringValue()</td>
 </tr>
-${end}
+#end
 </table>

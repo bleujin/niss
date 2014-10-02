@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.Date;
 
+import scala.collection.mutable.StringBuilder;
+import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.HttpRequest;
@@ -21,7 +23,7 @@ public class AppLogSink implements LogSink {
 	protected final Appendable out;
 	protected final String[] dataValuesToLog;
 
-	protected final String lineSeparator = System.getProperty("line.separator", "\n");
+	protected final char lineSeparator = '\n';
 
 	protected boolean trouble = false;
 
@@ -42,11 +44,14 @@ public class AppLogSink implements LogSink {
 	}
 
 	public void httpStart(HttpRequest request) {
+		request.data("_etime", System.currentTimeMillis()) ;
 //		custom(request, "HTTP-START:" + request.method(), null);
 	}
 
 	public void httpEnd(HttpRequest request, HttpResponse response) {
-		custom(request, "HTTP-END " + response.status(), null); // TODO: Time request
+		long etime = (Long)ObjectUtil.coalesce(request.data("_etime"), 0L) ;
+		
+		custom(request, "HTTP-END " + response.status(), "" + (System.currentTimeMillis() - etime)); // TODO: Time request
 	}
 
 	public void webSocketConnectionOpen(WebSocketConnection connection) {
@@ -133,51 +138,55 @@ public class AppLogSink implements LogSink {
 	protected Appendable formatLogEntry(Appendable out, HttpRequest request, String action, String data) throws IOException {
 		long cumulativeTimeOfRequest = cumulativeTimeOfRequest(request);
 		Date now = new Date();
-		formatValue(out, now);
-		formatValue(out, now.getTime());
-		formatValue(out, cumulativeTimeOfRequest);
-		formatValue(out, request.id());
-		formatValue(out, address(request.remoteAddress()));
-		formatValue(out, action);
-		formatValue(out, request.uri());
-		formatValue(out, request.method()) ;
-		formatValue(out, data);
+		StringBuilder sb = new StringBuilder() ;
+		formatValue(sb, now);
+		formatValue(sb, now.getTime());
+		formatValue(sb, cumulativeTimeOfRequest);
+		formatValue(sb, request.id());
+		formatValue(sb, address(request.remoteAddress()));
+		formatValue(sb, action);
+		formatValue(sb, request.uri());
+		formatValue(sb, request.method()) ;
+		formatValue(sb, data);
 		for (String key : dataValuesToLog) {
-			formatValue(out, request.data(key));
+			formatValue(sb, request.data(key));
 		}
-		return out.append(lineSeparator);
+		sb.append(lineSeparator) ;
+		return out.append(sb);
 	}
 
 	protected Appendable formatHeader(Appendable out) throws IOException {
-		out.append("#Log started at ").append(new Date().toString()).append(" (").append(String.valueOf(System.currentTimeMillis())).append(")").append(lineSeparator).append('#');
-		formatValue(out, "Date");
-		formatValue(out, "Timestamp");
-		formatValue(out, "MillsSinceRequestStart");
-		formatValue(out, "RequestID");
-		formatValue(out, "RemoteHost");
-		formatValue(out, "Action");
-		formatValue(out, "Path");
-		formatValue(out, "Method") ;
-		formatValue(out, "Payload");
+		StringBuilder sb = new StringBuilder() ;
+		sb.append("#Log started at ").append(new Date().toString()).append(" (").append(String.valueOf(System.currentTimeMillis())).append(")").append(lineSeparator).append('#');
+		formatValue(sb, "Date");
+		formatValue(sb, "Timestamp");
+		formatValue(sb, "MillsSinceRequestStart");
+		formatValue(sb, "RequestID");
+		formatValue(sb, "RemoteHost");
+		formatValue(sb, "Action");
+		formatValue(sb, "Path");
+		formatValue(sb, "Method") ;
+		formatValue(sb, "Payload");
 		for (String key : dataValuesToLog) {
-			formatValue(out, "Data:" + key);
+			formatValue(sb, "Data:" + key);
 		}
-		return out.append(lineSeparator);
+		sb.append(lineSeparator);
+		return out.append(sb) ;
 	}
 
 	private long cumulativeTimeOfRequest(HttpRequest request) {
 		return System.currentTimeMillis() - request.timestamp();
 	}
 
-	protected Appendable formatValue(Appendable out, Object value) throws IOException {
+	protected StringBuilder formatValue(StringBuilder sb, Object value) throws IOException {
 		if (value == null) {
-			return out.append("-\t");
+			return sb.append("-\t");
 		}
 		String string = value.toString().trim();
 		if (StringUtil.isEmpty(string)) {
-			return out.append("-\t");
+			return sb.append("-\t");
 		}
-		return out.append(string).append('\t');
+		return sb.append(string).append('\t');
 	}
 
 	protected String address(SocketAddress address) {
