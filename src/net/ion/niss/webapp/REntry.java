@@ -131,6 +131,14 @@ public class REntry implements Closeable {
 					}
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
+				} catch (ClassNotFoundException ex) {
+					throw new IllegalStateException(ex);
+				} catch (InstantiationException ex) {
+					throw new IllegalStateException(ex);
+				} catch (IllegalAccessException ex) {
+					throw new IllegalStateException(ex);
+				} catch (InvocationTargetException ex) {
+					throw new IllegalStateException(ex);
 				}
 
 				return null;
@@ -150,6 +158,14 @@ public class REntry implements Closeable {
 				try {
 					registerSearcher(new EventPropertyReadable(cevent), jsengine);
 				} catch (IOException ex) {
+					throw new IllegalStateException(ex);
+				} catch (ClassNotFoundException ex) {
+					throw new IllegalStateException(ex);
+				} catch (InstantiationException ex) {
+					throw new IllegalStateException(ex);
+				} catch (IllegalAccessException ex) {
+					throw new IllegalStateException(ex);
+				} catch (InvocationTargetException ex) {
 					throw new IllegalStateException(ex);
 				}
 				return null;
@@ -321,7 +337,7 @@ public class REntry implements Closeable {
 	}
 	
 	
-	private void registerSearcher(PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException {
+	private void registerSearcher(PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		Set<String> cols = rnode.property(Def.Searcher.Target).asSet();
 		IdString sid = IdString.create(rnode.fqn().name());
 		
@@ -335,7 +351,9 @@ public class REntry implements Closeable {
 					target.add(indexManager.index(colId));
 				}
 			}
-			SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
+			
+			Analyzer queryAnalyzer = makeIndexAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString()) ;
+			SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
 			searcher = CompositeSearcher.create(nconfig, target);
 		}
 

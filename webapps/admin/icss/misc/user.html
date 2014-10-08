@@ -31,50 +31,29 @@
 
 
 <section id="widget-grid" class="">
-
-	<!-- row -->
 	<div class="row">
 
-		<!-- NEW WIDGET START -->
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
 			<div class="jarviswidget jarviswidget-color-purple" id="misc-user-0" data-widget-editbutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>User Tables</h2>
-
 				</header>
 
 				<div>
-
 					<div class="jarviswidget-editbox"></div>
-
-					<!-- widget content -->
 					<div class="widget-body no-padding">
-
-						
 						<table id="example" class="table table-bordered table-hover" width="100%">
-							
 						</table>
 					</div>
-					
-					<!-- end widget content -->
-
 				</div>
-				<!-- end widget div -->
 
 			</div>
-			<!-- end widget -->
 
 		</article>
-		<!-- WIDGET END -->
-
 	</div>
 
-	<!-- end row -->
-
 </section>
-<!-- end widget grid -->
 
 <script type="text/javascript">
 
@@ -136,7 +115,7 @@
 				} );
 				
 				$('#misc-user-0 a[name=create_user]').click(function(){
-					$('#create_user_form').modal({});
+					$('#create_user_modal').modal({});
 				});
 				
 				
@@ -151,11 +130,12 @@
 					$.ajax({
 						url:"/admin/misc/users_remove",
 						type:'POST', 
+						dataType:'text', 
 						data : {'users':users}, 
 						success:function(data){
 							targets.remove().draw(false) ;			
 						}, 
-						error:function(request,status,error){
+						fail:function(request,status,error){
 							console.log('response', request, status, error) ;
 						}
 					});

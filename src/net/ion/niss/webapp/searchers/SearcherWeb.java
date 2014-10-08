@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -117,6 +118,23 @@ public class SearcherWeb implements Webapp {
 		return "created " + sid;
 	}
 
+	@DELETE
+	@Path("/{sid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String removeSearch(@PathParam("sid") final String sid) {
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(fqnBy(sid)).removeSelf() ;
+				return null;
+			}
+		});
+
+		return "removed " + sid;
+	}
+
+
+	
 	@GET
 	@Path("/{sid}/define")
 	@Produces(MediaType.APPLICATION_JSON)

@@ -48,17 +48,18 @@
 					</div>
 					
 					<div class="widget-body">
-					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+					<form class="smart-form" id="searcher-define-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
 						
-							<div class="form-group">
+							<section class="form-group">
 								<label>Target Indexer</label>
-								<select multiple style="width:100%" class="select2" id="target_indexer">
+								<label class="select">
+								<select multiple style="width:100%" class="select2" id="target_indexer" name="target_indexer">
 									<optgroup label="Target Indexer" id="list_indexer">
 									</optgroup>
 								</select>
-								<hr class="simple">
-							</div>
+								</label>
+							</section>
 
 							<section>
 								<label class="label">Query Analyzer</label>
@@ -183,14 +184,13 @@
 		}) ;
 		
 		
-		$( ".btn-primary" ).click(function() {		
+		$( "#searcher-define-form .btn-primary" ).click(function() {		
 			$.ajax({
 				type: "GET",
 				url: "/admin/searchers/" + searcherId + "/define.default",
 				dataType:'text',
 				success:function(data){
 					$("#handler").val(data);
-					console.log(data) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;
@@ -198,26 +198,52 @@
 			}) ;
 		});
 		
-		$( "#btn_save" ).click(function() {
-			var targets = [];
-    			$("#target_indexer").each(function(){ targets.push($(this).val()) });
-			$.ajax({
-				type: "POST",
-				dataType : 'text', 
-				url: "/admin/searchers/" + searcherId + "/define",
-				data: { 'target': targets.toString(), queryanalyzer: $("#query_analyzer").val(), handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, stopword: $("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false}, 
-				complete : function(){ 
-					
-				}, 
-				success :  function(data) {
-					$("#save-message span").html(data) ;
-					$("#save-message").removeClass("message") ;
-					setTimeout(function() {
-						$("#save-message").addClass("message") ;
-					}, 2000);
+		
+		var $defineForm = $("#searcher-define-form").validate({
+			// Rules for form validation
+			rules : {
+				target_indexer : {
+					required : true
 				}
-			}) ;
-			
+			},
+
+			// Messages for form validation
+			messages : {
+				target_indexer : {
+					required : 'Please select target indexer',
+				}
+			},
+
+			// Ajax form submition
+			submitHandler : function(form) {
+				var targets = [];
+	    		$("#target_indexer").each(function(){ targets.push($(this).val()) });
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/searchers/" + searcherId + "/define",
+					data: { 'target': targets.toString(), queryanalyzer: $("#query_analyzer").val(), handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, stopword: $("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false}, 
+					complete : function(){ 
+						
+					}, 
+					success :  function(data) {
+						$("#save-message span").html(data) ;
+						$("#save-message").removeClass("message") ;
+						setTimeout(function() {
+							$("#save-message").addClass("message") ;
+						}, 2000);
+					}
+				}) ;
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		
+		$( "#btn_save" ).click(function() {
+			$("#searcher-define-form").submit() ;
 		});
 		
 	};

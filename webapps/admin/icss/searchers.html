@@ -3,12 +3,19 @@
 <div id="inbox-content" class="inbox-body no-content-padding">
 
 	<div class="inbox-side-bar">
-
-		<div class="well">Choose Searcher
-			<select class="input-sm choose-sub" id="searchers">
-				
-			</select>
+		<div class="well no-padding">
+		<form class="smart-form no-padding" method="post" action="searchers" novalidate="novalidate">
+			<fieldset>
+				<section class="no-padding">
+					<label class="label">Choose Searcher</label>
+					<label class="select">
+						<select class="input-sm choose-sub form-control" id="searchers"></select>
+					</label>
+				</section>
+			</fieldset>
+		</form>
 		</div>
+
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
 			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Searcher</a></li>
@@ -43,19 +50,6 @@
 
 </div>
 
-<div id="new-searcher-confirm" title="Create Searcher" style="display:none">
-	<form class="smart-form" id="document-form" method="post" action="searcher/" novalidate="novalidate">
-		<fieldset style="padding: 0px">	
-			<section>
-				<label class="label">Searcher ID</label>
-				<label class="input">
-					<input type="text" id="newSearchId" name="newsid" placeholder="new searcher id" />
-				</label>
-			</section>
-		</fieldset>
-	</form>
-</div>
-
 <div id="remove-searcher-confirm" title="Remove Searcher" style="display:none">
 	<form class="smart-form" id="remove-searcher-form" method="post" action="searcher/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
@@ -66,6 +60,35 @@
 	</form>
 </div>
 
+<div id="create_searcher_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content" style="width:70%">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Searcher</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_searcher_form" method="post" action="searchers/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Searcher Id</label>
+					<label class="input">
+						<input type="text" id="newSearcherId" name="newsid" placeholder="new searcher id" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_searcher">Create Searcher</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -73,12 +96,6 @@
 	
 	var pagefunction = function() {
 
-		// fix table height
-		tableHeightSize();
-
-		$(window).resize(function() {
-			tableHeightSize()
-		})
 		function tableHeightSize() {
 			if ($('body').hasClass('menu-on-top')) {
 				var menuHeight = 68;
@@ -98,10 +115,20 @@
 				} else {
 					$('.table-wrap').css('height', tableHeight + 'px');
 				}
-
 			}
-
 		}
+
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		}) ;
+		
+		$('.modal').on('hidden.bs.modal', function(){
+		    $(this).find('form')[0].reset();
+		});
+
 
 		var lastSearcherId = '' ;
 		var lastMenuHTML = 'overview.html' ; 
@@ -138,24 +165,21 @@
 				modal: true,
 				buttons: {
 					"Remove Searcher": function() {
-						var removeId = lastSearcherId ;
 						var win = $( this ) ;
-						if (removeId > ' '){
-							$.ajax({
-								type: "DELETE",
-								dataType : 'text', 
-								url: "/admin/searchers/" + removeId,
-								data: { }, 
-								complete : function(){ 
-									// $("#query_url").text(this.url) ;
-								}, 
-								success :  function(data) {
-									$("#searchers option:selected").remove();
-									loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
-									win.dialog( "close" );
-								}
-							}) ;	
-						}
+						$.ajax({
+							type: "DELETE",
+							dataType : 'text', 
+							url: "/admin/searchers/" + $(".choose-sub").val() ,
+							data: { }, 
+							complete : function(){ 
+								// $("#query_url").text(this.url) ;
+							}, 
+							success :  function(data) {
+								$("#searchers option:selected").remove();
+								loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+								win.dialog( "close" );
+							}
+						}) ;	
 					},
 					Cancel: function() {
 						$( this ).dialog( "close" );
@@ -168,8 +192,8 @@
 		
 		
 		$("li.submenu").click(function() {
-		    $(this).toggleClass("active");
 		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
 		});
 		
 		
@@ -196,44 +220,40 @@
 			lastMenuHTML = "browsing.html" ;
 		});
 	
-		$(".create-open").click(function() {
-			$( "#new-searcher-confirm" ).css('visibility', 'visible') ;
-			$( "#new-searcher-confirm" ).dialog({
-				modal: true,
-				buttons: {
-					"Create Searcher": function() {
-						var newId = $("#newSearchId").val() ;
-						var win = $( this ) ;
-						console.log(newId + ' : ..' ) ;
-						if (newId > ' '){
-							$.ajax({
-								type: "POST",
-								dataType : 'text', 
-								url: "/admin/searchers/" + newId,
-								data: { }, 
-								complete : function(){ 
-									// $("#query_url").text(this.url) ;
-								}, 
-								success :  function(data) {
-									$("#searchers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
-									loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
-									win.dialog( "close" );
-								}
-							}) ;	
-						}
-						},
-					Cancel: function() {
-						$( this ).dialog( "close" );
+		var $createForm = $("#create_searcher_form").validate({
+			rules : {
+				newsid : { required : true, minlength : 4, maxlength : 15 }
+			},
+			submitHandler : function(form) {
+				var newId = $("#newSearcherId").val() ;
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/searchers/" + newId,
+					data: { }, 
+					success :  function(data) {
+						$("#searchers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+						$('#create_searcher_modal').modal('hide');
 					}
-				}
-			});
+				}) ;	
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		$("#create_searcher_modal button[name=create_searcher]").click(function(){
+			$("#create_searcher_form").submit() ;
+		});
+		
+		$(".create-open").click(function() {
+			$('#create_searcher_modal').modal({});
 		});
 	};
 	
-	// end pagefunction
-	
-	// load delete row plugin and run pagefunction
-
 	pagefunction();
 	
 </script>

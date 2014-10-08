@@ -38,6 +38,10 @@ import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.niss.webapp.searchers.TemplateWeb;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceHandler;
+import net.ion.nradon.HttpControl;
+import net.ion.nradon.HttpHandler;
+import net.ion.nradon.HttpRequest;
+import net.ion.nradon.HttpResponse;
 import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
 import net.ion.nradon.config.RadonConfigurationBuilder;
@@ -47,6 +51,7 @@ import net.ion.nradon.handler.TemplateEngine;
 import net.ion.nradon.handler.authentication.BasicAuthenticationHandler;
 import net.ion.nradon.handler.authentication.InMemoryPasswords;
 import net.ion.nradon.handler.authentication.SessionAuthenticationHandler;
+import net.ion.nradon.handler.event.ServerEvent.EventType;
 import net.ion.nradon.handler.logging.LoggingHandler;
 import net.ion.radon.core.let.PathHandler;
 
@@ -112,6 +117,21 @@ public class NissServer {
 				@Override
 				public void onClose(EventSourceConnection conn) throws Exception {
 					esentry.onClose(conn);
+				}
+			}).add(new HttpHandler(){
+
+				@Override
+				public void onEvent(EventType eventtype, Radon radon) {
+				}
+
+				@Override
+				public int order() {
+					return 1000;
+				}
+
+				@Override
+				public void handleHttpRequest(HttpRequest request, HttpResponse response, HttpControl control) throws Exception {
+					response.status(404).content("not found path : " + request.uri()).end() ;
 				}
 			});
 		

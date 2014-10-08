@@ -27,6 +27,7 @@ import net.ion.craken.node.crud.ChildQueryResponse;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
+import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.ObjectId;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.IdString;
@@ -83,11 +84,11 @@ public class LoaderWeb implements Webapp {
 
 	@POST
 	@Path("/{lid}")
-	public String newLoader(@PathParam("lid") final String lid) {
+	public String newLoader(@PathParam("lid") final String lid, @FormParam("name") final String name) {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/loaders/" + lid).property("name", lid).property("registered", System.currentTimeMillis());;
+				wsession.pathBy("/loaders/" + lid).property("name", name).property("registered", System.currentTimeMillis());;
 				return null;
 			}
 		});
@@ -116,7 +117,7 @@ public class LoaderWeb implements Webapp {
 		rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/loaders").child(lid).property("name", name).property("content", content).property("registered", System.currentTimeMillis());
+				wsession.pathBy("/loaders").child(lid).property("content", content).property("registered", System.currentTimeMillis());
 				return lid;
 			}
 		});
@@ -124,6 +125,38 @@ public class LoaderWeb implements Webapp {
 	}
 
 
+
+	@GET
+	@Path("/{lid}/overview")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject overview(@PathParam("lid") final String lid) {
+		
+		JsonArray jarray = rsession.ghostBy("/events/loaders").children().eq("lid", lid).descending("time").offset(101).transform(new Function<Iterator<ReadNode>, JsonArray>(){
+			@Override
+			public JsonArray apply(Iterator<ReadNode> iter) {
+				JsonArray his = new JsonArray() ;
+				while(iter.hasNext()){
+					ReadNode node = iter.next() ;
+					JsonArray row = new JsonArray() ;
+					row.add(new JsonPrimitive(node.fqn().name()))
+						.add(new JsonPrimitive(node.property("time").asLong(0)))
+						.add(new JsonPrimitive(node.property("status").asString())) ;
+					his.add(row) ;
+				}
+				return his;
+			}
+		}) ;
+		
+		JsonObject result = new JsonObject() ;
+		result.add("history", jarray); 
+		result.put("schemaName", JsonParser.fromString("[{'title':'evetId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
+		result.put("info", rsession.ghostBy("/menus/loaders").property("overview").asString()) ;
+		
+		return result ;
+	}
+
+
+	
 	@GET
 	@Path("/{lid}/define")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -142,13 +175,14 @@ public class LoaderWeb implements Webapp {
 	
 	@POST
 	@Path("/{lid}/run/{eventId}")
-	public String run(@PathParam("lid") String lid, @PathParam("eventId") final String eventId, @FormParam("content") final String content, @Context HttpResponse response) throws IOException, ScriptException{
+	public String run(@PathParam("lid") final String lid, @PathParam("eventId") final String eventId, @FormParam("content") final String content, @Context HttpResponse response) throws IOException, ScriptException{
 		InstantJavaScript script = jengine.createScript(IdString.create(lid), "run at " + System.currentTimeMillis(), new StringReader(content)) ;
 		
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
 				wsession.pathBy("/events/loaders/" +eventId)
+					.property("lid", lid)
 					.property("script", content)
 					.property("status", "started").property("time", System.currentTimeMillis()) ;
 				return null;

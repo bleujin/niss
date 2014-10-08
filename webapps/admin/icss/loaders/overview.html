@@ -11,22 +11,52 @@
 <div class="row">
 	<div class="col-sm-12">
 		
-		<div class="well">
-			<button class="close" data-dismiss="alert">
-					x
-			</button>
-			<h1 class="semi-bold">What are "Loader"</h1>
-		<p>SmartAdmin comes with a fully customized grid system catered specifically for building form layouts. Its not technically "better" than the bootstrap 3 built in grid system, 
-			but rather more simplified for rapid form layout and faster development. Idealy you would use either the <strong>bootstrap</strong> grid or the <strong>smart-form</strong> grid, 
-			when building your form layouts. It is important not to mix elements from two seperate classes as it can cause conflict.  
-		</p>
 		
-		<p>You can explore some of the <a href="#ajax/form-templates.html" title="Go to Bootstrap Forms">layouts</a> made using Smart Forms grid system or if you are not comfortable with this grid system you can simply stick to the default <a href="#ajax/bootstrap-forms.html" title="Go to Bootstrap Forms">Bootstrap forms</a></p>
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
 		</div>
+
 
 		
 	</div>
 </div>
+
+
+<section id="loaders-overview-section" class="">
+
+	<!-- row -->
+	<div class="row">
+
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-purple" id="loader-browsing-win" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>Recent Loader History(Max : 101)</h2>
+				</header>
+				
+				<div>
+					<div class="jarviswidget-editbox"></div>
+					<div class="widget-body">
+						<table id="recent_history" class="table table-bordered table-hover">
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</article>
+
+	</div>
+
+
+</section>
 
 <!-- end widget grid -->
 
@@ -36,10 +66,83 @@
 	pageSetUp();
 
 	var pagefunction = function() {
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/loaders",
+				data: { content: aHTML, field: "overview" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
 		
+		var loaderId = $("#loaders option:selected").val() ;
+		if (loaderId == undefined) return ;
+		
+		$.ajax({
+			url:"/admin/loaders/" + loaderId + "/overview",
+			type:'GET', 
+			dataType:'json',
+			data : {}, 
+			success:function(data){
+				var nodes = data['history'];
+				$("#recent_history").dataTable({
+					"data":nodes,
+					"searching":false, 
+					"columns": data['schemaName'], 
+					"order" : [[1, "desc"]]
+				}) ;
+				
+				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
+				'				<fieldset class="smart-form">' +
+				'					<div class="row">' +
+				'						<section class="col col-12"><input type="button" class="btn btn-primary btn-sm" id="btn_detail_index" value="View Detail" disabled="disabled"/></section>' +
+				'					</div>' +
+				'				</fieldset>' +
+				'				</td></tr></tfoot>' ;
+				
+				$(tableFoot).appendTo($("#recent_history")) ;
+
+				$("#info").html(data['info']) ;
+
+				
+				var table = $('#recent_history').DataTable() ;
+				
+				$('#recent_history tbody').on( 'click', 'tr', function () {
+					if ( $(this).hasClass('selected2') ) {
+			            $(this).removeClass('selected2');
+			        } else {
+			            table.$('tr.selected2').removeClass('selected2');
+			            $(this).addClass('selected2');
+			        }
+			        ($('#recent_history').DataTable().rows('.selected2').data().length > 0) ? $('#btn_detail_index').removeAttr("disabled") : $('#btn_detail_index').attr("disabled", "disabled") ;
+				} );
+				
+				$('#btn_detail_index').click( function () {
+					var targets = $('#recent_history').DataTable().rows('.selected2') ;
+					var lid = targets.data()[0][0] ;
+					window.open('/admin/craken/events/loaders/' + lid + '.content','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
+				});
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 	};
 
 	// run pagefunction on load
-	pagefunction();
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+	});
 
 </script>

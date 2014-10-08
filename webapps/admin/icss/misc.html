@@ -26,36 +26,36 @@
 </div>
 
 
-<div id="create_user_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="create_user_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
        <div class="modal-content">
         	
             <div class="modal-header"><h5 id="myModalLabel">Create User</h5></div>
 
             <div class="modal-body">
-		<form class="smart-form" method="post" action="misc/user" novalidate="novalidate">
-		<fieldset style="padding: 0px">					
-			<section>
-				<label class="label">User Id</label>
-				<label class="input">
-					<input type="text" name="userid"/>
-				</label>
-			</section>
-			<section>
-				<label class="label">User Name</label>
-				<label class="input">
-					<input type="text" name="name"/>
-				</label>
-			</section>
-			<section>
-				<label class="label">Password</label>
-				<label class="input">
-					<input type="password" name="password"/>
-				</label>
-			</section>
-
-		</fieldset>
-		</form>
+			<form class="smart-form" id="create_user_form" method="post" action="misc/user" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">User Id</label>
+					<label class="input">
+						<input type="text" name="userid"/>
+					</label>
+				</section>
+				<section>
+					<label class="label">User Name</label>
+					<label class="input">
+						<input type="text" name="name"/>
+					</label>
+				</section>
+				<section>
+					<label class="label">Password</label>
+					<label class="input">
+						<input type="password" name="password"/>
+					</label>
+				</section>
+				
+			</fieldset>
+			</form>
             </div>
             
             <div class="modal-footer">
@@ -76,31 +76,53 @@
 	
 	var pagefunction = function() {
 		
+		$('.modal').on('hidden.bs.modal', function(){
+		    $(this).find('form')[0].reset();
+		});
 		
-		
-		$("#create_user_form button[name=create_user]").click(function(){
-			var userid = $("#create_user_form input[name=userid]").val() ;
-			
-			$.ajax({
-				type: "POST",
-				url: "/admin/misc/users/" + userid,
-				data: { 'name': $("#create_user_form input[name=name]").val(), 'password': $("#create_user_form input[name=password]").val() }
-			}).done(function( msg ) {
-				console.log( "Data Saved: " + msg );
-			}).success(function( msg ) {
-				$("#create_user_form").modal('hide') ;
-				loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;
-			});
-			
+		var $createUserForm = $("#create_user_form").validate({
+			// Rules for form validation
+			rules : {
+				userid : { required : true, minlength : 4, maxlength : 15 }, 
+				name : { required : true, minlength : 3, maxlength : 10 }, 
+				password : { required : true, minlength : 5, maxlength : 15 } 
+			},
+
+			// Messages for form validation
+			messages : {
+				userid : { required : 'Please enter your userid'}, 
+				name : { required : 'Please enter your name'}, 
+				password : { required : 'Please enter your password'} 
+			},
+
+			// Ajax form submition
+			submitHandler : function(form) {
+				var userid = $("#create_user_form input[name=userid]").val() ;
+				
+				$.ajax({
+					type: "POST",
+					dataType:"text", 
+					url: "/admin/misc/users/" + userid,
+					data: { 'name': $("#create_user_form input[name=name]").val(), 'password': $("#create_user_form input[name=password]").val() }, 
+					success : function(msg){
+						$("#create_user_form").modal('hide') ;
+						loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;
+						$('#create_user_modal').modal('hide');
+					}
+				});
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
 		});
 		
 
-		// fix table height
-		tableHeightSize();
+		$("#create_user_modal button[name=create_user]").click(function(){
+			$("#create_user_form").submit() ;
+		});
+		
 
-		$(window).resize(function() {
-			tableHeightSize()
-		})
 		function tableHeightSize() {
 			if ($('body').hasClass('menu-on-top')) {
 				var menuHeight = 68;
@@ -120,15 +142,19 @@
 				} else {
 					$('.table-wrap').css('height', tableHeight + 'px');
 				}
-
 			}
-
 		}
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		});
 
 		loadURL("icss/misc/properties.html", $('#inbox-content > .table-wrap')) ;
 		$("li.submenu").click(function() {
-		    $(this).toggleClass("active");
 		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
 		});
 		
 		

@@ -43,7 +43,7 @@
 					</div>
 
 					<div class="widget-body no-padding">
-						<form class="smart-form" id="document-form" method="post" action="searchers/query" novalidate="novalidate">
+						<form class="smart-form" id="searcher_template_form" method="post" action="searchers/query" novalidate="novalidate">
 							<fieldset style="padding: 0px">	
 								<section>
 									<label class="textarea textarea-resizable"><textarea id="template" rows="20"></textarea></label>
@@ -115,14 +115,13 @@
 		}) ;
 		
 
-		$( ".btn-primary" ).click(function() {		
+		$( "#searcher_template_form .btn-primary" ).click(function() {		
 			$.ajax({
 				type: "GET",
 				url: "/admin/searchers/" + searcherId + "/template.default",
 				dataType:'text',
 				success:function(data){
 					$("#template").val(data);
-					console.log(data) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;
@@ -130,7 +129,7 @@
 			}) ;
 		});
 		
-		$( ".btn-success" ).click(function() {		
+		$( "#searcher_template_form .btn-success" ).click(function() {		
 			$.ajax({
 				type: "POST",
 				url: "/admin/searchers/" + searcherId + "/template",

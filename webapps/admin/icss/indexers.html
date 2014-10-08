@@ -5,10 +5,19 @@
 
 
 	<div class="inbox-side-bar">
-		<div class="well">Choose Indexer
-			<select class="input-sm choose-sub" id="indexers"></select>
+		<div class="well no-padding">
+		<form class="smart-form no-padding" method="post" action="indexers/left" novalidate="novalidate">
+			<fieldset>
+				<section class="no-padding">
+					<label class="label">Choose Indexer</label>
+					<label class="select">
+						<select class="input-sm choose-sub form-control" id="indexers"></select>
+					</label>
+				</section>
+			</fieldset>
+		</form>
 		</div>
-		
+	
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
 			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Indexer</a></li>
@@ -46,19 +55,6 @@
 
 </div>
 
-<div id="new-indexer-confirm" title="Create Indexer" style="display:none">
-	<form class="smart-form" id="new-indexer-form" method="post" action="indexers/" novalidate="novalidate">
-		<fieldset style="padding: 0px">	
-			<section>
-				<label class="label">Indexer ID</label>
-				<label class="input">
-					<input type="text" id="newIndexId" name="iid" placeholder="new indexer id" />
-				</label>
-			</section>
-		</fieldset>
-	</form>
-</div>
-
 <div id="remove-indexer-confirm" title="Remove Indexer" style="display:none">
 	<form class="smart-form" id="remove-indexer-form" method="post" action="indexers/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
@@ -68,6 +64,37 @@
 		</fieldset>
 	</form>
 </div>
+
+
+<div id="create_indexer_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content" style="width:70%">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Indexer</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_indexer_form" method="post" action="indexers/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Indexer Id</label>
+					<label class="input">
+						<input type="text" id="newIndexId" name="newiid" placeholder="new indexer id" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_indexer">Create Indexer</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+
 
 <div id="create_schema_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
@@ -143,32 +170,6 @@
 	// pagefunction
 	var pagefunction = function() {
 
-		$("#btn_create_schema").click(function(){
-			
-			var iid = $("#indexers").val() ;
-			
-			$.ajax({
-				type: "POST",
-				url: "/admin/indexers/" + iid + "/schema",
-				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
-						schematype: $("#create_schema_form select[name=schematype]").val(),  
-						analyzer :$("#create_schema_form select[name=schema_analyzer]").val(), 
-						analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
-			}).done(function( msg ) {
-				console.log( "Data Saved: " + msg );
-			}).success(function( msg ) {
-				$("#create_schema_form").modal('hide') ;
-				loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
-			});
-			
-		});
-
-		// fix table height
-		tableHeightSize();
-
-		$(window).resize(function() {
-			tableHeightSize() ;
-		})
 		function tableHeightSize() {
 			if ($('body').hasClass('menu-on-top')) {
 				var menuHeight = 68;
@@ -188,10 +189,15 @@
 				} else {
 					$('.table-wrap').css('height', tableHeight + 'px');
 				}
-
 			}
-
 		}
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize() ;
+		}) ;
+
 		
 		var lastIndexerId = '' ;
 		var lastMenuHTML = 'overview.html' ;
@@ -254,7 +260,24 @@
 			});
 		}) ;
 		
-		
+		$("#btn_create_schema").click(function(){
+			var iid = $("#indexers").val() ;
+			
+			$.ajax({
+				type: "POST",
+				url: "/admin/indexers/" + iid + "/schema",
+				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
+						schematype: $("#create_schema_form select[name=schematype]").val(),  
+						analyzer :$("#create_schema_form select[name=schema_analyzer]").val(), 
+						analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
+			}).done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			}).success(function( msg ) {
+				$("#create_schema_form").modal('hide') ;
+				loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
+			});
+			
+		});
 
 		$("#schematype").change(function(){
 			if ($("#schematype").val() == 'manual') {
@@ -265,8 +288,8 @@
 		}) ;
 
 		$("li.submenu").click(function() {
-		    $(this).toggleClass("active");
 		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
 		});
 
 		// Buttons (compose mail and inbox load)
@@ -298,6 +321,45 @@
 			loadURL("icss/indexers/browsing.html", $('#inbox-content > .table-wrap')) ;
 			lastMenuHTML = "browsing.html" ;
 		});
+		
+		var $createForm = $("#create_indexer_form").validate({
+			rules : {
+				newiid : { required : true, minlength : 4, maxlength : 15 }
+			},
+			submitHandler : function(form) {
+				var newId = $("#newIndexerId").val() ;
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/indexers/" + newId,
+					data: { }, 
+					complete : function(){ 
+						// $("#query_url").text(this.url) ;
+					}, 
+					success :  function(data) {
+						$("#indexers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
+						$('#create_indexer_modal').modal('hide');
+					}
+				}) ;	
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		$("#create_indexer_modal button[name=create_indexer]").click(function(){
+			$("#create_indexer_form").submit() ;
+		});
+		
+		$(".create-open").click(function() {
+			$('#create_indexer_modal').modal({});
+		});
+		
+		
+		
 	
 		
 		$(".create-open").click(function() {
@@ -310,20 +372,6 @@
 						
 						var win = $( this ) ;
 						if (newId > ' '){
-							$.ajax({
-								type: "POST",
-								dataType : 'text', 
-								url: "/admin/indexers/" + newId,
-								data: { }, 
-								complete : function(){ 
-									// $("#query_url").text(this.url) ;
-								}, 
-								success :  function(data) {
-									$("#indexers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
-									loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
-									win.dialog("close");
-								}
-							}) ;	
 						}
 						},
 					Cancel: function() {

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import net.ion.framework.db.DBController;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.db.manager.DBManager;
+import net.ion.framework.db.manager.MSSQLDBManager;
 import net.ion.framework.db.manager.OracleDBManager;
 import net.ion.framework.db.procedure.IUserCommand;
 
@@ -18,9 +19,18 @@ public class RDB {
 	}
 
 	public static RDB oracle(String url, String userId, String userPwd) {
-		OracleDBManager dbm = new OracleDBManager("jdbc:oracle:thin:@61.250.201.239:1521:qm10g", "bleujin", "redf") ;
+//		OracleDBManager dbm = new OracleDBManager("jdbc:oracle:thin:@61.250.201.239:1521:qm10g", "bleujin", "redf") ;
+		OracleDBManager dbm = new OracleDBManager("jdbc:oracle:thin:@" + url, userId, userPwd) ;
 		return new RDB(dbm) ;
 	}
+
+	public static RDB mssql(String url, String userId, String userPwd) {
+//		OracleDBManager dbm = new OracleDBManager("jdbc:oracle:thin:@61.250.201.239:1521:qm10g", "bleujin", "redf") ;
+		MSSQLDBManager dbm = new MSSQLDBManager("jdbc:microsoft:sqlserver://" + url, userId, userPwd) ;
+		return new RDB(dbm) ;
+	}
+	
+
 
 	public RDB query(String query) {
 		this.query = query ;
