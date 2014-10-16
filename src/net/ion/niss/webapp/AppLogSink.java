@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.nradon.EventSourceConnection;
@@ -26,6 +28,7 @@ public class AppLogSink implements LogSink {
 	protected final char lineSeparator = '\n';
 
 	protected boolean trouble = false;
+	private Logger logger = Logger.getLogger(AppLogSink.class) ;
 
 	public AppLogSink(Appendable out, String... dataValuesToLog) {
 		this.out = out;
@@ -153,6 +156,9 @@ public class AppLogSink implements LogSink {
 			formatValue(sb, request.data(key));
 		}
 		sb.append(lineSeparator) ;
+		
+		logger.info(sb);
+		
 		return out.append(sb);
 	}
 
@@ -172,6 +178,9 @@ public class AppLogSink implements LogSink {
 			formatValue(sb, "Data:" + key);
 		}
 		sb.append(lineSeparator);
+		
+		
+		
 		return out.append(sb) ;
 	}
 

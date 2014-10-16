@@ -2,7 +2,7 @@
 
 <root version="0.1">
     
-    <server-config id="niss" port="9000">
+    <server-config id="niss" port="9000" nodeid="mercury">
 
 	</server-config>
 
