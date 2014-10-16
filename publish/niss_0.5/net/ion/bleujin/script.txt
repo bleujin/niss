@@ -1,8 +1,0 @@
-new function(){
-
-	this.handle = function(){
-		var name = 'bleujin' ; 
-		java.lang.System.out.println(name) ;
-	}
-
-}
