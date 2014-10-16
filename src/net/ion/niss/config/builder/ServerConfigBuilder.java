@@ -10,6 +10,7 @@ public class ServerConfigBuilder {
 
 	private String id = "niss";
 	private int port = 9000 ;
+	private String password = "dkdldhs" ;
 	private ConfigBuilder parent;
 
 	public ServerConfigBuilder(ConfigBuilder parent) {
@@ -19,9 +20,15 @@ public class ServerConfigBuilder {
 	public ServerConfigBuilder node(Node node) {
 		String id = node.getAttributes().getNamedItem("id").getTextContent();
 		int port = NumberUtil.toInt(node.getAttributes().getNamedItem("port").getTextContent(), 9000) ;
-		return id(id).port(port) ;
+		Node pnode = node.getAttributes().getNamedItem("password");
+		return id(id).port(port).password(pnode) ;
 	}
 	
+	private ServerConfigBuilder password(Node pnode) {
+		if (pnode != null) this.password = StringUtil.defaultIfEmpty(pnode.getTextContent(), "dkdldhs") ;
+		return this;
+	}
+
 	public ServerConfigBuilder port(int port){
 		this.port = port ;
 		return this ;
@@ -37,6 +44,6 @@ public class ServerConfigBuilder {
 	}
 
 	public ServerConfig build() {
-		return new ServerConfig(id, port);
+		return new ServerConfig(id, port, password);
 	}
 }

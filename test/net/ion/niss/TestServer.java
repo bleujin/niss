@@ -23,4 +23,8 @@ public class TestServer extends TestCase {
 		
 		// new DirClassLoader(homeDirectory).addDirectory(additionalDirectory);
 	}
+	
+	public void testCanoName() throws Exception {
+		Debug.debug(getClass().getCanonicalName()) ;
+	}
 }

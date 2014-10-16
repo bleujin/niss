@@ -71,13 +71,36 @@
 		<copy todir="deploy/resource/" overwrite="true">
 			<fileset file="resource/log4j.properties" />
 		</copy>
+	</target>
+
+	
+	<target name="copy_full_deploy" depends="publish">
+	    <echo>Copy lib</echo>
+		<copy todir="deploy/lib/" overwrite="true">
+			<fileset dir="lib/" includes="**"></fileset>
+		</copy>
+		
+		<echo>Copy main lib</echo>
+		<copy todir="deploy" overwrite="true">
+			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
+		</copy>
+
+		<echo>Copy resource file(config, loader)</echo>
+		<copy todir="deploy/resource/config" overwrite="true">
+			<fileset dir="resource/config/" includes="**"/>
+		</copy>
+		<copy todir="deploy/resource/loader" overwrite="true">
+			<fileset dir="resource/loader/" includes="**"/>
+		</copy>
+		<copy todir="deploy/resource/" overwrite="true">
+			<fileset file="resource/log4j.properties" />
+		</copy>
 				
 		<echo>Copy webapps file(config, loader)</echo>
 		<copy todir="deploy/webapps" overwrite="true">
 			<fileset dir="webapps/" includes="**"/>
 		</copy>
-	
 	</target>
-
+	
 
 </project>

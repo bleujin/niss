@@ -123,7 +123,12 @@ public class NissServer {
 				}
 			});
 		
+		radon.getConfig().getServiceContext().putAttribute(NissServer.class.getCanonicalName(), this) ;
 		
+	}
+	
+	public NSConfig config(){
+		return nsconfig ;
 	}
 	
 	public NissServer start() throws InterruptedException, ExecutionException, IOException{

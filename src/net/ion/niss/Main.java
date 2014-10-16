@@ -1,26 +1,56 @@
 package net.ion.niss;
 
+import java.net.BindException;
+import java.net.ConnectException;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.concurrent.ExecutionException;
 
+import org.jboss.netty.channel.ChannelException;
+
+import net.ion.framework.util.IOUtil;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.radon.Options;
+import net.ion.radon.aclient.ListenableFuture;
+import net.ion.radon.aclient.NewClient;
+import net.ion.radon.aclient.Response;
 
 public class Main {
 
 	public static void main(String[] args) throws Exception {
+
+		Options options = new Options(args);
+		NSConfig nsconfig = ConfigBuilder.create(options.getString("config", "./resource/config/nsss-config.xml")).build();
+
+		try {
+			Socket s = new Socket(InetAddress.getLocalHost(), nsconfig.serverConfig().port());
+			s.setSoTimeout(400);
+			IOUtil.closeQuietly(s);
+
+			// if connected
+			NewClient nc = NewClient.create();
+			try {
+				ListenableFuture<Response> future = nc.prepareGet("http://localhost:" + nsconfig.serverConfig().port() + "/admin/misc/shutdown?time=10&password=" + nsconfig.serverConfig().password()).execute();
+				future.get();
+				nc.close();
+				Thread.sleep(1000);
+			} catch (ExecutionException eex) {
+				System.out.println(eex.getMessage());
+			} finally {
+				nc.close();
+			}
+
+		} catch (ConnectException ex) {
+			;
+		} 
 		
-		ClassLoader ccl = Thread.currentThread().getContextClassLoader();
-		
-		Options options = new Options(args) ;
-		NSConfig nsconfig = ConfigBuilder.create(options.getString("config", "./resource/config/nsss-config.xml")).build() ;
-//		NSConfig nsconfig = ConfigBuilder.create("./resource/config/nsss-config.xml") ;
-		final NissServer server = NissServer.create(nsconfig).start() ;
-		
-		Runtime.getRuntime().addShutdownHook(new Thread(){
-			public void run(){
+		final NissServer server = NissServer.create(nsconfig).start();
+
+		Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
 				try {
-					server.shutdown() ;
+					server.shutdown();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} catch (ExecutionException e) {
@@ -28,7 +58,6 @@ public class Main {
 				}
 			}
 		});
-		
-		
+
 	}
 }

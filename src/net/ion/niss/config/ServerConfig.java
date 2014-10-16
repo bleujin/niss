@@ -5,10 +5,12 @@ public class ServerConfig {
 
 	private String id = "niss";
 	private int port = 9000 ;
+	private String password;
 
-	public ServerConfig(String id, int port) {
+	public ServerConfig(String id, int port, String password) {
 		this.id = id ;
 		this.port = port ;
+		this.password = password ;
 	}
 	
 	public int port(){
@@ -19,6 +21,9 @@ public class ServerConfig {
 		return id ;
 	}
 
+	public String password(){
+		return password ;
+	}
 
 	
 }

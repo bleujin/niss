@@ -14,6 +14,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import net.ion.craken.node.ReadNode;
@@ -27,11 +28,13 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.StringUtil;
+import net.ion.niss.NissServer;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
 
 import com.google.common.base.Function;
 
@@ -56,6 +59,33 @@ public class MiscWeb implements Webapp{
 	public JsonObject listProperties(){
 		return new PropertyInfo().list() ;
 				
+	}
+	
+	@GET
+	@Path("/shutdown")
+	public String shutdown(@Context HttpRequest request,
+			@DefaultValue("") @QueryParam("password") String password, 
+			@DefaultValue("1000") @QueryParam("time") final int time, @ContextParam("net.ion.niss.NissServer") final NissServer server){
+		
+		if (! password.equals(server.config().serverConfig().password())) {
+			return "not matched password" ;
+		}
+		
+		new Thread(){
+			public void run(){
+				try {
+					Thread.sleep(time);
+					server.shutdown() ;
+					
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (ExecutionException e) {
+					e.printStackTrace();
+				}
+			}
+		}.start(); 
+		
+		return "bye after " + time;
 	}
 	
 
