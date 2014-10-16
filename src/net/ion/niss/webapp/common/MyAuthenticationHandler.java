@@ -1,5 +1,6 @@
 package net.ion.niss.webapp.common;
 
+import net.ion.framework.util.Debug;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
@@ -25,7 +26,7 @@ public class MyAuthenticationHandler extends AbstractHttpHandler {
 
 		String authHeader = request.header("Authorization");
 		
-		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || request.uri().startsWith("/css/") || request.uri().startsWith("/img/") || request.uri().startsWith("/js/")) {
+		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || request.uri().startsWith("/css/") || request.uri().startsWith("/img/") || request.uri().startsWith("/favicon.ico") || request.uri().startsWith("/fonts/") || request.uri().startsWith("/js/")) {
 			control.nextHandler();
 			return ;
 		}

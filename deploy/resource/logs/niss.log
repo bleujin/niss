@@ -15,3 +15,5 @@
 
 [radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:27:39 KST 2014	1413451659895	1712	3	/61.250.201.157:8549	HTTP-END 200	/admin/misc/properties	GET	32	
 
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:35:07 KST 2014	1413452107875	10	9	/127.0.0.1:8642	HTTP-END 200	/admin/misc/shutdown?time=10&password=dkdldhs	GET	8	
+
