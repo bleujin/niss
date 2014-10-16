@@ -1,7 +1,6 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.DataInputStream;
-import java.io.File;
 import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
@@ -21,8 +20,6 @@ import net.ion.nsearcher.config.Central;
 
 import org.apache.log4j.Logger;
 import org.apache.lucene.LucenePackage;
-import org.apache.solr.core.SolrCore;
-import org.apache.solr.schema.IndexSchema;
 
 public class SystemInfo {
 

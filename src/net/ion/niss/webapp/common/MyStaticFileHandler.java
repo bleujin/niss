@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.concurrent.Executor;
 
+import net.ion.framework.util.StringUtil;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
@@ -60,6 +61,7 @@ public class MyStaticFileHandler extends AbstractResourceHandler {
 		return new MyStaticFileHandler.FileWorker(request, response, control);
 	}
 
+	private static char[] notAllowed = "\\:*?\"<>|".toCharArray() ; 
 	protected class FileWorker extends IOWorker {
 		private File file;
 
@@ -69,6 +71,8 @@ public class MyStaticFileHandler extends AbstractResourceHandler {
 
 		@Override
         protected boolean exists() throws IOException {
+			if (StringUtil.containsAny(path, notAllowed)) return false ;
+			
             file = resolveFile(path);
             return file != null && file.exists();
         }

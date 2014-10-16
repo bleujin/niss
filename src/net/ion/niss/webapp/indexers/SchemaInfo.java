@@ -3,7 +3,6 @@ package net.ion.niss.webapp.indexers;
 import net.ion.craken.node.ReadNode;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.Schema;
-import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.MyField.MyFieldType;
 
 public class SchemaInfo {

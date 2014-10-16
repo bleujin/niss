@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.Date;
 
-import scala.collection.mutable.StringBuilder;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.nradon.EventSourceConnection;
@@ -15,6 +14,7 @@ import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
 import net.ion.nradon.WebSocketConnection;
 import net.ion.nradon.handler.logging.LogSink;
+import scala.collection.mutable.StringBuilder;
 
 public class AppLogSink implements LogSink {
 
@@ -50,7 +50,8 @@ public class AppLogSink implements LogSink {
 
 	public void httpEnd(HttpRequest request, HttpResponse response) {
 		long etime = (Long)ObjectUtil.coalesce(request.data("_etime"), 0L) ;
-		
+		String uri = request.uri() ;
+		if (uri.startsWith("/img/") || uri.startsWith("/js/") || uri.startsWith("/css/")) return ;
 		custom(request, "HTTP-END " + response.status(), "" + (System.currentTimeMillis() - etime)); // TODO: Time request
 	}
 

@@ -5,10 +5,7 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.ion.framework.parse.gson.Gson;
-import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.icrawler.Request;
 import net.ion.icrawler.ResultItems;

@@ -3,13 +3,13 @@ package net.ion.niss.webapp.indexers;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Field.Store;
-
 import net.ion.craken.node.ReadNode;
 import net.ion.framework.util.MapUtil;
 import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.MyField;
+
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.Field.Store;
 
 public class SchemaInfos {
 

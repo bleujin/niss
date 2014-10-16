@@ -1,0 +1,191 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Query
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-purple" id="wid-indexer-query" data-widget-editbutton="false" data-widget-deletebutton="false">
+			<header>
+				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+				<h2>Query Example</h2>				
+			</header>
+
+			<div>
+				<div class="jarviswidget-editbox">
+					<input class="form-control" type="text">	
+				</div>
+				
+				<div class="widget-body">
+						
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						<form class="smart-form" id="document-form" method="post" action="indexers/query" novalidate="novalidate">
+							<fieldset style="padding: 0px">					
+								<section>
+									<label class="label">Query</label>
+									<label class="textarea textarea-resizable">
+										<textarea id="query" name="query" rows="3">*:*</textarea>
+									</label>
+								</section>
+								<section>
+									<label class="label">Sort(ex: name, id desc)</label>
+									<label class="input">
+										<input type="text" id="sort" name="sort"/>
+									</label>
+								</section>
+								<div class="row">
+								<section class="col col-6">
+									<label class="label">skip</label>
+									<label class="input">
+										<input type="text" id="skip" name="skip" placeholder="0" />
+									</label>
+								</section>
+								<section class="col col-6">
+									<label class="label">offset</label>
+									<label class="input">
+										<input type="text" id="offset" name="offset" placeholder="10" />
+									</label>
+								</section>
+								</div>
+								<section>
+									<label class="label">Query Parameter</label>
+									<label class="input">
+										<input type="text" id="parameter" name="parameter" placeholder="key1=val&key2=val2"/>
+									</label>
+								</section>
+								<section>
+									<label class="label">Document Type</label>
+									<label class="select">
+										<select name="interested" id="rtype">
+										    <option value="json">JSON</option>
+										    <option value="csv">CSV</option>
+										    <option value="xml">XML</option>
+										</select>
+									</label>
+								</section>
+								<section>
+									<label class="checkbox"><input type="checkbox" id="indent" name="indent" checked="false" /><i></i>Indent</label>
+								</section>
+			
+							</fieldset>
+							
+							<footer>
+								<button class="btn btn-primary" type="button" id="execQuery">Execute Query</button>
+							</footer>
+							
+							<div class="message">
+								<i class="fa fa-thumbs-up"></i>
+								<p>Your message was successfully sent!</p>
+							</div>
+						</form>
+				
+					</div>
+					
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+						<div class="alert alert-info alert-block" id="query_url"></div>
+						<div><pre id="query_result"></pre></div>
+					</div>
+		
+				</div>
+			</div>
+			</div>
+			
+		</article>
+			
+	</div>
+
+</section>
+
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/indexers",
+				data: { content: aHTML, field: "query" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId == undefined) return ;
+		
+		$.ajax({
+			url:'/admin/indexers/' + indexerId +'/query',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		$( "#execQuery" ).click(function() {
+			$.ajax({
+				type: "GET",
+				dataType : 'text', 
+				url: "/admin/indexers/" + indexerId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
+				data: { query: $("#query").val(), sort: $("#sort").val(), skip: $("#skip").val(), offset: $("#offset").val() , indent: $("#indent").is(":checked") ? true : false, debug: $("#debug").is(":checked") ? true : false}, 
+				complete : function(){ 
+					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";
+					$("#query_url").html(targetURL) ;
+				}, 
+				success :  function(data) {
+					$("#query_result").text(data) ;
+				}
+			}) ;
+			
+		});
+		
+	};
+
+	// run pagefunction on load
+	pagefunction();
+
+</script>

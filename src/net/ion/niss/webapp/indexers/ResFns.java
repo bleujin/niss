@@ -1,23 +1,22 @@
 package net.ion.niss.webapp.indexers;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.io.Writer;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ecs.xml.XML;
 
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.nsearcher.common.ReadDocument;
+import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.util.csv.CsvWriter;
+
+import org.apache.ecs.xml.XML;
 
 import com.google.common.base.Function;
 

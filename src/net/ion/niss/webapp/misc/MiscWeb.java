@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -17,26 +16,24 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.solr.schema.JsonPreAnalyzedParser;
-
-import com.google.common.base.Function;
-
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ChildQueryResponse;
+import net.ion.craken.tree.PropertyId;
 import net.ion.framework.parse.gson.JsonArray;
-import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
+
+import org.apache.lucene.queryparser.classic.ParseException;
+
+import com.google.common.base.Function;
 
 @Path("/misc")
 public class MiscWeb implements Webapp{
@@ -76,7 +73,7 @@ public class MiscWeb implements Webapp{
 					JsonArray row = new JsonArray() ;
 					row.add(new JsonPrimitive(node.fqn().name()))
 						.add(new JsonPrimitive(node.property("time").asLong(0)))
-						.add(new JsonPrimitive(node.ref("loader").fqn().toString()))
+						.add(new JsonPrimitive(node.propertyId(PropertyId.refer("loader")).asString()))
 						.add(new JsonPrimitive(node.property("status").asString())) ;
 					his.add(row) ;
 				}

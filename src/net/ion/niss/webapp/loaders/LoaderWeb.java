@@ -1,10 +1,13 @@
 package net.ion.niss.webapp.loaders;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.Writer;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 import java.util.concurrent.Future;
 
 import javax.script.ScriptException;
@@ -18,25 +21,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import net.ion.craken.node.IteratorList;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.ChildQueryResponse;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.ObjectId;
+import net.ion.framework.util.FileUtil;
+import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.Def;
 import net.ion.radon.core.ContextParam;
 
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.infinispan.affinity.RndKeyGenerator;
 import org.jboss.resteasy.spi.HttpResponse;
 
 import com.google.common.base.Function;
@@ -139,8 +140,8 @@ public class LoaderWeb implements Webapp {
 					ReadNode node = iter.next() ;
 					JsonArray row = new JsonArray() ;
 					row.add(new JsonPrimitive(node.fqn().name()))
-						.add(new JsonPrimitive(node.property("time").asLong(0)))
-						.add(new JsonPrimitive(node.property("status").asString())) ;
+						.add(new JsonPrimitive(node.property(Def.Loader.Time).asLong(0)))
+						.add(new JsonPrimitive(node.property(Def.Loader.Status).asString())) ;
 					his.add(row) ;
 				}
 				return his;
@@ -149,7 +150,7 @@ public class LoaderWeb implements Webapp {
 		
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
-		result.put("schemaName", JsonParser.fromString("[{'title':'evetId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
+		result.put("schemaName", JsonParser.fromString("[{'title':'eventId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
 		result.put("info", rsession.ghostBy("/menus/loaders").property("overview").asString()) ;
 		
 		return result ;
@@ -218,6 +219,19 @@ public class LoaderWeb implements Webapp {
 
 	}
 
-	
+	@GET
+	@Path("/{lid}/examples")
+	public JsonObject example() throws FileNotFoundException, IOException{
+		Collection<File> efiles = FileUtil.listFiles(new File("./resource/loader"), new String[]{"script"}, false) ;
+		JsonArray exams = new JsonArray() ;
+		for (File file : efiles) {
+			exams.add(new JsonObject().put("name", file.getName()).put("content", IOUtil.toStringWithClose(new FileInputStream(file)))) ;
+		}
+
+		JsonObject result = new JsonObject() ;
+		result.put("examples", exams) ;
+		result.put("info", rsession.ghostBy("/menus/loaders").property("example").asString()) ;
+		return result ;
+	}
 	
 }

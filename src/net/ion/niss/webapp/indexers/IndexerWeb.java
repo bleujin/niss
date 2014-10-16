@@ -1,9 +1,7 @@
 package net.ion.niss.webapp.indexers;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.io.StringReader;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +35,9 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.DateUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
-import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
@@ -54,17 +50,12 @@ import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.IKeywordField;
-import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.common.MyField.MyFieldType;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.reader.InfoReader.InfoHandler;
-import net.ion.nsearcher.search.EachDocHandler;
-import net.ion.nsearcher.search.EachDocIterator;
 import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
@@ -73,23 +64,12 @@ import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.DoubleField;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.LongField;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.index.IndexableField;
-import org.apache.lucene.index.IndexableFieldType;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.util.BytesRef;
+import org.apache.lucene.store.FSDirectory;
 import org.jboss.resteasy.spi.HttpRequest;
-
-import scala.Option;
 
 import com.google.common.base.Function;
 
@@ -184,7 +164,7 @@ public class IndexerWeb implements Webapp {
 	@GET
 	@Path("/{iid}/dirInfo")
 	@Produces(MediaType.APPLICATION_JSON)
-	public JsonObject viewDirInfo(@PathParam("iid") String iid) throws IOException{
+	public JsonObject viewDirInfo(@PathParam("iid") final String iid) throws IOException{
 		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
 			@Override
 			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
@@ -192,6 +172,9 @@ public class IndexerWeb implements Webapp {
 				
 				json.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
 				json.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
+				if (dreader.directory() instanceof FSDirectory){
+					json.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory()) ;
+				}
 				
 				return json;
 			}
@@ -223,6 +206,10 @@ public class IndexerWeb implements Webapp {
 				JsonObject dirInfo = new JsonObject() ;
 				dirInfo.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
 				dirInfo.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
+				if (dreader.directory() instanceof FSDirectory){
+					dirInfo.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory().getCanonicalPath()) ;
+				}
+				
 				result.add("dirInfo", dirInfo);
 
 				ReadNode readNode = rsession.pathBy("/indexers/" + iid) ;

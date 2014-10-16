@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="builder_for_aradon" default="publish">
+
+	<property name="baseDir" value="." />
+	<property name="binDir" value="./bin" />
+	<property name="sbinDir" value="./sbin" />
+	<property name="publishDir" value="./publish" />
+	
+	<tstamp>
+	  <format property="TODAY_MY" pattern="MM/dd/yyyy hh:mm"/>
+	</tstamp>
+	
+	<property name="manifest.main.class" value="net.ion.niss.Main" />
+	<property name="manifest.classpath" value="lib/ref/* lib/common/* lib/reflib/*" />
+	<property name="version.number" value="0" />
+	<property name="build.number" value="5" />
+	
+	<manifestclasspath property="dynamic.manifest.classpath" jarfile="niss_${version.number}.${build.number}.jar">
+		<classpath>
+	      <fileset dir="lib/common/" includes="*.jar" />
+	      <fileset dir="lib/ref/" includes="*.jar" />
+	      <fileset dir="lib/reflib/" includes="*.jar" />
+	    </classpath>
+	</manifestclasspath>
+	
+	<target name="publish" >
+		<delete file="publish/niss_${version.number}.${build.number}.jar"></delete>
+		<jar destfile="publish/niss_${version.number}.${build.number}.jar">
+			<manifest>
+			  <attribute name="Built-By" value="${user.name}"/>
+			  <attribute name="Created-By" value="${user.name}"/>
+			  <attribute name="Main-Class" value="${manifest.main.class}" />
+			  <attribute name="Built-Date" value="${TODAY_MY}" />
+			  <attribute name="Class-Path" value="${dynamic.manifest.classpath}" />
+			  <section name="common">
+			    <attribute name="Specification-Title" value="i-on new search server"/>
+			    <attribute name="Specification-Version" value="${version.number}.${build.number}"/>
+			    <attribute name="Specification-Vendor" value="i-on"/>
+			  </section>
+			</manifest>
+			<fileset dir="${binDir}/" includes="net/**" />
+			<fileset dir="${binDir}/" includes="org/**" />
+		</jar>
+	</target>
+
+	<target name="deploy_self" depends="publish">
+		<echo>Copy main lib</echo>
+		<copy todir="deploy" overwrite="true">
+			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
+		</copy>
+	</target>
+	
+	<target name="copy_for_deploy" depends="publish">
+	    <echo>Copy lib</echo>
+		<copy todir="deploy/lib/" overwrite="true">
+			<fileset dir="lib/" includes="**"></fileset>
+		</copy>
+		
+		<echo>Copy main lib</echo>
+		<copy todir="deploy" overwrite="true">
+			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
+		</copy>
+
+		<echo>Copy resource file(config, loader)</echo>
+		<copy todir="deploy/resource/config" overwrite="true">
+			<fileset dir="resource/config/" includes="**"/>
+		</copy>
+		<copy todir="deploy/resource/loader" overwrite="true">
+			<fileset dir="resource/loader/" includes="**"/>
+		</copy>
+		<copy todir="deploy/resource/" overwrite="true">
+			<fileset file="resource/log4j.properties" />
+		</copy>
+				
+		<echo>Copy webapps file(config, loader)</echo>
+		<copy todir="deploy/webapps" overwrite="true">
+			<fileset dir="webapps/" includes="**"/>
+		</copy>
+	
+	</target>
+
+
+</project>

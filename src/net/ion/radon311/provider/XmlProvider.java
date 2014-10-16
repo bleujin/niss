@@ -15,14 +15,12 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyReader;
 import javax.ws.rs.ext.MessageBodyWriter;
 
-import org.apache.ecs.xml.XML;
-import org.apache.ecs.xml.XMLDocument;
-
 import net.ion.framework.parse.gson.JsonElement;
-import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.Debug;
+
+import org.apache.ecs.xml.XML;
+import org.apache.ecs.xml.XMLDocument;
 
 public class XmlProvider implements MessageBodyReader<Object>, MessageBodyWriter<Object> {
 

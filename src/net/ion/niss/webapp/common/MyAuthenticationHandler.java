@@ -1,19 +1,10 @@
 package net.ion.niss.webapp.common;
 
-import java.io.IOException;
-
-import net.ion.craken.node.ReadSession;
-import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.REntry;
 import net.ion.nradon.HttpControl;
-import net.ion.nradon.HttpHandler;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
-import net.ion.nradon.Radon;
 import net.ion.nradon.handler.AbstractHttpHandler;
-import net.ion.nradon.handler.authentication.InMemoryPasswords;
 import net.ion.nradon.handler.authentication.PasswordAuthenticator;
-import net.ion.nradon.handler.event.ServerEvent.EventType;
 import net.ion.nradon.helpers.Base64;
 
 public class MyAuthenticationHandler extends AbstractHttpHandler {
@@ -34,11 +25,10 @@ public class MyAuthenticationHandler extends AbstractHttpHandler {
 
 		String authHeader = request.header("Authorization");
 		
-		if (request.uri().startsWith("/search/")) {
+		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || request.uri().startsWith("/css/") || request.uri().startsWith("/img/") || request.uri().startsWith("/js/")) {
 			control.nextHandler();
 			return ;
 		}
-		
 		
 		if (authHeader == null) {
 			needAuthentication(response);

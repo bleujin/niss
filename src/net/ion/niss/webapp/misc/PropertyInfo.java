@@ -1,6 +1,5 @@
 package net.ion.niss.webapp.misc;
 
-import java.io.IOException;
 import java.util.Map.Entry;
 import java.util.Properties;
 

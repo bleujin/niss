@@ -1,6 +1,7 @@
 package net.ion.niss.webapp;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Constructor;
@@ -10,38 +11,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.script.ScriptException;
-
-import org.apache.commons.lang.reflect.ConstructorUtils;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.util.CharArraySet;
-import org.apache.lucene.index.CorruptIndexException;
-import org.apache.lucene.search.SearcherManager;
-import org.apache.lucene.util.Version;
-import org.infinispan.manager.DefaultCacheManager;
-import org.infinispan.util.concurrent.WithinThreadExecutor;
-
 import net.ion.craken.listener.CDDHandler;
 import net.ion.craken.listener.CDDModifiedEvent;
 import net.ion.craken.listener.CDDRemovedEvent;
-import net.ion.craken.loaders.lucene.ISearcherWorkspaceConfig;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.TreeNodeKey;
 import net.ion.craken.tree.Fqn;
 import net.ion.craken.tree.PropertyId;
 import net.ion.craken.tree.PropertyValue;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
-import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
+import net.ion.niss.config.NSConfig;
+import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SearchManager;
@@ -54,7 +40,14 @@ import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.config.SearchConfig;
 import net.ion.nsearcher.search.CompositeSearcher;
 import net.ion.nsearcher.search.Searcher;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
+
+import org.apache.commons.lang.reflect.ConstructorUtils;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.util.CharArraySet;
+import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.util.Version;
+import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class REntry implements Closeable {
 
@@ -62,19 +55,22 @@ public class REntry implements Closeable {
 
 	private RepositoryImpl r;
 	private String wsName;
+	private NSConfig nsconfig;
+
 	private IndexManager indexManager = new IndexManager();
 	private SearchManager searchManager = new SearchManager();
 
 	private ReadSession rsession;
 
-	public REntry(RepositoryImpl r, String wsName) throws IOException {
+
+	public REntry(RepositoryImpl r, String wsName, NSConfig nsconfig) throws IOException {
 		this.r = r;
 		this.wsName = wsName;
+		this.nsconfig = nsconfig ;
 
 		this.rsession = login();
 		initCDDListener(rsession);
 	}
-
 
 	// use test only (central not finished)
 	public void reload(){
@@ -95,7 +91,7 @@ public class REntry implements Closeable {
 					for (ReadNode indexNode : iter) {
 						IdString cid = IdString.create(indexNode.fqn().name());
 
-						Central central = CentralConfig.newLocalFile().dirFile("./resource/index/" + cid.idString()).build();
+						Central central = CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), cid.idString()).getCanonicalPath()).build();
 
 						Analyzer indexAnal = makeIndexAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
 						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
@@ -230,7 +226,7 @@ public class REntry implements Closeable {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
 					if (! indexManager.hasIndex(iid)) { // created
-						Central central = CentralConfig.newLocalFile().dirFile("./resource/index/" + iid.idString()).build();
+						Central central = CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
 
 						indexManager.newIndex(iid, central);
 					} else if (indexManager.hasIndex(iid)) {
@@ -384,19 +380,18 @@ public class REntry implements Closeable {
 	}
 	
 	public final static REntry create() throws CorruptIndexException, IOException {
-		RepositoryImpl r = RepositoryImpl.test(new DefaultCacheManager(), "niss");
-		r.defineWorkspaceForTest("admin", ISearcherWorkspaceConfig.create().location("./resource/admin"));
-		r.start();
-
-		return new REntry(r, "admin");
+		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build() ;
+		return nsconfig.createREntry() ;
 	}
+
+	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException {
+		return nsconfig.createREntry();
+	}
+
 	
 	public final static REntry test() throws CorruptIndexException, IOException {
-		RepositoryImpl r = RepositoryImpl.test(new DefaultCacheManager(), "niss");
-		r.defineWorkspaceForTest("test", ISearcherWorkspaceConfig.create().location(""));
-		r.start();
-
-		return new REntry(r, "test");
+		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build() ;
+		return nsconfig.testREntry() ;
 	}
 
 	public ReadSession login() throws IOException {

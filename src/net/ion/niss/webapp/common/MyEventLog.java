@@ -2,10 +2,8 @@ package net.ion.niss.webapp.common;
 
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.locks.ReadWriteLock;
 
 import net.ion.framework.util.ObjectUtil;
-import net.ion.niss.webapp.util.CopyOnWriteMap;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceMessage;
 

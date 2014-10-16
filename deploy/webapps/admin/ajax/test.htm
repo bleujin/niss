@@ -1,0 +1,38 @@
+						<a href="ajax/modal-content/model-content-1.html" data-toggle="modal" data-target="#remoteModal" class="btn btn-primary btn-lg">
+							Launch remote modal
+						</a>
+
+						<!-- Dynamic Modal -->  
+						<div class="modal fade" id="remoteModal" tabindex="-1" role="dialog" aria-labelledby="remoteModalLabel" aria-hidden="true">  
+						    <div class="modal-dialog">  
+						        <div class="modal-content">
+						        	<!-- content will be filled here from "ajax/modal-content/model-content-1.html" -->
+						        </div>  
+						    </div>  
+						</div>  
+						
+						
+							<div id="edit_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">?</button>
+              <h3 id="myModalLabel">¬²¬Ö¬Õ¬Ñ¬Ü¬ä¬Ú¬â¬à¬Ó¬Ñ¬ß¬Ú¬Ö ¬à¬Ò¬ì¬Ö¬Ü¬ä¬Ñ</h3>
+            </div>
+            <div class="modal-body" id="fm_edit_obj">
+            BODY
+            </div>
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">¬°¬ä¬Þ¬Ö¬ß¬Ú¬ä¬î</button>
+              <button class="btn btn-primary">¬³¬à¬ç¬â¬Ñ¬ß¬Ú¬ä¬î ¬Ú¬Ù¬Þ¬Ö¬ß¬Ö¬ß¬Ú¬ñ</button>
+            </div>  
+        </div>
+    </div>
+	</div>
+	<img src="../../img/ribbon.png" alt="" id="myimg">
+	
+	<script>
+$('#myimg').click(function(){
+    $('#edit_form').modal('show');
+});
+</script> 

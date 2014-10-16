@@ -1,7 +1,5 @@
 package net.ion.niss.webapp.common;
 
-import net.ion.craken.tree.Fqn;
-import net.ion.framework.util.StringUtil;
 
 public class Def {
 
@@ -50,4 +48,14 @@ public class Def {
 		public static final String ApplyStopword = "applystopword";
 	}
 	
+	public static class Loader {
+		public static final String Time = "time" ;
+		public static final String Status = "status" ;
+	}
+
+	
+	public static class User {
+		public static final String Name = "name" ;
+		public static final String Password = "password" ;
+	}
 }

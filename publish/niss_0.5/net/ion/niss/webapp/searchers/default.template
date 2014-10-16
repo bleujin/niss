@@ -1,0 +1,21 @@
+
+<ul>
+	<li>elapsedTime : $response.elapsedTime()
+	<li>size : $response.size()
+	<li>totalCount : $response.totalCount()
+	<li>params : $params
+</ul>
+
+<table>
+<tr>
+	<th>Id</th>
+	<th>Title</th>
+</tr>
+
+#foreach($doc in $response.getDocument())
+<tr>
+	<td>$doc.getField("id").stringValue()</td>
+	<td>$doc.getField("title").stringValue()</td>
+</tr>
+#end
+</table>

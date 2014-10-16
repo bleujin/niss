@@ -1,17 +1,7 @@
 package net.ion.niss.webapp.loaders;
 
 import java.io.Writer;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Future;
-
-import javax.script.Invocable;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-
-import net.ion.nsearcher.search.Searcher;
-
-import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class InstantJavaScript {
 
