@@ -1,12 +1,9 @@
 package net.ion.niss;
 
-import java.net.BindException;
 import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.concurrent.ExecutionException;
-
-import org.jboss.netty.channel.ChannelException;
 
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.config.NSConfig;
@@ -35,8 +32,6 @@ public class Main {
 				future.get();
 				nc.close();
 				Thread.sleep(1000);
-			} catch (ExecutionException eex) {
-				System.out.println(eex.getMessage());
 			} finally {
 				nc.close();
 			}

@@ -175,12 +175,52 @@
 		<!-- MAIN APP JS FILE -->
 		<script src="js/app.min.js"></script>
 
-		<script src="http://crypto-js.googlecode.com/files/2.5.3-crypto-min.js"></script>
+		<script src="js/2.5.3-crypto-min.js"></script>
 
 		<script type="text/javascript">
 			runAllForms();
 
+			function getHTTPObject() {
+				var xmlhttp = false;
+				if (typeof XMLHttpRequest != 'undefined') {
+					try {
+						xmlhttp = new XMLHttpRequest();
+					} catch (e) {
+						xmlhttp = false;
+					}
+				} else {
+			        /*@cc_on
+			        @if (@_jscript_version >= 5)
+			            try {
+			                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+			            } catch (e) {
+			                try {
+			                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			                } catch (E) {
+			                    xmlhttp = false;
+			                }
+			            }
+			        @end @*/
+			    }
+				return xmlhttp;
+			} ;
+
+			
 			$(function() {
+				
+				// reset 
+				var http = getHTTPObject();
+				var url = "/index.html";
+			    http.open("get", url, false, "anonymous", "fail");
+			    http.send("");
+				if (http.status == 200) {
+					;
+				} else {
+					;
+				}
+
+				
+				
 				// Validation
 				$("#login-form").validate({
 					// Rules for form validation
@@ -199,39 +239,22 @@
 						var userId = $("#login-form input[name=userid]").val() ;
 						var password = $("#login-form input[name=password]").val() ;
 						
-						$.ajaxSetup({
-						    cache: true,
-						    statusCode: {
-						        401: function () {
-						        	$("#save-message span").html("user info not matched") ;
-									$("#save-message").removeClass("message") ;
-									setTimeout(function() {
-										$("#save-message").addClass("message") ;
-									}, 2000);
-						            // document.location.href = "index.html" ;
-						            console.log('not logined') ;
-						        }
-						    }
-						});
-						
-						$.ajax({
-							type: "GET",
-							url: "/index.html",
-							data: {}, 
-							"username" : userId,
-							"password" : password, 
-							beforeSend : function(xhr) {
-								var bytes = Crypto.charenc.Binary.stringToBytes(userId + ":" + password);
-								var base64 = Crypto.util.bytesToBase64(bytes);
-								xhr.setRequestHeader("Authorization", "Basic " + base64);
-								console.log(userId, password)
-							}, 
-							success:function(data){
-								console.log('success') ;
-								// $('html').replaceWith("hhhhhh");
-								document.location = '/index.html' ;			
-							}
-						}) ;
+						var http = getHTTPObject();
+						var url = "/index.html";
+					    http.open("get", url, false, userId, password);
+					    http.send("");
+						if (http.status == 200) {
+							document.location = url;
+						} else {
+				        	$("#save-message span").html("user info not matched") ;
+							$("#save-message").removeClass("message") ;
+							setTimeout(function() {
+								$("#save-message").addClass("message") ;
+							}, 5000);
+				            // document.location.href = "index.html" ;
+				            console.log('not logined') ;
+					        // alert("Incorrect username and/or password!");
+					    }
 					},
 
 					// Do not change code below

@@ -208,7 +208,17 @@
 			
 			$(function() {
 				
-				
+				// reset 
+				var http = getHTTPObject();
+				var url = "/index.html";
+			    http.open("get", url, false, "anonymous", "fail");
+			    http.send("");
+				if (http.status == 200) {
+					;
+				} else {
+					;
+				}
+
 				
 				
 				// Validation

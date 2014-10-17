@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.framework.util.ArrayUtil;
+import net.ion.framework.util.Debug;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.handler.TemplateEngine;
 import net.ion.nradon.handler.authentication.BasicAuthenticationHandler;
@@ -45,15 +46,28 @@ public class HTMLTemplateEngine implements TemplateEngine {
 	}
 
 	
-	private String[] template_html = new String[]{"/index.html", "/indexers.html"} ;
+	private String[] template_html = new String[]{"/index.html", "/indexers.html", "/"} ;
 	
 	@Override
 	public byte[] process(byte[] template, String templatePath, Object arg) throws RuntimeException {
 
-		if (ArrayUtil.contains(template_html, templatePath)) {
+		
+		if (templatePath.startsWith("/css/") || templatePath.startsWith("/img/") || templatePath.startsWith("/favicon.ico") || templatePath.startsWith("/fonts/") || templatePath.startsWith("/js/")) {
+			return template ;
+		}
+		
+		Debug.line(templatePath);
+		//if (ArrayUtil.contains(template_html, templatePath)) {
+		if (templatePath.equals("/")) templatePath = "/index.html" ;
+		if (templatePath.endsWith(".html")) {
+			Debug.line(templatePath);
 			HttpRequest request = (HttpRequest) arg;
 
-			Template tpl = ve.getTemplate(templatePath);
+			if (! ve.resourceExists(templatePath)) return template ;
+			
+			Template tpl = ve.getTemplate(templatePath, "UTF-8");
+			
+			
 			StringWriter sw = new StringWriter();
 			VelocityContext vc = new VelocityContext(this.vcontext) ;
 			
