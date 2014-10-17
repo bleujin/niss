@@ -1,0 +1,193 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Schema
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+	
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-blueDark" id="schema-list-win" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>Schema Fields</h2>
+				</header>
+
+				<div>
+					<div class="jarviswidget-editbox"></div>
+					<div class="widget-body">
+						<table id="example" class="table table-bordered table-hover" width="100%">
+						</table>
+					</div>
+				</div>
+			</div>
+		</article>
+		
+	</div>
+</section>
+
+
+				
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+	
+	String.prototype.endsWith = function(suffix) {
+	    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+	};
+
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/indexers",
+				data: { content: aHTML, field: "schema" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId == undefined) return ;
+		
+		function htmlToText(divId) {
+			var ce = $("<pre />").html($("#" + divId).html());
+			if($.browser.webkit)
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });    
+			if($.browser.msie)
+				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
+			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
+				ce.find("br").replaceWith("\n");
+			return ce.text();
+		} ;
+		
+		
+
+
+		
+		$.ajax({
+			url:'/admin/indexers/' + indexerId +'/schema',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+				
+				var index_analyzer = data['index_analyzer'] ;
+				for(var idx in index_analyzer){
+					var analyzer = index_analyzer[idx] ;
+					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
+					if (analyzer['selected']) option.attr('selected', 'selected');
+					option.appendTo($("select[name=schema_analyzer]")) ;
+				}
+				
+				var nodes = data['data'];
+				$("#example")
+					.dataTable({
+					// "processing":true,
+					// "dom":'<"toolbar">frtip',
+					"data":nodes,
+					"searching":false, 
+					"columns": data['schemaName']
+				}) ;
+				
+				
+				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
+				'				<fieldset class="smart-form">' +
+				'					<div class="row">' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_cfield" value="Create Field" /> <input type="button" class="btn btn-primary btn-sm" id="btn_dfield" value="Remove Field" disabled="disabled"/></section>' +
+				'						' +
+				'					</div>' +
+				'				</fieldset>' +
+				'				</td></tr></tfoot>' ;
+				
+				$(tableFoot).appendTo($("#example")) ;
+				
+				
+				$('#example tbody').on( 'click', 'tr', function () {
+					if ( $(this).hasClass('selected2') ) {
+				            $(this).removeClass('selected2');
+				       } else {
+				            $('#example').DataTable().$('tr.selected2').removeClass('selected2');
+				            $(this).addClass('selected2');
+				       }
+				       ($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_dfield').removeAttr("disabled") : $('#btn_dfield').attr("disabled", "disabled") ;
+				} );
+				
+				
+				$("#btn_dfield").click(function(e){
+					var targets = $('#example').DataTable().rows('.selected2') ;
+					var schemaId = '' ;
+					for(var i=0; i < targets.data().length ; i++){
+						schemaId = targets.data()[i][0] ;
+					}
+					 $.ajax({
+							url:"/admin/indexers/" + indexerId + "/schema/" + schemaId,
+							type:'DELETE', 
+							data : {}, 
+							success:function(data){
+								targets.remove().draw(false) ;			
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+					});
+				}) ;
+				
+				$('#btn_cfield').click(function(){
+					$('#create_schema_form').modal({
+						
+					});
+				});
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+	};
+
+	// run pagefunction on load
+
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+	});
+
+</script>

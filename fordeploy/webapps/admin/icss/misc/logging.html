@@ -1,0 +1,174 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Logging
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-purple" id="wid-id-stat" data-widget-editbutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+					<h2>Logging</h2>				
+				</header>
+
+
+				<div>
+					<div class="jarviswidget-editbox">
+						<input class="form-control" type="text">	
+					</div>
+
+					
+					<div class="widget-body">
+					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+						<fieldset>
+							<section>
+							<div class="span3" style="height: 300px; overflow: auto;">
+								<table class="table table-bordered table-striped" id="mainTable">
+								<thead>
+									<tr>
+										<th> Time</th>
+										<th> <i class="fa fa-building"></i> Client</th>
+										<th> <i class="fa fa-calendar"></i> Type</th>
+										<th> <i class="glyphicon glyphicon-send"></i> Resource</th>
+										<th> <i class="glyphicon glyphicon-send"></i> Method</th>
+										<th> <i class="glyphicon glyphicon-send"></i> Elapsed</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+							</div>
+							</section>
+							
+						</fieldset>
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" id="btn_stop" disabled="disabled">
+								<i class="fa fa-check"></i> Stop
+							</button>	
+							<button class="btn btn-sm btn-primary" type="button" id="btn_monitor">
+								<i class="fa fa-times"></i> Monitor
+							</button>	
+						</footer>
+					</form>
+					</div>
+				</div>
+				
+			</div>
+		</article>
+		
+	</div>
+	
+
+
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	
+	pageSetUp();
+	
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/loaders",
+				data: { content: aHTML, field: "define" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		String.prototype.format = function() {
+		    var formatted = this;
+		    for (var i = 0; i < arguments.length; i++) {
+		        var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+		        formatted = formatted.replace(regexp, arguments[i]);
+		    }
+		    return formatted;
+		};
+
+		$( "#btn_monitor" ).click(function() {
+			var es = new EventSource('/logging/event/');
+			es.onopen = function() {
+				// console.log('OPEN');
+			};
+			es.onmessage = function(e) {
+				
+				if (! $("#mainTable").length) es.close() ;
+				
+				var msg = '' + e.data ;
+				var values = msg.split('\t') ;
+				
+				var dtime = new Date(values[1] - 0);
+				var client = values[4] ;
+				var type = values[5] ;
+				var method = values[6] ;
+				var elapsed = values[7] ;
+				var row = '<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>'.format(new Date(values[1] - 0), values[4], values[5], values[6], values[7], values[8]);
+				$(row).insertAfter("#mainTable tr:first");
+			};
+
+			es.onerror = function(e) {
+				console.log('ERROR : ' + e);
+			};
+			
+			$( "#btn_monitor").attr("disabled", "disabled") ;
+			$( "#btn_stop" ).removeAttr("disabled") ;
+			
+			$( "#btn_stop" ).click(function() {
+				es.close() ;
+				$( "#btn_monitor" ).removeAttr("disabled")
+				$( "#btn_stop" ).attr("disabled", "disabled")
+			}) ;
+		}) ;
+
+	};
+
+	// run pagefunction on load
+	pagefunction();
+	
+</script>

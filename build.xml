@@ -45,62 +45,49 @@
 
 	<target name="deploy_self" depends="publish">
 		<echo>Copy main lib</echo>
-		<copy todir="deploy" overwrite="true">
+		<copy todir="fordeploy" overwrite="true">
 			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
 		</copy>
 	</target>
 	
 	<target name="copy_for_deploy" depends="publish">
 	    <echo>Copy lib</echo>
-		<copy todir="deploy/lib/" overwrite="true">
+		<copy todir="fordeploy/lib/" overwrite="true">
 			<fileset dir="lib/" includes="**"></fileset>
 		</copy>
 		
 		<echo>Copy main lib</echo>
-		<copy todir="deploy" overwrite="true">
+		<copy todir="fordeploy" overwrite="true">
 			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
 		</copy>
 
 		<echo>Copy resource file(config, loader)</echo>
-		<copy todir="deploy/resource/config" overwrite="true">
+		<copy todir="fordeploy/resource/config" overwrite="true">
 			<fileset dir="resource/config/" includes="**"/>
 		</copy>
-		<copy todir="deploy/resource/loader" overwrite="true">
+		<copy todir="fordeploy/resource/loader" overwrite="true">
 			<fileset dir="resource/loader/" includes="**"/>
 		</copy>
-		<copy todir="deploy/resource/" overwrite="true">
+		<copy todir="fordeploy/resource/" overwrite="true">
 			<fileset file="resource/log4j.properties" />
 		</copy>
 	</target>
 
 	
-	<target name="copy_full_deploy" depends="publish">
-	    <echo>Copy lib</echo>
-		<copy todir="deploy/lib/" overwrite="true">
-			<fileset dir="lib/" includes="**"></fileset>
-		</copy>
-		
-		<echo>Copy main lib</echo>
-		<copy todir="deploy" overwrite="true">
-			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
-		</copy>
-
-		<echo>Copy resource file(config, loader)</echo>
-		<copy todir="deploy/resource/config" overwrite="true">
-			<fileset dir="resource/config/" includes="**"/>
-		</copy>
-		<copy todir="deploy/resource/loader" overwrite="true">
-			<fileset dir="resource/loader/" includes="**"/>
-		</copy>
-		<copy todir="deploy/resource/" overwrite="true">
-			<fileset file="resource/log4j.properties" />
-		</copy>
-				
+	<target name="copy_full_deploy" depends="copy_for_deploy">
 		<echo>Copy webapps file(config, loader)</echo>
-		<copy todir="deploy/webapps" overwrite="true">
+		<copy todir="fordeploy/webapps" overwrite="true">
 			<fileset dir="webapps/" includes="**"/>
 		</copy>
 	</target>
 	
 
+	<target name="make_zip" depends="copy_full_deploy">
+	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/">
+	   </zip> 
+	    
+	    
+	</target>
+	
+	
 </project>

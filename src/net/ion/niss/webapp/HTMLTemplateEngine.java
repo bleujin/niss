@@ -56,7 +56,6 @@ public class HTMLTemplateEngine implements TemplateEngine {
 			return template ;
 		}
 		
-		Debug.line(templatePath);
 		//if (ArrayUtil.contains(template_html, templatePath)) {
 		if (templatePath.equals("/")) templatePath = "/index.html" ;
 		if (templatePath.endsWith(".html")) {

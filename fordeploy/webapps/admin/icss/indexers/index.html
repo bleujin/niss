@@ -1,0 +1,196 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i> 
+				Index Documents
+		</h1>
+	</div>
+	
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
+			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			</div>
+		</div>
+
+		
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-purple" id="wid-indexer-query" data-widget-editbutton="false" data-widget-deletebutton="false">
+			<header>
+				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+				<h2>Index Example</h2>				
+			</header>
+
+			<div>
+				<div class="jarviswidget-editbox">
+					<input class="form-control" type="text">	
+				</div>
+				
+				<div class="widget-body">
+								
+		
+					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+						<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
+							<fieldset style="padding: 0px">					
+								<section>
+									<label class="label">Document Type</label>
+									<label class="select">
+										<select name="interested" id="dtype">
+										    <option value="json">JSON</option>
+										    <option value="csv">CSV</option>
+										    <option value="jarray">JSON ARRAY</option>
+										</select>
+									</label>
+								</section>
+								<section>
+									<label class="label">Document(s)</label>
+									<label class="textarea textarea-resizable">
+										<textarea id="documents" name="documents" rows="10"></textarea>
+									</label>
+								</section>
+								
+								<div class="row">
+								<section class="col col-6">
+									<label class="label">Commit Within</label>
+									<label class="input">
+										<input type="text" id="within" name="within" value="1000" />
+									</label>
+								</section>
+								<section class="col col-6">
+									<label class="label">Boost</label>
+									<label class="input">
+										<input type="text" id="boost" name="boost" value="1.0" />
+									</label>
+								</section>
+								</div>
+								
+								<section>
+									<label class="checkbox"><input type="checkbox" id="overwrite" name="overwrite" checked="true" /><i></i>Overwrite</label>
+								</section>
+								
+							</fieldset>
+							
+							<footer>
+								<button class="btn btn-primary" type="button" id="execIndex">Index Document</button>
+							</footer>
+							
+							<div class="message">
+								<i class="fa fa-thumbs-up"></i>
+								<p>Your message was successfully sent!</p>
+							</div>
+						</form>
+					</div>
+					
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+						<div class="alert alert-info alert-block" id="index_url"></div>
+						<div><pre id="index_result"></pre></div>
+					</div>
+					
+					
+				</div>
+			</div>
+			</div>
+			
+		</article>
+			
+	</div>
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var docSample = {'json' : '{"id":"change_me","title":"change.me"}', 'csv':'id,title\r\nchange_me,change.me', 'jarray':'[\r\n{"id":"change_me1","title":"change.me2"},\r\n{"id":"change_me2","title":"change.me2"}\r\n]'}
+
+	var pagefunction = function() {
+		$("#documents").val(docSample['json']) ;
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/indexers",
+				data: { content: aHTML, field: "index" }
+				})
+				.done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				});
+			$('.click2edit').destroy();
+		});
+		
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId == undefined) return ;
+		
+		$.ajax({
+			url:'/admin/indexers/' + indexerId +'/index',
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		$( "#dtype" ).change(function() {
+			var selected = $("#dtype option:selected").val();
+			$("#documents").val(docSample[selected]) ;
+		});
+		
+		$( "#execIndex" ).click(function() {
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/indexers/" + indexerId + "/index." + $("#dtype").val() ,
+				data: { documents: $("#documents").val(), within: $("#within").val(), boost: $("#boost").val(), overwrite: $("#overwrite").is(":checked") ? true : false}, 
+				complete : function(){ 
+					var result_text = 'Path : ' + this.url + '<br/>';
+					result_text += 'Form parameter : <br />' ;
+					result_text += ' - document : ...<br />' ;
+					result_text += ' - wihtin : ' + $("#within").val() + '<br />' ;
+					result_text += ' - boost : ' +  $("#boost").val()+ '<br />' ;
+					result_text += ' - overwrite : ' + ($("#overwrite").is(":checked") ? true : false) +'<br />' ;
+					$("#index_url").html(result_text) ;
+				}, 
+				success :  function(data) {
+					$("#index_result").text(data) ;
+				}
+			}) ;
+			
+		});
+		
+	};
+
+	// run pagefunction on load
+	pagefunction();
+
+</script>

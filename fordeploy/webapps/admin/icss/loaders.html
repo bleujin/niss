@@ -1,0 +1,265 @@
+<div class="inbox-nav-bar no-content-padding"></div>
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+
+		<div class="well no-padding">
+		<form class="smart-form no-padding" method="post" action="loaders/left" novalidate="novalidate">
+			<fieldset>
+				<section class="no-padding">
+					<label class="label">Choose Loader</label>
+					<label class="select">
+						<select class="input-sm choose-sub form-control" id="loaders"></select>
+					</label>
+				</section>
+			</fieldset>
+		</form>
+		</div>
+		
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Loader</a></li>
+			<li class="submenu"><a class="example-load" href="javascript:void(0);">Example Loader</a></li>
+			<li><br /><br /><li>
+			<li class="dd-item" data-id="1">
+				<div class="dd-handle create-open">
+					Create <span> Loader</span>
+				</div>
+			</li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+		
+			&nbsp;<a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Remove Loader" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+	</div>
+
+
+</div>
+
+<div id="remove-loader-confirm" title="Remove Loader" style="display:none">
+	<form class="smart-form" id="remove-loader-form" method="post" action="loader/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Loader : <span id="removeLoaderId"></span></label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+
+
+<div id="create_loader_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content" style="width:70%">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Loader</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_loader_form" method="post" action="loaders/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Loader Id</label>
+					<label class="input">
+						<input type="text" id="newLoaderId" name="newlid" placeholder="new loader id" />
+					</label>
+				</section>
+				<section>
+					<label class="label">Loader Name</label>
+					<label class="input">
+						<input type="text" id="newLoaderName" name="name" placeholder="new loader name" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_loader">Create Loader</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	
+	var pagefunction = function() {
+
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+			}
+		}
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		}) ;
+
+
+		
+		
+		var lastLoaderId = '' ;
+		var lastMenuHTML = 'overview.html' ;
+		
+		$.ajax({
+			url:'/admin/loaders',
+			dataType:'json',
+			success:function(data){
+				var loaders = data['loaders'] ;
+				for(var idx in loaders ){
+					var loader = loaders [idx] ;
+					var option = $('<option value="'+loader['lid']+'">'+loader['name']+'</option>') ;
+					option.appendTo($("select.choose-sub")) ;
+				}
+				
+				//LOAD Overview MESSAGES
+				loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastLoaderId = $(".choose-sub").val() ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+
+		
+		$(".choose-sub").change(function(){
+			loadURL("icss/loaders/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+			lastLoaderId = $(".choose-sub").val() ;
+		}) ;
+
+
+		$(".fa-trash-o").click(function(){
+			$("#remove-loader-confirm" ).css('visibility', 'visible') ;
+			$("#removeLoaderId").html($("#loaders option:selected" ).text()) ;
+			$("#remove-loader-confirm" ).dialog({
+				modal: true,
+				buttons: {
+					"Remove Loader": function() {
+						var win = $( this ) ;
+						$.ajax({
+							type: "DELETE",
+							dataType : 'text', 
+							url: "/admin/loaders/" + $(".choose-sub").val(),
+							data: { }, 
+							complete : function(){ 
+								// $("#query_url").text(this.url) ;
+							}, 
+							success :  function(data) {
+								$("#loaders option:selected").remove();
+								loadURL("icss/loaders/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+								win.dialog( "close" );
+							}
+						}) ;	
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}) ;
+		
+		
+		$("li.submenu").click(function() {
+		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
+		});
+		
+	
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap'))
+			lastMenuHTML = 'overview.html' ;
+		});
+		$(".defined-load").click(function() {
+			loadURL("icss/loaders/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'defined.html' ;
+		});
+		$(".example-load").click(function() {
+			loadURL("icss/loaders/example.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'example.html' ;
+		});
+		$(".history-load").click(function() {
+			loadURL("icss/loaders/history.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'history.html' ;
+		});
+		
+		var $createForm = $("#create_loader_form").validate({
+			rules : {
+				newlid : { required : true, minlength : 4, maxlength : 15 }, 
+				name   : { required : true, minlength : 4, maxlength : 15 } 
+			},
+			submitHandler : function(form) {
+				var newId = $("#newLoaderId").val() ;
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/loaders/" + newId,
+					data: {"name": $("#newLoaderName").val()}, 
+					complete : function(){ 
+					}, 
+					success :  function(data) {
+						$("#loaders option:eq(0)").after('<option value="'+newId+'" selected="selected">'+$("#newLoaderName").val()+'</option>');
+						loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
+						$('#create_loader_modal').modal('hide');
+					}
+				}) ;
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		$("#create_loader_modal button[name=create_loader]").click(function(){
+			$("#create_loader_form").submit() ;
+		});
+		
+		$(".create-open").click(function() {
+			$('#create_loader_modal').modal({});
+		});
+		
+	};
+	
+	// end pagefunction
+	
+	// load delete row plugin and run pagefunction
+
+	pagefunction();
+	
+</script>

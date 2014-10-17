@@ -1,0 +1,48 @@
+<html lang="en-us">	
+	<head>
+		<meta charset="utf-8">
+		<title> SmartAdmin (AJAX)</title>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<script src="http://crypto-js.googlecode.com/files/2.5.3-crypto-min.js"></script>
+	
+
+	</head>
+<body>
+
+
+<input type="button" value="Hello Page" id="hello" />
+
+
+<script>
+/*
+	$.ajaxSetup({
+	    cache: false,
+	    statusCode: {
+	        401: function () {
+	            // document.location.href = "index.html" ;
+	            console.log('move') ;
+	        }
+	    }, 
+		beforeSend : function(xhr) {
+	          var bytes = Crypto.charenc.Binary.stringToBytes('bleujin' + ":" + "1");
+	          var base64 = Crypto.util.bytesToBase64(bytes);
+	          xhr.setRequestHeader("Authorization", "Basic " + base64);
+		}
+	});
+*/
+	$("#hello").click(function(){
+		$.ajax({
+			type: "GET",
+			url: "/img/logo.png",
+			data: { content: '', field: "browsing" }, 
+			success:function(data){
+				console.log(data) ;			
+			}
+		}) ;
+		
+		
+	}) ;
+</script>
+
+</body>
+</html>

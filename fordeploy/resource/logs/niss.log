@@ -1,0 +1,19 @@
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Delirium' 5.2.1.Final
+[main] INFO  org.infinispan.factories.TransactionManagerFactory  - ISPN000161: Using a batchMode transaction manager
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Workspace  - /__transactions/543f8f67a66cb6cf12ed571d writed
+[main] INFO  net.ion.craken.node.Workspace  - /__transactions/543f8f67a66cb6cf14ed571d writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:27:38 KST 2014	1413451658013	127	1	/61.250.201.157:8545	HTTP-END 200	/index.html	GET	73	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:27:39 KST 2014	1413451659475	1292	3	/61.250.201.157:8549	HTTP-END 200	/icss/misc.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:27:39 KST 2014	1413451659644	1461	3	/61.250.201.157:8549	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:27:39 KST 2014	1413451659895	1712	3	/61.250.201.157:8549	HTTP-END 200	/admin/misc/properties	GET	32	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:35:07 KST 2014	1413452107875	10	9	/127.0.0.1:8642	HTTP-END 200	/admin/misc/shutdown?time=10&password=dkdldhs	GET	8	
+

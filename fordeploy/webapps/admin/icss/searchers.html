@@ -1,0 +1,259 @@
+<div class="inbox-nav-bar no-content-padding"></div>
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+		<div class="well no-padding">
+		<form class="smart-form no-padding" method="post" action="searchers" novalidate="novalidate">
+			<fieldset>
+				<section class="no-padding">
+					<label class="label">Choose Searcher</label>
+					<label class="select">
+						<select class="input-sm choose-sub form-control" id="searchers"></select>
+					</label>
+				</section>
+			</fieldset>
+		</form>
+		</div>
+
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Searcher</a></li>
+			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
+			<li class="submenu"><a class="template-load" href="javascript:void(0);">Template</a></li>
+			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Search Browsing</a></li>
+			
+			<li><br /><br /><li>
+			<li class="dd-item" data-id="1">
+				<div class="dd-handle create-open">
+					Create <span> Searcher</span>
+				</div>
+			</li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+			&nbsp;<a href="javascript:void(0);" rel="tooltip" title="" data-placement="top" data-original-title="Empty Spam" class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+
+	</div>
+
+
+</div>
+
+<div id="remove-searcher-confirm" title="Remove Searcher" style="display:none">
+	<form class="smart-form" id="remove-searcher-form" method="post" action="searcher/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">Searcher : <span id="removeSearcherId"></span></label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+<div id="create_searcher_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content" style="width:70%">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Searcher</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_searcher_form" method="post" action="searchers/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Searcher Id</label>
+					<label class="input">
+						<input type="text" id="newSearcherId" name="newsid" placeholder="new searcher id" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_searcher">Create Searcher</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	
+	var pagefunction = function() {
+
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+			}
+		}
+
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		}) ;
+		
+		$('.modal').on('hidden.bs.modal', function(){
+		    $(this).find('form')[0].reset();
+		});
+
+
+		var lastSearcherId = '' ;
+		var lastMenuHTML = 'overview.html' ; 
+		$.ajax({
+			url:'/admin/searchers',
+			dataType:'json',
+			success:function(data){
+				for(var idx in data){
+					var sec = data[idx] ;
+					var option = $('<option value="'+sec['sid']+'">'+sec['name']+'</option>') ;
+					option.appendTo($("#searchers")) ;
+				}
+				
+				//LOAD Overview MESSAGES
+				loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastSearcherId = $("#searchers").val() ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+
+
+		$(".choose-sub").change(function(){
+			loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+		}) ;
+
+		
+		$(".fa-trash-o").click(function(){
+			$("#remove-searcher-confirm" ).css('visibility', 'visible') ;
+			$("#removeSearcherId").html($("#searchers option:selected" ).text()) ;
+			$("#remove-searcher-confirm" ).dialog({
+				modal: true,
+				buttons: {
+					"Remove Searcher": function() {
+						var win = $( this ) ;
+						$.ajax({
+							type: "DELETE",
+							dataType : 'text', 
+							url: "/admin/searchers/" + $(".choose-sub").val() ,
+							data: { }, 
+							complete : function(){ 
+								// $("#query_url").text(this.url) ;
+							}, 
+							success :  function(data) {
+								$("#searchers option:selected").remove();
+								loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+								win.dialog( "close" );
+							}
+						}) ;	
+					},
+					Cancel: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}) ;
+		
+		
+		
+		
+		$("li.submenu").click(function() {
+		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
+		});
+		
+		
+	
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "overview.html" ;
+		});
+		$(".defined-load").click(function() {
+			loadURL("icss/searchers/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "defined.html" ;
+		});
+		$(".query-load").click(function() {
+			loadURL("icss/searchers/query.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "query.html" ;
+		});
+		$(".template-load").click(function() {
+			loadURL("icss/searchers/template.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "template.html" ;
+		});
+		$(".browsing-load").click(function() {
+			loadURL("icss/searchers/browsing.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "browsing.html" ;
+		});
+	
+		var $createForm = $("#create_searcher_form").validate({
+			rules : {
+				newsid : { required : true, minlength : 4, maxlength : 15 }
+			},
+			submitHandler : function(form) {
+				var newId = $("#newSearcherId").val() ;
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/searchers/" + newId,
+					data: { }, 
+					success :  function(data) {
+						$("#searchers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+						$('#create_searcher_modal').modal('hide');
+					}
+				}) ;	
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		$("#create_searcher_modal button[name=create_searcher]").click(function(){
+			$("#create_searcher_form").submit() ;
+		});
+		
+		$(".create-open").click(function() {
+			$('#create_searcher_modal').modal({});
+		});
+	};
+	
+	pagefunction();
+	
+</script>
