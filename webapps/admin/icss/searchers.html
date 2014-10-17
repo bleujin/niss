@@ -176,7 +176,7 @@
 							}, 
 							success :  function(data) {
 								$("#searchers option:selected").remove();
-								loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+								loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 								win.dialog( "close" );
 							}
 						}) ;	
@@ -222,7 +222,10 @@
 	
 		var $createForm = $("#create_searcher_form").validate({
 			rules : {
-				newsid : { required : true, minlength : 4, maxlength : 15 }
+				newsid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }
+			},
+			messages : {
+				newsid : {pattern : "allowed pattern : a-z0-9_"}
 			},
 			submitHandler : function(form) {
 				var newId = $("#newSearcherId").val() ;

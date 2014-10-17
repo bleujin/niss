@@ -78,7 +78,7 @@
 				<section>
 					<label class="label">Indexer Id</label>
 					<label class="input">
-						<input type="text" id="newIndexId" name="newiid" placeholder="new indexer id" />
+						<input type="text" id="newIndexerId" name="newiid" placeholder="new indexer id" />
 					</label>
 				</section>
 			</fieldset>
@@ -240,7 +240,7 @@
 							$.ajax({
 								type: "DELETE",
 								dataType : 'text', 
-								url: "/admin/indexers/" + removeId,
+								url: "/admin/indexers/" + $(".choose-sub").val(),
 								data: { }, 
 								complete : function(){ 
 									// $("#query_url").text(this.url) ;
@@ -324,7 +324,10 @@
 		
 		var $createForm = $("#create_indexer_form").validate({
 			rules : {
-				newiid : { required : true, minlength : 4, maxlength : 15 }
+				newiid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }
+			},
+			messages : {
+				newiid : {pattern : "allowed pattern : a-z0-9_"}
 			},
 			submitHandler : function(form) {
 				var newId = $("#newIndexerId").val() ;
@@ -359,26 +362,6 @@
 		});
 		
 		
-		
-	
-		
-		$(".create-open").click(function() {
-			$( "#new-indexer-confirm" ).css('visibility', 'visible') ;
-			$( "#new-indexer-confirm" ).dialog({
-				modal: true,
-				buttons: {
-					"Create Indexer": function() {
-						var newId = $("#new-indexer-confirm #newIndexId").val() ;
-						
-						var win = $( this ) ;
-						if (newId > ' '){
-						}
-						},
-					Cancel: function() {
-						$(this).dialog( "close" );
-					}}
-			});
-		});
 	};
 
 	pagefunction();

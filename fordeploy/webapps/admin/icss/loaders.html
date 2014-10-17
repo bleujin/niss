@@ -220,8 +220,11 @@
 		
 		var $createForm = $("#create_loader_form").validate({
 			rules : {
-				newlid : { required : true, minlength : 4, maxlength : 15 }, 
+				newlid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }, 
 				name   : { required : true, minlength : 4, maxlength : 15 } 
+			},
+			messages : {
+				newlid : {pattern : "allowed pattern : a-z0-9_"}
 			},
 			submitHandler : function(form) {
 				var newId = $("#newLoaderId").val() ;
@@ -233,8 +236,8 @@
 					complete : function(){ 
 					}, 
 					success :  function(data) {
-						$("#loaders option:eq(0)").after('<option value="'+newId+'" selected="selected">'+$("#newLoaderName").val()+'</option>');
-						loadURL("icss/loaders/overview.html", $('#inbox-content > .table-wrap')) ;
+						$("#loaders").append('<option value="'+newId+'" selected="selected">'+$("#newLoaderName").val()+'</option>');
+						loadURL("icss/loaders/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 						$('#create_loader_modal').modal('hide');
 					}
 				}) ;

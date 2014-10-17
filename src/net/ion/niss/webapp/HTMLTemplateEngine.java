@@ -59,7 +59,6 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		//if (ArrayUtil.contains(template_html, templatePath)) {
 		if (templatePath.equals("/")) templatePath = "/index.html" ;
 		if (templatePath.endsWith(".html")) {
-			Debug.line(templatePath);
 			HttpRequest request = (HttpRequest) arg;
 
 			if (! ve.resourceExists(templatePath)) return template ;
