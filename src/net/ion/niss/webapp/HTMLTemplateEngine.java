@@ -9,6 +9,7 @@ import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.framework.util.ArrayUtil;
 import net.ion.framework.util.Debug;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.handler.TemplateEngine;
 import net.ion.nradon.handler.authentication.BasicAuthenticationHandler;
@@ -52,7 +53,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 	public byte[] process(byte[] template, String templatePath, Object arg) throws RuntimeException {
 
 		
-		if (templatePath.startsWith("/css/") || templatePath.startsWith("/img/") || templatePath.startsWith("/favicon.ico") || templatePath.startsWith("/fonts/") || templatePath.startsWith("/js/")) {
+		if (WebUtil.isStaticResource(templatePath)) {
 			return template ;
 		}
 		

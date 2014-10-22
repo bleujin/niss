@@ -3,6 +3,7 @@ package net.ion.niss;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.niss.config.NSConfig;
@@ -48,6 +49,12 @@ public class NissServer {
 	private RadonConfigurationBuilder builder;
 	private Radon radon;
 	private NSConfig nsconfig;
+	
+	private enum Status{
+		STOPED, INITED, STARTED ;
+	}
+	
+	private AtomicReference<Status> status =  new AtomicReference<NissServer.Status>(Status.STOPED) ;
 
 	NissServer(NSConfig nsconfig){
 		this.nsconfig = nsconfig ;
@@ -66,7 +73,7 @@ public class NissServer {
 	public void init() throws IOException {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
-		final REntry rentry = builder.context(REntry.EntryName, REntry.create());
+		final REntry rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create());
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
@@ -82,7 +89,7 @@ public class NissServer {
 			.add("/admin/*", new TraceHandler(rentry))
 			.add("/favicon.ico", new FavIconHandler())
 			.add(new LoggingHandler(new AppLogSink(elogger)))
-			.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())))
+			.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html") )
 			// .add(new WhoAmIHttpHandler())
 			.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))
 			.add("/search/*", new PathHandler(OpenSearchWeb.class).prefixURI("search"))
@@ -124,7 +131,7 @@ public class NissServer {
 			});
 		
 		radon.getConfig().getServiceContext().putAttribute(NissServer.class.getCanonicalName(), this) ;
-		
+		status.set(Status.INITED); ;
 	}
 	
 	public NSConfig config(){
@@ -135,11 +142,15 @@ public class NissServer {
 		if (this.builder == null) init(); 
 		
 		this.radon.start().get() ;
+		status.set(Status.STARTED);
 		return this ;
 	}
 
 	public NissServer shutdown() throws InterruptedException, ExecutionException{
+		if (status.get() == Status.STOPED) return this ;
+		
 		radon.stop().get() ;
+		status.set(Status.STOPED);
 		return this ;
 	}
 	

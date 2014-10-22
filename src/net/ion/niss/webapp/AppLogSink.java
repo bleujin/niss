@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
@@ -54,7 +55,7 @@ public class AppLogSink implements LogSink {
 	public void httpEnd(HttpRequest request, HttpResponse response) {
 		long etime = (Long)ObjectUtil.coalesce(request.data("_etime"), 0L) ;
 		String uri = request.uri() ;
-		if (uri.startsWith("/img/") || uri.startsWith("/js/") || uri.startsWith("/css/")) return ;
+		if (WebUtil.isStaticResource(uri)) return ;
 		custom(request, "HTTP-END " + response.status(), "" + (System.currentTimeMillis() - etime)); // TODO: Time request
 	}
 

@@ -5,6 +5,7 @@ import javax.ws.rs.core.HttpHeaders;
 import org.jboss.resteasy.util.HttpHeaderNames;
 
 import net.ion.framework.util.Debug;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
@@ -30,7 +31,7 @@ public class MyAuthenticationHandler extends AbstractHttpHandler {
 
 		String authHeader = request.header("Authorization");
 		
-		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || request.uri().startsWith("/css/") || request.uri().startsWith("/img/") || request.uri().startsWith("/favicon.ico") || request.uri().startsWith("/fonts/") || request.uri().startsWith("/js/")) {
+		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || WebUtil.isStaticResource(request.uri())) {
 			control.nextHandler();
 			return ;
 		}
