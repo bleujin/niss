@@ -15,7 +15,7 @@ import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.common.Def.Schema;
+import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.MyField;
@@ -68,7 +68,7 @@ public class IndexManager {
 
 	public FieldIndexingStrategy fieldIndexStrategy(ReadSession session, String iid){
 	
-		final SchemaInfos sinfos = session.ghostBy(Schema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
+		final SchemaInfos sinfos = session.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
 			@Override
 			public SchemaInfos apply(Iterator<ReadNode> iter) {
 				return SchemaInfos.create(iter) ;

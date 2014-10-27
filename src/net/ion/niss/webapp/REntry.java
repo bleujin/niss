@@ -93,7 +93,7 @@ public class REntry implements Closeable {
 
 						Central central = CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), cid.idString()).getCanonicalPath()).build();
 
-						Analyzer indexAnal = makeIndexAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
+						Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
 						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
 
 						central.indexConfig().indexAnalyzer(indexAnal) ;
@@ -101,8 +101,8 @@ public class REntry implements Closeable {
 						
 						ReadChildren schemas = session.ghostBy(indexNode.fqn().toString() + "/schema").children() ;
 						for(ReadNode schemaNode : schemas.toList()) {
-							if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.Schema.SchemaType).asString())){
-								central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeIndexAnalyzer(schemaNode.property(Def.Schema.Analyzer).asString())) ;
+							if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.IndexSchema.SchemaType).asString())){
+								central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString())) ;
 							}
 						}
 
@@ -123,7 +123,7 @@ public class REntry implements Closeable {
 
 				try {
 					for (ReadNode sec : iter) {
-						registerSearcher(new RNodePropertyReadable(sec), jsengine) ;
+						registerSearcher(session, new RNodePropertyReadable(sec), jsengine) ;
 					}
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
@@ -152,7 +152,7 @@ public class REntry implements Closeable {
 			@Override
 			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				try {
-					registerSearcher(new EventPropertyReadable(cevent), jsengine);
+					registerSearcher(session, new EventPropertyReadable(cevent), jsengine);
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
 				} catch (ClassNotFoundException ex) {
@@ -199,16 +199,53 @@ public class REntry implements Closeable {
 
 				if (! indexManager.hasIndex(iid)) return null ;
 				event.getValue() ;
-				if (Def.SchemaType.MANUAL.equals(event.property(Def.Schema.SchemaType).asString()) && StringUtil.isNotBlank(event.property(Def.Schema.Analyzer).asString())){
+				if (Def.SchemaType.MANUAL.equals(event.property(Def.IndexSchema.SchemaType).asString()) && StringUtil.isNotBlank(event.property(Def.IndexSchema.Analyzer).asString())){
 					try {
 						Central saved = indexManager.index(iid);
-						Analyzer analClz = makeIndexAnalyzer(event.property(Def.Schema.Analyzer).asString());
+						Analyzer analClz = makeAnalyzer(event.property(Def.IndexSchema.Analyzer).asString());
 						saved.indexConfig().fieldAnalyzer(schemaid, analClz) ;
 						
 					} catch (Exception e) {
 						throw new IllegalStateException(e) ;
 					}
 				};
+
+				return null;
+			}
+		}) ;
+		
+
+		session.workspace().cddm().add(new CDDHandler() {
+			@Override
+			public String pathPattern() {
+				return "/searchers/{sid}/schema/{schemaid}";
+			}
+
+			@Override
+			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent event) {
+				IdString sid = IdString.create(rmap.get("sid"));
+				String schemaid = rmap.get("schemaid") ;
+				if (! searchManager.hasSearch(sid)) return null ;
+				
+				Searcher saved = searchManager.searcher(sid);
+				saved.config().removeFieldAnalyzer(schemaid) ;
+				return null;
+			}
+
+			@Override
+			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent event) {
+				IdString sid = IdString.create(rmap.get("sid"));
+				String schemaid = rmap.get("schemaid") ;
+
+				if (! searchManager.hasSearch(sid)) return null ;
+				try {
+					Searcher saved = searchManager.searcher(sid);
+					Analyzer analClz = makeAnalyzer(event.property(Def.IndexSchema.Analyzer).asString());
+					saved.config().fieldAnalyzer(schemaid, analClz) ;
+					
+				} catch (Exception e) {
+					throw new IllegalStateException(e) ;
+				}
 
 				return null;
 			}
@@ -234,7 +271,7 @@ public class REntry implements Closeable {
 						Central saved = indexManager.index(iid);
 
 						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName()) ; 
-						saved.indexConfig().indexAnalyzer(makeIndexAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
+						saved.indexConfig().indexAnalyzer(makeAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
 
 						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName()) ; 
 						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
@@ -273,11 +310,12 @@ public class REntry implements Closeable {
 		});
 	}
 	
-	private Analyzer makeIndexAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	// create analyzer
+	private Analyzer makeAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		
 		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
 		
-		Analyzer indexAnal = null ;
+		Analyzer resultAnalyzer = null ;
 		Constructor con = null ; 
 		if ( (con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class, CharArraySet.class})) != null){
 			
@@ -287,17 +325,18 @@ public class REntry implements Closeable {
 				stopWord = rnode.property(Def.Indexer.StopWord).asSet() ;
 			}
 			
-			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false)) ;
+			resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false)) ;
 		} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[]{Version.class})) != null){
-			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion) ;
+			resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion) ;
 		} else {
 			con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]) ;
-			indexAnal = (Analyzer) con.newInstance() ;
+			resultAnalyzer = (Analyzer) con.newInstance() ;
 		}
-		return indexAnal;
+		return resultAnalyzer;
 	}
 	
-	private Analyzer makeIndexAnalyzer(String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	// create sub per field analayzer
+	private Analyzer makeAnalyzer(String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		
 		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
 		
@@ -316,6 +355,7 @@ public class REntry implements Closeable {
 	}
 	
 	
+	// with no stopword(when indexers)
 	private Analyzer makeQueryAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		Class<?> queryAnalClz = Class.forName(modValue);
 		
@@ -333,7 +373,7 @@ public class REntry implements Closeable {
 	}
 	
 	
-	private void registerSearcher(PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	private void registerSearcher(ReadSession session, PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		Set<String> cols = rnode.property(Def.Searcher.Target).asSet();
 		IdString sid = IdString.create(rnode.fqn().name());
 		
@@ -348,8 +388,14 @@ public class REntry implements Closeable {
 				}
 			}
 			
-			Analyzer queryAnalyzer = makeIndexAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString()) ;
+			Analyzer queryAnalyzer = makeAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString()) ;
 			SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
+
+			ReadChildren schemas = session.ghostBy(rnode.fqn().toString() + "/schema").children() ;
+			for(ReadNode schemaNode : schemas.toList()) {
+				nconfig.fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString())) ;
+			}
+			
 			searcher = CompositeSearcher.create(nconfig, target);
 		}
 

@@ -38,10 +38,15 @@ public class DirClassLoader extends ClassLoader {
 	private Map<String, Class> alreadyLoadedClasses = new HashMap<String, Class>(); // Key - class name. Contents class
 
 	public DirClassLoader(String homeDirectory) throws IOException {
-		super(DirClassLoader.class.getClassLoader());
-		readDirectory(new File(homeDirectory).getAbsoluteFile());
+		this(new File(homeDirectory));
 	}
 
+	public DirClassLoader(File homeDirectory) throws IOException {
+		super(DirClassLoader.class.getClassLoader());
+		readDirectory(homeDirectory.getAbsoluteFile());
+	}
+
+	
 	public DirClassLoader(String homeDirectory, ClassLoader parentClassLoader) throws IOException {
 		super(parentClassLoader);
 		readDirectory(new File(homeDirectory).getAbsoluteFile());
@@ -67,7 +72,6 @@ public class DirClassLoader extends ClassLoader {
 			File f = listFiles[i];
 			if (f.getName().toLowerCase().endsWith(".jar")){
 				addJar(f);
-				System.out.println(f.getAbsolutePath());
 			} else {
 				addResource(f, fromDirectory.getAbsolutePath());
 			}

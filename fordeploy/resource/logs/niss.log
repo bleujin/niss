@@ -17,3 +17,53 @@
 
 [radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 16 18:35:07 KST 2014	1413452107875	10	9	/127.0.0.1:8642	HTTP-END 200	/admin/misc/shutdown?time=10&password=dkdldhs	GET	8	
 
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Delirium' 5.2.1.Final
+[main] INFO  org.infinispan.factories.TransactionManagerFactory  - ISPN000161: Using a batchMode transaction manager
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Workspace  - /__transactions/5448ae4726c0eefc074cd5ea writed
+[main] INFO  net.ion.craken.node.Workspace  - /__transactions/5448ae4726c0eefc094cd5ea writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:11 KST 2014	1414049411028	4834	1	/61.250.201.157:1366	HTTP-END 200	/	GET	60	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:14 KST 2014	1414049414474	3227	3	/61.250.201.157:1370	HTTP-END 200	/icss/loaders.html	GET	10	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:14 KST 2014	1414049414746	8552	1	/61.250.201.157:1366	HTTP-END 200	/admin/loaders	GET	34	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:15 KST 2014	1414049415023	3776	3	/61.250.201.157:1370	HTTP-END 200	/icss/loaders/overview.html	GET	6	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:21 KST 2014	1414049421743	10496	3	/61.250.201.157:1370	HTTP-END 200	/icss/loaders/example.html	GET	9	
+
+[radon-thread-5] INFO  net.ion.craken.node.Workspace  - /__transactions/5448aeab26c0eefc0b4cd5ea writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:51 KST 2014	1414049451226	58	7	/61.250.201.157:1392	HTTP-END 200	/admin/loaders/smloader	POST	54	
+
+[radon-thread-5] INFO  net.ion.craken.node.Workspace  - /__transactions/5448aeab26c0eefc0d4cd5ea writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:51 KST 2014	1414049451306	138	7	/61.250.201.157:1392	HTTP-END 200	/icss/loaders/example.html	GET	10	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 16:30:51 KST 2014	1414049451481	313	7	/61.250.201.157:1392	HTTP-END 200	/admin/loaders/smloader/examples	GET	36	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:47 KST 2014	1414055807294	6	8	/61.250.201.157:4396	HTTP-END 200	/	GET	3	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:47 KST 2014	1414055807831	475	10	/61.250.201.157:4402	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:47 KST 2014	1414055807940	652	8	/61.250.201.157:4396	HTTP-END 200	/admin/loaders	GET	4	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:48 KST 2014	1414055808021	665	10	/61.250.201.157:4402	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:48 KST 2014	1414055808459	1103	10	/61.250.201.157:4402	HTTP-END 200	/admin/loaders/smloader/overview	GET	10	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:55 KST 2014	1414055815426	8070	10	/61.250.201.157:4402	HTTP-END 200	/icss/loaders/example.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:16:55 KST 2014	1414055815554	8198	10	/61.250.201.157:4402	HTTP-END 200	/admin/loaders/smloader/examples	GET	21	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:33:19 KST 2014	1414056799991	10	15	/61.250.201.157:4837	EVENT-SOURCE-OPEN	/event/vss3a566i_1414056799963	GET	-	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:33:20 KST 2014	1414056800042	62	14	/61.250.201.157:4836	HTTP-END 200	/admin/loaders/smloader/run/vss3a566i_1414056799963	POST	57	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:33:20 KST 2014	1414056800043	63	14	/61.250.201.157:4836	ERROR-OPEN	/admin/loaders/smloader/run/vss3a566i_1414056799963	POST	org.jboss.resteasy.spi.UnhandledException: javax.script.ScriptException: sun.org.mozilla.javascript.internal.EcmaError: ReferenceError: "importPageage" is not defined. (<Unknown source>#10) in <Unknown source> at line number 10	
+
+[radon-thread-16] INFO  net.ion.craken.node.Workspace  - /__transactions/5448cb6026c0eefc104cd5ea writed
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Thu Oct 23 18:34:21 KST 2014	1414056861052	61071	15	/61.250.201.157:4837	EVENT-SOURCE-CLOSE	/event/vss3a566i_1414056799963	GET	-	
+

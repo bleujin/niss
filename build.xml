@@ -81,13 +81,17 @@
 		</copy>
 	</target>
 	
-
-	<target name="make_zip" depends="copy_full_deploy">
-	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/">
-	   </zip> 
-	    
-	    
+	
+	<target name="make_lib_zip" depends="copy_for_deploy">
+	    <delete file="deploy/niss_lib_${version.number}.${build.number}.zip"></delete>
+	    <zip destfile="deploy/niss_lib_${version.number}.${build.number}.zip" basedir="fordeploy/" includes="lib/**" ></zip> 
 	</target>
+	
+	<target name="make_zip" depends="copy_for_deploy">
+	    <delete file="deploy/niss_${version.number}.${build.number}.zip"></delete>
+	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"  excludes="lib/**" ></zip> 
+	</target>
+	
 	
 	
 </project>

@@ -19,7 +19,7 @@ public class Def {
 	}
 	
 	
-	public static class Schema {
+	public static class IndexSchema {
 		// .property("schematype", schematype).property("analyze", analyzer).property("store", store).property("boost", Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 		
         public static final String SchemaType = "schematype";
@@ -47,6 +47,18 @@ public class Def {
 		public static final String QueryAnalyzer = "queryanalyzer" ;
 		public static final String ApplyStopword = "applystopword";
 	}
+
+	public static class SearchSchema extends IndexSchema{
+		public static String path(String sid, String schemaid) {
+			return "/searchers/" + sid + "/schema/" + schemaid;
+		}
+
+		public static String path(String sid) {
+			return "/searchers/" + sid + "/schema";
+		}
+		
+	}
+
 	
 	public static class Loader {
 		public static final String Time = "time" ;

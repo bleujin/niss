@@ -19,6 +19,8 @@
 		<ul class="inbox-menu-lg">
 			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
 			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Searcher</a></li>
+			<li class="submenu"><a class="schema-load" href="javascript:void(0);">Schema</a></li>
+
 			<li class="submenu"><a class="query-load" href="javascript:void(0);">Query</a></li>
 			<li class="submenu"><a class="template-load" href="javascript:void(0);">Template</a></li>
 			<li class="submenu"><a class="browsing-load" href="javascript:void(0);">Search Browsing</a></li>
@@ -88,6 +90,41 @@
 	</div>
 </div>
 
+<div id="create_schema_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Search Schema</h5></div>
+
+            <div class="modal-body">
+		<form class="smart-form" method="post" action="searchers/schema" novalidate="novalidate">
+		<fieldset style="padding: 0px">					
+			<section>
+				<label class="label">Schema Id</label>
+				<label class="input">
+					<input type="text" id="schemaid" name="schemaid"/>
+				</label>
+			</section>
+			<section>
+				<label class="label">Query Analyzer</label>
+				<label class="select">
+					<select name="schema_analyzer">
+					    
+					</select>
+				</label>
+			</section>
+		</fieldset>
+		</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" id="btn_create_schema">Create Schema</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
 
 <script type="text/javascript">
 
@@ -188,6 +225,30 @@
 			});
 		}) ;
 		
+		$("#btn_create_schema").click(function(){
+			var sid = $("#searchers").val() ;
+			
+			$.ajax({
+				type: "POST",
+				url: "/admin/searchers/" + sid + "/schema",
+				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
+						analyzer :$("#create_schema_form select[name=schema_analyzer]").val()}
+			}).done(function( msg ) {
+				console.log( "Data Saved: " + msg );
+			}).success(function( msg ) {
+				$("#create_schema_form").modal('hide') ;
+				loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
+			});
+			
+		});
+
+		$("#schematype").change(function(){
+			if ($("#schematype").val() == 'manual') {
+				$("div[name=manual_option]").show() ;
+			} else {
+				$("div[name=manual_option]").hide() ;
+			}
+		}) ;		
 		
 		
 		
@@ -206,6 +267,10 @@
 		$(".defined-load").click(function() {
 			loadURL("icss/searchers/defined.html", $('#inbox-content > .table-wrap')) ;
 			lastMenuHTML = "defined.html" ;
+		});
+		$(".schema-load").click(function() {
+			loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "schema.html" ;
 		});
 		$(".query-load").click(function() {
 			loadURL("icss/searchers/query.html", $('#inbox-content > .table-wrap')) ;

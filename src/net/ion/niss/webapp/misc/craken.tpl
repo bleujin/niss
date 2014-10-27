@@ -22,7 +22,7 @@
 
     <h4>Children</h4>
 	<ul>
-	${foreach self.children().offset(100) child }
+	${foreach self.children() child }
 		    <li><a href='/admin/craken${child.fqn}/'>${child.fqn}</a></li>
 	${end}</ul>
     </div>

@@ -60,22 +60,22 @@ public class NissServer {
 		this.nsconfig = nsconfig ;
 	}
 
-	public static NissServer create(NSConfig nsconfig) throws IOException, InterruptedException, ExecutionException{
+	public static NissServer create(NSConfig nsconfig) throws Exception{
 		NissServer server = new NissServer(nsconfig) ;
 		server.init(); 
 		return server ;
 	}
 
-	public static NissServer create(int portNum) throws IOException, InterruptedException, ExecutionException{
+	public static NissServer create(int portNum) throws Exception{
 		 return create(ConfigBuilder.createDefault(portNum).build());
 	}
 	
-	public void init() throws IOException {
+	public void init() throws Exception {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
 		final REntry rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
-		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create());
+		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
 
 
@@ -138,7 +138,7 @@ public class NissServer {
 		return nsconfig ;
 	}
 	
-	public NissServer start() throws InterruptedException, ExecutionException, IOException{
+	public NissServer start() throws Exception{
 		if (this.builder == null) init(); 
 		
 		this.radon.start().get() ;

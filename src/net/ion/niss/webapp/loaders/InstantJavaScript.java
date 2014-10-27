@@ -18,18 +18,18 @@ public class InstantJavaScript {
 	}
 
 	public Future<Object> runAsync(Writer writer, ExceptionHandler ehandler) {
-		return app.runAsync(this, writer, ehandler);
+		return app.runAsyncHandle(this, ehandler, writer);
 	}
 	
 	public Object run(Writer writer, ExceptionHandler ehandler) {
-		return app.run(this, writer, ehandler);
+		return app.runHandle(this, ehandler, writer);
 	}
 	
 	public Object compiled() {
 		return compiledScript;
 	}
 	public <T> T exec(ResultHandler<T> rhandler, Object... args) {
-		return app.exec(this, rhandler, args) ;
+		return app.execHandle(this, rhandler, args) ;
 	}
 
 

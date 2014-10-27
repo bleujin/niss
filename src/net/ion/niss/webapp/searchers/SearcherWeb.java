@@ -27,9 +27,12 @@ import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildren;
+import net.ion.craken.node.crud.ReadChildrenEach;
+import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.tree.Fqn;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
@@ -41,8 +44,10 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
 import net.ion.niss.webapp.common.Def;
+import net.ion.niss.webapp.common.Def.SearchSchema;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
+import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
@@ -182,6 +187,74 @@ public class SearcherWeb implements Webapp {
 		return IOUtil.toStringWithClose(getClass().getResourceAsStream("default.handler"));
 	}
 
+	// --- schema
+	@GET
+	@Path("/{sid}/schema")
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject listSchema(@PathParam("sid") String sid){
+		JsonArray schemas = rsession.ghostBy(SearchSchema.path(sid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
+			@Override
+			public JsonArray handle(ReadChildrenIterator iter) {
+				JsonArray result = new JsonArray() ;
+				for(ReadNode node : iter){
+					result.add(new JsonArray().adds(node.fqn().name(), node.property(SearchSchema.Analyzer).asString())) ;
+				}
+				return result;
+			}
+		}) ;
+		
+		
+		JsonArray iarray = new JsonArray() ;
+		List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
+		for (Class<? extends Analyzer> clz : ilist) {
+			JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", false) ;
+			iarray.add(json) ;
+		}
+		
+		return new JsonObject()
+				.put("info", rsession.ghostBy("/menus/searchers").property("schema").asString())
+				.put("query_analyzer", iarray)
+				.put("schemaName", JsonParser.fromString("[{'title':'SchemaId'},{'title':'Analyzer'}]").getAsJsonArray())
+				.put("data", schemas) ;
+	}
+	
+	
+	@POST
+	@Path("/{sid}/schema")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addSchema(@PathParam("sid") final String sid, @FormParam("schemaid") final String schemaid, @FormParam("analyzer") final String analyzer){
+		
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(SearchSchema.path(sid, schemaid))
+					.property(SearchSchema.Analyzer, analyzer) ;
+				return null;
+			}
+		}) ;
+		
+		return "created search schema " + schemaid ;
+	}
+	
+
+	@DELETE
+	@Path("/{sid}/schema/{schemaid}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String removeSchema(@PathParam("sid") final String sid, @PathParam("schemaid") final String schemaid){
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(SearchSchema.path(sid, schemaid)).removeSelf() ;
+				return null;
+			}
+		}) ;
+		
+		return "removed schema " + schemaid ;
+	}
+	
+	
+	
+	
 	// --- query
 	@GET
 	@Path("/{sid}/query")

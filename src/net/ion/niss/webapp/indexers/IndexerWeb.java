@@ -45,7 +45,7 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
 import net.ion.niss.webapp.common.Def;
-import net.ion.niss.webapp.common.Def.Schema;
+import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.misc.AnalysisWeb;
@@ -328,18 +328,18 @@ public class IndexerWeb implements Webapp {
 //		
 //		JsonObject result = new JsonObject() ;
 //		result.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString()) ;
-//		JsonArray schemas = rsession.ghostBy(Schema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
+//		JsonArray schemas = rsession.ghostBy(IndexSchema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 //			@Override
 //			public JsonArray handle(ReadChildrenIterator iter) {
 //				JsonArray result = new JsonArray() ;
 //				for(ReadNode node : iter){
 //					StringBuilder options = new StringBuilder() ;
-//					options.append(node.property(Schema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
-//					options.append(node.property(Schema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
-//					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;
-//					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(Schema.SchemaType).asString()) ? ", Analyzer:" + node.property(Schema.Analyzer).asString() : "") ;
+//					options.append(node.property(IndexSchema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
+//					options.append(node.property(IndexSchema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
+//					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(IndexSchema.Boost).asString(), "1.0")) ;
+//					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(IndexSchema.SchemaType).asString()) ? ", Analyzer:" + node.property(IndexSchema.Analyzer).asString() : "") ;
 //
-//					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(Schema.SchemaType, node.property(Schema.SchemaType).asString()).put("options", options.toString())) ;
+//					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(IndexSchema.SchemaType, node.property(IndexSchema.SchemaType).asString()).put("options", options.toString())) ;
 //				}
 //				return result;
 //			}
@@ -361,18 +361,18 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/schema")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JsonObject listSchema(@PathParam("iid") String iid){
-		JsonArray schemas = rsession.ghostBy(Schema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
+		JsonArray schemas = rsession.ghostBy(IndexSchema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 			@Override
 			public JsonArray handle(ReadChildrenIterator iter) {
 				JsonArray result = new JsonArray() ;
 				for(ReadNode node : iter){
 					StringBuilder options = new StringBuilder() ;
-					options.append(node.property(Schema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
-					options.append(node.property(Schema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
-					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(Schema.Boost).asString(), "1.0")) ;
-					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(Schema.SchemaType).asString()) ? ", Analyzer:" + node.property(Schema.Analyzer).asString() : "") ;
+					options.append(node.property(IndexSchema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
+					options.append(node.property(IndexSchema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
+					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(IndexSchema.Boost).asString(), "1.0")) ;
+					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(IndexSchema.SchemaType).asString()) ? ", Analyzer:" + node.property(IndexSchema.Analyzer).asString() : "") ;
 
-					result.add(new JsonArray().adds(node.fqn().name(), node.property(Schema.SchemaType).asString(), options.toString())) ;
+					result.add(new JsonArray().adds(node.fqn().name(), node.property(IndexSchema.SchemaType).asString(), options.toString())) ;
 				}
 				return result;
 			}
@@ -404,10 +404,10 @@ public class IndexerWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(Schema.path(iid, schemaid))
-					.property(Schema.SchemaType, schematype)
-					.property(Schema.Analyzer, "manual".equals(schematype) ? analyzer : "").property(Schema.Analyze, "manual".equals(schematype) ? analyze : false).property(Schema.Store, "manual".equals(schematype) ? store : false)
-					.property(Schema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
+				wsession.pathBy(IndexSchema.path(iid, schemaid))
+					.property(IndexSchema.SchemaType, schematype)
+					.property(IndexSchema.Analyzer, "manual".equals(schematype) ? analyzer : "").property(IndexSchema.Analyze, "manual".equals(schematype) ? analyze : false).property(IndexSchema.Store, "manual".equals(schematype) ? store : false)
+					.property(IndexSchema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 				return null;
 			}
 		}) ;
@@ -423,7 +423,7 @@ public class IndexerWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(Schema.path(iid, schemaid)).removeSelf() ;
+				wsession.pathBy(IndexSchema.path(iid, schemaid)).removeSelf() ;
 				return null;
 			}
 		}) ;
