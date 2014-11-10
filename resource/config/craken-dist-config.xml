@@ -4,7 +4,7 @@
 	xmlns="urn:infinispan:config:6.0">
 
 	<global>
-		<transport clusterName="emanon" />
+		<transport clusterName="niss" />
 		<globalJmxStatistics enabled="false" />
 	</global>
 

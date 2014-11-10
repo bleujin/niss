@@ -23,6 +23,7 @@ import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.tree.Fqn;
 import net.ion.craken.tree.PropertyId;
 import net.ion.craken.tree.PropertyValue;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.NSConfig;
@@ -437,13 +438,13 @@ public class REntry implements Closeable {
 		String name = iid.idString() ;
 		DefaultCacheManager dm = r.dm() ;
 		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name ;
-		Configuration meta_config = new ConfigurationBuilder().persistence().passivation(false)
+		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
 				.addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path)
 				.async().enable().flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3) 
 				.build() ;
 		dm.defineConfiguration(name + "-meta", meta_config) ;
 
-		Configuration chunk_config = new ConfigurationBuilder().persistence().passivation(false)
+		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
 				.addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path)
 				.async().enable().flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3) 
 				.build() ;
@@ -456,6 +457,8 @@ public class REntry implements Closeable {
 		bcontext.chunkSize(16384 * 8) ;
 		Directory directory = bcontext.create();
 		Central central = CentralConfig.oldFromDir(directory).build();
+		
+		Debug.line(dm.getDefaultCacheConfiguration().clustering().cacheMode(), metaCache.getCacheConfiguration().clustering().cacheMode()) ;
 		
 		return central ;
 //		return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();

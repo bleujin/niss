@@ -55,6 +55,7 @@ public class NissServer {
 	}
 	
 	private AtomicReference<Status> status =  new AtomicReference<NissServer.Status>(Status.STOPED) ;
+	private REntry rentry;
 
 	NissServer(NSConfig nsconfig){
 		this.nsconfig = nsconfig ;
@@ -73,7 +74,7 @@ public class NissServer {
 	public void init() throws Exception {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
-		final REntry rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
+		this.rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
@@ -136,6 +137,11 @@ public class NissServer {
 	
 	public NSConfig config(){
 		return nsconfig ;
+	}
+	
+	@Deprecated // only test
+	public REntry rentry(){
+		return rentry ;
 	}
 	
 	public NissServer start() throws Exception{

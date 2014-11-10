@@ -5327,3 +5327,379 @@ java.lang.IllegalStateException: Not a JSON Object: ["success"]
 
 [radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 14:29:02 KST 2014	1415597342353	1085	1	/61.250.201.157:14513	HTTP-END 200	/admin/indexers/newind1/overview	GET	20	
 
+[Timer-5,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (146 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (149 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[Timer-4,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (146 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (149 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[Timer-5,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (146 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (149 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[Timer-5,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (146 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (149 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[Timer-4,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (124 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (127 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[Timer-4,bleujin-SV-54343] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-54343: failed sending message to bleujin-PC-47917 (146 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:55699 (149 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=emanon]
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-18733|0] (1) [bleujin-SV-18733]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-18733, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:54224]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546053fe1f8ab6cf4d7c8ca9 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546053fe1f8ab6cf4f7c8ca9 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-16736|0] (1) [bleujin-SV-16736]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-16736, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:60023]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605b6c5cceeefcf98e6359 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605b6c5cceeefcfb8e6359 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[INT-1,bleujin-SV-16736] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster emanon (our cluster is niss). Sender was 0c1a36f9-4f30-b6a3-2026-ab36dca5b901
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:06 KST 2014	1415601126119	4953	1	/61.250.201.157:11662	HTTP-END 200	/	GET	49	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:06 KST 2014	1415601126635	421	4	/61.250.201.157:11667	HTTP-END 200	/icss/loaders.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:06 KST 2014	1415601126734	526	3	/61.250.201.157:11666	HTTP-END 200	/admin/loaders	GET	24	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:06 KST 2014	1415601126746	538	3	/61.250.201.157:11666	HTTP-END 200	/icss/loaders/overview.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:07 KST 2014	1415601127808	1600	3	/61.250.201.157:11666	HTTP-END 200	/icss/indexers.html	GET	5	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:07 KST 2014	1415601127831	1623	3	/61.250.201.157:11666	HTTP-END 200	/admin/indexers	GET	4	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:07 KST 2014	1415601127844	1636	3	/61.250.201.157:11666	HTTP-END 200	/icss/indexers/overview.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:32:07 KST 2014	1415601127865	1657	3	/61.250.201.157:11666	HTTP-END 200	/admin/indexers/newind1/overview	GET	9	
+
+[INT-1,bleujin-SV-16736] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster emanon (our cluster is niss). Sender was 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 (received 17 identical messages from 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 in the last 67968 ms)
+[INT-1,bleujin-SV-16736] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster emanon (our cluster is niss). Sender was 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 (received 15 identical messages from 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 in the last 63152 ms)
+[INT-1,bleujin-SV-16736] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster emanon (our cluster is niss). Sender was 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 (received 15 identical messages from 0c1a36f9-4f30-b6a3-2026-ab36dca5b901 in the last 63011 ms)
+[INT-1,bleujin-SV-16736] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster emanon (our cluster is niss). Sender was ad59ef95-677a-9229-63a2-92f8df2541fa
+[Timer-2,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (144 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (147 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[Timer-2,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (144 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (147 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[Timer-3,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (144 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (147 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[Timer-2,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (144 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (147 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[Timer-3,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (122 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (125 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[Timer-3,bleujin-SV-16736] ERROR org.jgroups.protocols.UDP  - JGRP000029: bleujin-SV-16736: failed sending message to bleujin-PC-63514 (144 bytes): java.lang.Exception: dest=/fe80:0:0:0:28f1:764d:de88:86f3%11:53706 (147 bytes), headers: PING: [PING: type=GET_MBRS_RSP], UDP: [channel_name=niss]
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|0] (1) [bleujin-SV-27952]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-27952, physical addresses are [61.250.201.157:63589]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605d13fef3eefc0e7767b1 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605d13fef3eefc107767b1 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|1] (2) [bleujin-SV-27952, bleujin-PC-17787]
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:37:57 KST 2014	1415601477850	67	1	/61.250.201.157:11707	HTTP-END 200	/icss/indexers/query.html	GET	23	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:37:57 KST 2014	1415601477923	140	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/query	GET	17	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:37:59 KST 2014	1415601479390	1607	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=false	GET	29	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:02 KST 2014	1415601482841	5058	1	/61.250.201.157:11707	HTTP-END 200	/icss/indexers/index.html	GET	7	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:02 KST 2014	1415601482882	5099	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/index	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:04 KST 2014	1415601484579	6796	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/index.json	POST	27	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605d4cfef3eefc137767b1 writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:06 KST 2014	1415601486587	8804	1	/61.250.201.157:11707	HTTP-END 200	/icss/indexers/query.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:06 KST 2014	1415601486630	8847	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/query	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:38:07 KST 2014	1415601487985	10202	1	/61.250.201.157:11707	HTTP-END 200	/admin/indexers/newind1/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=false	GET	13	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:39:34 KST 2014	1415601574684	8	2	/61.250.201.157:11725	HTTP-END 200	/icss/indexers/defined.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:39:34 KST 2014	1415601574733	57	2	/61.250.201.157:11725	HTTP-END 200	/admin/indexers/newind1/defined	GET	10	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:39:35 KST 2014	1415601575971	1295	2	/61.250.201.157:11725	HTTP-END 200	/icss/indexers/overview.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:39:35 KST 2014	1415601575994	1318	2	/61.250.201.157:11725	HTTP-END 200	/admin/indexers/newind1/overview	GET	6	
+
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|2] (1) [bleujin-SV-27952]
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|3] (2) [bleujin-SV-27952, bleujin-PC-44406]
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:41:13 KST 2014	1415601673369	8	3	/61.250.201.157:11742	HTTP-END 200	/icss/indexers/index.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:41:13 KST 2014	1415601673406	45	3	/61.250.201.157:11742	HTTP-END 200	/admin/indexers/newind1/index	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 15:41:20 KST 2014	1415601680659	21	4	/61.250.201.157:11745	HTTP-END 200	/admin/indexers/newind1/index.json	POST	18	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605e10fef3eefc177767b1 writed
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|4] (1) [bleujin-SV-27952]
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|5] (2) [bleujin-SV-27952, bleujin-PC-49070]
+[Incoming-1,bleujin-SV-27952] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-27952|6] (1) [bleujin-SV-27952]
+[Timer-5,bleujin-SV-27952] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-27952: no physical address for bleujin-PC-44406, dropping message
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-34263|0] (1) [bleujin-SV-34263]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-34263, physical addresses are [61.250.201.157:49404]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605fbd2335eefc671e193a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54605fbe2335eefc691e193a writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-51351|0] (1) [bleujin-SV-51351]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-51351, physical addresses are [61.250.201.157:60213]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-59186|0] (1) [bleujin-SV-59186]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-59186, physical addresses are [61.250.201.157:53401]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-17699|0] (1) [bleujin-SV-17699]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-17699, physical addresses are [61.250.201.157:50246]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460647c5413eefc15283153 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460647c5413eefc17283153 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:49 KST 2014	1415603329991	72	1	/61.250.201.157:8048	HTTP-END 200	/icss/loaders.html	GET	24	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330056	137	1	/61.250.201.157:8048	HTTP-END 200	/admin/loaders	GET	21	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330065	146	1	/61.250.201.157:8048	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330715	796	1	/61.250.201.157:8048	HTTP-END 200	/icss/indexers.html	GET	5	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330734	815	1	/61.250.201.157:8048	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330747	828	1	/61.250.201.157:8048	HTTP-END 200	/icss/indexers/overview.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 16:08:50 KST 2014	1415603330766	847	1	/61.250.201.157:8048	HTTP-END 200	/admin/indexers/newind1/overview	GET	9	
+
+[Incoming-1,bleujin-SV-17699] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-17699|1] (2) [bleujin-SV-17699, bleujin-PC-61911]
+[Incoming-1,bleujin-SV-17699] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-17699|2] (1) [bleujin-SV-17699]
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-12842|0] (1) [bleujin-SV-12842]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-12842, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:50779]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460658548f1eefcc025fd5e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460658548f1eefcc225fd5e writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-8547|0] (1) [bleujin-SV-8547]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-8547, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:52447]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546065a68463eefce878f17c writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546065a78463eefcea78f17c writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-21045|0] (1) [bleujin-SV-21045]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-21045, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:64898]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546065ce2604eefc495ae072 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546065ce2604eefc4b5ae072 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-53360|0] (1) [bleujin-SV-53360]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-53360, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:62000]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546068dc82d9eefc5ba0121a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546068dc82d9eefc5da0121a writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-122|0] (1) [bleujin-SV-122]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-122, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:52934]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460695f6987eefca6743a7c writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460695f6987eefca8743a7c writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-9996|0] (1) [bleujin-SV-9996]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-9996, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:59862]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460697e60f4eefc6bc2a4d6 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460697e60f4eefc6dc2a4d6 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-42047|0] (1) [bleujin-SV-42047]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-42047, physical addresses are [fe80:0:0:0:d526:dc42:25d8:88b9:54058]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54606a253d45eefcd7b083b6 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54606a253d45eefcd9b083b6 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
