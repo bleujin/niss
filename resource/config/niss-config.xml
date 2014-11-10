@@ -10,6 +10,7 @@
     
 	
 	<repository-config wsname="admin">
+	    <craken-config>./resource/config/craken-dist-config.xml</craken-config>
 	    <admin-home>./resource/admin/</admin-home>
 	    <index-home>./resource/index/</index-home>
 	</repository-config>

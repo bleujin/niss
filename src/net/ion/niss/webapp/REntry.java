@@ -1,7 +1,6 @@
 package net.ion.niss.webapp;
 
 import java.io.Closeable;
-import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.lang.reflect.Constructor;
@@ -46,7 +45,14 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
+import org.infinispan.Cache;
+import org.infinispan.configuration.cache.Configuration;
+import org.infinispan.configuration.cache.ConfigurationBuilder;
+import org.infinispan.lucene.directory.BuildContext;
+import org.infinispan.lucene.directory.DirectoryBuilder;
+import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class REntry implements Closeable {
@@ -91,7 +97,7 @@ public class REntry implements Closeable {
 					for (ReadNode indexNode : iter) {
 						IdString cid = IdString.create(indexNode.fqn().name());
 
-						Central central = CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), cid.idString()).getCanonicalPath()).build();
+						Central central = createCentral(cid);
 
 						Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
 						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName())) ;
@@ -114,6 +120,7 @@ public class REntry implements Closeable {
 				}
 				return null;
 			}
+
 		});
 
 		// load searcher
@@ -263,7 +270,7 @@ public class REntry implements Closeable {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
 					if (! indexManager.hasIndex(iid)) { // created
-						Central central = CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
+						Central central = createCentral(iid) ;
 
 						indexManager.newIndex(iid, central);
 					} else if (indexManager.hasIndex(iid)) {
@@ -425,9 +432,40 @@ public class REntry implements Closeable {
 		}
 	}
 	
+	private Central createCentral(IdString iid) throws CorruptIndexException, IOException {
+		
+		String name = iid.idString() ;
+		DefaultCacheManager dm = r.dm() ;
+		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name ;
+		Configuration meta_config = new ConfigurationBuilder().persistence().passivation(false)
+				.addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path)
+				.async().enable().flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3) 
+				.build() ;
+		dm.defineConfiguration(name + "-meta", meta_config) ;
+
+		Configuration chunk_config = new ConfigurationBuilder().persistence().passivation(false)
+				.addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path)
+				.async().enable().flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3) 
+				.build() ;
+		dm.defineConfiguration(name + "-chunk", chunk_config) ;
+
+		Cache<?, ?> metaCache = dm.getCache(name + "-meta");
+		Cache<?, ?> chunkCache = dm.getCache(name + "-chunk");
+
+		BuildContext bcontext = DirectoryBuilder.newDirectoryInstance(metaCache, chunkCache, metaCache, name);
+		bcontext.chunkSize(16384 * 8) ;
+		Directory directory = bcontext.create();
+		Central central = CentralConfig.oldFromDir(directory).build();
+		
+		return central ;
+//		return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
+	}
+	
+	
+	// test
 	public final static REntry create() throws CorruptIndexException, IOException {
 		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build() ;
-		return nsconfig.createREntry() ;
+		return create(nsconfig) ;
 	}
 
 	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException {

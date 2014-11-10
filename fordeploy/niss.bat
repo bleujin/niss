@@ -12,7 +12,7 @@ rem for %%? in ("%~dp0..") do set HOMEDIR=%%~f?
 set HOMEDIR=%cd%
 set JAVA_HOME=C:\java\jdk6_45
 set CP=./;
-set JAVA_ARGS=-Djava.net.preferIPv4Stack=true -Djava.util.logging.config.file=%HOMEDIR%\resource\log4j.properties -Dsun.nio.ch.bugLevel="" 
+set JAVA_ARGS=-Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -Djava.util.logging.config.file=%HOMEDIR%\resource\log4j.properties -Dsun.nio.ch.bugLevel="" 
 set JMX_ARGS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=%TESTPORT% 
 set GC_ARGS=-Xms512m -Xmx1024m -server
 set PRG_ARGS=-config:%HOMEDIR%\resource\config\niss-config.xml
