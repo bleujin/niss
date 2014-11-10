@@ -34,7 +34,7 @@ rem confirm setted vars
 @echo. PRG_ARGS=%PRG_ARGS% %*
 
 rem start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -classpath "%CP%" net.ion.radon.ServerRunner %PRG_ARGS% %*
-start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.5.jar %PRG_ARGS% %*
+start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
 
 goto end
 

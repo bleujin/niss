@@ -35,4 +35,4 @@ add_program_args -config:resource/config/niss-config.xml
  
 echo "jmxport=$jmxport"
 # start net.ion.radon.ServerRunner
-java -jar niss_0.5.jar
+java -jar niss_0.6.jar

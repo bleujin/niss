@@ -13,7 +13,7 @@
 	<property name="manifest.main.class" value="net.ion.niss.Main" />
 	<property name="manifest.classpath" value="lib/ref/* lib/common/* lib/reflib/*" />
 	<property name="version.number" value="0" />
-	<property name="build.number" value="5" />
+	<property name="build.number" value="6" />
 	
 	<manifestclasspath property="dynamic.manifest.classpath" jarfile="niss_${version.number}.${build.number}.jar">
 		<classpath>
@@ -80,16 +80,10 @@
 			<fileset dir="webapps/" includes="**"/>
 		</copy>
 	</target>
-	
-	
-	<target name="make_lib_zip" depends="copy_for_deploy">
-	    <delete file="deploy/niss_lib_${version.number}.${build.number}.zip"></delete>
-	    <zip destfile="deploy/niss_lib_${version.number}.${build.number}.zip" basedir="fordeploy/" includes="lib/**" ></zip> 
-	</target>
-	
+
 	<target name="make_zip" depends="copy_for_deploy">
 	    <delete file="deploy/niss_${version.number}.${build.number}.zip"></delete>
-	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"  excludes="lib/**" ></zip> 
+	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"></zip> 
 	</target>
 	
 	
