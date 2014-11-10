@@ -24,7 +24,6 @@
 	<classpathentry kind="lib" path="lib/reflib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/infinispan602_fat.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/craken"/>
 	<classpathentry kind="lib" path="lib/ref/craken_0.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
