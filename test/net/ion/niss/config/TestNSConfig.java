@@ -57,7 +57,7 @@ public class TestNSConfig extends TestCase {
 	}
 	
 	public void testDistMode() throws Exception {
-		NSConfig nsconfig = ConfigBuilder.create("./resource/config/niss-dist-config.mlx").build() ;
+		NSConfig nsconfig = ConfigBuilder.create("./resource/config/niss-dist-config.xml").build() ;
 		NissServer ns = NissServer.create(nsconfig).start() ;
 		REntry entry = ns.rentry() ;
 		

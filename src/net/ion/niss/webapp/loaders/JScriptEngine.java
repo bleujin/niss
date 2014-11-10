@@ -27,6 +27,8 @@ import javax.script.SimpleBindings;
 import org.apache.commons.io.monitor.FileAlterationObserver;
 import org.apache.ecs.xhtml.script;
 import org.infinispan.factories.scopes.Scopes;
+import org.infinispan.util.logging.Log;
+import org.infinispan.util.logging.LogFactory;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
@@ -47,6 +49,7 @@ public class JScriptEngine {
 	private ScriptEngine sengine ;
 	private ExecutorService es = new WithinThreadExecutor() ;
 	private ClassLoader cloader;
+	private Log log = LogFactory.getLog(JScriptEngine.class) ;
 
 	private JScriptEngine(ClassLoader cloader){
 		this.manager = new ScriptEngineManager(cloader);
@@ -67,6 +70,7 @@ public class JScriptEngine {
 
 	public static JScriptEngine create(String libPath, ScheduledExecutorService ses, boolean reload) throws Exception{
 		final File libDir = new File(libPath);
+		final Log l = LogFactory.getLog(JScriptEngine.class) ;
 		if (libDir.exists() && libDir.isDirectory()) {
 			ClassLoader cloader = new DirClassLoader(libPath) ;
 			if (reload){
@@ -87,7 +91,7 @@ public class JScriptEngine {
 			}
 			return new JScriptEngine(cloader) ;
 		} else {
-			System.err.println("Not Found libPath : " + libPath);
+			l.info("Not Found libPath : " + libPath);
 			return create() ;
 		}
 	}

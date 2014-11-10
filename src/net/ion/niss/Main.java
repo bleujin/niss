@@ -18,7 +18,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
 
 		Options options = new Options(args);
-		NSConfig nsconfig = ConfigBuilder.create(options.getString("config", "./resource/config/nsss-config.xml")).build();
+		NSConfig nsconfig = ConfigBuilder.create(options.getString("config", "./resource/config/niss-dist-config.xml")).build();
 
 		try {
 			Socket s = new Socket(InetAddress.getLocalHost(), nsconfig.serverConfig().port());

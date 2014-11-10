@@ -23,7 +23,6 @@ import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.tree.Fqn;
 import net.ion.craken.tree.PropertyId;
 import net.ion.craken.tree.PropertyValue;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.NSConfig;
@@ -55,6 +54,8 @@ import org.infinispan.lucene.directory.BuildContext;
 import org.infinispan.lucene.directory.DirectoryBuilder;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.util.concurrent.WithinThreadExecutor;
+import org.infinispan.util.logging.Log;
+import org.infinispan.util.logging.LogFactory;
 
 public class REntry implements Closeable {
 
@@ -68,6 +69,7 @@ public class REntry implements Closeable {
 	private SearchManager searchManager = new SearchManager();
 
 	private ReadSession rsession;
+	private final Log log = LogFactory.getLog(REntry.class);
 
 
 	public REntry(RepositoryImpl r, String wsName, NSConfig nsconfig) throws IOException {
@@ -114,7 +116,7 @@ public class REntry implements Closeable {
 						}
 
 						indexManager.newIndex(cid, central);
-						
+						log.info(cid + " indexer loaded");
 					}
 				} catch (Exception ex) {
 					throw new IllegalStateException(ex);
@@ -131,7 +133,8 @@ public class REntry implements Closeable {
 
 				try {
 					for (ReadNode sec : iter) {
-						registerSearcher(session, new RNodePropertyReadable(sec), jsengine) ;
+						IdString sid = registerSearcher(session, new RNodePropertyReadable(sec), jsengine) ;
+						log.info(sid + " searcher loaded");
 					}
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
@@ -160,7 +163,8 @@ public class REntry implements Closeable {
 			@Override
 			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				try {
-					registerSearcher(session, new EventPropertyReadable(cevent), jsengine);
+					IdString sid = registerSearcher(session, new EventPropertyReadable(cevent), jsengine);
+					log.info(sid + " searcher defined");
 				} catch (IOException ex) {
 					throw new IllegalStateException(ex);
 				} catch (ClassNotFoundException ex) {
@@ -197,6 +201,7 @@ public class REntry implements Closeable {
 				
 				Central saved = indexManager.index(iid);
 				saved.indexConfig().removeFieldAnalyzer(schemaid) ;
+				
 				return null;
 			}
 
@@ -274,6 +279,7 @@ public class REntry implements Closeable {
 						Central central = createCentral(iid) ;
 
 						indexManager.newIndex(iid, central);
+						log.info(iid + " indexer defined");
 					} else if (indexManager.hasIndex(iid)) {
 						
 						Central saved = indexManager.index(iid);
@@ -284,6 +290,7 @@ public class REntry implements Closeable {
 						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName()) ; 
 						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
 
+						log.info(iid + " indexer defined");
 					} else {
 						throw new IllegalArgumentException("not have index " + iid.idString());
 					}
@@ -381,7 +388,7 @@ public class REntry implements Closeable {
 	}
 	
 	
-	private void registerSearcher(ReadSession session, PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+	private IdString registerSearcher(ReadSession session, PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
 		Set<String> cols = rnode.property(Def.Searcher.Target).asSet();
 		IdString sid = IdString.create(rnode.fqn().name());
 		
@@ -431,6 +438,7 @@ public class REntry implements Closeable {
 		} else {
 			searchManager.newSearch(sid, searcher);
 		}
+		return sid ;
 	}
 	
 	private Central createCentral(IdString iid) throws CorruptIndexException, IOException {
@@ -458,7 +466,8 @@ public class REntry implements Closeable {
 		Directory directory = bcontext.create();
 		Central central = CentralConfig.oldFromDir(directory).build();
 		
-		Debug.line(dm.getDefaultCacheConfiguration().clustering().cacheMode(), metaCache.getCacheConfiguration().clustering().cacheMode()) ;
+		
+		log.info(name + " Index ClusterMode : " + metaCache.getCacheConfiguration().clustering().cacheMode());
 		
 		return central ;
 //		return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
