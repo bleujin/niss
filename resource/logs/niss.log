@@ -5963,3 +5963,41 @@ java.lang.IllegalStateException: Not a JSON Object: ["success"]
 [radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 17:12:45 KST 2014	1415607165130	5540	2	/61.250.201.157:9213	HTTP-END 200	/admin/indexers/newind1/index.json	POST	331	
 
 [isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460737d4395eefc0584ff9a writed
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-5037|0] (1) [bleujin-SV-5037]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-5037, physical addresses are [61.250.201.157:51403]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newind1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newind1 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:nsearcher1 searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Not Found libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460826cdf76eefc0f306b86 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5460826cdf76eefc11306b86 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:31 KST 2014	1415610991741	76	1	/61.250.201.157:10422	HTTP-END 200	/icss/indexers.html	GET	28	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:31 KST 2014	1415610991846	181	1	/61.250.201.157:10422	HTTP-END 200	/admin/indexers	GET	17	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:31 KST 2014	1415610991956	291	1	/61.250.201.157:10422	HTTP-END 200	/icss/indexers/overview.html	GET	6	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:32 KST 2014	1415610992098	433	1	/61.250.201.157:10422	HTTP-END 200	/admin/indexers/newind1/overview	GET	10	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:32 KST 2014	1415610992784	1119	1	/61.250.201.157:10422	HTTP-END 200	/icss/searchers.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:32 KST 2014	1415610992841	1176	1	/61.250.201.157:10422	HTTP-END 200	/admin/searchers	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 10 18:16:32 KST 2014	1415610992860	1195	1	/61.250.201.157:10422	HTTP-END 200	/icss/searchers/overview.html	GET	3	
+

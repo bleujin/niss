@@ -19,6 +19,9 @@ public class Main {
 
 		Options options = new Options(args);
 		NSConfig nsconfig = ConfigBuilder.create(options.getString("config", "./resource/config/niss-config.xml")).build();
+		
+		String action = options.getString("action", "restart") ;
+		
 
 		try {
 			Socket s = new Socket(InetAddress.getLocalHost(), nsconfig.serverConfig().port());
@@ -38,7 +41,12 @@ public class Main {
 
 		} catch (ConnectException ex) {
 			;
-		} 
+		}
+		
+		if ("shutdown".equals(action)) {
+			return ;
+		}
+		
 		
 		final NissServer server = NissServer.create(nsconfig).start();
 

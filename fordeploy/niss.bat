@@ -17,7 +17,6 @@ set JMX_ARGS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxre
 set GC_ARGS=-Xms512m -Xmx1024m -server
 set PRG_ARGS=-config:%HOMEDIR%\resource\config\niss-config.xml
 
-
 if not exist "%JAVA_HOME%\jre" goto no_java
 
 
@@ -33,8 +32,8 @@ rem confirm setted vars
 @echo. GC_ARGS=%GC_ARGS%
 @echo. PRG_ARGS=%PRG_ARGS% %*
 
-rem start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -classpath "%CP%" net.ion.radon.ServerRunner %PRG_ARGS% %*
-start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
+rem start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
+start %JAVA_HOME%\bin\java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
 
 goto end
 
