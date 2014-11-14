@@ -47,7 +47,6 @@ import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.SearchSchema;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
-import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;

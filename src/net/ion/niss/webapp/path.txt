@@ -20,6 +20,7 @@
 	[{overview, analyzer, files, index, query, browsing}, {overview, define, query, template, index}]
 /analysis
 
+/scripts/{sid}
 
 /tunnels/
 	{fqn, fieldId, fieldValue ... }

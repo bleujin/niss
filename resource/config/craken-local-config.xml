@@ -4,7 +4,6 @@
 	xmlns="urn:infinispan:config:6.0">
 
 	<global>
-		
 		<globalJmxStatistics enabled="false" />
 	</global>
 

@@ -10,6 +10,7 @@
 			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">Analyzer Confirm</a></li>
 			<li class="submenu"><a class="history-load" href="javascript:void(0);">Loader History</a></li>
 			<li class="submenu"><a class="logging-load" href="javascript:void(0);">Logging</a></li>
+			<li class="submenu"><a class="script-load" href="javascript:void(0);">Script</a></li>
 			<li class="submenu"><a class="user-load" href="javascript:void(0);">User</a></li>
 		</ul>
 
@@ -69,6 +70,47 @@
 
 
 
+
+<div id="create_script_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Script</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_script_form" method="post" action="misc/script" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Script Id</label>
+					<label class="input">
+						<input type="text" name="sid"/>
+					</label>
+				</section>
+				<section>
+					<label class="label">Script Content</label>
+					<label class="textarea textarea-resizable">
+						<i class="icon-append fa fa-question-circle"/> 										
+						<textarea rows="12" class="custom-scroll" placeholder="script content" name="content"></textarea>
+						<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
+					</label>
+				</section>
+				
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn btn-primary" name="create_script">Create Script</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+
+
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -118,8 +160,49 @@
 		});
 		
 
+		var $createScriptForm = $("#create_script_form").validate({
+			// Rules for form validation
+			rules : {
+				sid : { required : true, minlength : 4, maxlength : 15 }, 
+				content : { required : true} 
+			},
+
+			// Messages for form validation
+			messages : {
+				sid : { required : 'Please enter script id'}, 
+				content : { required : 'Please enter script content'} 
+			},
+
+			// Ajax form submition
+			submitHandler : function(form) {
+				var sid = $("#create_script_form input[name=sid]").val() ;
+				
+				$.ajax({
+					type: "POST",
+					dataType:"text", 
+					url: "/admin/scripts/define/" + sid,
+					data: { 'content': $("#create_script_form textarea[name=content]").val() }, 
+					success : function(msg){
+						$("#create_script_form").modal('hide') ;
+						loadURL("icss/misc/script.html", $('#inbox-content > .table-wrap')) ;
+						$('#create_script_modal').modal('hide');
+					}
+				});
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+
 		$("#create_user_modal button[name=create_user]").click(function(){
 			$("#create_user_form").submit() ;
+		});
+		
+
+
+		$("#create_script_modal button[name=create_script]").click(function(){
+			$("#create_script_form").submit() ;
 		});
 		
 
@@ -173,6 +256,9 @@
 		});
 		$(".logging-load").click(function() {
 			loadURL("icss/misc/logging.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".script-load").click(function() {
+			loadURL("icss/misc/script.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".user-load").click(function() {
 			loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;

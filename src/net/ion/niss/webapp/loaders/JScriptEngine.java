@@ -91,7 +91,7 @@ public class JScriptEngine {
 			}
 			return new JScriptEngine(cloader) ;
 		} else {
-			l.info("Not Found libPath : " + libPath);
+			l.info("Has not Extension libPath : " + libPath);
 			return create() ;
 		}
 	}

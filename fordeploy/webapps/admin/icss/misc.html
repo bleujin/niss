@@ -10,6 +10,7 @@
 			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">Analyzer Confirm</a></li>
 			<li class="submenu"><a class="history-load" href="javascript:void(0);">Loader History</a></li>
 			<li class="submenu"><a class="logging-load" href="javascript:void(0);">Logging</a></li>
+			<li class="submenu"><a class="script-load" href="javascript:void(0);">Script</a></li>
 			<li class="submenu"><a class="user-load" href="javascript:void(0);">User</a></li>
 		</ul>
 
@@ -173,6 +174,9 @@
 		});
 		$(".logging-load").click(function() {
 			loadURL("icss/misc/logging.html", $('#inbox-content > .table-wrap')) ;
+		});
+		$(".script-load").click(function() {
+			loadURL("icss/misc/script.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".user-load").click(function() {
 			loadURL("icss/misc/user.html", $('#inbox-content > .table-wrap')) ;

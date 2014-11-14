@@ -164,7 +164,7 @@ public class MiscWeb implements Webapp{
 	
 	
 	@POST
-	@Path("/users_remove/")
+	@Path("/users_remove")
 	public String removeUsers(@FormParam("users") final String users){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
