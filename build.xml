@@ -53,7 +53,7 @@
 	<target name="copy_for_deploy" depends="publish">
 	    <echo>Copy lib</echo>
 		<copy todir="fordeploy/lib/" overwrite="true">
-			<fileset dir="lib/" includes="**"></fileset>
+			<fileset dir="lib/" includes="**" excludes="imsi/*"></fileset>
 		</copy>
 		
 		<echo>Copy main lib</echo>

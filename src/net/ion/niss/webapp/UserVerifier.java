@@ -37,10 +37,13 @@ public class UserVerifier implements PasswordAuthenticator {
 		} catch (Exception ex) {
 			throw new IOException(ex);
 		}
+		session.workspace().wsName() ;
+
 		return this;
 	}
 
 	public void authenticate(HttpRequest request, String username, String password, ResultCallback callback, Executor handlerExecutor) {
+		session.ghostBy("/users").children().toList().size() ;
 		String expectedPassword = session.ghostBy("/users/" + username).property(Def.User.Password).stringValue();
 		if (expectedPassword != null && password.equals(expectedPassword)) {
 			callback.success();
