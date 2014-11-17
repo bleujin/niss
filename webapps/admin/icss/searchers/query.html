@@ -14,7 +14,6 @@
 		<div class="well">
 			<blockquote>
 			  <div id="info" class="click2edit"></div>
-			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
 			
 			<div class="">
@@ -176,7 +175,7 @@
 			$.ajax({
 				type: "GET",
 				dataType : 'text', 
-				url: "/search/" + searcherId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
+				url: "/open/search/" + searcherId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
 				data: { query: $("#query").val(), sort: $("#sort").val(), skip: $("#skip").val(), offset: $("#offset").val() , indent: $("#indent").is(":checked") ? true : false, debug: $("#debug").is(":checked") ? true : false}, 
 				complete : function(){ 
 					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";

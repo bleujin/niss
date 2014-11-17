@@ -15,7 +15,6 @@
 		<div class="well">
 			<blockquote>
 			  <div id="info" class="click2edit"></div>
-			  <small>Someone famous in <cite title="Source Title">Source Title</cite></small>
 			</blockquote>
 			
 			<div class="">
@@ -100,7 +99,9 @@
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
-				'						<section class="col col-12"><a href="javascript:void(0);" class="btn btn-primary" name="create_script">Register Script</a>&nbsp;<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_script">Remove Script</a></section>' +
+				'						<section class="col col-12">' +
+				'						<a href="javascript:void(0);" class="btn btn-primary" name="create_script">Define Script</a>&nbsp;' +
+				'						<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_script">Remove Script</a></section>' +
 				'				</td></tr></tfoot>' ;
 				
 				$(tableFoot).appendTo($("#example")) ;
@@ -110,17 +111,34 @@
 				var table = $('#example').DataTable() ;
 				
 				$('#example tbody').on( 'click', 'tr', function () {
-					$(this).toggleClass('selected2');
+					if ( $(this).hasClass('selected2') ) {
+			            $(this).removeClass('selected2');
+			        } else {
+			            table.$('tr.selected2').removeClass('selected2');
+			            $(this).addClass('selected2');
+			        }
 					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#misc-script-0 a[name=remove_script]').removeAttr("disabled") : $('#misc-script-0 a[name=remove_script]').attr("disabled", "disabled") ;
 				} );
-				
+
+
 				$('#misc-script-0 a[name=create_script]').click(function(){
-					$('#create_script_modal').modal({});
+					if ($('#example').DataTable().rows('.selected2').data().length > 0){
+						var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
+						$.ajax({
+							type: "GET",
+							dataType:"json", 
+							url: "/admin/scripts/define/" + sid,
+							success : function(data){
+								$('#create_script_modal').modal({});
+								$('#create_script_form input[name=sid]').val(data['sid']) ;
+								$('#create_script_form textarea[name=content]').val(data['content']) ;
+							}
+						});
+					} else {
+						$('#create_script_modal').modal({});
+					}
 				});
-				
-				
-				
-				
+
 				$('#misc-script-0 a[name=remove_script]').click( function () {
 					var targets = $('#example').DataTable().rows('.selected2') ;
 					var scripts = '' ;

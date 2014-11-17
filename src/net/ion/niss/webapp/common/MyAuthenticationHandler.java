@@ -31,7 +31,7 @@ public class MyAuthenticationHandler extends AbstractHttpHandler {
 
 		String authHeader = request.header("Authorization");
 		
-		if (request.uri().startsWith("/search/") || request.uri().endsWith("/login.html") || WebUtil.isStaticResource(request.uri())) {
+		if (request.uri().startsWith("/open/") || request.uri().endsWith("/login.html") || WebUtil.isStaticResource(request.uri())) {
 			control.nextHandler();
 			return ;
 		}

@@ -101,7 +101,8 @@
             
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-              <button class="btn btn-primary" name="create_script">Create Script</button>
+              <button class="btn" name="load_sample">Load Sample</button>
+              <button class="btn btn-primary" name="create_script">Define Script</button>
             </div>  
 
        </div>
@@ -199,11 +200,20 @@
 			$("#create_user_form").submit() ;
 		});
 		
-
-
 		$("#create_script_modal button[name=create_script]").click(function(){
 			$("#create_script_form").submit() ;
 		});
+		$("#create_script_modal button[name=load_sample]").click(function(){
+			$.ajax({
+				type: "GET",
+				dataType:"json", 
+				url: "/admin/scripts/sample",
+				success : function(data){
+					$('#create_script_form textarea[name=content]').val(data['content']) ;
+				}
+			});
+		});
+		
 		
 
 		function tableHeightSize() {

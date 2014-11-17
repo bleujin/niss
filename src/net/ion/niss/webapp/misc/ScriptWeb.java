@@ -32,6 +32,7 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
+import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
@@ -69,11 +70,26 @@ public class ScriptWeb implements Webapp{
 				return null;
 			}
 		}) ;
-		
 		return sid + " created" ;
-		
 	}
 	
+	@Path("/define/{sid}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject viewScript(@PathParam("sid") final String sid){
+		ReadNode found = rsession.ghostBy("/scripts/" + sid) ;
+		return new JsonObject().put("sid", found.fqn().name()).put("content", found.property("content").asString()) ;
+	}
+
+	@Path("/sample")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public JsonObject sampleScript() throws IOException{
+		return new JsonObject().put("content", IOUtil.toStringWithClose(getClass().getResourceAsStream("sample.script"))) ;
+	}
+	
+
+
 	@Path("/remove/{sid}")
 	@DELETE
 	public String removeScript(@PathParam("sid") final String sid){
@@ -117,7 +133,7 @@ public class ScriptWeb implements Webapp{
 						ReadNode node = iter.next();
 						JsonArray userProp = new JsonArray();
 						userProp.add(new JsonPrimitive(node.fqn().name()));
-						userProp.add(new JsonPrimitive("/admin/scripts/run/" + node.fqn().name()));
+						userProp.add(new JsonPrimitive("/open/script/run/" + node.fqn().name()));
 						String firstLine = new BufferedReader(new StringReader(node.property("content").asString())).readLine();
 						userProp.add(new JsonPrimitive(StringUtil.defaultString(firstLine, "")));
 						result.add(userProp);
@@ -136,6 +152,7 @@ public class ScriptWeb implements Webapp{
 
 	@Path("/run/{sid}")
 	@GET @POST
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response runScript(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ScriptException{
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>();
 		for (Entry<String, List<String>> entry : request.getUri().getQueryParameters().entrySet()) {
@@ -191,8 +208,5 @@ public class ScriptWeb implements Webapp{
 
 		return Response.ok(result.toString()).type(MediaType.APPLICATION_JSON_TYPE).build() ;
 	}
-	
-	
-
 
 }

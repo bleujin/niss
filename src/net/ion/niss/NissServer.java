@@ -25,6 +25,7 @@ import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.niss.webapp.misc.CrakenLet;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
+import net.ion.niss.webapp.misc.OpenScriptWeb;
 import net.ion.niss.webapp.misc.ScriptWeb;
 import net.ion.niss.webapp.misc.TraceWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
@@ -94,7 +95,7 @@ public class NissServer {
 			.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html") )
 			// .add(new WhoAmIHttpHandler())
 			.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class,  MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))
-			.add("/search/*", new PathHandler(OpenSearchWeb.class).prefixURI("search"))
+			.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
 			.add("/logging/event/*", new EventSourceHandler(){
 				@Override
 				public void onOpen(EventSourceConnection econn) throws Exception {

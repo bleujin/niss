@@ -10,7 +10,10 @@ if %ERRORLEVEL%==0 goto test
 
 rem for %%? in ("%~dp0..") do set HOMEDIR=%%~f?
 set HOMEDIR=%cd%
-set JAVA_HOME=C:\java\jdk6_45
+IF not exist %JAVA_HOME%/jre (
+	set JAVA_HOME=C:\java\jdk6_45
+)
+set JAVA_BIN=%JAVA_HOME%\bin\java
 set CP=./;
 set JAVA_ARGS=-Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -Djava.util.logging.config.file=%HOMEDIR%\resource\log4j.properties -Dsun.nio.ch.bugLevel="" 
 set JMX_ARGS=-Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=%TESTPORT% 
@@ -20,7 +23,7 @@ set PRG_ARGS=-config:%HOMEDIR%\resource\config\niss-config.xml
 if not exist "%JAVA_HOME%\jre" goto no_java
 
 
-@echo. running script for ToonStory Server
+@echo. running script for Niss Server
 
 rem confirm setted vars 
 @echo. == Settted Vars ==
@@ -33,7 +36,7 @@ rem confirm setted vars
 @echo. PRG_ARGS=%PRG_ARGS% %*
 
 rem start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
-start %JAVA_HOME%\bin\java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
+start %JAVA_BIN% %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
 
 goto end
 
