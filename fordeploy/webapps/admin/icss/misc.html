@@ -70,6 +70,48 @@
 
 
 
+
+<div id="create_script_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+       <div class="modal-content">
+        	
+            <div class="modal-header"><h5 id="myModalLabel">Create Script</h5></div>
+
+            <div class="modal-body">
+			<form class="smart-form" id="create_script_form" method="post" action="misc/script" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">Script Id</label>
+					<label class="input">
+						<input type="text" name="sid"/>
+					</label>
+				</section>
+				<section>
+					<label class="label">Script Content</label>
+					<label class="textarea textarea-resizable">
+						<i class="icon-append fa fa-question-circle"/> 										
+						<textarea rows="12" class="custom-scroll" placeholder="script content" name="content"></textarea>
+						<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
+					</label>
+				</section>
+				
+			</fieldset>
+			</form>
+            </div>
+            
+            <div class="modal-footer">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn" name="load_sample">Load Sample</button>
+              <button class="btn btn-primary" name="create_script">Define Script</button>
+            </div>  
+
+       </div>
+	</div>
+</div>
+
+
+
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -119,9 +161,59 @@
 		});
 		
 
+		var $createScriptForm = $("#create_script_form").validate({
+			// Rules for form validation
+			rules : {
+				sid : { required : true, minlength : 4, maxlength : 15 }, 
+				content : { required : true} 
+			},
+
+			// Messages for form validation
+			messages : {
+				sid : { required : 'Please enter script id'}, 
+				content : { required : 'Please enter script content'} 
+			},
+
+			// Ajax form submition
+			submitHandler : function(form) {
+				var sid = $("#create_script_form input[name=sid]").val() ;
+				
+				$.ajax({
+					type: "POST",
+					dataType:"text", 
+					url: "/admin/scripts/define/" + sid,
+					data: { 'content': $("#create_script_form textarea[name=content]").val() }, 
+					success : function(msg){
+						$("#create_script_form").modal('hide') ;
+						loadURL("icss/misc/script.html", $('#inbox-content > .table-wrap')) ;
+						$('#create_script_modal').modal('hide');
+					}
+				});
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+
 		$("#create_user_modal button[name=create_user]").click(function(){
 			$("#create_user_form").submit() ;
 		});
+		
+		$("#create_script_modal button[name=create_script]").click(function(){
+			$("#create_script_form").submit() ;
+		});
+		$("#create_script_modal button[name=load_sample]").click(function(){
+			$.ajax({
+				type: "GET",
+				dataType:"json", 
+				url: "/admin/scripts/sample",
+				success : function(data){
+					$('#create_script_form textarea[name=content]').val(data['content']) ;
+				}
+			});
+		});
+		
 		
 
 		function tableHeightSize() {

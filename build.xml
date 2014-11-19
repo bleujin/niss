@@ -81,7 +81,7 @@
 		</copy>
 	</target>
 
-	<target name="make_zip" depends="copy_for_deploy">
+	<target name="make_zip" depends="copy_full_deploy">
 	    <delete file="deploy/niss_${version.number}.${build.number}.zip"></delete>
 	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"></zip> 
 	</target>
