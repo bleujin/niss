@@ -1,0 +1,76 @@
+path : /open/search/{sid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.OpenSearchWeb.query() throws java.io.IOException
+
+path : /open/search/{sid}/query.json
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.jquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.xml
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.xquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.csv
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.cquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.template
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.json
+httpMethod : POST 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.jqueryPost(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.xml
+httpMethod : POST 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.xqueryPost(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.csv
+httpMethod : POST 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.cqueryPost(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query.template
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.OpenSearchWeb.tqueryPost(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.core.Context()}
+

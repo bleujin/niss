@@ -1,10 +1,15 @@
 package net.ion.niss.webapp.searchers;
 
+import java.io.FileInputStream;
+
+import org.h2.server.web.WebApp;
+
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.nradon.stub.StubHttpResponse;
@@ -23,6 +28,7 @@ public class TestTemplate extends TestCase {
 		this.ss = StubServer.create(SearcherWeb.class, MenuWeb.class) ;
 		this.rentry = REntry.test();
 		ss.treeContext().putAttribute(REntry.EntryName, rentry) ;
+		ss.treeContext().putAttribute(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login())) ;
 
 		if (! rentry.searchManager().hasSearch("sec1")) {
 			StubHttpResponse response = ss.request("/searchers/sec1").post() ;
@@ -46,7 +52,7 @@ public class TestTemplate extends TestCase {
 	
 	
 	public void testTemplateQuery() throws Exception {
-		String template = IOUtil.toStringWithClose(SearcherWeb.class.getResourceAsStream("default.template"));
+		String template = IOUtil.toStringWithClose(new FileInputStream(Webapp.SEARCH_TEMPLATE_FILE));
 		
 		ss.request("/searchers/sec1/template").postParam("template", template).post() ;
 		

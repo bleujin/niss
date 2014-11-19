@@ -17,10 +17,11 @@ import net.ion.framework.mte.Engine;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
 @Path("/craken")
-public class CrakenLet {
+public class CrakenLet implements Webapp{
 
 	private ReadSession rsession;
 	private Engine engine;

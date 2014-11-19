@@ -1,0 +1,15 @@
+path : /admin/craken
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.CrakenLet.rootExprore() throws java.io.IOException
+
+path : /admin/craken/{remain: ^[^\.]*$}
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.CrakenLet.htmlExprore(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=remain)}
+
+path : /admin/craken/{remain: .*}.{pid}
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.CrakenLet.property(java.lang.String,java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=remain)}
+  {@javax.ws.rs.PathParam(value=pid)}
+

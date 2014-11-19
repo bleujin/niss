@@ -111,6 +111,7 @@
 				$("#info").html(info) ;
 				
 				var query_analyzer = data['query_analyzer'] ;
+				$("select[name=schema_analyzer]").empty() ;
 				for(var idx in query_analyzer){
 					var analyzer = query_analyzer[idx] ;
 					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;

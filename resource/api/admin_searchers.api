@@ -1,0 +1,129 @@
+path : /admin/searchers/{sid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.create(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.query() throws java.io.IOException
+
+path : /admin/searchers/{sid}/schema
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.listSchema(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/schema
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.addSchema(java.lang.String,java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.FormParam(value=schemaid)}
+  {@javax.ws.rs.FormParam(value=analyzer)}
+
+path : /admin/searchers/{sid}/schema/{schemaid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.removeSchema(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.PathParam(value=schemaid)}
+
+path : /admin/searchers/{sid}/query.json
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.SearcherWeb.jquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/searchers/{sid}/query.xml
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.SearcherWeb.xquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/searchers/{sid}/query.csv
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.SearcherWeb.cquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/searchers/{sid}/browsing
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.browsing(java.lang.String,java.lang.String,int) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=searchQuery)}
+  {@javax.ws.rs.DefaultValue(value=101),@javax.ws.rs.QueryParam(value=offset)}
+
+path : /admin/searchers/{sid}/query.template
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.tquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/searchers
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonArray net.ion.niss.webapp.searchers.SearcherWeb.listSection()
+
+path : /admin/searchers/{sid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.removeSearch(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/define
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewSection(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/define
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defineSection(java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpRequest,java.lang.String,java.lang.String,boolean,java.lang.String,boolean)
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.FormParam(value=target)}
+  {@javax.ws.rs.core.Context()}
+  {@javax.ws.rs.FormParam(value=queryanalyzer)}
+  {@javax.ws.rs.FormParam(value=handler)}
+  {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=applyhandler)}
+  {@javax.ws.rs.FormParam(value=stopword)}
+  {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=applystopword)}
+
+path : /admin/searchers/{sid}/define.default
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defaultHandler(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/template
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewTemplate(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/template.default
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defaultTemplate(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/template
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.editTemplate(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.FormParam(value=template)}
+

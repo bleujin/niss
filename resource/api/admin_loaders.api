@@ -1,0 +1,44 @@
+path : /admin/loaders/{lid}/run/{eventId}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.run(java.lang.String,java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpResponse) throws java.io.IOException,javax.script.ScriptException
+  {@javax.ws.rs.PathParam(value=lid)}
+  {@javax.ws.rs.PathParam(value=eventId)}
+  {@javax.ws.rs.FormParam(value=content)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/loaders/{lid}/overview
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.loaders.LoaderWeb.overview(java.lang.String)
+  {@javax.ws.rs.PathParam(value=lid)}
+
+path : /admin/loaders
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.loaders.LoaderWeb.listScript()
+
+path : /admin/loaders/{lid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.newLoader(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=lid)}
+  {@javax.ws.rs.FormParam(value=name)}
+
+path : /admin/loaders/{lid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.removeLoader(java.lang.String)
+  {@javax.ws.rs.PathParam(value=lid)}
+
+path : /admin/loaders/{lid}/define
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.createScript(java.lang.String,java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=lid)}
+  {@javax.ws.rs.FormParam(value=name)}
+  {@javax.ws.rs.FormParam(value=content)}
+
+path : /admin/loaders/{lid}/define
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.loaders.LoaderWeb.viewScript(java.lang.String)
+  {@javax.ws.rs.PathParam(value=lid)}
+
+path : /admin/loaders/{lid}/examples
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.loaders.LoaderWeb.example() throws java.io.FileNotFoundException,java.io.IOException
+

@@ -2254,3 +2254,439 @@
 [Thread-1] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
 [Thread-1] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
 [Thread-1] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearch1 searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c2918ff88eefccab50f66 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c2918ff88eefcccb50f66 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[Thread-4] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-4] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[Thread-2] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearch1 searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c293e8d47eefc8bf41abc writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c293e8d47eefc8df41abc writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[Thread-1] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-3] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[Thread-1] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-PC-15916|1] (2) [bleujin-PC-15916, bleujin-SV-10587]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-10587, physical addresses are [61.250.201.157:54299]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindex Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindex indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - indexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:indexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearch searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c64bdd188b6cf132cad2a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c64bdd188b6cf152cad2a writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:30 KST 2014	1416389850810	118	1	/61.250.201.157:11120	HTTP-END 200	/	GET	48	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:31 KST 2014	1416389851406	496	3	/61.250.201.157:11126	HTTP-END 200	/icss/misc.html	GET	7	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:31 KST 2014	1416389851510	600	3	/61.250.201.157:11126	HTTP-END 200	/icss/misc/properties.html	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:31 KST 2014	1416389851650	740	3	/61.250.201.157:11126	HTTP-END 200	/admin/misc/properties	GET	53	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:33 KST 2014	1416389853276	2366	3	/61.250.201.157:11126	HTTP-END 200	/icss/indexers.html	GET	9	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:33 KST 2014	1416389853326	2634	1	/61.250.201.157:11120	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:33 KST 2014	1416389853368	2458	3	/61.250.201.157:11126	HTTP-END 200	/icss/indexers/overview.html	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:37:33 KST 2014	1416389853452	2542	3	/61.250.201.157:11126	HTTP-END 200	/admin/indexers/newindex/overview	GET	13	
+
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 19 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 61469 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 15 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 60636 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 15 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 60789 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 17 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 62874 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 19 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 60514 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 15 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 66102 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 13 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 62144 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 14 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 60076 ms)
+[INT-1,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000012: discarded message from different cluster niss (our cluster is niss_dist). Sender was f4a2f580-9426-8374-57df-d55816b0f7d9 (received 18 identical messages from f4a2f580-9426-8374-57df-d55816b0f7d9 in the last 62844 ms)
+[Incoming-1,bleujin-SV-10587] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-10587|2] (1) [bleujin-SV-10587]
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-4,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-4,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-4,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-4,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-2,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Thread-3] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Timer-3,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Timer-5,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Thread-1] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000080: Disconnecting JGroups Channel
+[Timer-4,bleujin-SV-10587] WARN  org.jgroups.protocols.UDP  - JGRP000032: bleujin-SV-10587: no physical address for bleujin-PC-15916, dropping message
+[Thread-1] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000082: Stopping the RpcDispatcher
+[Thread-1] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[Thread-3] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c673ce84eb6cf774ce108 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c673ce84eb6cf794ce108 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:48 KST 2014	1416390468569	5039	1	/61.250.201.157:11207	HTTP-END 200	/index.html	GET	49	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:49 KST 2014	1416390469711	868	4	/61.250.201.157:11212	HTTP-END 200	/icss/loaders.html	GET	13	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:49 KST 2014	1416390469825	6262	2	/61.250.201.157:11208	HTTP-END 200	/admin/loaders	GET	24	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:49 KST 2014	1416390469842	6279	2	/61.250.201.157:11208	HTTP-END 200	/icss/loaders/overview.html	GET	7	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:51 KST 2014	1416390471592	8029	2	/61.250.201.157:11208	HTTP-END 200	/icss/indexers.html	GET	10	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:51 KST 2014	1416390471610	8047	2	/61.250.201.157:11208	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:51 KST 2014	1416390471621	8058	2	/61.250.201.157:11208	HTTP-END 200	/icss/indexers/overview.html	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:52 KST 2014	1416390472262	8699	2	/61.250.201.157:11208	HTTP-END 200	/icss/searchers.html	GET	5	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:52 KST 2014	1416390472293	8730	2	/61.250.201.157:11208	HTTP-END 200	/admin/searchers	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:52 KST 2014	1416390472306	8743	2	/61.250.201.157:11208	HTTP-END 200	/icss/searchers/overview.html	GET	5	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:54 KST 2014	1416390474506	10943	2	/61.250.201.157:11208	HTTP-END 200	/icss/misc.html	GET	5	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:54 KST 2014	1416390474550	10987	2	/61.250.201.157:11208	HTTP-END 200	/icss/misc/properties.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:54 KST 2014	1416390474647	11084	2	/61.250.201.157:11208	HTTP-END 200	/admin/misc/properties	GET	33	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:56 KST 2014	1416390476014	12451	2	/61.250.201.157:11208	HTTP-END 200	/icss/searchers.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:56 KST 2014	1416390476032	12469	2	/61.250.201.157:11208	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:56 KST 2014	1416390476045	12482	2	/61.250.201.157:11208	HTTP-END 200	/icss/searchers/overview.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477189	13626	2	/61.250.201.157:11208	HTTP-END 200	/icss/indexers.html	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477212	13649	2	/61.250.201.157:11208	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477220	13657	2	/61.250.201.157:11208	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477900	14337	2	/61.250.201.157:11208	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477917	14354	2	/61.250.201.157:11208	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:47:57 KST 2014	1416390477925	14362	2	/61.250.201.157:11208	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:50:10 KST 2014	1416390610162	17	7	/61.250.201.157:11215	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:35 KST 2014	1416390695627	486	19	/61.250.201.157:11231	HTTP-END 200	/	GET	3	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:36 KST 2014	1416390696055	911	20	/61.250.201.157:11233	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:36 KST 2014	1416390696100	956	20	/61.250.201.157:11233	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:36 KST 2014	1416390696113	969	20	/61.250.201.157:11233	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:59 KST 2014	1416390719244	1038	25	/61.250.201.157:11239	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:51:59 KST 2014	1416390719275	1069	25	/61.250.201.157:11239	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:17 KST 2014	1416390737610	5	31	/61.250.201.157:11247	HTTP-END 200	/icss/searchers.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:17 KST 2014	1416390737629	24	31	/61.250.201.157:11247	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:17 KST 2014	1416390737642	37	31	/61.250.201.157:11247	HTTP-END 200	/icss/searchers/overview.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:31 KST 2014	1416390751844	3524	32	/61.250.201.157:11250	HTTP-END 200	/index.html	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:33 KST 2014	1416390753035	4714	33	/61.250.201.157:11251	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:33 KST 2014	1416390753330	5009	33	/61.250.201.157:11251	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:33 KST 2014	1416390753372	5051	33	/61.250.201.157:11251	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:38 KST 2014	1416390758307	9986	33	/61.250.201.157:11251	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:38 KST 2014	1416390758339	10018	33	/61.250.201.157:11251	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:52:38 KST 2014	1416390758347	10026	33	/61.250.201.157:11251	HTTP-END 200	/icss/indexers/overview.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:23 KST 2014	1416390803884	5	38	/61.250.201.157:11259	HTTP-END 200	/icss/searchers.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:23 KST 2014	1416390803915	36	38	/61.250.201.157:11259	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:23 KST 2014	1416390803976	97	38	/61.250.201.157:11259	HTTP-END 200	/icss/searchers/overview.html	GET	3	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:25 KST 2014	1416390805596	1717	38	/61.250.201.157:11259	HTTP-END 200	/icss/misc.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:25 KST 2014	1416390805633	1754	38	/61.250.201.157:11259	HTTP-END 200	/icss/misc/properties.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:25 KST 2014	1416390805733	1854	38	/61.250.201.157:11259	HTTP-END 200	/admin/misc/properties	GET	31	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:27 KST 2014	1416390807791	3912	38	/61.250.201.157:11259	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:27 KST 2014	1416390807823	3944	38	/61.250.201.157:11259	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:27 KST 2014	1416390807832	3953	38	/61.250.201.157:11259	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:29 KST 2014	1416390809269	5390	38	/61.250.201.157:11259	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:29 KST 2014	1416390809305	5426	38	/61.250.201.157:11259	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:53:29 KST 2014	1416390809313	5434	38	/61.250.201.157:11259	HTTP-END 200	/icss/indexers/overview.html	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:08 KST 2014	1416390848595	14	41	/61.250.201.157:11264	HTTP-END 200	/icss/indexers/browsing.html	GET	11	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:09 KST 2014	1416390849485	904	41	/61.250.201.157:11264	HTTP-END 200	/icss/indexers/query.html	GET	8	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:12 KST 2014	1416390852238	3657	41	/61.250.201.157:11264	HTTP-END 200	/icss/searchers.html	GET	1	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:12 KST 2014	1416390852261	3680	41	/61.250.201.157:11264	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-11] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:12 KST 2014	1416390852274	3693	41	/61.250.201.157:11264	HTTP-END 200	/icss/searchers/overview.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:13 KST 2014	1416390853374	4793	41	/61.250.201.157:11264	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:13 KST 2014	1416390853413	4832	41	/61.250.201.157:11264	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:13 KST 2014	1416390853422	4841	41	/61.250.201.157:11264	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:14 KST 2014	1416390854274	5693	41	/61.250.201.157:11264	HTTP-END 200	/icss/indexers/index.html	GET	9	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:24 KST 2014	1416390864000	7	42	/61.250.201.157:11268	HTTP-END 200	/icss/indexers/query.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:24 KST 2014	1416390864871	878	42	/61.250.201.157:11268	HTTP-END 200	/icss/searchers.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:24 KST 2014	1416390864908	915	42	/61.250.201.157:11268	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:24 KST 2014	1416390864917	924	42	/61.250.201.157:11268	HTTP-END 200	/icss/searchers/overview.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:26 KST 2014	1416390866162	2169	42	/61.250.201.157:11268	HTTP-END 200	/icss/searchers/query.html	GET	10	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.REntry  - IdString:ddddd searcher defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c68dde84eb6cf7b4ce108 writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:37 KST 2014	1416390877468	39	44	/61.250.201.157:11271	HTTP-END 200	/admin/searchers/ddddd	POST	34	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546c68dde84eb6cf7d4ce108 writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:37 KST 2014	1416390877519	90	44	/61.250.201.157:11271	HTTP-END 200	/icss/searchers/query.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:37 KST 2014	1416390877572	143	44	/61.250.201.157:11271	HTTP-END 200	/admin/menus/searchers?field=query	GET	5	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:54:39 KST 2014	1416390879249	1820	44	/61.250.201.157:11271	HTTP-END 200	/open/search/ddddd/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	52	
+
+[radon-thread-15] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:15 KST 2014	1416390915713	10	46	/61.250.201.157:11275	HTTP-END 200	/icss/searchers/browsing.html	GET	5	
+
+[radon-thread-15] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:15 KST 2014	1416390915757	54	46	/61.250.201.157:11275	HTTP-END 200	/admin/searchers/ddddd/browsing?searchQuery=	GET	5	
+
+[radon-thread-15] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:17 KST 2014	1416390917770	2067	46	/61.250.201.157:11275	HTTP-END 200	/icss/searchers/query.html	GET	1	
+
+[radon-thread-15] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:17 KST 2014	1416390917816	2113	46	/61.250.201.157:11275	HTTP-END 200	/admin/menus/searchers?field=query	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:39 KST 2014	1416390939016	4	48	/61.250.201.157:11279	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:39 KST 2014	1416390939041	29	48	/61.250.201.157:11279	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:39 KST 2014	1416390939048	36	48	/61.250.201.157:11279	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944010	4998	48	/61.250.201.157:11279	HTTP-END 200	/icss/searchers.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944032	5020	48	/61.250.201.157:11279	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944042	5030	48	/61.250.201.157:11279	HTTP-END 200	/icss/searchers/overview.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944836	5824	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944870	5858	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc/properties.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:44 KST 2014	1416390944921	5909	48	/61.250.201.157:11279	HTTP-END 200	/admin/misc/properties	GET	12	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:46 KST 2014	1416390946308	7296	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc/history.html	GET	9	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:46 KST 2014	1416390946559	7547	48	/61.250.201.157:11279	HTTP-END 200	/admin/misc/history?searchQuery=	GET	218	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:47 KST 2014	1416390947295	8283	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc/logging.html	GET	9	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:48 KST 2014	1416390948366	9354	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc/script.html	GET	9	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:48 KST 2014	1416390948409	9397	48	/61.250.201.157:11279	HTTP-END 200	/admin/scripts	GET	4	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:50 KST 2014	1416390950207	11195	48	/61.250.201.157:11279	HTTP-END 200	/icss/misc/user.html	GET	9	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:55:50 KST 2014	1416390950245	11233	48	/61.250.201.157:11279	HTTP-END 200	/admin/misc/users	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:09 KST 2014	1416390969883	3	50	/61.250.201.157:11283	HTTP-END 200	/icss/misc/history.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:09 KST 2014	1416390969921	41	50	/61.250.201.157:11283	HTTP-END 200	/admin/misc/history?searchQuery=	GET	5	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:11 KST 2014	1416390971010	1130	50	/61.250.201.157:11283	HTTP-END 200	/icss/misc/logging.html	GET	1	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:59 KST 2014	1416391019797	4	52	/61.250.201.157:11287	HTTP-END 200	/icss/indexers.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:59 KST 2014	1416391019821	28	52	/61.250.201.157:11287	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:56:59 KST 2014	1416391019828	35	52	/61.250.201.157:11287	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:57:01 KST 2014	1416391021902	2109	52	/61.250.201.157:11287	HTTP-END 200	/icss/indexers/index.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:46 KST 2014	1416391186674	5	55	/61.250.201.157:11294	HTTP-END 200	/icss/searchers.html	GET	3	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:46 KST 2014	1416391186695	26	55	/61.250.201.157:11294	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:46 KST 2014	1416391186705	36	55	/61.250.201.157:11294	HTTP-END 200	/icss/searchers/overview.html	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:47 KST 2014	1416391187276	607	55	/61.250.201.157:11294	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:47 KST 2014	1416391187305	636	55	/61.250.201.157:11294	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 18:59:47 KST 2014	1416391187313	644	55	/61.250.201.157:11294	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:01:23 KST 2014	1416391283337	5	56	/61.250.201.157:11299	HTTP-END 200	/icss/misc.html	GET	3	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:01:23 KST 2014	1416391283369	37	56	/61.250.201.157:11299	HTTP-END 200	/icss/misc/properties.html	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:01:23 KST 2014	1416391283401	69	56	/61.250.201.157:11299	HTTP-END 200	/admin/misc/properties	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:01:24 KST 2014	1416391284900	1568	56	/61.250.201.157:11299	HTTP-END 200	/icss/misc/script.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:01:24 KST 2014	1416391284935	1603	56	/61.250.201.157:11299	HTTP-END 200	/admin/scripts	GET	4	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:09 KST 2014	1416391449851	3	59	/61.250.201.157:11306	HTTP-END 200	/icss/indexers.html	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:09 KST 2014	1416391449875	27	59	/61.250.201.157:11306	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:09 KST 2014	1416391449883	35	59	/61.250.201.157:11306	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:12 KST 2014	1416391452299	2451	59	/61.250.201.157:11306	HTTP-END 200	/icss/searchers.html	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:12 KST 2014	1416391452321	2473	59	/61.250.201.157:11306	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:12 KST 2014	1416391452330	2482	59	/61.250.201.157:11306	HTTP-END 200	/icss/searchers/overview.html	GET	1	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:57 KST 2014	1416391497805	13	60	/61.250.201.157:11310	HTTP-END 200	/icss/searchers/defined.html	GET	8	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:57 KST 2014	1416391497869	77	60	/61.250.201.157:11310	HTTP-END 200	/admin/searchers/ddddd/define	GET	8	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:58 KST 2014	1416391498626	834	60	/61.250.201.157:11310	HTTP-END 200	/icss/searchers/schema.html	GET	10	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:58 KST 2014	1416391498651	859	60	/61.250.201.157:11310	HTTP-END 200	/admin/searchers/ddddd/schema	GET	6	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:59 KST 2014	1416391499545	1753	60	/61.250.201.157:11310	HTTP-END 200	/icss/searchers/query.html	GET	3	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:04:59 KST 2014	1416391499599	1807	60	/61.250.201.157:11310	HTTP-END 200	/admin/menus/searchers?field=query	GET	3	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:07:11 KST 2014	1416391631691	6	63	/61.250.201.157:11317	HTTP-END 200	/icss/searchers/defined.html	GET	3	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:07:11 KST 2014	1416391631747	62	63	/61.250.201.157:11317	HTTP-END 200	/admin/searchers/ddddd/define	GET	4	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:07:17 KST 2014	1416391637005	5320	63	/61.250.201.157:11317	HTTP-END 200	/admin/searchers/ddddd/define.default	GET	6	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:37 KST 2014	1416391717281	4	65	/61.250.201.157:11321	HTTP-END 200	/icss/searchers/query.html	GET	2	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:37 KST 2014	1416391717321	44	65	/61.250.201.157:11321	HTTP-END 200	/admin/menus/searchers?field=query	GET	3	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:38 KST 2014	1416391718631	1354	65	/61.250.201.157:11321	HTTP-END 200	/open/search/ddddd/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	8	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:41 KST 2014	1416391721393	4	66	/61.250.201.157:11326	HTTP-END 200	/open/search/ddddd/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	3	
+
+[radon-thread-17] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:44 KST 2014	1416391724651	7374	65	/61.250.201.157:11321	HTTP-END 200	/open/search/ddddd/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	3	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:51 KST 2014	1416391731237	23	68	/61.250.201.157:11328	HTTP-END 200	/open/search/ddddd/query.template?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	22	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:08:53 KST 2014	1416391733121	1907	68	/61.250.201.157:11328	HTTP-END 200	/open/search/ddddd/query.template?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	2	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:06 KST 2014	1416392046414	11	73	/61.250.201.157:11340	HTTP-END 200	/icss/searchers/template.html	GET	8	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:06 KST 2014	1416392046445	42	73	/61.250.201.157:11340	HTTP-END 200	/admin/searchers/ddddd/template	GET	3	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:06 KST 2014	1416392046969	566	73	/61.250.201.157:11340	HTTP-END 200	/icss/searchers/browsing.html	GET	3	
+
+[radon-thread-18] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:07 KST 2014	1416392047004	601	73	/61.250.201.157:11340	HTTP-END 200	/admin/searchers/ddddd/browsing?searchQuery=	GET	3	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:19 KST 2014	1416392059844	7	74	/61.250.201.157:11344	HTTP-END 200	/icss/indexers.html	GET	2	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:19 KST 2014	1416392059869	32	74	/61.250.201.157:11344	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:19 KST 2014	1416392059879	40	75	/61.250.201.157:11345	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:20 KST 2014	1416392060874	1035	75	/61.250.201.157:11345	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:21 KST 2014	1416392061281	1442	75	/61.250.201.157:11345	HTTP-END 200	/icss/indexers/index.html	GET	3	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:28 KST 2014	1416392068683	2	76	/61.250.201.157:11348	HTTP-END 200	/icss/searchers.html	GET	1	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:28 KST 2014	1416392068710	29	76	/61.250.201.157:11348	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-19] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 19:14:28 KST 2014	1416392068718	37	76	/61.250.201.157:11348	HTTP-END 200	/icss/searchers/overview.html	GET	1	
+
+[Thread-3] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-3] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[Thread-1] INFO  net.ion.craken.node.Repository  - niss shutdowned

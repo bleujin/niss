@@ -1,0 +1,6 @@
+path : /admin/traces/{userid}
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.TraceWeb.recentActivity(java.lang.String,int)
+  {@javax.ws.rs.PathParam(value=userid)}
+  {@javax.ws.rs.DefaultValue(value=5),@javax.ws.rs.QueryParam(value=offset)}
+

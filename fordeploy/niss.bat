@@ -11,7 +11,7 @@ if %ERRORLEVEL%==0 goto test
 rem for %%? in ("%~dp0..") do set HOMEDIR=%%~f?
 set HOMEDIR=%cd%
 IF not exist %JAVA_HOME%/jre (
-	set JAVA_HOME=C:\java\jdk6_45
+	set JAVA_HOME="C:\java\jdk6_45"
 )
 set JAVA_BIN=%JAVA_HOME%\bin\java
 set CP=./;
@@ -29,6 +29,7 @@ rem confirm setted vars
 @echo. == Settted Vars ==
 @echo. HOMEDIR=%HOMEDIR%
 @echo. JAVA_HOME=%JAVA_HOME%
+@echo. JAVA_BIN=%JAVA_BIN%
 @echo. CLASSPATH=%CP%
 @echo. JAVA_ARGS=%JAVA_ARGS%
 @echo. JMX_ARGS=%JMX_ARGS%
@@ -36,7 +37,8 @@ rem confirm setted vars
 @echo. PRG_ARGS=%PRG_ARGS% %*
 
 rem start java %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
-start %JAVA_BIN% %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
+@echo. %JAVA_BIN% %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
+start "" CALL %JAVA_BIN% %GC_ARGS% %JMX_ARGS% %JAVA_ARGS% -jar niss_0.6.jar %PRG_ARGS% %*
 
 goto end
 

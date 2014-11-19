@@ -1,11 +1,20 @@
 package net.ion.niss;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.apache.lucene.analysis.Analyzer;
+
 import net.ion.framework.db.ThreadFactoryBuilder;
+import net.ion.framework.util.Debug;
+import net.ion.framework.util.ListUtil;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.AppLogSink;
@@ -13,6 +22,7 @@ import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.HTMLTemplateEngine;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.UserVerifier;
+import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.FavIconHandler;
 import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.niss.webapp.common.MyEventLog;
@@ -51,28 +61,28 @@ public class NissServer {
 	private RadonConfigurationBuilder builder;
 	private Radon radon;
 	private NSConfig nsconfig;
-	
-	private enum Status{
-		STOPED, INITED, STARTED ;
+
+	private enum Status {
+		STOPED, INITED, STARTED;
 	}
-	
-	private AtomicReference<Status> status =  new AtomicReference<NissServer.Status>(Status.STOPED) ;
+
+	private AtomicReference<Status> status = new AtomicReference<NissServer.Status>(Status.STOPED);
 	private REntry rentry;
 
-	NissServer(NSConfig nsconfig){
-		this.nsconfig = nsconfig ;
+	NissServer(NSConfig nsconfig) {
+		this.nsconfig = nsconfig;
 	}
 
-	public static NissServer create(NSConfig nsconfig) throws Exception{
-		NissServer server = new NissServer(nsconfig) ;
-		server.init(); 
-		return server ;
+	public static NissServer create(NSConfig nsconfig) throws Exception {
+		NissServer server = new NissServer(nsconfig);
+		server.init();
+		return server;
 	}
 
-	public static NissServer create(int portNum) throws Exception{
-		 return create(ConfigBuilder.createDefault(portNum).build());
+	public static NissServer create(int portNum) throws Exception {
+		return create(ConfigBuilder.createDefault(portNum).build());
 	}
-	
+
 	public void init() throws Exception {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
@@ -81,87 +91,101 @@ public class NissServer {
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
 
-
 		final QueryTemplateEngine ve = builder.context(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login()));
-		
-		this.radon = builder.createRadon() ;
+
+		this.radon = builder.createRadon();
 
 		final MyEventLog elogger = MyEventLog.create(System.out);
-		radon
-			.add(new MyAuthenticationHandler(UserVerifier.test(rentry.login())))
-			.add("/admin/*", new TraceHandler(rentry))
-			.add("/favicon.ico", new FavIconHandler())
-			.add(new LoggingHandler(new AppLogSink(elogger)))
-			.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html") )
-			// .add(new WhoAmIHttpHandler())
-			.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class,  MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))
-			.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
-			.add("/logging/event/*", new EventSourceHandler(){
-				@Override
-				public void onOpen(EventSourceConnection econn) throws Exception {
-					elogger.onOpen(econn) ;
-				}
-				@Override
-				public void onClose(EventSourceConnection econn) throws Exception {
-					elogger.onClose(econn) ;
-				}
-			})
-			.add("/event/{id}", new EventSourceHandler() {
-				@Override
-				public void onOpen(EventSourceConnection conn) throws Exception {
-					esentry.onOpen(conn);
-				}
+		radon.add(new MyAuthenticationHandler(UserVerifier.test(rentry.login()))).add("/admin/*", new TraceHandler(rentry)).add("/favicon.ico", new FavIconHandler()).add(new LoggingHandler(new AppLogSink(elogger)))
+				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
+				// .add(new WhoAmIHttpHandler())
+				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))
+				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
+				.add("/logging/event/*", new EventSourceHandler() {
+					@Override
+					public void onOpen(EventSourceConnection econn) throws Exception {
+						elogger.onOpen(econn);
+					}
 
-				@Override
-				public void onClose(EventSourceConnection conn) throws Exception {
-					esentry.onClose(conn);
-				}
-			}).add(new HttpHandler(){
+					@Override
+					public void onClose(EventSourceConnection econn) throws Exception {
+						elogger.onClose(econn);
+					}
+				}).add("/event/{id}", new EventSourceHandler() {
+					@Override
+					public void onOpen(EventSourceConnection conn) throws Exception {
+						esentry.onOpen(conn);
+					}
 
-				@Override
-				public void onEvent(EventType eventtype, Radon radon) {
-				}
+					@Override
+					public void onClose(EventSourceConnection conn) throws Exception {
+						esentry.onClose(conn);
+					}
+				}).add(new HttpHandler() {
 
-				@Override
-				public int order() {
-					return 1000;
-				}
+					@Override
+					public void onEvent(EventType eventtype, Radon radon) {
+					}
 
-				@Override
-				public void handleHttpRequest(HttpRequest request, HttpResponse response, HttpControl control) throws Exception {
-					response.status(404).content("not found path : " + request.uri()).end() ;
+					@Override
+					public int order() {
+						return 1000;
+					}
+
+					@Override
+					public void handleHttpRequest(HttpRequest request, HttpResponse response, HttpControl control) throws Exception {
+						response.status(404).content("not found path : " + request.uri()).end();
+					}
+				});
+
+		File loadanal = new File(Webapp.ANALYSIS_FILE);
+		if (loadanal.exists() && loadanal.isFile()) {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Webapp.ANALYSIS_FILE), "UTF-8"));
+			String line = null;
+			List<Class<? extends Analyzer>> loaded = ListUtil.newList();
+			while ((line = reader.readLine()) != null) {
+				if (line.startsWith("//"))
+					continue;
+				try {
+					loaded.add((Class<? extends Analyzer>) Class.forName(line));
+				} catch (Exception ignore) {
+					System.err.println(ignore.getMessage());
 				}
-			});
-		
-		radon.getConfig().getServiceContext().putAttribute(NissServer.class.getCanonicalName(), this) ;
-		status.set(Status.INITED); ;
+			}
+			AnalysisWeb.appendAnalyzer(loaded);
+		}
+
+		radon.getConfig().getServiceContext().putAttribute(NissServer.class.getCanonicalName(), this);
+		status.set(Status.INITED);
+		;
 	}
-	
-	public NSConfig config(){
-		return nsconfig ;
+
+	public NSConfig config() {
+		return nsconfig;
 	}
-	
-	@Deprecated // only test
-	public REntry rentry(){
-		return rentry ;
+
+	@Deprecated
+	// only test
+	public REntry rentry() {
+		return rentry;
 	}
-	
-	public NissServer start() throws Exception{
-		if (this.builder == null) init(); 
-		
-		this.radon.start().get() ;
+
+	public NissServer start() throws Exception {
+		if (this.builder == null)
+			init();
+
+		this.radon.start().get();
 		status.set(Status.STARTED);
-		return this ;
+		return this;
 	}
 
-	public NissServer shutdown() throws InterruptedException, ExecutionException{
-		if (status.get() == Status.STOPED) return this ;
-		
-		radon.stop().get() ;
+	public NissServer shutdown() throws InterruptedException, ExecutionException {
+		if (status.get() == Status.STOPED)
+			return this;
+
+		radon.stop().get();
 		status.set(Status.STOPED);
-		return this ;
+		return this;
 	}
-	
-	
-	
+
 }

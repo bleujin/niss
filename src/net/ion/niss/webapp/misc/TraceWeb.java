@@ -14,12 +14,13 @@ import net.ion.craken.node.ReadSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
 import com.google.common.base.Function;
 
 @Path("/traces")
-public class TraceWeb {
+public class TraceWeb implements Webapp {
 
 	private ReadSession rsession;
 	public TraceWeb(@ContextParam("rentry") REntry rentry) throws IOException{

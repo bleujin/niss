@@ -1,0 +1,13 @@
+path : /admin/menus/{menu : .*}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.MenuWeb.updateInfo(java.lang.String,java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=menu)}
+  {@javax.ws.rs.DefaultValue(value=overview),@javax.ws.rs.FormParam(value=field)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=content)}
+
+path : /admin/menus/{menu}
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.MenuWeb.viewInfo(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=menu)}
+  {@javax.ws.rs.DefaultValue(value=overview),@javax.ws.rs.QueryParam(value=field)}
+

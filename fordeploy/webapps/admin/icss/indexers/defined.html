@@ -172,7 +172,7 @@
 			$.ajax({
 				type: "POST",
 				url: "/admin/indexers/" + indexerId + "/defined",
-				data: { indexanalyzer: $("#index_analyzer").val(),  stopword:$("#stopword").val(), applyhandler: $("#applystopword").is(":checked") ? true : false, queryanalyzer: $("#query_analyzer").val() }, 
+				data: { indexanalyzer: $("#index_analyzer").val(),  stopword:$("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false, queryanalyzer: $("#query_analyzer").val() }, 
 				success :  function(data) {
 					$("#save-message span").html(data) ;
 					$("#save-message").removeClass("message") ;

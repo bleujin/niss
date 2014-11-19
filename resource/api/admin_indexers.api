@@ -1,0 +1,167 @@
+path : /admin/indexers/{iid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.remove(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.create(java.lang.String,org.jboss.resteasy.spi.HttpRequest)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.query(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonArray net.ion.niss.webapp.indexers.IndexerWeb.listIndexer()
+
+path : /admin/indexers/{iid}/status
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.viewStatus(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/dirInfo
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.viewDirInfo(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/overview
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.overview(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/defined
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.defineIndexer(java.lang.String,java.lang.String,java.lang.String,boolean,java.lang.String) throws java.io.IOException,java.lang.InterruptedException,java.util.concurrent.ExecutionException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=indexanalyzer)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=stopword)}
+  {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=applystopword)}
+  {@javax.ws.rs.FormParam(value=queryanalyzer)}
+
+path : /admin/indexers/{iid}/defined
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.viewDefined(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/fields
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.updateField(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=field)}
+  {@javax.ws.rs.FormParam(value=content)}
+
+path : /admin/indexers/{iid}/schema
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.listSchema(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/schema
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.addSchema(java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=schemaid)}
+  {@javax.ws.rs.FormParam(value=schematype)}
+  {@javax.ws.rs.FormParam(value=analyzer)}
+  {@javax.ws.rs.FormParam(value=analyze)}
+  {@javax.ws.rs.FormParam(value=store)}
+  {@javax.ws.rs.DefaultValue(value=1.0),@javax.ws.rs.FormParam(value=boost)}
+
+path : /admin/indexers/{iid}/schema/{schemaid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.removeSchema(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.PathParam(value=schemaid)}
+
+path : /admin/indexers/{iid}/index
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.indexView(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}/index.json
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.indexJson(java.lang.String,java.lang.String,int,double,boolean,org.jboss.resteasy.spi.HttpRequest)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=documents)}
+  {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.FormParam(value=within)}
+  {@javax.ws.rs.DefaultValue(value=1.0),@javax.ws.rs.FormParam(value=boost)}
+  {@javax.ws.rs.FormParam(value=overwrite)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/index.jarray
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.indexJarray(java.lang.String,java.lang.String,int,double,boolean,org.jboss.resteasy.spi.HttpRequest)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=documents)}
+  {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.FormParam(value=within)}
+  {@javax.ws.rs.DefaultValue(value=1.0),@javax.ws.rs.FormParam(value=boost)}
+  {@javax.ws.rs.FormParam(value=overwrite)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/index.csv
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.indexCsv(java.lang.String,java.lang.String,int,double,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.FormParam(value=documents)}
+  {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.FormParam(value=within)}
+  {@javax.ws.rs.DefaultValue(value=1.0),@javax.ws.rs.FormParam(value=boost)}
+  {@javax.ws.rs.FormParam(value=overwrite)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/query.json
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.indexers.IndexerWeb.jquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/query.xml
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.indexers.IndexerWeb.xquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/query.csv
+httpMethod : GET 
+javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.indexers.IndexerWeb.cquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=query)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=sort)}
+  {@javax.ws.rs.DefaultValue(value=0),@javax.ws.rs.QueryParam(value=skip)}
+  {@javax.ws.rs.DefaultValue(value=10),@javax.ws.rs.QueryParam(value=offset)}
+  {@javax.ws.rs.QueryParam(value=indent)}
+  {@javax.ws.rs.QueryParam(value=debug)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/browsing
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.browsing(java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.QueryParam(value=searchQuery)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/browsing
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.removeIndexRow(java.lang.String,java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=indexIds)}
+
+path : /admin/indexers/{iid}/hello
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.hello(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+

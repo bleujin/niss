@@ -21,13 +21,14 @@ import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.convert.Functions;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
 
 import org.jboss.resteasy.spi.HttpRequest;
 
 
 @Path("/tunnel")
-public class TunnelWeb {
+public class TunnelWeb implements Webapp {
 
 	private ReadSession rsession;
 	public TunnelWeb(@ContextParam("rentry") REntry rentry) throws IOException{

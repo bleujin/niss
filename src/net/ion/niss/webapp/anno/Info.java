@@ -15,7 +15,7 @@ public interface Info<T> {
 		private InfoBean bean = new InfoBean() ;
 		@Override
 		public void classPath(Class<? extends Webapp> clz, Path clzAnno) {
-			bean.classPath(clzAnno) ;
+			bean.classPath(clz, clzAnno) ;
 		}
 
 		@Override
@@ -25,7 +25,9 @@ public interface Info<T> {
 		
 		@Override
 		public InfoBean build() {
-			return bean ;
+			InfoBean result = bean ;
+			bean = new InfoBean() ;
+			return result ;
 		}
 		
 	} ;

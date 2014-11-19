@@ -2,7 +2,10 @@ package net.ion.niss.webapp.misc;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.FormParam;
@@ -16,15 +19,18 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
+import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.Webapp;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
+import org.apache.commons.collections.set.ListOrderedSet;
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -37,13 +43,22 @@ import org.apache.lucene.util.Version;
 public class AnalysisWeb implements Webapp {
 	
 	
-	private static List<Class<? extends Analyzer>> analyzers = 
-				ListUtil.<Class<? extends Analyzer>> toList(MyKoreanAnalyzer.class, StandardAnalyzer.class, CJKAnalyzer.class, WhitespaceAnalyzer.class, SimpleAnalyzer.class);
+	private static List<Class<? extends Analyzer>> ANALYZERS = 
+				ListUtil.<Class<? extends Analyzer>> toList(MyKoreanAnalyzer.class, StandardAnalyzer.class, CJKAnalyzer.class, WhitespaceAnalyzer.class, SimpleAnalyzer.class, KeywordAnalyzer.class);
 
 	
 	public static List<Class<? extends Analyzer>> analysis(){
-		return analyzers ;
+		return ANALYZERS ;
 	}
+	
+	public static void appendAnalyzer(List<Class<? extends Analyzer>> appended){
+		Set<Class<? extends Analyzer>> result = new ListOrderedSet() ; 
+		result.addAll(ANALYZERS) ;
+		result.addAll(appended) ;
+		ANALYZERS = Collections.unmodifiableList(new ArrayList<Class<? extends Analyzer>>(result)) ; 
+	}
+	
+	
 	
 	@GET
 	@Path("")
@@ -52,7 +67,7 @@ public class AnalysisWeb implements Webapp {
 		JsonObject result = new JsonObject() ;
 		
 		JsonArray analysis = new JsonArray() ;
-		for(Class<? extends Analyzer> clz : analyzers){
+		for(Class<? extends Analyzer> clz : ANALYZERS){
 			analysis.add(new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName())) ;
 		}
 		result.add("analyzer", analysis);

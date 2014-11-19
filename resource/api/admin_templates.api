@@ -1,0 +1,11 @@
+path : /admin/templates/{tid}
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.TemplateWeb.viewTemplate(java.lang.String)
+  {@javax.ws.rs.PathParam(value=tid)}
+
+path : /admin/templates/{tid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.TemplateWeb.editTemplate(java.lang.String,java.lang.String) throws java.lang.Exception
+  {@javax.ws.rs.PathParam(value=tid)}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=content)}
+

@@ -109,6 +109,7 @@
 				$("#info").html(info) ;
 				
 				var index_analyzer = data['index_analyzer'] ;
+				$("select[name=schema_analyzer]").empty() ;
 				for(var idx in index_analyzer){
 					var analyzer = index_analyzer[idx] ;
 					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;

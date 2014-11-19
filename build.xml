@@ -69,9 +69,12 @@
 			<fileset dir="resource/loader/" includes="**"/>
 		</copy>
 		<copy todir="fordeploy/resource/" overwrite="true">
-			<fileset file="resource/log4j.properties" />
+			<fileset file="resource/*.*" />
 		</copy>
-	</target>
+		<copy todir="fordeploy/resource/api" overwrite="true">
+			<fileset file="resource/api/*.*" />
+		</copy>
+			</target>
 
 	
 	<target name="copy_full_deploy" depends="copy_for_deploy">

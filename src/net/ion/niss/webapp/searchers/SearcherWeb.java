@@ -1,5 +1,6 @@
 package net.ion.niss.webapp.searchers;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Iterator;
@@ -183,7 +184,7 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/define.default")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String defaultHandler(@PathParam("sid") final String sid) throws IOException {
-		return IOUtil.toStringWithClose(getClass().getResourceAsStream("default.handler"));
+		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_HANDLER_FILE));
 	}
 
 	// --- schema
@@ -345,7 +346,7 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/template.default")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String defaultTemplate(@PathParam("sid") final String sid) throws IOException {
-		return IOUtil.toStringWithClose(getClass().getResourceAsStream("default.template"));
+		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_TEMPLATE_FILE));
 	}
 
 	@POST

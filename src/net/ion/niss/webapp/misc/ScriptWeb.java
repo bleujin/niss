@@ -1,6 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -85,7 +86,7 @@ public class ScriptWeb implements Webapp{
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public JsonObject sampleScript() throws IOException{
-		return new JsonObject().put("content", IOUtil.toStringWithClose(getClass().getResourceAsStream("sample.script"))) ;
+		return new JsonObject().put("content", IOUtil.toStringWithClose(new FileInputStream(MISC_SCRIPT_FILE))) ;
 	}
 	
 

@@ -1,0 +1,29 @@
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.nsearcher.search.filter)
+	importPackage(net.ion.nsearcher.search.processor)  
+
+	this.filter = function(){
+		return new TermFilter("idx", "1") ;
+	} 
+	
+	this.postProcessor = function(rsession){
+		return new net.ion.nsearcher.search.processor.PostProcessor({
+			postNotify : function(request, response){
+				var ireq = request ;
+				rsession.tran(new net.ion.craken.node.TransactionJob({
+					handle : function(wsession){
+					    var query = ireq.query().toString() ;
+						wsession.pathBy("/searchlogs/" + query.hashCode()).property("query", query).increase('count') ;
+					}
+				})) ;
+			} 
+		});
+	} 
+	
+	this.handle = function(searcher, rsession){
+		// return searcher.andFilter(this.filter()).addPostListener(this.postProcessor(rsession)) ;
+		return searcher ;
+	}
+} ;
