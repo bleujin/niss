@@ -12593,3 +12593,1353 @@ java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]
 [RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
 [radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Wed Nov 19 20:11:43 KST 2014	1416395503585	81	1	/61.250.201.157:11703	HTTP-END 200	/admin/analysis	GET	25	
 
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:04 KST 2014	1416446224199	8	4	/127.0.0.1:10258	HTTP-END 200	/admin/misc/shutdown?time=10&password=dkdldhs	GET	6	
+
+[Thread-9] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-9] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindex Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindex indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newdex2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newdex2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:isearcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:nsearch searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d411221c8eefcce173a63 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d411321c8eefcd0173a63 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:19 KST 2014	1416446239378	90	1	/61.250.201.157:10268	HTTP-END 200	/	GET	55	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:20 KST 2014	1416446240002	544	2	/61.250.201.157:10271	HTTP-END 200	/icss/loaders.html	GET	7	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:20 KST 2014	1416446240134	846	1	/61.250.201.157:10268	HTTP-END 200	/admin/loaders	GET	29	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:20 KST 2014	1416446240149	691	2	/61.250.201.157:10271	HTTP-END 200	/icss/loaders/overview.html	GET	3	
+
+[radon-thread-5] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:20 KST 2014	1416446240535	1077	2	/61.250.201.157:10271	HTTP-END 200	/admin/loaders/newloader/overview	GET	15	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:17:20 KST 2014	1416446240535	1077	2	/61.250.201.157:10271	ERROR-OPEN	/admin/loaders/newloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:53 KST 2014	1416446453632	34	8	/61.250.201.157:10324	HTTP-END 200	/icss/indexers.html	GET	6	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:53 KST 2014	1416446453698	100	8	/61.250.201.157:10324	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:53 KST 2014	1416446453730	132	8	/61.250.201.157:10324	HTTP-END 200	/icss/indexers/overview.html	GET	3	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:53 KST 2014	1416446453886	288	8	/61.250.201.157:10324	HTTP-END 200	/admin/indexers/newindex/overview	GET	11	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:54 KST 2014	1416446454379	504	9	/61.250.201.157:10327	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:54 KST 2014	1416446454497	622	9	/61.250.201.157:10327	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:54 KST 2014	1416446454531	656	9	/61.250.201.157:10327	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-8] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:54 KST 2014	1416446454609	734	9	/61.250.201.157:10327	HTTP-END 200	/admin/loaders/newloader/overview	GET	9	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:20:54 KST 2014	1416446454609	734	9	/61.250.201.157:10327	ERROR-OPEN	/admin/loaders/newloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d420221c8eefcd2173a63 writed
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:06 KST 2014	1416446466449	1565	10	/61.250.201.157:10330	HTTP-END 200	/admin/loaders/newloader	DELETE	50	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d420221c8eefcd4173a63 writed
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:06 KST 2014	1416446466500	1616	10	/61.250.201.157:10330	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:10 KST 2014	1416446470672	5788	10	/61.250.201.157:10330	HTTP-END 200	/icss/indexers.html	GET	0	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:10 KST 2014	1416446470740	5856	10	/61.250.201.157:10330	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:10 KST 2014	1416446470759	5875	10	/61.250.201.157:10330	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:10 KST 2014	1416446470810	5926	10	/61.250.201.157:10330	HTTP-END 200	/admin/indexers/newindex/overview	GET	10	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:11 KST 2014	1416446471539	6655	10	/61.250.201.157:10330	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:11 KST 2014	1416446471587	6703	10	/61.250.201.157:10330	HTTP-END 200	/admin/loaders	GET	1	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:11 KST 2014	1416446471616	6732	10	/61.250.201.157:10330	HTTP-END 200	/icss/loaders/overview.html	GET	0	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d421721c8eefcd7173a63 writed
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:28 KST 2014	1416446488034	120	11	/61.250.201.157:10340	HTTP-END 200	/admin/loaders/myloader	POST	117	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d421821c8eefcd9173a63 writed
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:28 KST 2014	1416446488102	188	11	/61.250.201.157:10340	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-8] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:28 KST 2014	1416446488196	282	11	/61.250.201.157:10340	HTTP-END 200	/admin/loaders/myloader/overview	GET	11	
+
+[radon-thread-8] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:21:28 KST 2014	1416446488197	283	11	/61.250.201.157:10340	ERROR-OPEN	/admin/loaders/myloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/nloader"]	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d424ceb8deefc2324d06d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d424ceb8deefc2524d06d writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:24 KST 2014	1416446544044	86	1	/61.250.201.157:10361	HTTP-END 200	/icss/indexers.html	GET	31	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:24 KST 2014	1416446544156	198	1	/61.250.201.157:10361	HTTP-END 200	/admin/indexers	GET	20	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:24 KST 2014	1416446544164	206	1	/61.250.201.157:10361	HTTP-END 200	/icss/indexers/overview.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:24 KST 2014	1416446544892	934	1	/61.250.201.157:10361	HTTP-END 200	/icss/loaders.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:24 KST 2014	1416446544941	983	1	/61.250.201.157:10361	HTTP-END 200	/admin/loaders	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:25 KST 2014	1416446545065	1107	1	/61.250.201.157:10361	HTTP-END 200	/icss/loaders/overview.html	GET	3	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d425aeb8deefc2724d06d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:34 KST 2014	1416446554364	40	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader	POST	35	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d425aeb8deefc2924d06d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:34 KST 2014	1416446554487	163	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/overview.html	GET	0	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:34 KST 2014	1416446554557	233	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/overview	GET	21	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:36 KST 2014	1416446556129	1805	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/defined.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:36 KST 2014	1416446556208	1884	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/define	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:37 KST 2014	1416446557305	2981	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/example.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:37 KST 2014	1416446557507	3183	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/examples	GET	37	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:37 KST 2014	1416446557891	3567	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/overview.html	GET	0	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:37 KST 2014	1416446557958	3634	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:38 KST 2014	1416446558757	4433	2	/61.250.201.157:10364	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:38 KST 2014	1416446558805	4481	2	/61.250.201.157:10364	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:38 KST 2014	1416446558840	4516	2	/61.250.201.157:10364	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:39 KST 2014	1416446559564	5240	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:39 KST 2014	1416446559633	5309	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:39 KST 2014	1416446559662	5338	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:39 KST 2014	1416446559732	5408	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:41 KST 2014	1416446561176	6852	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:41 KST 2014	1416446561234	6910	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:41 KST 2014	1416446561851	7527	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:41 KST 2014	1416446561859	7535	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:43 KST 2014	1416446563405	9081	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/example.html	GET	0	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:43 KST 2014	1416446563482	9158	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/examples	GET	9	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:43 KST 2014	1416446563971	9647	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/defined.html	GET	0	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:44 KST 2014	1416446564029	9705	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:44 KST 2014	1416446564506	10182	2	/61.250.201.157:10364	HTTP-END 200	/icss/loaders/overview.html	GET	0	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:44 KST 2014	1416446564580	10256	2	/61.250.201.157:10364	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d426c497eeefc44ee7617 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d426c497eeefc46ee7617 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:54 KST 2014	1416446574815	97	1	/61.250.201.157:10373	HTTP-END 200	/icss/indexers.html	GET	40	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:54 KST 2014	1416446574913	195	1	/61.250.201.157:10373	HTTP-END 200	/admin/indexers	GET	16	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:54 KST 2014	1416446574920	202	1	/61.250.201.157:10373	HTTP-END 200	/icss/indexers/overview.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:55 KST 2014	1416446575762	1044	1	/61.250.201.157:10373	HTTP-END 200	/icss/loaders.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:55 KST 2014	1416446575813	1095	1	/61.250.201.157:10373	HTTP-END 200	/admin/loaders	GET	8	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:55 KST 2014	1416446575852	1134	1	/61.250.201.157:10373	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:55 KST 2014	1416446575916	1198	1	/61.250.201.157:10373	HTTP-END 200	/admin/loaders/myloader/overview	GET	11	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:58 KST 2014	1416446578662	3944	1	/61.250.201.157:10373	HTTP-END 200	/icss/loaders/defined.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:58 KST 2014	1416446578738	4020	1	/61.250.201.157:10373	HTTP-END 200	/admin/loaders/myloader/define	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:59 KST 2014	1416446579187	4469	1	/61.250.201.157:10373	HTTP-END 200	/icss/loaders/example.html	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:59 KST 2014	1416446579265	4547	1	/61.250.201.157:10373	HTTP-END 200	/admin/loaders/myloader/examples	GET	23	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:59 KST 2014	1416446579781	5063	1	/61.250.201.157:10373	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:22:59 KST 2014	1416446579834	5116	1	/61.250.201.157:10373	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:23:07 KST 2014	1416446587238	11	2	/61.250.201.157:10385	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:23:07 KST 2014	1416446587249	22	2	/61.250.201.157:10385	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:26 KST 2014	1416448046886	25	10	/61.250.201.157:9277	HTTP-END 200	/	GET	20	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:28 KST 2014	1416448048794	1887	15	/61.250.201.157:9284	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:28 KST 2014	1416448048808	1901	15	/61.250.201.157:9284	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:28 KST 2014	1416448048922	2061	10	/61.250.201.157:9277	HTTP-END 200	/	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:28 KST 2014	1416448048959	2052	15	/61.250.201.157:9284	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:29 KST 2014	1416448049034	2173	10	/61.250.201.157:9277	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:29 KST 2014	1416448049188	2327	10	/61.250.201.157:9277	HTTP-END 200	/admin/loaders/myloader/overview	GET	5	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:50 KST 2014	1416448070393	8	16	/61.250.201.157:9292	HTTP-END 200	/	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:53 KST 2014	1416448073967	3536	21	/61.250.201.157:9299	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:54 KST 2014	1416448074054	3623	21	/61.250.201.157:9299	HTTP-END 200	/admin/loaders	GET	5	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:54 KST 2014	1416448074087	3656	20	/61.250.201.157:9298	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:54 KST 2014	1416448074213	3782	20	/61.250.201.157:9298	HTTP-END 200	/admin/loaders/myloader/overview	GET	4	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:47:54 KST 2014	1416448074413	3982	20	/61.250.201.157:9298	HTTP-END 200	/cache.appcache	GET	3	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d48bbdf89eefcbd4164d0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d48bbdf89eefcbf4164d0 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:56 KST 2014	1416448196167	56	2	/61.250.201.157:9374	HTTP-END 200	/	GET	31	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:58 KST 2014	1416448198859	2748	2	/61.250.201.157:9374	HTTP-END 200	/icss/loaders.html	GET	5	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:58 KST 2014	1416448198892	2781	4	/61.250.201.157:9377	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:59 KST 2014	1416448199045	2934	2	/61.250.201.157:9374	HTTP-END 200	/admin/loaders	GET	28	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:59 KST 2014	1416448199082	2971	4	/61.250.201.157:9377	HTTP-END 200	/icss/loaders/overview.html	GET	18	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:59 KST 2014	1416448199266	3155	4	/61.250.201.157:9377	HTTP-END 200	/admin/loaders/myloader/overview	GET	8	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:49:59 KST 2014	1416448199697	3586	4	/61.250.201.157:9377	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:50:43 KST 2014	1416448243890	1899	10	/61.250.201.157:9403	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:50:44 KST 2014	1416448244057	2066	10	/61.250.201.157:9403	HTTP-END 200	/admin/loaders	GET	11	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:50:44 KST 2014	1416448244175	2184	10	/61.250.201.157:9403	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:50:44 KST 2014	1416448244361	2370	10	/61.250.201.157:9403	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:50:44 KST 2014	1416448244952	2961	10	/61.250.201.157:9403	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:01 KST 2014	1416448261450	3320	16	/61.250.201.157:9412	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:01 KST 2014	1416448261497	3367	16	/61.250.201.157:9412	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:01 KST 2014	1416448261653	3523	16	/61.250.201.157:9412	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:01 KST 2014	1416448261946	3816	16	/61.250.201.157:9412	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:02 KST 2014	1416448262955	4825	16	/61.250.201.157:9412	HTTP-END 200	/cache.appcache	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:27 KST 2014	1416448287586	2857	21	/61.250.201.157:9427	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:27 KST 2014	1416448287627	2898	22	/61.250.201.157:9428	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:27 KST 2014	1416448287654	2925	22	/61.250.201.157:9428	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:27 KST 2014	1416448287666	2937	22	/61.250.201.157:9428	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:27 KST 2014	1416448287778	3049	22	/61.250.201.157:9428	HTTP-END 200	/admin/loaders/myloader/overview	GET	8	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:44 KST 2014	1416448304125	2300	27	/61.250.201.157:9435	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:44 KST 2014	1416448304165	2340	29	/61.250.201.157:9437	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:44 KST 2014	1416448304274	2449	27	/61.250.201.157:9435	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:44 KST 2014	1416448304298	2473	27	/61.250.201.157:9435	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:51:44 KST 2014	1416448304423	2598	27	/61.250.201.157:9435	HTTP-END 200	/admin/loaders/myloader/overview	GET	4	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333300	867	33	/61.250.201.157:9456	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333450	1017	33	/61.250.201.157:9456	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333582	1148	34	/61.250.201.157:9457	HTTP-END 200	/cache.appcache	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333587	1154	33	/61.250.201.157:9456	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333642	1208	34	/61.250.201.157:9457	HTTP-END 200	/	GET	26	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:13 KST 2014	1416448333774	1340	34	/61.250.201.157:9457	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:14 KST 2014	1416448334353	1920	33	/61.250.201.157:9456	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:46 KST 2014	1416448366116	845	35	/61.250.201.157:9462	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:46 KST 2014	1416448366158	887	35	/61.250.201.157:9462	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:46 KST 2014	1416448366322	1051	35	/61.250.201.157:9462	HTTP-END 200	/icss/loaders/overview.html	GET	4	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:46 KST 2014	1416448366586	1314	37	/61.250.201.157:9464	HTTP-END 200	/cache.appcache	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 10:52:46 KST 2014	1416448366591	1320	35	/61.250.201.157:9462	HTTP-END 200	/admin/loaders/myloader/overview	GET	8	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4e89124beefcf168101f writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4e8a124beefcf368101f writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:14:38 KST 2014	1416449678404	2337	2	/61.250.201.157:9719	HTTP-END 200	/icss/loaders.html	GET	20	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:14:38 KST 2014	1416449678575	2508	2	/61.250.201.157:9719	HTTP-END 200	/admin/loaders	GET	20	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:14:38 KST 2014	1416449678615	2607	1	/61.250.201.157:9717	HTTP-END 200	/icss/loaders/overview.html	GET	12	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:14:38 KST 2014	1416449678765	2757	1	/61.250.201.157:9717	HTTP-END 200	/admin/loaders/myloader/overview	GET	6	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:14:55 KST 2014	1416449695765	3	4	/61.250.201.157:9741	HTTP-END 404	/cache.manifest	GET	1	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4f4a04c7eefcd1d5b625 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4f4b04c7eefcd3d5b625 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4f78b0d3eefc2998150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d4f78b0d3eefc2b98150a writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:33:27 KST 2014	1416450807567	19	4	/61.250.201.157:12087	HTTP-END 404	/font/PRmiXeptR36kaC0GEAetxjqR_3kx9_hJXbbyU8S6IN0.woff	GET	12	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:27 KST 2014	1416450987127	2324	9	/61.250.201.157:12131	HTTP-END 200	/icss/loaders.html	GET	19	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:27 KST 2014	1416450987285	2482	9	/61.250.201.157:12131	HTTP-END 200	/admin/loaders	GET	34	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:27 KST 2014	1416450987356	2553	9	/61.250.201.157:12131	HTTP-END 200	/icss/loaders/overview.html	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:27 KST 2014	1416450987461	2660	7	/61.250.201.157:12129	HTTP-END 200	/	GET	28	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:27 KST 2014	1416450987568	2767	7	/61.250.201.157:12129	HTTP-END 200	/admin/loaders/myloader/overview	GET	25	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:38 KST 2014	1416450998317	1496	11	/61.250.201.157:12143	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:38 KST 2014	1416450998366	1545	11	/61.250.201.157:12143	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:38 KST 2014	1416450998511	1692	10	/61.250.201.157:12142	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:36:38 KST 2014	1416450998728	1909	10	/61.250.201.157:12142	HTTP-END 200	/admin/loaders/myloader/overview	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:41 KST 2014	1416451061917	20	13	/61.250.201.157:12154	HTTP-END 200	/icss/indexers.html	GET	15	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:41 KST 2014	1416451061982	85	13	/61.250.201.157:12154	HTTP-END 200	/admin/indexers	GET	6	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:41 KST 2014	1416451061992	95	13	/61.250.201.157:12154	HTTP-END 200	/icss/indexers/overview.html	GET	4	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:43 KST 2014	1416451063837	1940	13	/61.250.201.157:12154	HTTP-END 200	/icss/searchers.html	GET	9	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:43 KST 2014	1416451063895	1998	13	/61.250.201.157:12154	HTTP-END 200	/admin/searchers	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:43 KST 2014	1416451063913	2016	13	/61.250.201.157:12154	HTTP-END 200	/icss/searchers/overview.html	GET	9	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:45 KST 2014	1416451065478	3581	13	/61.250.201.157:12154	HTTP-END 200	/icss/searchers/schema.html	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:46 KST 2014	1416451066758	4861	13	/61.250.201.157:12154	HTTP-END 200	/icss/searchers/defined.html	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:47 KST 2014	1416451067810	5913	13	/61.250.201.157:12154	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:47 KST 2014	1416451067837	5940	13	/61.250.201.157:12154	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:47 KST 2014	1416451067847	5950	13	/61.250.201.157:12154	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:48 KST 2014	1416451068960	7063	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:48 KST 2014	1416451068984	7087	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:48 KST 2014	1416451068994	7097	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:49 KST 2014	1416451069012	7115	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders/myloader/overview	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:50 KST 2014	1416451070422	8525	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders/defined.html	GET	20	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:50 KST 2014	1416451070467	8570	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:51 KST 2014	1416451071683	9786	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders/example.html	GET	5	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:51 KST 2014	1416451071780	9883	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders/myloader/examples	GET	55	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:53 KST 2014	1416451073364	11467	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders/defined.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:53 KST 2014	1416451073410	11513	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:54 KST 2014	1416451074639	12742	13	/61.250.201.157:12154	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:37:54 KST 2014	1416451074661	12764	13	/61.250.201.157:12154	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:38:17 KST 2014	1416451097867	36	15	/61.250.201.157:12170	HTTP-END 200	/icss/misc.html	GET	6	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:38:17 KST 2014	1416451097937	106	15	/61.250.201.157:12170	HTTP-END 200	/icss/misc/properties.html	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:38:18 KST 2014	1416451098007	176	15	/61.250.201.157:12170	HTTP-END 200	/admin/misc/properties	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:43 KST 2014	1416451603883	24	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/user.html	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:43 KST 2014	1416451603956	97	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/users	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:46 KST 2014	1416451606109	2250	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/script.html	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:46 KST 2014	1416451606163	2304	16	/61.250.201.157:13393	HTTP-END 200	/admin/scripts	GET	11	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:47 KST 2014	1416451607782	3923	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/logging.html	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:49 KST 2014	1416451609101	5242	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/history.html	GET	6	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:49 KST 2014	1416451609460	5601	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/history?searchQuery=	GET	318	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:50 KST 2014	1416451610031	6172	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/analyzer.html	GET	7	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:50 KST 2014	1416451610096	6237	16	/61.250.201.157:13393	HTTP-END 200	/admin/analysis	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:50 KST 2014	1416451610860	7001	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/threaddump.html	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:51 KST 2014	1416451611013	7154	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/thread	GET	81	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:51 KST 2014	1416451611956	8097	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:52 KST 2014	1416451612019	8160	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:53 KST 2014	1416451613274	9415	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/threaddump.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:53 KST 2014	1416451613338	9479	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/thread	GET	23	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:55 KST 2014	1416451615551	11692	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:55 KST 2014	1416451615596	11737	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:56 KST 2014	1416451616813	12954	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/threaddump.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:46:56 KST 2014	1416451616879	13020	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/thread	GET	21	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:00 KST 2014	1416451620768	16909	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:00 KST 2014	1416451620820	16961	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:03 KST 2014	1416451623807	19948	16	/61.250.201.157:13393	HTTP-END 200	/icss/misc/threaddump.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:03 KST 2014	1416451623869	20010	16	/61.250.201.157:13393	HTTP-END 200	/admin/misc/thread	GET	20	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:47 KST 2014	1416451667405	19	17	/61.250.201.157:13437	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:47:47 KST 2014	1416451667472	86	17	/61.250.201.157:13437	HTTP-END 200	/admin/misc/properties	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:14 KST 2014	1416451694222	10	18	/61.250.201.157:13452	HTTP-END 200	/icss/misc/threaddump.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:14 KST 2014	1416451694300	88	18	/61.250.201.157:13452	HTTP-END 200	/admin/misc/thread	GET	21	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:14 KST 2014	1416451694843	631	18	/61.250.201.157:13452	HTTP-END 200	/icss/misc/properties.html	GET	7	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:14 KST 2014	1416451694900	688	18	/61.250.201.157:13452	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:21 KST 2014	1416451701846	12	19	/61.250.201.157:13455	HTTP-END 200	/icss/misc/threaddump.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:21 KST 2014	1416451701913	79	19	/61.250.201.157:13455	HTTP-END 200	/admin/misc/thread	GET	18	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:37 KST 2014	1416451717224	41	20	/61.250.201.157:13460	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:37 KST 2014	1416451717311	128	20	/61.250.201.157:13460	HTTP-END 200	/admin/misc/properties	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:37 KST 2014	1416451717774	591	20	/61.250.201.157:13460	HTTP-END 200	/icss/misc/threaddump.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:37 KST 2014	1416451717843	660	20	/61.250.201.157:13460	HTTP-END 200	/admin/misc/thread	GET	24	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:39 KST 2014	1416451719485	2302	20	/61.250.201.157:13460	HTTP-END 200	/icss/misc/properties.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:39 KST 2014	1416451719542	2359	20	/61.250.201.157:13460	HTTP-END 200	/admin/misc/properties	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:40 KST 2014	1416451720445	3262	20	/61.250.201.157:13460	HTTP-END 200	/icss/misc/threaddump.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:48:40 KST 2014	1416451720518	3335	20	/61.250.201.157:13460	HTTP-END 200	/admin/misc/thread	GET	19	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:14 KST 2014	1416451754851	12	21	/61.250.201.157:13473	HTTP-END 200	/icss/misc/threaddump.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:14 KST 2014	1416451754946	107	21	/61.250.201.157:13473	HTTP-END 200	/admin/misc/thread	GET	19	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:31 KST 2014	1416451771548	9	22	/61.250.201.157:13476	HTTP-END 200	/icss/misc/properties.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:31 KST 2014	1416451771613	74	22	/61.250.201.157:13476	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:32 KST 2014	1416451772743	1204	22	/61.250.201.157:13476	HTTP-END 200	/icss/misc/threaddump.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:32 KST 2014	1416451772820	1281	22	/61.250.201.157:13476	HTTP-END 200	/admin/misc/thread	GET	19	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:33 KST 2014	1416451773261	1722	22	/61.250.201.157:13476	HTTP-END 200	/icss/misc/analyzer.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:49:33 KST 2014	1416451773321	1782	22	/61.250.201.157:13476	HTTP-END 200	/admin/analysis	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:15 KST 2014	1416451815134	36	23	/61.250.201.157:13499	HTTP-END 200	/icss/misc/analyzer.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:15 KST 2014	1416451815232	134	23	/61.250.201.157:13499	HTTP-END 200	/admin/analysis	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:17 KST 2014	1416451817403	2305	23	/61.250.201.157:13499	HTTP-END 200	/icss/misc/history.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:17 KST 2014	1416451817468	2370	23	/61.250.201.157:13499	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:48 KST 2014	1416451848085	11	24	/61.250.201.157:13502	HTTP-END 200	/icss/misc/history.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:48 KST 2014	1416451848139	65	24	/61.250.201.157:13502	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:49 KST 2014	1416451849820	1746	24	/61.250.201.157:13502	HTTP-END 200	/icss/misc/analyzer.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:49 KST 2014	1416451849881	1807	24	/61.250.201.157:13502	HTTP-END 200	/admin/analysis	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:50 KST 2014	1416451850364	2290	24	/61.250.201.157:13502	HTTP-END 200	/icss/misc/history.html	GET	0	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:50:50 KST 2014	1416451850411	2337	24	/61.250.201.157:13502	HTTP-END 200	/admin/misc/history?searchQuery=	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:51:29 KST 2014	1416451889190	20	25	/61.250.201.157:13512	HTTP-END 200	/icss/misc/history.html	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:51:29 KST 2014	1416451889265	95	25	/61.250.201.157:13512	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:51:32 KST 2014	1416451892100	2930	25	/61.250.201.157:13512	HTTP-END 200	/icss/misc/logging.html	GET	7	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:52:09 KST 2014	1416451929024	13	26	/61.250.201.157:13529	HTTP-END 200	/icss/misc/logging.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:52:11 KST 2014	1416451931930	2919	26	/61.250.201.157:13529	HTTP-END 200	/icss/misc/script.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:52:11 KST 2014	1416451931980	2969	26	/61.250.201.157:13529	HTTP-END 200	/admin/scripts	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:52:22 KST 2014	1416451942932	11	27	/61.250.201.157:13532	HTTP-END 200	/icss/misc/user.html	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 11:52:22 KST 2014	1416451942989	68	27	/61.250.201.157:13532	HTTP-END 200	/admin/misc/users	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:41 KST 2014	1416463061000	19	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/script.html	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:41 KST 2014	1416463061077	96	28	/61.250.201.157:3885	HTTP-END 200	/admin/scripts	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:42 KST 2014	1416463062410	1429	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/logging.html	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:43 KST 2014	1416463063854	2873	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/history.html	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:43 KST 2014	1416463063901	2920	28	/61.250.201.157:3885	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:45 KST 2014	1416463065749	4768	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/analyzer.html	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:45 KST 2014	1416463065812	4831	28	/61.250.201.157:3885	HTTP-END 200	/admin/analysis	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:48 KST 2014	1416463068027	7046	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/threaddump.html	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:48 KST 2014	1416463068091	7110	28	/61.250.201.157:3885	HTTP-END 200	/admin/misc/thread	GET	20	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:49 KST 2014	1416463069060	8079	28	/61.250.201.157:3885	HTTP-END 200	/icss/misc/properties.html	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:49 KST 2014	1416463069124	8143	28	/61.250.201.157:3885	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:53 KST 2014	1416463073933	12952	28	/61.250.201.157:3885	HTTP-END 200	/icss/searchers.html	GET	8	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:54 KST 2014	1416463074007	13026	28	/61.250.201.157:3885	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:54 KST 2014	1416463074058	13077	28	/61.250.201.157:3885	HTTP-END 200	/icss/searchers/overview.html	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:57:55 KST 2014	1416463075873	14892	28	/61.250.201.157:3885	HTTP-END 200	/icss/searchers/defined.html	GET	4	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:58:07 KST 2014	1416463087620	42	29	/61.250.201.157:3891	HTTP-END 200	/icss/loaders.html	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:58:07 KST 2014	1416463087701	123	29	/61.250.201.157:3891	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:58:07 KST 2014	1416463087744	166	29	/61.250.201.157:3891	HTTP-END 200	/icss/loaders/overview.html	GET	3	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 14:58:07 KST 2014	1416463087913	335	29	/61.250.201.157:3891	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:24 KST 2014	1416465804385	43	30	/61.250.201.157:4905	HTTP-END 200	/	GET	10	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:25 KST 2014	1416465805041	607	32	/61.250.201.157:4909	HTTP-END 200	/icss/loaders.html	GET	3	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:25 KST 2014	1416465805220	786	33	/61.250.201.157:4910	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:25 KST 2014	1416465805265	831	33	/61.250.201.157:4910	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:27 KST 2014	1416465807061	2627	33	/61.250.201.157:4910	HTTP-END 200	/	GET	0	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:27 KST 2014	1416465807150	2716	33	/61.250.201.157:4910	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:28 KST 2014	1416465808045	3611	33	/61.250.201.157:4910	HTTP-END 200	/icss/loaders/defined.html	GET	3	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:28 KST 2014	1416465808114	3680	33	/61.250.201.157:4910	HTTP-END 200	/admin/loaders/myloader/define	GET	7	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:33 KST 2014	1416465813162	7	36	/61.250.201.157:4914	EVENT-SOURCE-OPEN	/event/spjau4sd7_1416465813106	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8d95b0d3eefc2d98150a writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:33 KST 2014	1416465813284	8850	33	/61.250.201.157:4910	HTTP-END 200	/admin/loaders/myloader/run/spjau4sd7_1416465813106	POST	149	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8d95b0d3eefc2f98150a writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:33 KST 2014	1416465813861	706	36	/61.250.201.157:4914	EVENT-SOURCE-CLOSE	/event/spjau4sd7_1416465813106	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8d95b0d3eefc3298150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8d95b0d3eefc3498150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8d96b0d3eefc3698150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:53 KST 2014	1416465833814	2	38	/61.250.201.157:4920	EVENT-SOURCE-OPEN	/event/ru2zpik21_1416465833767	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8da9b0d3eefc3898150a writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:53 KST 2014	1416465833847	56	37	/61.250.201.157:4917	HTTP-END 200	/admin/loaders/myloader/run/ru2zpik21_1416465833767	POST	36	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8da9b0d3eefc3a98150a writed
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:43:53 KST 2014	1416465833988	176	38	/61.250.201.157:4920	EVENT-SOURCE-CLOSE	/event/ru2zpik21_1416465833767	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8da9b0d3eefc3d98150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8daab0d3eefc3f98150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8daab0d3eefc4198150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8ddab0d3eefc4398150a writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:44:42 KST 2014	1416465882869	32	39	/61.250.201.157:4928	HTTP-END 200	/admin/loaders/myloader/run/k2tno2ta3_1416465882813	POST	27	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8ddab0d3eefc4598150a writed
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:44:42 KST 2014	1416465882878	13	40	/61.250.201.157:4931	EVENT-SOURCE-OPEN	/event/k2tno2ta3_1416465882813	GET	-	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:44:43 KST 2014	1416465883088	223	40	/61.250.201.157:4931	EVENT-SOURCE-CLOSE	/event/k2tno2ta3_1416465882813	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8ddbb0d3eefc4898150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8ddbb0d3eefc4a98150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8ddbb0d3eefc4c98150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8df6b0d3eefc4e98150a writed
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:10 KST 2014	1416465910898	33	41	/61.250.201.157:4955	HTTP-END 200	/admin/loaders/myloader/run/4yj3njo9d_1416465910840	POST	28	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8df6b0d3eefc5098150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:10 KST 2014	1416465910926	16	42	/61.250.201.157:4959	EVENT-SOURCE-OPEN	/event/4yj3njo9d_1416465910840	GET	-	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:11 KST 2014	1416465911089	179	42	/61.250.201.157:4959	EVENT-SOURCE-CLOSE	/event/4yj3njo9d_1416465910840	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8df7b0d3eefc5398150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8df7b0d3eefc5598150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8df7b0d3eefc5798150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e19b0d3eefc5998150a writed
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:45 KST 2014	1416465945403	14	44	/61.250.201.157:4972	EVENT-SOURCE-OPEN	/event/znq6s57xs_1416465945243	GET	-	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:45 KST 2014	1416465945405	136	43	/61.250.201.157:4969	HTTP-END 200	/admin/loaders/myloader/run/znq6s57xs_1416465945243	POST	125	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e19b0d3eefc5b98150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:45 KST 2014	1416465945496	107	44	/61.250.201.157:4972	EVENT-SOURCE-CLOSE	/event/znq6s57xs_1416465945243	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e19b0d3eefc5e98150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e19b0d3eefc6098150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e1fb0d3eefc6298150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:51 KST 2014	1416465951316	6047	43	/61.250.201.157:4969	HTTP-END 200	/admin/loaders/myloader/run/cq5ht7swe_1416465951163	POST	118	
+
+[radon-thread-10] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:51 KST 2014	1416465951318	12	45	/61.250.201.157:4976	EVENT-SOURCE-OPEN	/event/cq5ht7swe_1416465951163	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e1fb0d3eefc6498150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:45:51 KST 2014	1416465951497	191	45	/61.250.201.157:4976	EVENT-SOURCE-CLOSE	/event/cq5ht7swe_1416465951163	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e1fb0d3eefc6798150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e1fb0d3eefc6998150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8e1fb0d3eefc6b98150a writed
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:51:47 KST 2014	1416466307212	61	47	/61.250.201.157:5022	EVENT-SOURCE-OPEN	/event/9sx9r386h_1416466307100	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8f83b0d3eefc6d98150a writed
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:51:47 KST 2014	1416466307321	219	46	/61.250.201.157:5019	HTTP-END 200	/admin/loaders/myloader/run/9sx9r386h_1416466307100	POST	113	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8f83b0d3eefc6f98150a writed
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:51:47 KST 2014	1416466307500	349	47	/61.250.201.157:5022	EVENT-SOURCE-CLOSE	/event/9sx9r386h_1416466307100	GET	-	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8f83b0d3eefc7298150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8f83b0d3eefc7498150a writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d8f83b0d3eefc7698150a writed
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:53:06 KST 2014	1416466386437	45	48	/61.250.201.157:5028	HTTP-END 200	/icss/loaders/defined.html	GET	3	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 15:53:06 KST 2014	1416466386516	124	48	/61.250.201.157:5028	HTTP-END 200	/admin/loaders/myloader/define	GET	3	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:18 KST 2014	1416468318160	38	49	/61.250.201.157:5344	HTTP-END 200	/icss/indexers.html	GET	8	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:18 KST 2014	1416468318241	119	49	/61.250.201.157:5344	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:18 KST 2014	1416468318286	164	49	/61.250.201.157:5344	HTTP-END 200	/icss/indexers/overview.html	GET	4	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:18 KST 2014	1416468318889	767	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders.html	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:18 KST 2014	1416468318972	850	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:19 KST 2014	1416468319020	898	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:19 KST 2014	1416468319133	1011	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:23 KST 2014	1416468323248	5126	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:23 KST 2014	1416468323332	5210	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders/myloader/define	GET	8	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:23 KST 2014	1416468323885	5763	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:23 KST 2014	1416468323893	5771	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:25 KST 2014	1416468325202	7080	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders/defined.html	GET	0	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:25 KST 2014	1416468325267	7145	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders/myloader/define	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:25 KST 2014	1416468325746	7624	49	/61.250.201.157:5344	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:25:25 KST 2014	1416468325803	7681	49	/61.250.201.157:5344	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:27:04 KST 2014	1416468424479	13	50	/61.250.201.157:5361	HTTP-END 200	/icss/loaders/defined.html	GET	3	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:27:04 KST 2014	1416468424546	80	50	/61.250.201.157:5361	HTTP-END 200	/admin/loaders/myloader/define	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:27:05 KST 2014	1416468425047	581	50	/61.250.201.157:5361	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:27:05 KST 2014	1416468425054	588	50	/61.250.201.157:5361	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:06 KST 2014	1416468486062	129	51	/61.250.201.157:5376	HTTP-END 200	/admin/craken/events/loaders/9sx9r386h_1416466307100.content	GET	37	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:19 KST 2014	1416468499964	11	52	/61.250.201.157:5379	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:20 KST 2014	1416468500032	79	52	/61.250.201.157:5379	HTTP-END 200	/admin/loaders/myloader/define	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:20 KST 2014	1416468500516	563	52	/61.250.201.157:5379	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:20 KST 2014	1416468500550	597	52	/61.250.201.157:5379	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-13] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:25 KST 2014	1416468505966	6013	52	/61.250.201.157:5379	HTTP-END 200	/icss/indexers.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506041	6088	52	/61.250.201.157:5379	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506160	6207	52	/61.250.201.157:5379	HTTP-END 200	/icss/indexers/overview.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506483	6530	52	/61.250.201.157:5379	HTTP-END 200	/icss/loaders.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506539	6586	52	/61.250.201.157:5379	HTTP-END 200	/admin/loaders	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506578	6625	52	/61.250.201.157:5379	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:26 KST 2014	1416468506666	6713	52	/61.250.201.157:5379	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:39 KST 2014	1416468519696	11	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:39 KST 2014	1416468519762	77	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/define	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:41 KST 2014	1416468521819	2134	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:41 KST 2014	1416468521827	2142	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/overview	GET	2	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:42 KST 2014	1416468522946	3261	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:43 KST 2014	1416468523017	3332	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/define	GET	7	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:45 KST 2014	1416468525512	5827	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/example.html	GET	2	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:45 KST 2014	1416468525608	5923	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/examples	GET	11	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:50 KST 2014	1416468530617	10932	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:50 KST 2014	1416468530691	11006	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/define	GET	1	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d9836b0d3eefc7898150a writed
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:54 KST 2014	1416468534575	14890	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/define	POST	34	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d9836b0d3eefc7a98150a writed
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:57 KST 2014	1416468537662	17977	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:57 KST 2014	1416468537738	18053	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/overview	GET	3	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:58 KST 2014	1416468538618	18933	53	/61.250.201.157:5389	HTTP-END 200	/icss/loaders/defined.html	GET	1	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:28:58 KST 2014	1416468538688	19003	53	/61.250.201.157:5389	HTTP-END 200	/admin/loaders/myloader/define	GET	8	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d98446180b6cfa0fd3f96 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d98446180b6cfa2fd3f96 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:10 KST 2014	1416468550230	141	1	/61.250.201.157:5402	HTTP-END 200	/icss/searchers.html	GET	42	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:10 KST 2014	1416468550358	269	1	/61.250.201.157:5402	HTTP-END 200	/admin/searchers	GET	22	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:10 KST 2014	1416468550390	301	1	/61.250.201.157:5402	HTTP-END 200	/icss/searchers/overview.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:11 KST 2014	1416468551406	1317	1	/61.250.201.157:5402	HTTP-END 200	/icss/loaders.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:11 KST 2014	1416468551471	1382	1	/61.250.201.157:5402	HTTP-END 200	/admin/loaders	GET	9	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:11 KST 2014	1416468551501	1412	1	/61.250.201.157:5402	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-0] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:11 KST 2014	1416468551613	1524	1	/61.250.201.157:5402	HTTP-END 200	/admin/loaders/myloader/overview	GET	22	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:11 KST 2014	1416468551613	1524	1	/61.250.201.157:5402	ERROR-OPEN	/admin/loaders/myloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:29:32 KST 2014	1416468572937	16	2	/61.250.201.157:5408	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-0] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:30:13 KST 2014	1416468613894	40973	2	/61.250.201.157:5408	HTTP-END 200	/admin/loaders/myloader/overview	GET	40948	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:30:13 KST 2014	1416468613894	40973	2	/61.250.201.157:5408	ERROR-OPEN	/admin/loaders/myloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]	
+
+[radon-thread-1] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]
+	at net.ion.framework.parse.gson.JsonElement.getAsJsonObject(JsonElement.java:82)
+	at net.ion.craken.loaders.CrakenStore.entryFromDoc(CrakenStore.java:192)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:176)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:377)
+	at org.infinispan.CacheImpl.get(CacheImpl.java:369)
+	at org.infinispan.atomic.AtomicMapLookup.getMap(AtomicMapLookup.java:98)
+	at org.infinispan.atomic.AtomicMapLookup.getAtomicMap(AtomicMapLookup.java:66)
+	at net.ion.craken.node.crud.TreeStructureSupport.props(TreeStructureSupport.java:38)
+	at net.ion.craken.node.crud.TreeNode.props(TreeNode.java:46)
+	at net.ion.craken.node.crud.TreeNode.get(TreeNode.java:186)
+	at net.ion.craken.node.crud.ReadNodeImpl.propertyId(ReadNodeImpl.java:145)
+	at net.ion.craken.node.crud.ReadNodeImpl.property(ReadNodeImpl.java:135)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:56)
+	at net.ion.craken.node.convert.Predicates$3.apply(Predicates.java:1)
+	at com.google.common.base.Predicates$AndPredicate.apply(Predicates.java:347)
+	at net.ion.craken.node.crud.ReadChildren.readChildren(ReadChildren.java:106)
+	at net.ion.craken.node.crud.ReadChildren.eachNode(ReadChildren.java:89)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:200)
+	at net.ion.craken.node.crud.ReadChildren.iterator(ReadChildren.java:1)
+	at net.ion.craken.node.AbstractChildren.transform(AbstractChildren.java:119)
+	at net.ion.niss.webapp.loaders.LoaderWeb.overview(LoaderWeb.java:135)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:30:23 KST 2014	1416468623223	43735	3	/61.250.201.157:5412	HTTP-END 200	/admin/loaders/myloader/overview	GET	43731	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:30:23 KST 2014	1416468623223	43735	3	/61.250.201.157:5412	ERROR-OPEN	/admin/loaders/myloader/overview	GET	org.jboss.resteasy.spi.UnhandledException: java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:30:34 KST 2014	1416468634554	28	4	/61.250.201.157:5415	HTTP-END 200	/icss/loaders/overview.html	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:41 KST 2014	1416469001431	366905	4	/61.250.201.157:5415	HTTP-END 200	/admin/loaders/myloader/overview	GET	366835	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:42 KST 2014	1416469002432	360435	5	/61.250.201.157:5419	HTTP-END 200	/admin/loaders/myloader/overview	GET	360431	
+
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d9a124bdfb6cf26162742 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/546d9a134bdfb6cf28162742 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:52 KST 2014	1416469012753	108	1	/61.250.201.157:5474	HTTP-END 200	/icss/indexers.html	GET	33	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:52 KST 2014	1416469012847	202	1	/61.250.201.157:5474	HTTP-END 200	/admin/indexers	GET	18	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:52 KST 2014	1416469012869	224	1	/61.250.201.157:5474	HTTP-END 200	/icss/indexers/overview.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:53 KST 2014	1416469013580	935	1	/61.250.201.157:5474	HTTP-END 200	/icss/loaders.html	GET	4	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:53 KST 2014	1416469013690	1045	1	/61.250.201.157:5474	HTTP-END 200	/admin/loaders	GET	9	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:53 KST 2014	1416469013774	1129	1	/61.250.201.157:5474	HTTP-END 200	/icss/loaders/overview.html	GET	6	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:53 KST 2014	1416469013903	1258	1	/61.250.201.157:5474	HTTP-END 200	/admin/loaders/myloader/overview	GET	28	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:56 KST 2014	1416469016026	3381	1	/61.250.201.157:5474	HTTP-END 200	/icss/loaders/defined.html	GET	3	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:56 KST 2014	1416469016106	3461	1	/61.250.201.157:5474	HTTP-END 200	/admin/loaders/myloader/define	GET	7	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:57 KST 2014	1416469017384	4739	1	/61.250.201.157:5474	HTTP-END 200	/icss/loaders/overview.html	GET	1	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Thu Nov 20 16:36:57 KST 2014	1416469017437	4792	1	/61.250.201.157:5474	HTTP-END 200	/admin/loaders/myloader/overview	GET	4	
+

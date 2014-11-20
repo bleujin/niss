@@ -24,6 +24,7 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.UserVerifier;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.FavIconHandler;
+import net.ion.niss.webapp.common.MyAppCacheHandler;
 import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.niss.webapp.common.MyEventLog;
 import net.ion.niss.webapp.common.MyStaticFileHandler;
@@ -96,7 +97,11 @@ public class NissServer {
 		this.radon = builder.createRadon();
 
 		final MyEventLog elogger = MyEventLog.create(System.out);
-		radon.add(new MyAuthenticationHandler(UserVerifier.test(rentry.login()))).add("/admin/*", new TraceHandler(rentry)).add("/favicon.ico", new FavIconHandler()).add(new LoggingHandler(new AppLogSink(elogger)))
+		radon.add(new MyAuthenticationHandler(UserVerifier.test(rentry.login())))
+				.add("/admin/*", new TraceHandler(rentry))
+//				.add("/favicon.ico", new FavIconHandler())
+				.add(new MyAppCacheHandler("./webapps/admin/cache.appcache"))
+				.add(new LoggingHandler(new AppLogSink(elogger)))
 				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
 				// .add(new WhoAmIHttpHandler())
 				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))

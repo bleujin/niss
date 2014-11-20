@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us">	
+<html lang="en-us" manifest="/cache.appcache">	
 	<head>
 		<meta charset="utf-8">
 		<title> SmartAdmin (AJAX)</title>
@@ -28,8 +28,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.min.css">
 
 		<!-- #FAVICONS -->
-		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
 
 		<!-- #GOOGLE FONT -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
@@ -272,21 +272,9 @@
 		<script data-pace-options='{ "restartOnRequestAfter": true }' src="js/plugin/pace/pace.min.js"></script>-->
 		
 		<!-- #PLUGINS -->
-		<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script>
-			if (!window.jQuery) {
-				document.write('<script src="js/libs/jquery-2.0.2.min.js"><\/script>');
-			}
-		</script>
-
-		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<script>
-			if (!window.jQuery.ui) {
-				document.write('<script src="js/libs/jquery-ui-1.10.3.min.js"><\/script>');
-			}
-		</script>
-
+		<script src="js/libs/jquery-2.0.2.min.js"></script>
+		<script src="js/libs/jquery-ui-1.10.3.min.js"></script>
+		
 		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events-->
 		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script> 
 
@@ -337,8 +325,9 @@
 
 	</body>
 
+
 	<script>
-	$(document ).ready(function() {
+	$(document).ready(function() {
 		$("#recent_activity").on("show.bs.dropdown", function () {
 			$.ajax({
 				url:'/admin/traces/${request.data("user")}' ,
