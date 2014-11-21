@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceHandler;
@@ -22,7 +23,6 @@ import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
 import net.ion.nradon.handler.AbstractHttpHandler;
 import net.ion.radon.core.let.PathHandler;
-import junit.framework.TestCase;
 
 public class TestStreaming extends TestCase {
 

@@ -6,9 +6,7 @@ import java.io.Writer;
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.misc.SystemInfo;
 
 public class TestSystemInfo extends TestCase {
 

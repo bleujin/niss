@@ -1,13 +1,10 @@
 package net.ion.niss.webapp.misc;
 
-import java.util.Properties;
 import java.util.Map.Entry;
-
-import net.ion.framework.util.Debug;
-
-import org.apache.commons.lang.SystemUtils;
+import java.util.Properties;
 
 import junit.framework.TestCase;
+import net.ion.framework.util.Debug;
 
 public class TestProperties extends TestCase {
 

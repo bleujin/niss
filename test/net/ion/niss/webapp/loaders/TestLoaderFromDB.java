@@ -2,7 +2,6 @@ package net.ion.niss.webapp.loaders;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
 import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,15 +9,7 @@ import java.sql.SQLException;
 import junit.framework.TestCase;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.Debug;
-import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.loaders.ExceptionHandler;
-import net.ion.niss.webapp.loaders.InstantJavaScript;
-import net.ion.niss.webapp.loaders.JScriptEngine;
-import net.ion.niss.webapp.loaders.RDB;
-
-import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class TestLoaderFromDB extends TestCase {
 

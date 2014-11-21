@@ -1,10 +1,5 @@
 package net.ion.niss.webapp.common;
 
-import javax.ws.rs.core.HttpHeaders;
-
-import org.jboss.resteasy.util.HttpHeaderNames;
-
-import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;

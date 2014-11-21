@@ -2,11 +2,8 @@ package net.ion.niss.webapp.searchers;
 
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.misc.MenuWeb;
-import net.ion.niss.webapp.searchers.SearcherWeb;
-import net.ion.niss.webapp.searchers.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
 

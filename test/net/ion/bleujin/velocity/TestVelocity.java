@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.Vector;
 
 import junit.framework.TestCase;
-import net.ion.bleujin.velocity.StringResourceLoaderRepositoryTestCase.MyRepo;
 import net.ion.craken.node.ReadSession;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
@@ -17,8 +16,6 @@ import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.SystemLogChute;
 import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
-import org.apache.velocity.runtime.resource.util.StringResourceRepository;
-import org.apache.velocity.runtime.resource.util.StringResourceRepositoryImpl;
 public class TestVelocity extends TestCase {
 
 	

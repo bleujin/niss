@@ -2,9 +2,9 @@ package net.ion.bleujin.loader;
 
 import java.io.StringWriter;
 
+import junit.framework.TestCase;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
-import junit.framework.TestCase;
 
 public class TestJsonWriter extends TestCase {
 

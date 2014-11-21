@@ -52,11 +52,6 @@
 					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
 							<section>
-								<label class="input state-disabled">
-									<input type="text" id="name" placeholder="loader name" disabled="disabeld"/>
-								</label>
-							</section>
-							<section>
 								<label class="label">Script Content</label>
 								<label class="textarea textarea-resizable">
 									<i class="icon-append fa fa-question-circle"/> 										
@@ -147,7 +142,6 @@
 				var content = data['content'];
 				$("#info").html(info) ;
 
-				$("#name").val(data["name"]) ;
 				$("#scontent").val(data["content"]) ;
 			}, 
 			error:function(request,status,error){
@@ -161,7 +155,7 @@
 				type: "POST",
 				dataType : 'text', 
 				url: "/admin/loaders/" + loaderId + "/define",
-				data: { content: $("#scontent").val(),  name: $("#name").val() }, 
+				data: { content: $("#scontent").val()}, 
 				complete : function(){ 
 					
 				}, 
@@ -200,13 +194,12 @@
 				type: "POST",
 				dataType : 'text', 
 				url: "/admin/loaders/" + loaderId + "/run/" + eventId,
-				data: { content: $("#scontent").val(),  name: $("#name").val() }, 
+				data: { content: $("#scontent").val() }, 
 				complete : function(){ 
 					var result_text = 'Path : ' + this.url + '<br/>';
 					result_text += 'Event Source : /event/' + eventId + '<br />' ;
 					result_text += 'Form parameter : <br />' ;
 					result_text += ' - scontent : ...<br />' ;
-					result_text += ' - name : ' + $("#name").val() + '<br />' ;
 					$("#target_url").html(result_text) ;
 				}, 
 				success :  function(data) {

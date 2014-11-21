@@ -3,8 +3,8 @@ package net.ion.niss.webapp;
 import java.io.File;
 import java.io.RandomAccessFile;
 
-import net.ion.framework.util.Debug;
 import junit.framework.TestCase;
+import net.ion.framework.util.Debug;
 
 public class TestRandomFile extends TestCase {
 

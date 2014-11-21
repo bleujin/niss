@@ -1,28 +1,20 @@
 package net.ion.niss.webapp.indexers;
 
-import org.apache.lucene.analysis.cjk.CJKAnalyzer;
-import org.apache.lucene.analysis.core.KeywordAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonElement;
-import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.common.Def;
-import net.ion.niss.webapp.indexers.IndexManager;
-import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
-import net.ion.radon.client.StubServer;
+
+import org.apache.lucene.analysis.cjk.CJKAnalyzer;
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class TestREntryAction extends TestBaseIndexWeb {
 

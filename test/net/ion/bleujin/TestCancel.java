@@ -5,9 +5,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.InfinityThread;
-import junit.framework.TestCase;
 
 public class TestCancel extends TestCase {
 	

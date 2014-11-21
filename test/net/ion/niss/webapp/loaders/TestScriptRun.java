@@ -1,9 +1,8 @@
 package net.ion.niss.webapp.loaders;
 
-import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.loaders.LoaderWeb;
-import net.ion.radon.client.StubServer;
 import junit.framework.TestCase;
+import net.ion.niss.webapp.REntry;
+import net.ion.radon.client.StubServer;
 
 public class TestScriptRun extends TestCase{
 

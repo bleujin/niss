@@ -13,9 +13,6 @@ import net.ion.icrawler.processor.SimplePageProcessor;
 import net.ion.icrawler.scheduler.MaxLimitScheduler;
 import net.ion.icrawler.scheduler.QueueScheduler;
 import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.loaders.ExceptionHandler;
-import net.ion.niss.webapp.loaders.InstantJavaScript;
-import net.ion.niss.webapp.loaders.JScriptEngine;
 
 public class TestFromCrawler extends TestCase {
 

@@ -1,10 +1,8 @@
 package net.ion.niss.webapp.indexers;
 
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.common.Def;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 public class TestDefined extends TestBaseIndexWeb {

@@ -1,12 +1,11 @@
 package net.ion.bleujin;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import junit.framework.TestCase;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
 import net.ion.radon.core.let.PathHandler;
@@ -27,7 +26,7 @@ public class TestAjaxServer extends TestCase {
 
 	@GET
 	@Path("/{name}.txt")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public Employee empText(){
 		return new Employee("bleujin", 20) ;
 	}
@@ -36,7 +35,7 @@ public class TestAjaxServer extends TestCase {
 
 	@GET
 	@Path("/{name}.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Employee empJson(){
 		return new Employee("bleujin", 20) ;
 	}

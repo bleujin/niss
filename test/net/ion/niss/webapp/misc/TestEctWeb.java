@@ -1,23 +1,17 @@
 package net.ion.niss.webapp.misc;
 
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.util.CharArraySet;
-
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
-import net.ion.framework.util.ListUtil;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.misc.MenuWeb;
-import net.ion.niss.webapp.misc.TunnelWeb;
 import net.ion.niss.webapp.searchers.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.client.StubServer;
+
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
 
 public class TestEctWeb extends TestCase {
 

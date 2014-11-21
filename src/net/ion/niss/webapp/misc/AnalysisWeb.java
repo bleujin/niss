@@ -13,15 +13,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
-import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
@@ -62,7 +61,7 @@ public class AnalysisWeb implements Webapp {
 	
 	@GET
 	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject list(){
 		JsonObject result = new JsonObject() ;
 		
@@ -78,7 +77,7 @@ public class AnalysisWeb implements Webapp {
 	
 	@POST
 	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject tokenAnalyzer(@DefaultValue("") @FormParam("content") String content, @FormParam("analyzer") String clzNames, @DefaultValue("") @FormParam("stopword") String stopword) throws Exception{
 		JsonObject result = new JsonObject() ;
 		for (String clzName : StringUtil.split(clzNames, ",")) {
@@ -89,7 +88,13 @@ public class AnalysisWeb implements Webapp {
 			Constructor<? extends Analyzer> findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class, CharArraySet.class}) ;
 			Analyzer analyzer = null ;
 			if (findCon == null){
-				analyzer = aclz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion) ;
+				findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class}) ;
+				if (findCon == null){
+					findCon = aclz.getConstructor() ;
+					analyzer = findCon.newInstance() ;
+				} else {
+					analyzer = aclz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion) ;
+				}
 			} else {
 				analyzer = findCon.newInstance(SearchConstant.LuceneVersion, set) ;
 			}

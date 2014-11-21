@@ -4,16 +4,11 @@ import java.io.StringWriter;
 import java.lang.management.ManagementFactory;
 import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
-import java.lang.reflect.Type;
-import java.util.Map.Entry;
 
-import net.ion.framework.parse.gson.Gson;
+import junit.framework.TestCase;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.misc.ThreadDumpInfo;
-import net.ion.niss.webapp.util.SimpleOrderedMap;
-import junit.framework.TestCase;
 
 public class TestThreadDump extends TestCase {
 

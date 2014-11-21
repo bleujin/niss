@@ -10,7 +10,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
@@ -22,6 +21,7 @@ import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.convert.Functions;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
 
 import org.jboss.resteasy.spi.HttpRequest;
@@ -57,7 +57,7 @@ public class TunnelWeb implements Webapp {
 	
 	@GET
 	@Path("{fqn : .*}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response viewNode(@PathParam("fqn") String fqn){
 		ReadNode node = rsession.ghostBy("/" + fqn) ;
 		if (node.isGhost()) return Response.status(404).build() ;
@@ -69,7 +69,7 @@ public class TunnelWeb implements Webapp {
 	
 	@GET
 	@Path("{fqn : .*}.node")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response viewAsFormat(@PathParam("fqn") String fqn){
 		ReadNode node = rsession.ghostBy("/" + fqn) ;
 		if (node.isGhost()) return Response.status(404).build() ;
@@ -82,7 +82,7 @@ public class TunnelWeb implements Webapp {
 	
 	@GET
 	@Path("{fqn : .*}.list")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response listAsFormat(@PathParam("fqn") String fqn, @DefaultValue("101") @QueryParam("offset") int offset, @DefaultValue("0") @QueryParam("skip") int skip, 
 			@DefaultValue("") @QueryParam("ascending") String ascending, @DefaultValue("") @QueryParam("descending") String descending){
 		ReadNode node = rsession.ghostBy("/" + fqn) ;

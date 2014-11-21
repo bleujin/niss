@@ -9,13 +9,13 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
 
 @Path("/templates")
@@ -29,14 +29,14 @@ public class TemplateWeb  implements Webapp{
 	// template
 	@GET
 	@Path("/{tid}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String viewTemplate(@PathParam("tid") final String tid){
 		return rsession.pathBy("/templates/" + tid ).property("content").asString() ;
 	}
 	
 	@POST
 	@Path("/{tid}") 
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String editTemplate(@PathParam("tid") final String tid, @DefaultValue("") @FormParam("content") final String content) throws Exception{
 		rsession.tran(new TransactionJob<Void>() {
 			@Override

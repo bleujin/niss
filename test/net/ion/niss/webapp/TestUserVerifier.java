@@ -1,11 +1,11 @@
 package net.ion.niss.webapp;
 
-import org.infinispan.manager.DefaultCacheManager;
-
+import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.node.crud.WorkspaceConfigBuilder;
-import junit.framework.TestCase;
+
+import org.infinispan.manager.DefaultCacheManager;
 
 public class TestUserVerifier extends TestCase {
 

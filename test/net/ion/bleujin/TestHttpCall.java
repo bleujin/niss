@@ -6,15 +6,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import javax.ws.rs.core.MediaType;
-
-import net.ion.framework.util.Debug;
-import net.ion.framework.util.IOUtil;
 import junit.framework.TestCase;
 
 public class TestHttpCall extends TestCase {

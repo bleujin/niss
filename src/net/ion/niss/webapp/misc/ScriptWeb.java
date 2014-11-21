@@ -19,7 +19,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
@@ -27,7 +26,6 @@ import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.convert.Functions;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
@@ -39,6 +37,7 @@ import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
@@ -76,7 +75,7 @@ public class ScriptWeb implements Webapp{
 	
 	@Path("/define/{sid}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewScript(@PathParam("sid") final String sid){
 		ReadNode found = rsession.ghostBy("/scripts/" + sid) ;
 		return new JsonObject().put("sid", found.fqn().name()).put("content", found.property("content").asString()) ;
@@ -84,7 +83,7 @@ public class ScriptWeb implements Webapp{
 
 	@Path("/sample")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject sampleScript() throws IOException{
 		return new JsonObject().put("content", IOUtil.toStringWithClose(new FileInputStream(MISC_SCRIPT_FILE))) ;
 	}
@@ -123,7 +122,7 @@ public class ScriptWeb implements Webapp{
 	
 	@Path("")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listScript(){
 		JsonArray jarray = rsession.ghostBy("/scripts").children().transform(new Function<Iterator<ReadNode>, JsonArray>(){
 			@Override
@@ -153,7 +152,7 @@ public class ScriptWeb implements Webapp{
 
 	@Path("/run/{sid}")
 	@GET @POST
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response runScript(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ScriptException{
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>();
 		for (Entry<String, List<String>> entry : request.getUri().getQueryParameters().entrySet()) {
@@ -207,7 +206,7 @@ public class ScriptWeb implements Webapp{
 		jwriter.endObject() ;
 		jwriter.close();
 
-		return Response.ok(result.toString()).type(MediaType.APPLICATION_JSON_TYPE).build() ;
+		return Response.ok(result.toString(), ExtMediaType.APPLICATION_JSON_UTF8).build() ;
 	}
 
 }

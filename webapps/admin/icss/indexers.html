@@ -340,7 +340,8 @@
 						// $("#query_url").text(this.url) ;
 					}, 
 					success :  function(data) {
-						$("#indexers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						if ($('#indexers option[value="' + newId + '"]').length > 0) $("#indexers").val(newId);
+						else $("#indexers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
 						loadURL("icss/indexers/overview.html", $('#inbox-content > .table-wrap')) ;
 						$('#create_indexer_modal').modal('hide');
 					}

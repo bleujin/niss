@@ -2,12 +2,9 @@ package net.ion.niss.webapp.loaders;
 
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.loaders.LoaderWeb;
-import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
 

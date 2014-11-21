@@ -18,7 +18,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.transform.Source;
@@ -46,10 +45,12 @@ import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.IndexSchema;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
+import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.WriteDocument;
 import net.ion.nsearcher.index.IndexJob;
@@ -86,7 +87,7 @@ public class IndexerWeb implements Webapp {
 
 	@GET
 	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listIndexer() {
 		ReadChildren children = rsession.ghostBy("/indexers").children();
 
@@ -107,23 +108,24 @@ public class IndexerWeb implements Webapp {
 	// create indexer
 	@POST
 	@Path("/{iid}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String create(@PathParam("iid") final String iid, @Context HttpRequest req) {
-		rsession.tran(new TransactionJob<Void>() {
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+	public String create(@PathParam("iid") final String iid, @Context HttpRequest req) throws Exception {
+
+		return rsession.tranSync(new TransactionJob<String>() {
 			@Override
-			public Void handle(WriteSession wsession) throws Exception {
+			public String handle(WriteSession wsession) throws Exception {
+				if (wsession.readSession().exists(fqnBy(iid))) return "already exist : " + iid ;
 				wsession.pathBy(fqnBy(iid)).property("created", System.currentTimeMillis());
-				return null;
+				return "created " + iid;
 			}
 		});
-		return "created " + iid;
 	}
 	
 	
 	// remove colletion
 	@DELETE
 	@Path("/{iid}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String remove(@PathParam("iid") final String iid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
@@ -141,7 +143,7 @@ public class IndexerWeb implements Webapp {
 	// --- overview
 	@GET
 	@Path("/{iid}/status")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewStatus(@PathParam("iid") String iid) throws IOException{
 		 return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
 				@Override
@@ -163,7 +165,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/dirInfo")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewDirInfo(@PathParam("iid") final String iid) throws IOException{
 		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
 			@Override
@@ -184,7 +186,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/overview")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject overview(@PathParam("iid") final String iid) throws IOException{
 		
 		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
@@ -239,7 +241,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/defined")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String defineIndexer(@PathParam("iid") final String iid, @FormParam("indexanalyzer") final String ianalyzerName, 
 				@DefaultValue("") @FormParam("stopword") final String stopwords, @DefaultValue("false") @FormParam("applystopword") final boolean applystopword, 
 				@FormParam("queryanalyzer") final String qanalyzerName) throws IOException, InterruptedException, ExecutionException{
@@ -259,7 +261,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/defined")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewDefined(@PathParam("iid") String iid){
 		return rsession.ghostBy(fqnBy(iid)).transformer(new Function<ReadNode, JsonObject>(){
 			@Override
@@ -306,7 +308,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/fields")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String updateField(@PathParam("iid") final String iid, @FormParam("field") final String field, @FormParam("content") final String value) throws Exception{
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
@@ -359,7 +361,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/schema")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listSchema(@PathParam("iid") String iid){
 		JsonArray schemas = rsession.ghostBy(IndexSchema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 			@Override
@@ -396,7 +398,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/schema")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String addSchema(@PathParam("iid") final String iid, @FormParam("schemaid") final String schemaid, @FormParam("schematype") final String schematype,
 			@FormParam("analyzer") final String analyzer, @FormParam("analyze") final boolean analyze, @FormParam("store") final boolean store, 
 			@DefaultValue("1.0") @FormParam("boost") final String boost){
@@ -418,7 +420,7 @@ public class IndexerWeb implements Webapp {
 
 	@DELETE
 	@Path("/{iid}/schema/{schemaid}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSchema(@PathParam("iid") final String iid, @PathParam("schemaid") final String schemaid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
@@ -437,7 +439,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/index")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public JsonObject indexView(@PathParam("iid") String iid){
 		JsonObject result = new JsonObject() ;
 		result.put("info", rsession.ghostBy("/menus/indexers").property("index").asString()) ;
@@ -447,7 +449,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/index.json")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJson(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
@@ -481,7 +483,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/index.jarray")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJarray(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
@@ -511,7 +513,7 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/index.csv")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexCsv(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request) throws IOException{
@@ -550,7 +552,7 @@ public class IndexerWeb implements Webapp {
 	// --- query
 	@GET
 	@Path("/{iid}/query")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject query(@PathParam("iid") String iid) throws IOException{
 		JsonObject result = new JsonObject() ;
 		result.put("info", rsession.ghostBy("/menus/indexers").property("query").asString()) ;
@@ -559,7 +561,7 @@ public class IndexerWeb implements Webapp {
 	
 	@GET
 	@Path("/{iid}/query.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public StreamingOutput jquery(@PathParam("iid") String iid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 
@@ -574,7 +576,7 @@ public class IndexerWeb implements Webapp {
 
 	@GET
 	@Path("/{iid}/query.xml")
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(ExtMediaType.APPLICATION_XML_UTF8)
 	public StreamingOutput xquery(@PathParam("iid") String iid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
@@ -589,7 +591,7 @@ public class IndexerWeb implements Webapp {
 
 	@GET
 	@Path("/{iid}/query.csv")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public StreamingOutput cquery(@PathParam("iid") String iid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset, 
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
@@ -603,7 +605,7 @@ public class IndexerWeb implements Webapp {
 
 	@GET
 	@Path("/{iid}/browsing")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject browsing(@PathParam("iid") String iid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
 		final JsonObject result = new JsonObject() ;
 
@@ -640,7 +642,8 @@ public class IndexerWeb implements Webapp {
 						ReadDocument rdoc = searcher.doc(did, request);
 						JsonArray rowArray = new JsonArray() ;
 						for(String fname : fnames){
-							rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
+							if ("id".equals(fname)) rowArray.add(new JsonPrimitive(rdoc.reserved(IKeywordField.DocKey))) ;
+							else rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
 						}
 						dataArray.add(rowArray);
 					}

@@ -19,7 +19,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
@@ -36,6 +35,7 @@ import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.Def;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
 
 import org.jboss.resteasy.spi.HttpResponse;
@@ -59,7 +59,7 @@ public class LoaderWeb implements Webapp {
 
 	@GET
 	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listScript() {
 		JsonArray scripts = rsession.ghostBy("/loaders").children().transform(new Function<Iterator<ReadNode>, JsonArray>() {
 			@Override
@@ -85,15 +85,15 @@ public class LoaderWeb implements Webapp {
 
 	@POST
 	@Path("/{lid}")
-	public String newLoader(@PathParam("lid") final String lid, @FormParam("name") final String name) {
-		rsession.tran(new TransactionJob<Void>() {
+	public String create(@PathParam("lid") final String lid, @FormParam("name") final String name) throws Exception {
+		return rsession.tranSync(new TransactionJob<String>() {
 			@Override
-			public Void handle(WriteSession wsession) throws Exception {
+			public String handle(WriteSession wsession) throws Exception {
+				if (wsession.exists("/loaders/" + lid)) return "already exist : " + lid ;
 				wsession.pathBy("/loaders/" + lid).property("name", name).property("registered", System.currentTimeMillis());;
-				return null;
+				return "created " + lid;
 			}
 		});
-		return "created " + lid;
 	}
 	
 	@DELETE
@@ -113,8 +113,8 @@ public class LoaderWeb implements Webapp {
 	
 	@POST
 	@Path("/{lid}/define")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String createScript(@PathParam("lid") final String lid, @FormParam("name") final String name, @FormParam("content") final String content) {
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+	public String createScript(@PathParam("lid") final String lid, @FormParam("content") final String content) {
 		rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
@@ -129,7 +129,7 @@ public class LoaderWeb implements Webapp {
 
 	@GET
 	@Path("/{lid}/overview")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject overview(@PathParam("lid") final String lid) {
 		
 		JsonArray jarray = rsession.ghostBy("/events/loaders").children().eq("lid", lid).descending("time").offset(101).transform(new Function<Iterator<ReadNode>, JsonArray>(){
@@ -160,7 +160,7 @@ public class LoaderWeb implements Webapp {
 	
 	@GET
 	@Path("/{lid}/define")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewScript(@PathParam("lid") final String lid) {
 		ReadNode found = rsession.pathBy("/loaders/" + lid) ;
 		

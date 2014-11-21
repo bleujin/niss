@@ -11,7 +11,6 @@
 	<h4>Self</h4>
 	<a href='/admin/craken${self.fqn()}'>${self.fqn()}</a><br/>
 
-
 	<h4>Properties</h4>
 	<ul>
 	${foreach self.toMap() entry }

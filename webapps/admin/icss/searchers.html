@@ -300,7 +300,8 @@
 					url: "/admin/searchers/" + newId,
 					data: { }, 
 					success :  function(data) {
-						$("#searchers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						if ($('#searchers option[value="' + newId + '"]').length > 0) $("#searchers").val(newId);
+						else $("#searchers").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
 						loadURL("icss/searchers/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 						$('#create_searcher_modal').modal('hide');
 					}

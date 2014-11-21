@@ -9,8 +9,6 @@ import java.util.List;
 
 import javax.ws.rs.Path;
 
-import org.jboss.resteasy.util.FindAnnotation;
-
 import net.ion.niss.webapp.Webapp;
 
 public class InfoFac<T extends Webapp> {

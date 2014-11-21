@@ -1,12 +1,5 @@
 package net.ion.niss.webapp.indexers;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
-import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import Acme.Serve.SimpleAcceptor;
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
@@ -17,14 +10,16 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.ArrayUtil;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
 import net.ion.radon.client.StubServer;
+
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
+import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class TestSchema extends TestCase {
 	private StubServer ss;

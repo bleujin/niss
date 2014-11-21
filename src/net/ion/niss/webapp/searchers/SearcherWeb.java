@@ -17,7 +17,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.transform.Source;
@@ -46,6 +45,7 @@ import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.CSVStreamOut;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.SearchSchema;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.indexers.Responses;
@@ -80,7 +80,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listSection() {
 		ReadChildren children = rsession.ghostBy("/searchers").children();
 
@@ -101,22 +101,21 @@ public class SearcherWeb implements Webapp {
 
 	@POST
 	@Path("/{sid}")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String create(@PathParam("sid") final String sid) {
-		rsession.tran(new TransactionJob<Void>() {
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+	public String create(@PathParam("sid") final String sid) throws Exception {
+		return rsession.tranSync(new TransactionJob<String>() {
 			@Override
-			public Void handle(WriteSession wsession) throws Exception {
+			public String handle(WriteSession wsession) throws Exception {
+				if (wsession.readSession().exists(fqnBy(sid))) return "already exist : " + sid ;
 				wsession.pathBy(fqnBy(sid)).property("created", System.currentTimeMillis());
-				return null;
+				return "created " + sid;
 			}
 		});
-
-		return "created " + sid;
 	}
 
 	@DELETE
 	@Path("/{sid}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSearch(@PathParam("sid") final String sid) {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
@@ -133,7 +132,7 @@ public class SearcherWeb implements Webapp {
 	
 	@GET
 	@Path("/{sid}/define")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewSection(@PathParam("sid") final String sid) {
 
 		final String[] colNames = rsession.ghostBy("/indexers").childrenNames().toArray(new String[0]);
@@ -162,7 +161,7 @@ public class SearcherWeb implements Webapp {
 	// define section
 	@POST
 	@Path("/{sid}/define")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String defineSection(@PathParam("sid") final String sid, @FormParam("target") final String target, @Context HttpRequest request, @FormParam("queryanalyzer") final String queryAnalyzer, @FormParam("handler") final String handler,
 			@DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler, @FormParam("stopword") final String stopword, @DefaultValue("false") @FormParam("applystopword") final boolean applyStopword) {
 
@@ -182,7 +181,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/define.default")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String defaultHandler(@PathParam("sid") final String sid) throws IOException {
 		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_HANDLER_FILE));
 	}
@@ -190,7 +189,7 @@ public class SearcherWeb implements Webapp {
 	// --- schema
 	@GET
 	@Path("/{sid}/schema")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listSchema(@PathParam("sid") String sid){
 		JsonArray schemas = rsession.ghostBy(SearchSchema.path(sid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
 			@Override
@@ -221,7 +220,7 @@ public class SearcherWeb implements Webapp {
 	
 	@POST
 	@Path("/{sid}/schema")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String addSchema(@PathParam("sid") final String sid, @FormParam("schemaid") final String schemaid, @FormParam("analyzer") final String analyzer){
 		
 		rsession.tran(new TransactionJob<Void>() {
@@ -239,7 +238,7 @@ public class SearcherWeb implements Webapp {
 
 	@DELETE
 	@Path("/{sid}/schema/{schemaid}")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSchema(@PathParam("sid") final String sid, @PathParam("schemaid") final String schemaid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
@@ -258,7 +257,7 @@ public class SearcherWeb implements Webapp {
 	// --- query
 	@GET
 	@Path("/{sid}/query")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject query() throws IOException {
 		JsonObject result = new JsonObject();
 		result.put("info", rsession.ghostBy("/menus/searchers").property("query").asString());
@@ -267,7 +266,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/query.json")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public StreamingOutput jquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
 
@@ -288,7 +287,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/query.xml")
-	@Produces(MediaType.APPLICATION_XML)
+	@Produces(ExtMediaType.APPLICATION_XML_UTF8)
 	public StreamingOutput xquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
 
@@ -301,7 +300,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/query.csv")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public StreamingOutput cquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
 
@@ -313,6 +312,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/query.template")
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String tquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
 
@@ -334,7 +334,7 @@ public class SearcherWeb implements Webapp {
 	// -- template
 	@GET
 	@Path("/{sid}/template")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewTemplate(@PathParam("sid") final String sid) {
 		JsonObject result = new JsonObject();
 		result.put("info", rsession.ghostBy("/menus/searchers").property("template").asString());
@@ -344,7 +344,7 @@ public class SearcherWeb implements Webapp {
 
 	@GET
 	@Path("/{sid}/template.default")
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String defaultTemplate(@PathParam("sid") final String sid) throws IOException {
 		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_TEMPLATE_FILE));
 	}

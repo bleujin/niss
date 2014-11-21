@@ -4,11 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.util.List;
 
-import org.apache.commons.lang.SystemUtils;
-
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.anno.Info;
@@ -27,6 +24,8 @@ import net.ion.niss.webapp.misc.TraceWeb;
 import net.ion.niss.webapp.searchers.OpenSearchWeb;
 import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.niss.webapp.searchers.TemplateWeb;
+
+import org.apache.commons.lang.SystemUtils;
 
 public class TestWebAppInfo extends TestCase {
 

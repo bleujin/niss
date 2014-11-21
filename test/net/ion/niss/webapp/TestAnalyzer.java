@@ -3,9 +3,9 @@ package net.ion.niss.webapp;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
-import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 
 import org.apache.commons.lang.reflect.ConstructorUtils;
@@ -15,10 +15,7 @@ import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
-import org.apache.lucene.analysis.util.StopwordAnalyzerBase;
 import org.apache.lucene.util.Version;
-
-import junit.framework.TestCase;
 
 public class TestAnalyzer extends TestCase{
 

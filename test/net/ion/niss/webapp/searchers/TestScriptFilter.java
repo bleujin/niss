@@ -1,14 +1,9 @@
 package net.ion.niss.webapp.searchers;
 
-import java.io.FileInputStream;
-
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.infinispan.util.concurrent.WithinThreadExecutor;
-
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.loaders.ExceptionHandler;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
@@ -23,7 +18,9 @@ import net.ion.nsearcher.search.SearchResponse;
 import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.filter.TermFilter;
 import net.ion.nsearcher.search.processor.PostProcessor;
-import junit.framework.TestCase;
+
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class TestScriptFilter extends TestCase {
 

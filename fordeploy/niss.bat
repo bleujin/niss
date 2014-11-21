@@ -10,7 +10,7 @@ if %ERRORLEVEL%==0 goto test
 
 rem for %%? in ("%~dp0..") do set HOMEDIR=%%~f?
 set HOMEDIR=%cd%
-IF not exist %JAVA_HOME%\jre (
+IF not exist "%JAVA_HOME%\jre" (
 	set JAVA_HOME="C:\java\jdk6_45"
 )
 set JAVA_BIN="%JAVA_HOME%\bin\java"

@@ -75,12 +75,6 @@
 						<input type="text" id="newLoaderId" name="newlid" placeholder="new loader id" />
 					</label>
 				</section>
-				<section>
-					<label class="label">Loader Name</label>
-					<label class="input">
-						<input type="text" id="newLoaderName" name="name" placeholder="new loader name" />
-					</label>
-				</section>
 			</fieldset>
 			</form>
             </div>
@@ -142,7 +136,7 @@
 				var loaders = data['loaders'] ;
 				for(var idx in loaders ){
 					var loader = loaders [idx] ;
-					var option = $('<option value="'+loader['lid']+'">'+loader['name']+'</option>') ;
+					var option = $('<option value="'+loader['lid']+'">'+loader['lid']+'</option>') ;
 					option.appendTo($("select.choose-sub")) ;
 				}
 				
@@ -220,8 +214,7 @@
 		
 		var $createForm = $("#create_loader_form").validate({
 			rules : {
-				newlid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }, 
-				name   : { required : true, minlength : 4, maxlength : 15 } 
+				newlid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 } 
 			},
 			messages : {
 				newlid : {pattern : "allowed pattern : a-z0-9_"}
@@ -232,11 +225,12 @@
 					type: "POST",
 					dataType : 'text', 
 					url: "/admin/loaders/" + newId,
-					data: {"name": $("#newLoaderName").val()}, 
+					data: {}, 
 					complete : function(){ 
 					}, 
 					success :  function(data) {
-						$("#loaders").append('<option value="'+newId+'" selected="selected">'+$("#newLoaderName").val()+'</option>');
+						if ($('#loaders option[value="' + newId + '"]').length > 0) $("#loaders").val(newId);
+						else $("#loaders").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
 						loadURL("icss/loaders/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
 						$('#create_loader_modal').modal('hide');
 					}

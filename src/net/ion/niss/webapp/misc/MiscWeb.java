@@ -15,7 +15,6 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
@@ -31,6 +30,7 @@ import net.ion.framework.util.StringUtil;
 import net.ion.niss.NissServer;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
 
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -91,7 +91,7 @@ public class MiscWeb implements Webapp{
 
 	@GET
 	@Path("/history")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject logHistory(@DefaultValue("") @QueryParam("searchQuery") String query) throws IOException, ParseException{
 		
 		JsonArray jarray = rsession.ghostBy("/events/loaders").childQuery(query).descending("time").offset(1000).find().transformer(new Function<ChildQueryResponse, JsonArray>(){
@@ -122,7 +122,7 @@ public class MiscWeb implements Webapp{
 
 	@GET
 	@Path("/users")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject userList() throws IOException, ParseException{
 
 		JsonArray jarray = rsession.ghostBy("/users").children().transform(new Function<Iterator<ReadNode>, JsonArray>(){

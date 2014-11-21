@@ -119,29 +119,28 @@
 				var table = $('#example').DataTable() ;
 				$('#searchQuery').on('keypress', function (event) {
 					if(event.which == '13'){
-						console.log($("#searchQuery").val()) ;
-						table.destroy();
-						
-					       $.ajax({
-							url:"/admin/searchers/" + searcherId + "/browsing",
-							type:'GET', 
-							dataType:'json',
-							data : {'searchQuery':$("#searchQuery").val()}, 
-							success:function(data){
-								var nodes = data['data'];
-								$("#example")
-									.dataTable({
-									"data":nodes,
-									"searching":false, 
-									"columns": data['schemaName']
-								}) ;
-								
-								table = $('#example').DataTable() ;
-							}, 
-							error:function(request,status,error){
-								console.log('response', request, status, error) ;
-							}
-						});
+				       $.ajax({
+						url:"/admin/searchers/" + searcherId + "/browsing",
+						type:'GET', 
+						dataType:'json',
+						data : {'searchQuery':$("#searchQuery").val()}, 
+						success:function(data){
+							console.log($("#searchQuery").val()) ;
+							table.destroy();
+							
+							var nodes = data['data'];
+							$("#example")
+								.dataTable({
+								"data":nodes,
+								"searching":false, 
+								"columns": data['schemaName']
+							}) ;
+							table = $('#example').DataTable() ;
+						}, 
+						error:function(request,status,error){
+							console.log('response', request, status, error) ;
+						}
+					});
 						
 					}
 				});

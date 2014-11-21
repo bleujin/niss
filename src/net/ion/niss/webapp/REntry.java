@@ -42,6 +42,7 @@ import net.ion.nsearcher.search.Searcher;
 
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;

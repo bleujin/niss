@@ -1,11 +1,9 @@
 package net.ion.niss;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.InfinityThread;
-import net.ion.jci.cloader.DirClassLoader;
-import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
-import junit.framework.TestCase;
 
 public class TestServer extends TestCase {
 

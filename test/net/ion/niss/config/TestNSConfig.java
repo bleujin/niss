@@ -13,10 +13,8 @@ import net.ion.niss.NissServer;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.REntry;
 
-import org.infinispan.Cache;
 import org.infinispan.configuration.cache.CacheMode;
 import org.infinispan.configuration.cache.Configuration;
-import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.manager.DefaultCacheManager;
 
 public class TestNSConfig extends TestCase {

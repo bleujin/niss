@@ -1,7 +1,6 @@
 package net.ion.niss.webapp.misc;
 
-import javax.script.ScriptEngine;
-
+import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
@@ -10,7 +9,6 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
-import junit.framework.TestCase;
 
 public class TestScriptWeb extends TestCase {
 

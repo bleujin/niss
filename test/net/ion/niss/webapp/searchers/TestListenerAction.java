@@ -2,7 +2,6 @@ package net.ion.niss.webapp.searchers;
 
 import junit.framework.TestCase;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.search.CompositeSearcher;
 import net.ion.radon.client.StubServer;

@@ -1,7 +1,7 @@
 package net.ion.niss.config.builder;
 
-import net.ion.niss.config.NSConfig;
 import junit.framework.TestCase;
+import net.ion.niss.config.NSConfig;
 
 public class TestConfigBuilder extends TestCase{
 

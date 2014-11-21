@@ -189,11 +189,8 @@ public class CrakenStore implements AdvancedLoadWriteStore {
 		for (Entry<String, JsonElement> entry : props.entrySet()) {
 			String pkey = entry.getKey();
 			JsonElement pvalue = entry.getValue();
-			if (pkey.startsWith("@")){
-				nodeValue.put(PropertyId.fromIdString(pkey), PropertyValue.createPrimitive(pvalue.getAsString()));
-			} else {
-				nodeValue.put(PropertyId.fromIdString(pkey), PropertyValue.loadFrom(key, pkey, pvalue.getAsJsonObject()));
-			}
+			PropertyId propId = PropertyId.fromIdString(pkey);
+			nodeValue.put(propId, PropertyValue.loadFrom(key, propId, pvalue));
 		}
 
 		return ctx.getMarshalledEntryFactory().newMarshalledEntry(key, nodeValue, metadataBb);

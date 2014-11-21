@@ -7,11 +7,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
 import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
 import net.ion.radon.core.let.PathHandler;
-import junit.framework.TestCase;
 
 public class TestBrowserMethodSupport extends TestCase {
 

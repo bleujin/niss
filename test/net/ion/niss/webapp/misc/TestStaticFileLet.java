@@ -1,21 +1,17 @@
 package net.ion.niss.webapp.misc;
 
-import java.util.Map.Entry;
-
-import org.jboss.resteasy.util.HttpHeaderNames;
-
+import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.nradon.Radon;
 import net.ion.nradon.config.RadonConfiguration;
-import net.ion.nradon.restlet.FileMetaType;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.radon.aclient.ClientConfig;
 import net.ion.radon.aclient.FluentCaseInsensitiveStringsMap;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.client.StubServer;
 import net.ion.radon.core.let.PathHandler;
-import junit.framework.TestCase;
+
+import org.jboss.resteasy.util.HttpHeaderNames;
 
 public class TestStaticFileLet extends TestCase{
 

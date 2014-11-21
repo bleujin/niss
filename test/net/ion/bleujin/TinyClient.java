@@ -7,13 +7,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Map;
-
-import org.apache.commons.collections.map.MultiValueMap;
 
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.nradon.restlet.Form;
 
 public class TinyClient {
 	

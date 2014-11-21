@@ -1,19 +1,11 @@
 package net.ion.bleujin;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.nio.charset.Charset;
 import java.util.concurrent.Executors;
 
-import org.apache.lucene.index.Term;
-import org.apache.lucene.queryparser.surround.parser.QueryParser;
-
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
 import net.ion.framework.db.ThreadFactoryBuilder;
-import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.InfinityThread;
 import net.ion.niss.webapp.AppLogSink;
 import net.ion.niss.webapp.EventSourceEntry;
@@ -40,9 +32,6 @@ import net.ion.nradon.handler.AbstractHttpHandler;
 import net.ion.nradon.handler.SimpleStaticFileHandler;
 import net.ion.nradon.handler.event.ServerEvent.EventType;
 import net.ion.nradon.handler.logging.LoggingHandler;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
 import net.ion.radon.core.let.PathHandler;
 
 public class TestSmartAdmin extends TestCase {

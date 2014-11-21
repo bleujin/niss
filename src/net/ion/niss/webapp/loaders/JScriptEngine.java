@@ -7,12 +7,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.Writer;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -24,22 +21,17 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 import javax.script.SimpleBindings;
 
-import org.apache.commons.io.monitor.FileAlterationObserver;
-import org.apache.ecs.xhtml.script;
-import org.infinispan.factories.scopes.Scopes;
-import org.infinispan.util.logging.Log;
-import org.infinispan.util.logging.LogFactory;
-
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.WithinThreadExecutor;
-import net.ion.jci.cloader.ReloadSourceClassLoader;
 import net.ion.jci.monitor.AbstractListener;
 import net.ion.jci.monitor.FileAlterationMonitor;
 import net.ion.niss.cloader.DirClassLoader;
 import net.ion.niss.webapp.IdString;
 import net.ion.radon.cload.cloader.OuterClassLoader;
+
+import org.apache.commons.io.monitor.FileAlterationObserver;
+import org.infinispan.util.logging.Log;
+import org.infinispan.util.logging.LogFactory;
 
 public class JScriptEngine {
 

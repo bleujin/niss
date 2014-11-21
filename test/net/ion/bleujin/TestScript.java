@@ -2,13 +2,12 @@ package net.ion.bleujin;
 
 import javax.script.Bindings;
 import javax.script.Invocable;
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.SimpleBindings;
 
-import net.ion.framework.util.IOUtil;
 import junit.framework.TestCase;
+import net.ion.framework.util.IOUtil;
 
 public class TestScript extends TestCase {
 

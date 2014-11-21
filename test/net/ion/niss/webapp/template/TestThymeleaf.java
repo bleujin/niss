@@ -2,10 +2,10 @@ package net.ion.niss.webapp.template;
 
 import java.util.Locale;
 
+import junit.framework.TestCase;
 import net.ion.framework.mte.Engine;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
-import junit.framework.TestCase;
 
 public class TestThymeleaf extends TestCase {
 
