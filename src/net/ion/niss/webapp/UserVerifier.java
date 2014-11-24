@@ -3,10 +3,12 @@ package net.ion.niss.webapp;
 import java.io.IOException;
 import java.util.concurrent.Executor;
 
+import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.niss.webapp.common.Def;
+import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.nradon.HttpRequest;
 import net.ion.nradon.handler.authentication.PasswordAuthenticator;
 
@@ -44,8 +46,10 @@ public class UserVerifier implements PasswordAuthenticator {
 
 	public void authenticate(HttpRequest request, String username, String password, ResultCallback callback, Executor handlerExecutor) {
 		session.ghostBy("/users").children().toList().size() ;
-		String expectedPassword = session.ghostBy("/users/" + username).property(Def.User.Password).stringValue();
+		ReadNode found = session.ghostBy("/users/" + username);
+		String expectedPassword = found.property(Def.User.Password).stringValue();
 		if (expectedPassword != null && password.equals(expectedPassword)) {
+			request.data(MyAuthenticationHandler.LANGCODE, found.property(MyAuthenticationHandler.LANGCODE).defaultValue("kr")) ;
 			callback.success();
 		} else {
 			callback.failure();

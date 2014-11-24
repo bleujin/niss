@@ -42,7 +42,7 @@ public class TunnelWeb implements Webapp {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
 				WriteNode wnode = wsession.pathBy("/" + fqn) ;
-				MultivaluedMap<String, String> params = request.getFormParameters() ;
+				MultivaluedMap<String, String> params = request.getDecodedFormParameters() ;
 				for(String key : params.keySet()){
 					if (params.get(key).size() == 1) wnode.property(key, params.getFirst(key)) ;
 					else wnode.append(key, params.get(key).toArray(new String[0])) ;

@@ -30,13 +30,19 @@
 		
 		
 /resource
+	dir_help.txt  self
 	log4j.properties log config
-	searchers.template.txt searchers/template 에서 default template
-	searchers.handler.txt  searchers/define 에서 default handler
-	misc.script.txt  misc/script에서 default script
 	load.analyzer  추가적으로 사용할 analyzer (모든 niss node에서 동일해야 한다.)
 	
 	/admin niss admin 정보가 저장됨
+
+	/message message resource file, encoding = UTF-8
+
+	/search.template/*.template searchers/template 에서 sample template
+
+	/search.handler/*.handler  searchers/define 에서 default handler
+
+	/script/*.script  misc/script에서 default script
 	
 	/index niss 에서 만든 인덱스 정보가 저장됨
 		{indexId}/{indexId}_meta.dat    index에 대한 meta정보가 저장됨

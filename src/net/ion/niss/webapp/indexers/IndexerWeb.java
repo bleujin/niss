@@ -462,7 +462,9 @@ public class IndexerWeb implements Webapp {
 				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
 				
 				JsonObject json = JsonObject.fromString(documents) ;
-				WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(json.asString("id"), new ObjectId().toString() ) ) ;
+				if (! json.has("id")) json.put("id", new ObjectId().toString()) ;
+				
+				WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
 				wdoc.add(json) ;
 				
 				if (overwrite) isession.updateDocument(wdoc) ;
@@ -485,7 +487,7 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/index.jarray")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJarray(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
-			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
+			@DefaultValue("1000") @FormParam("within") final int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
 		Indexer indexer = imanager.index(iid).newIndexer() ;
 		final JsonArray jarray = JsonParser.fromString(documents).getAsJsonArray() ;
@@ -497,11 +499,14 @@ public class IndexerWeb implements Webapp {
 				
 				for (int i=0 ; i <jarray.size() ; i++) {
 					JsonObject json = jarray.get(i).getAsJsonObject() ;
-					String idVlaue = StringUtil.isBlank(json.asString("id")) ? new ObjectId().toString() : json.asString("id") ;
+					if (! json.has("id")) json.put("id", new ObjectId().toString()) ;
+					
+					String idVlaue = json.asString("id");
 					WriteDocument wdoc = isession.newDocument(idVlaue) ;
 					wdoc.add(json) ;
 					
 					Void v = overwrite ? wdoc.updateVoid() : wdoc.insertVoid() ;
+					if (i != 0 && i % within == 0) isession.continueUnit() ;
 				}
 				
 				return null;
@@ -515,7 +520,7 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/index.csv")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexCsv(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
-			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
+			@DefaultValue("1000") @FormParam("within") final int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request) throws IOException{
 		Indexer indexer = imanager.index(iid).newIndexer() ;
 		final CsvReader creader = new CsvReader(new StringReader(documents)) ;
@@ -533,12 +538,15 @@ public class IndexerWeb implements Webapp {
 					for (int i = 0 ; i < headers.length ; i++) {
 						map.put(headers[i], i < fields.length ? fields[i] : "") ;
 					}
+					if (! map.containsKey("id")) map.put("id", new ObjectId().toString()) ;
 					
-					count++ ;
-					WriteDocument wdoc = isession.newDocument(StringUtil.defaultIfEmpty(map.get("id"), new ObjectId().toString())).add(map) ;
+					WriteDocument wdoc = isession.newDocument(map.get("id")).add(map) ;
 					
 					if (overwrite) isession.updateDocument(wdoc) ;
 					else isession.insertDocument(wdoc) ;
+					
+					if (count != 0 && count % within == 0) isession.continueUnit() ;
+					count++ ;
 				}
 				return count;
 			}
@@ -566,7 +574,6 @@ public class IndexerWeb implements Webapp {
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
-		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
 		SearchResponse sresponse = imanager.index(iid).newSearcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 
 		JsonObject result = sresponse.transformer(Responses.toJson(map, sresponse)) ;
@@ -581,7 +588,6 @@ public class IndexerWeb implements Webapp {
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
-		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
 		SearchResponse sresponse = imanager.index(iid).newSearcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 		
 		Source result = sresponse.transformer(Responses.toXMLSource(map, sresponse));
@@ -596,7 +602,6 @@ public class IndexerWeb implements Webapp {
 			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException{
 		
 		MultivaluedMap<String, String> map = request.getUri().getQueryParameters() ;
-		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0) map.putAll(request.getFormParameters());
 		SearchResponse sresponse = imanager.index(iid).newSearcher().createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find() ;
 		
 		return new CSVStreamOut(sresponse) ;

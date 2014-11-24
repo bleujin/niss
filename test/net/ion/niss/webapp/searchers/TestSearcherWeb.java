@@ -1,11 +1,13 @@
 package net.ion.niss.webapp.searchers;
 
 import junit.framework.TestCase;
+import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.misc.MenuWeb;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
 
@@ -60,4 +62,10 @@ public class TestSearcherWeb extends TestCase {
 	}
 	
 	
+	public void testViewSample() throws Exception {
+		assertEquals(3, WebUtil.findLoaderScripts().size());
+		assertEquals(true, WebUtil.findSearchHandlers().size() > 0);
+		assertEquals(true, WebUtil.findSearchTemplates().size() > 0);
+		assertEquals(true, WebUtil.findScripts().size() > 0);
+	}
 }

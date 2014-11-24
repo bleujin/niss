@@ -3,6 +3,7 @@ package net.ion.niss.webapp.misc;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.DELETE;
@@ -15,10 +16,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MultivaluedMap;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ChildQueryResponse;
 import net.ion.craken.tree.PropertyId;
@@ -141,7 +144,7 @@ public class MiscWeb implements Webapp{
 			}
 		}) ;
 		return new JsonObject().put("info", rsession.ghostBy("/menus/misc").property("user").asString())
-				.put("schemaName", JsonParser.fromString("[{'title':'id'},{'title':'name'}]").getAsJsonArray())
+				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Name'}]").getAsJsonArray())
 				.put("users", jarray) ;
 	}
 	
@@ -161,6 +164,26 @@ public class MiscWeb implements Webapp{
 
 		return "registered " + userId ;
 	}
+	
+	@POST
+	@Path("/profile/{uid}")
+	public String editUser(@PathParam("uid") final String userId, @Context HttpRequest request){
+		final MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
+		
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				WriteNode found = wsession.pathBy("/users/" + userId) ;
+				for (String key : formParam.keySet()) {
+					found.property(key, formParam.getFirst(key)) ;
+				}
+				return null;
+			}
+		}) ;
+		
+		return "edited " + userId ;
+	}
+	
 	
 	
 	@POST

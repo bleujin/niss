@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-edit fa-fw "></i> 
-				Define Loader
+			<i class="fa fa-edit fa-fw "></i>${m.asString("loaders.defined.title")}
 		</h1>
 	</div>
 	
@@ -17,8 +16,8 @@
 			</blockquote>
 			
 			<div class="">
-			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
-			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
 			</div>
 		</div>
 
@@ -38,7 +37,7 @@
 			<div class="jarviswidget jarviswidget-color-purple" id="wid-loader-defined" data-widget-editbutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-					<h2>Detail</h2>				
+					<h2>${m.asString("loaders.defined.table-header")}</h2>				
 				</header>
 
 
@@ -51,6 +50,12 @@
 					<div class="widget-body">
 					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
+							<section>
+								<label class="select">
+									<select name="loader_samples"><option value=''>View Sample Script</option></select>
+								</label>
+							</section>
+						
 							<section>
 								<label class="label">Script Content</label>
 								<label class="textarea textarea-resizable">
@@ -139,9 +144,16 @@
 			success:function(data){
 				var info = data['info'];
 				var name = data['name'];
+				var samples = data['samples'];
 				var content = data['content'];
+				
+				for(var idx in samples ){
+					var sample = samples[idx] ; 
+					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
+					option.appendTo($("select[name=loader_samples]")) ;
+				}
+				
 				$("#info").html(info) ;
-
 				$("#scontent").val(data["content"]) ;
 			}, 
 			error:function(request,status,error){
@@ -149,6 +161,24 @@
 			}
 
 		}) ;
+		
+		
+		$("select[name=loader_samples]").change(function(){
+			var fileName = $("select[name=loader_samples]").val() ;
+			if (fileName < ' ') return ;
+			$.ajax({
+				type: "GET",
+				dataType : 'text', 
+				url: "/admin/loaders/" + loaderId + "/sample/" + fileName,
+				data: {}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					$("#scontent").val(data) ;
+				}
+			}) ;
+		}) ;
+		
 		
 		$( "#btn_save" ).click(function() {
 			$.ajax({
@@ -173,7 +203,7 @@
 			var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
 			var es = new EventSource('/event/' + eventId);
 		       es.onopen = function() {
-		       	console.log('OPEN');
+		       	  // console.log('OPEN');
 		       };
 		       es.onmessage = function(e) {
 			       if (e.data == eventId) {
@@ -203,7 +233,7 @@
 					$("#target_url").html(result_text) ;
 				}, 
 				success :  function(data) {
-					console.log(data) ;
+					// console.log(data) ;
 				}
 			}) ;
 		});

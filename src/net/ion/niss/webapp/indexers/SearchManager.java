@@ -23,11 +23,15 @@ public class SearchManager {
 	}
 	
 	public Searcher searcher(String sid){
-		return searcher(IdString.create(sid)) ;
+		Searcher result = searcher(IdString.create(sid));
+		if (result == null) throw new IllegalArgumentException("not found searcher : " + sid) ;
+		return result ;
 	}
 
 	public Searcher searcher(IdString sid) {
-		return searchers.get(sid);
+		Searcher result = searchers.get(sid);
+		if (result == null) throw new IllegalArgumentException("not found searcher : " + sid) ;
+		return result;
 	}
 
 	public void removeSearcher(IdString sid) {

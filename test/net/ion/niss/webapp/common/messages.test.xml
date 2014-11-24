@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<messages>
+    
+    <!-- menuname -->
+    
+    <!-- page -->
+    
+    <!-- button -->
+    <buttons>
+        <loaders>
+            <create ko="로더 만들기" en="cl" param="hello %s" param2="%s %s">Create Loader</create>
+        </loaders>
+    </buttons>
+    <menus>
+        <loaders>Menu Loader
+            <sub ko="Sub Menu KO">Sub Menu</sub>
+        </loaders>
+    </menus>
+</messages>

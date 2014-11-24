@@ -32,6 +32,7 @@ import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.IdString;
@@ -41,8 +42,10 @@ import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.radon.core.ContextParam;
 
+import org.apache.commons.collections.map.MultiValueMap;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 import org.jboss.resteasy.spi.HttpRequest;
 
@@ -78,14 +81,17 @@ public class ScriptWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewScript(@PathParam("sid") final String sid){
 		ReadNode found = rsession.ghostBy("/scripts/" + sid) ;
-		return new JsonObject().put("sid", found.fqn().name()).put("content", found.property("content").asString()) ;
+		return new JsonObject()
+			.put("sid", found.fqn().name())
+			.put("samples", WebUtil.findScripts())
+			.put("content", found.property("content").asString()) ;
 	}
 
-	@Path("/sample")
+	@Path("/sample/{fileName}")
 	@GET
-	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject sampleScript() throws IOException{
-		return new JsonObject().put("content", IOUtil.toStringWithClose(new FileInputStream(MISC_SCRIPT_FILE))) ;
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+	public String sampleScript(@PathParam("fileName") String fileName) throws IOException{
+		return WebUtil.viewScript(fileName) ;
 	}
 	
 
@@ -144,12 +150,22 @@ public class ScriptWeb implements Webapp{
 				return result;
 			}
 		}) ;
-		return new JsonObject().put("info", rsession.ghostBy("/menus/misc").property("script").asString())
-				.put("schemaName", JsonParser.fromString("[{'title':'id'},{'title':'run path'},{'title':'explain'}]").getAsJsonArray())
+		return new JsonObject()
+				.put("info", rsession.ghostBy("/menus/misc").property("script").asString())
+				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Run Path'},{'title':'Explain'}]").getAsJsonArray())
+				.put("samples", WebUtil.findScripts())
 				.put("scripts", jarray) ;
 	}
 	
 
+	@Path("/instantrun")
+	@POST
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
+	public Response instantRunScript(@Context HttpRequest request, @DefaultValue("") @FormParam("content") String content) throws IOException, ScriptException{
+		String scriptId = "" + System.currentTimeMillis() ;
+		return runScript(scriptId, new MultivaluedMapImpl<String, String>(), content) ;
+	}
+	
 	@Path("/run/{sid}")
 	@GET @POST
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
@@ -158,16 +174,20 @@ public class ScriptWeb implements Webapp{
 		for (Entry<String, List<String>> entry : request.getUri().getQueryParameters().entrySet()) {
 			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
 		}
-		for (Entry<String, List<String>> entry : request.getFormParameters().entrySet()) {
+		
+		for (Entry<String, List<String>> entry : request.getDecodedFormParameters().entrySet()) {
 			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
 		}
-		
-		
-		final StringWriter writer = new StringWriter();
-		
+
 		String content = rsession.ghostBy("/scripts/" + sid).property("content").asString() ;
-		InstantJavaScript script = jengine.createScript(IdString.create(sid), "", new StringReader(content)) ;
-		
+		return runScript(sid, params, content);
+	}
+
+
+
+	private Response runScript(String scriptId, MultivaluedMap<String, String> params, String content) throws IOException, ScriptException {
+		final StringWriter writer = new StringWriter();
+		InstantJavaScript script = jengine.createScript(IdString.create(scriptId), "", new StringReader(content)) ;
 		
 		StringWriter result = new StringWriter();
 		final JsonWriter jwriter =  new JsonWriter(result) ;

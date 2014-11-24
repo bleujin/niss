@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-edit fa-fw "></i> 
-				Template
+			<i class="fa fa-edit fa-fw "></i>${m.asString("searchers.template.title")}
 		</h1>
 	</div>
 	
@@ -17,8 +16,8 @@
 			</blockquote>
 			
 			<div class="">
-			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
-			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
 			</div>
 		</div>
 
@@ -31,10 +30,10 @@
 	<div class="row">
 		<article class="col-sm-12 col-md-12 col-lg-12">
 			
-			<div class="jarviswidget jarviswidget-color-blue" id="wid-id-tpl" data-widget-editbutton="false" data-widget-sortable="false">
+			<div class="jarviswidget jarviswidget-color-blue" data-widget-editbutton="false" data-widget-sortable="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-pencil"></i> </span>
-					<h2>Edit Template</h2>
+					<h2>${m.asString("searchers.template.table-header")}</h2>
 				</header>
 
 				<div>
@@ -43,8 +42,15 @@
 
 					<div class="widget-body no-padding">
 						<form class="smart-form" id="searcher_template_form" method="post" action="searchers/query" novalidate="novalidate">
-							<fieldset style="padding: 0px">	
+							<fieldset>
 								<section>
+									<label class="select">
+										<select name="template_samples"><option value=''>View Sample Template</option></select>
+									</label>
+								</section>
+
+								<section>
+									<label class="label">Template Content</label>	
 									<label class="textarea textarea-resizable"><textarea id="template" rows="20"></textarea></label>
 								</section>
 							</fieldset>
@@ -55,7 +61,6 @@
 							</div>
 							<footer>
 								<button class="btn btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>
-								<button class="btn btn-primary" type="button" id="btn_default"><i class="fa fa-times"></i> LoadDefault</button>
 							</footer>
 						</form>
 
@@ -105,6 +110,14 @@
 			dataType:'json',
 			success:function(data){
 				var info = data['info'];
+				var samples = data['samples'];
+				
+				for(var idx in samples ){
+					var sample = samples[idx] ; 
+					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
+					option.appendTo($("select[name=template_samples]")) ;
+				}
+				
 				$("#info").html(info) ;
 				$("#template").val(data['template']);
 			}, 
@@ -114,19 +127,21 @@
 		}) ;
 		
 
-		$( "#searcher_template_form .btn-primary" ).click(function() {		
+		$("select[name=template_samples]").change(function(){
+			var fileName = $("select[name=template_samples]").val() ;
+			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
-				url: "/admin/searchers/" + searcherId + "/template.default",
-				dataType:'text',
-				success:function(data){
-					$("#template").val(data);
+				dataType : 'text', 
+				url: "/admin/searchers/" + searcherId + "/sampletemplate/" + fileName,
+				data: {}, 
+				complete : function(){ 
 				}, 
-				error:function(request,status,error){
-					console.log('response', request, status, error) ;
+				success :  function(data) {
+					$("#template").val(data) ;
 				}
 			}) ;
-		});
+		}) ;
 		
 		$( "#searcher_template_form .btn-success" ).click(function() {		
 			$.ajax({

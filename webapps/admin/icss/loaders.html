@@ -18,13 +18,12 @@
 		</div>
 		
 		<ul class="inbox-menu-lg">
-			<li class="submenu active"><a class="overview-load" href="javascript:void(0);"> Overview </a></li>
-			<li class="submenu"><a class="defined-load" href="javascript:void(0);">Define Loader</a></li>
-			<li class="submenu"><a class="example-load" href="javascript:void(0);">Example Loader</a></li>
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);">${m.asString("menu.loaders.overview")}</a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">${m.asString("menu.loaders.defined")}</a></li>
 			<li><br /><br /><li>
 			<li class="dd-item" data-id="1">
 				<div class="dd-handle create-open">
-					Create <span> Loader</span>
+					<span>${m.asString("menu.loaders.create")}</span>
 				</div>
 			</li>
 		</ul>
@@ -202,10 +201,6 @@
 		$(".defined-load").click(function() {
 			loadURL("icss/loaders/defined.html", $('#inbox-content > .table-wrap')) ;
 			lastMenuHTML = 'defined.html' ;
-		});
-		$(".example-load").click(function() {
-			loadURL("icss/loaders/example.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = 'example.html' ;
 		});
 		$(".history-load").click(function() {
 			loadURL("icss/loaders/history.html", $('#inbox-content > .table-wrap')) ;

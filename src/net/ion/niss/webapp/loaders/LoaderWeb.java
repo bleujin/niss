@@ -36,6 +36,7 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.ExtMediaType;
+import net.ion.niss.webapp.util.WebUtil;
 import net.ion.radon.core.ContextParam;
 
 import org.jboss.resteasy.spi.HttpResponse;
@@ -150,7 +151,7 @@ public class LoaderWeb implements Webapp {
 		
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
-		result.put("schemaName", JsonParser.fromString("[{'title':'eventId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
+		result.put("schemaName", JsonParser.fromString("[{'title':'EventId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
 		result.put("info", rsession.ghostBy("/menus/loaders").property("overview").asString()) ;
 		
 		return result ;
@@ -161,18 +162,27 @@ public class LoaderWeb implements Webapp {
 	@GET
 	@Path("/{lid}/define")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject viewScript(@PathParam("lid") final String lid) {
+	public JsonObject viewDefine(@PathParam("lid") final String lid) {
 		ReadNode found = rsession.pathBy("/loaders/" + lid) ;
 		
 		JsonObject result = new JsonObject() ;
 		result.put("info", rsession.ghostBy("/menus/loaders").property("define").asString()) ;
 		result.put("lid", found.fqn().name()) ;
-		result.put("name", found.property("name").asString()) ;
+		result.put("samples", WebUtil.findLoaderScripts()) ;
 		result.put("content", found.property("content").asString()) ;
 		return result ;
 	}
 
 
+	@GET
+	@Path("/{lid}/sample/{fileName}")
+	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+	public String viewSampleScript(@PathParam("lid") final String lid, @PathParam("fileName") String fileName) throws IOException{
+		return WebUtil.viewLoaderScript(fileName) ;
+	}
+	
+	
+	
 	
 	@POST
 	@Path("/{lid}/run/{eventId}")
@@ -219,19 +229,5 @@ public class LoaderWeb implements Webapp {
 
 	}
 
-	@GET
-	@Path("/{lid}/examples")
-	public JsonObject example() throws FileNotFoundException, IOException{
-		Collection<File> efiles = FileUtil.listFiles(new File("./resource/loader"), new String[]{"script"}, false) ;
-		JsonArray exams = new JsonArray() ;
-		for (File file : efiles) {
-			exams.add(new JsonObject().put("name", file.getName()).put("content", IOUtil.toStringWithClose(new FileInputStream(file)))) ;
-		}
-
-		JsonObject result = new JsonObject() ;
-		result.put("examples", exams) ;
-		result.put("info", rsession.ghostBy("/menus/loaders").property("example").asString()) ;
-		return result ;
-	}
 	
 }

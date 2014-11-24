@@ -10,12 +10,13 @@ import net.ion.radon.client.StubServer;
 public class TestTunnelWeb extends TestCase {
 	
 	private StubServer ss;
+	private REntry entry;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(TunnelWeb.class) ;
-		REntry entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
 		entry.login().tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
@@ -24,6 +25,12 @@ public class TestTunnelWeb extends TestCase {
 			}
 		}) ;
 		
+	}
+	
+	@Override
+	protected void tearDown() throws Exception {
+		this.entry.close(); 
+		super.tearDown();
 	}
 	
 	public void testView() throws Exception {
@@ -35,8 +42,5 @@ public class TestTunnelWeb extends TestCase {
 		Debug.debug(ss.request("/tunnel/users/bleujin.list").get().contentsString());
 	}
 	
-	public void testList() throws Exception {
-		
-	}
 	
 }

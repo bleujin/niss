@@ -55,17 +55,17 @@ public class TestEctWeb extends TestCase {
 	
 	public void testExecuteAnalysis() throws Exception {
 		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", MyKoreanAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
-		JsonArray array = JsonParser.fromString(response.contentsString()).getAsJsonArray() ;
+		JsonObject jo = JsonParser.fromString(response.contentsString()).getAsJsonObject() ;
 		
-		assertEquals(true, array.size() > 0);
 		Debug.line(response.contentsString()) ;
+		assertEquals(true, jo.keySet().size() > 0);
 	}
 	
 	public void testExecuteNoStopwordAnalyzer() throws Exception {
 		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", SimpleAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
-		JsonArray array = JsonParser.fromString(response.contentsString()).getAsJsonArray() ;
+		JsonObject jo = JsonParser.fromString(response.contentsString()).getAsJsonObject() ;
 		
-		assertEquals(true, array.size() > 0);
+		assertEquals(true, jo.keySet().size() > 0);
 		Debug.line(response.contentsString()) ;
 	}
 	

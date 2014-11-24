@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<messages>
+
+	<!-- menuname -->
+	<menu>
+		<loaders kr="읽어오기">Loaders
+			<overview>Overview</overview>
+			<defined>Define Loader</defined>
+			<create>Create Loader</create>
+		</loaders>
+		<indexers kr="저장하기">Indexers
+			<overview>Overview</overview>
+			<defined>Define Indexer</defined>
+			<schema>Schema</schema>
+			<index>Index</index>
+			<query>Query</query>
+			<browsing>Browsing</browsing>
+			<create>Create Indexer</create>
+		</indexers>
+		<searchers kr="검색하기">Sarchers
+			<overview>Overview</overview>
+			<defined>Define Searcher</defined>
+			<schema>Schema</schema>
+			<query>Query</query>
+			<template>Template</template>
+			<browsing>Search Browsing</browsing>
+			<create>Cretae Searcher</create>
+		</searchers>
+		<misc>Miscellaneous
+			<properties>Java Properties</properties>
+			<threaddump>Thread Dump</threaddump>
+			<analyzer>Analyzer</analyzer>
+			<history>History</history>
+			<logging>Logging</logging>
+			<script>Script</script>
+			<user>User</user>
+		</misc>
+	</menu>
+
+	<!-- page -->
+	
+	<main>
+	    <activity>Activity:</activity>
+	    <recent>Recent Activity</recent>
+	    <webapp>ICSS WebApp</webapp>
+	    <loaders>Loaders</loaders>
+	    <indexers>Indexers</indexers>
+	    <searchers>Searchers</searchers>
+	    <misc>Miscellaneous</misc>
+	    
+	    <logout>
+	        <message>You can improve your security further after logging out by closing this opened browser</message>
+	        <title>NISS Admin</title>
+	        <signin>Sign In</signin>
+	        <userid>User Id</userid>
+	        <password>Password</password>
+	        <stay>Stay signed in</stay>
+	        <buttons>
+	            <signin>Sign In</signin>
+			</buttons>
+	    </logout>
+	</main>
+	
+    <loaders>
+        <choose>Choose Loader</choose>
+        <overview>
+            <title>Overview</title>
+            <table-header>Recent Loader History(Max:101)</table-header>
+            <eventid>Event Id</eventid>
+            <time>Time</time>
+            <status>Status</status>
+            <buttons><view-detail>View Detail</view-detail></buttons>
+           </overview>
+           <defined>
+               <title>Define Loader</title>
+               <table-header>Detail</table-header>
+               <content>Script Content</content>
+               <output>Output</output>
+               <buttons>
+                   <run>Run</run>
+                   <save>Save</save>
+               </buttons>
+           </defined>
+           <create>Create Loader
+          		<loaderid>Loader Id</loaderid>
+           </create>
+           
+    </loaders>
+    
+    <indexers>
+        <choose>Choose Indexer</choose>
+        <overview>
+            <title>Overview</title>
+            <status>Status</status>
+            <directory>Directory</directory>
+        </overview>
+        <defined>
+            <title>Define Indexer</title>
+            <table-header>Detail</table-header>
+            <index-analyzer>Index Analyzer</index-analyzer>
+            <stopword>StopWord</stopword>
+            <apply-stopword>Apply StopWord</apply-stopword>
+            <query-analyzer>Query Analyzer</query-analyzer>
+            <buttons>
+                <save>Save</save>
+            </buttons>
+        </defined>
+        <scehma>
+            <title>Schema</title>
+            <table-header>Schema Fields</table-header>
+            <schemaid>Schema Id</schemaid>
+            <type>Type</type>
+            <option>Option</option>
+            <buttons>
+                <create>Create Field</create>
+                <remove>Remove Field</remove>
+            </buttons>
+        </scehma>
+        <index>
+            <title>Index Document</title>
+            <table-header>Index Example</table-header>
+            <document-type>Document Type</document-type>
+            <documents>Document(?)</documents>
+            <commit-within>Commit Within</commit-within>
+            <boost>Boost</boost>
+            <overwrite>Overwrite</overwrite>
+            <buttons>
+                <index>Index Document</index>
+            </buttons>
+        </index>
+        <query>
+            <title>Query</title>
+            <table-header>Query Example</table-header>
+            <query>Query</query>
+            <sort>Sort(ex: name, id desc)</sort>
+            <skip>Skip</skip>
+            <offset>Offset</offset>
+            <query-parameter>Query Parameter</query-parameter>
+            <docuemnt-type>Document Type</docuemnt-type>
+            <indent>Indent</indent>
+            <buttons>
+                <execute>Execute Query</execute>
+            </buttons>
+        </query>
+        <browsing>
+            <title>Index Browsing</title>
+            <table-header>Index Data Tables(Max:101)</table-header>
+            <id>Id</id>
+			<buttons>
+			    <remove>Remove Row</remove>
+			</buttons>            
+        </browsing>
+    </indexers>
+    
+    <searchers>
+        <choose>Choose Searcher</choose>
+        <overview>
+            <title>Overview</title>
+        </overview>
+        <defined>
+            <title>Define Searcher</title>
+            <table-header>Detail</table-header>
+            <target-index>Target Indexer</target-index>
+            <query-analyzer>Query Analyzer</query-analyzer>
+            <handler>Handler</handler>
+            <apply-handler>Apply Handler</apply-handler>
+            <stopword>StopWord</stopword>
+            <apply-stopword>Apply Stopword</apply-stopword>
+            <buttons>
+                <save>Save</save>
+            </buttons>
+            </defined>
+        <schema>
+            <title>Schema</title>
+            <table-header>Schema Fields</table-header>
+            <schemaid>Schema Id</schemaid>
+            <analyzer>Analyzer</analyzer>
+            <buttons>
+                <create>Create Field</create>
+                <remove>Remove Field</remove>
+            </buttons>
+        </schema>
+        <query>
+            <title>Query</title>
+            <table-header>Query Example</table-header>
+            <query>Query</query>
+            <sort>Sort(ex: name, id desc)</sort>
+            <skip>Skip</skip>
+            <offset>Offset</offset>
+            <query-parameter>Query Parameter</query-parameter>
+            <docuemnt-type>Document Type</docuemnt-type>
+            <indent>Indent</indent>
+            <debug>Debug</debug>
+            <buttons>
+                <execute>Execute Query</execute>
+            </buttons>
+        </query>
+        <template>
+            <title>Template</title>
+            <table-header>Edit Template(Velocity)</table-header>
+            <content>Template Content</content>
+            <buttons>
+                <save>Save</save>
+            </buttons>
+        </template>
+        <browsing>
+            <title>Search Browsing</title>
+            <table-header>Browsing Table(Max : 101)</table-header>
+        </browsing>
+    </searchers>
+    
+    <misc>
+        <properties>
+            <title>System Properties</title>
+            <table-header>Properties</table-header>
+            <name>Name</name>
+            <value>Value</value>
+        </properties>
+        <threaddump>
+            <title>Thread Dump</title>
+            <table-header>Threads</table-header>
+        </threaddump>
+        <analyzer>
+            <title>Analyzer Confirm</title>
+            <table-header>Analyzer Confirm</table-header>
+            <value>Text Value To Analyze</value>
+            <type>Analyzer Type</type>
+            <stopword>Stop Word</stopword>
+            <buttons>Analyze Value</buttons>
+        </analyzer>
+        <history>
+            <title>Loader Log Browsing</title>
+            <table-header>Log Tables</table-header>
+            <id>Id</id>
+            <time>Time</time>
+            <loaderid>Loader Id</loaderid>
+            <status>Status</status>
+            <buttons>
+                <detail>View Detail</detail>
+            </buttons>
+        </history>
+        <logging>
+            <title>Logging</title>
+            <table-header>Logging Monitor</table-header>
+            <time>Time</time>
+            <client>Client</client>
+            <type>Type</type>
+            <Resource>Resource</Resource>
+            <method>Method</method>
+            <elapsed>Elapsed</elapsed>
+            <buttons>
+                <monitor>Monitor</monitor>
+                <stop>Stop</stop>
+            </buttons>
+        </logging>
+        <script>
+            <title>Craken Script</title>
+            <tble-header>Script Tables</tble-header>
+            <id>Id</id>
+            <run>Run Path</run>
+            <explain>Explain</explain>
+            <buttons>
+                <define>Define Script</define>
+                <remove>Remove Script</remove>
+            </buttons>
+        </script>
+        <user>
+            <title>System User</title>
+            <table-header>User Tables</table-header>
+            <id>Id</id>
+            <name>Name</name>
+            <buttons>
+                <register>Register User</register>
+                <remvoe>Remove User</remvoe>
+            </buttons>
+        </user>
+    </misc>
+	
+
+	<!-- button -->
+	<buttons>
+		<info>
+		    <edit>Edit</edit>
+		    <save>Save</save>
+    	</info>
+    	<modal>
+    	    <close>Close</close>
+    	</modal>
+	</buttons>
+</messages>

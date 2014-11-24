@@ -11,6 +11,7 @@ import net.ion.nradon.helpers.Base64;
 public class MyAuthenticationHandler extends AbstractHttpHandler {
 
 	public static final String USERNAME = "user";
+	public static final String LANGCODE = "langcode";
 
 	private static final String BASIC_PREFIX = "Basic ";
 

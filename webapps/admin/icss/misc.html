@@ -3,18 +3,15 @@
 <div id="inbox-content" class="inbox-body no-content-padding">
 
 	<div class="inbox-side-bar">
-
 		<ul class="inbox-menu-lg">
-			<li class="submenu active"><a class="property-load" href="javascript:void(0);"> Java Properties </a></li>
-			<li class="submenu"><a class="thread-load" href="javascript:void(0);">Thread Dump</a></li>
-			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">Analyzer Confirm</a></li>
-			<li class="submenu"><a class="history-load" href="javascript:void(0);">Loader History</a></li>
-			<li class="submenu"><a class="logging-load" href="javascript:void(0);">Logging</a></li>
-			<li class="submenu"><a class="script-load" href="javascript:void(0);">Script</a></li>
-			<li class="submenu"><a class="user-load" href="javascript:void(0);">User</a></li>
+			<li class="submenu active"><a class="property-load" href="javascript:void(0);">${m.asString("menu.misc.properties")}</a></li>
+			<li class="submenu"><a class="thread-load" href="javascript:void(0);">${m.asString("menu.misc.threaddump")}</a></li>
+			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">${m.asString("menu.misc.analyzer")}</a></li>
+			<li class="submenu"><a class="history-load" href="javascript:void(0);">${m.asString("menu.misc.history")}</a></li>
+			<li class="submenu"><a class="logging-load" href="javascript:void(0);">${m.asString("menu.misc.logging")}</a></li>
+			<li class="submenu"><a class="script-load" href="javascript:void(0);">${m.asString("menu.misc.script")}</a></li>
+			<li class="submenu"><a class="user-load" href="javascript:void(0);">${m.asString("menu.misc.user")}</a></li>
 		</ul>
-
-
 	</div>
 
 
@@ -86,13 +83,26 @@
 						<input type="text" name="sid"/>
 					</label>
 				</section>
+				
+				<section>
+					<label class="select">
+						<select name="script_samples"><option value=''>View Sample Script</option></select>
+					</label>
+				</section>
+				
 				<section>
 					<label class="label">Script Content</label>
 					<label class="textarea textarea-resizable">
 						<i class="icon-append fa fa-question-circle"/> 										
-						<textarea rows="12" class="custom-scroll" placeholder="script content" name="content"></textarea>
+						<textarea rows="10" class="custom-scroll" placeholder="script content" name="content"></textarea>
 						<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
 					</label>
+				</section>
+				
+				<section>
+					<label class="label">Response</label>
+					<div><pre name="script_response"></pre></div>
+					
 				</section>
 				
 			</fieldset>
@@ -101,7 +111,7 @@
             
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-              <button class="btn" name="load_sample">Load Sample</button>
+              <button class="btn btn-success" name="instant_run">Run</button>
               <button class="btn btn-primary" name="create_script">Define Script</button>
             </div>  
 
@@ -203,18 +213,44 @@
 		$("#create_script_modal button[name=create_script]").click(function(){
 			$("#create_script_form").submit() ;
 		});
-		$("#create_script_modal button[name=load_sample]").click(function(){
+		
+		$("#create_script_modal button[name=instant_run]").click(function(){
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/scripts/instantrun",
+				data: {'content': $("#create_script_form textarea[name=content]").val()}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					$("#create_script_modal pre[name=script_response]").text(data) ;
+	// 				var win = window.open();
+	//	            win.document.write(data);
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
+				}
+			}) ;
+		}) ;
+		
+		$("select[name=script_samples]").change(function(){
+			var fileName = $("select[name=script_samples]").val() ;
+			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
-				dataType:"json", 
-				url: "/admin/scripts/sample",
-				success : function(data){
-					$('#create_script_form textarea[name=content]').val(data['content']) ;
+				dataType : 'text', 
+				url: "/admin/scripts/sample/" + fileName,
+				data: {}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					$('#create_script_form textarea[name=content]').val(data) ;
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
 				}
-			});
+			}) ;
 		});
-		
-		
 
 		function tableHeightSize() {
 			if ($('body').hasClass('menu-on-top')) {

@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-edit fa-fw "></i> 
-				Define Searcher
+			<i class="fa fa-edit fa-fw "></i>${m.asString("searchers.defined.title")}
 		</h1>
 	</div>
 	
@@ -17,8 +16,8 @@
 			</blockquote>
 			
 			<div class="">
-			<button id="edit_explain" class="btn btn-sm" type="button">Edit</button>
-			<button id="save_explain" class="btn btn-sm" type="button">Save</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
 			</div>
 		</div>
 
@@ -38,7 +37,7 @@
 			<div class="jarviswidget jarviswidget-color-purple" id="searcher-defined-win" data-widget-editbutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
-					<h2>Detail</h2>				
+					<h2>${m.asString("searchers.defined.table-header")}</h2>				
 				</header>
 
 				<div>
@@ -64,6 +63,12 @@
 								<label class="label">Query Analyzer</label>
 								<label class="select">
 									<select id="query_analyzer"></select>
+								</label>
+							</section>
+										
+							<section>
+								<label class="select">
+									<select name="handler_samples"><option value=''>View Sample Handler</option></select>
 								</label>
 							</section>
 											
@@ -94,7 +99,6 @@
 						
 						<footer>
 							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>	
-							<button class="btn btn-primary" type="button" id="btn_default"><i class="fa fa-times"></i> LoadDefault</button>
 						</footer>
 						
 						<div class="message">
@@ -151,6 +155,7 @@
 				var indexers = data['indexers'];
 				var targets = data['target'];
 				var query_analyzer = data['query_analyzer'] ;
+				var samples = data['samples'];
 				
 				$("#info").html(data['info']) ;
 
@@ -168,6 +173,14 @@
 					if (analyzer['selected']) option.attr('selected', 'selected');
 					option.appendTo($("#query_analyzer")) ;
 				}
+				
+				for(var idx in samples ){
+					var sample = samples[idx] ; 
+					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
+					option.appendTo($("select[name=handler_samples]")) ;
+				}
+
+				
 				$("#handler").val(data["handler"]) ;
 				$("#applyhandler").attr('checked', data["applyhandler"]) ;
 
@@ -183,13 +196,18 @@
 		}) ;
 		
 		
-		$( "#searcher-define-form .btn-primary" ).click(function() {		
+		$("select[name=handler_samples]").change(function(){
+			var fileName = $("select[name=handler_samples]").val() ;
+			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
-				url: "/admin/searchers/" + searcherId + "/define.default",
-				dataType:'text',
-				success:function(data){
-					$("#handler").val(data);
+				dataType : 'text', 
+				url: "/admin/searchers/" + searcherId + "/samplehandler/" + fileName,
+				data: {}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					$("#handler").val(data) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;

@@ -51,10 +51,13 @@ import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
+import net.ion.niss.webapp.util.WebUtil;
+import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
+import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 
@@ -142,6 +145,7 @@ public class SearcherWeb implements Webapp {
 			public JsonObject apply(ReadNode node) {
 				JsonObject result = new JsonObject().put("info", rsession.ghostBy("/menus/searchers").property("define").asString()).put("indexers", colNames).put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
 						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0])).put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
+						.put("samples", WebUtil.findSearchHandlers())
 						.put(Def.Searcher.StopWord, node.property(Def.Searcher.StopWord).asString()).put(Def.Searcher.ApplyStopword, node.property(Def.Searcher.ApplyStopword).asBoolean());
 
 				JsonArray qarray = new JsonArray();
@@ -180,11 +184,20 @@ public class SearcherWeb implements Webapp {
 	}
 
 	@GET
-	@Path("/{sid}/define.default")
+	@Path("/{sid}/samplehandler/{fileName}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String defaultHandler(@PathParam("sid") final String sid) throws IOException {
-		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_HANDLER_FILE));
+	public String viewSampleHandler(@PathParam("sid") final String lid, @PathParam("fileName") String fileName) throws IOException{
+		return WebUtil.viewSearchHandler(fileName) ;
 	}
+	
+
+	
+//	@GET
+//	@Path("/{sid}/define.default")
+//	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+//	public String defaultHandler(@PathParam("sid") final String sid) throws IOException {
+//		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_HANDLER_FILE));
+//	}
 
 	// --- schema
 	@GET
@@ -278,10 +291,16 @@ public class SearcherWeb implements Webapp {
 	}
 
 	private SearchResponse searchQuery(String sid, String query, String sort, String skip, String offset, HttpRequest request, MultivaluedMap<String, String> map) throws IOException, ParseException {
-		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getFormParameters().size() > 0)
-			map.putAll(request.getFormParameters());
+		if (request.getHttpMethod().equalsIgnoreCase("POST") && request.getDecodedFormParameters().size() > 0)
+			map.putAll(request.getDecodedFormParameters());
 
-		SearchResponse sresponse = smanager.searcher(sid).createRequest(query).sort(sort).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find();
+		Searcher searcher = smanager.searcher(sid);
+		
+		int defaultSkip = searcher.config().attrAsInt("skip", 0) ;
+		int defaultOffset = searcher.config().attrAsInt("offset", 10) ;
+		String defaultSort = searcher.config().attrAsString("sort", "") ;
+		
+		SearchResponse sresponse = searcher.createRequest(query).sort(StringUtil.coalesce(sort, defaultSort)).skip(NumberUtil.toInt(skip, defaultSkip)).offset(NumberUtil.toInt(offset, defaultOffset)).find();
 		return sresponse;
 	}
 
@@ -338,16 +357,24 @@ public class SearcherWeb implements Webapp {
 	public JsonObject viewTemplate(@PathParam("sid") final String sid) {
 		JsonObject result = new JsonObject();
 		result.put("info", rsession.ghostBy("/menus/searchers").property("template").asString());
+		result.put("samples", WebUtil.findSearchTemplates()) ;
 		result.put("template", rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString());
 		return result;
 	}
 
 	@GET
-	@Path("/{sid}/template.default")
+	@Path("/{sid}/sampletemplate/{fileName}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String defaultTemplate(@PathParam("sid") final String sid) throws IOException {
-		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_TEMPLATE_FILE));
+	public String viewSampleTemplate(@PathParam("sid") final String sid, @PathParam("fileName") String fileName) throws IOException{
+		return WebUtil.viewSearchTemplate(fileName) ;
 	}
+	
+//	@GET
+//	@Path("/{sid}/template.default")
+//	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
+//	public String defaultTemplate(@PathParam("sid") final String sid) throws IOException {
+//		return IOUtil.toStringWithClose(new FileInputStream(SEARCH_TEMPLATE_FILE));
+//	}
 
 	@POST
 	@Path("/{sid}/template")
@@ -412,7 +439,8 @@ public class SearcherWeb implements Webapp {
 						ReadDocument rdoc = searcher.doc(did, request);
 						JsonArray rowArray = new JsonArray() ;
 						for(String fname : fnames){
-							rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
+							if ("id".equals(fname)) rowArray.add(new JsonPrimitive(rdoc.reserved(IKeywordField.DocKey))) ;
+							else rowArray.add(new JsonPrimitive(rdoc.asString(fname, ""))) ;
 						}
 						jarray.add(rowArray);
 					}

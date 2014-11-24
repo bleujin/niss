@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" manifest="/cache.appcache">	
+<html lang="en-us">	
 	<head>
 		<meta charset="utf-8">
 		<title> SmartAdmin (AJAX)</title>
@@ -67,8 +67,8 @@
 			<!-- #PROJECTS: projects dropdown -->
 			<div class="project-context hidden-xs" id="recent_activity">
 
-				<span class="label">Activity:</span>
-				<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent activity <i class="fa fa-angle-down"></i></span>
+				<span class="label">${m.asString("main.activity")}</span>
+				<span class="project-selector dropdown-toggle" data-toggle="dropdown">${m.asString("main.recent")} <i class="fa fa-angle-down"></i></span>
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu">
@@ -145,10 +145,10 @@
 				<!-- multiple lang dropdown : find all flags in the flags page -->
 				<ul class="header-dropdown-list hidden-xs">
 					<li>
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-kr" alt="Korea"> <span> KR </span> <i class="fa fa-angle-down"></i> </a>
-						<ul class="dropdown-menu pull-right">
-							<!--li><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> US</a></li-->
-							<li class="active"><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Korea</a></li>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="img/blank.gif" class="flag flag-${request.data('langcode')}" alt="Language Code"> <span> ${request.data("langcode").toUpperCase()} </span> <i class="fa fa-angle-down"></i> </a>
+						<ul class="dropdown-menu pull-right" id="langcode">
+							<li data-id="us"><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-us" alt="United States"> US</a></li>
+							<li data-id="kr"><a href="javascript:void(0);"><img src="img/blank.gif" class="flag flag-kr" alt="Korea"> Korea</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -190,11 +190,10 @@
 			<nav>
 
 				<ul>
-					<li><a href="icss/loaders.html"><i class="fa fa-lg fa-fw fa-suitcase"></i> <span class="menu-item-parent">Loaders</span></a></li>
-					<li><a href="icss/indexers.html"><i class="fa fa-lg fa-fw fa-upload"></i> <span class="menu-item-parent">Indexers</span></a></li>
-					<li><a href="icss/searchers.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">Searchers</span></a></li>
-					
-					<li><a href="icss/misc.html"><i class="fa fa-lg fa-fw fa-windows"></i> <span class="menu-item-parent">Miscellaneous</span></a></li>
+					<li><a href="icss/loaders.html"><i class="fa fa-lg fa-fw fa-suitcase"></i> <span class="menu-item-parent">${m.asString("menu.loaders")}</span></a></li>
+					<li><a href="icss/indexers.html"><i class="fa fa-lg fa-fw fa-upload"></i> <span class="menu-item-parent">${m.asString("menu.indexers")}</span></a></li>
+					<li><a href="icss/searchers.html"><i class="fa fa-lg fa-fw fa-inbox"></i> <span class="menu-item-parent">${m.asString("menu.searchers")}</span></a></li>
+					<li><a href="icss/misc.html"><i class="fa fa-lg fa-fw fa-windows"></i> <span class="menu-item-parent">${m.asString("menu.misc")}</span></a></li>
 					
 					<li class="divider"></li>
 				</ul>
@@ -248,7 +247,7 @@
 		<div class="page-footer">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<span class="txt-color-white">ICSS WebApp © 2014</span>
+					<span class="txt-color-white">${m.asString("main.webapp")} © 2014</span>
 				</div>
 			</div>
 		</div>
@@ -258,10 +257,10 @@
 			 Note: These tiles are completely responsive, you can add as many as you like -->
 		<div id="shortcut">
 			<ul>
-				<li><a href="#icss/loaders.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-suitcase fa-4x"></i> <span>Loaders</span> </span> </a></li>
-				<li><a href="#icss/indexers.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-upload fa-4x"></i> <span>Indexers</span> </span> </a></li>
-				<li><a href="#icss/searchers.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-inbox fa-4x"></i> <span>Searchers</span> </span> </a></li>
-				<li><a href="#icss/misc.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-windows fa-4x"></i> <span>Miscellaneous </span> </span> </a></li>
+				<li><a href="#icss/loaders.html" class="jarvismetro-tile big-cubes bg-color-orangeDark"> <span class="iconbox"> <i class="fa fa-suitcase fa-4x"></i> <span>${m.asString("menu.loaders")}</span> </span> </a></li>
+				<li><a href="#icss/indexers.html" class="jarvismetro-tile big-cubes bg-color-purple"> <span class="iconbox"> <i class="fa fa-upload fa-4x"></i> <span>${m.asString("menu.indexers")}</span> </span> </a></li>
+				<li><a href="#icss/searchers.html" class="jarvismetro-tile big-cubes bg-color-blueDark"> <span class="iconbox"> <i class="fa fa-inbox fa-4x"></i> <span>${m.asString("menu.searchers")}</span> </span> </a></li>
+				<li><a href="#icss/misc.html" class="jarvismetro-tile big-cubes bg-color-greenLight"> <span class="iconbox"> <i class="fa fa-windows fa-4x"></i> <span>${m.asString("menu.misc")}</span> </span> </a></li>
 			</ul>
 		</div>
 		<!-- END SHORTCUT AREA -->
@@ -346,6 +345,25 @@
 				}
 			}) ;
 		}) ;
+		
+		$("#langcode li").click(function() {
+		    var selcode = $(this).attr('data-id') ;
+		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
+			$.ajax({
+				url:'/admin/misc/profile/${request.data("user")}' ,
+				type:'POST',
+				dataType:'text',
+				data:{'langcode':selcode}, 
+				success:function(data){
+					location.reload() ;
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
+				}
+			}) ;
+		    
+		});
 	});
 	</script>
 </html>

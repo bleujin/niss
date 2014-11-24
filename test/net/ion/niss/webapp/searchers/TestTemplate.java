@@ -48,7 +48,7 @@ public class TestTemplate extends TestCase {
 	
 	
 	public void testTemplateQuery() throws Exception {
-		String template = IOUtil.toStringWithClose(new FileInputStream(Webapp.SEARCH_TEMPLATE_FILE));
+		String template = IOUtil.toStringWithClose(new FileInputStream("./resource/search.template/simple_table.template"));
 		
 		ss.request("/searchers/sec1/template").postParam("template", template).post() ;
 		

@@ -84,7 +84,7 @@ public class OpenSearchWeb implements Webapp{
 	public StreamingOutput jqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
 
 		MultivaluedMap<String, String> queryParam = request.getUri().getQueryParameters() ;
-		MultivaluedMap<String, String> formParam = request.getFormParameters() ;
+		MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
 		
 		String query = StringUtil.coalesce(queryParam.getFirst("query"), formParam.getFirst("query"), "") ;
 		String sort = StringUtil.coalesce(queryParam.getFirst("sort"), formParam.getFirst("sort"), "") ;
@@ -101,7 +101,7 @@ public class OpenSearchWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_XML_UTF8)
 	public StreamingOutput xqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
 		MultivaluedMap<String, String> queryParam = request.getUri().getQueryParameters() ;
-		MultivaluedMap<String, String> formParam = request.getFormParameters() ;
+		MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
 		
 		String query = StringUtil.coalesce(queryParam.getFirst("query"), formParam.getFirst("query"), "") ;
 		String sort = StringUtil.coalesce(queryParam.getFirst("sort"), formParam.getFirst("sort"), "") ;
@@ -120,7 +120,7 @@ public class OpenSearchWeb implements Webapp{
 	public StreamingOutput cqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
 
 		MultivaluedMap<String, String> queryParam = request.getUri().getQueryParameters() ;
-		MultivaluedMap<String, String> formParam = request.getFormParameters() ;
+		MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
 		
 		String query = StringUtil.coalesce(queryParam.getFirst("query"), formParam.getFirst("query"), "") ;
 		String sort = StringUtil.coalesce(queryParam.getFirst("sort"), formParam.getFirst("sort"), "") ;
@@ -138,7 +138,7 @@ public class OpenSearchWeb implements Webapp{
 	public String tqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
 
 		MultivaluedMap<String, String> queryParam = request.getUri().getQueryParameters() ;
-		MultivaluedMap<String, String> formParam = request.getFormParameters() ;
+		MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
 		
 		String query = StringUtil.coalesce(queryParam.getFirst("query"), formParam.getFirst("query"), "") ;
 		String sort = StringUtil.coalesce(queryParam.getFirst("sort"), formParam.getFirst("sort"), "") ;

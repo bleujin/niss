@@ -18,7 +18,5 @@ public class TestAnalysisWeb extends TestCase {
 			if (line.startsWith("//")) continue ;
 			Debug.line(line);
 		}
-		
-		
 	}
 }
