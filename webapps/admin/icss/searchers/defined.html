@@ -50,7 +50,7 @@
 						<fieldset>
 						
 							<section class="form-group">
-								<label>Target Indexer</label>
+								<label>${m.asString("searchers.defined.target-index")}</label>
 								<label class="select">
 								<select multiple style="width:100%" class="select2" id="target_indexer" name="target_indexer">
 									<optgroup label="Target Indexer" id="list_indexer">
@@ -60,7 +60,7 @@
 							</section>
 
 							<section>
-								<label class="label">Query Analyzer</label>
+								<label class="label">${m.asString("searchers.defined.query-analyzer")}</label>
 								<label class="select">
 									<select id="query_analyzer"></select>
 								</label>
@@ -68,24 +68,24 @@
 										
 							<section>
 								<label class="select">
-									<select name="handler_samples"><option value=''>View Sample Handler</option></select>
+									<select name="handler_samples"><option value=''>${m.asString("searchers.defined.view-sample")}</option></select>
 								</label>
 							</section>
 											
 							<section>
-								<label class="label">Handler</label>
+								<label class="label">${m.asString("searchers.defined.handler")}</label>
 								<label class="textarea textarea-resizable">
 									<textarea id="handler" name="handler" rows="15">new function(){}</textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applyhandler" /><i></i>Apply Handler</label>
+								<label class="checkbox"><input type="checkbox" id="applyhandler" /><i></i>${m.asString("searchers.defined.apply-handler")}</label>
 							</section>
 
 							<section>
-								<label class="label">Stopword</label>
+								<label class="label">${m.asString("searchers.defined.stopword")}</label>
 								<label class="textarea textarea-resizable">
 									<textarea id="stopword" name="stopword" rows="8"></textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applystopword"/><i></i>Apply Stopword</label>
+								<label class="checkbox"><input type="checkbox" id="applystopword"/><i></i>${m.asString("searchers.defined.apply-stopword")}</label>
 							</section>
 
 							<hr class="simple">
@@ -98,13 +98,9 @@
 						</div>
 						
 						<footer>
-							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> Save</button>	
+							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.defined.buttons.save")}</button>	
 						</footer>
 						
-						<div class="message">
-							<i class="fa fa-thumbs-up"></i>
-							<p>Your message was successfully sent!</p>
-						</div>
 					</form>
 					</div>
 				</div>

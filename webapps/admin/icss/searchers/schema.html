@@ -125,14 +125,14 @@
 					// "dom":'<"toolbar">frtip',
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName']
+					"columns":  [{"title":"${m.asString("searchers.schema.schemaid")}"},{"title":"${m.asString("searchers.schema.analyzer")}"}]// data['schemaName']
 				}) ;
 				
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
-				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_cfield" value="Create Field" /> <input type="button" class="btn btn-primary btn-sm" id="btn_dfield" value="Remove Field" disabled="disabled"/></section>' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_cfield" value="${m.asString("searchers.schema.buttons.create")}" /> <input type="button" class="btn btn-primary btn-sm" id="btn_dfield" value="${m.asString("searchers.schema.buttons.remove")}" disabled="disabled"/></section>' +
 				'						' +
 				'					</div>' +
 				'				</fieldset>' +

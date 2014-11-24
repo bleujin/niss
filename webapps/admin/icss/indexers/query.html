@@ -48,39 +48,39 @@
 						<form class="smart-form" id="document-form" method="post" action="indexers/query" novalidate="novalidate">
 							<fieldset style="padding: 0px">					
 								<section>
-									<label class="label">Query</label>
+									<label class="label">${m.asString("indexers.query.query")}</label>
 									<label class="textarea textarea-resizable">
 										<textarea id="query" name="query" rows="3">*:*</textarea>
 									</label>
 								</section>
 								<section>
-									<label class="label">Sort(ex: name, id desc)</label>
+									<label class="label">${m.asString("indexers.query.sort")}</label>
 									<label class="input">
 										<input type="text" id="sort" name="sort"/>
 									</label>
 								</section>
 								<div class="row">
 								<section class="col col-6">
-									<label class="label">skip</label>
+									<label class="label">${m.asString("indexers.query.skip")}</label>
 									<label class="input">
 										<input type="text" id="skip" name="skip" placeholder="0" />
 									</label>
 								</section>
 								<section class="col col-6">
-									<label class="label">offset</label>
+									<label class="label">${m.asString("indexers.query.offset")}</label>
 									<label class="input">
 										<input type="text" id="offset" name="offset" placeholder="10" />
 									</label>
 								</section>
 								</div>
 								<section>
-									<label class="label">Query Parameter</label>
+									<label class="label">${m.asString("indexers.query.query-parameter")}</label>
 									<label class="input">
 										<input type="text" id="parameter" name="parameter" placeholder="key1=val&key2=val2"/>
 									</label>
 								</section>
 								<section>
-									<label class="label">Document Type</label>
+									<label class="label">${m.asString("indexers.query.document-type")}</label>
 									<label class="select">
 										<select name="interested" id="rtype">
 										    <option value="json">JSON</option>
@@ -90,13 +90,13 @@
 									</label>
 								</section>
 								<section>
-									<label class="checkbox"><input type="checkbox" id="indent" name="indent" checked="false" /><i></i>Indent</label>
+									<label class="checkbox"><input type="checkbox" id="indent" name="indent" checked="false" /><i></i>${m.asString("indexers.query.indent")}</label>
 								</section>
 			
 							</fieldset>
 							
 							<footer>
-								<button class="btn btn-primary" type="button" id="execQuery">Execute Query</button>
+								<button class="btn btn-primary" type="button" id="execQuery">${m.asString("indexers.query.buttons.execute")}</button>
 							</footer>
 							
 							<div class="message">
@@ -104,7 +104,6 @@
 								<p>Your message was successfully sent!</p>
 							</div>
 						</form>
-				
 					</div>
 					
 					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
@@ -117,9 +116,7 @@
 			</div>
 			
 		</article>
-			
 	</div>
-
 </section>
 
 

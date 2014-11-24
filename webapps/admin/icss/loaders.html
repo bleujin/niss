@@ -8,7 +8,7 @@
 		<form class="smart-form no-padding" method="post" action="loaders/left" novalidate="novalidate">
 			<fieldset>
 				<section class="no-padding">
-					<label class="label">Choose Loader</label>
+					<label class="label">${m.asString("loaders.choose")}</label>
 					<label class="select">
 						<select class="input-sm choose-sub form-control" id="loaders"></select>
 					</label>
@@ -63,13 +63,13 @@
 	<div class="modal-dialog">
        <div class="modal-content" style="width:70%">
         	
-            <div class="modal-header"><h5 id="myModalLabel">Create Loader</h5></div>
+            <div class="modal-header"><h5 id="myModalLabel">${m.asString("loaders.create")}</h5></div>
 
             <div class="modal-body">
 			<form class="smart-form" id="create_loader_form" method="post" action="loaders/" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
-					<label class="label">Loader Id</label>
+					<label class="label">${m.asString("loaders.create.loaderid")}</label>
 					<label class="input">
 						<input type="text" id="newLoaderId" name="newlid" placeholder="new loader id" />
 					</label>
@@ -79,8 +79,8 @@
             </div>
             
             <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-              <button class="btn btn-primary" name="create_loader">Create Loader</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+              <button class="btn btn-primary" name="create_loader">${m.asString("loaders.create")}</button>
             </div>  
 
        </div>

@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-table fa-fw "></i> 
-				System Properties
+			<i class="fa fa-edit fa-fw "></i>${m.asString("misc.properties.title")}
 		</h1>
 	</div>
 	
@@ -35,7 +34,7 @@
 				-->
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-					<h2>Properties</h2>
+					<h2>${m.asString("misc.properties.table-header")}</h2>
 				</header>
 
 				<!-- widget div-->
@@ -55,8 +54,8 @@
 								
 							<table class="table table-bordered table-striped">
 								<thead>
-									<tr><th>Name</th>
-										<th>Value</th>
+									<tr><th>${m.asString("misc.properties.name")}</th>
+										<th>${m.asString("misc.properties.value")}</th>
 									</tr>
 								</thead>
 								<tbody id="properties">

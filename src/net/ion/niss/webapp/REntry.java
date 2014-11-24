@@ -415,10 +415,12 @@ public class REntry implements Closeable {
 			searcher = CompositeSearcher.create(nconfig, target);
 		}
 
-		if (rnode.property(Def.Searcher.ApplyHandler).asBoolean()) {
-			StringReader scontent = new StringReader(rnode.property(Def.Searcher.Handler).asString());
+		String scontent = rnode.property(Def.Searcher.Handler).asString();
+		if (rnode.property(Def.Searcher.ApplyHandler).asBoolean() && StringUtil.isNotBlank(scontent)) {
+			
+			StringReader contentReader = new StringReader(scontent);
 			try {
-				InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", scontent);
+				InstantJavaScript script = jsengine.createScript(IdString.create("handler"), "", contentReader);
 				Searcher fsearcher = script.exec(new ResultHandler<Searcher>() {
 					@Override
 					public Searcher onSuccess(Object result, Object... args) {

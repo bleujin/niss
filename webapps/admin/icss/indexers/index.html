@@ -49,7 +49,7 @@
 						<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
 							<fieldset style="padding: 0px">					
 								<section>
-									<label class="label">Document Type</label>
+									<label class="label">${m.asString("indexers.index.document-type")}</label>
 									<label class="select">
 										<select name="interested" id="dtype">
 										    <option value="json">JSON</option>
@@ -59,7 +59,7 @@
 									</label>
 								</section>
 								<section>
-									<label class="label">Document(s)</label>
+									<label class="label">${m.asString("indexers.index.documents")}</label>
 									<label class="textarea textarea-resizable">
 										<textarea id="documents" name="documents" rows="10"></textarea>
 									</label>
@@ -67,13 +67,13 @@
 								
 								<div class="row">
 								<section class="col col-6">
-									<label class="label">Commit Within</label>
+									<label class="label">${m.asString("indexers.index.commit-within")}</label>
 									<label class="input">
 										<input type="text" id="within" name="within" value="1000" />
 									</label>
 								</section>
 								<section class="col col-6">
-									<label class="label">Boost</label>
+									<label class="label">${m.asString("indexers.index.boost")}</label>
 									<label class="input">
 										<input type="text" id="boost" name="boost" value="1.0" />
 									</label>
@@ -81,13 +81,13 @@
 								</div>
 								
 								<section>
-									<label class="checkbox"><input type="checkbox" id="overwrite" name="overwrite" checked="true" /><i></i>Overwrite</label>
+									<label class="checkbox"><input type="checkbox" id="overwrite" name="overwrite" checked="true" /><i></i>${m.asString("indexers.index.overwrite")}</label>
 								</section>
 								
 							</fieldset>
 							
 							<footer>
-								<button class="btn btn-primary" type="button" id="execIndex">Index Document</button>
+								<button class="btn btn-primary" type="button" id="execIndex">${m.asString("indexers.index.buttons.index")}</button>
 							</footer>
 							
 							<div class="message">

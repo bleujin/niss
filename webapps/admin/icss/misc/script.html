@@ -105,13 +105,13 @@
 					.dataTable({
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName']
+					"columns": [{"title":"${m.asString("misc.script.id")}"},{"title":"${m.asString("misc.script.run")}"},{"title":"${m.asString("misc.script.explain")}"}] // data['schemaName']
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'						<section class="col col-12">' +
-				'						<a href="javascript:void(0);" class="btn btn-primary" name="create_script">Define Script</a>&nbsp;' +
-				'						<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_script">Remove Script</a></section>' +
+				'						<a href="javascript:void(0);" class="btn btn-primary" name="create_script">${m.asString("misc.script.buttons.define")}</a>&nbsp;' +
+				'						<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_script">${m.asString("misc.script.buttons.remove")}</a></section>' +
 				'				</td></tr></tfoot>' ;
 				
 				$(tableFoot).appendTo($("#example")) ;

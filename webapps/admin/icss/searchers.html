@@ -7,7 +7,7 @@
 		<form class="smart-form no-padding" method="post" action="searchers" novalidate="novalidate">
 			<fieldset>
 				<section class="no-padding">
-					<label class="label">Choose Searcher</label>
+					<label class="label">${m.asString("searchers.choose")}</label>
 					<label class="select">
 						<select class="input-sm choose-sub form-control" id="searchers"></select>
 					</label>
@@ -82,7 +82,7 @@
             </div>
             
             <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
               <button class="btn btn-primary" name="create_searcher">Create Searcher</button>
             </div>  
 
@@ -118,7 +118,7 @@
             </div>
             
             <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
               <button class="btn btn-primary" id="btn_create_schema">Create Schema</button>
             </div>  
 

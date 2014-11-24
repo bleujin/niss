@@ -1,9 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-table fa-fw "></i> 
-				Miscellaneous 
-			<span>&gt; Analyzer Confirm</span>
+			<i class="fa fa-edit fa-fw "></i>${m.asString("misc.analyzer.title")} 
 		</h1>
 	</div>
 	
@@ -22,7 +20,7 @@
 				
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-					<h2>Analyzer Confirm</h2>
+					<h2>${m.asString("misc.analyzer.table-header")}</h2>
 				</header>
 
 				<!-- widget div-->
@@ -38,13 +36,13 @@
 							<form class="smart-form" id="document-form" method="post" action="analysis" novalidate="novalidate">
 								<fieldset style="padding: 0px">					
 									<section>
-										<label class="label">Text Value For Analyze</label>
+										<label class="label">${m.asString("misc.analyzer.value")}</label>
 										<label class="textarea textarea-resizable">
-											<textarea id="textvalue" name="textvalue" rows="9">태극기가 바람에 펄럭입니다.</textarea>
+											<textarea id="textvalue" name="textvalue" rows="9">${m.asString("misc.analyzer.textvalue")}</textarea>
 										</label>
 									</section>
 									<section>
-										<label class="label">Analyzer Type</label>
+										<label class="label">${m.asString("misc.analyzer.type")}</label>
 										<label class="select">
 											<select multiple style="width:100%" class="select2" id="target_analyzer">
 												<optgroup label="Target Indexer" id="analyzer">
@@ -54,7 +52,7 @@
 									</section>
 									
 									<section>
-										<label class="label">Stopword</label>
+										<label class="label">${m.asString("misc.analyzer.stopword")}</label>
 										<label class="textarea textarea-resizable">
 											<textarea id="stopword" name="stopword" rows="5"></textarea>
 										</label>
@@ -64,7 +62,7 @@
 								</fieldset>
 								
 								<footer>
-									<button class="btn btn-primary" type="button" id="btn_analyzer" >Analyze Value</button>
+									<button class="btn btn-primary" type="button" id="btn_analyzer" >${m.asString("misc.analyzer.buttons")}</button>
 								</footer>
 								
 								<div class="message">

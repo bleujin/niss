@@ -9,7 +9,7 @@
 		<form class="smart-form no-padding" method="post" action="indexers/left" novalidate="novalidate">
 			<fieldset>
 				<section class="no-padding">
-					<label class="label">Choose Indexer</label>
+					<label class="label">${m.asString("indexers.choose")}</label>
 					<label class="select">
 						<select class="input-sm choose-sub form-control" id="indexers"></select>
 					</label>
@@ -86,7 +86,7 @@
             </div>
             
             <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
               <button class="btn btn-primary" name="create_indexer">Create Indexer</button>
             </div>  
 
@@ -153,7 +153,7 @@
             </div>
             
             <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
               <button class="btn btn-primary" id="btn_create_schema">Create Schema</button>
             </div>  
 

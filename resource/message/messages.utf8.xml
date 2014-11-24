@@ -27,7 +27,7 @@
 			<browsing>Search Browsing</browsing>
 			<create>Cretae Searcher</create>
 		</searchers>
-		<misc>Miscellaneous
+		<misc kr="기타">Miscellaneous
 			<properties>Java Properties</properties>
 			<threaddump>Thread Dump</threaddump>
 			<analyzer>Analyzer</analyzer>
@@ -71,20 +71,21 @@
             <time>Time</time>
             <status>Status</status>
             <buttons><view-detail>View Detail</view-detail></buttons>
-           </overview>
-           <defined>
-               <title>Define Loader</title>
-               <table-header>Detail</table-header>
-               <content>Script Content</content>
-               <output>Output</output>
-               <buttons>
-                   <run>Run</run>
-                   <save>Save</save>
-               </buttons>
-           </defined>
-           <create>Create Loader
-          		<loaderid>Loader Id</loaderid>
-           </create>
+		</overview>
+		<defined>
+		    <title>Define Loader</title>
+		    <table-header>Detail</table-header>
+		    <view-sample>View Sample Script</view-sample>
+		    <content>Script Content</content>
+		    		    <output>Output</output>
+		    <buttons>
+		        <run>Run</run>
+		        <save>Save</save>
+		    </buttons>
+		</defined>
+		<create>Create Loader
+			<loaderid>Loader Id</loaderid>
+		</create>
            
     </loaders>
     
@@ -106,7 +107,7 @@
                 <save>Save</save>
             </buttons>
         </defined>
-        <scehma>
+        <schema>
             <title>Schema</title>
             <table-header>Schema Fields</table-header>
             <schemaid>Schema Id</schemaid>
@@ -116,12 +117,12 @@
                 <create>Create Field</create>
                 <remove>Remove Field</remove>
             </buttons>
-        </scehma>
+        </schema>
         <index>
             <title>Index Document</title>
             <table-header>Index Example</table-header>
             <document-type>Document Type</document-type>
-            <documents>Document(?)</documents>
+            <documents>Document(s)</documents>
             <commit-within>Commit Within</commit-within>
             <boost>Boost</boost>
             <overwrite>Overwrite</overwrite>
@@ -137,7 +138,7 @@
             <skip>Skip</skip>
             <offset>Offset</offset>
             <query-parameter>Query Parameter</query-parameter>
-            <docuemnt-type>Document Type</docuemnt-type>
+            <document-type>Document Type</document-type>
             <indent>Indent</indent>
             <buttons>
                 <execute>Execute Query</execute>
@@ -151,6 +152,9 @@
 			    <remove>Remove Row</remove>
 			</buttons>            
         </browsing>
+        <create>Create Indexer
+            <indexerid>Indexer Id</indexerid>
+        </create>
     </indexers>
     
     <searchers>
@@ -163,6 +167,7 @@
             <table-header>Detail</table-header>
             <target-index>Target Indexer</target-index>
             <query-analyzer>Query Analyzer</query-analyzer>
+            <view-sample>View Sample Defined Search</view-sample>
             <handler>Handler</handler>
             <apply-handler>Apply Handler</apply-handler>
             <stopword>StopWord</stopword>
@@ -180,6 +185,11 @@
                 <create>Create Field</create>
                 <remove>Remove Field</remove>
             </buttons>
+            <create>Create Search Schema
+                <schemaid>Schema Id</schemaid>
+                <query-analyzer>Query Analyzer</query-analyzer>
+                <button>Create Schema</button>
+            </create>
         </schema>
         <query>
             <title>Query</title>
@@ -189,7 +199,7 @@
             <skip>Skip</skip>
             <offset>Offset</offset>
             <query-parameter>Query Parameter</query-parameter>
-            <docuemnt-type>Document Type</docuemnt-type>
+            <document-type>Document Type</document-type>
             <indent>Indent</indent>
             <debug>Debug</debug>
             <buttons>
@@ -199,6 +209,7 @@
         <template>
             <title>Template</title>
             <table-header>Edit Template(Velocity)</table-header>
+            <view-sample>View Sample Template</view-sample>
             <content>Template Content</content>
             <buttons>
                 <save>Save</save>
@@ -208,11 +219,14 @@
             <title>Search Browsing</title>
             <table-header>Browsing Table(Max : 101)</table-header>
         </browsing>
+        <create>Create Searcher
+            <searcherid>Searcher Id</searcherid>
+        </create>
     </searchers>
     
     <misc>
         <properties>
-            <title>System Properties</title>
+            <title>Java Properties</title>
             <table-header>Properties</table-header>
             <name>Name</name>
             <value>Value</value>
@@ -220,11 +234,15 @@
         <threaddump>
             <title>Thread Dump</title>
             <table-header>Threads</table-header>
+            <name>Name</name>
+            <cputime>CPU</cputime>
+            <usertime>User Time</usertime>
         </threaddump>
         <analyzer>
             <title>Analyzer Confirm</title>
             <table-header>Analyzer Confirm</table-header>
             <value>Text Value To Analyze</value>
+            <textvalue>태극기가 바람에 펄럭입니다.</textvalue>
             <type>Analyzer Type</type>
             <stopword>Stop Word</stopword>
             <buttons>Analyze Value</buttons>
@@ -256,7 +274,7 @@
         </logging>
         <script>
             <title>Craken Script</title>
-            <tble-header>Script Tables</tble-header>
+            <table-header>Script Tables</table-header>
             <id>Id</id>
             <run>Run Path</run>
             <explain>Explain</explain>
@@ -274,6 +292,11 @@
                 <register>Register User</register>
                 <remvoe>Remove User</remvoe>
             </buttons>
+            <create>Create User
+                <userid>User Id</userid>
+                <name>User Name</name>
+                <password>Password</password>
+            </create>
         </user>
     </misc>
 	

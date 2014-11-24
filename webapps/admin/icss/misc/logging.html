@@ -55,12 +55,12 @@
 								<table class="table table-bordered table-striped" id="mainTable">
 								<thead>
 									<tr>
-										<th> Time</th>
-										<th> <i class="fa fa-building"></i> Client</th>
-										<th> <i class="fa fa-calendar"></i> Type</th>
-										<th> <i class="glyphicon glyphicon-send"></i> Resource</th>
-										<th> <i class="glyphicon glyphicon-send"></i> Method</th>
-										<th> <i class="glyphicon glyphicon-send"></i> Elapsed</th>
+										<th> ${m.asString("misc.logging.time")}</th>
+										<th> <i class="fa fa-building"></i> ${m.asString("misc.logging.client")}</th>
+										<th> <i class="fa fa-calendar"></i> ${m.asString("misc.logging.type")}</th>
+										<th> <i class="glyphicon glyphicon-send"></i> ${m.asString("misc.logging.resource")}</th>
+										<th> <i class="glyphicon glyphicon-send"></i> ${m.asString("misc.logging.method")}</th>
+										<th> <i class="glyphicon glyphicon-send"></i> ${m.asString("misc.logging.elapsed")}</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -72,10 +72,10 @@
 						</fieldset>
 						<footer>
 							<button class="btn btn-sm btn-success" type="button" id="btn_stop" disabled="disabled">
-								<i class="fa fa-check"></i> Stop
+								<i class="fa fa-check"></i> ${m.asString("misc.logging.buttons.stop")}
 							</button>	
 							<button class="btn btn-sm btn-primary" type="button" id="btn_monitor">
-								<i class="fa fa-times"></i> Monitor
+								<i class="fa fa-times"></i> ${m.asString("misc.logging.buttons.monitor")}
 							</button>	
 						</footer>
 					</form>

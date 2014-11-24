@@ -98,7 +98,7 @@
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
-				'						<section class="col col-12"><a href="javascript:void(0);" class="btn btn-primary" name="create_user">Register User</a>&nbsp;<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_user">Remove User</a></section>' +
+				'						<section class="col col-12"><a href="javascript:void(0);" class="btn btn-primary" name="create_user">${m.asString("misc.user.buttons.register")}</a>&nbsp;<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_user">${m.asString("misc.user.buttons.remove")}</a></section>' +
 				'				</td></tr></tfoot>' ;
 				
 				$(tableFoot).appendTo($("#example")) ;

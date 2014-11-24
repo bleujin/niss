@@ -1,8 +1,7 @@
 <div class="row">
 	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
 		<h1 class="page-title txt-color-blueDark">
-			<i class="fa fa-table fa-fw "></i> 
-				Thread Dump
+			<i class="fa fa-edit fa-fw "></i>${m.asString("misc.threaddump.title")}		
 		</h1>
 	</div>
 	
@@ -35,7 +34,7 @@
 				-->
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
-					<h2>Threads</h2>
+					<h2>${m.asString("misc.threaddump.table-header")}</h2>
 				</header>
 
 				<!-- widget div-->
@@ -58,8 +57,8 @@
 						<div class="table-responsive">
 						    <table  class="table table-bordered table-striped">
 						      <thead><tr>
-						          <th class="name">name</th>
-						          <th class="time">cpuTime / userTime</th>
+						          <th class="name">${m.asString("misc.threaddump.name")}</th>
+						          <th class="time">${m.asString("misc.threaddump.cputime")} / ${m.asString("misc.threaddump.usertime")}</th>
 						      </tr>
 						      </thead>
 						
