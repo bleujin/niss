@@ -121,7 +121,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 			vc.put("request", request);
 			vc.put("rsession", rsession);
 			
-			String langcode = ObjectUtil.coalesce(request.data("langcode"), "kr").toString();
+			String langcode = ObjectUtil.coalesce(request.data("langcode"), "us").toString();
 			vc.put("m", handler.root(langcode));
 
 			tpl.merge(vc, sw);

@@ -22048,3 +22048,7 @@ java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]
 [radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 24 17:47:47 KST 2014	1416818867928	14358	25	/61.250.201.157:2280	HTTP-END 200	/admin/scripts/instantrun	POST	29	
 
 [isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5472f0b3fd58eefc07130ca5 writed
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 24 18:03:11 KST 2014	1416819791530	8	28	/127.0.0.1:7164	HTTP-END 200	/admin/misc/shutdown?time=10&password=dkdldhs	GET	5	
+
+[Thread-24] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-24] INFO  net.ion.craken.node.Repository  - niss shutdowned

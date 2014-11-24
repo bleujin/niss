@@ -53,7 +53,7 @@
 	<target name="copy_for_deploy" depends="publish">
 	    <echo>Copy lib</echo>
 		<copy todir="fordeploy/lib/" overwrite="true">
-			<fileset dir="lib/" includes="**" excludes="imsi/*"></fileset>
+			<fileset dir="lib/" includes="**" excludes="imsi/**"></fileset>
 		</copy>
 		
 		<echo>Copy main lib</echo>
@@ -61,34 +61,34 @@
 			<fileset file="publish/niss_${version.number}.${build.number}.jar" />
 		</copy>
 
-		<echo>Copy resource file(config, loader)</echo>
-		<copy todir="fordeploy/resource/config" overwrite="true">
-			<fileset dir="resource/config/" includes="**"/>
+		<echo>Copy resource</echo>
+		<copy todir="fordeploy/resource" overwrite="true">
+			<fileset dir="resource/">
+			    <exclude name="admin/**"/>
+			    <exclude name="index/**"/>
+			    <exclude name="logs/**"/>
+			    <exclude name="store/**"/>
+			    <exclude name="temp/**"/>
+			    <exclude name="test/**"/>
+			</fileset>
 		</copy>
-		<copy todir="fordeploy/resource/loader" overwrite="true">
-			<fileset dir="resource/loader/" includes="**"/>
-		</copy>
-		<copy todir="fordeploy/resource/" overwrite="true">
-			<fileset file="resource/*.*" />
-		</copy>
-		<copy todir="fordeploy/resource/api" overwrite="true">
-			<fileset file="resource/api/*.*" />
-		</copy>
-	</target>
-
-	
-	<target name="copy_full_deploy" depends="copy_for_deploy">
+		
+		
 		<echo>Copy webapps file(config, loader)</echo>
 		<copy todir="fordeploy/webapps" overwrite="true">
 			<fileset dir="webapps/" includes="**"/>
 		</copy>
 	</target>
 
-	<target name="make_zip" depends="copy_full_deploy">
+	
+	<target name="make_zip" depends="copy_for_deploy">
 	    <delete file="deploy/niss_${version.number}.${build.number}.zip"></delete>
 	    <delete dir="fordeploy/resource/admin" failonerror="false"/>
 	    <delete dir="fordeploy/resource/index" failonerror="false"/>
-	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"></zip> 
+	    <zip destfile="deploy/niss_${version.number}.${build.number}.zip" basedir="fordeploy/"></zip>
+	    <delete dir="fordeploy/lib" failonerror="false" /> 
+	    <delete dir="fordeploy/resource" failonerror="false" /> 
+	    <delete dir="fordeploy/webapps" failonerror="false" /> 
 	</target>
 	
 	
