@@ -118,7 +118,7 @@
 					    <option value="text" selected="selected">Text</option>
 					    <option value="keyword">Keyword</option>
 					    <option value="number">Number</option>
-					    <option value="date">Date</option>
+					    <!--  <option value="date">Date</option>  -->
 					    <option value="manual">Manual</option>
 					</select>
 				</label>
@@ -135,10 +135,10 @@
 			</div>
 			<div class="row" name="manual_option" style="display:none">
 			<section class="col col-6">
-				<label class="checkbox"><input type="checkbox" id="schema_analyze" name="analyze" checked="false" /><i></i>Analyze</label>
+				<label class="checkbox"><input type="checkbox" id="schema_analyze" name="analyze"/><i></i>Analyze</label>
 			</section>
 			<section class="col col-6">
-				<label class="checkbox"><input type="checkbox" id="schema_store" name="store" checked="false" /><i></i>Store</label>
+				<label class="checkbox"><input type="checkbox" id="schema_store" name="store"/><i></i>Store</label>
 			</section>
 			</div>
 			<section>
@@ -262,14 +262,15 @@
 		
 		$("#btn_create_schema").click(function(){
 			var iid = $("#indexers").val() ;
-			
 			$.ajax({
 				type: "POST",
 				url: "/admin/indexers/" + iid + "/schema",
-				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
+				data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), 
 						schematype: $("#create_schema_form select[name=schematype]").val(),  
 						analyzer :$("#create_schema_form select[name=schema_analyzer]").val(), 
-						analyze: $("#create_schema_form input[name=analyze]").is(":checked") ? true : false, store: $("#create_schema_form input[name=store]").is(":checked") ? true : false, boost:$("#create_schema_form input[name=boost]").val() }
+						analyze: ($("#create_schema_form input[name=analyze]").is(":checked") || ($("#create_schema_form select[name=schematype]").val() == 'text'))  ? true : false, 
+						store: $("#create_schema_form input[name=store]").is(":checked") || ($("#create_schema_form select[name=schematype]").val() != 'text') ? true : false, 
+						boost:$("#create_schema_form input[name=boost]").val() }
 			}).done(function( msg ) {
 				console.log( "Data Saved: " + msg );
 			}).success(function( msg ) {

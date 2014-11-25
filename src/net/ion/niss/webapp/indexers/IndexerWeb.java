@@ -400,7 +400,7 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/schema")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String addSchema(@PathParam("iid") final String iid, @FormParam("schemaid") final String schemaid, @FormParam("schematype") final String schematype,
-			@FormParam("analyzer") final String analyzer, @FormParam("analyze") final boolean analyze, @FormParam("store") final boolean store, 
+			@FormParam("analyzer") final String analyzer, @DefaultValue("false") @FormParam("analyze") final boolean analyze, @DefaultValue("false") @FormParam("store") final boolean store, 
 			@DefaultValue("1.0") @FormParam("boost") final String boost){
 		
 		rsession.tran(new TransactionJob<Void>() {
@@ -408,7 +408,7 @@ public class IndexerWeb implements Webapp {
 			public Void handle(WriteSession wsession) throws Exception {
 				wsession.pathBy(IndexSchema.path(iid, schemaid))
 					.property(IndexSchema.SchemaType, schematype)
-					.property(IndexSchema.Analyzer, "manual".equals(schematype) ? analyzer : "").property(IndexSchema.Analyze, "manual".equals(schematype) ? analyze : false).property(IndexSchema.Store, "manual".equals(schematype) ? store : false)
+					.property(IndexSchema.Analyzer, "manual".equals(schematype) ? analyzer : "").property(IndexSchema.Analyze, analyze).property(IndexSchema.Store, store)
 					.property(IndexSchema.Boost, Double.valueOf(StringUtil.defaultIfEmpty(boost, "1.0"))) ;
 				return null;
 			}

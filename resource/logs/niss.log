@@ -22787,3 +22787,1239 @@ java.lang.IllegalStateException: Not a JSON Object: ["/loaders/myloader"]
 
 [radon-thread-21] INFO  net.ion.niss.webapp.AppLogSink  - Mon Nov 24 20:07:43 KST 2014	1416827263537	5945	42	/61.250.201.157:7522	HTTP-END 200	/admin/misc/properties	GET	3	
 
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d308c0c5eefc16162beb writed
+[radon-thread-21] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 09:53:28 KST 2014	1416876808637	231	47	/61.250.201.157:12797	HTTP-END 200	/admin/misc/profile/admin	POST	121	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d308c0c5eefc18162beb writed
+[radon-thread-21] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 09:53:28 KST 2014	1416876808742	336	47	/61.250.201.157:12797	HTTP-END 200	/index.html	GET	69	
+
+[radon-thread-27] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 09:53:29 KST 2014	1416876809465	653	52	/61.250.201.157:12804	HTTP-END 200	/icss/misc.html	GET	19	
+
+[radon-thread-27] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 09:53:29 KST 2014	1416876809514	702	52	/61.250.201.157:12804	HTTP-END 200	/icss/misc/properties.html	GET	9	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 09:53:29 KST 2014	1416876809558	746	52	/61.250.201.157:12804	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:04:18 KST 2014	1416877458316	115	53	/61.250.201.157:13467	HTTP-END 200	/admin/traces/admin	GET	11	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:04:51 KST 2014	1416877491924	13	54	/61.250.201.157:13477	HTTP-END 200	/admin/traces/admin	GET	8	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:06:42 KST 2014	1416877602261	28	56	/61.250.201.157:13495	HTTP-END 200	/icss/loaders.html	GET	25	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:06:42 KST 2014	1416877602304	29	57	/61.250.201.157:13498	HTTP-END 200	/admin/loaders	GET	25	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:06:42 KST 2014	1416877602325	50	57	/61.250.201.157:13498	HTTP-END 200	/icss/loaders/overview.html	GET	13	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:06:42 KST 2014	1416877602402	127	57	/61.250.201.157:13498	HTTP-END 200	/admin/loaders/myloader2/overview	GET	9	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:04 KST 2014	1416877624039	15	58	/61.250.201.157:13500	HTTP-END 200	/icss/loaders/overview.html	GET	10	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:04 KST 2014	1416877624053	29	58	/61.250.201.157:13500	HTTP-END 200	/admin/loaders/myloader2/overview	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:10 KST 2014	1416877630435	25	59	/61.250.201.157:13503	HTTP-END 200	/icss/loaders/defined.html	GET	23	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:10 KST 2014	1416877630479	69	59	/61.250.201.157:13503	HTTP-END 200	/admin/loaders/myloader2/define	GET	4	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:10 KST 2014	1416877630943	533	59	/61.250.201.157:13503	HTTP-END 200	/icss/loaders/overview.html	GET	9	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:10 KST 2014	1416877630961	551	59	/61.250.201.157:13503	HTTP-END 200	/admin/loaders/myloader2/overview	GET	5	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:13 KST 2014	1416877633093	2683	59	/61.250.201.157:13503	HTTP-END 200	/icss/loaders/defined.html	GET	27	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:13 KST 2014	1416877633124	2714	59	/61.250.201.157:13503	HTTP-END 200	/admin/loaders/myloader2/define	GET	2	
+
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:13 KST 2014	1416877633693	3283	59	/61.250.201.157:13503	HTTP-END 200	/icss/loaders/overview.html	GET	8	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:13 KST 2014	1416877633708	3298	59	/61.250.201.157:13503	HTTP-END 200	/admin/loaders/myloader2/overview	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:19 KST 2014	1416877639318	8908	59	/61.250.201.157:13503	HTTP-END 200	/icss/loaders/defined.html	GET	19	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:19 KST 2014	1416877639357	8947	59	/61.250.201.157:13503	HTTP-END 200	/admin/loaders/myloader2/define	GET	3	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d664c0c5eefc1b162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:48 KST 2014	1416877668451	38	60	/61.250.201.157:13520	HTTP-END 200	/admin/misc/profile/admin	POST	35	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d664c0c5eefc1d162beb writed
+[radon-thread-24] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:48 KST 2014	1416877668750	337	60	/61.250.201.157:13520	HTTP-END 200	/index.html	GET	23	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:49 KST 2014	1416877669368	560	65	/61.250.201.157:13527	HTTP-END 200	/icss/loaders.html	GET	17	
+
+[radon-thread-32] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:49 KST 2014	1416877669418	610	65	/61.250.201.157:13527	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:49 KST 2014	1416877669471	663	65	/61.250.201.157:13527	HTTP-END 200	/icss/loaders/overview.html	GET	33	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:07:49 KST 2014	1416877669643	835	65	/61.250.201.157:13527	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:06 KST 2014	1416877686120	14	66	/61.250.201.157:13530	HTTP-END 200	/icss/loaders/overview.html	GET	11	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:06 KST 2014	1416877686133	27	66	/61.250.201.157:13530	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:09 KST 2014	1416877689331	3225	66	/61.250.201.157:13530	HTTP-END 200	/icss/loaders/defined.html	GET	17	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:09 KST 2014	1416877689371	3265	66	/61.250.201.157:13530	HTTP-END 200	/admin/loaders/myloader2/define	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:19 KST 2014	1416877699566	8	67	/61.250.201.157:13533	HTTP-END 200	/admin/loaders/myloader2/sample/sample_crawl.script	GET	5	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:21 KST 2014	1416877701743	2185	67	/61.250.201.157:13533	HTTP-END 200	/admin/loaders/myloader2/sample/sample_rdb.script	GET	10	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:23 KST 2014	1416877703616	4058	67	/61.250.201.157:13533	HTTP-END 200	/admin/loaders/myloader2/sample/sample_collect_imagelink.script	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:41 KST 2014	1416877721896	29	68	/61.250.201.157:13544	HTTP-END 200	/icss/searchers.html	GET	27	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:41 KST 2014	1416877721914	47	68	/61.250.201.157:13544	HTTP-END 200	/admin/searchers	GET	6	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:41 KST 2014	1416877721928	61	68	/61.250.201.157:13544	HTTP-END 200	/icss/searchers/overview.html	GET	6	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:43 KST 2014	1416877723296	1429	68	/61.250.201.157:13544	HTTP-END 200	/icss/searchers/template.html	GET	17	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:43 KST 2014	1416877723325	1458	68	/61.250.201.157:13544	HTTP-END 200	/admin/searchers/searcher2/template	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:08:51 KST 2014	1416877731542	9	69	/61.250.201.157:13547	HTTP-END 200	/admin/searchers/searcher2/sampletemplate/simple_table.template	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:09:01 KST 2014	1416877741104	14	70	/61.250.201.157:13550	HTTP-END 200	/icss/searchers/template.html	GET	11	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:09:01 KST 2014	1416877741129	39	70	/61.250.201.157:13550	HTTP-END 200	/admin/searchers/searcher2/template	GET	1	
+
+[radon-thread-38] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:07 KST 2014	1416877807894	9	72	/61.250.201.157:13559	HTTP-END 206	/sound/messagebox.mp3	GET	5	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:07 KST 2014	1416877807927	48	71	/61.250.201.157:13556	HTTP-END 200	/index.html	GET	43	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:09 KST 2014	1416877809406	1527	71	/61.250.201.157:13556	HTTP-END 200	/index.html	GET	29	
+
+[radon-thread-43] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:09 KST 2014	1416877809926	2041	72	/61.250.201.157:13559	HTTP-END 200	/icss/searchers.html	GET	18	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:09 KST 2014	1416877809989	515	73	/61.250.201.157:13560	HTTP-END 200	/admin/searchers	GET	3	
+
+[radon-thread-43] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:10 KST 2014	1416877810037	563	73	/61.250.201.157:13560	HTTP-END 200	/icss/searchers/overview.html	GET	18	
+
+[radon-thread-43] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:34 KST 2014	1416877834016	37	77	/61.250.201.157:13565	HTTP-END 200	/icss/indexers.html	GET	24	
+
+[radon-thread-43] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:34 KST 2014	1416877834031	52	77	/61.250.201.157:13565	HTTP-END 200	/admin/indexers	GET	4	
+
+[radon-thread-43] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:34 KST 2014	1416877834049	70	77	/61.250.201.157:13565	HTTP-END 200	/icss/indexers/overview.html	GET	10	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:10:34 KST 2014	1416877834072	93	77	/61.250.201.157:13565	HTTP-END 200	/admin/indexers/newindexer/overview	GET	6	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:13:18 KST 2014	1416877998816	119	79	/61.250.201.157:13586	HTTP-END 200	/icss/indexers/index.html	GET	15	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:13:18 KST 2014	1416877998854	157	79	/61.250.201.157:13586	HTTP-END 200	/admin/indexers/newindexer/index	GET	6	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:13:58 KST 2014	1416878038097	59	80	/61.250.201.157:13591	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	54	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d7d6c0c5eefc20162beb writed
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:08 KST 2014	1416878048140	30	81	/61.250.201.157:13594	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	26	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d7e0c0c5eefc23162beb writed
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:10 KST 2014	1416878050201	2091	81	/61.250.201.157:13594	HTTP-END 200	/icss/indexers/query.html	GET	28	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:10 KST 2014	1416878050231	2121	81	/61.250.201.157:13594	HTTP-END 200	/admin/indexers/newindexer/query	GET	3	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:12 KST 2014	1416878052094	3984	81	/61.250.201.157:13594	HTTP-END 200	/admin/indexers/newindexer/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=false	GET	15	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:26 KST 2014	1416878066413	8	82	/61.250.201.157:13597	HTTP-END 200	/admin/indexers/newindexer/query.json?query=change&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:38 KST 2014	1416878078724	23	83	/61.250.201.157:13606	HTTP-END 200	/icss/indexers/query.html	GET	20	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:38 KST 2014	1416878078749	48	83	/61.250.201.157:13606	HTTP-END 200	/admin/indexers/newindexer/query	GET	1	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:47 KST 2014	1416878087190	29	84	/61.250.201.157:13610	HTTP-END 200	/icss/searchers.html	GET	25	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:47 KST 2014	1416878087205	44	84	/61.250.201.157:13610	HTTP-END 200	/admin/searchers	GET	3	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:47 KST 2014	1416878087221	60	84	/61.250.201.157:13610	HTTP-END 200	/icss/searchers/overview.html	GET	7	
+
+[radon-thread-46] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:48 KST 2014	1416878088597	1436	84	/61.250.201.157:13610	HTTP-END 200	/icss/searchers/query.html	GET	24	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:14:48 KST 2014	1416878088627	1466	84	/61.250.201.157:13610	HTTP-END 200	/admin/menus/searchers?field=query	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:49 KST 2014	1416878149120	25	85	/61.250.201.157:13618	HTTP-END 200	/icss/indexers.html	GET	21	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:49 KST 2014	1416878149135	40	85	/61.250.201.157:13618	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-47] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:49 KST 2014	1416878149260	165	85	/61.250.201.157:13618	HTTP-END 200	/icss/indexers/overview.html	GET	117	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:49 KST 2014	1416878149278	183	85	/61.250.201.157:13618	HTTP-END 200	/admin/indexers/newindexer/overview	GET	7	
+
+[radon-thread-47] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:50 KST 2014	1416878150637	1542	85	/61.250.201.157:13618	HTTP-END 200	/icss/indexers/index.html	GET	22	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:50 KST 2014	1416878150665	1570	85	/61.250.201.157:13618	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:58 KST 2014	1416878158735	19	86	/61.250.201.157:13621	HTTP-END 200	/icss/indexers/schema.html	GET	15	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:15:58 KST 2014	1416878158826	110	86	/61.250.201.157:13621	HTTP-END 200	/admin/indexers/newindexer/schema	GET	10	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:20:20 KST 2014	1416878420232	116	87	/61.250.201.157:13645	HTTP-END 200	/icss/indexers/index.html	GET	13	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:20:20 KST 2014	1416878420258	142	87	/61.250.201.157:13645	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:21:46 KST 2014	1416878506323	117	88	/61.250.201.157:13659	HTTP-END 200	/icss/indexers/schema.html	GET	13	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:21:46 KST 2014	1416878506348	142	88	/61.250.201.157:13659	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:10 KST 2014	1416878530903	16	89	/61.250.201.157:13662	HTTP-END 200	/icss/loaders.html	GET	12	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:10 KST 2014	1416878530921	34	89	/61.250.201.157:13662	HTTP-END 200	/admin/loaders	GET	3	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:10 KST 2014	1416878530938	51	89	/61.250.201.157:13662	HTTP-END 200	/icss/loaders/overview.html	GET	10	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:10 KST 2014	1416878530949	62	89	/61.250.201.157:13662	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:13 KST 2014	1416878533034	2147	89	/61.250.201.157:13662	HTTP-END 200	/icss/indexers.html	GET	20	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:13 KST 2014	1416878533051	2164	89	/61.250.201.157:13662	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:13 KST 2014	1416878533077	2190	89	/61.250.201.157:13662	HTTP-END 200	/icss/indexers/overview.html	GET	15	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:13 KST 2014	1416878533091	2204	89	/61.250.201.157:13662	HTTP-END 200	/admin/indexers/newindexer/overview	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d9d2c0c5eefc26162beb writed
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:26 KST 2014	1416878546202	9	90	/61.250.201.157:13667	HTTP-END 200	/admin/indexers/newindexer	POST	7	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473d9d2c0c5eefc28162beb writed
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:26 KST 2014	1416878546267	74	90	/61.250.201.157:13667	HTTP-END 200	/icss/indexers/overview.html	GET	33	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:26 KST 2014	1416878546284	91	90	/61.250.201.157:13667	HTTP-END 200	/admin/indexers/newindexer/overview	GET	6	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:45 KST 2014	1416878565773	22	91	/61.250.201.157:13677	HTTP-END 200	/icss/indexers/defined.html	GET	19	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:22:45 KST 2014	1416878565805	54	91	/61.250.201.157:13677	HTTP-END 200	/admin/indexers/newindexer/defined	GET	7	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:16 KST 2014	1416878596206	15	92	/61.250.201.157:13680	HTTP-END 200	/icss/indexers/schema.html	GET	13	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:16 KST 2014	1416878596232	41	92	/61.250.201.157:13680	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da0fc0c5eefc2b162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:27 KST 2014	1416878607944	34	93	/61.250.201.157:13683	HTTP-END 200	/admin/indexers/newindexer/schema	POST	31	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da0fc0c5eefc2d162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:28 KST 2014	1416878608017	107	93	/61.250.201.157:13683	HTTP-END 200	/icss/indexers/schema.html	GET	27	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:28 KST 2014	1416878608052	142	93	/61.250.201.157:13683	HTTP-END 200	/admin/indexers/newindexer/schema	GET	8	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da17c0c5eefc30162beb writed
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:35 KST 2014	1416878615327	34	94	/61.250.201.157:13686	HTTP-END 200	/admin/indexers/newindexer/schema	POST	30	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da17c0c5eefc32162beb writed
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:35 KST 2014	1416878615390	97	94	/61.250.201.157:13686	HTTP-END 200	/icss/indexers/schema.html	GET	24	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:23:35 KST 2014	1416878615434	141	94	/61.250.201.157:13686	HTTP-END 200	/admin/indexers/newindexer/schema	GET	13	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:24 KST 2014	1416878664778	19	95	/61.250.201.157:13708	HTTP-END 200	/icss/misc.html	GET	15	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:24 KST 2014	1416878664805	46	95	/61.250.201.157:13708	HTTP-END 200	/icss/misc/properties.html	GET	12	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:24 KST 2014	1416878664835	76	95	/61.250.201.157:13708	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:26 KST 2014	1416878666060	1301	95	/61.250.201.157:13708	HTTP-END 200	/icss/misc/user.html	GET	12	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:26 KST 2014	1416878666086	1327	95	/61.250.201.157:13708	HTTP-END 200	/admin/misc/users	GET	3	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da54c0c5eefc35162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:36 KST 2014	1416878676626	34	96	/61.250.201.157:13714	HTTP-END 200	/admin/misc/users/hero	POST	31	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473da54c0c5eefc37162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:36 KST 2014	1416878676875	283	96	/61.250.201.157:13714	HTTP-END 200	/icss/misc/user.html	GET	12	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:24:36 KST 2014	1416878676909	317	96	/61.250.201.157:13714	HTTP-END 200	/admin/misc/users	GET	5	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:17 KST 2014	1416878717040	24	97	/61.250.201.157:13722	HTTP-END 200	/icss/searchers.html	GET	21	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:17 KST 2014	1416878717056	40	97	/61.250.201.157:13722	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:17 KST 2014	1416878717066	50	97	/61.250.201.157:13722	HTTP-END 200	/icss/searchers/overview.html	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:18 KST 2014	1416878718736	1720	97	/61.250.201.157:13722	HTTP-END 200	/icss/searchers/query.html	GET	17	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:18 KST 2014	1416878718767	1751	97	/61.250.201.157:13722	HTTP-END 200	/admin/menus/searchers?field=query	GET	3	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:21 KST 2014	1416878721593	4577	97	/61.250.201.157:13722	HTTP-END 200	/open/search/searcher2/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	3	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:25 KST 2014	1416878725142	8126	97	/61.250.201.157:13722	HTTP-END 200	/open/search/searcher2/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	5	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:45 KST 2014	1416878745124	5	98	/61.250.201.157:13728	HTTP-END 200	/open/search/searcher2/query.json?key=keyddd&query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	2	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:25:47 KST 2014	1416878747887	2768	98	/61.250.201.157:13728	HTTP-END 200	/open/search/searcher2/query.json?key=keyddd&query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	4	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:11 KST 2014	1416878771646	21	99	/61.250.201.157:13732	HTTP-END 200	/icss/indexers.html	GET	18	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:11 KST 2014	1416878771667	42	99	/61.250.201.157:13732	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:11 KST 2014	1416878771692	67	99	/61.250.201.157:13732	HTTP-END 200	/icss/indexers/overview.html	GET	15	
+
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:11 KST 2014	1416878771706	81	99	/61.250.201.157:13732	HTTP-END 200	/admin/indexers/newindexer/overview	GET	3	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dab5c0c5eefc3a162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:13 KST 2014	1416878773532	1907	99	/61.250.201.157:13732	HTTP-END 200	/admin/misc/profile/admin	POST	22	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dab5c0c5eefc3c162beb writed
+[radon-thread-31] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:13 KST 2014	1416878773581	1956	99	/61.250.201.157:13732	HTTP-END 200	/index.html	GET	26	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:14 KST 2014	1416878774293	626	101	/61.250.201.157:13736	HTTP-END 200	/icss/indexers.html	GET	23	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:14 KST 2014	1416878774337	670	101	/61.250.201.157:13736	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:14 KST 2014	1416878774372	705	101	/61.250.201.157:13736	HTTP-END 200	/icss/indexers/overview.html	GET	16	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:14 KST 2014	1416878774400	733	101	/61.250.201.157:13736	HTTP-END 200	/admin/indexers/newindexer/overview	GET	10	
+
+[radon-thread-48] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:17 KST 2014	1416878777403	3736	101	/61.250.201.157:13736	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:17 KST 2014	1416878777510	3843	101	/61.250.201.157:13736	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:24 KST 2014	1416878784085	5	105	/61.250.201.157:13746	HTTP-END 206	/sound/messagebox.mp3	GET	1	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:24 KST 2014	1416878784123	10456	101	/61.250.201.157:13736	HTTP-END 200	/index.html	GET	50	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:29 KST 2014	1416878789385	15718	101	/61.250.201.157:13736	HTTP-END 200	/icss/indexers/defined.html	GET	18	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:29 KST 2014	1416878789423	15756	101	/61.250.201.157:13736	HTTP-END 200	/admin/indexers/newindexer/defined	GET	6	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:30 KST 2014	1416878790400	16733	101	/61.250.201.157:13736	HTTP-END 200	/icss/indexers/schema.html	GET	11	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:30 KST 2014	1416878790428	16761	101	/61.250.201.157:13736	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:41 KST 2014	1416878801807	4	107	/61.250.201.157:13758	HTTP-END 206	/sound/messagebox.mp3	GET	0	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:41 KST 2014	1416878801843	46	106	/61.250.201.157:13755	HTTP-END 200	/index.html	GET	37	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:45 KST 2014	1416878805421	3624	106	/61.250.201.157:13755	HTTP-END 200	/icss/indexers/schema.html	GET	14	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:45 KST 2014	1416878805449	3652	106	/61.250.201.157:13755	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:54 KST 2014	1416878814559	2	109	/61.250.201.157:13762	HTTP-END 206	/sound/messagebox.mp3	GET	1	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:54 KST 2014	1416878814582	32	108	/61.250.201.157:13759	HTTP-END 200	/index.html	GET	27	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:58 KST 2014	1416878818205	3655	108	/61.250.201.157:13759	HTTP-END 200	/icss/indexers/schema.html	GET	13	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:26:58 KST 2014	1416878818236	3686	108	/61.250.201.157:13759	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:12 KST 2014	1416878832115	27	110	/61.250.201.157:13763	HTTP-END 200	/icss/searchers.html	GET	23	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:12 KST 2014	1416878832129	41	110	/61.250.201.157:13763	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:12 KST 2014	1416878832143	55	110	/61.250.201.157:13763	HTTP-END 200	/icss/searchers/overview.html	GET	4	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:13 KST 2014	1416878833228	1140	110	/61.250.201.157:13763	HTTP-END 200	/icss/searchers/template.html	GET	14	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:13 KST 2014	1416878833255	1167	110	/61.250.201.157:13763	HTTP-END 200	/admin/searchers/searcher2/template	GET	2	
+
+[radon-thread-51] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:19 KST 2014	1416878839698	7610	110	/61.250.201.157:13763	HTTP-END 200	/icss/searchers/query.html	GET	29	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:19 KST 2014	1416878839745	7657	110	/61.250.201.157:13763	HTTP-END 200	/admin/menus/searchers?field=query	GET	10	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:21 KST 2014	1416878841481	9393	110	/61.250.201.157:13763	HTTP-END 200	/open/search/searcher2/query.json?query=*%3A*&sort=&skip=&offset=&indent=true&debug=true	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:27:49 KST 2014	1416878869428	7	111	/61.250.201.157:13770	HTTP-END 200	/icss/searchers/overview.html	GET	4	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:20 KST 2014	1416878900401	7	112	/61.250.201.157:13773	HTTP-END 200	/icss/searchers/overview.html	GET	4	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:20 KST 2014	1416878900768	374	112	/61.250.201.157:13773	HTTP-END 200	/icss/searchers/defined.html	GET	18	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:20 KST 2014	1416878900822	428	112	/61.250.201.157:13773	HTTP-END 200	/admin/searchers/searcher2/define	GET	9	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:27 KST 2014	1416878907678	29	113	/61.250.201.157:13776	HTTP-END 200	/icss/searchers/defined.html	GET	24	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:27 KST 2014	1416878907713	64	113	/61.250.201.157:13776	HTTP-END 200	/admin/searchers/searcher2/define	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:52 KST 2014	1416878932876	23	114	/61.250.201.157:13785	HTTP-END 200	/icss/searchers/schema.html	GET	20	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:52 KST 2014	1416878932889	36	114	/61.250.201.157:13785	HTTP-END 200	/admin/searchers/searcher2/schema	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:53 KST 2014	1416878933356	503	114	/61.250.201.157:13785	HTTP-END 200	/icss/searchers/defined.html	GET	20	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:28:53 KST 2014	1416878933391	538	114	/61.250.201.157:13785	HTTP-END 200	/admin/searchers/searcher2/define	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:01 KST 2014	1416878941493	22	115	/61.250.201.157:13788	HTTP-END 200	/icss/searchers/defined.html	GET	19	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:01 KST 2014	1416878941535	64	115	/61.250.201.157:13788	HTTP-END 200	/admin/searchers/searcher2/define	GET	10	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:04 KST 2014	1416878944634	3163	115	/61.250.201.157:13788	HTTP-END 200	/icss/misc.html	GET	16	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:04 KST 2014	1416878944656	3185	115	/61.250.201.157:13788	HTTP-END 200	/icss/misc/properties.html	GET	7	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:04 KST 2014	1416878944684	3213	115	/61.250.201.157:13788	HTTP-END 200	/admin/misc/properties	GET	4	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:05 KST 2014	1416878945709	4238	115	/61.250.201.157:13788	HTTP-END 200	/icss/misc/script.html	GET	14	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:05 KST 2014	1416878945734	4263	115	/61.250.201.157:13788	HTTP-END 200	/admin/scripts	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:14 KST 2014	1416878954149	23	116	/61.250.201.157:13791	HTTP-END 200	/icss/misc/logging.html	GET	21	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:14 KST 2014	1416878954481	355	116	/61.250.201.157:13791	HTTP-END 200	/icss/misc/history.html	GET	8	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:14 KST 2014	1416878954509	383	116	/61.250.201.157:13791	HTTP-END 200	/admin/misc/history?searchQuery=	GET	4	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:27 KST 2014	1416878967767	19	117	/61.250.201.157:13794	HTTP-END 200	/icss/indexers.html	GET	17	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:27 KST 2014	1416878967783	35	117	/61.250.201.157:13794	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:27 KST 2014	1416878967812	64	117	/61.250.201.157:13794	HTTP-END 200	/icss/indexers/overview.html	GET	18	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:27 KST 2014	1416878967825	77	117	/61.250.201.157:13794	HTTP-END 200	/admin/indexers/newindexer/overview	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:29 KST 2014	1416878969645	1897	117	/61.250.201.157:13794	HTTP-END 200	/icss/loaders.html	GET	15	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:29 KST 2014	1416878969662	1914	117	/61.250.201.157:13794	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:29 KST 2014	1416878969677	1929	117	/61.250.201.157:13794	HTTP-END 200	/icss/loaders/overview.html	GET	9	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:29 KST 2014	1416878969689	1941	117	/61.250.201.157:13794	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:38 KST 2014	1416878978033	22	118	/61.250.201.157:13797	HTTP-END 200	/icss/misc.html	GET	16	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:38 KST 2014	1416878978053	42	118	/61.250.201.157:13797	HTTP-END 200	/icss/misc/properties.html	GET	9	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:38 KST 2014	1416878978081	70	118	/61.250.201.157:13797	HTTP-END 200	/admin/misc/properties	GET	4	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:39 KST 2014	1416878979651	1640	118	/61.250.201.157:13797	HTTP-END 200	/icss/misc/threaddump.html	GET	12	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:39 KST 2014	1416878979706	1695	118	/61.250.201.157:13797	HTTP-END 200	/admin/misc/thread	GET	31	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:40 KST 2014	1416878980502	2491	118	/61.250.201.157:13797	HTTP-END 200	/icss/misc/analyzer.html	GET	25	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:40 KST 2014	1416878980540	2529	118	/61.250.201.157:13797	HTTP-END 200	/admin/analysis	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:41 KST 2014	1416878981146	3135	118	/61.250.201.157:13797	HTTP-END 200	/icss/misc/history.html	GET	6	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:41 KST 2014	1416878981174	3163	118	/61.250.201.157:13797	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:29:51 KST 2014	1416878991536	22	119	/61.250.201.157:13802	HTTP-END 200	/admin/misc/history?searchQuery=myloader	GET	17	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:07 KST 2014	1416879007427	22	120	/61.250.201.157:13805	HTTP-END 200	/icss/misc/script.html	GET	19	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:07 KST 2014	1416879007450	45	120	/61.250.201.157:13805	HTTP-END 200	/admin/scripts	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:09 KST 2014	1416879009777	2372	120	/61.250.201.157:13805	HTTP-END 200	/admin/scripts/define/test	GET	1	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:18 KST 2014	1416879018196	3	121	/61.250.201.157:13808	HTTP-END 200	/admin/scripts/define/test	GET	1	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:25 KST 2014	1416879025066	5	122	/61.250.201.157:13811	HTTP-END 200	/admin/scripts/sample/self_view.script	GET	3	
+
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:27 KST 2014	1416879027753	2692	122	/61.250.201.157:13811	HTTP-END 200	/admin/scripts/instantrun	POST	17	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dbb3c0c5eefc3f162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dbb5c0c5eefc42162beb writed
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:29 KST 2014	1416879029264	4202	122	/61.250.201.157:13811	HTTP-END 200	/admin/scripts/define/test222	POST	39	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dbb5c0c5eefc44162beb writed
+[radon-thread-54] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:29 KST 2014	1416879029327	4266	122	/61.250.201.157:13811	HTTP-END 200	/icss/misc/script.html	GET	28	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:30:29 KST 2014	1416879029358	4297	122	/61.250.201.157:13811	HTTP-END 200	/admin/scripts	GET	7	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:36 KST 2014	1416879096128	122	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/user.html	GET	19	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:36 KST 2014	1416879096155	149	123	/61.250.201.157:13820	HTTP-END 200	/admin/misc/users	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:37 KST 2014	1416879097699	1693	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/script.html	GET	21	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:37 KST 2014	1416879097725	1719	123	/61.250.201.157:13820	HTTP-END 200	/admin/scripts	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:38 KST 2014	1416879098189	2183	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/logging.html	GET	21	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:38 KST 2014	1416879098771	2765	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/history.html	GET	6	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:38 KST 2014	1416879098801	2795	123	/61.250.201.157:13820	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:39 KST 2014	1416879099461	3455	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/analyzer.html	GET	14	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:39 KST 2014	1416879099500	3494	123	/61.250.201.157:13820	HTTP-END 200	/admin/analysis	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:41 KST 2014	1416879101799	5793	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/threaddump.html	GET	10	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:41 KST 2014	1416879101853	5847	123	/61.250.201.157:13820	HTTP-END 200	/admin/misc/thread	GET	30	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:42 KST 2014	1416879102801	6795	123	/61.250.201.157:13820	HTTP-END 200	/icss/misc/properties.html	GET	15	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:42 KST 2014	1416879102826	6820	123	/61.250.201.157:13820	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:47 KST 2014	1416879107344	11338	123	/61.250.201.157:13820	HTTP-END 200	/admin/traces/admin	GET	9	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:58 KST 2014	1416879118990	14	124	/61.250.201.157:13825	HTTP-END 200	/icss/misc/threaddump.html	GET	12	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:59 KST 2014	1416879119038	62	124	/61.250.201.157:13825	HTTP-END 200	/admin/misc/thread	GET	28	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:59 KST 2014	1416879119872	896	124	/61.250.201.157:13825	HTTP-END 200	/icss/misc/analyzer.html	GET	16	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:31:59 KST 2014	1416879119906	930	124	/61.250.201.157:13825	HTTP-END 200	/admin/analysis	GET	1	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:00 KST 2014	1416879120694	1718	124	/61.250.201.157:13825	HTTP-END 200	/icss/misc/threaddump.html	GET	19	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:00 KST 2014	1416879120743	1767	124	/61.250.201.157:13825	HTTP-END 200	/admin/misc/thread	GET	27	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:56 KST 2014	1416879176083	24	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/analyzer.html	GET	20	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:56 KST 2014	1416879176136	77	125	/61.250.201.157:13841	HTTP-END 200	/admin/analysis	GET	4	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:57 KST 2014	1416879177029	970	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/history.html	GET	8	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:57 KST 2014	1416879177062	1003	125	/61.250.201.157:13841	HTTP-END 200	/admin/misc/history?searchQuery=	GET	4	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:57 KST 2014	1416879177784	1725	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/logging.html	GET	19	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:58 KST 2014	1416879178599	2540	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/script.html	GET	12	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:58 KST 2014	1416879178622	2563	125	/61.250.201.157:13841	HTTP-END 200	/admin/scripts	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:59 KST 2014	1416879179562	3503	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/user.html	GET	13	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:32:59 KST 2014	1416879179595	3536	125	/61.250.201.157:13841	HTTP-END 200	/admin/misc/users	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:00 KST 2014	1416879180620	4561	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/script.html	GET	18	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:00 KST 2014	1416879180646	4587	125	/61.250.201.157:13841	HTTP-END 200	/admin/scripts	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:01 KST 2014	1416879181416	5357	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/logging.html	GET	15	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:01 KST 2014	1416879181896	5837	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/history.html	GET	6	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:01 KST 2014	1416879181926	5867	125	/61.250.201.157:13841	HTTP-END 200	/admin/misc/history?searchQuery=	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:02 KST 2014	1416879182410	6351	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/analyzer.html	GET	21	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:02 KST 2014	1416879182440	6381	125	/61.250.201.157:13841	HTTP-END 200	/admin/analysis	GET	1	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:02 KST 2014	1416879182908	6849	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/threaddump.html	GET	8	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:02 KST 2014	1416879182958	6899	125	/61.250.201.157:13841	HTTP-END 200	/admin/misc/thread	GET	28	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:03 KST 2014	1416879183422	7363	125	/61.250.201.157:13841	HTTP-END 200	/icss/misc/properties.html	GET	17	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:03 KST 2014	1416879183453	7394	125	/61.250.201.157:13841	HTTP-END 200	/admin/misc/properties	GET	4	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:04 KST 2014	1416879184357	8298	125	/61.250.201.157:13841	HTTP-END 200	/icss/loaders.html	GET	19	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:04 KST 2014	1416879184373	8314	125	/61.250.201.157:13841	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:04 KST 2014	1416879184389	8330	125	/61.250.201.157:13841	HTTP-END 200	/icss/loaders/overview.html	GET	10	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:04 KST 2014	1416879184398	8339	125	/61.250.201.157:13841	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:06 KST 2014	1416879186064	10005	125	/61.250.201.157:13841	HTTP-END 200	/icss/loaders/defined.html	GET	14	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:06 KST 2014	1416879186097	10038	125	/61.250.201.157:13841	HTTP-END 200	/admin/loaders/myloader2/define	GET	3	
+
+[radon-thread-56] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:22 KST 2014	1416879202667	12	126	/61.250.201.157:13844	HTTP-END 200	/icss/loaders/overview.html	GET	9	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:22 KST 2014	1416879202680	25	126	/61.250.201.157:13844	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:23 KST 2014	1416879203307	652	126	/61.250.201.157:13844	HTTP-END 200	/icss/loaders/defined.html	GET	19	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:23 KST 2014	1416879203345	690	126	/61.250.201.157:13844	HTTP-END 200	/admin/loaders/myloader2/define	GET	6	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:41 KST 2014	1416879221838	18	127	/61.250.201.157:13849	HTTP-END 200	/icss/loaders/defined.html	GET	16	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:33:41 KST 2014	1416879221873	53	127	/61.250.201.157:13849	HTTP-END 200	/admin/loaders/myloader2/define	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:35 KST 2014	1416879275650	31	128	/61.250.201.157:13852	HTTP-END 200	/icss/indexers.html	GET	25	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:35 KST 2014	1416879275667	48	128	/61.250.201.157:13852	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:35 KST 2014	1416879275791	172	128	/61.250.201.157:13852	HTTP-END 200	/icss/indexers/overview.html	GET	114	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:35 KST 2014	1416879275810	191	128	/61.250.201.157:13852	HTTP-END 200	/admin/indexers/newindexer/overview	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:37 KST 2014	1416879277334	1715	128	/61.250.201.157:13852	HTTP-END 200	/icss/indexers/defined.html	GET	13	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:37 KST 2014	1416879277367	1748	128	/61.250.201.157:13852	HTTP-END 200	/admin/indexers/newindexer/defined	GET	6	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dcb7c0c5eefc47162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:47 KST 2014	1416879287276	38	129	/61.250.201.157:13864	HTTP-END 200	/admin/indexers/newindexer/defined	POST	35	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dcb7c0c5eefc49162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:48 KST 2014	1416879288988	1750	129	/61.250.201.157:13864	HTTP-END 200	/icss/indexers/index.html	GET	23	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:34:49 KST 2014	1416879289015	1777	129	/61.250.201.157:13864	HTTP-END 200	/admin/indexers/newindexer/index	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:02 KST 2014	1416879302596	23	130	/61.250.201.157:13867	HTTP-END 200	/icss/indexers/defined.html	GET	18	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:02 KST 2014	1416879302621	48	130	/61.250.201.157:13867	HTTP-END 200	/admin/indexers/newindexer/defined	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dccac0c5eefc4c162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:06 KST 2014	1416879306165	3592	130	/61.250.201.157:13867	HTTP-END 200	/admin/indexers/newindexer/defined	POST	29	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dccac0c5eefc4e162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:07 KST 2014	1416879307660	5087	130	/61.250.201.157:13867	HTTP-END 200	/icss/indexers/index.html	GET	30	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:07 KST 2014	1416879307708	5135	130	/61.250.201.157:13867	HTTP-END 200	/admin/indexers/newindexer/index	GET	15	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:49 KST 2014	1416879349440	25	131	/61.250.201.157:13872	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	20	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dcf5c0c5eefc51162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:50 KST 2014	1416879350868	1453	131	/61.250.201.157:13872	HTTP-END 200	/icss/indexers/query.html	GET	32	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:50 KST 2014	1416879350897	1482	131	/61.250.201.157:13872	HTTP-END 200	/admin/indexers/newindexer/query	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:51 KST 2014	1416879351904	2489	131	/61.250.201.157:13872	HTTP-END 200	/icss/indexers/browsing.html	GET	12	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:51 KST 2014	1416879351936	2521	131	/61.250.201.157:13872	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	7	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:58 KST 2014	1416879358037	28	132	/61.250.201.157:13875	HTTP-END 200	/admin/indexers/newindexer/browsing	POST	26	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dcfec0c5eefc54162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:59 KST 2014	1416879359129	1120	132	/61.250.201.157:13875	HTTP-END 200	/icss/indexers/index.html	GET	28	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:35:59 KST 2014	1416879359157	1148	132	/61.250.201.157:13875	HTTP-END 200	/admin/indexers/newindexer/index	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:00 KST 2014	1416879360612	2603	132	/61.250.201.157:13875	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	14	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd00c0c5eefc57162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:01 KST 2014	1416879361670	3661	132	/61.250.201.157:13875	HTTP-END 200	/icss/indexers/browsing.html	GET	19	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:01 KST 2014	1416879361695	3686	132	/61.250.201.157:13875	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	4	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:12 KST 2014	1416879372826	23	133	/61.250.201.157:13876	HTTP-END 200	/icss/indexers/index.html	GET	20	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:12 KST 2014	1416879372849	46	133	/61.250.201.157:13876	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:21 KST 2014	1416879381483	32	134	/61.250.201.157:13879	HTTP-END 200	/icss/indexers/query.html	GET	29	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:21 KST 2014	1416879381507	56	134	/61.250.201.157:13879	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:30 KST 2014	1416879390364	6	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:33 KST 2014	1416879393773	3415	135	/61.250.201.157:13882	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:33 KST 2014	1416879393800	3442	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:35 KST 2014	1416879395132	4774	135	/61.250.201.157:13882	HTTP-END 200	/icss/indexers/browsing.html	GET	9	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:35 KST 2014	1416879395160	4802	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:36 KST 2014	1416879396491	6133	135	/61.250.201.157:13882	HTTP-END 200	/icss/indexers/query.html	GET	23	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:36 KST 2014	1416879396517	6159	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:37 KST 2014	1416879397495	7137	135	/61.250.201.157:13882	HTTP-END 200	/icss/indexers/index.html	GET	19	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:37 KST 2014	1416879397519	7161	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:39 KST 2014	1416879399977	9619	135	/61.250.201.157:13882	HTTP-END 200	/icss/indexers/query.html	GET	24	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:40 KST 2014	1416879400001	9643	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:46 KST 2014	1416879406801	16443	135	/61.250.201.157:13882	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:36:52 KST 2014	1416879412371	5	136	/61.250.201.157:13892	HTTP-END 200	/admin/indexers/newindexer/query.json?query=change&sort=&skip=&offset=&indent=true&debug=false	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:04 KST 2014	1416879424186	30	137	/61.250.201.157:13893	HTTP-END 200	/icss/indexers/query.html	GET	27	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:04 KST 2014	1416879424215	59	137	/61.250.201.157:13893	HTTP-END 200	/admin/indexers/newindexer/query	GET	5	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:09 KST 2014	1416879429922	20	138	/61.250.201.157:13896	HTTP-END 200	/icss/searchers.html	GET	18	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:09 KST 2014	1416879429936	34	138	/61.250.201.157:13896	HTTP-END 200	/admin/searchers	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:09 KST 2014	1416879429952	50	138	/61.250.201.157:13896	HTTP-END 200	/icss/searchers/overview.html	GET	9	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:11 KST 2014	1416879431306	1404	138	/61.250.201.157:13896	HTTP-END 200	/icss/searchers/query.html	GET	26	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:11 KST 2014	1416879431339	1437	138	/61.250.201.157:13896	HTTP-END 200	/admin/menus/searchers?field=query	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:12 KST 2014	1416879432648	2746	138	/61.250.201.157:13896	HTTP-END 200	/icss/searchers/defined.html	GET	19	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:12 KST 2014	1416879432692	2790	138	/61.250.201.157:13896	HTTP-END 200	/admin/searchers/searcher2/define	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:47 KST 2014	1416879467115	24	139	/61.250.201.157:13899	HTTP-END 200	/icss/indexers.html	GET	20	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:47 KST 2014	1416879467129	38	139	/61.250.201.157:13899	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:47 KST 2014	1416879467149	58	139	/61.250.201.157:13899	HTTP-END 200	/icss/indexers/overview.html	GET	9	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:47 KST 2014	1416879467162	71	139	/61.250.201.157:13899	HTTP-END 200	/admin/indexers/newindexer/overview	GET	4	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:48 KST 2014	1416879468181	1090	139	/61.250.201.157:13899	HTTP-END 200	/icss/indexers/index.html	GET	20	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:48 KST 2014	1416879468214	1123	139	/61.250.201.157:13899	HTTP-END 200	/admin/indexers/newindexer/index	GET	5	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:51 KST 2014	1416879471022	3931	139	/61.250.201.157:13899	HTTP-END 200	/icss/indexers/query.html	GET	18	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:51 KST 2014	1416879471054	3963	139	/61.250.201.157:13899	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:37:57 KST 2014	1416879477858	4	140	/61.250.201.157:13902	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title&sort=&skip=&offset=&indent=true&debug=false	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:03 KST 2014	1416879483407	5553	140	/61.250.201.157:13902	HTTP-END 200	/icss/indexers/query.html	GET	34	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:03 KST 2014	1416879483433	5579	140	/61.250.201.157:13902	HTTP-END 200	/admin/indexers/newindexer/query	GET	1	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:06 KST 2014	1416879486026	8172	140	/61.250.201.157:13902	HTTP-END 200	/icss/indexers/index.html	GET	15	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:06 KST 2014	1416879486052	8198	140	/61.250.201.157:13902	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:10 KST 2014	1416879490684	12830	140	/61.250.201.157:13902	HTTP-END 200	/icss/indexers/query.html	GET	17	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:10 KST 2014	1416879490706	12852	140	/61.250.201.157:13902	HTTP-END 200	/admin/indexers/newindexer/query	GET	1	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:19 KST 2014	1416879499172	6	141	/61.250.201.157:13903	HTTP-END 200	/admin/indexers/newindexer/query.json?query=id%3Achange_me&sort=&skip=&offset=&indent=true&debug=false	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:26 KST 2014	1416879506288	20	142	/61.250.201.157:13906	HTTP-END 200	/icss/indexers/defined.html	GET	17	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:26 KST 2014	1416879506313	45	142	/61.250.201.157:13906	HTTP-END 200	/admin/indexers/newindexer/defined	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:26 KST 2014	1416879506622	354	142	/61.250.201.157:13906	HTTP-END 200	/icss/indexers/schema.html	GET	11	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:26 KST 2014	1416879506648	380	142	/61.250.201.157:13906	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd95c0c5eefc5a162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:29 KST 2014	1416879509931	3663	142	/61.250.201.157:13906	HTTP-END 200	/admin/indexers/newindexer/schema/title	DELETE	35	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd95c0c5eefc5c162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd97c0c5eefc5f162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:31 KST 2014	1416879511220	4952	142	/61.250.201.157:13906	HTTP-END 200	/admin/indexers/newindexer/schema/tile	DELETE	22	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd97c0c5eefc61162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:31 KST 2014	1416879511943	5675	142	/61.250.201.157:13906	HTTP-END 200	/icss/indexers/query.html	GET	29	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:31 KST 2014	1416879511975	5707	142	/61.250.201.157:13906	HTTP-END 200	/admin/indexers/newindexer/query	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:37 KST 2014	1416879517886	17	143	/61.250.201.157:13914	HTTP-END 200	/icss/indexers/index.html	GET	15	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:37 KST 2014	1416879517915	46	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:39 KST 2014	1416879519602	1733	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	28	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dd9fc0c5eefc64162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:40 KST 2014	1416879520535	2666	143	/61.250.201.157:13914	HTTP-END 200	/icss/indexers/query.html	GET	27	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:40 KST 2014	1416879520561	2692	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:45 KST 2014	1416879525938	8069	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:49 KST 2014	1416879529413	11544	143	/61.250.201.157:13914	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:49 KST 2014	1416879529439	11570	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:50 KST 2014	1416879530642	12773	143	/61.250.201.157:13914	HTTP-END 200	/icss/indexers/index.html	GET	24	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:50 KST 2014	1416879530667	12798	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:53 KST 2014	1416879533101	15232	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	15	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddadc0c5eefc67162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:54 KST 2014	1416879534798	16929	143	/61.250.201.157:13914	HTTP-END 200	/icss/indexers/query.html	GET	27	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:38:54 KST 2014	1416879534827	16958	143	/61.250.201.157:13914	HTTP-END 200	/admin/indexers/newindexer/query	GET	8	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:01 KST 2014	1416879541006	8	144	/61.250.201.157:13917	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:09 KST 2014	1416879549717	7	145	/61.250.201.157:13920	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Ame&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:14 KST 2014	1416879554107	4397	145	/61.250.201.157:13920	HTTP-END 200	/icss/indexers/index.html	GET	21	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:14 KST 2014	1416879554134	4424	145	/61.250.201.157:13920	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:17 KST 2014	1416879557245	7535	145	/61.250.201.157:13920	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:17 KST 2014	1416879557273	7563	145	/61.250.201.157:13920	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddcfc0c5eefc6a162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:27 KST 2014	1416879567159	129	146	/61.250.201.157:13923	HTTP-END 200	/admin/indexers/newindexer/schema	POST	125	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddcfc0c5eefc6c162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:27 KST 2014	1416879567257	227	146	/61.250.201.157:13923	HTTP-END 200	/icss/indexers/schema.html	GET	63	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:27 KST 2014	1416879567283	253	146	/61.250.201.157:13923	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dddac0c5eefc6f162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:38 KST 2014	1416879578843	21	147	/61.250.201.157:13926	HTTP-END 200	/admin/indexers/newindexer/schema/title	DELETE	17	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473dddac0c5eefc71162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddeac0c5eefc74162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:54 KST 2014	1416879594909	97	148	/61.250.201.157:13931	HTTP-END 200	/admin/indexers/newindexer/schema	POST	93	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddeac0c5eefc76162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:54 KST 2014	1416879594956	144	148	/61.250.201.157:13931	HTTP-END 200	/icss/indexers/schema.html	GET	17	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:39:54 KST 2014	1416879594999	187	148	/61.250.201.157:13931	HTTP-END 200	/admin/indexers/newindexer/schema	GET	9	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:04 KST 2014	1416879604671	19	149	/61.250.201.157:13934	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:04 KST 2014	1416879604697	45	149	/61.250.201.157:13934	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:05 KST 2014	1416879605696	1044	149	/61.250.201.157:13934	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	17	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473ddf5c0c5eefc79162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:07 KST 2014	1416879607281	2629	149	/61.250.201.157:13934	HTTP-END 200	/icss/indexers/query.html	GET	33	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:07 KST 2014	1416879607319	2667	149	/61.250.201.157:13934	HTTP-END 200	/admin/indexers/newindexer/query	GET	12	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:12 KST 2014	1416879612955	6	150	/61.250.201.157:13937	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:26 KST 2014	1416879626401	14	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/schema.html	GET	11	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:26 KST 2014	1416879626426	39	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473de0fc0c5eefc7c162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:31 KST 2014	1416879631400	5013	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/schema/title	DELETE	10	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473de0fc0c5eefc7e162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473de14c0c5eefc81162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:36 KST 2014	1416879636944	10557	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/schema	POST	106	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473de14c0c5eefc83162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:36 KST 2014	1416879636995	10608	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/schema.html	GET	19	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:37 KST 2014	1416879637028	10641	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:38 KST 2014	1416879638619	12232	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/index.html	GET	15	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:38 KST 2014	1416879638642	12255	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:40 KST 2014	1416879640057	13670	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/query.html	GET	22	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:40 KST 2014	1416879640088	13701	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/query	GET	5	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:45 KST 2014	1416879645167	18780	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Akeyword&sort=&skip=&offset=&indent=true&debug=false	GET	9	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:46 KST 2014	1416879646579	20192	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/browsing.html	GET	8	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:46 KST 2014	1416879646614	20227	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:47 KST 2014	1416879647276	20889	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/query.html	GET	23	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:47 KST 2014	1416879647303	20916	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:48 KST 2014	1416879648860	22473	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/schema.html	GET	17	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:48 KST 2014	1416879648887	22500	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:49 KST 2014	1416879649300	22913	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:49 KST 2014	1416879649327	22940	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/index	GET	1	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:50 KST 2014	1416879650278	23891	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/index.json	POST	17	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473de22c0c5eefc86162beb writed
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:51 KST 2014	1416879651051	24664	151	/61.250.201.157:13938	HTTP-END 200	/icss/indexers/query.html	GET	25	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:51 KST 2014	1416879651075	24688	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/query	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:40:56 KST 2014	1416879656083	29696	151	/61.250.201.157:13938	HTTP-END 200	/admin/indexers/newindexer/query.json?query=title%3Achange&sort=&skip=&offset=&indent=true&debug=false	GET	4	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:13 KST 2014	1416879673670	27	152	/61.250.201.157:13951	HTTP-END 200	/icss/indexers/query.html	GET	24	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:13 KST 2014	1416879673695	52	152	/61.250.201.157:13951	HTTP-END 200	/admin/indexers/newindexer/query	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:14 KST 2014	1416879674459	816	152	/61.250.201.157:13951	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:14 KST 2014	1416879674488	845	152	/61.250.201.157:13951	HTTP-END 200	/admin/indexers/newindexer/index	GET	3	
+
+[radon-thread-57] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:16 KST 2014	1416879676061	2418	152	/61.250.201.157:13951	HTTP-END 200	/icss/indexers/schema.html	GET	9	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:41:16 KST 2014	1416879676090	2447	152	/61.250.201.157:13951	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:39 KST 2014	1416880239952	118	153	/61.250.201.157:14057	HTTP-END 200	/icss/loaders.html	GET	15	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:39 KST 2014	1416880239968	134	153	/61.250.201.157:14057	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:39 KST 2014	1416880239989	155	153	/61.250.201.157:14057	HTTP-END 200	/icss/loaders/overview.html	GET	12	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:40 KST 2014	1416880240002	168	153	/61.250.201.157:14057	HTTP-END 200	/admin/loaders/myloader2/overview	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:40 KST 2014	1416880240384	550	153	/61.250.201.157:14057	HTTP-END 200	/icss/indexers.html	GET	22	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:40 KST 2014	1416880240400	566	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:40 KST 2014	1416880240422	588	153	/61.250.201.157:14057	HTTP-END 200	/icss/indexers/overview.html	GET	11	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:40 KST 2014	1416880240435	601	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers/newindexer/overview	GET	3	
+
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:41 KST 2014	1416880241985	2151	153	/61.250.201.157:14057	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:42 KST 2014	1416880242009	2175	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e073c0c5eefc89162beb writed
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:43 KST 2014	1416880243494	3660	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers/newindexer/schema/title	DELETE	23	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e073c0c5eefc8b162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e078c0c5eefc8e162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:48 KST 2014	1416880248690	8856	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers/newindexer/schema	POST	34	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e078c0c5eefc90162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:48 KST 2014	1416880248748	8914	153	/61.250.201.157:14057	HTTP-END 200	/icss/indexers/schema.html	GET	19	
+
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:50:48 KST 2014	1416880248785	8951	153	/61.250.201.157:14057	HTTP-END 200	/admin/indexers/newindexer/schema	GET	6	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0adc0c5eefc93162beb writed
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:51:41 KST 2014	1416880301872	18	154	/61.250.201.157:14064	HTTP-END 200	/admin/indexers/newindexer/schema/titile	DELETE	16	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0adc0c5eefc95162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0cac0c5eefc98162beb writed
+[radon-thread-59] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:52:10 KST 2014	1416880330779	28925	154	/61.250.201.157:14064	HTTP-END 200	/admin/indexers/newindexer/schema	POST	26117	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0cac0c5eefc9a162beb writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0ccc0c5eefc9d162beb writed
+[radon-thread-58] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:52:12 KST 2014	1416880332780	22700	155	/61.250.201.157:14067	HTTP-END 200	/admin/indexers/newindexer/schema	POST	22698	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e0ccc0c5eefc9f162beb writed
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e112910bb6cff4dffe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e113910bb6cff6dffe9d writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e11d910bb6cff8dffe9d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:33 KST 2014	1416880413734	6771	1	/61.250.201.157:14081	HTTP-END 200	/admin/indexers/newindexer/schema	POST	6695	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e11d910bb6cffadffe9d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:36 KST 2014	1416880416733	49	2	/61.250.201.157:14084	HTTP-END 200	/icss/indexers/defined.html	GET	44	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:36 KST 2014	1416880416776	92	2	/61.250.201.157:14084	HTTP-END 200	/admin/indexers/newindexer/defined	GET	15	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:37 KST 2014	1416880417342	658	2	/61.250.201.157:14084	HTTP-END 200	/icss/indexers/schema.html	GET	15	
+
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:37 KST 2014	1416880417395	711	2	/61.250.201.157:14084	HTTP-END 200	/admin/indexers/newindexer/schema	GET	11	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e12b910bb6cffddffe9d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:47 KST 2014	1416880427468	58	3	/61.250.201.157:14089	HTTP-END 200	/admin/indexers/newindexer/schema/titile	DELETE	54	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e12b910bb6cfffdffe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e12e910bb6cf02e0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:50 KST 2014	1416880430244	2834	3	/61.250.201.157:14089	HTTP-END 200	/admin/indexers/newindexer/schema	POST	141	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e12e910bb6cf04e0fe9d writed
+[radon-thread-0] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:50 KST 2014	1416880430642	3232	3	/61.250.201.157:14089	HTTP-END 200	/icss/indexers/schema.html	GET	352	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:53:50 KST 2014	1416880430669	3259	3	/61.250.201.157:14089	HTTP-END 200	/admin/indexers/newindexer/schema	GET	7	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:53 KST 2014	1416880493668	22	4	/61.250.201.157:14100	HTTP-END 200	/icss/loaders.html	GET	19	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:53 KST 2014	1416880493700	54	4	/61.250.201.157:14100	HTTP-END 200	/admin/loaders	GET	14	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:53 KST 2014	1416880493720	74	4	/61.250.201.157:14100	HTTP-END 200	/icss/loaders/overview.html	GET	10	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:53 KST 2014	1416880493761	115	4	/61.250.201.157:14100	HTTP-END 200	/admin/loaders/myloader2/overview	GET	32	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:54 KST 2014	1416880494162	516	4	/61.250.201.157:14100	HTTP-END 200	/icss/indexers.html	GET	23	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:54 KST 2014	1416880494179	533	4	/61.250.201.157:14100	HTTP-END 200	/admin/indexers	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:54 KST 2014	1416880494205	559	4	/61.250.201.157:14100	HTTP-END 200	/icss/indexers/overview.html	GET	16	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:54 KST 2014	1416880494230	584	4	/61.250.201.157:14100	HTTP-END 200	/admin/indexers/newindexer/overview	GET	13	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:55 KST 2014	1416880495861	2215	4	/61.250.201.157:14100	HTTP-END 200	/icss/indexers/index.html	GET	28	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:55 KST 2014	1416880495892	2246	4	/61.250.201.157:14100	HTTP-END 200	/admin/indexers/newindexer/index	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:57 KST 2014	1416880497165	3519	4	/61.250.201.157:14100	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:54:57 KST 2014	1416880497192	3546	4	/61.250.201.157:14100	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e177910bb6cf07e0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:03 KST 2014	1416880503880	34	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema	POST	32	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e177910bb6cf09e0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:04 KST 2014	1416880504203	357	5	/61.250.201.157:14104	HTTP-END 200	/icss/indexers/schema.html	GET	17	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:04 KST 2014	1416880504233	387	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e17d910bb6cf0ce0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:09 KST 2014	1416880509641	5795	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema/titile	DELETE	10	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e17d910bb6cf0ee0fe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e17e910bb6cf11e0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:10 KST 2014	1416880510938	7092	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema/title	DELETE	20	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e17e910bb6cf13e0fe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e182910bb6cf16e0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:14 KST 2014	1416880514217	10371	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema	POST	34	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e182910bb6cf18e0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:14 KST 2014	1416880514368	10522	5	/61.250.201.157:14104	HTTP-END 200	/icss/indexers/schema.html	GET	27	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:14 KST 2014	1416880514400	10554	5	/61.250.201.157:14104	HTTP-END 200	/admin/indexers/newindexer/schema	GET	5	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e18f910bb6cf1be0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:27 KST 2014	1416880527102	32	6	/61.250.201.157:14105	HTTP-END 200	/admin/indexers/newindexer/schema	POST	29	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e18f910bb6cf1de0fe9d writed
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:27 KST 2014	1416880527163	93	6	/61.250.201.157:14105	HTTP-END 200	/icss/indexers/schema.html	GET	22	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:27 KST 2014	1416880527190	120	6	/61.250.201.157:14105	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e19e910bb6cf20e0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:42 KST 2014	1416880542948	31	7	/61.250.201.157:14112	HTTP-END 200	/admin/indexers/newindexer/schema	POST	27	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e19e910bb6cf22e0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:43 KST 2014	1416880543006	89	7	/61.250.201.157:14112	HTTP-END 200	/icss/indexers/schema.html	GET	18	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:55:43 KST 2014	1416880543048	131	7	/61.250.201.157:14112	HTTP-END 200	/admin/indexers/newindexer/schema	GET	10	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:05 KST 2014	1416880565815	19	8	/61.250.201.157:14134	HTTP-END 200	/icss/indexers/defined.html	GET	15	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:05 KST 2014	1416880565845	49	8	/61.250.201.157:14134	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:06 KST 2014	1416880566388	592	8	/61.250.201.157:14134	HTTP-END 200	/icss/indexers/schema.html	GET	14	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:06 KST 2014	1416880566416	620	8	/61.250.201.157:14134	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567328	1532	8	/61.250.201.157:14134	HTTP-END 200	/icss/searchers.html	GET	20	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567345	1549	8	/61.250.201.157:14134	HTTP-END 200	/admin/searchers	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567356	1560	8	/61.250.201.157:14134	HTTP-END 200	/icss/searchers/overview.html	GET	4	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567750	1954	8	/61.250.201.157:14134	HTTP-END 200	/icss/indexers.html	GET	32	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567767	1971	8	/61.250.201.157:14134	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567793	1997	8	/61.250.201.157:14134	HTTP-END 200	/icss/indexers/overview.html	GET	16	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:07 KST 2014	1416880567807	2011	8	/61.250.201.157:14134	HTTP-END 200	/admin/indexers/newindexer/overview	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:08 KST 2014	1416880568691	2895	8	/61.250.201.157:14134	HTTP-END 200	/icss/indexers/schema.html	GET	12	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:08 KST 2014	1416880568717	2921	8	/61.250.201.157:14134	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e1c3910bb6cf25e0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:19 KST 2014	1416880579264	25	9	/61.250.201.157:14137	HTTP-END 200	/admin/indexers/newindexer/schema/no1	DELETE	22	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e1c3910bb6cf27e0fe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e1c4910bb6cf2ae0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:20 KST 2014	1416880580814	1575	9	/61.250.201.157:14137	HTTP-END 200	/admin/indexers/newindexer/schema/no	DELETE	23	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e1c4910bb6cf2ce0fe9d writed
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:41 KST 2014	1416880601375	19	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/defined.html	GET	17	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:41 KST 2014	1416880601405	49	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/defined	GET	5	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:42 KST 2014	1416880602408	1052	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/schema.html	GET	11	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:42 KST 2014	1416880602436	1080	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:47 KST 2014	1416880607128	5772	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/defined.html	GET	15	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:47 KST 2014	1416880607171	5815	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:48 KST 2014	1416880608987	7631	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/schema.html	GET	12	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:49 KST 2014	1416880609014	7658	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:52 KST 2014	1416880612377	11021	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/index.html	GET	21	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:52 KST 2014	1416880612405	11049	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:53 KST 2014	1416880613372	12016	10	/61.250.201.157:14147	HTTP-END 200	/icss/indexers/schema.html	GET	16	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:56:53 KST 2014	1416880613398	12042	10	/61.250.201.157:14147	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:32 KST 2014	1416880652443	26	11	/61.250.201.157:14151	HTTP-END 200	/icss/indexers/defined.html	GET	20	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:32 KST 2014	1416880652474	57	11	/61.250.201.157:14151	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:33 KST 2014	1416880653278	861	11	/61.250.201.157:14151	HTTP-END 200	/icss/indexers/schema.html	GET	9	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:33 KST 2014	1416880653306	889	11	/61.250.201.157:14151	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:39 KST 2014	1416880659671	18	12	/61.250.201.157:14156	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:39 KST 2014	1416880659699	46	12	/61.250.201.157:14156	HTTP-END 200	/admin/indexers/newindexer/index	GET	3	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:40 KST 2014	1416880660676	1023	12	/61.250.201.157:14156	HTTP-END 200	/icss/indexers/schema.html	GET	16	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:40 KST 2014	1416880660706	1053	12	/61.250.201.157:14156	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:53 KST 2014	1416880673809	22	13	/61.250.201.157:14157	HTTP-END 200	/icss/searchers.html	GET	16	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:53 KST 2014	1416880673825	38	13	/61.250.201.157:14157	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:53 KST 2014	1416880673848	61	13	/61.250.201.157:14157	HTTP-END 200	/icss/searchers/overview.html	GET	12	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:55 KST 2014	1416880675030	1243	13	/61.250.201.157:14157	HTTP-END 200	/icss/searchers/schema.html	GET	14	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:57:55 KST 2014	1416880675048	1261	13	/61.250.201.157:14157	HTTP-END 200	/admin/searchers/searcher2/schema	GET	8	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:02 KST 2014	1416880682522	19	14	/61.250.201.157:14160	HTTP-END 200	/icss/searchers/schema.html	GET	16	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:02 KST 2014	1416880682535	32	14	/61.250.201.157:14160	HTTP-END 200	/admin/searchers/searcher2/schema	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:12 KST 2014	1416880692704	24	15	/61.250.201.157:14163	HTTP-END 200	/icss/indexers.html	GET	21	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:12 KST 2014	1416880692720	40	15	/61.250.201.157:14163	HTTP-END 200	/admin/indexers	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:12 KST 2014	1416880692740	60	15	/61.250.201.157:14163	HTTP-END 200	/icss/indexers/overview.html	GET	13	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:12 KST 2014	1416880692757	77	15	/61.250.201.157:14163	HTTP-END 200	/admin/indexers/newindexer/overview	GET	4	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:13 KST 2014	1416880693578	898	15	/61.250.201.157:14163	HTTP-END 200	/icss/indexers/schema.html	GET	10	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:13 KST 2014	1416880693609	929	15	/61.250.201.157:14163	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:32 KST 2014	1416880712831	26	16	/61.250.201.157:14166	HTTP-END 200	/icss/indexers/index.html	GET	23	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:32 KST 2014	1416880712860	55	16	/61.250.201.157:14166	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:33 KST 2014	1416880713406	601	16	/61.250.201.157:14166	HTTP-END 200	/icss/indexers/schema.html	GET	11	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:33 KST 2014	1416880713433	628	16	/61.250.201.157:14166	HTTP-END 200	/admin/indexers/newindexer/schema	GET	3	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:52 KST 2014	1416880732971	16	17	/61.250.201.157:14177	HTTP-END 200	/icss/indexers/defined.html	GET	0	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:53 KST 2014	1416880733011	56	17	/61.250.201.157:14177	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:54 KST 2014	1416880734007	1052	17	/61.250.201.157:14177	HTTP-END 200	/icss/indexers/overview.html	GET	12	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:54 KST 2014	1416880734025	1070	17	/61.250.201.157:14177	HTTP-END 200	/admin/indexers/newindexer/overview	GET	5	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:54 KST 2014	1416880734656	1701	17	/61.250.201.157:14177	HTTP-END 200	/icss/indexers/defined.html	GET	28	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:58:54 KST 2014	1416880734683	1728	17	/61.250.201.157:14177	HTTP-END 200	/admin/indexers/newindexer/defined	GET	2	
+
+[radon-thread-1] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:59:20 KST 2014	1416880760076	31	18	/61.250.201.157:14180	HTTP-END 200	/icss/indexers/defined.html	GET	22	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:59:20 KST 2014	1416880760113	68	18	/61.250.201.157:14180	HTTP-END 200	/admin/indexers/newindexer/defined	GET	11	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:59:47 KST 2014	1416880787913	23	19	/61.250.201.157:14184	HTTP-END 200	/icss/indexers/defined.html	GET	20	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 10:59:47 KST 2014	1416880787943	53	19	/61.250.201.157:14184	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:16 KST 2014	1416880876932	122	20	/61.250.201.157:14199	HTTP-END 200	/icss/indexers/defined.html	GET	16	
+
+[radon-thread-2] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:16 KST 2014	1416880876963	153	20	/61.250.201.157:14199	HTTP-END 200	/admin/indexers/newindexer/defined	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e2f1910bb6cf2fe0fe9d writed
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:21 KST 2014	1416880881322	4512	20	/61.250.201.157:14199	HTTP-END 200	/admin/menus/indexers	POST	115	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e2f1910bb6cf31e0fe9d writed
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:22 KST 2014	1416880882920	6110	20	/61.250.201.157:14199	HTTP-END 200	/icss/indexers/schema.html	GET	19	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:22 KST 2014	1416880882945	6135	20	/61.250.201.157:14199	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:23 KST 2014	1416880883402	6592	20	/61.250.201.157:14199	HTTP-END 200	/icss/indexers/defined.html	GET	13	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:01:23 KST 2014	1416880883429	6619	20	/61.250.201.157:14199	HTTP-END 200	/admin/indexers/newindexer/defined	GET	2	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:04:15 KST 2014	1416881055375	115	21	/61.250.201.157:14215	HTTP-END 200	/icss/indexers/defined.html	GET	12	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:04:15 KST 2014	1416881055401	141	21	/61.250.201.157:14215	HTTP-END 200	/admin/indexers/newindexer/defined	GET	3	
+
+[radon-thread-3] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:04:16 KST 2014	1416881056306	1046	21	/61.250.201.157:14215	HTTP-END 200	/icss/indexers/index.html	GET	22	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:04:16 KST 2014	1416881056331	1071	21	/61.250.201.157:14215	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:38 KST 2014	1416881138467	120	22	/61.250.201.157:14228	HTTP-END 200	/icss/indexers/index.html	GET	16	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:38 KST 2014	1416881138495	148	22	/61.250.201.157:14228	HTTP-END 200	/admin/indexers/newindexer/index	GET	2	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:44 KST 2014	1416881144117	23	23	/61.250.201.157:14233	HTTP-END 200	/icss/indexers/query.html	GET	21	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:44 KST 2014	1416881144150	56	23	/61.250.201.157:14233	HTTP-END 200	/admin/indexers/newindexer/query	GET	1	
+
+[radon-thread-4] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:44 KST 2014	1416881144703	609	23	/61.250.201.157:14233	HTTP-END 200	/icss/indexers/browsing.html	GET	10	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:05:44 KST 2014	1416881144740	646	23	/61.250.201.157:14233	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	10	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:05 KST 2014	1416881165395	16	24	/61.250.201.157:14236	HTTP-END 200	/icss/indexers/schema.html	GET	12	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:05 KST 2014	1416881165420	41	24	/61.250.201.157:14236	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e413910bb6cf34e0fe9d writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:11 KST 2014	1416881171193	5814	24	/61.250.201.157:14236	HTTP-END 200	/admin/indexers/newindexer/schema	POST	121	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e413910bb6cf36e0fe9d writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:11 KST 2014	1416881171246	5867	24	/61.250.201.157:14236	HTTP-END 200	/icss/indexers/schema.html	GET	22	
+
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:11 KST 2014	1416881171280	5901	24	/61.250.201.157:14236	HTTP-END 200	/admin/indexers/newindexer/schema	GET	2	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e423910bb6cf39e0fe9d writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:06:27 KST 2014	1416881187987	20	25	/61.250.201.157:14241	HTTP-END 200	/admin/indexers/newindexer/schema/bye	DELETE	16	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e423910bb6cf3be0fe9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e52f910bb6cf3ee0fe9d writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:10:55 KST 2014	1416881455690	132	26	/61.250.201.157:14273	HTTP-END 200	/admin/indexers/newindexer/schema	POST	29	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e52f910bb6cf40e0fe9d writed
+[radon-thread-5] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:10:55 KST 2014	1416881455744	186	26	/61.250.201.157:14273	HTTP-END 200	/icss/indexers/schema.html	GET	20	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:10:55 KST 2014	1416881455775	217	26	/61.250.201.157:14273	HTTP-END 200	/admin/indexers/newindexer/schema	GET	4	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e532910bb6cf43e0fe9d writed
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:10:59 KST 2014	1416881459010	3452	26	/61.250.201.157:14273	HTTP-END 200	/admin/indexers/newindexer/schema/bye	DELETE	17	
+
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5473e533910bb6cf45e0fe9d writed
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:11:56 KST 2014	1416881516003	15	27	/61.250.201.157:14278	HTTP-END 200	/icss/indexers/browsing.html	GET	12	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:11:56 KST 2014	1416881516037	49	27	/61.250.201.157:14278	HTTP-END 200	/admin/indexers/newindexer/browsing?searchQuery=	GET	4	
+
+[radon-thread-6] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:12:01 KST 2014	1416881521939	146	28	/61.250.201.157:14281	HTTP-END 200	/admin/traces/admin	GET	143	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:14 KST 2014	1416881594039	6266	31	/61.250.201.157:14293	HTTP-END 200	/index.html	GET	30	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:14 KST 2014	1416881594740	633	34	/61.250.201.157:14296	HTTP-END 200	/icss/indexers.html	GET	15	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:14 KST 2014	1416881594786	679	34	/61.250.201.157:14296	HTTP-END 200	/admin/indexers	GET	1	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:14 KST 2014	1416881594821	714	34	/61.250.201.157:14296	HTTP-END 200	/icss/indexers/overview.html	GET	18	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:14 KST 2014	1416881594869	762	34	/61.250.201.157:14296	HTTP-END 200	/admin/indexers/newindexer/overview	GET	4	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:31 KST 2014	1416881611667	22	35	/61.250.201.157:14303	HTTP-END 200	/icss/searchers.html	GET	19	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:31 KST 2014	1416881611685	40	35	/61.250.201.157:14303	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:31 KST 2014	1416881611705	60	35	/61.250.201.157:14303	HTTP-END 200	/icss/searchers/overview.html	GET	12	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:33 KST 2014	1416881613310	1665	35	/61.250.201.157:14303	HTTP-END 200	/icss/misc.html	GET	24	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:33 KST 2014	1416881613336	1691	35	/61.250.201.157:14303	HTTP-END 200	/icss/misc/properties.html	GET	14	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:33 KST 2014	1416881613372	1727	35	/61.250.201.157:14303	HTTP-END 200	/admin/misc/properties	GET	5	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615070	3425	35	/61.250.201.157:14303	HTTP-END 200	/icss/searchers.html	GET	28	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615089	3444	35	/61.250.201.157:14303	HTTP-END 200	/admin/searchers	GET	1	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615138	3493	35	/61.250.201.157:14303	HTTP-END 200	/icss/searchers/overview.html	GET	2	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615761	4116	35	/61.250.201.157:14303	HTTP-END 200	/icss/loaders.html	GET	30	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615775	4130	35	/61.250.201.157:14303	HTTP-END 200	/admin/loaders	GET	2	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615796	4151	35	/61.250.201.157:14303	HTTP-END 200	/icss/loaders/overview.html	GET	13	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:35 KST 2014	1416881615854	4209	35	/61.250.201.157:14303	HTTP-END 200	/admin/loaders/myloader2/overview	GET	2	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:40 KST 2014	1416881620615	8970	35	/61.250.201.157:14303	HTTP-END 200	/icss/misc.html	GET	21	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:40 KST 2014	1416881620638	8993	35	/61.250.201.157:14303	HTTP-END 200	/icss/misc/properties.html	GET	11	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:40 KST 2014	1416881620668	9023	35	/61.250.201.157:14303	HTTP-END 200	/admin/misc/properties	GET	3	
+
+[radon-thread-7] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:43 KST 2014	1416881623177	11532	35	/61.250.201.157:14303	HTTP-END 200	/index.html	GET	19	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:43 KST 2014	1416881623631	380	40	/61.250.201.157:14312	HTTP-END 200	/icss/misc.html	GET	17	
+
+[radon-thread-9] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:43 KST 2014	1416881623726	475	40	/61.250.201.157:14312	HTTP-END 200	/icss/misc/properties.html	GET	38	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:43 KST 2014	1416881623817	566	40	/61.250.201.157:14312	HTTP-END 200	/admin/misc/properties	GET	4	
+
+[radon-thread-12] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:47 KST 2014	1416881627541	4290	36	/61.250.201.157:14308	HTTP-END 206	/sound/messagebox.mp3	GET	0	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:13:47 KST 2014	1416881627593	4342	40	/61.250.201.157:14312	HTTP-END 200	/index.html	GET	52	
+
+[radon-thread-16] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:14:28 KST 2014	1416881668118	9411	41	/61.250.201.157:14313	HTTP-END 200	/index.html	GET	25	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:14:28 KST 2014	1416881668621	9914	41	/61.250.201.157:14313	HTTP-END 200	/icss/misc.html	GET	18	
+
+[radon-thread-14] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:14:28 KST 2014	1416881668701	9994	41	/61.250.201.157:14313	HTTP-END 200	/icss/misc/properties.html	GET	18	
+
+[radon-thread-12] INFO  net.ion.niss.webapp.AppLogSink  - Tue Nov 25 11:14:28 KST 2014	1416881668755	10048	41	/61.250.201.157:14313	HTTP-END 200	/admin/misc/properties	GET	4	
+
