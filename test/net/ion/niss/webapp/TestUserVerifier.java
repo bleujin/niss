@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.crud.RepositoryImpl;
 import net.ion.craken.node.crud.WorkspaceConfigBuilder;
+import net.ion.niss.webapp.common.MyVerifier;
 
 import org.infinispan.manager.DefaultCacheManager;
 
@@ -28,7 +29,7 @@ public class TestUserVerifier extends TestCase {
 	}
 	
 	public void testJson() throws Exception {
-		UserVerifier.test(session) ;
+		MyVerifier.test(session) ;
 	}
 	
 	

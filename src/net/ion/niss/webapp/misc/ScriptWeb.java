@@ -56,7 +56,9 @@ public class ScriptWeb implements Webapp{
 
 	private ReadSession rsession;
 	private JScriptEngine jengine;
+	private REntry rentry;
 	public ScriptWeb(@ContextParam("rentry") REntry rentry, @ContextParam("jsentry") JScriptEngine jengine ) throws IOException{
+		this.rentry = rentry ;
 		this.rsession = rentry.login() ;
 		this.jengine = jengine ;
 	}

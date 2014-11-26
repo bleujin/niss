@@ -451,7 +451,7 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/index.json")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJson(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
-			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
+			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") final float boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
 
 		Indexer indexer = imanager.index(iid).newIndexer() ;
@@ -465,6 +465,7 @@ public class IndexerWeb implements Webapp {
 				if (! json.has("id")) json.put("id", new ObjectId().toString()) ;
 				
 				WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
+				wdoc.boost(boost) ;
 				wdoc.add(json) ;
 				
 				if (overwrite) isession.updateDocument(wdoc) ;
@@ -503,6 +504,7 @@ public class IndexerWeb implements Webapp {
 					
 					String idVlaue = json.asString("id");
 					WriteDocument wdoc = isession.newDocument(idVlaue) ;
+					
 					wdoc.add(json) ;
 					
 					Void v = overwrite ? wdoc.updateVoid() : wdoc.insertVoid() ;

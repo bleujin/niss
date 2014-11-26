@@ -23,7 +23,7 @@ org.apache.lucene.analysis.de.GermanAnalyzer
 // org.apache.lucene.analysis.hi.HindiAnalyzer
 // org.apache.lucene.analysis.gl.GalicianAnalyzer
 // org.apache.lucene.analysis.pt.PortugueseAnalyzer
-// org.apache.lucene.analysis.kr.KoreanAnalyzer
+org.apache.lucene.analysis.kr.KoreanAnalyzer
 org.apache.lucene.analysis.en.EnglishAnalyzer
 // org.apache.lucene.analysis.standard.UAX29URLEmailAnalyzer
 // org.apache.lucene.analysis.th.ThaiAnalyzer

@@ -290,7 +290,7 @@
             <name>Name</name>
             <buttons>
                 <register>Register User</register>
-                <remvoe>Remove User</remvoe>
+                <remove>Remove User</remove>
             </buttons>
             <create>Create User
                 <userid>User Id</userid>

@@ -10,6 +10,7 @@ import java.util.Set;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.framework.util.DateUtil;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
@@ -78,10 +79,10 @@ public class IndexManager {
 		
 		return new FieldIndexingStrategy() {
 			@Override
-			public void save(Document doc, MyField myField, final Field ifield) {
-
-				final MyField newField = sinfos.myField(myField, ifield) ;
+			public void save(final Document doc, final MyField myField, final Field ifield) {
 				
+				final MyField newField = sinfos.myField(myField, ifield) ;
+
 				final String fieldName = IKeywordField.Field.reservedId(ifield.name()) ? ifield.name() :  StringUtil.lowerCase(ifield.name());
 				
 				if (newField.myFieldtype() == MyFieldType.Number){
@@ -97,8 +98,6 @@ public class IndexManager {
 					doc.add(new StringField(fieldName, ifield.stringValue(), Store.NO)) ;
 					doc.add(new LongField(fieldName, Long.parseLong(DateUtil.dateToString(date, "yyyyMMdd")), Store.NO)) ;
 				}
-				
-				
 				
 				doc.add(new IndexableField() {
 					@Override

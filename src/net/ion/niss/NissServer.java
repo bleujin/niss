@@ -17,13 +17,13 @@ import net.ion.niss.webapp.AppLogSink;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.HTMLTemplateEngine;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.UserVerifier;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.MyAppCacheHandler;
 import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.niss.webapp.common.MyEventLog;
 import net.ion.niss.webapp.common.MyStaticFileHandler;
 import net.ion.niss.webapp.common.TraceHandler;
+import net.ion.niss.webapp.common.MyVerifier;
 import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.LoaderWeb;
@@ -94,7 +94,7 @@ public class NissServer {
 		this.radon = builder.createRadon();
 
 		final MyEventLog elogger = MyEventLog.create(System.out);
-		radon.add(new MyAuthenticationHandler(UserVerifier.test(rentry.login())))
+		radon.add(new MyAuthenticationHandler(MyVerifier.test(rentry.login())))
 				.add("/admin/*", new TraceHandler(rentry))
 //				.add("/favicon.ico", new FavIconHandler())
 				.add(new MyAppCacheHandler("./webapps/admin/cache.appcache"))
