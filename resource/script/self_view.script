@@ -1,4 +1,4 @@
-// test script
+// view script children sample
 new function(){
 
 	importPackage(java.lang) 

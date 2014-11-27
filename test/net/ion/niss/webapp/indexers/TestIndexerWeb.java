@@ -2,8 +2,6 @@ package net.ion.niss.webapp.indexers;
 
 import java.util.List;
 
-import org.apache.lucene.index.IndexableField;
-
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;

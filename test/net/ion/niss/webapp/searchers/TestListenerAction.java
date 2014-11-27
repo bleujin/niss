@@ -1,35 +1,22 @@
 package net.ion.niss.webapp.searchers;
 
-import junit.framework.TestCase;
-import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.search.CompositeSearcher;
-import net.ion.radon.client.StubServer;
 
-public class TestListenerAction extends TestCase {
+public class TestListenerAction extends TestBaseSearcher {
 
-	private StubServer ss;
-	private REntry entry;
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-
-		this.ss = StubServer.create(SearcherWeb.class);
-		this.entry = REntry.test();
-		ss.treeContext().putAttribute(REntry.EntryName, entry);
-	}
 	public void testSectionSearchManager() throws Exception {
-		assertEquals(true, entry.indexManager().hasIndex("document")) ;
+		assertEquals(true, rentry.indexManager().hasIndex("document")) ;
 		
-		assertEquals(true, entry.searchManager().hasSearch("sec1")) ;
-		CompositeSearcher searcher = (CompositeSearcher) entry.searchManager().searcher("sec1") ;
+		assertEquals(true, rentry.searchManager().hasSearch("sec1")) ;
+		CompositeSearcher searcher = (CompositeSearcher) rentry.searchManager().searcher("sec1") ;
 		
 		assertEquals(2, searcher.readerCount());
 	}
 	
 	public void testSearchAll() throws Exception {
-		entry.searchManager().searcher("sec1").search("").debugPrint(); 
+		rentry.searchManager().searcher("sec1").search("").debugPrint(); 
 	}
 	
 	public void testCreateNewSection() throws Exception {
@@ -42,7 +29,7 @@ public class TestListenerAction extends TestCase {
 //					, @FormParam("handler") final String handler, @DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler) {
 		StubHttpResponse response = ss.request("/sections/sec1/define").postParam("target_collection", "document").post() ;
 		
-		CompositeSearcher searcher = (CompositeSearcher) entry.searchManager().searcher("sec1") ;
+		CompositeSearcher searcher = (CompositeSearcher) rentry.searchManager().searcher("sec1") ;
 		assertEquals(1, searcher.readerCount());
 	}
 

@@ -1,12 +1,9 @@
 package net.ion.nradon.handler.authentication;
 
-import org.infinispan.Cache;
-import org.infinispan.configuration.cache.CacheMode;
-import org.infinispan.configuration.cache.ConfigurationBuilder;
-import org.infinispan.configuration.global.GlobalConfigurationBuilder;
-import org.infinispan.manager.DefaultCacheManager;
-
 import junit.framework.TestCase;
+
+import org.infinispan.Cache;
+import org.infinispan.manager.DefaultCacheManager;
 
 public class TestCrakenSessionManager extends TestCase{
 

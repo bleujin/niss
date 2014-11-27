@@ -328,6 +328,7 @@ public class REntry implements Closeable {
 	
 	// create analyzer
 	private Analyzer makeAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
+		if (StringUtil.isBlank(modValue)) return new StandardAnalyzer(SearchConstant.LuceneVersion) ;
 		
 		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
 		
@@ -432,7 +433,7 @@ public class REntry implements Closeable {
 						ex.printStackTrace();
 						return (Searcher) args[0];
 					}
-				}, searcher, rsession);
+				}, searcher, rsession, sid.idString());
 				searchManager.newSearch(sid, fsearcher);
 			} catch (Exception e) { // otherwise system cant started
 				e.printStackTrace(); 

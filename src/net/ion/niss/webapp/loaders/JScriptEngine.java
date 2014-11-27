@@ -98,6 +98,10 @@ public class JScriptEngine {
 		return this ;
 	}
 	
+	public ExecutorService executor(){
+		return es ;
+	}
+	
 	public InstantJavaScript createScript(IdString lid, String explain, InputStream input) throws IOException, ScriptException{
 		return createScript(lid, explain, new BufferedReader(new InputStreamReader(input, "UTF-8"))) ;
 	}

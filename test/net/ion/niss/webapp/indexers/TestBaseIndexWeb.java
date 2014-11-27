@@ -1,7 +1,11 @@
 package net.ion.niss.webapp.indexers;
 
+import java.util.concurrent.Executors;
+
 import junit.framework.TestCase;
+import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
 
@@ -18,6 +22,10 @@ public class TestBaseIndexWeb extends TestCase{
 		this.entry = REntry.test();
 		ss.treeContext().putAttribute(REntry.EntryName, entry);
 
+		final JScriptEngine jsentry = ss.treeContext().putAttribute(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));
+		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
+
+		
 		if (! entry.indexManager().hasIndex("col1")){
 			StubHttpResponse response = ss.request("/indexers/col1").post();
 			assertEquals("created col1", response.contentsString());

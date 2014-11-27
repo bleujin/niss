@@ -1,0 +1,15 @@
+// define with termFilter
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.nsearcher.search.filter)
+	importPackage(net.ion.nsearcher.search.processor)  
+
+	this.filter = function(){
+		return new TermFilter("idx", "1") ;
+	} 
+	
+	this.handle = function(searcher){
+		return searcher.andFilter(this.filter());
+	}
+} ;

@@ -1,0 +1,18 @@
+// write to craken sample
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.craken.node)
+
+	this.handle = function(writer, session, param){
+
+		var name = session.tranSync(new TransactionJob( {
+			handle : function(wsession) {
+				wsession.pathBy("/mydata").property("name", param.getFirst("name")) ;
+				return param.getFirst("name");
+			}
+		})) ;
+		return name ;
+	}
+
+} ;

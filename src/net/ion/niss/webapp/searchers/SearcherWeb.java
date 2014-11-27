@@ -130,13 +130,41 @@ public class SearcherWeb implements Webapp {
 
 		return "removed " + sid;
 	}
+	
+	
+	@GET
+	@Path("/{sid}/overview")
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
+	public JsonObject viewOverview(@PathParam("sid") final String sid){
+		
+		// wsession.pathBy("/searchlogs/" + query.hashCode()).property("query", query).property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') ;
+		Function<Iterator<ReadNode>, JsonArray> makeJson = new Function<Iterator<ReadNode>, JsonArray>(){
+			@Override
+			public JsonArray apply(Iterator<ReadNode> iter) {
+				JsonArray result = new JsonArray() ;
+				while(iter.hasNext()){
+					ReadNode node = iter.next() ;
+					result.add(new JsonObject().put("query", node.property("query").asString()).put("count", node.property("count").asLong(1)).put("time", node.property("time").asLong(0))) ; 
+				}
+				return result;
+			}
+		} ;
+		
+		JsonArray recent = rsession.ghostBy("/searchlogs/" + sid).children().descending("time").offset(10).transform(makeJson) ;
+		JsonArray popular = rsession.ghostBy("/searchlogs/" + sid).children().descending("count").offset(10).transform(makeJson) ;
+		
+		return new JsonObject().put("info", rsession.ghostBy("/menus/searchers").property("overview").asString())
+			.put("recent", recent)
+			.put("popular", popular) ;
+	}
+	
 
 
 	
 	@GET
 	@Path("/{sid}/define")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject viewSection(@PathParam("sid") final String sid) {
+	public JsonObject viewSearcher(@PathParam("sid") final String sid) {
 
 		final String[] colNames = rsession.ghostBy("/indexers").childrenNames().toArray(new String[0]);
 
@@ -166,7 +194,7 @@ public class SearcherWeb implements Webapp {
 	@POST
 	@Path("/{sid}/define")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String defineSection(@PathParam("sid") final String sid, @FormParam("target") final String target, @Context HttpRequest request, @FormParam("queryanalyzer") final String queryAnalyzer, @FormParam("handler") final String handler,
+	public String defineSearcher(@PathParam("sid") final String sid, @FormParam("target") final String target, @Context HttpRequest request, @FormParam("queryanalyzer") final String queryAnalyzer, @FormParam("handler") final String handler,
 			@DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler, @FormParam("stopword") final String stopword, @DefaultValue("false") @FormParam("applystopword") final boolean applyStopword) {
 
 		final String[] targets = StringUtil.split(target, ",");

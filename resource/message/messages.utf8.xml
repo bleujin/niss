@@ -161,6 +161,8 @@
         <choose>Choose Searcher</choose>
         <overview>
             <title>Overview</title>
+            <recent_query>Recent Query</recent_query>
+            <popular_query>Popular Query</popular_query>
         </overview>
         <defined>
             <title>Define Searcher</title>

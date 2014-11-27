@@ -472,7 +472,6 @@ public class IndexerWeb implements Webapp {
 				else isession.insertDocument(wdoc) ;
 				return null;
 			}
-
 		}) ;
 		
 		return "1 indexed" ;

@@ -1,7 +1,6 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;

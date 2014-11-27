@@ -61,7 +61,7 @@ public class JsonStreamOut implements StreamingOutput {
 			if (parent.isJsonObject())
 				jwriter.name(name);
 			jwriter.beginArray();
-			for (JsonElement ele : json.getAsJsonArray()) {
+			for (JsonElement ele : json.getAsJsonArray() ) {
 				writeJsonElement(jwriter, json, name, ele);
 			}
 			jwriter.endArray();

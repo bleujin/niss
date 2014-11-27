@@ -211,7 +211,7 @@ public class ScriptWeb implements Webapp{
 				}
 				return null;
 			}
-		}, writer, rsession, params) ;
+		}, writer, rsession, params, rentry, jengine) ;
 		
 		jwriter.name("writer").value(writer.toString()) ;
 		

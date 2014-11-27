@@ -17,6 +17,9 @@ public class TestBrowsing extends TestCase{
 		this.ss = StubServer.create(SearcherWeb.class) ;
 		this.rentry = REntry.create();
 		ss.treeContext().putAttribute(REntry.EntryName, rentry) ;
+
+		StubHttpResponse response = ss.request("/searchers/sec1").post() ;
+		assertEquals("created sec1", response.contentsString());
 	}
 	
 	@Override

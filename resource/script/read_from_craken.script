@@ -1,0 +1,12 @@
+// read from craken sample
+new function(){
+
+	importPackage(java.lang) 
+
+	this.handle = function(writer, session, param){
+		
+		var json = session.ghostBy("/searchlogs").children().descending('count').offset(10).transform(Functions.CHILDLIST);
+		return json ;
+	}
+
+} ;

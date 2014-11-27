@@ -1,0 +1,63 @@
+// index from db sample (async)
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.craken.node.convert)
+	importPackage(java.util.concurrent) 
+	importPackage(net.ion.niss.webapp.loaders)
+	importPackage(net.ion.framework.db.bean)
+	importPackage(java.sql)
+	importPackage(net.ion.nsearcher.index)
+
+	this.handle = function(writer, session, param, rentry, jengine){
+		var iid = "newindexer" ;
+		var imanager = rentry.indexManager();
+		
+		if (! imanager.hasIndex(iid)) {
+			writer.append(iid + " not exist");
+			return ;
+		}
+		var indexer = imanager.index(iid).newIndexer() ;
+		var rsession = rentry.login() ;
+
+		var callable = new Callable({
+			call : function() {
+				RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs").handle(new ResultSetHandler({
+					handle : function(srs) {
+						var rs = srs ;
+						
+						indexer.index(new IndexJob({
+							handle : function(isession) {
+								isession.fieldIndexingStrategy(this.createIndexStrategy(iid)) ;
+								while(rs.next()){
+									var wdoc = isession.newDocument(rs.getString("table_name")) ;
+									wdoc.unknown("owner", "hero").updateVoid() ;
+								}
+								rs.close(); 
+								return null;
+							}, 
+
+							createIndexStrategy : function(iid) {
+								return imanager.fieldIndexStrategy(rsession, iid) ;
+							}
+						}) ) ;  // end indexer.index
+					}
+				} )); // end handle
+			}} 
+		) ;
+		
+
+		var es = jengine.executor()  ;
+		var future = es.submit(callable) ;
+		
+		/*
+		// future.get() ;
+	
+		// var searcher = imanager.index(iid).newSearcher() ;
+		// searcher.createRequest("owner:hero").find().debugPrint();
+		*/ 
+		writer.append('index started') ;
+		return null ;
+	}
+
+} ;

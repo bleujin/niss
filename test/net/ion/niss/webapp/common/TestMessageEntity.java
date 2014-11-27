@@ -4,20 +4,12 @@ import java.io.FileInputStream;
 
 import junit.framework.TestCase;
 import net.ion.craken.util.StringInputStream;
-import net.ion.framework.parse.gson.JsonElement;
-import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.parse.gson.JsonUtil;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.Webapp;
 
-import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.helpers.XMLReaderFactory;
 
 public class TestMessageEntity extends TestCase {
