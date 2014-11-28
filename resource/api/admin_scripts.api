@@ -2,11 +2,6 @@ path : /admin/scripts
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.ScriptWeb.listScript()
 
-path : /admin/scripts/define/{sid}
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.ScriptWeb.viewScript(java.lang.String)
-  {@javax.ws.rs.PathParam(value=sid)}
-
 path : /admin/scripts/removes
 httpMethod : POST 
 javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.removeUsers(java.lang.String)
@@ -24,12 +19,24 @@ javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.defineSc
   {@javax.ws.rs.PathParam(value=sid)}
   {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=content)}
 
-path : /admin/scripts/sample
+path : /admin/scripts/define/{sid}
 httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.ScriptWeb.sampleScript() throws java.io.IOException
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.ScriptWeb.viewScript(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/scripts/sample/{fileName}
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.sampleScript(java.lang.String) throws java.io.IOException
+  {@javax.ws.rs.PathParam(value=fileName)}
 
 path : /admin/scripts/remove/{sid}
 httpMethod : DELETE 
 javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.removeScript(java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/scripts/instantrun
+httpMethod : POST 
+javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.ScriptWeb.instantRunScript(org.jboss.resteasy.spi.HttpRequest,java.lang.String) throws java.io.IOException,javax.script.ScriptException
+  {@javax.ws.rs.core.Context()}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=content)}
 

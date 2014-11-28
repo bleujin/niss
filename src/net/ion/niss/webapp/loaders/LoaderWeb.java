@@ -203,27 +203,31 @@ public class LoaderWeb implements Webapp {
 		
 		final Writer writer = esentry.newWriter(rentry, lid, eventId) ;
 		
-		Future<Object> future = script.runAsync(writer, new ExceptionHandler() {
+		script.execAsync(new ResultHandler<Void>() {
 			@Override
-			public Object handle(final Exception ex) {
-				try {
-					rsession.tran(new TransactionJob<Void>() {
-						@Override
-						public Void handle(WriteSession wsession) throws Exception {
-							wsession.pathBy("/events/loaders/" +eventId)
-								.property("status", "fail")
-								.property("exception", ex.getMessage()) ;
-							return null;
-						}
-					}) ;
-					
-					writer.write(ex.getMessage());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			public Void onSuccess(Object result, Object... args) {
+				IOUtil.close(writer);
 				return null;
 			}
-		});
+
+			@Override
+			public Void onFail(final Exception ex, Object... args) {
+				rsession.tran(new TransactionJob<Void>() {
+					@Override
+					public Void handle(WriteSession wsession) throws Exception {
+						wsession.pathBy("/events/loaders/" +eventId).property("status", "fail").property("exception", ex.getMessage()) ;
+						return null;
+					}
+				}) ;
+				
+				try {
+					writer.write(ex.getMessage()) ;
+				} catch (IOException ignore) {}
+				
+				IOUtil.close(writer);
+				return null;
+			}
+		}, writer);
 		
 		return eventId ;
 

@@ -9,6 +9,7 @@ import java.net.URLClassLoader;
 
 import junit.framework.TestCase;
 import net.ion.craken.util.StringInputStream;
+import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.util.Debug;
 import net.ion.niss.cloader.DirClassLoader;
 import net.ion.niss.webapp.IdString;
@@ -26,7 +27,7 @@ public class TestScriptClassLoader extends TestCase {
 		InstantJavaScript script = js.createScript(IdString.create("test"), "", input) ;
 		
 		StringWriter writer = new StringWriter() ;
-		Object result = js.runHandle(script, ExceptionHandler.DEFAULT, writer) ;
+		Object result = script.exec(ResultHandler.DEFAULT, writer) ;
 		
 		Debug.line(result, writer);
 	}
@@ -72,9 +73,8 @@ public class TestScriptClassLoader extends TestCase {
 				+ "}");
 		InstantJavaScript script = js.createScript(IdString.create("test"), "", input) ;
 		StringWriter writer = new StringWriter() ;
-		Object result = js.runHandle(script, ExceptionHandler.DEFAULT, writer) ;
-		
-		Debug.line(result, writer);
+		Object result = script.exec(ResultHandler.DEFAULT, writer) ;
+		Debug.line(result, writer, result.getClass());
 	}
 	
 	public void testLoader() throws Exception {
@@ -95,7 +95,7 @@ public class TestScriptClassLoader extends TestCase {
 			InstantJavaScript script = js.createScript(IdString.create("test"), "", input) ;
 			
 			StringWriter writer = new StringWriter() ;
-			Object result = js.runHandle(script, ExceptionHandler.DEFAULT, writer) ;
+			Object result = script.exec(ResultHandler.DEFAULT, writer) ;
 			
 			Debug.line(result, writer);
 		}
@@ -126,7 +126,7 @@ public class TestScriptClassLoader extends TestCase {
 					+ "}");
 			InstantJavaScript script = js.createScript(IdString.create("test"), "", input) ;
 			
-			Object result = js.execHandle(script, ResultHandler.DEFAULT) ;
+			Object result = script.exec(ResultHandler.DEFAULT) ;
 			Debug.line(result);
 		}
 

@@ -1,11 +1,3 @@
-path : /admin/misc/shutdown
-httpMethod : GET 
-javaMethod : public java.lang.String net.ion.niss.webapp.misc.MiscWeb.shutdown(org.jboss.resteasy.spi.HttpRequest,java.lang.String,int,net.ion.niss.NissServer)
-  {@javax.ws.rs.core.Context()}
-  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=password)}
-  {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.QueryParam(value=time)}
-  {@net.ion.radon.core.ContextParam(value=net.ion.niss.NissServer)}
-
 path : /admin/misc/thread
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.MiscWeb.listThreadDump() throws java.io.IOException
@@ -19,16 +11,18 @@ httpMethod : GET
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.MiscWeb.logHistory(java.lang.String) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
   {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=searchQuery)}
 
-path : /admin/misc/users
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.MiscWeb.userList() throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
-
 path : /admin/misc/users/{uid}
 httpMethod : POST 
 javaMethod : public java.lang.String net.ion.niss.webapp.misc.MiscWeb.addUser(java.lang.String,java.lang.String,java.lang.String)
   {@javax.ws.rs.PathParam(value=uid)}
   {@javax.ws.rs.FormParam(value=name)}
   {@javax.ws.rs.FormParam(value=password)}
+
+path : /admin/misc/profile/{uid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.MiscWeb.editUser(java.lang.String,org.jboss.resteasy.spi.HttpRequest)
+  {@javax.ws.rs.PathParam(value=uid)}
+  {@javax.ws.rs.core.Context()}
 
 path : /admin/misc/users_remove
 httpMethod : POST 
@@ -39,4 +33,16 @@ path : /admin/misc/users/{uid}
 httpMethod : DELETE 
 javaMethod : public java.lang.String net.ion.niss.webapp.misc.MiscWeb.removeUser(java.lang.String) throws java.lang.InterruptedException,java.util.concurrent.ExecutionException
   {@javax.ws.rs.PathParam(value=uid)}
+
+path : /admin/misc/shutdown
+httpMethod : GET 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.MiscWeb.shutdown(org.jboss.resteasy.spi.HttpRequest,java.lang.String,int,net.ion.niss.NissServer)
+  {@javax.ws.rs.core.Context()}
+  {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.QueryParam(value=password)}
+  {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.QueryParam(value=time)}
+  {@net.ion.radon.core.ContextParam(value=net.ion.niss.NissServer)}
+
+path : /admin/misc/users
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.MiscWeb.userList() throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
 

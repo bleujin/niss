@@ -13,25 +13,21 @@ public class InstantJavaScript {
 		this.explain = explain ;
 		this.compiledScript = compiledScript ;
 	}
+	
 	public static InstantJavaScript create(JScriptEngine app, String explain, Object compiledScript) {
 		return new InstantJavaScript(app, explain, compiledScript);
 	}
 
-	public Future<Object> runAsync(Writer writer, ExceptionHandler ehandler) {
-		return app.runAsyncHandle(this, ehandler, writer);
-	}
-	
-	public Object run(Writer writer, ExceptionHandler ehandler) {
-		return app.runHandle(this, ehandler, writer);
-	}
-	
 	public Object compiled() {
 		return compiledScript;
 	}
+	
 	public <T> T exec(ResultHandler<T> rhandler, Object... args) {
 		return app.execHandle(this, rhandler, args) ;
 	}
 
-
+	public <T> Future<T> execAsync(ResultHandler<T> rhandler, Object... args) {
+		return app.runAsyncHandle(this, rhandler, args);
+	}
 
 }

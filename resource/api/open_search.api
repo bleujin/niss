@@ -1,7 +1,3 @@
-path : /open/search/{sid}/query
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.OpenSearchWeb.query() throws java.io.IOException
-
 path : /open/search/{sid}/query.json
 httpMethod : GET 
 javaMethod : public javax.ws.rs.core.StreamingOutput net.ion.niss.webapp.searchers.OpenSearchWeb.jquery(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,boolean,boolean,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
@@ -73,4 +69,8 @@ httpMethod : POST
 javaMethod : public java.lang.String net.ion.niss.webapp.searchers.OpenSearchWeb.tqueryPost(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,org.apache.lucene.queryparser.classic.ParseException
   {@javax.ws.rs.PathParam(value=sid)}
   {@javax.ws.rs.core.Context()}
+
+path : /open/search/{sid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.OpenSearchWeb.query() throws java.io.IOException
 

@@ -1,11 +1,11 @@
 path : /admin/analysis
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.AnalysisWeb.list()
-
-path : /admin/analysis
 httpMethod : POST 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.AnalysisWeb.tokenAnalyzer(java.lang.String,java.lang.String,java.lang.String) throws java.lang.Exception
   {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=content)}
   {@javax.ws.rs.FormParam(value=analyzer)}
   {@javax.ws.rs.DefaultValue(value=),@javax.ws.rs.FormParam(value=stopword)}
+
+path : /admin/analysis
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.AnalysisWeb.list()
 

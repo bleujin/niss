@@ -1,13 +1,14 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.concurrent.Callable;
 
 import javax.script.ScriptException;
 import javax.ws.rs.DELETE;
@@ -31,10 +32,9 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
+import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
@@ -45,7 +45,6 @@ import net.ion.niss.webapp.loaders.ResultHandler;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.radon.core.ContextParam;
 
-import org.apache.commons.collections.map.MultiValueMap;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 import org.jboss.resteasy.spi.HttpRequest;
 
@@ -57,7 +56,8 @@ public class ScriptWeb implements Webapp{
 	private ReadSession rsession;
 	private JScriptEngine jengine;
 	private REntry rentry;
-	public ScriptWeb(@ContextParam("rentry") REntry rentry, @ContextParam("jsentry") JScriptEngine jengine ) throws IOException{
+	
+	public ScriptWeb(@ContextParam("rentry") REntry rentry, @ContextParam("jsentry") JScriptEngine jengine) throws IOException{
 		this.rentry = rentry ;
 		this.rsession = rentry.login() ;
 		this.jengine = jengine ;
@@ -165,7 +165,8 @@ public class ScriptWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response instantRunScript(@Context HttpRequest request, @DefaultValue("") @FormParam("content") String content) throws IOException, ScriptException{
 		String scriptId = "" + System.currentTimeMillis() ;
-		return runScript(scriptId, new MultivaluedMapImpl<String, String>(), content) ;
+		StringWriter writer = new StringWriter();
+		return runScript(scriptId, writer, new MultivaluedMapImpl<String, String>(), content) ;
 	}
 	
 	@Path("/run/{sid}")
@@ -182,18 +183,17 @@ public class ScriptWeb implements Webapp{
 		}
 
 		String content = rsession.ghostBy("/scripts/" + sid).property("content").asString() ;
-		return runScript(sid, params, content);
+		StringWriter writer = new StringWriter();
+		return runScript(sid, writer, params, content);
 	}
 
 
-
-	private Response runScript(String scriptId, MultivaluedMap<String, String> params, String content) throws IOException, ScriptException {
-		final StringWriter writer = new StringWriter();
+	private Response runScript(String scriptId, Writer writer, MultivaluedMap<String, String> params, String content) throws IOException, ScriptException {
 		InstantJavaScript script = jengine.createScript(IdString.create(scriptId), "", new StringReader(content)) ;
 		
 		StringWriter result = new StringWriter();
 		final JsonWriter jwriter =  new JsonWriter(result) ;
-		jengine.execHandle(script, new ResultHandler<Void>() {
+		script.exec(new ResultHandler<Void>() {
 			@Override
 			public Void onSuccess(Object result, Object... args) {
 				try {
@@ -232,3 +232,6 @@ public class ScriptWeb implements Webapp{
 	}
 
 }
+
+
+

@@ -38,12 +38,29 @@
 						</table>
 					</div>
 				</div>
+				
+				<div class="widget-body">
+					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+						<fieldset>
+							<section>
+								<label class="label">${m.asString("misc.script.output")}</label>
+								<label class="textarea textarea-resizable" readonly="readonly">
+									<textarea rows="12" class="custom-scroll" id="output"></textarea>
+								</label>
+							</section>
+							
+							<section>
+								<label class="label alert-info alert-block"><pre id="target_url"></pre></label>
+							</section>
+
+						</fieldset>
+						
+					</form>
+				</div>
 
 			</div>
-
 		</article>
 	</div>
-
 </section>
 
 <script type="text/javascript">
@@ -104,6 +121,7 @@
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'						<section class="col col-12">' +
 				'						<a href="javascript:void(0);" class="btn btn-primary" name="create_script">${m.asString("misc.script.buttons.define")}</a>&nbsp;' +
+				'						<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="run_script">${m.asString("misc.script.buttons.run")}</a>&nbsp;' +
 				'						<a href="javascript:void(0);" class="btn btn-default" disabled="disabled" name="remove_script">${m.asString("misc.script.buttons.remove")}</a></section>' +
 				'				</td></tr></tfoot>' ;
 				
@@ -119,7 +137,7 @@
 			            table.$('tr.selected2').removeClass('selected2');
 			            $(this).addClass('selected2');
 			        }
-					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#misc-script-0 a[name=remove_script]').removeAttr("disabled") : $('#misc-script-0 a[name=remove_script]').attr("disabled", "disabled") ;
+					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#misc-script-0 a.btn-default').removeAttr("disabled") : $('#misc-script-0 a.btn-default').attr("disabled", "disabled") ;
 				} );
 
 
@@ -162,6 +180,49 @@
 					});
 				});
 
+				var runButton = $('#misc-script-0 a[name=run_script]') ;
+				runButton.click(function() {
+					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
+					var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
+					
+					var es = new EventSource('/event/' + eventId);
+				       es.onopen = function() {
+				       	  console.log('OPEN');
+				       };
+				       es.onmessage = function(e) {
+					       if (e.data == eventId) {
+							    es.close();
+							    runButton.removeAttr("disabled");
+							    return ;
+							}
+				       	var outputText = document.getElementById('output');
+					       outputText.value = outputText.value + e.data + '\n';
+					       outputText.scrollTop = outputText.scrollHeight;
+				       };
+				       es.onerror = function(e) {
+						    runButton.removeAttr("disabled");
+				       		console.log('ERROR : ' + e);
+				       };
+				       
+				    runButton.attr('disabled', 'disabled') ;
+					$.ajax({
+						type: "POST",
+						dataType : 'text', 
+						url: "/open/script/write/" + sid,
+						data: { 'eventid': eventId }, 
+						complete : function(){ 
+							var result_text = 'Path : ' + this.url + '<br/>';
+							result_text += 'Event Source : /event/' + eventId + '<br />' ;
+							result_text += 'Form parameter : <br />' ;
+							result_text += ' - eventid : ...<br />' ;
+							$("#target_url").html(result_text) ;
+						}, 
+						success :  function(data) {
+							// console.log(data) ;
+						}
+					}) ;
+				});
+				
 			}, 
 			error:function(request,status,error){
 				console.log('response', request, status, error) ;

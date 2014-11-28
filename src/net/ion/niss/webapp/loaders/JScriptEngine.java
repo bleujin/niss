@@ -115,42 +115,27 @@ public class JScriptEngine {
 		return result ;
 	}
 	
-	
-	public Object runHandle(final InstantJavaScript script, ExceptionHandler ehandler, final Writer writer)  {
-		try {
-			return runAsyncHandle(script, ehandler, writer).get() ;
-		} catch (InterruptedException e) {
-			return ehandler.handle(e); 
-		} catch (ExecutionException e) {
-			return ehandler.handle(e); 
-		}
-	}
 
 	
-	
-	public Future<Object> runAsyncHandle(final InstantJavaScript script, final ExceptionHandler ehandler, final Writer writer)  {
-		return es.submit(new Callable<Object>(){
+	<T> Future<T> runAsyncHandle(final InstantJavaScript script, final ResultHandler<T> rhandler, final Object... args)  {
+		return es.submit(new Callable<T>(){
 			@Override
-			public Object call() {
+			public T call() {
 				try {
-					Object result = ((Invocable) sengine).invokeMethod(script.compiled(), "handle", writer);
-					return result;
+					Object result = ((Invocable) sengine).invokeMethod(script.compiled(), "handle", args);
+					return rhandler.onSuccess(result, args);
 				} catch (ScriptException e) {
-					ehandler.handle(e) ;
+					return rhandler.onFail(e, args) ;
 				} catch (NoSuchMethodException e) {
-					ehandler.handle(e) ;
+					return rhandler.onFail(e, args) ;
 				} catch(Exception e){
-					ehandler.handle(e) ;
-				} finally {
-					try { writer.flush(); } catch (IOException e) {} // ignore 
-					IOUtil.closeQuietly(writer); 
-				}
-				return null ;
+					return rhandler.onFail(e, args) ;
+				} 
 			}
 		}) ;
 	}
 
-	public <T> T execHandle(final InstantJavaScript script, ResultHandler<T> rhandler, Object... args) {
+	<T> T execHandle(final InstantJavaScript script, ResultHandler<T> rhandler, Object... args) {
 		try {
 			Object result = ((Invocable) sengine).invokeMethod(script.compiled(), "handle", args);
 			return rhandler.onSuccess(result, args) ;

@@ -1,12 +1,3 @@
-path : /admin/searchers/{sid}
-httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.create(java.lang.String)
-  {@javax.ws.rs.PathParam(value=sid)}
-
-path : /admin/searchers/{sid}/query
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.query() throws java.io.IOException
-
 path : /admin/searchers/{sid}/schema
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.listSchema(java.lang.String)
@@ -89,14 +80,19 @@ httpMethod : DELETE
 javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.removeSearch(java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
 
+path : /admin/searchers/{sid}/overview
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewOverview(java.lang.String)
+  {@javax.ws.rs.PathParam(value=sid)}
+
 path : /admin/searchers/{sid}/define
 httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewSection(java.lang.String)
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewSearcher(java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
 
 path : /admin/searchers/{sid}/define
 httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defineSection(java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpRequest,java.lang.String,java.lang.String,boolean,java.lang.String,boolean)
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defineSearcher(java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpRequest,java.lang.String,java.lang.String,boolean,java.lang.String,boolean)
   {@javax.ws.rs.PathParam(value=sid)}
   {@javax.ws.rs.FormParam(value=target)}
   {@javax.ws.rs.core.Context()}
@@ -106,24 +102,35 @@ javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.d
   {@javax.ws.rs.FormParam(value=stopword)}
   {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=applystopword)}
 
-path : /admin/searchers/{sid}/define.default
+path : /admin/searchers/{sid}/samplehandler/{fileName}
 httpMethod : GET 
-javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defaultHandler(java.lang.String) throws java.io.IOException
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.viewSampleHandler(java.lang.String,java.lang.String) throws java.io.IOException
   {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.PathParam(value=fileName)}
 
 path : /admin/searchers/{sid}/template
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.viewTemplate(java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
 
-path : /admin/searchers/{sid}/template.default
+path : /admin/searchers/{sid}/sampletemplate/{fileName}
 httpMethod : GET 
-javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.defaultTemplate(java.lang.String) throws java.io.IOException
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.viewSampleTemplate(java.lang.String,java.lang.String) throws java.io.IOException
   {@javax.ws.rs.PathParam(value=sid)}
+  {@javax.ws.rs.PathParam(value=fileName)}
 
 path : /admin/searchers/{sid}/template
 httpMethod : POST 
 javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.editTemplate(java.lang.String,java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
   {@javax.ws.rs.FormParam(value=template)}
+
+path : /admin/searchers/{sid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.searchers.SearcherWeb.create(java.lang.String) throws java.lang.Exception
+  {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/searchers/{sid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.searchers.SearcherWeb.query() throws java.io.IOException
 

@@ -30,16 +30,17 @@ new function(){
 	}, 
 	
 	this.handle = function(writer){
+		var jwriter = new JsonWriterPipeline(writer) ;
 		try {
 			var spider = Site.create().sleepTime(50).newSpider(this.processor(writer)).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
 	
-			var jwriter = new JsonWriterPipeline(writer) ;
 			jwriter.begin() ;
 			spider.addPipeline(jwriter).run();
-			jwriter.end() ;	
 			spider.close() ;
 		} catch(ex){
 			writer.write("" + ex) ;
+		} finally {
+			jwriter.end() ;	
 		}
 	}
 } ;

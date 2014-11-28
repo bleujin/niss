@@ -157,7 +157,7 @@ public class AppLogSink implements LogSink {
 		}
 		sb.append(lineSeparator) ;
 		
-		logger.info(sb);
+		logger.debug(sb);
 		
 		return out.append(sb);
 	}

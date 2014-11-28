@@ -1,0 +1,12 @@
+// define with termFilter
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.nsearcher.search.filter)
+	importPackage(net.ion.nsearcher.search.processor)  
+
+	this.handle = function(searcher){
+		searcher.config().attr("sort", "id desc");
+		return searcher;
+	}
+} ;

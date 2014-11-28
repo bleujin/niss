@@ -31,10 +31,9 @@ public class JsonWriterPipeline implements Pipeline{
 	
 	public void end() throws IOException{
 		writer.endArray() ;
-		writer.flush(); 
-//		writer.close();
+		writer.flush();
+		writer.close(); 
 	}
-	
 	
 	@Override
 	public void process(ResultItems ritems, Task task) {

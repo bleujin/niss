@@ -212,6 +212,7 @@
 			       outputText.scrollTop = outputText.scrollHeight;
 		       };
 		       es.onerror = function(e) {
+				    $( "#btn_run" ).removeAttr("disabled");
 		       		console.log('ERROR : ' + e);
 		       	// es.close() ;
 		       };

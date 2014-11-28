@@ -1,19 +1,3 @@
-path : /admin/indexers/{iid}
-httpMethod : DELETE 
-javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.remove(java.lang.String)
-  {@javax.ws.rs.PathParam(value=iid)}
-
-path : /admin/indexers/{iid}
-httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.create(java.lang.String,org.jboss.resteasy.spi.HttpRequest)
-  {@javax.ws.rs.PathParam(value=iid)}
-  {@javax.ws.rs.core.Context()}
-
-path : /admin/indexers/{iid}/query
-httpMethod : GET 
-javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.query(java.lang.String) throws java.io.IOException
-  {@javax.ws.rs.PathParam(value=iid)}
-
 path : /admin/indexers
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonArray net.ion.niss.webapp.indexers.IndexerWeb.listIndexer()
@@ -66,8 +50,8 @@ javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.add
   {@javax.ws.rs.FormParam(value=schemaid)}
   {@javax.ws.rs.FormParam(value=schematype)}
   {@javax.ws.rs.FormParam(value=analyzer)}
-  {@javax.ws.rs.FormParam(value=analyze)}
-  {@javax.ws.rs.FormParam(value=store)}
+  {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=analyze)}
+  {@javax.ws.rs.DefaultValue(value=false),@javax.ws.rs.FormParam(value=store)}
   {@javax.ws.rs.DefaultValue(value=1.0),@javax.ws.rs.FormParam(value=boost)}
 
 path : /admin/indexers/{iid}/schema/{schemaid}
@@ -83,7 +67,7 @@ javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.
 
 path : /admin/indexers/{iid}/index.json
 httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.indexJson(java.lang.String,java.lang.String,int,double,boolean,org.jboss.resteasy.spi.HttpRequest)
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.indexJson(java.lang.String,java.lang.String,int,float,boolean,org.jboss.resteasy.spi.HttpRequest)
   {@javax.ws.rs.PathParam(value=iid)}
   {@javax.ws.rs.FormParam(value=documents)}
   {@javax.ws.rs.DefaultValue(value=1000),@javax.ws.rs.FormParam(value=within)}
@@ -163,5 +147,21 @@ javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.rem
 path : /admin/indexers/{iid}/hello
 httpMethod : GET 
 javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.hello(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.remove(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
+path : /admin/indexers/{iid}
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.create(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.lang.Exception
+  {@javax.ws.rs.PathParam(value=iid)}
+  {@javax.ws.rs.core.Context()}
+
+path : /admin/indexers/{iid}/query
+httpMethod : GET 
+javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.query(java.lang.String) throws java.io.IOException
   {@javax.ws.rs.PathParam(value=iid)}
 
