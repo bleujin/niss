@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
@@ -59,8 +60,8 @@ public class OpenScriptWeb implements Webapp{
 	
 	
 	@Path("/write/{sid}")
-	@POST
-	public Response writeFromScript(@PathParam("sid") String sid, @FormParam("eventid") String eventId, @Context HttpRequest request) throws IOException, ScriptException{
+	@GET @POST
+	public Response writeFromScript(@PathParam("sid") String sid, @QueryParam("eventid") String eventId, @Context HttpRequest request) throws IOException, ScriptException{
 		writeScript(sid, eventId, request) ;
 		
 		return Response.ok().build() ;
@@ -77,9 +78,13 @@ public class OpenScriptWeb implements Webapp{
 			public Void onSuccess(Object result, Object... args) {
 				try {
 					writer.write(ObjectUtil.toString(result));
+					writer.flush(); 
 				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					IOUtil.closeQuietly(writer);
 				}
-				IOUtil.closeQuietly(writer);
+				
 				return null;
 			}
 
@@ -87,10 +92,13 @@ public class OpenScriptWeb implements Webapp{
 			public Void onFail(Exception ex, Object... args) {
 				try {
 					writer.write("exception occured : " + ex.getMessage()) ;
+					writer.flush(); 
 					ex.printStackTrace(); 
-				} catch (IOException ignore) {
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					IOUtil.closeQuietly(writer);
 				}
-				IOUtil.closeQuietly(writer);
 				return null;
 			}
 		}, writer, rsession, params, rentry, jengine) ;

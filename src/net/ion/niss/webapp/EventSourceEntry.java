@@ -49,6 +49,7 @@ public class EventSourceEntry implements Closeable{
 	public void sendTo(String eventId, String data) {
 		EventSourceConnection conn = connMap.get(eventId) ;
 		if (conn != null) conn.send(new EventSourceMessage(data)) ;
+		else System.err.println("not connected " + eventId + " : " + data);
 	}
 
 	public void closeEvent(String eventId) {

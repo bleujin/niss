@@ -61,10 +61,9 @@ public class TestSchema extends TestCase {
 		StubHttpResponse response = ss.request("/indexers/col1/schema").get() ;
 		JsonObject json = JsonObject.fromString(response.contentsString()) ;
 		
-		JsonArray schemas = json.asJsonArray("schemas") ;
+		JsonArray schemas = json.asJsonArray("data") ;
 		for (int i = 0; i < schemas.size() ; i++) {
-			JsonObject sinfo = schemas.asJsonObject(i) ;
-			assertEquals(true, ArrayUtil.contains(new String[]{"name", "explain"}, sinfo.asString("schemaid")));
+			JsonArray sinfo = schemas.asJsonArray(i) ;
 			Debug.line(sinfo);
 		}
 	}

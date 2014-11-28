@@ -32212,3 +32212,1595 @@ Caused by: java.nio.channels.ClosedChannelException
 [pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
 [pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
 [pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[Thread-23] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[Thread-23] INFO  net.ion.craken.node.Repository  - niss shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54781ad043ddeefc3e82d55b writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54781ad043ddeefc4082d55b writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-35109|0] (1) [bleujin-SV-35109]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-35109, physical addresses are [61.250.201.157:54419]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54781af24645eefcee90e38e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54781af24645eefcf090e38e writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547821150f28eefcf2970a30 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547821160f28eefcf4970a30 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782755b7f3eefcd8170676 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478276e4ba6eefcc3130118 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547827f343ddeefc81f8890c writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782835147beefc67ebfc28 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547828528b38eefc49d002c0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478287d1061eefc05daf5ef writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782899b27eeefc09f7df5f writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547828aa7753eefcf4039425 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782906dc45eefce3669fbc writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782906dc45eefce5669fbc writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478293dac47eefc32575dae writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c48383eefc6fa426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c48383eefc71a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c48383eefc73a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c48383eefc75a426a4 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c58383eefc77a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c58383eefc79a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c58383eefc7ba426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c58383eefc7da426a4 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c78383eefc7fa426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c78383eefc81a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c78383eefc83a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c78383eefc85a426a4 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c88383eefc87a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c88383eefc89a426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c88383eefc8ba426a4 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829c88383eefc8da426a4 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829d5d0baeefc1e1aa9db writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829d5d0baeefc201aa9db writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e1507eeefcb7e6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e2507eeefcb9e6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e4507eeefcbbe6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e5507eeefcbde6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e6507eeefcbfe6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e7507eeefcc1e6bd4e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829e7507eeefcc3e6bd4e writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829ef4703eefc8c661181 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f6577beefcb0642c2b writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f6577beefcb2642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f7577beefcb4642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f7577beefcb6642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f7577beefcb8642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f8577beefcba642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f8577beefcbc642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829f8577beefcbe642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829fa577beefcc0642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829fb577beefcc2642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829fb577beefcc4642c2b writed
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829fb577beefcc6642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547829fc577beefcc8642c2b writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a04afafeefc98d4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a04afafeefc9ad4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a04afafeefc9cd4dfa0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a05afafeefc9ed4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a05afafeefca0d4dfa0 writed
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer loaded
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a05afafeefca2d4dfa0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a06afafeefca4d4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a06afafeefca6d4dfa0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a08afafeefca8d4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a08afafeefcaad4dfa0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a09afafeefcacd4dfa0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a09afafeefcaed4dfa0 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a176ec0eefcbb3f171f writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a176ec0eefcbd3f171f writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a176ec0eefcbf3f171f writed
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a5f2de7eefc9224c66d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a602de7eefc9424c66d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a602de7eefc9624c66d writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a994b1deefcdab9b0d3 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a9a4b1deefcdcb9b0d3 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782a9a4b1deefcdeb9b0d3 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782af70b79eefcfb899ddc writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782af70b79eefcfd899ddc writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782af70b79eefcff899ddc writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afc460aeefc21ca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afd460aeefc23ca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afd460aeefc25ca3811 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afe460aeefc27ca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afe460aeefc29ca3811 writed
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer loaded
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782afe460aeefc2bca3811 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782aff460aeefc2dca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782aff460aeefc2fca3811 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b00460aeefc31ca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b00460aeefc33ca3811 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - col1 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:col1 indexer defined
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b01460aeefc35ca3811 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b02460aeefc37ca3811 writed
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-29459|0] (1) [bleujin-SV-29459]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-29459, physical addresses are [61.250.201.157:52695]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b9930caeefca3df031e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782b9a30caeefca5df031e writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782c5330caeefca7df031e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782dd630caeefca9df031e writed
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-9443|0] (1) [bleujin-SV-9443]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-9443, physical addresses are [61.250.201.157:50382]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782e5f56bdeefcf11e6409 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782e5f56bdeefcf31e6409 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-42078|0] (1) [bleujin-SV-42078]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-42078, physical addresses are [61.250.201.157:53585]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782ed6e57deefc44738bd1 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782ed6e57deefc46738bd1 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-36282|0] (1) [bleujin-SV-36282]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-36282, physical addresses are [61.250.201.157:53301]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782f1f5001eefc89c08326 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782f205001eefc8bc08326 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-36374|0] (1) [bleujin-SV-36374]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-36374, physical addresses are [61.250.201.157:53996]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782fad0bd3eefc910976d0 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54782fad0bd3eefc930976d0 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-39104|0] (1) [bleujin-SV-39104]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-39104, physical addresses are [61.250.201.157:49521]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478306b059deefc589e07fe writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478306b059deefc5a9e07fe writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, DIST_SYNC] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000078: Starting JGroups Channel
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000088: Unable to use any JGroups configuration mechanisms provided in properties {}. Using default JGroups configuration!
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000094: Received new cluster view: [bleujin-SV-24632|0] (1) [bleujin-SV-24632]
+[main] INFO  org.infinispan.remoting.transport.jgroups.JGroupsTransport  - ISPN000079: Cache local address is bleujin-SV-24632, physical addresses are [61.250.201.157:61400]
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] WARN  org.infinispan.configuration.cache.AbstractStoreConfigurationBuilder  - ISPN000149: Fetch persistent state and purge on startup are both disabled, cache may contain stale entries on startup
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : DIST_SYNC
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547830955858eefc2a89ff9d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547830955858eefc2c89ff9d writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547830c2eb9beefc36bfe20d writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547830c2eb9beefc38bfe20d writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783147f3f4eefc6fe1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783147f3f4eefc71e1c572 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e0f3f4eefc73e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e0f3f4eefc75e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e1f3f4eefc78e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e1f3f4eefc7ae1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e1f3f4eefc7ce1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e2f3f4eefc7ee1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e2f3f4eefc80e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e3f3f4eefc83e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e3f3f4eefc85e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e3f3f4eefc87e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e4f3f4eefc89e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e4f3f4eefc8be1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e4f3f4eefc8ee1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e4f3f4eefc90e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e4f3f4eefc92e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e6f3f4eefc94e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e6f3f4eefc96e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e6f3f4eefc99e1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e6f3f4eefc9be1c572 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547831e6f3f4eefc9de1c572 writed
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783242a1aaeefc7c7e2211 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783242a1aaeefc7e7e2211 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547832d0f5f5eefc2922526e writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547832d0f5f5eefc2b22526e writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478331886aaeefceeb3739f writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478331986aaeefcf0b3739f writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478333fde4aeefcb1ffb670 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478333fde4aeefcb3ffb670 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547833f5951aeefc6d5cf11c writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547833f5951aeefc6f5cf11c writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478343307d0eefccb62f6cd writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478343307d0eefccd62f6cd writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-2] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-22-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-2] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-24-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-3] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-26-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-3] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-28-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478362b8c87eefc90dc0692 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478362b8c87eefc92dc0692 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783784e50eeefc583fb34c writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783785e50eeefc5a3fb34c writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-10-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-12-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-14-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-16-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-18-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[jscript-thread-1] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-20-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547838cd059deefcafc85615 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547838ce059deefcb1c85615 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783b54215aeefc316d0fbe writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783b54215aeefc336d0fbe writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[jscript-thread-0] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783d24e8cdeefc72209b79 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/54783d24e8cdeefc74209b79 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478483ee8cdeefc76209b79 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478484ae8cdeefc78209b79 writed
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478491c87afeefcc94fdfbd writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/5478491c87afeefccb4fdfbd writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547849b1e490eefc5189e4b5 writed
+[isearch-indexer-0] INFO  net.ion.craken.node.Workspace  - /__transactions/547849b1e490eefc5389e4b5 writed
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[jscript-thread-2] INFO  net.ion.icrawler.Spider  - Spider http://www.i-on.net/index.html started!
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#content
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/index.html#gnb
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/eng/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/jpn/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/service/qna/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/company/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
+[pool-8-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html

@@ -278,10 +278,11 @@
             <title>Craken Script</title>
             <table-header>Script Tables</table-header>
             <id>Id</id>
-            <run>Run Path</run>
+            <run>HTTP Path TO RUN</run>
             <explain>Explain</explain>
             <buttons>
                 <define>Define Script</define>
+                <run>Run Script</run>
                 <remove>Remove Script</remove>
             </buttons>
         </script>

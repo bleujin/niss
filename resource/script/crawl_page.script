@@ -38,6 +38,7 @@ new function(){
 			process : function(ritems, task) {
 				var json = ritems.asObject("result");
 				gson.toJson(json, writer) ;
+				writer.flush() ;
 			}
 		});
 

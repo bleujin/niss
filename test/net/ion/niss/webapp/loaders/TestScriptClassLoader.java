@@ -80,7 +80,6 @@ public class TestScriptClassLoader extends TestCase {
 	public void testLoader() throws Exception {
 		JScriptEngine js = JScriptEngine.create("./resource/temp") ;
 
-		
 		for (int i = 0; i < 2; i++) {
 			InputStream input = new StringInputStream("new function(){ "
 //					+ " importPackage(net.ion.bleujin.cloader) \n"
@@ -112,14 +111,14 @@ public class TestScriptClassLoader extends TestCase {
 		Object object = clz.newInstance() ;
 		Method m = clz.getMethod("greeting") ;
 		
-		Debug.line(object);
+		m.invoke(object);
 
 		for (int i = 0; i < 1; i++) {
 			InputStream input = new StringInputStream("new function(){ "
 					+ " importPackage(net.ion.bleujin.cloader) \n"
 					+ " importPackage(java.lang) \n"
 					+ " this.handle = function(writer) {\n"
-					+ "   var namaste =  new Namaste() ; \n"
+					+ "   var namaste =  new net.ion.bleujin.cloader.Namaste() ; \n"
 					+ "   writer.write(namaste) ; \n"
 					+ "   return 'Hello'; \n"
 					+ " }"

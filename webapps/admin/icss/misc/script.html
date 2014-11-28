@@ -40,12 +40,12 @@
 				</div>
 				
 				<div class="widget-body">
-					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+					<form class="smart-form" method="post" action="misc/script" novalidate="novalidate">
 						<fieldset>
 							<section>
 								<label class="label">${m.asString("misc.script.output")}</label>
 								<label class="textarea textarea-resizable" readonly="readonly">
-									<textarea rows="12" class="custom-scroll" id="output"></textarea>
+									<textarea rows="12" class="custom-scroll" id="script_output"></textarea>
 								</label>
 							</section>
 							
@@ -91,7 +91,26 @@
 			$('.click2edit').destroy();
 		});
 		
+		$.browser.chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
 		
+		var msgCall = function(sid, eventId){
+			$.ajax({
+				type: "GET",
+				dataType : 'text', 
+				url: "/open/script/write/" + sid,
+				data: { 'eventid': eventId }, 
+				complete : function(){ 
+					var result_text = 'Path : ' + this.url + '<br/>';
+					result_text += 'Event Source : /event/' + eventId + '<br />' ;
+					result_text += 'Form parameter : <br />' ;
+					result_text += ' - eventid : ...<br />' ;
+					$("#target_url").html(result_text) ;
+				}, 
+				success :  function(data) {
+					// console.log(data) ;
+				}
+			}) ;
+		} ;
 
 		
 		$.ajax({
@@ -184,43 +203,31 @@
 				runButton.click(function() {
 					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
 					var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
+					var outputText = $('textarea#script_output');
 					
 					var es = new EventSource('/event/' + eventId);
-				       es.onopen = function() {
-				       	  console.log('OPEN');
-				       };
-				       es.onmessage = function(e) {
-					       if (e.data == eventId) {
-							    es.close();
-							    runButton.removeAttr("disabled");
-							    return ;
-							}
-				       	var outputText = document.getElementById('output');
-					       outputText.value = outputText.value + e.data + '\n';
-					       outputText.scrollTop = outputText.scrollHeight;
-				       };
-				       es.onerror = function(e) {
+					es.onopen = function() {
+						console.log('OPEN');
+						if ($.browser.chrome) msgCall(sid, eventId) ;
+					};
+					es.onmessage = function(e) {
+						if (e.data == eventId) {
+						    es.close();
 						    runButton.removeAttr("disabled");
-				       		console.log('ERROR : ' + e);
-				       };
-				       
-				    runButton.attr('disabled', 'disabled') ;
-					$.ajax({
-						type: "POST",
-						dataType : 'text', 
-						url: "/open/script/write/" + sid,
-						data: { 'eventid': eventId }, 
-						complete : function(){ 
-							var result_text = 'Path : ' + this.url + '<br/>';
-							result_text += 'Event Source : /event/' + eventId + '<br />' ;
-							result_text += 'Form parameter : <br />' ;
-							result_text += ' - eventid : ...<br />' ;
-							$("#target_url").html(result_text) ;
-						}, 
-						success :  function(data) {
-							// console.log(data) ;
+						    return ;
 						}
-					}) ;
+						outputText.append(e.data + '\n');
+						outputText.scrollTop(outputText.scrollHeight);
+					};
+					es.onerror = function(e) {
+						runButton.removeAttr("disabled");
+						console.log('ERROR : ' + e);
+					};
+					
+					outputText.text('') ;
+				    runButton.attr('disabled', 'disabled') ;
+				    if (! $.browser.chrome) msgCall(sid, eventId) ;
+				    
 				});
 				
 			}, 
@@ -228,6 +235,8 @@
 				console.log('response', request, status, error) ;
 			}
 		}) ;
+		
+		
 		
 	};
 

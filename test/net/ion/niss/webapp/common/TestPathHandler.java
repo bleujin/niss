@@ -7,8 +7,6 @@ import net.ion.nradon.stub.StubHttpResponse;
 public class TestPathHandler extends TestBaseIndexWeb {
 	
 	public void testInfo() throws Exception {
-		
-		
 		StubHttpResponse response = ss.request("/indexers/col1/status").get() ;
 		Debug.line(response.contentsString());
 	}

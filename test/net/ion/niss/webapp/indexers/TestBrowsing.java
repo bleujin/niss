@@ -37,9 +37,6 @@ public class TestBrowsing extends TestBaseIndexWeb {
 		
 		StubHttpResponse response = ss.request("/indexers/col1/browsing?searchQuery=").get() ;
 		Debug.line(response);
-		
-		
-		
 	} 
 
 	

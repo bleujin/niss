@@ -44,7 +44,7 @@ public class JScriptEngine {
 	private Log log = LogFactory.getLog(JScriptEngine.class) ;
 
 	private JScriptEngine(ClassLoader cloader){
-		this.manager = new ScriptEngineManager(cloader);
+		this.manager = new ScriptEngineManager();
 		this.sengine = manager.getEngineByName("JavaScript");
 		Bindings bindings = new SimpleBindings();
 		bindings.put("dirloader", cloader) ;
