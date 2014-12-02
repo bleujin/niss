@@ -133,22 +133,19 @@
 		    $(this).find('form')[0].reset();
 		});
 		
-		var $createUserForm = $("#create_user_form").validate({
-			// Rules for form validation
+		$("#create_user_form").validate({
 			rules : {
-				userid : { required : true, minlength : 4, maxlength : 15 }, 
-				name : { required : true, minlength : 3, maxlength : 10 }, 
+				userid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }, 
+				name : { required : true, minlength : 3, maxlength : 25 }, 
 				password : { required : true, minlength : 5, maxlength : 15 } 
 			},
 
-			// Messages for form validation
 			messages : {
-				userid : { required : 'Please enter your userid'}, 
-				name : { required : 'Please enter your name'}, 
-				password : { required : 'Please enter your password'} 
+				userid : { 	required : "${m.asString('validation.required', 'your userid')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 4)}", maxlength:"${m.asString('validation.maxlength', 15)}"}, 
+				name : { 	required : "${m.asString('validation.required', 'your name')}", minlength : "${m.asString('validation.minlength', 3)}", maxlength:"${m.asString('validation.maxlength', 25)}"}, 
+				password : {required : "${m.asString('validation.required', 'your password')}", minlength : "${m.asString('validation.minlength', 5)}", maxlength:"${m.asString('validation.maxlength', 15)}"} 
 			},
 
-			// Ajax form submition
 			submitHandler : function(form) {
 				var userid = $("#create_user_form input[name=userid]").val() ;
 				
@@ -171,17 +168,16 @@
 		});
 		
 
-		var $createScriptForm = $("#create_script_form").validate({
-			// Rules for form validation
+		$("#create_script_form").validate({
 			rules : {
-				sid : { required : true, minlength : 4, maxlength : 25 }, 
+				sid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 25 }, 
 				content : { required : true} 
 			},
 
 			// Messages for form validation
 			messages : {
-				sid : { required : 'Please enter script id'}, 
-				content : { required : 'Please enter script content'} 
+				sid : { required : "${m.asString('validation.required', 'script id')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 4)}", maxlength:"${m.asString('validation.maxlength', 25)}"}, 
+				content : { required : "${m.asString('validation.required', 'script content')}"} 
 			},
 
 			// Ajax form submition

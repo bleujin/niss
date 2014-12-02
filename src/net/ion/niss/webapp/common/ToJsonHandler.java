@@ -4,6 +4,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.StringUtil;
 
 import org.xml.sax.Attributes;
@@ -39,6 +40,7 @@ public class ToJsonHandler extends DefaultHandler {
 	@Override
 	public void characters(char[] ch, int start, int length) throws SAXException {
 		String string = new String(ch, start, length);
+		
 		if (StringUtil.isBlank(string))
 			return;
 		current.add("text", new JsonPrimitive(StringUtil.trim(string)));
@@ -82,7 +84,7 @@ class LanguageMessageEntity extends MessageEntity{
 	@Override
 	public String asString(String path, Object... param) {
 		String result = original.asString(path + this.postFix, param);
-		if (result.equals(path + postFix)) return original.asString(path) ; 
+		if (result.equals(path + postFix)) return original.asString(path, param) ; 
 		return result ;
 	}
 	

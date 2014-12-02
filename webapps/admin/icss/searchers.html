@@ -90,14 +90,14 @@
 	</div>
 </div>
 
-<div id="create_schema_form" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="create_schema_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
        <div class="modal-content">
         	
             <div class="modal-header"><h5 id="myModalLabel">Create Search Schema</h5></div>
 
             <div class="modal-body">
-		<form class="smart-form" method="post" action="searchers/schema" novalidate="novalidate">
+		<form class="smart-form" id="create_schema_form" method="post" action="searchers/schema" novalidate="novalidate">
 		<fieldset style="padding: 0px">					
 			<section>
 				<label class="label">Schema Id</label>
@@ -119,7 +119,7 @@
             
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" id="btn_create_schema">Create Schema</button>
+              <button class="btn btn-primary" name="create_schema">Create Schema</button>
             </div>  
 
        </div>
@@ -225,23 +225,34 @@
 			});
 		}) ;
 		
-		$("#btn_create_schema").click(function(){
-			var sid = $("#searchers").val() ;
-			
-			$.ajax({
-				type: "POST",
-				url: "/admin/searchers/" + sid + "/schema",
-				data: { 	schemaid: $("#create_schema_form input[name=schemaid]").val(), 
-						analyzer :$("#create_schema_form select[name=schema_analyzer]").val()}
-			}).done(function( msg ) {
-				console.log( "Data Saved: " + msg );
-			}).success(function( msg ) {
-				$("#create_schema_form").modal('hide') ;
-				loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
-			});
-			
-		});
+		$("#create_schema_form").validate({
+			rules : {
+				schemaid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 2, maxlength : 15 }
+			},
+			messages : {
+				schemaid : {required : "${m.asString('validation.required', 'schema id')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 2)}", maxlength:"${m.asString('validation.maxlength', 15)}"}
+			},
+			submitHandler : function(form) {
+				var sid = $("#searchers").val() ;
+				$.ajax({
+					type: "POST",
+					url: "/admin/searchers/" + sid + "/schema",
+					data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), 
+							analyzer :$("#create_schema_form select[name=schema_analyzer]").val()}
+				}).done(function( msg ) {
+					console.log( "Data Saved: " + msg );
+				}).success(function( msg ) {
+					$("#create_schema_modal").modal('hide') ;
+					loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
+				});
+			},
 
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
 		$("#schematype").change(function(){
 			if ($("#schematype").val() == 'manual') {
 				$("div[name=manual_option]").show() ;
@@ -250,47 +261,17 @@
 			}
 		}) ;		
 		
-		
-		
-		$("li.submenu").click(function() {
-		    $(this).siblings().removeClass("active");
-		    $(this).addClass("active");
+		$("#create_schema_modal button[name=create_schema]").click(function(){
+			$("#create_schema_form").submit() ;
 		});
-		
-		
+
 	
-		// Buttons (compose mail and inbox load)
-		$(".overview-load").click(function() {
-			loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "overview.html" ;
-		});
-		$(".defined-load").click(function() {
-			loadURL("icss/searchers/defined.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "defined.html" ;
-		});
-		$(".schema-load").click(function() {
-			loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "schema.html" ;
-		});
-		$(".query-load").click(function() {
-			loadURL("icss/searchers/query.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "query.html" ;
-		});
-		$(".template-load").click(function() {
-			loadURL("icss/searchers/template.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "template.html" ;
-		});
-		$(".browsing-load").click(function() {
-			loadURL("icss/searchers/browsing.html", $('#inbox-content > .table-wrap')) ;
-			lastMenuHTML = "browsing.html" ;
-		});
-	
-		var $createForm = $("#create_searcher_form").validate({
+		$("#create_searcher_form").validate({
 			rules : {
-				newsid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 }
+				newsid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 20 }
 			},
 			messages : {
-				newsid : {pattern : "allowed pattern : a-z0-9_"}
+				newsid : {required : "${m.asString('validation.required', 'searcher id')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 4)}", maxlength:"${m.asString('validation.maxlength', 20)}"}
 			},
 			submitHandler : function(form) {
 				var newId = $("#newSearcherId").val() ;
@@ -320,6 +301,38 @@
 		
 		$(".create-open").click(function() {
 			$('#create_searcher_modal').modal({});
+		});
+
+		
+		$("li.submenu").click(function() {
+		    $(this).siblings().removeClass("active");
+		    $(this).addClass("active");
+		});
+	
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/searchers/overview.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "overview.html" ;
+		});
+		$(".defined-load").click(function() {
+			loadURL("icss/searchers/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "defined.html" ;
+		});
+		$(".schema-load").click(function() {
+			loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "schema.html" ;
+		});
+		$(".query-load").click(function() {
+			loadURL("icss/searchers/query.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "query.html" ;
+		});
+		$(".template-load").click(function() {
+			loadURL("icss/searchers/template.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "template.html" ;
+		});
+		$(".browsing-load").click(function() {
+			loadURL("icss/searchers/browsing.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = "browsing.html" ;
 		});
 	};
 	

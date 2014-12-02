@@ -212,7 +212,7 @@
 				newlid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 } 
 			},
 			messages : {
-				newlid : {pattern : "allowed pattern : a-z0-9_"}
+				newlid : {required : "${m.asString('validation.required', 'loader id')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 4)}", maxlength:"${m.asString('validation.maxlength', 15)}"}
 			},
 			submitHandler : function(form) {
 				var newId = $("#newLoaderId").val() ;

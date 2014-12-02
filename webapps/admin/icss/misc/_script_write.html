@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EventSource ToonWeb</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<table border=0 cellpadding=0 cellspacing="10">
+	<tr><td><input type="button" id="btnclear" value="Clear Screen"/></td></tr>
+</table>
+
+<div id="outputDiv" style="overflow:scroll; width:580; height:380"></div>
+
+
+<script type="text/javascript">
+	String.prototype.startWith = function(str){
+		return this.substr(0, str.length) == str ;
+	} ;
+
+    String.prototype.endsWith = function (s) {
+		return this.length >= s.length && this.substr(this.length - s.length) == s;
+	} ;
+	String.prototype.isRequired = function (){
+		return (this.trim() != '' && escape(this).replace(/%u3000/g, "").replace(/%20/g, "").length != 0 );
+	};
+	String.prototype.isNotRequired = function (){
+		return ! this.isRequired();
+	};
+	String.prototype.isEmpty = function (){
+		return this == '' ;
+	};
+	String.prototype.isBlank = function (){
+		return this.trim() == '' ;
+	};
+	String.prototype.isNotBlank = function (){
+		return ! this.isBlank() ;
+	};
+	String.prototype.isNotEmpty = function (){
+		return ! this.isEmpty() ;
+	};
+
+    (function(){
+        var ua = navigator.userAgent.toLowerCase();
+		var check = function(r) {
+		    return r.test(ua);
+		};
+		var isOpera = check(/opera/);
+		var isIE = !isOpera && check(/msie/);
+		
+		if (isIE) {
+			alert('not supported browser. use firefox') ;
+			return ;
+		}
+
+        var es = new EventSource('/event/crawl_page');
+        es.onopen = function() {
+        	console.log('OPEN');
+        };
+        es.onmessage = function(event) {
+            logText(event.data);
+        };
+        es.onerror = function() {
+        	console.log('ERROR');
+        };
+        
+        jQuery("#btnclear").click(function(){
+        	document.getElementById("outputDiv").innerHTML = '' ;
+        }) ;
+        
+        function logText(str) {
+            var log = document.getElementById("outputDiv");
+	    	// var escaped = str.replace(/&/, "&amp;").replace(/</, "&lt;").replace(/>/, "&gt;").replace(/"/, "&quot;"); // "
+	    	// console.log(escaped) ;
+	    	log.innerHTML = str + log.innerHTML ;
+        } ;
+    })() ;
+	
+</script>
+
+
+
+</body>
+</html>

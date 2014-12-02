@@ -25,7 +25,7 @@
 <section id="widget-grid" class="">
 	<div class="row">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="jarviswidget jarviswidget-color-blueLight" id="search-browsing-0" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-blueLight" id="searcher-browsing-win" data-widget-editbutton="false" data-widget-deletebutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>${m.asString("searchers.browsing.table-header")}</h2>
@@ -109,15 +109,15 @@
 						dataType:'json',
 						data : {'searchQuery':$("#searchQuery").val()}, 
 						success:function(data){
-							console.log($("#searchQuery").val()) ;
+							// console.log($("#searchQuery").val()) ;
 							table.destroy();
 							
 							var nodes = data['data'];
 							$("#example")
 								.dataTable({
 								"data":nodes,
-								"searching":false, 
-								"columns": data['schemaName']
+								"searching":false 
+								// "columns": data['schemaName']
 							}) ;
 							table = $('#example').DataTable() ;
 						}, 

@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 
 import junit.framework.TestCase;
 import net.ion.craken.util.StringInputStream;
+import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.Webapp;
@@ -49,7 +51,8 @@ public class TestMessageEntity extends TestCase {
 
 	
 		assertEquals("Menu Loader", handler.root("unknown").asString("menus.loaders")) ;
-
+		
+		
 	}
 	
 	public void testAppliedLocale() throws Exception {
@@ -81,5 +84,28 @@ public class TestMessageEntity extends TestCase {
 		assertEquals("Loaders", m.asString("menu.loaders")) ;
 		
 	}
+	
+	public void testJsonPrimitive() throws Exception {
+		JsonObject json = new JsonObject();
+		json.add("text", new JsonPrimitive("allowed pattern : ^[a-z][a-z0-9_]*$"));
+		
+		Debug.line(json, json.asString("text"));
+	}
+	
+	public void testEscape() throws Exception {
+		String str = "allowed pattern : ^[a-z][a-z0-9_]*$" ;
+		assertEquals("allowed pattern : ^[a-z][a-z0-9_]*$", String.format(str)) ;
+
+		XMLReader xreader = XMLReaderFactory.createXMLReader();
+		String xmlString = IOUtil.toStringWithClose(getClass().getResourceAsStream("messages.test.xml")) ;
+		InputSource input = new InputSource(new StringInputStream(xmlString));
+
+		ToJsonHandler handler = new ToJsonHandler();
+		xreader.setContentHandler(handler);
+		xreader.parse(input);
+
+		assertEquals("allowed pattern : ^[a-z][a-z0-9_]*$", handler.root("unknown").asString("validation.idpattern")) ;
+	}
+	
 }
 

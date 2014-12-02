@@ -25,7 +25,7 @@
 	<div class="row">
 
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="jarviswidget jarviswidget-color-greenDark" id="misc-script-0" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-greenDark" id="script-win" data-widget-editbutton="false" data-widget-deletebutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>${m.asString("misc.script.table-header")}</h2>
@@ -156,11 +156,11 @@
 			            table.$('tr.selected2').removeClass('selected2');
 			            $(this).addClass('selected2');
 			        }
-					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#misc-script-0 a.btn-default').removeAttr("disabled") : $('#misc-script-0 a.btn-default').attr("disabled", "disabled") ;
+					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#script-win a.btn-default').removeAttr("disabled") : $('#script-win a.btn-default').attr("disabled", "disabled") ;
 				} );
 
 
-				$('#misc-script-0 a[name=create_script]').click(function(){
+				$('#script-win a[name=create_script]').click(function(){
 					$("#create_script_modal pre[name=script_response]").text("") ;
 					if ($('#example').DataTable().rows('.selected2').data().length > 0){
 						var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
@@ -179,7 +179,7 @@
 					}
 				});
 
-				$('#misc-script-0 a[name=remove_script]').click( function () {
+				$('#script-win a[name=remove_script]').click( function () {
 					var targets = $('#example').DataTable().rows('.selected2') ;
 					var scripts = '' ;
 					for(var i=0; i < targets.data().length ; i++){
@@ -199,7 +199,7 @@
 					});
 				});
 
-				var runButton = $('#misc-script-0 a[name=run_script]') ;
+				var runButton = $('#script-win a[name=run_script]') ;
 				runButton.click(function() {
 					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
 					var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;

@@ -22,12 +22,12 @@
 </div>
 
 
-<section id="searcher-schema-grid" class="">
+<section id="widget-grid" class="">
 	<!-- row -->
 	<div class="row">
 	
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="jarviswidget jarviswidget-color-blueLight" id="searcher-schema-list-win" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-blueLight" id="searcher-schema-win" data-widget-editbutton="false" data-widget-deletebutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>${m.asString("searchers.schema.table-header")}</h2>
@@ -153,7 +153,7 @@
 					for(var i=0; i < targets.data().length ; i++){
 						schemaId = targets.data()[i][0] ;
 					}
-					 $.ajax({
+					$.ajax({
 							url:"/admin/searchers/" + searcherId + "/schema/" + schemaId,
 							type:'DELETE', 
 							data : {}, 
@@ -163,11 +163,13 @@
 							error:function(request,status,error){
 								console.log('response', request, status, error) ;
 							}
+					}).done(function( msg ) {
+						$('#btn_dfield').attr("disabled", "disabled") ;
 					});
 				}) ;
 				
 				$('#btn_cfield').click(function(){
-					$('#create_schema_form').modal({
+					$('#create_schema_modal').modal({
 						
 					});
 				});

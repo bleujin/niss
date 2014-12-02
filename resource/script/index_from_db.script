@@ -10,7 +10,7 @@ new function(){
 	importPackage(net.ion.nsearcher.index)
 
 	this.handle = function(writer, session, param, rentry, jengine){
-		var iid = "newindexer" ;
+		var iid = "newindexer";
 		var imanager = rentry.indexManager();
 		
 		if (! imanager.hasIndex(iid)) {
@@ -24,6 +24,7 @@ new function(){
 			call : function() {
 				RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs").handle(new ResultSetHandler({
 					handle : function(srs) {
+						writer.append(rs.getSTring() +\n+)
 						var rs = srs ;
 						
 						indexer.index(new IndexJob({
@@ -31,7 +32,7 @@ new function(){
 								isession.fieldIndexingStrategy(this.createIndexStrategy(iid)) ;
 								while(rs.next()){
 									var wdoc = isession.newDocument(rs.getString("table_name")) ;
-									wdoc.unknown("owner", "hero").updateVoid() ;
+									wdoc.unknown("owner", "hero").insertVoid() ;
 								}
 								rs.close(); 
 								return null;

@@ -34,6 +34,7 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
@@ -248,10 +249,9 @@ public class IndexerWeb implements Webapp {
 		return rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
-				String[] words = StringUtil.split(stopwords, "\\s+");
 				wsession.pathBy(fqnBy(iid))
 					.property(Def.Indexer.IndexAnalyzer, ianalyzerName)
-					.property(Def.Indexer.StopWord,  words).property(Def.Indexer.ApplyStopword, applystopword)
+					.property(Def.Indexer.StopWord,  stopwords).property(Def.Indexer.ApplyStopword, applystopword)
 					.property(Def.Indexer.QueryAnalyzer, qanalyzerName);
 				return "defined indexer : " + iid;
 			}
@@ -616,6 +616,9 @@ public class IndexerWeb implements Webapp {
 		final JsonObject result = new JsonObject() ;
 
 		result.put("info", rsession.ghostBy("/menus/indexers").property("browsing").asString()) ;
+		final Set<String> fnames = SetUtil.newOrdereddSet() ;
+		fnames.add("id") ;
+		fnames.addAll(rsession.ghostBy("/indexers/" + iid + "/schema").childrenNames()) ;
 
 		SearchResponse response = imanager.index(iid).newSearcher().createRequest(query).offset(101).find() ;
 		return response.transformer(new Function<TransformerKey, JsonObject>(){
@@ -626,15 +629,6 @@ public class IndexerWeb implements Webapp {
 				ISearchable searcher = tkey.searcher();
 				
 				try {
-					
-					Set<String> fnames = SetUtil.newOrdereddSet() ;
-					fnames.add("id") ;
-					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
-						for(String fname : rdoc.fieldNames()){
-							fnames.add(fname) ;
-						}
-					} // define fnames
 					
 					JsonArray schemaNames = new JsonArray();
 					for (String fname : fnames) {

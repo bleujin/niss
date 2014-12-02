@@ -339,7 +339,8 @@ public class REntry implements Closeable {
 			boolean useStopword = rnode.property(Def.Indexer.ApplyStopword).asBoolean() ;
 			Collection<String> stopWord = ListUtil.EMPTY ;
 			if (useStopword){
-				stopWord = rnode.property(Def.Indexer.StopWord).asSet() ;
+				String stopwords = rnode.property(Def.Indexer.StopWord).asString() ;
+				stopWord = ListUtil.toList(StringUtil.split(stopwords, " ,\n"));
 			}
 			
 			resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false)) ;

@@ -24,6 +24,7 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 	public void testIndexGet() throws Exception {
 		StubHttpResponse response = ss.request("/indexers/col1/index").get() ;
 		assertEquals(true, JsonObject.fromString(response.contentsString()).has("info"));
+		
 	}
 	
 	public void testJsonUpdate() throws Exception {
@@ -116,4 +117,7 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 		Debug.line(doc.getField("explain").boost()) ;
 	}
 
+	
+	
+	
 }

@@ -423,6 +423,10 @@ public class SearcherWeb implements Webapp {
 	public JsonObject browsing(@PathParam("sid") final String sid, @DefaultValue("") @QueryParam("searchQuery") final String searchQuery, @DefaultValue("101") @QueryParam("offset") final int offset) throws IOException, ParseException{
 		
 		final SearchResponse response = smanager.searcher(sid).createRequest(searchQuery).offset(offset).find() ;
+		final Set<String> fnames = SetUtil.newOrdereddSet() ;
+		fnames.add("id") ;
+		fnames.addAll(rsession.ghostBy("/searchers/" + sid + "/schema").childrenNames()) ;
+
 		
 		return response.transformer(new Function<TransformerKey, JsonObject>() {
 			@Override
@@ -447,14 +451,14 @@ public class SearcherWeb implements Webapp {
 
 				try {
 					
-					Set<String> fnames = SetUtil.newOrdereddSet() ;
-					fnames.add("id") ;
-					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
-						for(String fname : rdoc.fieldNames()){
-							fnames.add(fname) ;
-						}
-					} // define fnames
+//					Set<String> fnames = SetUtil.newOrdereddSet() ;
+//					fnames.add("id") ;
+//					for (int did : docs) {
+//						ReadDocument rdoc = searcher.doc(did, request);
+//						for(String fname : rdoc.fieldNames()){
+//							fnames.add(fname) ;
+//						}
+//					} // define fnames
 					
 					JsonArray schemaNames = new JsonArray();
 					for (String fname : fnames) {

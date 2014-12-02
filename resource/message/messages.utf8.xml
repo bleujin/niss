@@ -25,7 +25,7 @@
 			<query>Query</query>
 			<template>Template</template>
 			<browsing>Search Browsing</browsing>
-			<create>Cretae Searcher</create>
+			<create>Create Searcher</create>
 		</searchers>
 		<misc kr="기타">Miscellaneous
 			<properties>Java Properties</properties>
@@ -43,7 +43,7 @@
 	<main>
 	    <activity>Activity:</activity>
 	    <recent>Recent Activity</recent>
-	    <webapp>ICSS WebApp</webapp>
+	    <webapp>NISS WebApp</webapp>
 	    <loaders>Loaders</loaders>
 	    <indexers>Indexers</indexers>
 	    <searchers>Searchers</searchers>
@@ -114,12 +114,12 @@
             <type>Type</type>
             <option>Option</option>
             <buttons>
-                <create>Create Field</create>
-                <remove>Remove Field</remove>
+                <create>Create Schema</create>
+                <remove>Remove Schema</remove>
             </buttons>
         </schema>
         <index>
-            <title>Index Document</title>
+            <title>Index</title>
             <table-header>Index Example</table-header>
             <document-type>Document Type</document-type>
             <documents>Document(s)</documents>
@@ -134,7 +134,7 @@
             <title>Query</title>
             <table-header>Query Example</table-header>
             <query>Query</query>
-            <sort>Sort(ex: name, id desc)</sort>
+            <sort><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
             <skip>Skip</skip>
             <offset>Offset</offset>
             <query-parameter>Query Parameter</query-parameter>
@@ -197,7 +197,7 @@
             <title>Query</title>
             <table-header>Query Example</table-header>
             <query>Query</query>
-            <sort>Sort(ex: name, id desc)</sort>
+            <sort><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
             <skip>Skip</skip>
             <offset>Offset</offset>
             <query-parameter>Query Parameter</query-parameter>
@@ -285,6 +285,7 @@
                 <run>Run Script</run>
                 <remove>Remove Script</remove>
             </buttons>
+            <output>Script Output</output>
         </script>
         <user>
             <title>System User</title>
@@ -314,4 +315,12 @@
     	    <close>Close</close>
     	</modal>
 	</buttons>
+	
+	
+	<validation>
+	    <minlength>Please enter at least %d characters.</minlength>
+	    <maxlength>Please enter no more than %d characters.</maxlength>
+	    <required>Please enter %s.</required>
+	    <idpattern><![CDATA[allowed pattern : ^[a-z][a-z0-9_]*$]]></idpattern>
+	</validation>
 </messages>

@@ -25,7 +25,7 @@
 <section id="widget-grid" class="">
 	<div class="row">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="jarviswidget jarviswidget-color-purple" id="search-browsing-win" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-purple" id="indexer-browsing-win" data-widget-editbutton="false" data-widget-deletebutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>${m.asString("indexers.browsing.table-header")}</h2>
@@ -87,6 +87,7 @@
 					// "dom":'<"toolbar">frtip',
 					"data":nodes,
 					"searching":false, 
+					"bDestroy":true,
 					"columns": data['schemaName']
 				}) ;
 				
@@ -131,26 +132,29 @@
 							error:function(request,status,error){
 								console.log('response', request, status, error) ;
 							}
+					}).done(function( msg ) {
+						$('#btn_remove_index').attr("disabled", "disabled") ;
 					});
 				});
 				
 				$('#searchQuery').on('keypress', function (event) {
 					if(event.which == '13'){
-						console.log($("#searchQuery").val()) ;
-						table.destroy();
 						
-					       $.ajax({
+				    	$.ajax({
 							url:"/admin/indexers/" + indexerId + "/browsing",
 							type:'GET', 
 							dataType:'json',
 							data : {'searchQuery':$("#searchQuery").val()}, 
 							success:function(data){
+								table.clear() ;
+								table.destroy() ;
+								
 								var nodes = data['data'];
 								$("#example")
 									.dataTable({
 									"data":nodes,
-									"searching":false, 
-									"columns": data['schemaName']
+									"searching":false 
+									// "columns": data['schemaName']
 								}) ;
 								
 								table = $('#example').DataTable() ;

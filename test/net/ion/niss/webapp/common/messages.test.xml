@@ -17,4 +17,8 @@
             <sub ko="Sub Menu KO">Sub Menu</sub>
         </loaders>
     </menus>
+    
+    <validation>
+	    <idpattern><![CDATA[allowed pattern : ^[a-z][a-z0-9_]*$]]></idpattern>
+	</validation>
 </messages>

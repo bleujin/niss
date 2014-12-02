@@ -6,6 +6,7 @@ import java.util.Map;
 import net.ion.craken.node.ReadNode;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
+import net.ion.framework.util.NumberUtil;
 import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.MyField.MyFieldType;
@@ -45,7 +46,7 @@ public class SchemaInfos {
 			} else if (sinfo.getType() == MyFieldType.Text){
 				result = MyField.text(ifield.name(), ifield.stringValue(), sinfo.isStore() ? Store.YES : Store.NO) ;
 			} else if (sinfo.getType() == MyFieldType.Number){
-				result = MyField.number(ifield.name(), ifield.numericValue().longValue(), sinfo.isStore() ? Store.YES : Store.NO) ;
+				result = MyField.number(ifield.name(), NumberUtil.toLong(ifield.stringValue()), sinfo.isStore() ? Store.YES : Store.NO) ;
 			} else if ("manual".equals(sinfo.schemaType())){
 				result = MyField.manual(ifield.name(), ifield.stringValue(), sinfo.isStore() ? Store.YES : Store.NO, sinfo.isAnalyze(), sinfo.getType()) ;
 			} else {

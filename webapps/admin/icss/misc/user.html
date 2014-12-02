@@ -25,7 +25,7 @@
 <section id="widget-grid" class="">
 	<div class="row">
 		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<div class="jarviswidget jarviswidget-color-greenDark" id="misc-user-0" data-widget-editbutton="false">
+			<div class="jarviswidget jarviswidget-color-greenDark" id="user-win" data-widget-editbutton="false" data-widget-deletebutton="false">
 				<header>
 					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
 					<h2>${m.asString("misc.user.table-header")}</h2>
@@ -99,17 +99,17 @@
 				
 				$('#example tbody').on( 'click', 'tr', function () {
 					$(this).toggleClass('selected2');
-					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#misc-user-0 a[name=remove_user]').removeAttr("disabled") : $('#misc-user-0 a[name=remove_user]').attr("disabled", "disabled") ;
+					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#user-win a[name=remove_user]').removeAttr("disabled") : $('#user-win a[name=remove_user]').attr("disabled", "disabled") ;
 				} );
 				
-				$('#misc-user-0 a[name=create_user]').click(function(){
+				$('#user-win a[name=create_user]').click(function(){
 					$('#create_user_modal').modal({});
 				});
 				
 				
 				
 				
-				$('#misc-user-0 a[name=remove_user]').click( function () {
+				$('#user-win a[name=remove_user]').click( function () {
 					var targets = $('#example').DataTable().rows('.selected2') ;
 					var users = '' ;
 					for(var i=0; i < targets.data().length ; i++){
@@ -126,6 +126,8 @@
 						fail:function(request,status,error){
 							console.log('response', request, status, error) ;
 						}
+					}).done(function( msg ) {
+						$('#user-win a[name=remove_user]').attr("disabled", "disabled") ;
 					});
 				});
 

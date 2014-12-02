@@ -113,7 +113,7 @@ public class TestREntryAction extends TestBaseIndexWeb {
 				wsession.pathBy("/indexers/col1")
 					.property(Def.Indexer.IndexAnalyzer, CJKAnalyzer.class.getCanonicalName())
 					.property(Def.Indexer.ApplyStopword, "true")
-					.property(Def.Indexer.StopWord, new String[]{"바람"});
+					.property(Def.Indexer.StopWord, "바람");
 				return null;
 			}
 		}).get() ;
