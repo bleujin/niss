@@ -6,6 +6,7 @@ public interface Webapp {
 	public final static String ANALYSIS_FILE = "./resource/load.analyzer" ;
 	
 	
+	public static final String REMOVED_DIR = "./resource/removed" ;
 	
 	public static final String LOADER_SCRIPT_DIR = "./resource/loader";
 	public final static String SCRIPT_DIR = "./resource/script" ;

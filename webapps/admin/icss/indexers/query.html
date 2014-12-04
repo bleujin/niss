@@ -40,58 +40,58 @@
 				<div class="widget-body">
 						
 					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-						<form class="smart-form" id="document-form" method="post" action="indexers/query" novalidate="novalidate">
+						<form class="smart-form" id="indexer-query-form" method="post" action="indexers/query" novalidate="novalidate">
 							<fieldset style="padding: 0px">					
 								<section>
 									<label class="label">${m.asString("indexers.query.query")}<a href="http://lucene.apache.org/core/2_9_4/queryparsersyntax.html" target="_blank"><span class="label pull-right">operator</span></a></label>
 									<label class="textarea textarea-resizable">
-										<textarea id="query" name="query" rows="3">*:*</textarea>
+										<textarea name="query" rows="3">*:*</textarea>
 									</label>
 								</section>
 								<section>
 									<label class="label">${m.asString("indexers.query.sort")}</label>
 									<label class="input">
-										<input type="text" id="sort" name="sort"/>
+										<input type="text" name="sort"/>
 									</label>
 								</section>
 								<div class="row">
 								<section class="col col-6">
 									<label class="label">${m.asString("indexers.query.skip")}</label>
 									<label class="input">
-										<input type="text" id="skip" name="skip" placeholder="0" />
+										<input type="text" name="skip" placeholder="0" />
 									</label>
 								</section>
 								<section class="col col-6">
 									<label class="label">${m.asString("indexers.query.offset")}</label>
 									<label class="input">
-										<input type="text" id="offset" name="offset" placeholder="10" />
+										<input type="text" name="offset" placeholder="10" />
 									</label>
 								</section>
 								</div>
 								<section>
 									<label class="label">${m.asString("indexers.query.query-parameter")}</label>
 									<label class="input">
-										<input type="text" id="parameter" name="parameter" placeholder="key1=val&key2=val2"/>
+										<input type="text" name="parameter" placeholder="key1=val&key2=val2"/>
 									</label>
 								</section>
 								<section>
 									<label class="label">${m.asString("indexers.query.document-type")}</label>
 									<label class="select">
-										<select name="interested" id="rtype">
-										    <option value="json">JSON</option>
-										    <option value="csv">CSV</option>
-										    <option value="xml">XML</option>
+										<select name="rtype">
+											<option value="json">JSON</option>
+											<option value="csv">CSV</option>
+											<option value="xml">XML</option>
 										</select>
 									</label>
 								</section>
 								<section>
-									<label class="checkbox"><input type="checkbox" id="indent" name="indent" checked="false" /><i></i>${m.asString("indexers.query.indent")}</label>
+									<label class="checkbox"><input type="checkbox" name="indent" checked="false" /><i></i>${m.asString("indexers.query.indent")}</label>
 								</section>
 			
 							</fieldset>
 							
 							<footer>
-								<button class="btn btn-primary" type="button" id="execQuery">${m.asString("indexers.query.buttons.execute")}</button>
+								<button class="btn btn-primary" type="button" name="btn_exec">${m.asString("indexers.query.buttons.execute")}</button>
 							</footer>
 							
 							<div class="message">
@@ -132,10 +132,7 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "query" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -154,12 +151,24 @@
 			}
 		}) ;
 		
-		$( "#execQuery" ).click(function() {
+		var _queryForm = $("#indexer-query-form") ;
+		var _rtype = _queryForm.find("select[name=rtype]") ;
+		var _parameter = _queryForm.find("input[name=parameter]") ;
+		var _query = _queryForm.find("textarea[name=query]") ;
+		var _sort = _queryForm.find("input[name=sort]") ;
+		var _skip = _queryForm.find("input[name=skip]") ;
+		var _offset = _queryForm.find("input[name=offset]") ;
+		var _indent = _queryForm.find("input[name=indent]") ;
+		var _debug = _queryForm.find("input[name=debug]") ;
+		var _btn_exec = _queryForm.find("button[name=btn_exec]") ;
+		
+		
+		_btn_exec.click(function() {
 			$.ajax({
 				type: "GET",
 				dataType : 'text', 
-				url: "/admin/indexers/" + indexerId + "/query." + $("#rtype").val() + (  $("#parameter").val() ? "?" + $("#parameter").val() : ""),
-				data: { query: $("#query").val(), sort: $("#sort").val(), skip: $("#skip").val(), offset: $("#offset").val() , indent: $("#indent").is(":checked") ? true : false, debug: $("#debug").is(":checked") ? true : false}, 
+				url: "/admin/indexers/" + indexerId + "/query." + _rtype.val() + (  _parameter.val() ? "?" + _parameter.val() : ""),
+				data: { query: _query.val(), sort: _sort.val(), skip: _skip.val(), offset: _offset.val() , indent: _indent.is(":checked") ? true : false, debug: _debug.is(":checked") ? true : false}, 
 				complete : function(){ 
 					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";
 					$("#query_url").html(targetURL) ;

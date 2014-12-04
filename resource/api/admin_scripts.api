@@ -2,11 +2,6 @@ path : /admin/scripts
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.misc.ScriptWeb.listScript()
 
-path : /admin/scripts/removes
-httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.removeUsers(java.lang.String)
-  {@javax.ws.rs.FormParam(value=scripts)}
-
 path : /admin/scripts/run/{sid}
 httpMethod : GET POST 
 javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.ScriptWeb.runScript(java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,javax.script.ScriptException
@@ -33,6 +28,11 @@ path : /admin/scripts/remove/{sid}
 httpMethod : DELETE 
 javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.removeScript(java.lang.String)
   {@javax.ws.rs.PathParam(value=sid)}
+
+path : /admin/scripts/removes
+httpMethod : POST 
+javaMethod : public java.lang.String net.ion.niss.webapp.misc.ScriptWeb.removeScripts(java.lang.String)
+  {@javax.ws.rs.FormParam(value=scripts)}
 
 path : /admin/scripts/instantrun
 httpMethod : POST 

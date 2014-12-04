@@ -52,7 +52,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		ve.setProperty("file.resource.loader.class", "org.apache.velocity.runtime.resource.loader.FileResourceLoader");
 		ve.setProperty("file.resource.loader.path", new File("./").getCanonicalPath() + "/webapps/admin");
 		ve.setProperty("file.resource.loader.cache", "false");
-//		ve.setProperty("file.resource.loader.modificationCheckInterval", "5");
+		// ve.setProperty("file.resource.loader.modificationCheckInterval", "5");
 		ve.setProperty("output.encoding", "UTF-8");
 		ve.setProperty("input.encoding", "UTF-8");
 
@@ -66,8 +66,8 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		xreader.setContentHandler(handler);
 		xreader.parse(input);
 
-		final Logger logger = Logger.getLogger(HTMLTemplateEngine.class) ;
-		
+		final Logger logger = Logger.getLogger(HTMLTemplateEngine.class);
+
 		File messageDir = new File(Webapp.MESSAGE_RESOURCE_DIR);
 		FileAlterationObserver fo = new FileAlterationObserver(messageDir);
 		fo.addListener(new AbstractListener() {
@@ -95,7 +95,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		fam.start();
 
 	}
-	
+
 	@Override
 	public byte[] process(byte[] contentByte, String templatePath, Object arg) throws RuntimeException {
 
@@ -107,25 +107,33 @@ public class HTMLTemplateEngine implements TemplateEngine {
 		if (templatePath.equals("/"))
 			templatePath = "/index.html";
 
-		if (templatePath.endsWith(".html")) {
-			HttpRequest request = (HttpRequest) arg;
+		try {
+			if (templatePath.endsWith(".html")) {
+				HttpRequest request = (HttpRequest) arg;
 
-			if (!ve.resourceExists(templatePath))
-				return contentByte;
+				if (!ve.resourceExists(templatePath))
+					return contentByte;
 
-			Template tpl = ve.getTemplate(templatePath, "UTF-8");
+				Template tpl = ve.getTemplate(templatePath, "UTF-8");
 
-			StringWriter sw = new StringWriter();
-			VelocityContext vc = new VelocityContext(this.vcontext);
+				StringWriter sw = new StringWriter();
+				VelocityContext vc = new VelocityContext(this.vcontext);
 
-			vc.put("request", request);
-			vc.put("rsession", rsession);
-			
-			String langcode = ObjectUtil.coalesce(request.data("langcode"), "us").toString();
-			vc.put("m", handler.root(langcode));
+				vc.put("request", request);
+				vc.put("rsession", rsession);
 
-			tpl.merge(vc, sw);
-			return sw.toString().getBytes(utf8);
+				String langcode = ObjectUtil.coalesce(request.data("langcode"), "us").toString();
+				vc.put("m", handler.root(langcode));
+
+				tpl.merge(vc, sw);
+				return sw.toString().getBytes(utf8);
+			}
+		} catch (org.apache.velocity.exception.ParseErrorException ex) {
+			ex.printStackTrace(); 
+			return contentByte;
+		} catch (org.apache.velocity.exception.MethodInvocationException ex){
+			ex.printStackTrace(); 
+			return contentByte;
 		}
 		return contentByte;
 	}

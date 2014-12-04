@@ -29,6 +29,7 @@ import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.DateUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.NissServer;
 import net.ion.niss.webapp.REntry;
@@ -105,7 +106,7 @@ public class MiscWeb implements Webapp{
 				for(ReadNode node : nodes){
 					JsonArray row = new JsonArray() ;
 					row.add(new JsonPrimitive(node.fqn().name()))
-						.add(new JsonPrimitive(node.property("time").asLong(0)))
+						.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property("time").asLong(0))))
 						.add(new JsonPrimitive(node.propertyId(PropertyId.refer("loader")).asString()))
 						.add(new JsonPrimitive(node.property("status").asString())) ;
 					his.add(row) ;

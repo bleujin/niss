@@ -1888,7 +1888,7 @@
 	 * eg alert("my home function");
 	 * 
 	 * var pagefunction = function() {
-	 *   ...
+	 *	...
 	 * }
 	 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
 	 * 
@@ -1901,16 +1901,16 @@
 	var pagefunction = function() {
 		
 		function hide_divs(search) {
-		    $(".demo-icon-font").hide(); // hide all divs
-		    $("#all-icons-demo h2").hide();
-		    $("#all-icons-demo .alert").hide();
+			$(".demo-icon-font").hide(); // hide all divs
+			$("#all-icons-demo h2").hide();
+			$("#all-icons-demo .alert").hide();
 			$('.demo-icon-font > i[class*="'+search+'"]').parent().show(); // show the ones that match
 		}
 		
 		function show_all() {
-		    $(".demo-icon-font").show()
-		    $("#all-icons-demo h2").show();
-		    $("#all-icons-demo .alert").show();
+			$(".demo-icon-font").show()
+			$("#all-icons-demo h2").show();
+			$("#all-icons-demo .alert").show();
 		}
 		
 		

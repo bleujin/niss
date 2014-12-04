@@ -6,7 +6,7 @@ import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
 
-public class testIndexQuery extends TestBaseIndexWeb {
+public class TestIndexQuery extends TestBaseIndexWeb {
 	
 	public void testSort() throws Exception {
 		Central central = entry.indexManager().index("col1") ;

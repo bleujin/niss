@@ -47,11 +47,11 @@
 
 </div>
 
-<div id="remove-loader-confirm" title="Remove Loader" style="display:none">
+<div id="remove-loader-confirm" title='${m.asString("loaders.remove.title")}' style="display:none">
 	<form class="smart-form" id="remove-loader-form" method="post" action="loader/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
-				<label class="label">Loader : <span id="removeLoaderId"></span></label>
+				<label class="label">${m.asString("loaders.remove.loader")} : <span id="removeLoaderId"></span></label>
 			</section>
 		</fieldset>
 	</form>
@@ -61,11 +61,11 @@
 
 <div id="create_loader_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content" style="width:70%">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">${m.asString("loaders.create")}</h5></div>
+		<div class="modal-content" style="width:70%">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("loaders.create")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 			<form class="smart-form" id="create_loader_form" method="post" action="loaders/" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
@@ -76,14 +76,14 @@
 				</section>
 			</fieldset>
 			</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_loader">${m.asString("loaders.create")}</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_loader">${m.asString("loaders.create")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
@@ -188,8 +188,8 @@
 		
 		
 		$("li.submenu").click(function() {
-		    $(this).siblings().removeClass("active");
-		    $(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
 		});
 		
 	

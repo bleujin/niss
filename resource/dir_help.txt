@@ -38,9 +38,18 @@
 
 	/message message resource file, encoding = UTF-8
 
-	/search.template/*.template searchers/template 에서 sample template
+	/removed
+		loader, indexer, searcher가 삭제되었을 경우 해당 정보를 저장함. 
+		*.searcher.template.bak : searcher.template을 변경했을경우 이전 template가 저장됨.	
+		*.searcher.handler.bak : searcher.handler를 변경했을경우 이전 handler가 저장됨.
+		*.misc.script.bak : misc.script를 수정/삭제했을 경우 해당 scriptrk 저장됨.
 
-	/search.handler/*.handler  searchers/define 에서 default handler
+	/search.template/ 
+		*.template : searchers/template 에서 sample template
+	
+
+	/search.handler/
+		*.handler searchers/define 에서 default handler
 
 	/script/*.script  misc/script에서 default script
 	
@@ -55,8 +64,10 @@
 		craken-dist-config.xml  distributeMode일때 사용하는 craken config
 		jgrous-udp.xml distributeMode일때 node의 분산 설정
 		
-	/loader loader의 sample script
-		{sampleName}.script
+	/loader/ 
+		*.script loader의 sample script
+		*.script.bak loade의 script를 변경했을 경우 이전 script가 저장됨 
+		
 		/lib script에서 외부 jar를 사용하기 위함. 없으면 무시
 		 
 	/logs default log 디렉토리
@@ -65,6 +76,13 @@
 	
 
 	# 모든 index 정보를 날리고 싶다면 중지시킨후 /admin 디렉토리와 /index를 지우고 다시 시작하면 된다.(주로 분산모드일때 사용)    
+
+
+
+관리자 화면 
+	/admin/craken/{path}
+	/admin/export/{path}
+
 
 	
 	

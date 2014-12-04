@@ -498,7 +498,7 @@
 	 * eg alert("my home function");
 	 * 
 	 * var pagefunction = function() {
-	 *   ...
+	 *	...
 	 * }
 	 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
 	 * 
@@ -511,7 +511,7 @@
 	
 	var pagefunction = function() {
 
-	    /*jslint smarttabs:true */
+		/*jslint smarttabs:true */
 		var colorful_style = [{
 	
 			"featureType" : "landscape",
@@ -1335,74 +1335,74 @@
 	
 	
 		
-	    $this = $("#map_canvas");
-	    $zoom_level = ($this.data("gmap-zoom") || 5);
-	    $data_lat = ($this.data("gmap-lat") || 29.895883);
-	    $data_lng = ($this.data("gmap-lng") || -80.650635);
-	    $xml_src = ($this.data("gmap-src") || "xml/gmap/pins.xml");
+		$this = $("#map_canvas");
+		$zoom_level = ($this.data("gmap-zoom") || 5);
+		$data_lat = ($this.data("gmap-lat") || 29.895883);
+		$data_lng = ($this.data("gmap-lng") || -80.650635);
+		$xml_src = ($this.data("gmap-src") || "xml/gmap/pins.xml");
 	
-	    var greyStyleMap = new google.maps.StyledMapType(greyscale_style, {
-	        name: "Greyscale"
-	    }),
-	    monoChromeStyleMap = new google.maps.StyledMapType(monochrome_style, {
-	        name: "Mono Chrome"
-	    }),
-	    metroStyleMap = new google.maps.StyledMapType(metro_style, {
-	        name: "Metro"
-	    }),
-	    nightvisionStyleMap = new google.maps.StyledMapType(nightvision_style, {
-	        name: "Nightvision"
-	    }),
-	    nvisionhstyleMap = new google.maps.StyledMapType(nightvision_highlight_style, {
-	        name: "Nightvision Light"
-	    }),
-	    oPaperStyleMap = new google.maps.StyledMapType(old_paper_style, {
-	        name: "Old Paper"
-	    }),
-	    colorfulStyleMap = new google.maps.StyledMapType(colorful_style, {
-	        name: "Colorful"
-	    }),
-	    monoColorStyleMap = new google.maps.StyledMapType(mono_color_style, {
-	        name: "One Color"
-	    });
+		 var greyStyleMap = new google.maps.StyledMapType(greyscale_style, {
+			 name: "Greyscale"
+		}),
+		 monoChromeStyleMap = new google.maps.StyledMapType(monochrome_style, {
+			 name: "Mono Chrome"
+		}),
+		 metroStyleMap = new google.maps.StyledMapType(metro_style, {
+			 name: "Metro"
+		}),
+		 nightvisionStyleMap = new google.maps.StyledMapType(nightvision_style, {
+			 name: "Nightvision"
+		}),
+		 nvisionhstyleMap = new google.maps.StyledMapType(nightvision_highlight_style, {
+			 name: "Nightvision Light"
+		}),
+		 oPaperStyleMap = new google.maps.StyledMapType(old_paper_style, {
+			 name: "Old Paper"
+		}),
+		 colorfulStyleMap = new google.maps.StyledMapType(colorful_style, {
+			 name: "Colorful"
+		}),
+		 monoColorStyleMap = new google.maps.StyledMapType(mono_color_style, {
+			 name: "One Color"
+		});
 	
-	    function xmlLoadMap() {
+		 function xmlLoadMap() {
 	
-	        var centerLatLng = new google.maps.LatLng($data_lat, $data_lng),
-	        mapOptions = {
-	            zoom: $zoom_level,
-	            center: centerLatLng,
-	            //disableDefaultUI: true,
-	            //mapTypeId : google.maps.MapTypeId.ROADMAP
-	            mapTypeControlOptions: {
-	                mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'colorful_style', 'greyscale_style',
-	                    'monochrome_style', 'metro_style', 'nightvision_style', 'nightvision_highlight_style',
-	                    'old_paper_style', 'mono_color_style'
-	                ]
-	            }
-	        },
+			 var centerLatLng = new google.maps.LatLng($data_lat, $data_lng),
+			 mapOptions = {
+				 zoom: $zoom_level,
+				 center: centerLatLng,
+				//disableDefaultUI: true,
+				//mapTypeId : google.maps.MapTypeId.ROADMAP
+				 mapTypeControlOptions: {
+					 mapTypeIds: [google.maps.MapTypeId.TERRAIN, 'colorful_style', 'greyscale_style',
+						'monochrome_style', 'metro_style', 'nightvision_style', 'nightvision_highlight_style',
+						'old_paper_style', 'mono_color_style'
+					]
+				}
+			},
 	
-	        bounds = new google.maps.LatLngBounds(),
-	        infowindow = new google.maps.InfoWindow(),
-	        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+			 bounds = new google.maps.LatLngBounds(),
+			 infowindow = new google.maps.InfoWindow(),
+			 map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 	
-	        map.mapTypes.set('colorful_style', colorfulStyleMap);
-	        map.mapTypes.set('greyscale_style', greyStyleMap);
-	        map.mapTypes.set('monochrome_style', monoChromeStyleMap);
-	        map.mapTypes.set('metro_style', metroStyleMap);
-	        map.mapTypes.set('nightvision_style', nightvisionStyleMap);
-	        map.mapTypes.set('nightvision_highlight_style', nvisionhstyleMap);
-	        map.mapTypes.set('old_paper_style', oPaperStyleMap);
-	        map.mapTypes.set('mono_color_style', monoColorStyleMap);
+			 map.mapTypes.set('colorful_style', colorfulStyleMap);
+			 map.mapTypes.set('greyscale_style', greyStyleMap);
+			 map.mapTypes.set('monochrome_style', monoChromeStyleMap);
+			 map.mapTypes.set('metro_style', metroStyleMap);
+			 map.mapTypes.set('nightvision_style', nightvisionStyleMap);
+			 map.mapTypes.set('nightvision_highlight_style', nvisionhstyleMap);
+			 map.mapTypes.set('old_paper_style', oPaperStyleMap);
+			 map.mapTypes.set('mono_color_style', monoColorStyleMap);
 	
-	        //map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
-	        map.setMapTypeId('metro_style');
+			//map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+			 map.setMapTypeId('metro_style');
 	
 				$.get($xml_src, function(data) {
 		
-			        // create the Bounds object
-			        var bounds = new google.maps.LatLngBounds();
-			        
+					// create the Bounds object
+					 var bounds = new google.maps.LatLngBounds();
+					
 					$(data).find("marker").each(function(){
 			
 						var eachMarker = jQuery(this),
@@ -1423,7 +1423,7 @@
 									streetViewControl : true,
 									title : eachMarker.find("name").text()
 							}),
-					        
+							
 							link = "link";
 							
 							google.maps.event.addListener(marker, 'click', function() {// click
@@ -1444,137 +1444,137 @@
 			});	// end get data
 			
 					
-	    } // end xmlLoadMap
+		} // end xmlLoadMap
 	
-	    // grey
-	    function generate_map_1() {
+		// grey
+		 function generate_map_1() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas1'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas1'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('greyscale_style', greyStyleMap);
-	        map.setMapTypeId('greyscale_style');
+			// Setup skin for the map
+			 map.mapTypes.set('greyscale_style', greyStyleMap);
+			 map.setMapTypeId('greyscale_style');
 	
-	    }
+		}
 	
-	    // colorful
-	    function generate_map_2() {
+		// colorful
+		 function generate_map_2() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas2'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas2'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('colorful_style', colorfulStyleMap);
-	        map.setMapTypeId('colorful_style');
+			// Setup skin for the map
+			 map.mapTypes.set('colorful_style', colorfulStyleMap);
+			 map.setMapTypeId('colorful_style');
 	
-	    }
+		}
 	
-	    // colorful
-	    function generate_map_3() {
+		// colorful
+		 function generate_map_3() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas3'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas3'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('nightvision_style', nvisionhstyleMap);
-	        map.setMapTypeId('nightvision_style');
+			// Setup skin for the map
+			 map.mapTypes.set('nightvision_style', nvisionhstyleMap);
+			 map.setMapTypeId('nightvision_style');
 	
-	    }
+		}
 	
-	    // Night Light
-	    function generate_map_4() {
+		// Night Light
+		 function generate_map_4() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas4'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas4'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('nightvision_highlight_style', nvisionhstyleMap);
-	        map.setMapTypeId('nightvision_highlight_style');
+			// Setup skin for the map
+			 map.mapTypes.set('nightvision_highlight_style', nvisionhstyleMap);
+			 map.setMapTypeId('nightvision_highlight_style');
 	
-	    }
+		}
 	
-	    // Paper Style
-	    function generate_map_5() {
+		// Paper Style
+		 function generate_map_5() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas5'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas5'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('old_paper_style', oPaperStyleMap);
-	        map.setMapTypeId('old_paper_style');
+			// Setup skin for the map
+			 map.mapTypes.set('old_paper_style', oPaperStyleMap);
+			 map.setMapTypeId('old_paper_style');
 	
-	    }
+		}
 	
-	    // One Color Style
-	    function generate_map_6() {
+		// One Color Style
+		 function generate_map_6() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas6'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas6'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('mono_color_style', monoColorStyleMap);
-	        map.setMapTypeId('mono_color_style');
+			// Setup skin for the map
+			 map.mapTypes.set('mono_color_style', monoColorStyleMap);
+			 map.setMapTypeId('mono_color_style');
 	
-	    }
+		}
 	
-	    // Monochrome Style
-	    function generate_map_8() {
+		// Monochrome Style
+		 function generate_map_8() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas8'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas8'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('monochrome_style', monoChromeStyleMap);
-	        map.setMapTypeId('monochrome_style');
+			// Setup skin for the map
+			 map.mapTypes.set('monochrome_style', monoChromeStyleMap);
+			 map.setMapTypeId('monochrome_style');
 	
-	    }
+		}
 	
-	    // Metro Style
-	    function generate_map_7() {
+		// Metro Style
+		 function generate_map_7() {
 	
-	        var mapOptions = {
-	            center: new google.maps.LatLng(41.38155, 2.13752),
-	            zoom: 12,
-	        };
-	        map = new google.maps.Map(document.getElementById('map_canvas7'), mapOptions);
+			 var mapOptions = {
+				 center: new google.maps.LatLng(41.38155, 2.13752),
+				 zoom: 12,
+			};
+			 map = new google.maps.Map(document.getElementById('map_canvas7'), mapOptions);
 	
-	        // Setup skin for the map
-	        map.mapTypes.set('metro_style', metroStyleMap);
-	        map.setMapTypeId('metro_style');
+			// Setup skin for the map
+			 map.mapTypes.set('metro_style', metroStyleMap);
+			 map.setMapTypeId('metro_style');
 	
-	    }
+		}
 	
-	    xmlLoadMap();
-	    generate_map_1();
-	    generate_map_2();
-	    generate_map_3();
-	    generate_map_4();
-	    generate_map_5();
-	    generate_map_6();
-	    generate_map_7();
-	    generate_map_8();
+		 xmlLoadMap();
+		 generate_map_1();
+		 generate_map_2();
+		 generate_map_3();
+		 generate_map_4();
+		 generate_map_5();
+		 generate_map_6();
+		 generate_map_7();
+		 generate_map_8();
 	
 			
 	};

@@ -14,7 +14,7 @@ javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.remov
 
 path : /admin/loaders/{lid}/define
 httpMethod : POST 
-javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.createScript(java.lang.String,java.lang.String)
+javaMethod : public java.lang.String net.ion.niss.webapp.loaders.LoaderWeb.defineLoader(java.lang.String,java.lang.String)
   {@javax.ws.rs.PathParam(value=lid)}
   {@javax.ws.rs.FormParam(value=content)}
 

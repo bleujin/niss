@@ -42,8 +42,7 @@ import org.apache.lucene.util.Version;
 public class AnalysisWeb implements Webapp {
 	
 	
-	private static List<Class<? extends Analyzer>> ANALYZERS = 
-				ListUtil.<Class<? extends Analyzer>> toList(MyKoreanAnalyzer.class, StandardAnalyzer.class, CJKAnalyzer.class, WhitespaceAnalyzer.class, SimpleAnalyzer.class, KeywordAnalyzer.class);
+	private static List<Class<? extends Analyzer>> ANALYZERS = ListUtil.<Class<? extends Analyzer>> toList(StandardAnalyzer.class);
 
 	
 	public static List<Class<? extends Analyzer>> analysis(){

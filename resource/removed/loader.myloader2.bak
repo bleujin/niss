@@ -1,0 +1,20 @@
+{
+  "/loaders/myloader2": {
+    "name": {
+      "vtype": "UNKNOWN",
+      "vals": []
+    },
+    "created": {
+      "vtype": "LONG",
+      "vals": [
+        1417594339611
+      ]
+    },
+    "content": {
+      "vtype": "STR",
+      "vals": [
+        "// Sample Crawl Collect Image Link To Tistory\n\nnew function(){\n\timportPackage(java.util) \n\timportPackage(net.ion.icrawler) \n\timportPackage(net.ion.icrawler.pipeline) \n\timportPackage(net.ion.icrawler.processor) \n\timportPackage(net.ion.icrawler.scheduler)\n\timportPackage(net.ion.niss.webapp.loaders)  \n\timportPackage(net.ion.icrawler.selector) \n\t\n\tthis.scheduler \u003d function(){\n\t\treturn new MaxLimitScheduler(new QueueScheduler(), 10) ;\n\t}, \n\t\n\tthis.processor \u003d function(images, writer){\n\t\tvar urlPattern \u003d \"(\" + \"http://bleujin.tistory.com/*\".replace(\".\", \"\\\\.\").replace(\"*\", \"[^\\\"\u0027#]*\") + \")\";\n\t\n\t\treturn new PageProcessor({\n\t\t\tprocess : function(page){\n\t\t\t\ttry {\n\t\t\t\t\tvar found \u003d page.getHtml().xpath(\"//img/@src\").all(); \n\t\t\t\t\tfound.removeAll(images) ;\n\t\t\t\t\tvar changed \u003d images.addAll(found) ;\n\t\t\t\t\t\n\t\t\t\t\tpage.addTargets(page.getHtml().links().regex(urlPattern).targets());// add urls to fetch\n\t\t\t\t\tpage.putField(\"changed\", changed);\n\t\t\t\t\tpage.putField(\"found\", found);\n\t\t\t\t} catch(ex){\n\t\t\t\t\twriter.write(ex) ;\n\t\t\t\t}\n\t\t\t} \n\t\t});\n\t}, \n\t\n\tthis.pipeline \u003d function(writer) {\n\t\treturn new Pipeline({\n\t\t\tprocess : function(ritems, task){\n\t\t\t\ttry {\n\t\t\t\t\tif (ritems.asString(\"changed\").equals(\u0027true\u0027)){\n\t\t\t\t\t\twriter.write(ritems.getRequest().getUrl() + \"new image founded\")\t ;\n\t\t\t\t\t\twriter.write(\"\\n\") ;\n\t\t\t\t\t\twriter.flush() ;\n\t\t\t\t\t}\n\t\t\t\t} catch(ex){\n\t\t\t\t\twriter.write(ex) ;\n\t\t\t\t}\n\t\t\t}\n\t\t}) ;\n\t}, \n\t\n\tthis.handle \u003d function(writer){\n\t\ttry {\n\t\t\tvar images \u003d new Vector() ;\n\t\t\tvar spider \u003d Site.create().sleepTime(50).newSpider(this.processor(images, writer)).scheduler(this.scheduler()).addUrl([\"http://bleujin.tistory.com/\"]);\n\t\n\t\t\tspider.addPipeline(this.pipeline(writer)).run();\n\t\t\tspider.close() ;\n\t\t\t\n\t\t\twriter.write(\u0027images : \u0027 + images) ;\n\t\t\t\n\t\t} catch(ex){\n\t\t\twriter.write(\"\" + ex) ;\n\t\t}\n\t}\n} ;"
+      ]
+    }
+  }
+}

@@ -36,7 +36,7 @@
 					</div>
 
 					<div class="widget-body no-padding">
-						<form class="smart-form" id="searcher_template_form" method="post" action="searchers/query" novalidate="novalidate">
+						<form class="smart-form" id="searcher_template_form" method="post" action="searchers/template" novalidate="novalidate">
 							<fieldset>
 								<section>
 									<label class="select">
@@ -46,7 +46,7 @@
 
 								<section>
 									<label class="label">${m.asString("searchers.template.content")}</label>	
-									<label class="textarea textarea-resizable"><textarea id="template" rows="20"></textarea></label>
+									<label class="textarea textarea-resizable"><textarea name="template" rows="20"></textarea></label>
 								</section>
 							</fieldset>
 							
@@ -55,17 +55,11 @@
 								<strong>Success</strong> <span></span>
 							</div>
 							<footer>
-								<button class="btn btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.template.buttons.save")}</button>
+								<button class="btn btn-success" type="button" name="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.template.buttons.save")}</button>
 							</footer>
 						</form>
-
-
-
-						
 					</div>
-
 				</div>
-
 			</div>
 		</article>
 	</div>
@@ -90,15 +84,18 @@
 				type: "POST",
 				url: "/admin/menus/searchers",
 				data: { content: aHTML, field: "template" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
 		var searcherId = $("#searchers option:selected").val() ;
 		if (searcherId == undefined) return ;
+		
+		
+		var _templateForm = $("#searcher_template_form") ;
+		var _template = _templateForm.find("textarea[name=template]") ;
+		var _template_samples = _templateForm.find("select[name=template_samples]") ;
+		var _btn_save = _templateForm.find("button[name=btn_save]") ;
 		
 		$.ajax({
 			url:'/admin/searchers/' + searcherId +'/template',
@@ -106,15 +103,16 @@
 			success:function(data){
 				var info = data['info'];
 				var samples = data['samples'];
+				var template = data['template'] ;
 				
 				for(var idx in samples ){
 					var sample = samples[idx] ; 
 					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
-					option.appendTo($("select[name=template_samples]")) ;
+					option.appendTo(_template_samples) ;
 				}
 				
 				$("#info").html(info) ;
-				$("#template").val(data['template']);
+				_template.val(template);
 			}, 
 			error:function(request,status,error){
 				console.log('response', request, status, error) ;
@@ -122,8 +120,8 @@
 		}) ;
 		
 
-		$("select[name=template_samples]").change(function(){
-			var fileName = $("select[name=template_samples]").val() ;
+		_template_samples.change(function(){
+			var fileName = _template_samples.val() ;
 			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
@@ -133,27 +131,45 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					$("#template").val(data) ;
+					_template.val(data) ;
 				}
 			}) ;
 		}) ;
 		
-		$( "#searcher_template_form .btn-success" ).click(function() {		
-			$.ajax({
-				type: "POST",
-				url: "/admin/searchers/" + searcherId + "/template",
-				data: { template: $("#template").val() }, 
-				success :  function(data) {
-					$("#save-message span").html(data) ;
-					$("#save-message").removeClass("message") ;
-					setTimeout(function() {
-						$("#save-message").addClass("message") ;
-					}, 2000);
-				}}
-			).done(function( msg ) {
-				
-			});
-		}) ;
+		_templateForm.validate({
+			rules : {
+				template : { required : true }
+			},
+
+			messages : {
+				template : { required : "${m.asString('validation.required', 'template content')}"}
+			},
+
+			submitHandler : function(form) {
+				$.ajax({
+					type: "POST",
+					url: "/admin/searchers/" + searcherId + "/template",
+					data: { template: _template.val() }, 
+					success :  function(data) {
+						$("#save-message span").html(data) ;
+						$("#save-message").removeClass("message") ;
+						setTimeout(function() {
+							$("#save-message").addClass("message") ;
+						}, 2000);
+					}}
+				).done(function( msg ) {
+				});
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		_btn_save.click(function() {
+			command = 'save' ;
+			_templateForm.submit() ;
+		});
 		
 	};
 	pagefunction() ;

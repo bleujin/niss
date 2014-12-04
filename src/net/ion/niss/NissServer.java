@@ -29,6 +29,7 @@ import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.LoaderWeb;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.niss.webapp.misc.CrakenLet;
+import net.ion.niss.webapp.misc.ExportWeb;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.niss.webapp.misc.OpenScriptWeb;
@@ -86,7 +87,7 @@ public class NissServer {
 
 		this.rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
-		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));
+		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder.createThreadFactory("script-monitor-thread-%d")), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
 
 		final QueryTemplateEngine ve = builder.context(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login()));
@@ -101,7 +102,7 @@ public class NissServer {
 				.add(new LoggingHandler(new AppLogSink(elogger)))
 				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
 				// .add(new WhoAmIHttpHandler())
-				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class).prefixURI("/admin"))
+				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
 				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
 				.add("/logging/event/*", new EventSourceHandler() {
 					@Override

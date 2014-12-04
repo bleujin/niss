@@ -26,7 +26,7 @@
 					</div>
 					
 					<div class="widget-body">
-					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+					<form class="smart-form" id="misc-logging-form" method="post" action="searchers/define" novalidate="novalidate">
 						<fieldset>
 							<section>
 							<div class="span3" style="height: 450px; overflow: auto;">
@@ -49,10 +49,10 @@
 							
 						</fieldset>
 						<footer>
-							<button class="btn btn-sm btn-success" type="button" id="btn_stop" disabled="disabled">
+							<button class="btn btn-sm btn-success" type="button" name="btn_stop" disabled="disabled">
 								<i class="fa fa-check"></i> ${m.asString("misc.logging.buttons.stop")}
 							</button>	
-							<button class="btn btn-sm btn-primary" type="button" id="btn_monitor">
+							<button class="btn btn-sm btn-primary" type="button" name="btn_monitor">
 								<i class="fa fa-times"></i> ${m.asString("misc.logging.buttons.monitor")}
 							</button>	
 						</footer>
@@ -78,15 +78,19 @@
 	var pagefunction = function() {
 
 		String.prototype.format = function() {
-		    var formatted = this;
-		    for (var i = 0; i < arguments.length; i++) {
-		        var regexp = new RegExp('\\{'+i+'\\}', 'gi');
-		        formatted = formatted.replace(regexp, arguments[i]);
-		    }
-		    return formatted;
+			 var formatted = this;
+			 for (var i = 0; i < arguments.length; i++) {
+				 var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+				 formatted = formatted.replace(regexp, arguments[i]);
+			}
+			 return formatted;
 		};
 
-		$( "#btn_monitor" ).click(function() {
+		var _loggingForm = $("#misc-logging-form") ;
+		var _btn_monitor = _loggingForm.find("button[name=btn_monitor]") ;
+		var _btn_stop 	= _loggingForm.find("button[name=btn_stop]") ;
+		
+		_btn_monitor.click(function() {
 			var es = new EventSource('/logging/event/');
 			es.onopen = function() {
 				// console.log('OPEN');
@@ -96,14 +100,15 @@
 				if (! $("#mainTable").length) es.close() ;
 				
 				var msg = '' + e.data ;
-				var values = msg.split('\t') ;
+				var values = msg.split('	') ;
 				
-				var dtime = new Date(values[1] - 0);
+				var dtime = new Date(values[1] - 0).toISOString() ;
+				var dtimestr = dtime.substring(0,10) + ' ' + dtime.substring(11,19) ;
 				var client = values[4] ;
 				var type = values[5] ;
 				var method = values[6] ;
 				var elapsed = values[7] ;
-				var row = '<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>'.format(new Date(values[1] - 0), values[4], values[5], values[6], values[7], values[8]);
+				var row = '<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>'.format(dtimestr, values[4], values[5], values[6], values[7], values[8]);
 				$(row).insertAfter("#mainTable tr:first");
 			};
 
@@ -111,13 +116,13 @@
 				console.log('ERROR : ' + e);
 			};
 			
-			$( "#btn_monitor").attr("disabled", "disabled") ;
-			$( "#btn_stop" ).removeAttr("disabled") ;
+			_btn_monitor.attr("disabled", "disabled") ;
+			_btn_stop.removeAttr("disabled") ;
 			
-			$( "#btn_stop" ).click(function() {
+			_btn_stop.click(function() {
 				es.close() ;
-				$( "#btn_monitor" ).removeAttr("disabled")
-				$( "#btn_stop" ).attr("disabled", "disabled")
+				_btn_monitor.removeAttr("disabled")
+				_btn_stop.attr("disabled", "disabled")
 			}) ;
 		}) ;
 

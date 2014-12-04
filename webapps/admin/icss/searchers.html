@@ -52,11 +52,11 @@
 
 </div>
 
-<div id="remove-searcher-confirm" title="Remove Searcher" style="display:none">
+<div id="remove-searcher-confirm" title='${m.asString("searchers.remove.title")}' style="display:none">
 	<form class="smart-form" id="remove-searcher-form" method="post" action="searcher/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
-				<label class="label">Searcher : <span id="removeSearcherId"></span></label>
+				<label class="label">${m.asString("searchers.remove.searcher")} : <span id="removeSearcherId"></span></label>
 			</section>
 		</fieldset>
 	</form>
@@ -64,65 +64,65 @@
 
 <div id="create_searcher_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content" style="width:70%">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create Searcher</h5></div>
+		<div class="modal-content" style="width:70%">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("searchers.create")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 			<form class="smart-form" id="create_searcher_form" method="post" action="searchers/" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
-					<label class="label">Searcher Id</label>
+					<label class="label">${m.asString("searchers.create.searcherid")}</label>
 					<label class="input">
 						<input type="text" id="newSearcherId" name="newsid" placeholder="new searcher id" />
 					</label>
 				</section>
 			</fieldset>
 			</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_searcher">Create Searcher</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_searcher">${m.asString("searchers.create.button")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
 <div id="create_schema_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create Search Schema</h5></div>
+		<div class="modal-content">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("searchers.schema.create")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 		<form class="smart-form" id="create_schema_form" method="post" action="searchers/schema" novalidate="novalidate">
 		<fieldset style="padding: 0px">					
 			<section>
-				<label class="label">Schema Id</label>
+				<label class="label">${m.asString("searchers.schema.create.schemaid")}</label>
 				<label class="input">
 					<input type="text" id="schemaid" name="schemaid"/>
 				</label>
 			</section>
 			<section>
-				<label class="label">Query Analyzer</label>
+				<label class="label">${m.asString("searchers.schema.create.query-analyzer")}</label>
 				<label class="select">
 					<select name="schema_analyzer">
-					    
+						
 					</select>
 				</label>
 			</section>
 		</fieldset>
 		</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_schema">Create Schema</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_schema">${m.asString("searchers.schema.create.button")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
@@ -163,7 +163,7 @@
 		}) ;
 		
 		$('.modal').on('hidden.bs.modal', function(){
-		    $(this).find('form')[0].reset();
+			$(this).find('form')[0].reset();
 		});
 
 
@@ -240,7 +240,7 @@
 					data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), 
 							analyzer :$("#create_schema_form select[name=schema_analyzer]").val()}
 				}).done(function( msg ) {
-					console.log( "Data Saved: " + msg );
+					// console.log( "Data Saved: " + msg );
 				}).success(function( msg ) {
 					$("#create_schema_modal").modal('hide') ;
 					loadURL("icss/searchers/schema.html", $('#inbox-content > .table-wrap')) ;
@@ -305,8 +305,8 @@
 
 		
 		$("li.submenu").click(function() {
-		    $(this).siblings().removeClass("active");
-		    $(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
 		});
 	
 		// Buttons (compose mail and inbox load)

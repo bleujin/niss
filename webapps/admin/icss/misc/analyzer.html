@@ -29,19 +29,19 @@
 					<div class="widget-body">
 
 						<div class="table-responsive">
-							<form class="smart-form" id="document-form" method="post" action="analysis" novalidate="novalidate">
+							<form class="smart-form" id="misc-analyzer-form" method="post" action="analysis" novalidate="novalidate">
 								<fieldset style="padding: 0px">					
 									<section>
 										<label class="label">${m.asString("misc.analyzer.value")}</label>
 										<label class="textarea textarea-resizable">
-											<textarea id="textvalue" name="textvalue" rows="9">${m.asString("misc.analyzer.textvalue")}</textarea>
+											<textarea name="textvalue" rows="9">${m.asString("misc.analyzer.textvalue")}</textarea>
 										</label>
 									</section>
 									<section>
 										<label class="label">${m.asString("misc.analyzer.type")}</label>
 										<label class="select">
-											<select multiple style="width:100%" class="select2" id="target_analyzer">
-												<optgroup label="Target Indexer" id="analyzer">
+											<select multiple style="width:100%" class="select2" name="target_analyzer">
+												<optgroup label="Target Indexer" id="list_analyzer">
 												</optgroup>
 											</select>
 										</label>
@@ -50,7 +50,7 @@
 									<section>
 										<label class="label">${m.asString("misc.analyzer.stopword")}</label>
 										<label class="textarea textarea-resizable">
-											<textarea id="stopword" name="stopword" rows="5"></textarea>
+											<textarea name="stopword" rows="5"></textarea>
 										</label>
 									</section>
 									
@@ -58,13 +58,8 @@
 								</fieldset>
 								
 								<footer>
-									<button class="btn btn-primary" type="button" id="btn_analyzer" >${m.asString("misc.analyzer.buttons")}</button>
+									<button class="btn btn-primary" type="button" name="btn_analyzer" >${m.asString("misc.analyzer.buttons")}</button>
 								</footer>
-								
-								<div class="message">
-									<i class="fa fa-thumbs-up"></i>
-									<p>Your message was successfully sent!</p>
-								</div>
 							</form>
 							
 						</div>
@@ -108,18 +103,24 @@
 
 	var pagefunction = function() {
 
+		
+		var _analyzerForm = $("#misc-analyzer-form") ;
+		var _target_analyzer = _analyzerForm.find("select[name=target_analyzer]") ;
+		var _textvalue = _analyzerForm.find("textarea[name=textvalue]") ;
+		var _stopword = _analyzerForm.find("textarea[name=stopword]") ;
+		var _btn_analyzer = _analyzerForm.find("button[name=btn_analyzer]") ; 
+
 		$.ajax({
 			url:'/admin/analysis',
 			dataType:'json',
 			success:function(data){
-				console.log(data) ;
 				var analyzer = data['analyzer'] ;
 				
 				for(var idx in analyzer){
 					var a = analyzer[idx] ;
 					var option = $('<option value="'+a['clz']+'">'+a['name']+'</dd>') ;
 //					if (a['selected']) option.attr('selected', 'selected');
-					option.appendTo($("#analyzer")) ;
+					option.appendTo($("#list_analyzer")) ;
 				}
 			}, 
 			error:function(request,status,error){
@@ -127,34 +128,52 @@
 			}
 		}) ;
 		
-		$( "#btn_analyzer" ).click( function() {
-			
-			var targets = [];
-    			$("#target_analyzer").each(function(){ targets.push($(this).val()) });
-			$.ajax({
-				type: "POST",
-				url: "/admin/analysis",
-				dataType:'json', 
-				data: { content: $("#textvalue").val(), analyzer: targets.toString(), stopword: $("#stopword").val()}, 
-				success : function(data) {
-					$("#terms ol").remove();
-					
-					
-					for(var clzName in data){
-						var terms = data[clzName] ;
-						var ulClz = $("<ol class='list-inline'>" + clzName.substringAfterLast('.')  + "</ol>");
-						for(var tidx in terms){
-							var term = terms[tidx] ;
-							$("<li class='text-success'>" + term["term"] + "("+ term["start"] + "," + term["end"] + ")</li>").appendTo(ulClz) ;
-						}
-						ulClz.appendTo($("#terms")) ;
-						console.log(clzName);
-					}	
-				}, 
-				error:function(request, status, error){
-					console.log('response', request, status, error) ;
-				}
-			})
+		
+		_analyzerForm.validate({
+			rules : {
+				textvalue : { required : true },
+				target_analyzer : { required : true }
+			},
+
+			messages : {
+				textvalue : { required : "${m.asString('validation.required', 'text')}"},
+				target_analyzer : { required : "${m.asString('validation.select', 'analyzer[s]')}"}
+			},
+
+			submitHandler : function(form) {
+				var targets = [];
+				_target_analyzer.each(function(){ targets.push($(this).val()) });
+				$.ajax({
+					type: "POST",
+					url: "/admin/analysis",
+					dataType:'json', 
+					data: { content: _textvalue.val(), analyzer: targets.toString(), stopword: _stopword.val()}, 
+					success : function(data) {
+						$("#terms ol").remove();
+						
+						for(var clzName in data){
+							var terms = data[clzName] ;
+							var ulClz = $("<ol class='list-inline'>" + clzName.substringAfterLast('.')  + "</ol>");
+							for(var tidx in terms){
+								var term = terms[tidx] ;
+								$("<li class='text-success'>" + term["term"] + "("+ term["start"] + "," + term["end"] + ")</li>").appendTo(ulClz) ;
+							}
+							ulClz.appendTo($("#terms")) ;
+						}	
+					}, 
+					error:function(request, status, error){
+						console.log('response', request, status, error) ;
+					}
+				}) ;
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		_btn_analyzer.click(function() {
+			_analyzerForm.submit() ;
 		});
 		
 	};

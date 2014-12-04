@@ -26,27 +26,27 @@
 
 <div id="create_user_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create User</h5></div>
+		<div class="modal-content">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("misc.user.create")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 			<form class="smart-form" id="create_user_form" method="post" action="misc/user" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
-					<label class="label">User Id</label>
+					<label class="label">${m.asString("misc.user.create.userid")}</label>
 					<label class="input">
 						<input type="text" name="userid"/>
 					</label>
 				</section>
 				<section>
-					<label class="label">User Name</label>
+					<label class="label">${m.asString("misc.user.create.name")}</label>
 					<label class="input">
 						<input type="text" name="name"/>
 					</label>
 				</section>
 				<section>
-					<label class="label">Password</label>
+					<label class="label">${m.asString("misc.user.create.password")}</label>
 					<label class="input">
 						<input type="password" name="password"/>
 					</label>
@@ -54,31 +54,40 @@
 				
 			</fieldset>
 			</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_user">Create User</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_user">${m.asString("misc.user.create")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
 
+<div id="remove-script-confirm" title='${m.asString("misc.script.remove.confirm")}' style="display:none">
+	<form class="smart-form" id="remove-script-form" method="post" action="misc/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">${m.asString("misc.script.remove.script")} : <span id="removeScriptId"></span></label>
+			</section>
+		</fieldset>
+	</form>
+</div>
 
 
 <div id="create_script_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create Script</h5></div>
+		<div class="modal-content">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("misc.script.define")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 			<form class="smart-form" id="create_script_form" method="post" action="misc/script" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
-					<label class="label">Script Id</label>
+					<label class="label">${m.asString("misc.script.define.script-id")}</label>
 					<label class="input">
 						<input type="text" name="sid"/>
 					</label>
@@ -86,7 +95,7 @@
 				
 				<section>
 					<label class="select">
-						<select name="script_samples"><option value=''>View Sample Script</option></select>
+						<select name="script_samples"><option value=''>${m.asString("misc.script.define.view-sample")}</option></select>
 					</label>
 				</section>
 				
@@ -95,27 +104,27 @@
 					<label class="textarea textarea-resizable">
 						<i class="icon-append fa fa-question-circle"/> 										
 						<textarea rows="10" class="custom-scroll" placeholder="script content" name="content"></textarea>
-						<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>Script Content</b> 
+						<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("misc.script.define.content")}</b> 
 					</label>
 				</section>
 				
 				<section>
-					<label class="label">Response</label>
+					<label class="label">${m.asString("misc.script.define.response")}</label>
 					<div><pre name="script_response"></pre></div>
 					
 				</section>
 				
 			</fieldset>
 			</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-success" name="instant_run">Run</button>
-              <button class="btn btn-primary" name="create_script">Define Script</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-success" name="instant_run">${m.asString("misc.script.define.button-run")}</button>
+			  <button class="btn btn-primary" name="create_script">${m.asString("misc.script.define.button-define")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
@@ -130,7 +139,7 @@
 	var pagefunction = function() {
 		
 		$('.modal').on('hidden.bs.modal', function(){
-		    $(this).find('form')[0].reset();
+			$(this).find('form')[0].reset();
 		});
 		
 		$("#create_user_form").validate({
@@ -221,7 +230,7 @@
 				success :  function(data) {
 					$("#create_script_modal pre[name=script_response]").text(data) ;
 	// 				var win = window.open();
-	//	            win.document.write(data);
+	//				 win.document.write(data);
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;
@@ -278,8 +287,8 @@
 
 		loadURL("icss/misc/properties.html", $('#inbox-content > .table-wrap')) ;
 		$("li.submenu").click(function() {
-		    $(this).siblings().removeClass("active");
-		    $(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
 		});
 		
 		

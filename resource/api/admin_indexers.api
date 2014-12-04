@@ -2,6 +2,11 @@ path : /admin/indexers
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonArray net.ion.niss.webapp.indexers.IndexerWeb.listIndexer()
 
+path : /admin/indexers/{iid}
+httpMethod : DELETE 
+javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.removeIndexer(java.lang.String)
+  {@javax.ws.rs.PathParam(value=iid)}
+
 path : /admin/indexers/{iid}/status
 httpMethod : GET 
 javaMethod : public net.ion.framework.parse.gson.JsonObject net.ion.niss.webapp.indexers.IndexerWeb.viewStatus(java.lang.String) throws java.io.IOException
@@ -147,11 +152,6 @@ javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.rem
 path : /admin/indexers/{iid}/hello
 httpMethod : GET 
 javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.hello(java.lang.String)
-  {@javax.ws.rs.PathParam(value=iid)}
-
-path : /admin/indexers/{iid}
-httpMethod : DELETE 
-javaMethod : public java.lang.String net.ion.niss.webapp.indexers.IndexerWeb.remove(java.lang.String)
   {@javax.ws.rs.PathParam(value=iid)}
 
 path : /admin/indexers/{iid}

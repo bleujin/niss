@@ -64,10 +64,7 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "browsing" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -94,8 +91,8 @@
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
-				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_remove_index" value="${m.asString("indexers.browsing.buttons.remove")}" disabled="disabled"/></section>' +
-				'						<section class="col col-3"><label class="input"><input type="text" id="searchQuery" placeholder="Search Query"></label></section>' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" name="btn_remove" value="${m.asString("indexers.browsing.buttons.remove")}" disabled="disabled"/></section>' +
+				'						<section class="col col-3"><label class="input"><input type="text" name="searchQuery" placeholder="Search Query"></label></section>' +
 				'					</div>' +
 				'				</fieldset>' +
 				'				</td></tr></tfoot>' ;
@@ -103,16 +100,20 @@
 				$(tableFoot).appendTo($("#example")) ;
 
 				$("#info").html(data['info']) ;
+
+				var table = $('#example') ;
+				var tableData = table.DataTable() ;
+				var _btn_remove = table.find("input[name=btn_remove]") ;
+				var _searchQuery = table.find("input[name=searchQuery]") ;
 				
-				var table = $('#example').DataTable() ;
 				
-				$('#example tbody').on( 'click', 'tr', function () {
+				table.find('tbody').on('click', 'tr', function () {
 					$(this).toggleClass('selected2');
-					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_remove_index').removeAttr("disabled") : $('#btn_remove_index').attr("disabled", "disabled") ;
+					(tableData.rows('.selected2').data().length > 0) ? _btn_remove.removeAttr("disabled") : _btn_remove.attr("disabled", "disabled") ;
 				} );
 				
-				$('#btn_remove_index').click( function () {
-					var targets = $('#example').DataTable().rows('.selected2') ;
+				_btn_remove.click( function () {
+					var targets = tableData.rows('.selected2') ;
 					var indexIds = '' ;
 					for(var i=0; i < targets.data().length ; i++){
 						indexIds += targets.data()[i][0] + ',';
@@ -133,31 +134,31 @@
 								console.log('response', request, status, error) ;
 							}
 					}).done(function( msg ) {
-						$('#btn_remove_index').attr("disabled", "disabled") ;
+						_btn_remove.attr("disabled", "disabled") ;
 					});
 				});
 				
-				$('#searchQuery').on('keypress', function (event) {
+				_searchQuery.on('keypress', function (event) {
 					if(event.which == '13'){
 						
-				    	$.ajax({
+						$.ajax({
 							url:"/admin/indexers/" + indexerId + "/browsing",
 							type:'GET', 
 							dataType:'json',
-							data : {'searchQuery':$("#searchQuery").val()}, 
+							data : {'searchQuery':_searchQuery.val()}, 
 							success:function(data){
-								table.clear() ;
-								table.destroy() ;
+								tableData.clear() ;
+								tableData.destroy() ;
 								
 								var nodes = data['data'];
-								$("#example")
-									.dataTable({
+								table.dataTable({
 									"data":nodes,
 									"searching":false 
 									// "columns": data['schemaName']
 								}) ;
 								
-								table = $('#example').DataTable() ;
+								table = $('#example') ;
+								tableData = $('#example').DataTable() ;
 							}, 
 							error:function(request,status,error){
 								console.log('response', request, status, error) ;

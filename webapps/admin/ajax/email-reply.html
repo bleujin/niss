@@ -259,8 +259,8 @@
 	
 	$("#send").click(function(){
 
-	    var $btn = $(this);
-	    $btn.button('loading');
+		 var $btn = $(this);
+		$btn.button('loading');
 		
 		// wait for animation to finish and execute send script
 		setTimeout(function (){
@@ -269,8 +269,8 @@
 			
 			// Load inbox once send is complete
 			loadURL("ajax/email/email-list.html", $('#inbox-content > .table-wrap'))
-            
-         }, 1000); // how long do you want the delay to be? 
+			
+		 }, 1000); // how long do you want the delay to be? 
 	});
 		
 </script>

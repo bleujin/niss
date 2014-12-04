@@ -1,0 +1,130 @@
+{
+  "/indexers/newindexer": {
+    "indexanalyzer": {
+      "vtype": "STR",
+      "vals": [
+        "org.apache.lucene.analysis.standard.StandardAnalyzer"
+      ]
+    },
+    "created": {
+      "vtype": "LONG",
+      "vals": [
+        1416474407056
+      ]
+    },
+    "queryanalyzer": {
+      "vtype": "STR",
+      "vals": [
+        "org.apache.lucene.analysis.standard.StandardAnalyzer"
+      ]
+    },
+    "applystopword": {
+      "vtype": "BOOL",
+      "vals": [
+        true
+      ]
+    },
+    "stopword": {
+      "vtype": "STR",
+      "vals": [
+        "company"
+      ]
+    }
+  },
+  "/indexers/newindexer/schema": {
+    "schematype": {
+      "vtype": "STR",
+      "vals": [
+        "text"
+      ]
+    },
+    "analyzer": {
+      "vtype": "STR",
+      "vals": [
+        ""
+      ]
+    },
+    "boost": {
+      "vtype": "DOUB",
+      "vals": [
+        1.0
+      ]
+    },
+    "store": {
+      "vtype": "BOOL",
+      "vals": [
+        false
+      ]
+    },
+    "analyze": {
+      "vtype": "BOOL",
+      "vals": [
+        true
+      ]
+    }
+  },
+  "/indexers/newindexer/schema/age": {
+    "schematype": {
+      "vtype": "STR",
+      "vals": [
+        "number"
+      ]
+    },
+    "boost": {
+      "vtype": "DOUB",
+      "vals": [
+        1.0
+      ]
+    },
+    "analyzer": {
+      "vtype": "STR",
+      "vals": [
+        ""
+      ]
+    },
+    "store": {
+      "vtype": "BOOL",
+      "vals": [
+        true
+      ]
+    },
+    "analyze": {
+      "vtype": "BOOL",
+      "vals": [
+        false
+      ]
+    }
+  },
+  "/indexers/newindexer/schema/name": {
+    "schematype": {
+      "vtype": "STR",
+      "vals": [
+        "keyword"
+      ]
+    },
+    "boost": {
+      "vtype": "DOUB",
+      "vals": [
+        1.0
+      ]
+    },
+    "analyzer": {
+      "vtype": "STR",
+      "vals": [
+        ""
+      ]
+    },
+    "store": {
+      "vtype": "BOOL",
+      "vals": [
+        true
+      ]
+    },
+    "analyze": {
+      "vtype": "BOOL",
+      "vals": [
+        false
+      ]
+    }
+  }
+}

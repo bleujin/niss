@@ -55,11 +55,11 @@
 
 </div>
 
-<div id="remove-indexer-confirm" title="Remove Indexer" style="display:none">
+<div id="remove-indexer-confirm" title='${m.asString("indexers.remove.title")}' style="display:none">
 	<form class="smart-form" id="remove-indexer-form" method="post" action="indexers/" novalidate="novalidate">
 		<fieldset style="padding: 0px">	
 			<section>
-				<label class="label">Indexer : <span id="removeIndexerId"></span></label>
+				<label class="label">${m.asString("indexers.remove.indexer")} : <span id="removeIndexerId"></span></label>
 			</section>
 		</fieldset>
 	</form>
@@ -68,29 +68,29 @@
 
 <div id="create_indexer_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content" style="width:70%">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create Indexer</h5></div>
+		<div class="modal-content" style="width:70%">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("indexers.create")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 			<form class="smart-form" id="create_indexer_form" method="post" action="indexers/" novalidate="novalidate">
 			<fieldset style="padding: 0px">					
 				<section>
-					<label class="label">Indexer Id</label>
+					<label class="label">${m.asString("indexers.create.indexerid")}</label>
 					<label class="input">
 						<input type="text" id="newIndexerId" name="newiid" placeholder="new indexer id" />
 					</label>
 				</section>
 			</fieldset>
 			</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_indexer">Create Indexer</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_indexer">${m.asString("indexers.create.button")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
@@ -98,66 +98,66 @@
 
 <div id="create_schema_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-       <div class="modal-content">
-        	
-            <div class="modal-header"><h5 id="myModalLabel">Create Schema</h5></div>
+		<div class="modal-content">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("indexers.schema.create.title")}</h5></div>
 
-            <div class="modal-body">
+			<div class="modal-body">
 		<form class="smart-form" id="create_schema_form" method="post" action="indexers/schema" novalidate="novalidate">
 		<fieldset style="padding: 0px">					
 			<section>
-				<label class="label">Schema Id</label>
+				<label class="label">${m.asString("indexers.schema.create.schemaid")}</label>
 				<label class="input">
-					<input type="text" id="schemaid" name="schemaid"/>
+					<input type="text" name="schemaid"/>
 				</label>
 			</section>
 			<section>
-				<label class="label">Schema Type</label>
+				<label class="label">${m.asString("indexers.schema.create.schema-type")}</label>
 				<label class="select">
-					<select name="schematype" id="schematype">
-					    <option value="text">Text</option>
-					    <option value="keyword" selected="selected">Keyword</option>
-					    <option value="number">Number</option>
-					    <!--  <option value="date">Date</option>  -->
-					    <option value="manual">Manual</option>
+					<select name="schematype">
+						<option value="text">${m.asString("indexers.schema.create.text")}</option>
+						<option value="keyword" selected="selected">${m.asString("indexers.schema.create.keyword")}</option>
+						<option value="number">${m.asString("indexers.schema.create.number")}</option>
+						<!--  <option value="date">Date</option>  -->
+						<option value="manual">${m.asString("indexers.schema.create.manual")}</option>
 					</select>
 				</label>
 			</section>
 			<div name="manual_option" style="display:none">
 			<section>
-				<label class="label">Analyzer</label>
+				<label class="label">${m.asString("indexers.schema.create.index-analyzer")}</label>
 				<label class="select">
 					<select name="schema_analyzer">
-					    
+						
 					</select>
 				</label>
 			</section>
 			</div>
 			<div class="row" name="manual_option" style="display:none">
 			<section class="col col-6">
-				<label class="checkbox"><input type="checkbox" id="schema_analyze" name="analyze"/><i></i>Analyze</label>
+				<label class="checkbox"><input type="checkbox" name="analyze"/><i></i>${m.asString("indexers.schema.create.analyze")}</label>
 			</section>
 			<section class="col col-6">
-				<label class="checkbox"><input type="checkbox" id="schema_store" name="store"/><i></i>Store</label>
+				<label class="checkbox"><input type="checkbox" name="store"/><i></i>${m.asString("indexers.schema.create.store")}</label>
 			</section>
 			</div>
 			<section>
 				<label class="label">Boost</label>
 				<label class="input">
-					<input type="text" id="boost" name="boost" placeholder="1.0"/>
+					<input type="text" name="boost" placeholder="1.0"/>
 				</label>
 			</section>
 
 		</fieldset>
 		</form>
-            </div>
-            
-            <div class="modal-footer">
-              <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
-              <button class="btn btn-primary" name="create_schema">Create Schema</button>
-            </div>  
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_schema">${m.asString("indexers.schema.create.button")}</button>
+			</div>  
 
-       </div>
+		</div>
 	</div>
 </div>
 
@@ -260,7 +260,10 @@
 			});
 		}) ;
 		
-		$("#create_schema_form").validate({
+		var _createSchemaForm = $("#create_schema_form") ;
+		var _schemaType = _createSchemaForm.find("select[name=schematype]") ;
+		
+		_createSchemaForm.validate({
 			rules : {
 				schemaid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 2, maxlength : 15 }
 			},
@@ -271,14 +274,14 @@
 				$.ajax({
 					type: "POST",
 					url: "/admin/indexers/" + $("#indexers").val() + "/schema",
-					data: { schemaid: $("#create_schema_form input[name=schemaid]").val(), 
-							schematype: $("#create_schema_form select[name=schematype]").val(),  
-							analyzer :$("#create_schema_form select[name=schema_analyzer]").val(), 
-							analyze: ($("#create_schema_form input[name=analyze]").is(":checked") || ($("#create_schema_form select[name=schematype]").val() == 'text')) ? true : false, 
-							store: $("#create_schema_form input[name=store]").is(":checked") || ($("#create_schema_form select[name=schematype]").val() == 'keyword') || ($("#create_schema_form select[name=schematype]").val() == 'number') , 
-							boost:$("#create_schema_form input[name=boost]").val() }
+					data: { schemaid: _createSchemaForm.find("input[name=schemaid]").val(), 
+							schematype: _schemaType.val(),  
+							analyzer:_createSchemaForm.find("select[name=schema_analyzer]").val(), 
+							analyze: (_createSchemaForm.find("input[name=analyze]").is(":checked") || (_schemaType.val() == 'text')) ? true : false, 
+							store:  _createSchemaForm.find("input[name=store]").is(":checked") || (_schemaType.val() == 'keyword') || (_schemaType.val() == 'number') , 
+							boost: _createSchemaForm.find("input[name=boost]").val() }
 				}).done(function( msg ) {
-					console.log( "Data Saved: " + msg );
+					//  console.log( "Data Saved: " + msg );
 				}).success(function( msg ) {
 					$("#create_schema_modal").modal('hide') ;
 					loadURL("icss/indexers/schema.html", $('#inbox-content > .table-wrap')) ;
@@ -291,8 +294,8 @@
 			}
 		});
 
-		$("#schematype").change(function(){
-			if ($("#schematype").val() == 'manual') {
+		_schemaType.change(function(){
+			if (_schemaType.val() == 'manual') {
 				$("div[name=manual_option]").show() ;
 			} else {
 				$("div[name=manual_option]").hide() ;
@@ -300,7 +303,7 @@
 		}) ;
 
 		$("#create_schema_modal button[name=create_schema]").click(function(){
-			$("#create_schema_form").submit() ;
+			_createSchemaForm.submit() ;
 		});
 		
 
@@ -347,8 +350,8 @@
 		
 
 		$("li.submenu").click(function() {
-		    $(this).siblings().removeClass("active");
-		    $(this).addClass("active");
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
 		});
 
 		// Buttons (compose mail and inbox load)

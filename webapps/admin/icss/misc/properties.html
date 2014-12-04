@@ -52,18 +52,18 @@
 
 	var pagefunction = function() {
 		$.ajax({
-            url:'/admin/misc/properties',
-            dataType:'json',
-            success:function(data){
-                for(var pid in data){
-                	$("<tr><td>" + pid + "</td><td>" + data[pid] + "</td></tr>").appendTo($("#properties")) ;
-                }
-                
-            }, 
-            error:function(request,status,error){
-            	console.log('response', request, status, error) ;
-            }
-        }) ;
+			 url:'/admin/misc/properties',
+			 dataType:'json',
+			 success:function(data){
+				 for(var pid in data){
+					$("<tr><td>" + pid + "</td><td>" + data[pid] + "</td></tr>").appendTo($("#properties")) ;
+				}
+				
+			}, 
+			 error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 	};
 
 	pagefunction();

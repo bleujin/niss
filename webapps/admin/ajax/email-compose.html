@@ -202,33 +202,33 @@
 	loadScript("js/plugin/summernote/summernote.min.js", iniEmailBody);
 
 	function iniEmailBody() {
-	    $('#emailbody').summernote({
-	        height: '100%',
-	        focus: false,
-	        tabsize: 2
-	    });
+		$('#emailbody').summernote({
+			 height: '100%',
+			 focus: false,
+			 tabsize: 2
+		});
 	}
 
 	$(".show-next").click(function () {
-	    $this = $(this);
-	    $this.hide();
-	    $this.parent().parent().parent().parent().parent().next().removeClass("hidden");
+		$this = $(this);
+		$this.hide();
+		$this.parent().parent().parent().parent().parent().next().removeClass("hidden");
 	})
 
 	 $("#send").click(function () {
 
-	    var $btn = $(this);
-	    $btn.button('loading');
+		 var $btn = $(this);
+		$btn.button('loading');
 
-	    // wait for animation to finish and execute send script
-	    setTimeout(function () {
-	        //Insert send script here
+		// wait for animation to finish and execute send script
+		 setTimeout(function () {
+			//Insert send script here
 
 
-	        // Load inbox once send is complete
-	        loadURL("ajax/email/email-list.html", $('#inbox-content > .table-wrap'))
+			// Load inbox once send is complete
+			 loadURL("ajax/email/email-list.html", $('#inbox-content > .table-wrap'))
 
-	    }, 1000); // how long do you want the delay to be? 
+		}, 1000); // how long do you want the delay to be? 
 	});
 	
 	

@@ -1,9 +1,13 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
@@ -11,27 +15,36 @@ import java.util.concurrent.Future;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
+import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.convert.Functions;
+import net.ion.craken.node.crud.util.TraversalStrategy;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.RDB;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.WriteDocument;
+import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
 
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.WildcardQuery;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
+import com.google.common.base.Function;
 
 public class TestSampleScript extends TestBaseIndexWeb {
 
@@ -123,5 +136,56 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		Debug.line(response.getEntity()) ;
 	}
 	
+	
+	
+	public void testBackupAdmin() throws Exception {
+		ReadSession session = entry.login() ;
+		
+		Writer writer = new StringWriter() ;
+		final JsonWriter jwriter = new JsonWriter(writer) ;
+		
+		session.root().transformer(new Function<ReadNode, Void>(){
+			@Override
+			public Void apply(ReadNode target) {
+				target.walkChildren().asTreeChildren().includeSelf(true).strategy(TraversalStrategy.BreadthFirst).transform(new Function<Iterator<ReadNode>, Void>() {
+					@Override
+					public Void apply(Iterator<ReadNode> decent) {
+						try {
+							jwriter.beginObject() ;
+							while(decent.hasNext()){
+								ReadNode node = decent.next() ;
+								jwriter.jsonElement(node.fqn().toString(), node.toValueJson()) ;
+							}
+							jwriter.endObject() ;
+							
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						return null;
+					}
+				}) ;
+				
+				return null;
+			}
+		}) ;
+		
+		// Debug.line(writer.toString());
+	}
+
+	
+	public void testRemoveIndex() throws Exception {
+		Central central = entry.indexManager().index("col1") ;
+		central.newIndexer().index(new IndexJob<Void>() {
+			@Override
+			public Void handle(IndexSession isession) throws Exception {
+				isession.deleteTerm(new Term("name", "bleujin")) ;
+				isession.deleteAll() ;
+				isession.deleteById("bleujin") ;
+				isession.deleteQuery(new WildcardQuery(new Term("name", "bleujin*"))) ;
+				
+				return null;
+			}
+		}) ;
+	}
 	
 }

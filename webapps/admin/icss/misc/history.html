@@ -36,9 +36,7 @@
 	
 	// pagefunction	
 	var pagefunction = function() {
-		//console.log("cleared");
-		
-		
+
 		$.ajax({
 			url:"/admin/misc/history",
 			type:'GET', 
@@ -73,12 +71,12 @@
 				
 				$('#example tbody').on( 'click', 'tr', function () {
 					if ( $(this).hasClass('selected2') ) {
-				            $(this).removeClass('selected2');
-				        } else {
-				            table.$('tr.selected2').removeClass('selected2');
-				            $(this).addClass('selected2');
-				        }
-				        ($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_detail_index').removeAttr("disabled") : $('#btn_detail_index').attr("disabled", "disabled") ;
+							$(this).removeClass('selected2');
+						} else {
+							 table.$('tr.selected2').removeClass('selected2');
+							$(this).addClass('selected2');
+						}
+						($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_detail_index').removeAttr("disabled") : $('#btn_detail_index').attr("disabled", "disabled") ;
 					// window.open('http://www.pageresource.com/jscript/jex5.htm','mywindow','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
 				} );
 				
@@ -86,38 +84,20 @@
 					var targets = $('#example').DataTable().rows('.selected2') ;
 					var lid = targets.data()[0][0] ;
 					window.open('/admin/craken/events/loaders/' + lid + '.content','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
-					
-					/*
-					var indexIds = '' ;
-					for(var i=0; i < targets.data().length ; i++){
-						indexIds += targets.data()[i][0] + ',';
-					}
-					 $.ajax({
-							url:"/admin/indexers/" + indexerId + "/browsing",
-							type:'POST', 
-							data : {'indexIds':indexIds}, 
-							success:function(data){
-								targets.remove().draw(false) ;			
-							}, 
-							error:function(request,status,error){
-								console.log('response', request, status, error) ;
-							}
-					}); */
 				});
 				
 				$('#searchQuery').on('keypress', function (event) {
 					if(event.which == '13'){
 						table.destroy();
 						
-					       $.ajax({
+						$.ajax({
 							url:"/admin/misc/history",
 							type:'GET', 
 							dataType:'json',
 							data : {'searchQuery':$("#searchQuery").val()}, 
 							success:function(data){
 								var nodes = data['data'];
-								$("#example")
-									.dataTable({
+								$("#example").dataTable({
 									"data":nodes,
 									"searching":false, 
 									"columns": data['schemaName']
@@ -139,12 +119,8 @@
 			}
 		}) ;
 		
-		/* BASIC ;*/
-		
-		/* END BASIC */
 	};
 
-	// load related plugins
 	
 	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
 		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);

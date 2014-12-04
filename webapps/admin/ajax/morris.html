@@ -736,10 +736,10 @@
 			Morris.Area({
 			  element: 'area-graph',
 			  data: [
-			    {x: '2011 Q1', y: 3, z: 3},
-			    {x: '2011 Q2', y: 2, z: 0},
-			    {x: '2011 Q3', y: 0, z: 2},
-			    {x: '2011 Q4', y: 4, z: 4}
+				{x: '2011 Q1', y: 3, z: 3},
+				{x: '2011 Q2', y: 2, z: 0},
+				{x: '2011 Q3', y: 0, z: 2},
+				{x: '2011 Q4', y: 4, z: 4}
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y', 'z'],
@@ -753,27 +753,27 @@
 			Morris.Bar({
 			  element: 'bar-graph',
 			  data: [
-			    {x: '2011 Q1', y: 0},
-			    {x: '2011 Q2', y: 1},
-			    {x: '2011 Q3', y: 2},
-			    {x: '2011 Q4', y: 3},
-			    {x: '2012 Q1', y: 4},
-			    {x: '2012 Q2', y: 5},
-			    {x: '2012 Q3', y: 6},
-			    {x: '2012 Q4', y: 7},
-			    {x: '2013 Q1', y: 8}
+				{x: '2011 Q1', y: 0},
+				{x: '2011 Q2', y: 1},
+				{x: '2011 Q3', y: 2},
+				{x: '2011 Q4', y: 3},
+				{x: '2012 Q1', y: 4},
+				{x: '2012 Q2', y: 5},
+				{x: '2012 Q3', y: 6},
+				{x: '2012 Q4', y: 7},
+				{x: '2013 Q1', y: 8}
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y'],
 			  labels: ['Y'],
 			  barColors: function (row, series, type) {
-			    if (type === 'bar') {
-			      var red = Math.ceil(150 * row.y / this.ymax);
-			      return 'rgb(' + red + ',0,0)';
-			    }
-			    else {
-			      return '#000';
-			    }
+				 if (type === 'bar') {
+				  var red = Math.ceil(150 * row.y / this.ymax);
+				  return 'rgb(' + red + ',0,0)';
+				}
+				 else {
+				  return '#000';
+				}
 			  }
 			});
 		
@@ -785,10 +785,10 @@
 			Morris.Bar({
 			  element: 'normal-bar-graph',
 			  data: [
-			    {x: '2011 Q1', y: 3, z: 2, a: 3},
-			    {x: '2011 Q2', y: 2, z: null, a: 1},
-			    {x: '2011 Q3', y: 0, z: 2, a: 4},
-			    {x: '2011 Q4', y: 2, z: 4, a: 3}
+				{x: '2011 Q1', y: 3, z: 2, a: 3},
+				{x: '2011 Q2', y: 2, z: null, a: 1},
+				{x: '2011 Q3', y: 0, z: 2, a: 4},
+				{x: '2011 Q4', y: 2, z: 4, a: 3}
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y', 'z', 'a'],
@@ -803,10 +803,10 @@
 			  element: 'noline-bar-graph',
 			  axes: false,
 			  data: [
-			    {x: '2011 Q1', y: 3, z: 2, a: 3},
-			    {x: '2011 Q2', y: 2, z: null, a: 1},
-			    {x: '2011 Q3', y: 0, z: 2, a: 4},
-			    {x: '2011 Q4', y: 2, z: 4, a: 3}
+				{x: '2011 Q1', y: 3, z: 2, a: 3},
+				{x: '2011 Q2', y: 2, z: null, a: 1},
+				{x: '2011 Q3', y: 0, z: 2, a: 4},
+				{x: '2011 Q4', y: 2, z: 4, a: 3}
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y', 'z', 'a'],
@@ -842,8 +842,8 @@
 			var decimal_data = [];
 			for (var x = 0; x <= 360; x += 10) {
 			  decimal_data.push({
-			    x: x,
-			    y: Math.sin(Math.PI * x / 180).toFixed(4)
+				 x: x,
+				 y: Math.sin(Math.PI * x / 180).toFixed(4)
 			  });
 			}
 			window.m = Morris.Line({
@@ -854,8 +854,8 @@
 			  labels: ['sin(x)'],
 			  parseTime: false,
 			  hoverCallback: function (index, options) {
-			    var row = options.data[index];
-			    return "sin(" + row.x + ") = " + row.y;
+				 var row = options.data[index];
+				 return "sin(" + row.x + ") = " + row.y;
 			  },
 			  xLabelMargin: 10
 			});
@@ -866,10 +866,10 @@
 			Morris.Donut({
 			  element: 'donut-graph',
 			  data: [
-			    {value: 70, label: 'foo'},
-			    {value: 15, label: 'bar'},
-			    {value: 10, label: 'baz'},
-			    {value: 5, label: 'A really really long label'}
+				{value: 70, label: 'foo'},
+				{value: 15, label: 'bar'},
+				{value: 10, label: 'baz'},
+				{value: 5, label: 'A really really long label'}
 			  ],
 			  formatter: function (x) { return x + "%"}
 			});
@@ -913,8 +913,8 @@
 			  ykeys: ['licensed', 'sorned'],
 			  labels: ['Licensed', 'SORN'],
 			  events: [
-			    '2011-04',
-			    '2011-08'
+				'2011-04',
+				'2011-08'
 			  ]
 			});
 		}
@@ -1026,10 +1026,10 @@
 			  axes: false,
 			  grid: false,
 			  data: [
-			    {x: '2011 Q1', y: 3, z: 2, a: 3},
-			    {x: '2011 Q2', y: 2, z: null, a: 1},
-			    {x: '2011 Q3', y: 0, z: 2, a: 4},
-			    {x: '2011 Q4', y: 2, z: 4, a: 3}
+				{x: '2011 Q1', y: 3, z: 2, a: 3},
+				{x: '2011 Q2', y: 2, z: null, a: 1},
+				{x: '2011 Q3', y: 0, z: 2, a: 4},
+				{x: '2011 Q4', y: 2, z: 4, a: 3}
 			  ],
 			  xkey: 'x',
 			  ykeys: ['y', 'z', 'a'],
@@ -1045,25 +1045,25 @@
 			function data(offset) {
 			  var ret = [];
 			  for (var x = 0; x <= 360; x += 10) {
-			    var v = (offset + x) % 360;
-			    ret.push({
-			      x: x,
-			      y: Math.sin(Math.PI * v / 180).toFixed(4),
-			      z: Math.cos(Math.PI * v / 180).toFixed(4)
-			    });
+				 var v = (offset + x) % 360;
+				 ret.push({
+				  x: x,
+				  y: Math.sin(Math.PI * v / 180).toFixed(4),
+				  z: Math.cos(Math.PI * v / 180).toFixed(4)
+				});
 			  }
 			  return ret;
 			}
 			var graph = Morris.Line({
-			    element: 'interval-graph',
-			    data: data(0),
-			    xkey: 'x',
-			    ykeys: ['y', 'z'],
-			    labels: ['sin()', 'cos()'],
-			    parseTime: false,
-			    ymin: -1.0,
-			    ymax: 1.0,
-			    hideHover: true
+				 element: 'interval-graph',
+				 data: data(0),
+				 xkey: 'x',
+				 ykeys: ['y', 'z'],
+				 labels: ['sin()', 'cos()'],
+				 parseTime: false,
+				 ymin: -1.0,
+				 ymax: 1.0,
+				 hideHover: true
 			});
 			function update() {
 			  nReloads++;

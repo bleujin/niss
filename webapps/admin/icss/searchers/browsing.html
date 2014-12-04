@@ -61,10 +61,7 @@
 				type: "POST",
 				url: "/admin/menus/searchers",
 				data: { content: aHTML, field: "browsing" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -91,7 +88,7 @@
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
 				'						<section class="col col-9"></section>' +
-				'						<section class="col col-3"><label class="input"><input type="text" id="searchQuery" placeholder="Search Query"></label></section>' +
+				'						<section class="col col-3"><label class="input"><input type="text" name="searchQuery" placeholder="Search Query"></label></section>' +
 				'					</div>' +
 				'				</fieldset>' +
 				'				</td></tr></tfoot>' ;
@@ -100,17 +97,21 @@
 
 				$("#info").html(data['info']) ;
 				
-				var table = $('#example').DataTable() ;
-				$('#searchQuery').on('keypress', function (event) {
+				
+				var table = $('#example') ;
+				var tableData = table.DataTable() ;
+				var _searchQuery = table.find("input[name=searchQuery]") ;
+				
+				_searchQuery.on('keypress', function (event) {
 					if(event.which == '13'){
-				       $.ajax({
+						$.ajax({
 						url:"/admin/searchers/" + searcherId + "/browsing",
 						type:'GET', 
 						dataType:'json',
-						data : {'searchQuery':$("#searchQuery").val()}, 
+						data : {'searchQuery': _searchQuery.val()}, 
 						success:function(data){
 							// console.log($("#searchQuery").val()) ;
-							table.destroy();
+							tableData.destroy();
 							
 							var nodes = data['data'];
 							$("#example")
@@ -119,7 +120,7 @@
 								"searching":false 
 								// "columns": data['schemaName']
 							}) ;
-							table = $('#example').DataTable() ;
+							tableData = $('#example').DataTable() ;
 						}, 
 						error:function(request,status,error){
 							console.log('response', request, status, error) ;

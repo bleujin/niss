@@ -1,6 +1,6 @@
 package net.ion.niss.webapp.searchers;
 
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Iterator;
@@ -30,11 +30,12 @@ import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.tree.Fqn;
+import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.SetUtil;
@@ -48,6 +49,7 @@ import net.ion.niss.webapp.common.Def.SearchSchema;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
+import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
@@ -85,7 +87,7 @@ public class SearcherWeb implements Webapp {
 	@Path("")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listSection() {
-		ReadChildren children = rsession.ghostBy("/searchers").children();
+		ReadChildren children = rsession.ghostBy("/searchers").children().ascending(Def.Searcher.Created);
 
 		return children.transform(new Function<Iterator<ReadNode>, JsonArray>() {
 			@Override
@@ -110,7 +112,7 @@ public class SearcherWeb implements Webapp {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
 				if (wsession.readSession().exists(fqnBy(sid))) return "already exist : " + sid ;
-				wsession.pathBy(fqnBy(sid)).property("created", System.currentTimeMillis());
+				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Created, System.currentTimeMillis());
 				return "created " + sid;
 			}
 		});
@@ -123,7 +125,14 @@ public class SearcherWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(sid)).removeSelf() ;
+				WriteNode found = wsession.pathBy(fqnBy(sid));
+				JsonObject decent = found.toReadNode().transformer(Trans.DECENT) ;
+				StringBuilder sb = new StringBuilder();
+				new GsonBuilder().setPrettyPrinting().create().toJson(decent, sb) ;
+				
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR, "searcher." + sid + ".bak"), sb.toString()) ;
+
+				found.removeSelf() ;
 				return null;
 			}
 		});
@@ -201,7 +210,10 @@ public class SearcherWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode wnode = wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Target, targets).property(Def.Searcher.QueryAnalyzer, queryAnalyzer).property(Def.Searcher.Handler, handler).property(Def.Searcher.ApplyHandler, applyHandler).property(Def.Searcher.StopWord, stopword)
+				WriteNode found = wsession.pathBy(fqnBy(sid)) ;
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.handler.bak"), found.property(Def.Searcher.Handler).asString());
+				
+				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Target, targets).property(Def.Searcher.QueryAnalyzer, queryAnalyzer).property(Def.Searcher.Handler, handler).property(Def.Searcher.ApplyHandler, applyHandler).property(Def.Searcher.StopWord, stopword)
 						.property(Def.Searcher.ApplyStopword, applyStopword);
 
 				return null;
@@ -410,7 +422,10 @@ public class SearcherWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template, template);
+				WriteNode found = wsession.pathBy(fqnBy(sid));
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.template.bak"), found.property(Def.Searcher.Template).asString());
+				
+				found.property(Def.Searcher.Template, template);
 				return null;
 			}
 		});

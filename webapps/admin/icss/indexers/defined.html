@@ -39,28 +39,28 @@
 					</div>
 					
 					<div class="widget-body">
-					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+					<form class="smart-form" id="indexer-define-form" method="post" action="indexers/define" novalidate="novalidate">
 						<fieldset>
 						
 							<section>
 								<label class="label">${m.asString("indexers.defined.index-analyzer")}</label>
 								<label class="select">
-									<select id="index_analyzer"></select>
+									<select name="index_analyzer"></select>
 								</label>
 							</section>
 							
 							<section>
 								<label class="label">${m.asString("indexers.defined.stopword")}</label>
 								<label class="textarea textarea-resizable">
-									<textarea id="stopword" name="stopword" rows="10"></textarea>
+									<textarea name="stopword" rows="10"></textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applystopword"/><i></i>${m.asString("indexers.defined.apply-stopword")}</label>
+								<label class="checkbox"><input type="checkbox" name="applystopword"/><i></i>${m.asString("indexers.defined.apply-stopword")}</label>
 							</section>
 							
 							<section>
 								<label class="label">${m.asString("indexers.defined.query-analyzer")}</label>
 								<label class="select">
-									<select id="query_analyzer"></select>
+									<select name="query_analyzer"></select>
 								</label>
 							</section>
 							<hr class="simple">
@@ -73,13 +73,8 @@
 						</div>
 						
 						<footer>
-							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> ${m.asString("indexers.defined.buttons.save")}</button>
+							<button class="btn btn-sm btn-success" type="button" name="btn_save"><i class="fa fa-check"></i> ${m.asString("indexers.defined.buttons.save")}</button>
 						</footer>
-						
-						<div class="message">
-							<i class="fa fa-thumbs-up"></i>
-							<p>Your message was successfully sent!</p>
-						</div>
 					</form>
 					</div>
 				</div>
@@ -108,16 +103,22 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "defined" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
 		
 		var indexerId = $("#indexers option:selected").val() ;
 		if (indexerId == undefined) return ;
+		
+		
+		var _defineForm = $("#indexer-define-form") ;
+		var _index_analyzer = _defineForm.find("select[name=index_analyzer]") ;
+		var _stopword = _defineForm.find("textarea[name=stopword]") ;
+		var _applystopword = _defineForm.find("input[name=applystopword]") ;
+		var _query_analyzer = _defineForm.find("select[name=query_analyzer]") ;
+		var _btn_save = _defineForm.find("button[name=btn_save]") ;
+			
 		
 		$.ajax({
 			url:'/admin/indexers/' + indexerId +'/defined',
@@ -134,17 +135,17 @@
 					var analyzer = index_analyzer[idx] ;
 					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
 					if (analyzer['selected']) option.attr('selected', 'selected');
-					option.appendTo($("#index_analyzer")) ;
+					option.appendTo(_index_analyzer) ;
 				}
 
-				$("#stopword").text(data['stopword']);
-				$("#applystopword").attr("checked", applystopword ) ;
+				_stopword.text(data['stopword']);
+				_applystopword.attr("checked", applystopword ) ;
 
 				for(var idx in query_analyzer){
 					var analyzer = query_analyzer[idx] ;
 					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
 					if (analyzer['selected']) option.attr('selected', 'selected');
-					option.appendTo($("#query_analyzer")) ;
+					option.appendTo(_query_analyzer) ;
 				}
 				
 			}, 
@@ -154,11 +155,11 @@
 		}) ;
 		
 		
-		$( "#indexer-defined-win #btn_save" ).click(function() {
+		_btn_save.click(function() {
 			$.ajax({
 				type: "POST",
 				url: "/admin/indexers/" + indexerId + "/defined",
-				data: { indexanalyzer: $("#index_analyzer").val(),  stopword:$("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false, queryanalyzer: $("#query_analyzer").val() }, 
+				data: { indexanalyzer: _index_analyzer.val(),  stopword:_stopword.val(), applystopword: _applystopword.is(":checked") ? true : false, queryanalyzer: _query_analyzer.val() }, 
 				success :  function(data) {
 					$("#save-message span").html(data) ;
 					$("#save-message").removeClass("message") ;

@@ -51,15 +51,15 @@
 							<span id="thread_info">Thread Info [ current:6, peak:6, daemon:4 ]</span>
 						</div>
 						<div class="table-responsive">
-						    <table  class="table table-bordered table-striped">
-						      <thead><tr>
-						          <th class="name">${m.asString("misc.threaddump.name")}</th>
-						          <th class="time">${m.asString("misc.threaddump.cputime")} / ${m.asString("misc.threaddump.usertime")}</th>
-						      </tr>
-						      </thead>
+							<table  class="table table-bordered table-striped">
+							  <thead><tr>
+								  <th class="name">${m.asString("misc.threaddump.name")}</th>
+								  <th class="time">${m.asString("misc.threaddump.cputime")} / ${m.asString("misc.threaddump.usertime")}</th>
+							  </tr>
+							  </thead>
 						
-						      <tbody id="thread_dump"></tbody>
-						    </table>
+							  <tbody id="thread_dump"></tbody>
+							</table>
 				
 						</div>
 					</div>
@@ -91,33 +91,33 @@
 	
 	var pagefunction = function() {
 		$.ajax({
-            url:'/admin/misc/thread',
-            dataType:'json',
-            success:function(data){
-            	var info = data['info'];
-//             	var deadlocks = data['deadlocks'] ;
-            	var threadDump = data['threadDump'] ;
+			 url:'/admin/misc/thread',
+			 dataType:'json',
+			 success:function(data){
+				var info = data['info'];
+//			 	var deadlocks = data['deadlocks'] ;
+				var threadDump = data['threadDump'] ;
 
-            	$("#thread_info").html("Thread Info [ current:" + info["current"] + ", peak:" + info["peak"] + ", daemon:" + info["daemon"] + " ]") ;
-            	
-                for(var dump in threadDump){
-                	var thread = threadDump[dump] ;
-                	// <span class="glyphicon glyphicon-pause">WAITED</span> threadname (id)
-                    $('<tr><td id="thread-'+thread["id"]+'"><div><ul></ul></div></td><td></td></tr>').appendTo($("#thread_dump")) ;
-                	
-                	var traces = thread['stackTrace'] ;
-                	for(var t in traces){
-                		$('<li>' + traces[t] + '</li>').appendTo($("#thread-" + thread["id"] + " div ul")) ;
-                	}
-                	$('<h6>' + thread['name'] + '(' + thread['id'] + ') - ' + thread['state'] + '</h6>').prependTo($("#thread-" + thread["id"])) ;
-                	$("#thread-" + thread["id"]).next().html(thread['cpuTime'] + '<br>' + thread['userTime']);
-                }
-                
-            }, 
-            error:function(request,status,error){
-            	console.log('response', request, status, error) ;
-            }
-        }) ;
+				$("#thread_info").html("Thread Info [ current:" + info["current"] + ", peak:" + info["peak"] + ", daemon:" + info["daemon"] + " ]") ;
+				
+				 for(var dump in threadDump){
+					var thread = threadDump[dump] ;
+					// <span class="glyphicon glyphicon-pause">WAITED</span> threadname (id)
+					$('<tr><td id="thread-'+thread["id"]+'"><div><ul></ul></div></td><td></td></tr>').appendTo($("#thread_dump")) ;
+					
+					var traces = thread['stackTrace'] ;
+					for(var t in traces){
+						$('<li>' + traces[t] + '</li>').appendTo($("#thread-" + thread["id"] + " div ul")) ;
+					}
+					$('<h6>' + thread['name'] + '(' + thread['id'] + ') - ' + thread['state'] + '</h6>').prependTo($("#thread-" + thread["id"])) ;
+					$("#thread-" + thread["id"]).next().html(thread['cpuTime'] + '<br>' + thread['userTime']);
+				}
+				
+			}, 
+			 error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
 	};
 
 	pagefunction();

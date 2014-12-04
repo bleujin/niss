@@ -5,9 +5,9 @@ javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.OpenScrip
   {@javax.ws.rs.core.Context()}
 
 path : /open/script/write/{sid}
-httpMethod : POST 
+httpMethod : GET POST 
 javaMethod : public javax.ws.rs.core.Response net.ion.niss.webapp.misc.OpenScriptWeb.writeFromScript(java.lang.String,java.lang.String,org.jboss.resteasy.spi.HttpRequest) throws java.io.IOException,javax.script.ScriptException
   {@javax.ws.rs.PathParam(value=sid)}
-  {@javax.ws.rs.FormParam(value=eventid)}
+  {@javax.ws.rs.QueryParam(value=eventid)}
   {@javax.ws.rs.core.Context()}
 

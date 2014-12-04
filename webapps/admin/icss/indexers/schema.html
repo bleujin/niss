@@ -53,7 +53,7 @@
 	pageSetUp();
 	
 	String.prototype.endsWith = function(suffix) {
-	    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+		 return this.indexOf(suffix, this.length - suffix.length) !== -1;
 	};
 
 	var pagefunction = function() {
@@ -69,10 +69,7 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "schema" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -82,7 +79,7 @@
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
 			if($.browser.webkit)
-				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });    
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });	
 			if($.browser.msie)
 				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
 			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
@@ -91,8 +88,6 @@
 		} ;
 		
 		
-
-
 		
 		$.ajax({
 			url:'/admin/indexers/' + indexerId +'/schema',
@@ -124,7 +119,7 @@
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
-				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" id="btn_cfield" value="${m.asString("indexers.schema.buttons.create")}" /> <input type="button" class="btn btn-primary btn-sm" id="btn_dfield" value="${m.asString("indexers.schema.buttons.remove")}" disabled="disabled"/></section>' +
+				'						<section class="col col-9"><input type="button" class="btn btn-primary btn-sm" name="btn_create" value="${m.asString("indexers.schema.buttons.create")}" /> <input type="button" class="btn btn-primary btn-sm" name="btn_remove" value="${m.asString("indexers.schema.buttons.remove")}" disabled="disabled"/></section>' +
 				'						' +
 				'					</div>' +
 				'				</fieldset>' +
@@ -132,20 +127,24 @@
 				
 				$(tableFoot).appendTo($("#example")) ;
 				
+				var tableData = $('#example').DataTable() ; 
+				var _thisDiv = $("#indexer-schema-win") ;
+				var _btn_create = _thisDiv.find("input[name=btn_create]") ;
+				var _btn_remove = _thisDiv.find("input[name=btn_remove]") ;
 				
 				$('#example tbody').on( 'click', 'tr', function () {
 					if ( $(this).hasClass('selected2') ) {
-				            $(this).removeClass('selected2');
-				       } else {
-				            $('#example').DataTable().$('tr.selected2').removeClass('selected2');
-				            $(this).addClass('selected2');
-				       }
-				       ($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#btn_dfield').removeAttr("disabled") : $('#btn_dfield').attr("disabled", "disabled") ;
+							$(this).removeClass('selected2');
+						} else {
+						   tableData.$('tr.selected2').removeClass('selected2');
+							$(this).addClass('selected2');
+						}
+						(tableData.rows('.selected2').data().length > 0) ? _btn_remove.removeAttr("disabled") : _btn_remove.attr("disabled", "disabled") ;
 				} );
 				
 				
-				$("#btn_dfield").click(function(e){
-					var targets = $('#example').DataTable().rows('.selected2') ;
+				_btn_remove.click(function(e){
+					var targets = tableData.rows('.selected2') ;
 					var schemaId = '' ;
 					for(var i=0; i < targets.data().length ; i++){
 						schemaId = targets.data()[i][0] ;
@@ -161,11 +160,11 @@
 								console.log('response', request, status, error) ;
 							}
 					}).done(function( msg ) {
-						$('#btn_dfield').attr("disabled", "disabled") ;
+						_btn_remove.attr("disabled", "disabled") ;
 					});
 				}) ;
 				
-				$('#btn_cfield').click(function(){
+				_btn_create.click(function(){
 					$('#create_schema_modal').modal({
 						
 					});

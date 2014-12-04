@@ -1,6 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -8,7 +9,6 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.concurrent.Callable;
 
 import javax.script.ScriptException;
 import javax.ws.rs.DELETE;
@@ -26,18 +26,20 @@ import javax.ws.rs.core.Response;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.parse.gson.stream.JsonWriter;
+import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
-import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
@@ -67,11 +69,14 @@ public class ScriptWeb implements Webapp{
 	
 	@Path("/define/{sid}")
 	@POST
-	public String defineScript(@PathParam("sid") final String sid, @DefaultValue("") @FormParam("content") final String content){
+	public String defineScript(@PathParam(Def.Script.Sid) final String sid, @DefaultValue("") @FormParam(Def.Script.Content) final String content){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/scripts/" + sid).property("content", content) ;
+				WriteNode found = wsession.pathBy("/scripts/" + sid);
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
+				
+				found.property(Def.Script.Content, content) ;
 				return null;
 			}
 		}) ;
@@ -81,7 +86,7 @@ public class ScriptWeb implements Webapp{
 	@Path("/define/{sid}")
 	@GET
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject viewScript(@PathParam("sid") final String sid){
+	public JsonObject viewScript(@PathParam(Def.Script.Sid) final String sid){
 		ReadNode found = rsession.ghostBy("/scripts/" + sid) ;
 		return new JsonObject()
 			.put("sid", found.fqn().name())
@@ -100,11 +105,13 @@ public class ScriptWeb implements Webapp{
 
 	@Path("/remove/{sid}")
 	@DELETE
-	public String removeScript(@PathParam("sid") final String sid){
+	public String removeScript(@PathParam(Def.Script.Sid) final String sid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/scripts/" + sid).removeSelf() ;
+				WriteNode found = wsession.pathBy("/scripts/" + sid);
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
+				found.removeSelf() ;
 				return null;
 			}
 		}) ;
@@ -113,7 +120,7 @@ public class ScriptWeb implements Webapp{
 	
 	@POST
 	@Path("/removes")
-	public String removeUsers(@FormParam("scripts") final String scripts){
+	public String removeScripts(@FormParam("scripts") final String scripts){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
@@ -142,7 +149,7 @@ public class ScriptWeb implements Webapp{
 						JsonArray userProp = new JsonArray();
 						userProp.add(new JsonPrimitive(node.fqn().name()));
 						userProp.add(new JsonPrimitive("/open/script/run/" + node.fqn().name()));
-						String firstLine = new BufferedReader(new StringReader(node.property("content").asString())).readLine();
+						String firstLine = new BufferedReader(new StringReader(node.property(Def.Script.Content).asString())).readLine();
 						userProp.add(new JsonPrimitive(StringUtil.defaultString(firstLine, "")));
 						result.add(userProp);
 					}
@@ -163,7 +170,7 @@ public class ScriptWeb implements Webapp{
 	@Path("/instantrun")
 	@POST
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public Response instantRunScript(@Context HttpRequest request, @DefaultValue("") @FormParam("content") String content) throws IOException, ScriptException{
+	public Response instantRunScript(@Context HttpRequest request, @DefaultValue("") @FormParam(Def.Script.Content) String content) throws IOException, ScriptException{
 		String scriptId = "" + System.currentTimeMillis() ;
 		StringWriter writer = new StringWriter();
 		return runScript(scriptId, writer, new MultivaluedMapImpl<String, String>(), content) ;
@@ -172,7 +179,7 @@ public class ScriptWeb implements Webapp{
 	@Path("/run/{sid}")
 	@GET @POST
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public Response runScript(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ScriptException{
+	public Response runScript(@PathParam(Def.Script.Sid) String sid, @Context HttpRequest request) throws IOException, ScriptException{
 		MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>();
 		for (Entry<String, List<String>> entry : request.getUri().getQueryParameters().entrySet()) {
 			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
@@ -182,7 +189,7 @@ public class ScriptWeb implements Webapp{
 			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
 		}
 
-		String content = rsession.ghostBy("/scripts/" + sid).property("content").asString() ;
+		String content = rsession.ghostBy("/scripts/" + sid).property(Def.Script.Content).asString() ;
 		StringWriter writer = new StringWriter();
 		return runScript(sid, writer, params, content);
 	}

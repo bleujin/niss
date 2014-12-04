@@ -84,10 +84,7 @@
 				type: "POST",
 				url: "/admin/menus/misc",
 				data: { content: aHTML, field: "script" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -134,7 +131,7 @@
 					.dataTable({
 					"data":nodes,
 					"searching":false, 
-					"columns": [{"title":"${m.asString("misc.script.id")}"},{"title":"${m.asString("misc.script.run")}"},{"title":"${m.asString("misc.script.explain")}"}] // data['schemaName']
+					"columns": [{"title":'${m.asString("misc.script.id")}'},{"title":'${m.asString("misc.script.run")}'},{"title":'${m.asString("misc.script.explain")}'}] // data['schemaName']
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
@@ -151,11 +148,11 @@
 				
 				$('#example tbody').on( 'click', 'tr', function () {
 					if ( $(this).hasClass('selected2') ) {
-			            $(this).removeClass('selected2');
-			        } else {
-			            table.$('tr.selected2').removeClass('selected2');
-			            $(this).addClass('selected2');
-			        }
+						$(this).removeClass('selected2');
+					} else {
+						 table.$('tr.selected2').removeClass('selected2');
+						$(this).addClass('selected2');
+					}
 					($('#example').DataTable().rows('.selected2').data().length > 0) ? $('#script-win a.btn-default').removeAttr("disabled") : $('#script-win a.btn-default').attr("disabled", "disabled") ;
 				} );
 
@@ -179,55 +176,73 @@
 					}
 				});
 
+				var _btn_run = $('#script-win a[name=run_script]') ;
+				var _btn_remove = $('#script-win a[name=remove_script]') ;
+				
 				$('#script-win a[name=remove_script]').click( function () {
-					var targets = $('#example').DataTable().rows('.selected2') ;
-					var scripts = '' ;
-					for(var i=0; i < targets.data().length ; i++){
-						scripts += targets.data()[i][0] + ',';
-					}
-					$.ajax({
-						url:"/admin/scripts/removes",
-						type:'POST', 
-						dataType:'text', 
-						data : {'scripts':scripts}, 
-						success:function(data){
-							targets.remove().draw(false) ;			
-						}, 
-						fail:function(request,status,error){
-							console.log('response', request, status, error) ;
+					$sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
+					$("#remove-script-confirm" ).css('visibility', 'visible') ;
+					$("#removeScriptId").html($sid) ;
+					$("#remove-script-confirm" ).dialog({
+						modal: true,
+						buttons: {
+							"Remove Script": function() {
+								var win = $( this ) ;
+								$.ajax({
+									url:"/admin/scripts/remove/" + $sid,
+									type:'POST', 
+									dataType:'text', 
+									data : {}, 
+									complete : function(){ 
+										// $("#query_url").text(this.url) ;
+									}, 
+									success :  function(data) {
+										$('#example').DataTable().rows('.selected2').remove().draw(false) ;			
+										win.dialog( "close" );
+									}, 
+									fail:function(request,status,error){
+										console.log('response', request, status, error) ;
+									}
+								}) ;	
+							},
+							"Cancel": function() {
+								$( this ).dialog( "close" );
+							}
 						}
 					});
-				});
+				}) ;
 
-				var runButton = $('#script-win a[name=run_script]') ;
-				runButton.click(function() {
+				_btn_run.click(function() {
 					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
 					var sid = $('#example').DataTable().rows('.selected2').data()[0][0] ;
 					var outputText = $('textarea#script_output');
-					
-					var es = new EventSource('/event/' + eventId);
-					es.onopen = function() {
-						console.log('OPEN');
-						if ($.browser.chrome) msgCall(sid, eventId) ;
-					};
-					es.onmessage = function(e) {
-						if (e.data == eventId) {
-						    es.close();
-						    runButton.removeAttr("disabled");
-						    return ;
-						}
-						outputText.append(e.data + '\n');
-						outputText.scrollTop(outputText.scrollHeight);
-					};
-					es.onerror = function(e) {
-						runButton.removeAttr("disabled");
-						console.log('ERROR : ' + e);
-					};
+					if (typeof(EventSource) !== "undefined") {
+						var es = new EventSource('/event/' + eventId);
+						es.onopen = function() {
+							console.log('OPEN');
+							if ($.browser.chrome) msgCall(sid, eventId) ;
+						};
+						es.onmessage = function(e) {
+							if (e.data == eventId) {
+								 es.close();
+								 _btn_run.removeAttr("disabled");
+								 return ;
+							}
+							outputText.append(e.data + '\n');
+							outputText.scrollTop(outputText.scrollHeight);
+						};
+						es.onerror = function(e) {
+							_btn_run.removeAttr("disabled");
+							console.log('ERROR : ' + e);
+						};
+					}
 					
 					outputText.text('') ;
-				    runButton.attr('disabled', 'disabled') ;
-				    if (! $.browser.chrome) msgCall(sid, eventId) ;
-				    
+					if(typeof(EventSource)=="undefined") outputText.text("Whoops! Your browser doesn't receive server-sent events.[support browser : ff, chrome, safari]") ;
+					
+					_btn_run.attr('disabled', 'disabled') ;
+					if (! $.browser.chrome) msgCall(sid, eventId) ;
+					
 				});
 				
 			}, 

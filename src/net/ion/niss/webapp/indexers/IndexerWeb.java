@@ -1,5 +1,6 @@
 package net.ion.niss.webapp.indexers;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Iterator;
@@ -25,16 +26,19 @@ import javax.xml.transform.Source;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
 import net.ion.craken.tree.Fqn;
+import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
@@ -49,6 +53,7 @@ import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
+import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.IKeywordField;
@@ -90,7 +95,7 @@ public class IndexerWeb implements Webapp {
 	@Path("")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listIndexer() {
-		ReadChildren children = rsession.ghostBy("/indexers").children();
+		ReadChildren children = rsession.ghostBy("/indexers").children().ascending(Def.Indexer.Created);
 
 		return children.transform(new Function<Iterator<ReadNode>, JsonArray>() {
 			@Override
@@ -116,22 +121,30 @@ public class IndexerWeb implements Webapp {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
 				if (wsession.readSession().exists(fqnBy(iid))) return "already exist : " + iid ;
-				wsession.pathBy(fqnBy(iid)).property("created", System.currentTimeMillis());
+				wsession.pathBy(fqnBy(iid)).property(Def.Indexer.Created, System.currentTimeMillis());
 				return "created " + iid;
 			}
 		});
 	}
 	
 	
-	// remove colletion
+	// remove 
 	@DELETE
 	@Path("/{iid}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String remove(@PathParam("iid") final String iid){
+	public String removeIndexer(@PathParam("iid") final String iid){
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(iid)).removeSelf() ;
+				WriteNode found = wsession.pathBy(fqnBy(iid));
+
+				JsonObject decent = found.toReadNode().transformer(Trans.DECENT) ;
+				StringBuilder sb = new StringBuilder();
+				new GsonBuilder().setPrettyPrinting().create().toJson(decent, sb) ;
+				
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR, "indexer." + iid + ".bak"), sb.toString()) ;
+				
+				found.removeSelf() ;
 				return null;
 			}
 		}) ;
@@ -320,44 +333,6 @@ public class IndexerWeb implements Webapp {
 		return value.trim() ;
 	}
 	
-	
-
-	// --- schema
-//	@GET
-//	@Path("/{iid}/schema")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public JsonObject schemaList(@PathParam("iid") String iid){
-//		
-//		JsonObject result = new JsonObject() ;
-//		result.put("info", rsession.ghostBy("/menus/indexers").property("schema").asString()) ;
-//		JsonArray schemas = rsession.ghostBy(IndexSchema.path(iid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
-//			@Override
-//			public JsonArray handle(ReadChildrenIterator iter) {
-//				JsonArray result = new JsonArray() ;
-//				for(ReadNode node : iter){
-//					StringBuilder options = new StringBuilder() ;
-//					options.append(node.property(IndexSchema.Store).asBoolean() ? "Store:Yes" : "Store:No") ;   
-//					options.append(node.property(IndexSchema.Analyze).asBoolean() ? ", Analyze:Yes" : ", Analyze:No") ;   
-//					options.append(", Boost:" + StringUtil.defaultIfEmpty(node.property(IndexSchema.Boost).asString(), "1.0")) ;
-//					options.append(StringUtil.equals(Def.SchemaType.MANUAL,node.property(IndexSchema.SchemaType).asString()) ? ", Analyzer:" + node.property(IndexSchema.Analyzer).asString() : "") ;
-//
-//					result.add(new JsonObject().put("schemaid", node.fqn().name()).put(IndexSchema.SchemaType, node.property(IndexSchema.SchemaType).asString()).put("options", options.toString())) ;
-//				}
-//				return result;
-//			}
-//		}) ;
-//		
-//		JsonArray iarray = new JsonArray() ;
-//		List<Class<? extends Analyzer>> ilist = AnalysisWeb.analysis() ;
-//		for (Class<? extends Analyzer> clz : ilist) {
-//			JsonObject json = new JsonObject().put("clz", clz.getCanonicalName()).put("name", clz.getSimpleName()).put("selected", false) ;
-//			iarray.add(json) ;
-//		}
-//		result.put("index_analyzer", iarray);
-//		
-//		result.put("schemas", schemas) ;
-//		return result ;
-//	}
 	
 	@GET
 	@Path("/{iid}/schema")
@@ -666,7 +641,7 @@ public class IndexerWeb implements Webapp {
 			public Integer handle(IndexSession isession) throws Exception {
 				String[] ids = StringUtil.split(indexIds, ",") ;
 				for (String id : ids) {
-					isession.deleteDocument(id) ;	
+					isession.deleteById(id) ;	
 				}
 				return ids.length;
 			}

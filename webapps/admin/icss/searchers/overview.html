@@ -69,10 +69,7 @@
 				type: "POST",
 				url: "/admin/menus/searchers",
 				data: { content: aHTML, field: "overview" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 
@@ -89,11 +86,12 @@
 				$("#info").html(info) ;
 				
 				for(var idx in recent){
-				    $('<dt>'+ recent[idx]['query']+'</dt><dd>'+new Date(recent[idx]['time'])+'</dd>').appendTo($("#recent_query")) ;
+					var d = new Date(recent[idx]['time']).toISOString() ;
+					$('<dt>'+ recent[idx]['query']+'</dt><dd>'+d.substring(0,10) + ' ' + d.substring(11,19) +'</dd>').appendTo($("#recent_query")) ;
 				}
 				
 				for(var idx in popular){
-				    $('<dt>'+ popular[idx]['query']+'</dt><dd>'+popular[idx]['count']+'</dd>').appendTo($("#popular_query")) ;
+					$('<dt>'+ popular[idx]['query']+'</dt><dd>'+popular[idx]['count']+'</dd>').appendTo($("#popular_query")) ;
 				}
 				
 			}, 

@@ -61,7 +61,7 @@
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
 			if($.browser.webkit)
-				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });    
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });	
 			if($.browser.msie)
 				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
 			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
@@ -81,10 +81,7 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "overview" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -102,11 +99,11 @@
 				$("#info").html(info) ;
 				
 				for(var name in sinfo){
-				    $('<dt>'+name+'</dt><dd>'+sinfo[name]+'</dd>').appendTo($("#overview_status")) ;
+					$('<dt>'+name+'</dt><dd>'+sinfo[name]+'</dd>').appendTo($("#overview_status")) ;
 				}
 				
 				for(var name in dinfo){
-				    $('<dt>'+name+'</dt><dd>'+dinfo[name]+'</dd>').appendTo($("#overview_dirinfo")) ;
+					$('<dt>'+name+'</dt><dd>'+dinfo[name]+'</dd>').appendTo($("#overview_dirinfo")) ;
 				}
 				
 			}, 

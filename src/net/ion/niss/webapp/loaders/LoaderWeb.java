@@ -23,11 +23,14 @@ import javax.ws.rs.core.Context;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
+import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.DateUtil;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.EventSourceEntry;
@@ -36,6 +39,7 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.ExtMediaType;
+import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.radon.core.ContextParam;
 
@@ -62,7 +66,7 @@ public class LoaderWeb implements Webapp {
 	@Path("")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listScript() {
-		JsonArray scripts = rsession.ghostBy("/loaders").children().transform(new Function<Iterator<ReadNode>, JsonArray>() {
+		JsonArray scripts = rsession.ghostBy("/loaders").children().ascending(Def.Loader.Created).transform(new Function<Iterator<ReadNode>, JsonArray>() {
 			@Override
 			public JsonArray apply(Iterator<ReadNode> iter) {
 				JsonArray result = new JsonArray();
@@ -91,7 +95,7 @@ public class LoaderWeb implements Webapp {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
 				if (wsession.exists("/loaders/" + lid)) return "already exist : " + lid ;
-				wsession.pathBy("/loaders/" + lid).property("name", name).property("registered", System.currentTimeMillis());;
+				wsession.pathBy("/loaders/" + lid).property("name", name).property(Def.Loader.Created, System.currentTimeMillis());;
 				return "created " + lid;
 			}
 		});
@@ -103,7 +107,13 @@ public class LoaderWeb implements Webapp {
 		rsession.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/loaders").removeChild(lid);
+				WriteNode found = wsession.pathBy("/loaders/" + lid);
+				JsonObject decent = found.toReadNode().transformer(Trans.DECENT) ;
+				StringBuilder sb = new StringBuilder();
+				new GsonBuilder().setPrettyPrinting().create().toJson(decent, sb) ;
+				
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR, "loader." + lid + ".bak"), sb.toString()) ;
+				found.removeSelf() ;
 				return null;
 			}
 		});
@@ -115,11 +125,14 @@ public class LoaderWeb implements Webapp {
 	@POST
 	@Path("/{lid}/define")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String createScript(@PathParam("lid") final String lid, @FormParam("content") final String content) {
+	public String defineLoader(@PathParam("lid") final String lid, @FormParam("content") final String content) {
 		rsession.tran(new TransactionJob<String>() {
 			@Override
 			public String handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/loaders").child(lid).property("content", content).property("registered", System.currentTimeMillis());
+				WriteNode found = wsession.pathBy("/loaders/" + lid);
+				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  lid + ".loader.script.bak"), found.property(Def.Loader.Content).asString());
+				
+				found.property(Def.Loader.Content, content).property(Def.Loader.Created, System.currentTimeMillis());
 				return lid;
 			}
 		});
@@ -141,7 +154,7 @@ public class LoaderWeb implements Webapp {
 					ReadNode node = iter.next() ;
 					JsonArray row = new JsonArray() ;
 					row.add(new JsonPrimitive(node.fqn().name()))
-						.add(new JsonPrimitive(node.property(Def.Loader.Time).asLong(0)))
+						.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property(Def.Loader.Time).asLong(0)))  )
 						.add(new JsonPrimitive(node.property(Def.Loader.Status).asString())) ;
 					his.add(row) ;
 				}
@@ -151,7 +164,7 @@ public class LoaderWeb implements Webapp {
 		
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
-		result.put("schemaName", JsonParser.fromString("[{'title':'EventId'},{'title':'Time'},{'title':'Status'}]").getAsJsonArray()) ;		
+		result.put("schemaName", JsonParser.fromString("[{'title':'EventId'},{'title':'Run Time'},{'title':'Status'}]").getAsJsonArray()) ;		
 		result.put("info", rsession.ghostBy("/menus/loaders").property("overview").asString()) ;
 		
 		return result ;
@@ -169,7 +182,7 @@ public class LoaderWeb implements Webapp {
 		result.put("info", rsession.ghostBy("/menus/loaders").property("define").asString()) ;
 		result.put("lid", found.fqn().name()) ;
 		result.put("samples", WebUtil.findLoaderScripts()) ;
-		result.put("content", found.property("content").asString()) ;
+		result.put(Def.Loader.Content, found.property(Def.Loader.Content).asString()) ;
 		return result ;
 	}
 

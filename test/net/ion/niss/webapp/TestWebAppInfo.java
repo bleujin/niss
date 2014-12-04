@@ -16,6 +16,7 @@ import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.loaders.LoaderWeb;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.niss.webapp.misc.CrakenLet;
+import net.ion.niss.webapp.misc.ExportWeb;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.niss.webapp.misc.OpenScriptWeb;
@@ -31,7 +32,7 @@ public class TestWebAppInfo extends TestCase {
 
 	public void testClass() throws Exception {
 		List<Class<? extends Webapp>> apps = ListUtil
-				.<Class<? extends Webapp>> toList(AnalysisWeb.class, CrakenLet.class, IndexerWeb.class, LoaderWeb.class, MenuWeb.class, MiscWeb.class, OpenScriptWeb.class, OpenSearchWeb.class, ScriptWeb.class, SearcherWeb.class, TemplateWeb.class, TraceWeb.class);
+				.<Class<? extends Webapp>> toList(AnalysisWeb.class, CrakenLet.class, IndexerWeb.class, LoaderWeb.class, MenuWeb.class, MiscWeb.class, OpenScriptWeb.class, OpenSearchWeb.class, ScriptWeb.class, SearcherWeb.class, TemplateWeb.class, TraceWeb.class, ExportWeb.class);
 
 //		List<Class<? extends Webapp>> apps = ListUtil
 //				.<Class<? extends Webapp>> toList(AnalysisWeb.class, IndexerWeb.class);

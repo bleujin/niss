@@ -44,7 +44,7 @@
 
 					
 					<div class="widget-body">
-					<form class="smart-form" id="searcher-form" method="post" action="searchers/define" novalidate="novalidate">
+					<form class="smart-form" id="loader-define-form" method="post" action="loaders/define" novalidate="novalidate">
 						<fieldset>
 							<section>
 								<label class="select">
@@ -56,7 +56,7 @@
 								<label class="label">${m.asString("loaders.defined.content")}</label>
 								<label class="textarea textarea-resizable">
 									<i class="icon-append fa fa-question-circle"/> 										
-									<textarea rows="12" class="custom-scroll" placeholder="script content" id="scontent"></textarea>
+									<textarea rows="12" class="custom-scroll" placeholder="script content" name="scontent"></textarea>
 									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("loaders.defined.content")}</b> 
 								</label>
 							</section>
@@ -81,10 +81,10 @@
 						</div>
 									
 						<footer>
-							<button class="btn btn-sm btn-success" type="button" id="btn_save">
+							<button class="btn btn-sm btn-success" type="button" name="btn_save">
 								<i class="fa fa-check"></i> ${m.asString("loaders.defined.buttons.save")}
 							</button>	
-							<button class="btn btn-sm btn-primary" type="button" id="btn_run">
+							<button class="btn btn-sm btn-primary" type="button" name="btn_run">
 								<i class="fa fa-times"></i> ${m.asString("loaders.defined.buttons.run")}
 							</button>	
 						</footer>
@@ -124,13 +124,17 @@
 				type: "POST",
 				url: "/admin/menus/loaders",
 				data: { content: aHTML, field: "define" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 
+		var _defineForm = $("#loader-define-form") ;
+		var _scontent = _defineForm.find("textarea[name=scontent]") ;
+		var _runButton = _defineForm.find("button[name=btn_run]") ;
+		var _saveButton = _defineForm.find("button[name=btn_save]") ;
+		var _sampleLoader = _defineForm.find("select[name=loader_samples]") ;
+		
+		
 		var loaderId = $("#loaders option:selected").val() ;
 		if (loaderId.indexOf('-') == 0) return ;
 		
@@ -146,11 +150,11 @@
 				for(var idx in samples ){
 					var sample = samples[idx] ; 
 					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
-					option.appendTo($("select[name=loader_samples]")) ;
+					option.appendTo(_sampleLoader) ;
 				}
 				
 				$("#info").html(info) ;
-				$("#scontent").val(data["content"]) ;
+				_scontent.val(data["content"]) ;
 			}, 
 			error:function(request,status,error){
 				console.log('response', request, status, error) ;
@@ -159,8 +163,8 @@
 		}) ;
 		
 		
-		$("select[name=loader_samples]").change(function(){
-			var fileName = $("select[name=loader_samples]").val() ;
+		_sampleLoader.change(function(){
+			var fileName = _sampleLoader.val() ;
 			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
@@ -170,70 +174,103 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					$("#scontent").val(data) ;
+					_scontent.val(data) ;
 				}
 			}) ;
 		}) ;
 		
-		
-		$( "#btn_save" ).click(function() {
-			$.ajax({
-				type: "POST",
-				dataType : 'text', 
-				url: "/admin/loaders/" + loaderId + "/define",
-				data: { content: $("#scontent").val()}, 
-				complete : function(){ 
+		var command = '';
+		_defineForm.validate({
+			rules : {
+				scontent : { required : true }
+			},
+
+			messages : {
+				scontent : { required : "${m.asString('validation.required', 'script content')}"}
+			},
+
+			submitHandler : function(form) {
+				
+				if (command == 'save') {
+					$.ajax({
+						type: "POST",
+						dataType : 'text', 
+						url: "/admin/loaders/" + loaderId + "/define",
+						data: { content: _scontent.val()}, 
+						complete : function(){ 
+							
+						}, 
+						success :  function(data) {
+							$("#save-message span").html(data) ;
+							$("#save-message").removeClass("message") ;
+							setTimeout(function() {
+								$("#save-message").addClass("message") ;
+							}, 2000);
+						}
+					}) ;
+				} else if (command == 'run'){
 					
-				}, 
-				success :  function(data) {
-					$("#save-message span").html(data) ;
-					$("#save-message").removeClass("message") ;
-					setTimeout(function() {
-						$("#save-message").addClass("message") ;
-					}, 2000);
+					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
+					
+					if(typeof(EventSource)!=="undefined") {
+						var es = new EventSource('/event/' + eventId);
+						es.onopen = function() {
+							// console.log('OPEN');
+						};
+						es.onmessage = function(e) {
+							if (e.data == eventId) {
+								es.close();
+								_runButton.removeAttr("disabled");
+								return ;
+							}
+							var outputText = document.getElementById('output');
+							outputText.value = outputText.value + e.data + '\n';
+							outputText.scrollTop = outputText.scrollHeight;
+						};
+						es.onerror = function(e) {
+							_runButton.removeAttr("disabled");
+							console.log('ERROR : ' + e);
+							// es.close() ;
+						};
+					} 
+					
+					_runButton.attr('disabled', 'disabled') ;
+					$.ajax({
+						type: "POST",
+						dataType : 'text', 
+						url: "/admin/loaders/" + loaderId + "/run/" + eventId,
+						data: { content: _scontent.val() }, 
+						complete : function(){ 
+							var result_text = 'Path : ' + this.url + '<br/>';
+							result_text += 'Event Source Path : /event/' + eventId + '<br />' ;
+							result_text += 'Form parameter : <br />' ;
+							result_text += ' - scontent : ...<br />' ;
+							$("#target_url").html(result_text) ;
+							if(typeof(EventSource)=="undefined") document.getElementById('output').value = "Whoops! Your browser doesn't receive server-sent events.[support browser : ff, chrome, safari]" ;
+						}, 
+						success :  function(data) {
+							// console.log(data) ;
+						}
+					}) ;
 				}
-			}) ;
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
 		});
 		
-		$( "#btn_run" ).click(function() {
-			var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
-			var es = new EventSource('/event/' + eventId);
-		       es.onopen = function() {
-		       	  // console.log('OPEN');
-		       };
-		       es.onmessage = function(e) {
-			       if (e.data == eventId) {
-				    es.close();
-				    $( "#btn_run" ).removeAttr("disabled");
-				    return ;
-				}
-		       	var outputText = document.getElementById('output');
-			       outputText.value = outputText.value + e.data + '\n';
-			       outputText.scrollTop = outputText.scrollHeight;
-		       };
-		       es.onerror = function(e) {
-				    $( "#btn_run" ).removeAttr("disabled");
-		       		console.log('ERROR : ' + e);
-		       	// es.close() ;
-		       };
-			$( "#btn_run" ).attr('disabled', 'disabled') ;
-			$.ajax({
-				type: "POST",
-				dataType : 'text', 
-				url: "/admin/loaders/" + loaderId + "/run/" + eventId,
-				data: { content: $("#scontent").val() }, 
-				complete : function(){ 
-					var result_text = 'Path : ' + this.url + '<br/>';
-					result_text += 'Event Source : /event/' + eventId + '<br />' ;
-					result_text += 'Form parameter : <br />' ;
-					result_text += ' - scontent : ...<br />' ;
-					$("#target_url").html(result_text) ;
-				}, 
-				success :  function(data) {
-					// console.log(data) ;
-				}
-			}) ;
+		
+		_saveButton.click(function() {
+			command = 'save' ;
+			_defineForm.submit() ;
 		});
+		
+		_runButton.click(function() {
+			command = 'run' ;
+			_defineForm.submit() ;
+		});
+		
 	};
 
 	// run pagefunction on load

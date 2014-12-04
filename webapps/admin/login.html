@@ -21,7 +21,7 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-rtl.min.css"> -->
 
 		<!-- We recommend you use "your_style.css" to override SmartAdmin
-		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+			 specific styles this will also ensure you retrain your customization with each SmartAdmin update.
 		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
 
 		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
@@ -184,19 +184,19 @@
 						xmlhttp = false;
 					}
 				} else {
-			        /*@cc_on
-			        @if (@_jscript_version >= 5)
-			            try {
-			                xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
-			            } catch (e) {
-			                try {
-			                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			                } catch (E) {
-			                    xmlhttp = false;
-			                }
-			            }
-			        @end @*/
-			    }
+					/*@cc_on
+					@if (@_jscript_version >= 5)
+						 try {
+							 xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+						} catch (e) {
+							 try {
+								 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+							} catch (E) {
+								 xmlhttp = false;
+							}
+						}
+					@end @*/
+				}
 				return xmlhttp;
 			} ;
 
@@ -206,8 +206,8 @@
 				// reset 
 				var http = getHTTPObject();
 				var url = "/index.html";
-			    http.open("get", url, false, "anonymous", "fail");
-			    http.send("");
+				 http.open("get", url, false, "anonymous", "fail");
+				 http.send("");
 				if (http.status == 200) {
 					;
 				} else {
@@ -236,20 +236,20 @@
 						
 						var http = getHTTPObject();
 						var url = "/index.html";
-					    http.open("get", url, false, userId, password);
-					    http.send("");
+						 http.open("get", url, false, userId, password);
+						 http.send("");
 						if (http.status == 200) {
 							document.location = url;
 						} else {
-				        	$("#save-message span").html("user info not matched") ;
+							$("#save-message span").html("user info not matched") ;
 							$("#save-message").removeClass("message") ;
 							setTimeout(function() {
 								$("#save-message").addClass("message") ;
 							}, 5000);
-				            // document.location.href = "index.html" ;
-				            console.log('not logined') ;
-					        // alert("Incorrect username and/or password!");
-					    }
+							// document.location.href = "index.html" ;
+							 console.log('not logined') ;
+							// alert("Incorrect username and/or password!");
+						}
 					},
 
 					// Do not change code below

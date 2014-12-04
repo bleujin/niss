@@ -55,7 +55,7 @@
 							<section>
 								<label class="label">${m.asString("searchers.defined.query-analyzer")}</label>
 								<label class="select">
-									<select id="query_analyzer"></select>
+									<select name="query_analyzer"></select>
 								</label>
 							</section>
 										
@@ -68,17 +68,17 @@
 							<section>
 								<label class="label">${m.asString("searchers.defined.handler")}</label>
 								<label class="textarea textarea-resizable">
-									<textarea id="handler" name="handler" rows="15">new function(){}</textarea>
+									<textarea name="handler" rows="15">new function(){}</textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applyhandler" /><i></i>${m.asString("searchers.defined.apply-handler")}</label>
+								<label class="checkbox"><input type="checkbox" name="applyhandler" /><i></i>${m.asString("searchers.defined.apply-handler")}</label>
 							</section>
 
 							<section>
 								<label class="label">${m.asString("searchers.defined.stopword")}</label>
 								<label class="textarea textarea-resizable">
-									<textarea id="stopword" name="stopword" rows="8"></textarea>
+									<textarea name="stopword" rows="8"></textarea>
 								</label>
-								<label class="checkbox"><input type="checkbox" id="applystopword"/><i></i>${m.asString("searchers.defined.apply-stopword")}</label>
+								<label class="checkbox"><input type="checkbox" name="applystopword"/><i></i>${m.asString("searchers.defined.apply-stopword")}</label>
 							</section>
 
 							<hr class="simple">
@@ -91,7 +91,7 @@
 						</div>
 						
 						<footer>
-							<button class="btn btn-sm btn-success" type="button" id="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.defined.buttons.save")}</button>	
+							<button class="btn btn-sm btn-success" type="button" name="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.defined.buttons.save")}</button>	
 						</footer>
 						
 					</form>
@@ -122,15 +122,23 @@
 				type: "POST",
 				url: "/admin/menus/searchers",
 				data: { content: aHTML, field: "define" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 
 		var searcherId = $("#searchers option:selected").val() ;
 		if (searcherId == undefined) return ;
+		
+		
+		var _defineForm = $("#searcher-define-form") ;
+		var _target_indexer = _defineForm.find("select[name=target_indexer]") ;
+		var _query_analyzer = _defineForm.find("select[name=query_analyzer]") ;
+		var _handler = _defineForm.find("textarea[name=handler]") ;
+		var _applyhandler = _defineForm.find("input[name=applyhandler]") ;
+		var _stopword = _defineForm.find("textarea[name=stopword]") ;
+		var _applystopword = _defineForm.find("input[name=applystopword]") ;
+		var _handler_samples = _defineForm.find("select[name=handler_samples]") ;
+		var _btn_save = _defineForm.find("button[name=btn_save]") ;
 		
 		$.ajax({
 			url:'/admin/searchers/' + searcherId +'/define',
@@ -148,28 +156,28 @@
 					var option = $('<option value="'+indexerId+'">'+indexerId+'</option>') ;
 					option.appendTo($("#list_indexer")) ;
 				}
-				$("#target_indexer").val(targets).select2();
+				_target_indexer.val(targets).select2();
 				
 				
 				for(var idx in query_analyzer){
 					var analyzer = query_analyzer[idx] ;
 					var option = $('<option value="'+analyzer['clz']+'">'+analyzer['name']+'</option>') ;
 					if (analyzer['selected']) option.attr('selected', 'selected');
-					option.appendTo($("#query_analyzer")) ;
+					option.appendTo(_query_analyzer) ;
 				}
 				
 				for(var idx in samples ){
 					var sample = samples[idx] ; 
 					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
-					option.appendTo($("select[name=handler_samples]")) ;
+					option.appendTo(_handler_samples) ;
 				}
 
 				
-				$("#handler").val(data["handler"]) ;
-				$("#applyhandler").attr('checked', data["applyhandler"]) ;
+				_handler.val(data["handler"]) ;
+				_applyhandler.attr('checked', data["applyhandler"]) ;
 
-				$("#stopword").val(data["stopword"]) ;
-				$("#applystopword").attr('checked', data["applystopword"]) ;
+				_stopword.val(data["stopword"]) ;
+				_applystopword.attr('checked', data["applystopword"]) ;
 
 				// pageSetUp();
 			}, 
@@ -180,8 +188,8 @@
 		}) ;
 		
 		
-		$("select[name=handler_samples]").change(function(){
-			var fileName = $("select[name=handler_samples]").val() ;
+		_handler_samples.change(function(){
+			var fileName = _handler_samples.val() ;
 			if (fileName < ' ') return ;
 			$.ajax({
 				type: "GET",
@@ -191,7 +199,7 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					$("#handler").val(data) ;
+					_handler.val(data) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;
@@ -200,32 +208,24 @@
 		});
 		
 		
-		var $defineForm = $("#searcher-define-form").validate({
-			// Rules for form validation
+		_defineForm.validate({
 			rules : {
-				target_indexer : {
-					required : true
-				}
+				target_indexer : { required : true }
 			},
 
-			// Messages for form validation
 			messages : {
-				target_indexer : {
-					required : 'Please select target indexer',
-				}
+				target_indexer : { required : "${m.asString('validation.select', 'target indexer')}"}
 			},
 
-			// Ajax form submition
 			submitHandler : function(form) {
 				var targets = [];
-	    		$("#target_indexer").each(function(){ targets.push($(this).val()) });
+				_target_indexer.each(function(){ targets.push($(this).val()) });
 				$.ajax({
 					type: "POST",
 					dataType : 'text', 
 					url: "/admin/searchers/" + searcherId + "/define",
-					data: { 'target': targets.toString(), queryanalyzer: $("#query_analyzer").val(), handler: $("#handler").val(), applyhandler: $("#applyhandler").is(":checked") ? true : false, stopword: $("#stopword").val(), applystopword: $("#applystopword").is(":checked") ? true : false}, 
+					data: { 'target': targets.toString(), queryanalyzer: _query_analyzer.val(), handler: _handler.val(), applyhandler: _applyhandler.is(":checked") ? true : false, stopword: _stopword.val(), applystopword: _applystopword.is(":checked") ? true : false}, 
 					complete : function(){ 
-						
 					}, 
 					success :  function(data) {
 						$("#save-message span").html(data) ;
@@ -243,8 +243,8 @@
 		});
 		
 		
-		$( "#btn_save" ).click(function() {
-			$("#searcher-define-form").submit() ;
+		_btn_save.click(function() {
+			_defineForm.submit() ;
 		});
 		
 	};

@@ -149,9 +149,9 @@
 				<pre>
 <code><strong>&lt;input class="slider slider-primary" data-slider-min="10" ..  /></strong></code>
 
-data-slider-min="10"       <span class="text-muted"> // slider min value</span>
-data-slider-max="500"      <span class="text-muted"> // slider max value</span>
-data-slider-value="315"    <span class="text-muted"> // handler position on slider</span>
+data-slider-min="10"		<span class="text-muted"> // slider min value</span>
+data-slider-max="500"	  <span class="text-muted"> // slider max value</span>
+data-slider-value="315"	<span class="text-muted"> // handler position on slider</span>
 data-slider-handle="round" <span class="text-muted"> // round or square</span> </pre>
 
 			
@@ -418,7 +418,7 @@ data-slider-handle="round" <span class="text-muted"> // round or square</span> <
 	 * eg alert("my home function");
 	 * 
 	 * var pagefunction = function() {
-	 *   ...
+	 *	...
 	 * }
 	 * loadScript("js/plugin/_PLUGIN_NAME_.js", pagefunction);
 	 * 
@@ -656,11 +656,11 @@ data-slider-handle="round" <span class="text-muted"> // round or square</span> <
 		*/
 		//jquery accordion
 		
-	     var accordionIcons = {
-	         header: "fa fa-plus",    // custom icon class
-	         activeHeader: "fa fa-minus" // custom icon class
-	     };
-	     
+		 var accordionIcons = {
+			 header: "fa fa-plus",	// custom icon class
+			 activeHeader: "fa fa-minus" // custom icon class
+		 };
+		 
 		$("#accordion").accordion({
 			autoHeight : false,
 			heightStyle : "content",
@@ -674,9 +674,9 @@ data-slider-handle="round" <span class="text-muted"> // round or square</span> <
 		 * PROGRESS BAR
 		 */
 		$("#progressbar").progressbar({
-	     	value: 25,
-	     	create: function( event, ui ) {
-	     		$(this).removeClass("ui-corner-all").addClass('progress').find(">:first-child").removeClass("ui-corner-left").addClass('progress-bar progress-bar-success');
+		 	value: 25,
+		 	create: function( event, ui ) {
+		 		$(this).removeClass("ui-corner-all").addClass('progress').find(">:first-child").removeClass("ui-corner-left").addClass('progress-bar progress-bar-success');
 			}
 		});
 

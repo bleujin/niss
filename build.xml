@@ -66,6 +66,7 @@
 			<fileset dir="resource/">
 			    <exclude name="admin/**"/>
 			    <exclude name="index/**"/>
+			    <exclude name="removed/**"/>
 			    <exclude name="logs/**"/>
 			    <exclude name="store/**"/>
 			    <exclude name="temp/**"/>

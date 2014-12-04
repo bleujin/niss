@@ -64,16 +64,11 @@
 				type: "POST",
 				url: "/admin/menus/misc",
 				data: { content: aHTML, field: "user" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
-		
-		
 
-		
+
 		$.ajax({
 			url:"/admin/misc/users",
 			type:'GET', 
@@ -106,9 +101,7 @@
 					$('#create_user_modal').modal({});
 				});
 				
-				
-				
-				
+
 				$('#user-win a[name=remove_user]').click( function () {
 					var targets = $('#example').DataTable().rows('.selected2') ;
 					var users = '' ;

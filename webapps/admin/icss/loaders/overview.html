@@ -63,10 +63,7 @@
 				type: "POST",
 				url: "/admin/menus/loaders",
 				data: { content: aHTML, field: "overview" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -90,7 +87,7 @@
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
 				'				<fieldset class="smart-form">' +
 				'					<div class="row">' +
-				'						<section class="col col-12"><input type="button" class="btn btn-primary btn-sm" id="btn_detail_index" value="${m.asString("loaders.overview.buttons.view-detail")}" disabled="disabled"/></section>' +
+				'						<section class="col col-12"><input type="button" class="btn btn-primary btn-sm" name="btn_detail" value="${m.asString("loaders.overview.buttons.view-detail")}" disabled="disabled"/></section>' +
 				'					</div>' +
 				'				</fieldset>' +
 				'				</td></tr></tfoot>' ;
@@ -101,20 +98,20 @@
 
 				
 				var table = $('#recent_history').DataTable() ;
+				var _btn_detail = $('input[name=btn_detail]') ;
 				
 				$('#recent_history tbody').on( 'click', 'tr', function () {
 					if ( $(this).hasClass('selected2') ) {
-			            $(this).removeClass('selected2');
-			        } else {
-			            table.$('tr.selected2').removeClass('selected2');
-			            $(this).addClass('selected2');
-			        }
-			        ($('#recent_history').DataTable().rows('.selected2').data().length > 0) ? $('#btn_detail_index').removeAttr("disabled") : $('#btn_detail_index').attr("disabled", "disabled") ;
+						$(this).removeClass('selected2');
+					} else {
+						 table.$('tr.selected2').removeClass('selected2');
+						$(this).addClass('selected2');
+					}
+					(table.rows('.selected2').data().length > 0) ? _btn_detail.removeAttr("disabled") : _btn_detail.attr("disabled", "disabled") ;
 				} );
 				
-				$('#btn_detail_index').click( function () {
-					var targets = $('#recent_history').DataTable().rows('.selected2') ;
-					var lid = targets.data()[0][0] ;
+				_btn_detail.click( function () {
+					var lid = table.rows('.selected2').data()[0][0] ;
 					window.open('/admin/craken/events/loaders/' + lid + '.content','width=400,height=200,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes') ;
 				});
 			}, 

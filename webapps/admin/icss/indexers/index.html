@@ -38,22 +38,22 @@
 				
 				<div class="widget-body">
 					<div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
-						<form class="smart-form" id="document-form" method="post" action="document-merge.php" novalidate="novalidate">
+						<form class="smart-form" id="indexer-index-form" method="post" action="indexer/index" novalidate="novalidate">
 							<fieldset style="padding: 0px">					
 								<section>
 									<label class="label">${m.asString("indexers.index.document-type")}</label>
 									<label class="select">
-										<select name="interested" id="dtype">
-										    <option value="json">JSON</option>
-										    <option value="csv">CSV</option>
-										    <option value="jarray">JSON ARRAY</option>
+										<select name="dtype">
+											<option value="json">JSON</option>
+											<option value="csv">CSV</option>
+											<option value="jarray">JSON ARRAY</option>
 										</select>
 									</label>
 								</section>
 								<section>
 									<label class="label">${m.asString("indexers.index.documents")}</label>
 									<label class="textarea textarea-resizable">
-										<textarea id="documents" name="documents" rows="10"></textarea>
+										<textarea name="documents" rows="10"></textarea>
 									</label>
 								</section>
 								
@@ -61,25 +61,25 @@
 								<section class="col col-6">
 									<label class="label">${m.asString("indexers.index.commit-within")}</label>
 									<label class="input">
-										<input type="text" id="within" name="within" value="1000" />
+										<input type="text" name="within" value="1000" />
 									</label>
 								</section>
 								<section class="col col-6">
 									<label class="label">${m.asString("indexers.index.boost")}</label>
 									<label class="input">
-										<input type="text" id="boost" name="boost" value="1.0" />
+										<input type="text" name="boost" value="1.0" />
 									</label>
 								</section>
 								</div>
 								
 								<section>
-									<label class="checkbox"><input type="checkbox" id="overwrite" name="overwrite" checked="true" /><i></i>${m.asString("indexers.index.overwrite")}</label>
+									<label class="checkbox"><input type="checkbox" name="overwrite" checked="true" /><i></i>${m.asString("indexers.index.overwrite")}</label>
 								</section>
 								
 							</fieldset>
 							
 							<footer>
-								<button class="btn btn-primary" type="button" id="execIndex">${m.asString("indexers.index.buttons.index")}</button>
+								<button class="btn btn-primary" type="button" name="btn_exec">${m.asString("indexers.index.buttons.index")}</button>
 							</footer>
 							
 							<div class="message">
@@ -110,7 +110,16 @@
 	var docSample = {'json' : '{"id":"change_me","title":"change.me"}', 'csv':'id,title\r\nchange_me,change.me', 'jarray':'[\r\n{"id":"change_me1","title":"change.me1"},\r\n{"id":"change_me2","title":"change.me2"}\r\n]'}
 
 	var pagefunction = function() {
-		$("#documents").val(docSample['json']) ;
+		
+		var _indexForm = $("#indexer-index-form") ;
+		var _documents = _indexForm.find("textarea[name=documents]") ;
+		var _boost = _indexForm.find("input[name=boost]") ;
+		var _overwrite = _indexForm.find("input[name=overwrite]") ;
+		var _btn_exec = _indexForm.find("button[name=btn_exec]") ;
+		var _dtype = _indexForm.find("select[name=dtype]") ;
+		var _within = _indexForm.find("input[name=within]") ;
+		
+		_documents.val(docSample['json']) ;
 
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
@@ -124,10 +133,7 @@
 				type: "POST",
 				url: "/admin/menus/indexers",
 				data: { content: aHTML, field: "index" }
-				})
-				.done(function( msg ) {
-					console.log( "Data Saved: " + msg );
-				});
+			});
 			$('.click2edit').destroy();
 		});
 		
@@ -146,24 +152,24 @@
 			}
 		}) ;
 		
-		$( "#dtype" ).change(function() {
-			var selected = $("#dtype option:selected").val();
-			$("#documents").val(docSample[selected]) ;
+		_dtype.change(function() {
+			var selected = _dtype.find("option:selected").val();
+			_documents.val(docSample[selected]) ;
 		});
 		
-		$( "#execIndex" ).click(function() {
+		_btn_exec.click(function() {
 			$.ajax({
 				type: "POST",
 				dataType : 'text', 
-				url: "/admin/indexers/" + indexerId + "/index." + $("#dtype").val() ,
-				data: { documents: $("#documents").val(), within: $("#within").val(), boost: $("#boost").val(), overwrite: $("#overwrite").is(":checked") ? true : false}, 
+				url: "/admin/indexers/" + indexerId + "/index." + _dtype.val() ,
+				data: { documents: _documents.val(), within: _within.val(), boost: _boost.val(), overwrite: _overwrite.is(":checked") ? true : false}, 
 				complete : function(){ 
 					var result_text = 'Path : ' + this.url + '<br/>';
 					result_text += 'Form parameter : <br />' ;
 					result_text += ' - document : ...<br />' ;
-					result_text += ' - wihtin : ' + $("#within").val() + '<br />' ;
-					result_text += ' - boost : ' +  $("#boost").val()+ '<br />' ;
-					result_text += ' - overwrite : ' + ($("#overwrite").is(":checked") ? true : false) +'<br />' ;
+					result_text += ' - wihtin : ' + _within.val() + '<br />' ;
+					result_text += ' - boost : ' +  _boost.val()+ '<br />' ;
+					result_text += ' - overwrite : ' + (_overwrite.is(":checked") ? true : false) +'<br />' ;
 					$("#index_url").html(result_text) ;
 				}, 
 				success :  function(data) {
