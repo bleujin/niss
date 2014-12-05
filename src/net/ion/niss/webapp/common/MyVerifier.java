@@ -46,7 +46,9 @@ public class MyVerifier implements PasswordAuthenticator {
 		ReadNode found = session.ghostBy("/users/" + username);
 		String expectedPassword = found.property(Def.User.Password).stringValue();
 		if (expectedPassword != null && password.equals(expectedPassword)) {
-			request.data(MyAuthenticationHandler.LANGCODE, found.property(MyAuthenticationHandler.LANGCODE).defaultValue("us")) ;
+			String langcode = found.property(MyAuthenticationHandler.LANGCODE).defaultValue("us");
+			request.data(MyAuthenticationHandler.LANGCODE, langcode) ;
+			
 			callback.success();
 		} else {
 			callback.failure();

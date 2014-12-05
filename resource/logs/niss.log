@@ -35791,3 +35791,6 @@ Caused by: java.lang.IllegalArgumentException
 [monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
 [monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
 [monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed

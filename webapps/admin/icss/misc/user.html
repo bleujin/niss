@@ -79,7 +79,7 @@
 					.dataTable({
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName']
+					"columns": [{'title':'${m.asString("misc.user.id")}'},{'title':'${m.asString("misc.user.name")}'}] //data['schemaName']
 				}) ;
 				
 				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +

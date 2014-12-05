@@ -15,6 +15,7 @@ import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.jci.monitor.AbstractListener;
 import net.ion.jci.monitor.FileAlterationMonitor;
+import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.niss.webapp.common.ToJsonHandler;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpRequest;
@@ -122,7 +123,7 @@ public class HTMLTemplateEngine implements TemplateEngine {
 				vc.put("request", request);
 				vc.put("rsession", rsession);
 
-				String langcode = ObjectUtil.coalesce(request.data("langcode"), "us").toString();
+				String langcode = ObjectUtil.coalesce(request.data(MyAuthenticationHandler.LANGCODE), "us").toString();
 				vc.put("m", handler.root(langcode));
 
 				tpl.merge(vc, sw);

@@ -80,7 +80,7 @@
 				$("#recent_history").dataTable({
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName'],  
+					"columns": [{'title':'${m.asString("loaders.overview.eventid")}'},{'title':'${m.asString("loaders.overview.time")}'},{'title':'${m.asString("loaders.overview.status")}'}],  
 					"order" : [[1, "desc"]]
 				}) ;
 				

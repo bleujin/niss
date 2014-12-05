@@ -15,6 +15,7 @@
 		<!-- SmartAdmin Styles : Please note (smartadmin-production.css) was created using LESS variables -->
 		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-production.min.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="css/smartadmin-skins.min.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="css/lockscreen.css">
 
 		<!-- SmartAdmin RTL Support is under construction
 			 This RTL CSS will be released in version 1.5
@@ -52,93 +53,56 @@
 
 	</head>
 	
-	<body class="animated fadeInDown">
-
-		<header id="header">
-
-			<div id="logo-group">
-				<span id="logo"> <img src="img/logo.png" alt="SmartAdmin"> </span>
-			</div>
-
-			
-
-		</header>
+	<body class="">
 
 		<div id="main" role="main">
 
-			<!-- MAIN CONTENT -->
-			<div id="content" class="container">
+			<div class="lockscreen animated flipInY">
+			
+			<img src="img/logo.png" alt=""/>
+			<div class="margin-top-5">
+				<div class="well no-padding">
 
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">NISS Admin</h1>
-						<div class="hero">
+					<form action="/" id="login-form" class="smart-form client-form">
+						<header>Sign In</header>
 
-							<div class="pull-left login-desc-box-l">
-								<h4 class="paragraph-header">It's Okay to be Smart. Experience the simplicity of SmartAdmin, everywhere you go!</h4>
-								
-							</div>
-							
-							<img src="img/demo/iphoneview.png" class="pull-right display-image" alt="" style="width:210px">
+						<fieldset>
+							<section>
+								<label class="label">User Id</label>
+								<label class="input"> <i class="icon-append fa fa-user"></i>
+									<input type="text" name="userid">
+									<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter userid</b></label>
+							</section>
 
+							<section>
+								<label class="label">Password</label>
+								<label class="input"> <i class="icon-append fa fa-lock"></i>
+									<input type="password" name="password">
+									<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
+							</section>
+
+							<!-- section>
+								<label class="checkbox">
+									<input type="checkbox" name="remember" checked="">
+									<i></i>Stay signed in</label>
+							</section -->
+						</fieldset>
+						<div id="save-message" class="alert alert-fail fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Fail</strong> <span></span>
 						</div>
+						<footer>
+							<button type="submit" class="btn btn-primary">Sign in</button>
+						</footer>
+					</form>
 
-						<div class="row">
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">About SmartAdmin - Are you up to date?</h5>
-								<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.</p>
-							</div>
-							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-								<h5 class="about-heading">Not just your average template!</h5>
-								<p>Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi voluptatem accusantium!</p>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
-						<div class="well no-padding">
-							<form action="/" id="login-form" class="smart-form client-form">
-								<header>Sign In</header>
-
-								<fieldset>
-									
-									<section>
-										<label class="label">User Id</label>
-										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="text" name="userid">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Please enter username</b></label>
-									</section>
-
-									<section>
-										<label class="label">Password</label>
-										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password">
-											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Enter your password</b> </label>
-									</section>
-
-									<section>
-										<label class="checkbox">
-											<input type="checkbox" name="remember" checked="">
-											<i></i>Stay signed in</label>
-									</section>
-								</fieldset>
-								<div id="save-message" class="alert alert-fail fade in message">
-									<i class="fa-fw fa fa-check"></i>
-									<strong>Fail</strong> <span></span>
-								</div>
-								<footer>
-									<button type="submit" class="btn btn-primary">Sign in</button>
-								</footer>
-							</form>
-
-						</div>
-						
-						
-						
-					</div>
 				</div>
 			</div>
-
+			<p class="font-xs margin-top-5">
+				ICSS Webapp 2014.
+			</p>
+			
+			</div>
 		</div>
 
 		<!--================================================== -->	
@@ -206,8 +170,8 @@
 				// reset 
 				var http = getHTTPObject();
 				var url = "/index.html";
-				 http.open("get", url, false, "anonymous", "fail");
-				 http.send("");
+				http.open("get", url, false, "anonymous", "fail");
+				http.send("");
 				if (http.status == 200) {
 					;
 				} else {
@@ -221,7 +185,7 @@
 					// Rules for form validation
 					rules : {
 						userid : {required : true, minlength : 4, maxlength : 20},
-						password : {required : true,minlength : 3,maxlength : 20}
+						password : {required : true, minlength : 3,maxlength : 20}
 					},
 
 					// Messages for form validation

@@ -1,5 +1,10 @@
 package net.ion.niss.webapp.common;
 
+import java.io.FileInputStream;
+
+import javax.ws.rs.core.HttpHeaders;
+
+import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;
@@ -63,6 +68,8 @@ public class MyAuthenticationHandler extends AbstractHttpHandler {
 	private void needAuthentication(HttpResponse response) {
 		// response.status(301).header(HttpHeaders.LOCATION, "/login.html").end() ;
 		response.status(401).header("WWW-Authenticate", "Basic realm=\"" + realm + "\"").content("Need authentication").end();
+		// response.status(302).header(HttpHeaders.LOCATION, "/login.html").end() ;
+		// response.content(IOUtil.toStringWithClose(new FileInputStream("./webapps/admin/login.html"))).end() ;
 	}
 	
 	public int order() {

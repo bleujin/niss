@@ -50,7 +50,7 @@
 					// "dom":'<"toolbar">frtip',
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName'], 
+					"columns": [{'title':'${m.asString("misc.history.id")}'},{'title':'${m.asString("misc.history.time")}'},{'title':'${m.asString("misc.history.loaderid")}'},{'title':'${m.asString("misc.history.status")}'}], //  data['schemaName'], 
 					"order" : [[2, "desc"]]
 				}) ;
 				

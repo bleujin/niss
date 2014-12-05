@@ -112,7 +112,7 @@
 					// "dom":'<"toolbar">frtip',
 					"data":nodes,
 					"searching":false, 
-					"columns": data['schemaName']
+					"columns": [{'title':'${m.asString("indexers.schema.schemaid")}'},{'title':'${m.asString("indexers.schema.type")}'},{'title':'${m.asString("indexers.schema.option")}'}] 
 				}) ;
 				
 				

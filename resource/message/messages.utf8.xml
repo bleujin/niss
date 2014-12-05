@@ -8,6 +8,7 @@
 			<overview kr="로더 사용 내역">Overview</overview>
 			<defined kr="로더 설정">Define Loader</defined>
 			<create kr="로더 등록">Create Loader</create>
+			<remove kr="로더 삭제">Remove Loader</remove>
 		</loaders>
 		<indexers kr="인덱서">Indexers
 			<overview kr="인덱서 정보">Overview</overview>
@@ -17,6 +18,7 @@
 			<query kr="쿼리">Query</query>
 			<browsing kr="브라우징">Browsing</browsing>
 			<create kr="인덱서 등록">Create Indexer</create>
+			<remove kr="인덱서 삭제">Remove Indexer</remove>
 		</indexers>
 		<searchers kr="검색기">Searchers
 			<overview kr="검색기 정보">Overview</overview>
@@ -26,6 +28,7 @@
 			<template kr="템플릿">Template</template>
 			<browsing kr="브라우징">Search Browsing</browsing>
 			<create kr="검색기 등록">Create Searcher</create>
+			<remove kr="서처 삭제">Remove Searcher</remove>
 		</searchers>
 		<misc kr="기타">Miscellaneous
 			<properties kr="자바 속성">Java Properties</properties>
@@ -68,7 +71,7 @@
             <title kr="로더 사용 내역">Overview</title>
             <table-header kr="로그 목록(Max:101)">Recent Loader History(Max:101)</table-header>
             <eventid kr="이벤트ID">Event ID</eventid>
-            <time kr="시간">Time</time>
+            <time kr="시간">Run Time</time>
             <status kr="상태">Status</status>
             <buttons><view-detail kr="자세히 보기">View Detail</view-detail></buttons>
 		</overview>
@@ -123,7 +126,7 @@
             <create>
                 <title kr="인덱스 스키마 등록">Create Index Schema</title>
                 <schemaid kr="스키마 ID">Schema ID</schemaid>
-                <query-analyzer kr="인덱스 분석기">Index Analyzer</query-analyzer>
+                <index-analyzer kr="인덱스 분석기">Index Analyzer</index-analyzer>
                 <schema-type kr="타입">Schema Type</schema-type>
                 <text>Text</text>
                 <keyword>Keyword</keyword>
