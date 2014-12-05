@@ -1,4 +1,4 @@
-// index from db sample (async)
+// index from db sample 
 new function(){
 
 	importPackage(java.lang) 
@@ -8,9 +8,10 @@ new function(){
 	importPackage(net.ion.framework.db.bean)
 	importPackage(java.sql)
 	importPackage(net.ion.nsearcher.index)
+	importPackage(net.ion.nsearcher.index.rdb)
 
 	this.handle = function(writer, session, param, rentry, jengine){
-		var iid = "newindexer";
+		var iid = "col1";
 		var imanager = rentry.indexManager();
 		
 		if (! imanager.hasIndex(iid)) {
@@ -19,46 +20,34 @@ new function(){
 		}
 		var indexer = imanager.index(iid).newIndexer() ;
 		var rsession = rentry.login() ;
-
-		var callable = new Callable({
-			call : function() {
-				RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs").handle(new ResultSetHandler({
-					handle : function(srs) {
-						writer.append(rs.getSTring() +\n+)
-						var rs = srs ;
-						
-						indexer.index(new IndexJob({
-							handle : function(isession) {
-								isession.fieldIndexingStrategy(this.createIndexStrategy(iid)) ;
-								while(rs.next()){
-									var wdoc = isession.newDocument(rs.getString("table_name")) ;
-									wdoc.unknown("owner", "hero").insertVoid() ;
-								}
-								rs.close(); 
-								return null;
-							}, 
-
-							createIndexStrategy : function(iid) {
-								return imanager.fieldIndexStrategy(rsession, iid) ;
-							}
-						}) ) ;  // end indexer.index
-					}
-				} )); // end handle
-			}} 
-		) ;
 		
-
-		var es = jengine.executor()  ;
-		var future = es.submit(callable) ;
+		var rindexer = RDBIndexBuilder.create(imanager.index(iid))
+			.rdb(RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs"))
+			// .executors(jengine.executor()) // if you want that asynchrous handle it
+			.build() ;
 		
-		/*
-		// future.get() ;
-	
-		// var searcher = imanager.index(iid).newSearcher() ;
-		// searcher.createRequest("owner:hero").find().debugPrint();
-		*/ 
+		var result = rindexer.index(new RDBIndexHandler({
+			onSuccess : function(isession, rdb, rs) {
+				isession.fieldIndexingStrategy(imanager.fieldIndexStrategy(rsession, iid)) ;
+			
+				var i = 0 ;
+				while(rs.next()){
+					isession.newDocument(rs.getString("table_name")).unknown("owner", "bleujin").updateVoid() ;
+					if (((++i) % 3000) == 0) isession.continueUnit() ; // within 3000
+				}
+				writer.append(i + " committed") ;
+				return i;
+			}, 
+
+			onFail : function(isession, rdb, ex) {
+				writer.append(ex.getMessage()) ;
+				return 0;
+			}
+		}));
+		
+		// result is future 
 		writer.append('index started') ;
-		return null ;
+		return result ;
 	}
 
 } ;

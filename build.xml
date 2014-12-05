@@ -5,6 +5,7 @@
 	<property name="binDir" value="./bin" />
 	<property name="sbinDir" value="./sbin" />
 	<property name="publishDir" value="./publish" />
+	<property name="extractLibDir" value="./lib/extractfile" />
 	
 	<tstamp>
 	  <format property="TODAY_MY" pattern="MM/dd/yyyy hh:mm"/>
@@ -43,6 +44,34 @@
 		</jar>
 	</target>
 
+	
+	<target name="extractfile_lib_fat">
+    	<delete file="./lib/common/extractfile_fat_1.8.jar"></delete>
+        <fatjar.build output="./lib/common/extractfile_fat_1.8.jar">
+            <fatjar.manifest/>
+
+        	<fatjar.jarsource file="${extractLibDir}\bcmail-jdk15-1.45.jar" relpath=""/> 
+        	<fatjar.jarsource file="${extractLibDir}\bcprov-jdk15-1.45.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\commons-compress-1.5.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\dom4j-1.6.1.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\fontbox-1.8.4.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\geronimo-stax-api_1.0_spec-1.0.1.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\jempbox-1.8.4.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\metadata-extractor-2.6.2.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\pdfbox-1.8.4.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\poi-3.10-beta2.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\poi-ooxml-3.10-beta2.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\poi-ooxml-schemas-3.10-beta2.jar" relpath=""/> 
+	        <fatjar.jarsource file="${extractLibDir}\poi-scratchpad-3.10-beta2.jar" relpath=""/> 
+
+        	<fatjar.jarsource file="${extractLibDir}\rcc.h2tlib-1.0.1.jar" relpath=""/> 
+        	<fatjar.jarsource file="${extractLibDir}\tika-core-1.5.jar" relpath=""/> 
+        	<fatjar.jarsource file="${extractLibDir}\tika-parsers-1.5.jar" relpath=""/> 
+        	<fatjar.jarsource file="${extractLibDir}\xmlbeans-2.3.0.jar" relpath=""/> 
+       	</fatjar.build>
+    </target>
+	
+	
 	<target name="deploy_self" depends="publish">
 		<echo>Copy main lib</echo>
 		<copy todir="fordeploy" overwrite="true">
@@ -53,7 +82,7 @@
 	<target name="copy_for_deploy" depends="publish">
 	    <echo>Copy lib</echo>
 		<copy todir="fordeploy/lib/" overwrite="true">
-			<fileset dir="lib/" includes="**" excludes="imsi/**"></fileset>
+			<fileset dir="lib/" includes="**" excludes="imsi/**,extractfile/**"></fileset>
 		</copy>
 		
 		<echo>Copy main lib</echo>

@@ -4,37 +4,37 @@
 
 	<!-- menuname -->
 	<menu>
-		<loaders kr="읽어오기">Loaders
-			<overview>Overview</overview>
-			<defined>Define Loader</defined>
-			<create>Create Loader</create>
+		<loaders kr="로더">Loaders
+			<overview kr="로더 사용 내역">Overview</overview>
+			<defined kr="로더 설정">Define Loader</defined>
+			<create kr="로더 등록">Create Loader</create>
 		</loaders>
-		<indexers kr="저장하기">Indexers
-			<overview>Overview</overview>
-			<defined>Define Indexer</defined>
-			<schema>Schema</schema>
-			<index>Index</index>
-			<query>Query</query>
-			<browsing>Index Browsing</browsing>
-			<create>Create Indexer</create>
+		<indexers kr="인덱서">Indexers
+			<overview kr="인덱서 정보">Overview</overview>
+			<defined kr="인덱서 설정">Define Indexer</defined>
+			<schema kr="스키마">Schema</schema>
+			<index kr="인덱스">Index</index>
+			<query kr="쿼리">Query</query>
+			<browsing kr="브라우징">Browsing</browsing>
+			<create kr="인덱서 등록">Create Indexer</create>
 		</indexers>
-		<searchers kr="검색하기">Sarchers
-			<overview>Overview</overview>
-			<defined>Define Searcher</defined>
-			<schema>Schema</schema>
-			<query>Query</query>
-			<template>Template</template>
-			<browsing>Search Browsing</browsing>
-			<create>Create Searcher</create>
+		<searchers kr="검색기">Searchers
+			<overview kr="검색기 정보">Overview</overview>
+			<defined kr="검색기 설정">Define Searcher</defined>
+			<schema kr="스키마">Schema</schema>
+			<query kr="쿼리">Query</query>
+			<template kr="템플릿">Template</template>
+			<browsing kr="브라우징">Search Browsing</browsing>
+			<create kr="검색기 등록">Create Searcher</create>
 		</searchers>
 		<misc kr="기타">Miscellaneous
-			<properties>Java Properties</properties>
-			<threaddump>Thread Dump</threaddump>
-			<analyzer>Analyzer Confirm</analyzer>
-			<history>Loader History</history>
-			<logging>Logging</logging>
-			<script>Craken Script</script>
-			<user>System User</user>
+			<properties kr="자바 속성">Java Properties</properties>
+			<threaddump kr="쓰레드 덤프">Thread Dump</threaddump>
+			<analyzer kr="분석기 확인">Analyzer Confirm</analyzer>
+			<history kr="로더 사용 내역">Loader History</history>
+			<logging kr="모니터링">Logging</logging>
+			<script kr="스크립트">Craken Script</script>
+			<user kr="사용자">System User</user>
 		</misc>
 	</menu>
 
@@ -43,7 +43,7 @@
 	<main>
 	    <activity>Activity:</activity>
 	    <recent>Recent Activity</recent>
-	    <webapp>NISS WebApp</webapp>
+	    <webapp>ICSS6 WebApp</webapp>
 	    <loaders>Loaders</loaders>
 	    <indexers>Indexers</indexers>
 	    <searchers>Searchers</searchers>
@@ -63,283 +63,283 @@
 	</main>
 	
     <loaders>
-        <choose>Choose Loader</choose>
+        <choose kr="로더 선택">Choose Loader</choose>
         <overview>
-            <title>Overview</title>
-            <table-header>Recent Loader History(Max:101)</table-header>
-            <eventid>Event Id</eventid>
-            <time>Time</time>
-            <status>Status</status>
-            <buttons><view-detail>View Detail</view-detail></buttons>
+            <title kr="로더 사용 내역">Overview</title>
+            <table-header kr="로그 목록(Max:101)">Recent Loader History(Max:101)</table-header>
+            <eventid kr="이벤트ID">Event ID</eventid>
+            <time kr="시간">Time</time>
+            <status kr="상태">Status</status>
+            <buttons><view-detail kr="자세히 보기">View Detail</view-detail></buttons>
 		</overview>
 		<defined>
-		    <title>Define Loader</title>
-		    <table-header>Detail</table-header>
-		    <view-sample>View Sample Script</view-sample>
-		    <content>Script Content</content>
-		    <output>Output</output>
+		    <title kr="로더 설정">Define Loader</title>
+		    <table-header kr="설정">Detail</table-header>
+		    <view-sample kr="스크립트 샘플">View Sample Script</view-sample>
+		    <content kr="스크립트">Script Content</content>
+		    <output kr="결과">Output</output>
 		    <buttons>
-		        <run>Run</run>
-		        <save>Save</save>
+		        <run kr="실행">Run</run>
+		        <save kr="저장">Save</save>
 		    </buttons>
 		</defined>
-		<create>Create Loader
-			<loaderid>Loader Id</loaderid>
+		<create kr="로더 등록">Create Loader
+			<loaderid kr="로더 ID">Loader ID</loaderid>
 		</create>
         <remove>
-            <title>Remove Loader</title>
-            <loader>Loader</loader>
+            <title kr="로더 삭제">Remove Loader</title>
+            <loader kr="로더 ID">Loader ID</loader>
         </remove>
     </loaders>
     
     <indexers>
-        <choose>Choose Indexer</choose>
+        <choose kr="인덱서 선택">Choose Indexer</choose>
         <overview>
-            <title>Overview</title>
-            <status>Status</status>
-            <directory>Directory</directory>
+            <title kr="인덱서 정보">Overview</title>
+            <status kr="상태">Status</status>
+            <directory kr="위치">Directory</directory>
         </overview>
         <defined>
-            <title>Define Indexer</title>
-            <table-header>Detail</table-header>
-            <index-analyzer>Index Analyzer</index-analyzer>
-            <stopword>StopWord</stopword>
-            <apply-stopword>Apply StopWord</apply-stopword>
-            <query-analyzer>Query Analyzer</query-analyzer>
+            <title kr="인덱서 설정">Define Indexer</title>
+            <table-header kr="설정">Detail</table-header>
+            <index-analyzer kr="인덱스 분석기">Index Analyzer</index-analyzer>
+            <stopword kr="불용어">StopWord</stopword>
+            <apply-stopword kr="불용어 적용">Apply StopWord</apply-stopword>
+            <query-analyzer kr="쿼리 분석기">Query Analyzer</query-analyzer>
             <buttons>
-                <save>Save</save>
+                <save kr="저장">Save</save>
             </buttons>
         </defined>
         <schema>
-            <title>Schema</title>
-            <table-header>Schema Fields</table-header>
-            <schemaid>Schema Id</schemaid>
-            <type>Type</type>
-            <option>Option</option>
+            <title kr="스키마">Schema</title>
+            <table-header kr="스키마 목록">Schema Fields</table-header>
+            <schemaid kr="스키마 ID">Schema ID</schemaid>
+            <type kr="타입">Type</type>
+            <option kr="옵션">Option</option>
             <buttons>
-                <create>Create Schema</create>
-                <remove>Remove Schema</remove>
+                <create kr="스키마 등록">Create Schema</create>
+                <remove kr="스키마 삭제">Remove Schema</remove>
             </buttons>
             <create>
-                <title>Create Index Schema</title>
-                <schemaid>Schema Id</schemaid>
-                <query-analyzer>Index Analyzer</query-analyzer>
-                <schema-type>Schema Type</schema-type>
+                <title kr="인덱스 스키마 등록">Create Index Schema</title>
+                <schemaid kr="스키마 ID">Schema ID</schemaid>
+                <query-analyzer kr="인덱스 분석기">Index Analyzer</query-analyzer>
+                <schema-type kr="타입">Schema Type</schema-type>
                 <text>Text</text>
                 <keyword>Keyword</keyword>
                 <number>Number</number>
                 <date>Date</date>
                 <manual>Manual</manual>
-                <analyze>Analyze</analyze>
-                <store>Store</store>
-                <boost>Boost</boost>
-                <button>Create Schema</button>
+                <analyze kr="분석기 사용여부">Analyze</analyze>
+                <store kr="저장">Store</store>
+                <boost kr="가중치">Boost</boost>
+                <button kr="등록">Create Schema</button>
             </create>
         </schema>
         <index>
-            <title>Index</title>
-            <table-header>Index Example</table-header>
-            <document-type>Document Type</document-type>
-            <documents>Document(s)</documents>
-            <commit-within>Commit Within</commit-within>
-            <boost>Boost</boost>
-            <overwrite>Overwrite</overwrite>
+            <title kr="인덱스">Index Document</title>
+            <table-header kr="설정">Index Example</table-header>
+            <document-type kr="문서 타입">Document Type</document-type>
+            <documents kr="내용">Document(s)</documents>
+            <commit-within kr="커밋 제한">Commit Within</commit-within>
+            <boost kr="가중치">Boost</boost>
+            <overwrite kr="덮어쓰기">Overwrite</overwrite>
             <buttons>
-                <index>Index Document</index>
+                <index kr="인덱싱">Index Document</index>
             </buttons>
         </index>
         <query>
-            <title>Query</title>
-            <table-header>Query Example</table-header>
-            <query>Query</query>
-            <sort><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
-            <skip>Skip</skip>
-            <offset>Offset</offset>
-            <query-parameter>Query Parameter</query-parameter>
-            <document-type>Document Type</document-type>
-            <indent>Indent</indent>
+            <title kr="쿼리">Query</title>
+            <table-header kr="설정">Query Example</table-header>
+            <query kr="쿼리">Query</query>
+            <sort kr="정렬(예: name, age [_number] [asc|desc])"><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
+            <skip kr="생략할 항목 수">Skip</skip>
+            <offset kr="출력할 항목 수">Offset</offset>
+            <query-parameter kr="매개 변수">Query Parameter</query-parameter>
+            <document-type kr="문서 타입">Document Type</document-type>
+            <indent kr="개행">Indent</indent>
             <buttons>
-                <execute>Execute Query</execute>
+                <execute kr="실행">Execute Query</execute>
             </buttons>
         </query>
         <browsing>
-            <title>Index Browsing</title>
-            <table-header>Index Data Tables(Max:101)</table-header>
-            <id>Id</id>
+            <title kr="브라우징">Index Browsing</title>
+            <table-header kr="인덱스 데이터 목록 (Max:101)">Index Data Tables(Max:101)</table-header>
+            <id>ID</id>
 			<buttons>
-			    <remove>Remove Row</remove>
+			    <remove kr="삭제">Remove Row</remove>
 			</buttons>            
         </browsing>
-        <create>Create Indexer
-            <indexerid>Indexer Id</indexerid>
-            <button>Create Indexer</button>
+        <create kr="인덱서 등록">Create Indexer
+            <indexerid kr="인덱서 ID">Indexer ID</indexerid>
+            <button kr="등록">Create Indexer</button>
         </create>
         <remove>
-             <title>Remove Indexer</title>
-            <indexer>Indexer</indexer>
+             <title kr="인덱서 삭제">Remove Indexer</title>
+            <indexer kr="인덱서 ID">Indexer ID</indexer>
         </remove>
     </indexers>
     
     <searchers>
-        <choose>Choose Searcher</choose>
+        <choose kr="검색기 선택">Choose Searcher</choose>
         <overview>
-            <title>Overview</title>
-            <recent_query>Recent Query</recent_query>
-            <popular_query>Popular Query</popular_query>
+            <title kr="검색기 정보">Overview</title>
+            <recent_query kr="최근 쿼리">Recent Query</recent_query>
+            <popular_query kr="자주쓰는 쿼리">Popular Query</popular_query>
         </overview>
         <defined>
-            <title>Define Searcher</title>
-            <table-header>Detail</table-header>
-            <target-index>Target Indexer</target-index>
-            <query-analyzer>Query Analyzer</query-analyzer>
-            <view-sample>View Sample Defined Search</view-sample>
-            <handler>Handler</handler>
-            <apply-handler>Apply Handler</apply-handler>
-            <stopword>StopWord</stopword>
-            <apply-stopword>Apply Stopword</apply-stopword>
+            <title kr="검색기 설정">Define Searcher</title>
+            <table-header kr="설정">Detail</table-header>
+            <target-index kr="대상 인덱서">Target Indexer</target-index>
+            <query-analyzer kr="쿼리 분석기">Query Analyzer</query-analyzer>
+            <view-sample kr="샘플 핸들러">View Sample Defined Search</view-sample>
+            <handler kr="핸들러">Handler</handler>
+            <apply-handler kr="핸들러 적용">Apply Handler</apply-handler>
+            <stopword kr="불용어">StopWord</stopword>
+            <apply-stopword kr="불용어 적용">Apply Stopword</apply-stopword>
             <buttons>
-                <save>Save</save>
+                <save kr="저장">Save</save>
             </buttons>
             </defined>
         <schema>
-            <title>Schema</title>
-            <table-header>Schema Fields</table-header>
-            <schemaid>Schema Id</schemaid>
-            <analyzer>Analyzer</analyzer>
+            <title kr="스키마">Schema</title>
+            <table-header kr="스키마 목록">Schema Fields</table-header>
+            <schemaid kr="스키마 ID">Schema ID</schemaid>
+            <analyzer kr="분석기">Analyzer</analyzer>
             <buttons>
-                <create>Create Schema</create>
-                <remove>Remove Schema</remove>
+                <create kr="스키마 등록">Create Schema</create>
+                <remove kr="스키마 삭제">Remove Schema</remove>
             </buttons>
-            <create>Create Search Schema
-                <schemaid>Schema Id</schemaid>
-                <query-analyzer>Query Analyzer</query-analyzer>
-                <button>Create Schema</button>
+            <create kr="검색 스키마 등록">Create Search Schema
+                <schemaid kr="스키마 ID">Schema ID</schemaid>
+                <query-analyzer kr="쿼리 분석기">Query Analyzer</query-analyzer>
+                <button kr="등록">Create Schema</button>
             </create>
         </schema>
         <query>
-            <title>Query</title>
-            <table-header>Query Example</table-header>
-            <query>Query</query>
-            <sort><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
-            <skip>Skip</skip>
-            <offset>Offset</offset>
-            <query-parameter>Query Parameter</query-parameter>
-            <document-type>Document Type</document-type>
-            <indent>Indent</indent>
-            <debug>Debug</debug>
+            <title kr="쿼리">Query</title>
+            <table-header kr="설정">Query Example</table-header>
+            <query kr="쿼리">Query</query>
+            <sort kr="정렬(예: name, age [_number] [asc|desc])"><![CDATA[Sort(ex: name, age [_number] [asc|desc])]]></sort>
+			<skip kr="생략할 항목 수">Skip</skip>
+            <offset kr="출력할 항목 수">Offset</offset>
+            <query-parameter kr="매개 변수">Query Parameter</query-parameter>
+            <document-type kr="문서 타입">Document Type</document-type>
+            <indent kr="개행">Indent</indent>
+            <debug kr="디버그">Debug</debug>
             <buttons>
-                <execute>Execute Query</execute>
+                <execute kr="실행">Execute Query</execute>
             </buttons>
         </query>
         <template>
-            <title>Template</title>
-            <table-header>Edit Template(Velocity)</table-header>
-            <view-sample>View Sample Template</view-sample>
-            <content>Template Content</content>
+            <title kr="템플릿">Template</title>
+            <table-header kr="템플릿 작성">Edit Template(Velocity)</table-header>
+            <view-sample kr="템플릿 샘플">View Sample Template</view-sample>
+            <content kr="템플릿 내용">Template Content</content>
             <buttons>
-                <save>Save</save>
+                <save kr="저장">Save</save>
             </buttons>
         </template>
         <browsing>
-            <title>Search Browsing</title>
-            <table-header>Browsing Table(Max : 101)</table-header>
+            <title kr="브라우징">Search Browsing</title>
+            <table-header kr="테이블 목록 (Max:101)">Browsing Table(Max : 101)</table-header>
         </browsing>
-        <create>Create Searcher
-            <searcherid>Searcher Id</searcherid>
-            <button>Create Searcher</button>
+        <create kr="검색기 등록">Create Searcher
+            <searcherid kr="검색기 ID">Searcher ID</searcherid>
+            <button kr="등록">Create Searcher</button>
         </create>
         <remove>
-             <title>Remove Searcher</title>
-            <searcher>Searcher</searcher>
+             <title kr="검색기 삭제">Remove Searcher</title>
+            <searcher kr="검색기 ID">Searcher ID</searcher>
         </remove>
     </searchers>
     
     <misc>
         <properties>
-            <title>Java Properties</title>
-            <table-header>Properties</table-header>
-            <name>Name</name>
-            <value>Value</value>
+            <title kr="자바 속성">Java Properties</title>
+            <table-header kr="속성">Properties</table-header>
+            <name kr="이름">Name</name>
+            <value kr="값">Value</value>
         </properties>
         <threaddump>
-            <title>Thread Dump</title>
-            <table-header>Threads</table-header>
-            <name>Name</name>
-            <cputime>CPU</cputime>
-            <usertime>User Time</usertime>
+            <title kr="쓰레드 덤프">Thread Dump</title>
+            <table-header kr="쓰레드">Threads</table-header>
+            <name kr="이름">Name</name>
+            <cputime kr="CPU">CPU</cputime>
+            <usertime kr="사용 시간">User Time</usertime>
         </threaddump>
         <analyzer>
-            <title>Analyzer Confirm</title>
-            <table-header>Analyzer Confirm</table-header>
-            <value>Text Value To Analyze</value>
+            <title kr="분석기 확인">Analyzer Confirm</title>
+            <table-header kr="분석기 확인">Analyzer Confirm</table-header>
+            <value kr="내용">Text Value To Analyze</value>
             <textvalue>태극기가 바람에 펄럭입니다.</textvalue>
-            <type>Analyzer Type</type>
-            <stopword>Stop Word</stopword>
-            <buttons>Analyze Value</buttons>
+            <type kr="분석기 타입">Analyzer Type</type>
+            <stopword kr="불용어">Stop Word</stopword>
+            <buttons kr="결과보기">Analyze Value</buttons>
         </analyzer>
         <history>
-            <title>Loader History</title>
-            <table-header>Log Tables</table-header>
-            <id>Id</id>
-            <time>Time</time>
-            <loaderid>Loader Id</loaderid>
-            <status>Status</status>
+            <title kr="로더 사용 내역">Loader History</title>
+            <table-header kr="로그 목록">Log Tables</table-header>
+            <id>ID</id>
+            <time kr="시간">Time</time>
+            <loaderid kr="로더 ID">Loader ID</loaderid>
+            <status kr="상태">Status</status>
             <buttons>
-                <detail>View Detail</detail>
+                <detail kr="자세히 보기">View Detail</detail>
             </buttons>
         </history>
         <logging>
-            <title>Logging</title>
-            <table-header>Logging Monitor</table-header>
-            <time>Time</time>
-            <client>Client</client>
-            <type>Type</type>
-            <Resource>Resource</Resource>
-            <method>Method</method>
-            <elapsed>Elapsed</elapsed>
+            <title kr="모니터링">Logging</title>
+            <table-header kr="현재 진행중인 작업">Logging Monitor</table-header>
+            <time kr="시간">Time</time>
+            <client kr="클라이언트">Client</client>
+            <type kr="타입">Type</type>
+            <Resource kr="리소스">Resource</Resource>
+            <method kr="메소드">Method</method>
+            <elapsed kr="경과">Elapsed</elapsed>
             <buttons>
-                <monitor>Monitor</monitor>
-                <stop>Stop</stop>
+                <monitor kr="실행">Monitor</monitor>
+                <stop kr="정지">Stop</stop>
             </buttons>
         </logging>
         <script>
-            <title>Craken Script</title>
-            <table-header>Script Tables</table-header>
-            <id>Id</id>
-            <run>HTTP Path TO RUN</run>
-            <explain>Explain</explain>
+            <title kr="스크립트">Craken Script</title>
+            <table-header kr="스크립트 목록">Script Tables</table-header>
+            <id>ID</id>
+            <run kr="실행 경로">HTTP Path TO RUN</run>
+            <explain kr="설명">Explain</explain>
             <buttons>
-                <define>Define Script</define>
-                <run>Run Script</run>
-                <remove>Remove Script</remove>
+                <define kr="스크립트 등록">Define Script</define>
+                <run kr="실행">Run Script</run>
+                <remove kr="스크립트 삭제">Remove Script</remove>
             </buttons>
-            <output>Script Output</output>
-            <define>Define Script
-                <script-id>Script Id</script-id>
-                <view-sample>View Sample Script</view-sample>
-                <content>Script Content</content>
-                <response>Response</response>
-                <button-run>Run</button-run>
-                <button-define>Define Script</button-define>
+            <output kr="결과">Script Output</output>
+            <define kr="스크립트 등록">Define Script
+                <script-id kr="스크립트 ID">Script ID</script-id>
+                <view-sample kr="샘플 스크립트">View Sample Script</view-sample>
+                <content kr="스크립트 내용">Script Content</content>
+                <response kr="결과">Response</response>
+                <button-run kr="실행">Run</button-run>
+                <button-define kr="등록">Define Script</button-define>
             </define>
             <remove>
-                <script>Script</script>
-                <confirm>Remove Script</confirm>
+                <script kr="스크립트 ID">Script ID</script>
+                <confirm kr="스크립트 삭제">Remove Script</confirm>
             </remove>
         </script>
         <user>
-            <title>System User</title>
-            <table-header>User Tables</table-header>
-            <id>Id</id>
-            <name>Name</name>
+            <title kr="사용자">System User</title>
+            <table-header kr="사용자 목록">User Tables</table-header>
+            <id>ID</id>
+            <name kr="이름">Name</name>
             <buttons>
-                <register>Register User</register>
-                <remove>Remove User</remove>
+                <register kr="사용자 등록">Register User</register>
+                <remove kr="사용자 삭제">Remove User</remove>
             </buttons>
-            <create>Create User
-                <userid>User Id</userid>
-                <name>User Name</name>
-                <password>Password</password>
+            <create kr="사용자 등록">Create User
+                <userid kr="사용자 ID">User ID</userid>
+                <name kr="사용자 이름">User Name</name>
+                <password kr="비밀번호">Password</password>
             </create>
         </user>
     </misc>
@@ -348,20 +348,20 @@
 	<!-- button -->
 	<buttons>
 		<info>
-		    <edit>Edit</edit>
-		    <save>Save</save>
+		    <edit kr="편집">Edit</edit>
+		    <save kr="저장">Save</save>
     	</info>
     	<modal>
-    	    <close>Close</close>
+    	    <close kr="닫기">Close</close>
     	</modal>
 	</buttons>
 	
 	
 	<validation>
-	    <minlength>Please enter at least %d characters.</minlength>
-	    <maxlength>Please enter no more than %d characters.</maxlength>
-	    <required>Please enter %s.</required>
-	    <select>Please select %s.</select>
+	    <minlength kr="%d개 이상의 문자를 입력해 주시기 바랍니다.">Please enter at least %d characters.</minlength>
+	    <maxlength kr="%d개 이하의 문자를 입력해 주시기 바랍니다.">Please enter no more than %d characters.</maxlength>
+	    <required kr="%s를 입력해 주시기 바랍니다.">Please enter %s.</required>
+	    <select kr="%s를 선택해 주시기 바랍니다.">Please select %s.</select>
 	    <idpattern><![CDATA[allowed pattern : ^[a-z][a-z0-9_]*$]]></idpattern>
 	</validation>
 </messages>

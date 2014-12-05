@@ -24,6 +24,6 @@
 	${foreach self.children() child }
 		    <li><a href='/admin/craken${child.fqn}/'>${child.fqn}</a></li>
 	${end}</ul>
-    </div>
+    
 </body>
 </html>

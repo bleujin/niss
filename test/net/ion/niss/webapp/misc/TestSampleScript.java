@@ -97,6 +97,16 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		runScript(new FileInputStream("./resource/script/index_from_db.script")) ;
 	}
 	
+	public void testRunIndexFromDB() throws Exception {
+		runScript(new FileInputStream("./resource/script/index_from_db.script")) ;
+	}
+
+	public void testRunIndexFromFile() throws Exception {
+		runScript(new FileInputStream("./resource/script/index_from_file.script")) ;
+		
+		entry.indexManager().index("col1").newSearcher().createRequest("").find().debugPrint(); 
+	}
+
 	
 	public void testReadCraken() throws Exception {
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
