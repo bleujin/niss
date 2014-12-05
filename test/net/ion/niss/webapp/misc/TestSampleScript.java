@@ -101,9 +101,14 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		runScript(new FileInputStream("./resource/script/index_from_db.script")) ;
 	}
 
+	
+	public void testRunIndexFromDBWithFile() throws Exception {
+		runScript(new FileInputStream("./resource/script/index_from_db_with_file.script")) ;
+	}
+
+	
 	public void testRunIndexFromFile() throws Exception {
 		runScript(new FileInputStream("./resource/script/index_from_file.script")) ;
-		
 		entry.indexManager().index("col1").newSearcher().createRequest("").find().debugPrint(); 
 	}
 

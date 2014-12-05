@@ -84,6 +84,7 @@ class AutoDetectTika {
 	private Parser tikaParser = new AutoDetectParser();
 	private H2TParser hwpParser = new H2TParser();
 
+
 	public <T> T handle(File file, IndexSession isession, FileIndexHandler<T> findexHandler) {
 
 		try {
@@ -105,10 +106,10 @@ class AutoDetectTika {
 							output.flush();
 							IOUtil.closeQuietly(output);
 							IOUtil.closeQuietly(input);
-							
+
 							StringBuffer content = new StringBuffer(new String(out.toByteArray(), Charset.forName("UTF-8")));
 							return findexHandler.onSuccess(isession, FileEntry.create(file, content, meta));
-							
+
 						} finally {
 							IOUtil.closeQuietly(output);
 							IOUtil.closeQuietly(input);

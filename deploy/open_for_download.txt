@@ -1,1 +1,14 @@
 http://niss.s3.amazonaws.com/niss_0.7.zip
+
+
+
+
+HISTORY : 
+
+added 2014.12.5 
+	* script  
+		index_from_db
+		index_from_file
+		index_from_db_with_file - db col으로 file loc이 저장되어 있을 경우 file의 content를 index 함.
+		
+	by bleujin...		
