@@ -361,8 +361,8 @@
 	
 	
 	<validation>
-	    <minlength kr="%d개 이상의 문자를 입력해 주시기 바랍니다.">Please enter at least %d characters.</minlength>
-	    <maxlength kr="%d개 이하의 문자를 입력해 주시기 바랍니다.">Please enter no more than %d characters.</maxlength>
+	    <minlength kr="%s개 이상의 문자를 입력해 주시기 바랍니다.">Please enter at least %s characters.</minlength>
+	    <maxlength kr="%s개 이하의 문자를 입력해 주시기 바랍니다.">Please enter no more than %s characters.</maxlength>
 	    <required kr="%s를 입력해 주시기 바랍니다.">Please enter %s.</required>
 	    <select kr="%s를 선택해 주시기 바랍니다.">Please select %s.</select>
 	    <idpattern><![CDATA[allowed pattern : ^[a-z][a-z0-9_]*$]]></idpattern>

@@ -1,0 +1,60 @@
+// index from file sample 
+new function(){
+
+	importPackage(java.io)
+	importPackage(java.lang) 
+	importPackage(net.ion.craken.node.convert)
+	importPackage(java.util.concurrent) 
+	importPackage(net.ion.niss.webapp.loaders)
+	importPackage(net.ion.framework.db.bean)
+	importPackage(java.sql)
+	importPackage(net.ion.nsearcher.index)
+	importPackage(net.ion.nsearcher.index.file)
+
+	this.handle = function(writer, session, param, rentry, jengine){
+		var iid = "col1";
+		var imanager = rentry.indexManager();
+		
+		if (! imanager.hasIndex(iid)) {
+			writer.append(iid + " not exist");
+			return ;
+		}
+		var indexer = imanager.index(iid).newIndexer() ;
+		var rsession = rentry.login() ;
+		
+		var findexer = FileIndexBuilder.create(imanager.index(iid))
+					.baseDir(new File("./resource")).recursive(true)
+					.extNames(["docx", "pptx", "rtf", "txt", "xls", "pdf", "hwp" ])
+					// .sizeFilter(10 * 1024, false) // less 10K
+					// .prefixFilter("sample") // startWith 'sample' 
+					// .ageOverFilter(new Date().getTime() - (86400L * 1000), false) // recent 1 day
+					// .executors(jengine.executor()) // if you want that asynchrous handle it   
+					.build();
+
+		var result = findexer.index(new FileIndexHandler({
+			onSuccess : function(isession, fentry) {
+				isession.fieldIndexingStrategy(imanager.fieldIndexStrategy(rsession, iid)) ;
+				
+				var metaMap = fentry.meta() ; // can get metainfo
+				
+				isession.newDocument(fentry.file().getCanonicalPath())
+					.unknown("content", fentry.contentBuffer().toString())
+					.updateVoid() ;
+					
+				writer.append(fentry.file().getName() + " indexed. \n");
+				return true;
+			}, 
+
+			onFail : function(isession, file, ex) {
+				writer.append(file + " fail. "+ ex.getMessage()+ "\n");
+				return false;
+			}
+		}));
+		
+		
+		// result is future 
+		writer.append('index started') ;
+		return result ;
+	}
+
+} ;

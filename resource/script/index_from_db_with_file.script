@@ -1,0 +1,76 @@
+// index from db sample 
+new function(){
+	importPackage(java.io) 
+	importPackage(java.lang) 
+	importPackage(net.ion.craken.node.convert)
+	importPackage(java.util.concurrent) 
+	importPackage(net.ion.niss.webapp.loaders)
+	importPackage(net.ion.framework.db.bean)
+	importPackage(java.sql)
+	importPackage(net.ion.nsearcher.index)
+	importPackage(net.ion.nsearcher.index.rdb)
+
+	this.handle = function(writer, session, param, rentry, jengine){
+		var iid = "col1";
+		var imanager = rentry.indexManager();
+		
+		if (! imanager.hasIndex(iid)) {
+			writer.append(iid + " not exist");
+			return ;
+		}
+		var indexer = imanager.index(iid).newIndexer() ;
+		var rsession = rentry.login() ;
+		
+		var rindexer = RDBIndexBuilder.create(imanager.index(iid))
+			.rdb(RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select table_name, './resource/dir_help.txt' fileloc from tabs"))
+			// .executors(jengine.executor()) // if you want that asynchrous handle it
+			.build() ;
+		
+		var result = rindexer.index(new RDBIndexHandler({
+			onSuccess : function(isession, rdb, rs) {
+				isession.fieldIndexingStrategy(imanager.fieldIndexStrategy(rsession, iid)) ;
+			
+				var fef = FileEntryFactory.create() ;
+				var nullHandler = new FailHandler({
+					onFail : function(file, ex) {
+						return null;
+					}
+				});
+				
+				var i = 0 ;
+				while(rs.next()){
+					var wdoc = isession.newDocument(rs.getString("table_name")).unknown("owner", "bleujin") ;
+					
+					var file = new File(rs.getString("fileloc")) ;
+					if (file.exists() && file.isFile() && file.canRead()){ // and check other
+						var fentry = fef.makeEntry(file, nullHandler) ;
+						if (fentry != null) {
+							var metaMap = fentry.meta() ; // if you want to get meta info 
+							 
+							wdoc.keyword("file", file.getCanonicalPath()) ;
+							wdoc.text("content", fentry.contentBuffer().toString()) ;
+							wdoc.keyword("owner", "withfile") ;
+						}
+					}
+					
+					wdoc.updateVoid() ;
+					if (((++i) % 3000) == 0) isession.continueUnit() ; // within 3000
+				}
+				
+				writer.append(i + " committed") ;
+				return i;
+			}, 
+
+			onFail : function(isession, rdb, ex) {
+				writer.append(ex.getMessage()) ;
+				return 0;
+			}
+		}));
+		
+		// result is future 
+		writer.append('index started') ;
+		writer.flush() ;
+		return result ;
+	}
+
+} ;
