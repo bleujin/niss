@@ -30,6 +30,11 @@
 			<create kr="검색기 등록">Create Searcher</create>
 			<remove kr="서처 삭제">Remove Searcher</remove>
 		</searchers>
+		<scripts kr="스크립트">Craken Script
+		    <overview kr="스크립트 정보">Overview</overview>
+		    <defined kr="스크립트 설정">Define Script</defined>
+		    <schedule kr="스케쥴">Schedule</schedule>
+		</scripts>
 		<misc kr="기타">Miscellaneous
 			<properties kr="자바 속성">Java Properties</properties>
 			<threaddump kr="쓰레드 덤프">Thread Dump</threaddump>

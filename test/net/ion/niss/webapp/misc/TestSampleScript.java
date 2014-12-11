@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -40,6 +41,7 @@ import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
 
+import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.WildcardQuery;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
@@ -203,4 +205,10 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		}) ;
 	}
 	
+	
+	public void testPlug() throws Exception {
+		Debug.line(URLEncoder.encode("+")) ;
+		
+		
+	}
 }
