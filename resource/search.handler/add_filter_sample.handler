@@ -6,6 +6,7 @@ new function(){
 	importPackage(net.ion.nsearcher.search.processor)  
 
 	this.filter = function(){
+		// return org.apache.lucene.search.NumericRangeFilter.newLongRange("age", 5, 20, true, true) ;
 		return new TermFilter("idx", "1") ;
 	} 
 	

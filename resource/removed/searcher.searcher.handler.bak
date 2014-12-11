@@ -5,21 +5,12 @@ new function(){
 	importPackage(net.ion.nsearcher.search.filter)
 	importPackage(net.ion.nsearcher.search.processor)  
 
-	this.postProcessor = function(rsession, sid){
-		return new net.ion.nsearcher.search.processor.PostProcessor({
-			postNotify : function(request, response){
-				var ireq = request ;
-				rsession.tran(new net.ion.craken.node.TransactionJob({
-					handle : function(wsession){
-					    var query = ireq.query().toString() ;
-						wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query).property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') ;
-					}
-				})) ;
-			} 
-		});
+	this.filter = function(){
+               return org.apache.lucene.search.NumericRangeFilter.newLongRange("age", 5, 20, true, true) ;
+	       // return new TermFilter("idx", "1") ;
 	} 
 	
-	this.handle = function(searcher, rsession, sid){
-		return searcher.addPostListener(this.postProcessor(rsession, sid)) ;
+	this.handle = function(searcher){
+		return searcher.andFilter(this.filter());
 	}
 } ;
