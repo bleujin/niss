@@ -5,6 +5,10 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+debug 2014.12.11
+	number type index :
+    remove script : 
+
 added 2014.12.5 
 	* script  
 		index_from_db
