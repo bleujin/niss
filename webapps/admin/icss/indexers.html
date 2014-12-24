@@ -233,7 +233,7 @@
 			$("#remove-indexer-confirm" ).dialog({
 				modal: true,
 				buttons: {
-					"Remove Indexer": function() {
+					"${m.asString('menu.indexers.remove')}": function() {
 						var removeId = lastIndexerId ;
 						var win = $( this ) ;
 						if (removeId > ' '){
@@ -253,7 +253,7 @@
 							}) ;	
 						}
 					},
-					Cancel: function() {
+					"${m.asString('buttons.modal.cancel')}": function() {
 						$( this ).dialog( "close" );
 					}
 				}

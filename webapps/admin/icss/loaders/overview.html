@@ -120,10 +120,12 @@
 			}
 		}) ;
 	};
-
+	
 	// run pagefunction on load
 	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
-		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", new function(){
+			loadScript("js/plugin/summernote/summernote.min.js", pagefunction);			
+		});
 	});
 
 </script>

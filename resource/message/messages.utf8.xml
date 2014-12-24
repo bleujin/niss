@@ -30,11 +30,13 @@
 			<create kr="검색기 등록">Create Searcher</create>
 			<remove kr="서처 삭제">Remove Searcher</remove>
 		</searchers>
-		<scripts kr="스크립트">Craken Script
+		<scripters kr="스크립트">Craken Script
 		    <overview kr="스크립트 정보">Overview</overview>
 		    <defined kr="스크립트 설정">Define Script</defined>
 		    <schedule kr="스케쥴">Schedule</schedule>
-		</scripts>
+		    <create kr="스크립트 등록">Create Script</create>
+			<remove kr="스크립트  삭제">Remove Script</remove>
+		</scripters>
 		<misc kr="기타">Miscellaneous
 			<properties kr="자바 속성">Java Properties</properties>
 			<threaddump kr="쓰레드 덤프">Thread Dump</threaddump>
@@ -73,7 +75,7 @@
     <loaders>
         <choose kr="로더 선택">Choose Loader</choose>
         <overview>
-            <title kr="로더 사용 내역">Overview</title>
+            <title kr="로더 정보">Overview</title>
             <table-header kr="로그 목록(Max:101)">Recent Loader History(Max:101)</table-header>
             <eventid kr="이벤트ID">Event ID</eventid>
             <time kr="시간">Run Time</time>
@@ -262,6 +264,53 @@
         </remove>
     </searchers>
     
+    <scripters>
+        <choose kr="스크립트 선택">Choose Scripter</choose>
+        <overview>
+            <title kr="스크립트 정보">Overview</title>
+            <table-header kr="로그 목록(Max:101)">Recent Scripter History(Max:101)</table-header>
+            <eventid kr="이벤트ID">Event ID</eventid>
+            <time kr="시간">Run Time</time>
+            <status kr="상태">Status</status>
+            <buttons><view-detail kr="자세히 보기">View Detail</view-detail></buttons>
+		</overview>
+		<defined>
+		    <title kr="스크립트 설정">Define Scripter</title>
+		    <table-header kr="설정">Detail</table-header>
+		    <view-sample kr="스크립트 샘플">View Sample Script</view-sample>
+		    <content kr="스크립트">Script Content</content>
+		    <output kr="결과">Output</output>
+		    <buttons>
+		        <run kr="실행">Run</run>
+		        <save kr="저장">Save</save>
+		    </buttons>
+		</defined>
+		<schedule>
+		    <title kr="스케쥴 설정">Define Schedule</title>
+		    <table-header kr="스케쥴 정보">Schedule Info(Cron Style)</table-header>
+		    <minute kr="분">Minute</minute>
+		    <day kr="일">Day</day>
+		    <week kr="주">Week</week>
+		    <matchtime kr="횟수">MatchTime</matchtime>
+		    <enable kr="설정 여부">Enable</enable>
+		    <hour kr="시">Hour</hour>
+		    <month kr="월">Month</month>
+		    <year kr="년">Year</year>
+		    <buttons>
+		        <set kr="저장">Set</set>
+		    </buttons>
+		</schedule>
+		
+		<create kr="스크립트 등록">Create Scripter
+			<scripterid kr="로더 ID">Scripter ID</scripterid>
+		</create>
+        <remove>
+            <title kr="스크립트 삭제">Remove Scripter</title>
+            <scripter kr="스크립트 ID">Scripter ID</scripter>
+        </remove>
+    </scripters>
+    
+    
     <misc>
         <properties>
             <title kr="자바 속성">Java Properties</title>
@@ -310,31 +359,7 @@
                 <stop kr="정지">Stop</stop>
             </buttons>
         </logging>
-        <script>
-            <title kr="스크립트">Craken Script</title>
-            <table-header kr="스크립트 목록">Script Tables</table-header>
-            <id>ID</id>
-            <run kr="실행 경로">HTTP Path TO RUN</run>
-            <explain kr="설명">Explain</explain>
-            <buttons>
-                <define kr="스크립트 등록">Define Script</define>
-                <run kr="실행">Run Script</run>
-                <remove kr="스크립트 삭제">Remove Script</remove>
-            </buttons>
-            <output kr="결과">Script Output</output>
-            <define kr="스크립트 등록">Define Script
-                <script-id kr="스크립트 ID">Script ID</script-id>
-                <view-sample kr="샘플 스크립트">View Sample Script</view-sample>
-                <content kr="스크립트 내용">Script Content</content>
-                <response kr="결과">Response</response>
-                <button-run kr="실행">Run</button-run>
-                <button-define kr="등록">Define Script</button-define>
-            </define>
-            <remove>
-                <script kr="스크립트 ID">Script ID</script>
-                <confirm kr="스크립트 삭제">Remove Script</confirm>
-            </remove>
-        </script>
+
         <user>
             <title kr="사용자">System User</title>
             <table-header kr="사용자 목록">User Tables</table-header>
@@ -361,6 +386,7 @@
     	</info>
     	<modal>
     	    <close kr="닫기">Close</close>
+    	    <cancel kr="취소">Cancel</cancel>
     	</modal>
 	</buttons>
 	

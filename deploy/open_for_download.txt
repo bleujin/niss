@@ -5,6 +5,10 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2014.12.24
+	add script schedule(move top menu)
+	debug define unknown field type in script(if unkown && containSchema then apply schema type) 
+
 debug 2014.12.11
 	number type index :
     remove script : 

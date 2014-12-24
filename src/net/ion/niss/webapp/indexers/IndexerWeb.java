@@ -429,19 +429,29 @@ public class IndexerWeb implements Webapp {
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") final float boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request){
 
+		final SchemaInfos sinfos = rsession.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
+			@Override
+			public SchemaInfos apply(Iterator<ReadNode> iter) {
+				return SchemaInfos.create(iter) ;
+			}
+		}) ;
+
+		
 		Indexer indexer = imanager.index(iid).newIndexer() ;
 		indexer.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				
-				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+//				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
 				
 				JsonObject json = JsonObject.fromString(documents) ;
 				if (! json.has("id")) json.put("id", new ObjectId().toString()) ;
 				
 				WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
 				wdoc.boost(boost) ;
-				wdoc.add(json) ;
+				
+				sinfos.addFields(wdoc, json) ;
+//				wdoc.add(json) ;
 				
 				if (overwrite) isession.updateDocument(wdoc) ;
 				else isession.insertDocument(wdoc) ;
@@ -466,11 +476,17 @@ public class IndexerWeb implements Webapp {
 			@Context HttpRequest request){
 		Indexer indexer = imanager.index(iid).newIndexer() ;
 		final JsonArray jarray = JsonParser.fromString(documents).getAsJsonArray() ;
+		final SchemaInfos sinfos = rsession.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
+			@Override
+			public SchemaInfos apply(Iterator<ReadNode> iter) {
+				return SchemaInfos.create(iter) ;
+			}
+		}) ;
 		
 		indexer.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
-				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+//				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
 				
 				for (int i=0 ; i <jarray.size() ; i++) {
 					JsonObject json = jarray.get(i).getAsJsonObject() ;
@@ -479,7 +495,8 @@ public class IndexerWeb implements Webapp {
 					String idVlaue = json.asString("id");
 					WriteDocument wdoc = isession.newDocument(idVlaue) ;
 					
-					wdoc.add(json) ;
+					sinfos.addFields(wdoc, json);
+//					wdoc.add(json) ;
 					
 					Void v = overwrite ? wdoc.updateVoid() : wdoc.insertVoid() ;
 					if (i != 0 && i % within == 0) isession.continueUnit() ;
@@ -501,13 +518,19 @@ public class IndexerWeb implements Webapp {
 		Indexer indexer = imanager.index(iid).newIndexer() ;
 		final CsvReader creader = new CsvReader(new StringReader(documents)) ;
 		final String[] headers = creader.readLine() ;
+		final SchemaInfos sinfos = rsession.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
+			@Override
+			public SchemaInfos apply(Iterator<ReadNode> iter) {
+				return SchemaInfos.create(iter) ;
+			}
+		}) ;
 		
 		int sum = indexer.index(new IndexJob<Integer>() {
 			@Override
 			public Integer handle(IndexSession isession) throws Exception {
 				String[] fields ;
 				int count = 0 ;
-				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
+//				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
 				
 				while((fields = creader.readLine()) != null){
 					Map<String, String> map = MapUtil.newMap() ;
@@ -516,7 +539,8 @@ public class IndexerWeb implements Webapp {
 					}
 					if (! map.containsKey("id")) map.put("id", new ObjectId().toString()) ;
 					
-					WriteDocument wdoc = isession.newDocument(map.get("id")).add(map) ;
+					WriteDocument wdoc = isession.newDocument(map.get("id"));
+					sinfos.addFields(wdoc, map);
 					
 					if (overwrite) isession.updateDocument(wdoc) ;
 					else isession.insertDocument(wdoc) ;

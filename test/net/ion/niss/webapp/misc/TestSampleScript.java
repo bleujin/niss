@@ -27,6 +27,8 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.MapUtil;
+import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.indexers.IndexManager;
@@ -147,9 +149,10 @@ public class TestSampleScript extends TestBaseIndexWeb {
 	public void runScript(InputStream input) throws Exception {
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
 		final JScriptEngine jengine = ss.treeContext().getAttributeObject(JScriptEngine.EntryName, JScriptEngine.class) ;
-		ScriptWeb sweb = new ScriptWeb(rentry, jengine) ;
+		EventSourceEntry esentry = EventSourceEntry.create() ;
+		ScriptWeb sweb = new ScriptWeb(rentry, jengine, esentry) ;
 		
-		Response response = sweb.instantRunScript(null, IOUtil.toStringWithClose(input)) ;
+		Response response = sweb.runTestScript("test", new MultivaluedMapImpl<String, String>(), IOUtil.toStringWithClose(input)) ;
 		Debug.line(response.getEntity()) ;
 	}
 	

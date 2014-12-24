@@ -45,7 +45,7 @@ public class OpenScriptWeb implements Webapp{
 	private EventSourceEntry esentry;
 
 	public OpenScriptWeb(@ContextParam("rentry") REntry rentry, @ContextParam("jsentry") JScriptEngine jengine, @ContextParam("esentry") EventSourceEntry esentry ) throws IOException{
-		this.refWeb = new ScriptWeb(rentry, jengine) ;
+		this.refWeb = new ScriptWeb(rentry, jengine, esentry) ;
 		this.rentry = rentry ;
 		this.rsession = rentry.login() ;
 		this.jengine = jengine ;
@@ -59,83 +59,6 @@ public class OpenScriptWeb implements Webapp{
 	}
 	
 	
-	@Path("/write/{sid}")
-	@GET @POST
-	public Response writeFromScript(@PathParam("sid") String sid, @QueryParam("eventid") String eventId, @Context HttpRequest request) throws IOException, ScriptException{
-		writeScript(sid, eventId, request) ;
-		
-		return Response.ok().build() ;
-	}
-
-	public String writeScript(final String sid, final String eventId, @Context HttpRequest request) throws IOException, ScriptException{
-		final MultivaluedMap<String, String> params = request.getDecodedFormParameters() ;
-		final String content = rsession.ghostBy("/scripts/" + sid).property("content").asString() ;
-		final Writer writer = new ScriptOutWriter(esentry, eventId) ;
-
-		InstantJavaScript script = jengine.createScript(IdString.create(sid), "", new StringReader(content)) ;
-		script.execAsync(new ResultHandler<Void>() {
-			@Override
-			public Void onSuccess(Object result, Object... args) {
-				try {
-					writer.write(ObjectUtil.toString(result));
-					writer.flush(); 
-				} catch (IOException e) {
-					e.printStackTrace();
-				} finally {
-					IOUtil.closeQuietly(writer);
-				}
-				
-				return null;
-			}
-
-			@Override
-			public Void onFail(Exception ex, Object... args) {
-				try {
-					writer.write("exception occured : " + ex.getMessage()) ;
-					writer.flush(); 
-					ex.printStackTrace(); 
-				} catch (IOException e) {
-					e.printStackTrace();
-				} finally {
-					IOUtil.closeQuietly(writer);
-				}
-				return null;
-			}
-		}, writer, rsession, params, rentry, jengine) ;
-
-		
-		return null ;
-	}
-
-	
 }
 
 
-class ScriptOutWriter extends Writer{
-
-	private String eventId;
-	private EventSourceEntry ese;
-	private StringBuilder buffer = new StringBuilder() ;
-
-	public ScriptOutWriter(EventSourceEntry ese, String eventId) throws IOException {
-		this.ese = ese ;
-		this.eventId = eventId ;
- 	}
-
-	@Override
-	public void write(char[] cbuf, int off, int len) throws IOException {
-		buffer.append(cbuf, off, len) ;
-	}
-
-	@Override
-	public void flush() throws IOException {
-		ese.sendTo(eventId, buffer.toString()) ;
-		buffer.setLength(0);
-	}
-
-	@Override
-	public void close() throws IOException {
-		flush();
-		ese.closeEvent(eventId); 
-	}
-}

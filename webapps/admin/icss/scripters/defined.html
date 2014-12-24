@@ -1,0 +1,289 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i>${m.asString("scripters.defined.title")}
+		</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="save_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-darken" id="scripter-defined-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+					<h2>${m.asString("scripters.defined.table-header")}</h2>				
+				</header>
+
+
+				<div>
+					<div class="jarviswidget-editbox">
+						<input class="form-control" type="text">	
+					</div>
+
+					
+					<div class="widget-body">
+					<form class="smart-form" id="scripter-define-form" method="post" action="scripters/define" novalidate="novalidate">
+						<fieldset>
+							<section>
+								<label class="select">
+									<select name="scripter_samples"><option value=''>${m.asString("scripters.defined.view-sample")}</option></select>
+								</label>
+							</section>
+						
+							<section>
+								<label class="label">${m.asString("scripters.defined.content")}</label>
+								<label class="textarea textarea-resizable">
+									<i class="icon-append fa fa-question-circle"/> 										
+									<textarea rows="12" class="custom-scroll" placeholder="script content" name="scontent"></textarea>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("scripters.defined.content")}</b> 
+								</label>
+							</section>
+
+							<section>
+								<label class="label">${m.asString("scripters.defined.output")}</label>
+								<label class="textarea textarea-resizable" readonly="readonly">
+									<textarea rows="12" class="custom-scroll" id="script_output"></textarea>
+								</label>
+								
+							</section>
+							
+							<section>
+								<label class="label alert-info alert-block"><pre id="target_url"></pre></label>
+							</section>
+
+						</fieldset>
+						
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+									
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" name="btn_save">
+								<i class="fa fa-check"></i> ${m.asString("scripters.defined.buttons.save")}
+							</button>	
+							<button class="btn btn-sm btn-primary" type="button" name="btn_run">
+								<i class="fa fa-times"></i> ${m.asString("scripters.defined.buttons.run")}
+							</button>	
+						</footer>
+						
+					</form>
+					</div>
+				</div>
+				
+			</div>
+		</article>
+		
+	</div>
+	
+
+
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	
+	pageSetUp();
+	
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/scripters",
+				data: { content: aHTML, field: "define" }
+			});
+			$('.click2edit').destroy();
+		});
+
+		var _defineForm = $("#scripter-define-form") ;
+		var _scontent = _defineForm.find("textarea[name=scontent]") ;
+		var _runButton = _defineForm.find("button[name=btn_run]") ;
+		var _saveButton = _defineForm.find("button[name=btn_save]") ;
+		var _sampleLoader = _defineForm.find("select[name=scripter_samples]") ;
+		
+		
+		var scripterId = $("#scripters option:selected").val() ;
+		if (scripterId.indexOf('-') == 0) return ;
+		
+		$.browser.chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
+		var msgCall = function(sid, eventId){
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/scripters/" + sid + "/instantrun/" + eventId,
+				data: { content: _scontent.val()}, 
+				complete : function(){ 
+					var result_text = 'Path : ' + this.url + '<br/>';
+					result_text += '<strong>External Run Path : ' + "/open/script/run/" + sid + '</strong><br/>';
+					result_text += 'Event Source : /event/' + eventId + '<br />' ;
+					result_text += 'Form parameter : <br />' ;
+					result_text += ' - paramname : ...<br />' ;
+					$("#target_url").html(result_text) ;
+				}, 
+				success :  function(data) {
+					// console.log(data) ;
+				}
+			}) ;
+		} ;
+		
+		$.ajax({
+			url:'/admin/scripters/' + scripterId + "/define",
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				var samples = data['samples'];
+				var content = data['content'];
+				
+				for(var idx in samples ){
+					var sample = samples[idx] ; 
+					var option = $('<option value="'+sample+'">'+sample+'</option>') ;
+					option.appendTo(_sampleLoader) ;
+				}
+				
+				$("#info").html(info) ;
+				_scontent.val(data["content"]) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+
+		}) ;
+		
+		
+		_sampleLoader.change(function(){
+			var fileName = _sampleLoader.val() ;
+			if (fileName < ' ') return ;
+			$.ajax({
+				type: "GET",
+				dataType : 'text', 
+				url: "/admin/scripters/" + scripterId + "/samplescript/" + fileName,
+				data: {}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					_scontent.val(data) ;
+				}
+			}) ;
+		}) ;
+		
+		var command = '';
+		_defineForm.validate({
+			rules : {
+				scontent : { required : true }
+			},
+
+			messages : {
+				scontent : { required : "${m.asString('validation.required', 'script content')}"}
+			},
+
+			submitHandler : function(form) {
+				
+				if (command == 'save') {
+					$.ajax({
+						type: "POST",
+						dataType : 'text', 
+						url: "/admin/scripters/" + scripterId + "/define",
+						data: { content: _scontent.val()}, 
+						complete : function(){ 
+							
+						}, 
+						success :  function(data) {
+							$("#save-message span").html(data) ;
+							$("#save-message").removeClass("message") ;
+							setTimeout(function() {
+								$("#save-message").addClass("message") ;
+							}, 2000);
+						}
+					}) ;
+				} else if (command == 'run'){
+					
+					var eventId =  Math.random().toString(36).substr(2, 9) + '_' + new Date().getTime() ;
+					var outputText = $('textarea#script_output');
+					
+					if(typeof(EventSource)!=="undefined") {
+						var es = new EventSource('/event/' + eventId);
+						es.onopen = function() {
+							console.log('OPEN');
+							outputText.text('') ;
+							if ($.browser.chrome) msgCall(scripterId, eventId) ;
+						};
+						es.onmessage = function(e) {
+							if (e.data == eventId) {
+								es.close();
+								_runButton.removeAttr("disabled");
+								return ;
+							}
+							outputText.append(e.data + '\n');
+							outputText.scrollTop(outputText.scrollHeight);
+						};
+						es.onerror = function(e) {
+							_runButton.removeAttr("disabled");
+							console.log('ERROR : ' + e);
+							// es.close() ;
+						};
+					} 
+					
+					outputText.text('') ;
+					if(typeof(EventSource)=="undefined") outputText.text("Whoops! Your browser doesn't receive server-sent events.[support browser : ff, chrome, safari]") ;
+					
+					_runButton.attr('disabled', 'disabled') ;
+					if (! $.browser.chrome) msgCall(scripterId, eventId) ;
+					
+				}
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		
+		_saveButton.click(function() {
+			command = 'save' ;
+			_defineForm.submit() ;
+		});
+		
+		_runButton.click(function() {
+			command = 'run' ;
+			_defineForm.submit() ;
+		});
+		
+	};
+
+	// run pagefunction on load
+	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
+	
+</script>

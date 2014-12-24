@@ -80,66 +80,7 @@ public class IndexManager {
 		return new FieldIndexingStrategy() {
 			@Override
 			public void save(final Document doc, final MyField myField, final Field ifield) {
-				
-				final MyField newField = sinfos.myField(myField, ifield) ;
-
-				final String fieldName = IKeywordField.Field.reservedId(ifield.name()) ? ifield.name() :  StringUtil.lowerCase(ifield.name());
-				
-				if (newField.myFieldtype() == MyFieldType.Number){
-					doc.add(new StringField(fieldName, ifield.stringValue(), Store.NO));
-				}
-				if (newField.myFieldtype() == MyFieldType.Unknown && NumberUtil.isNumber(ifield.stringValue())){
-					doc.add(new DoubleField(fieldName, Double.parseDouble(ifield.stringValue()), Store.NO));
-				}
-				if (newField.myFieldtype() == MyFieldType.Date){
-					// new Date().getTime();
-					Date date = DateUtil.stringToDate(ifield.stringValue(), "yyyyMMdd HHmmss") ;
-					doc.add(new StringField(fieldName, StringUtil.substringBefore(ifield.stringValue(), " "), Store.NO)) ;
-					doc.add(new StringField(fieldName, ifield.stringValue(), Store.NO)) ;
-					doc.add(new LongField(fieldName, Long.parseLong(DateUtil.dateToString(date, "yyyyMMdd")), Store.NO)) ;
-				}
-				
-				doc.add(new IndexableField() {
-					@Override
-					public TokenStream tokenStream(Analyzer analyzer) throws IOException {
-						return ifield.tokenStream(analyzer);
-					}
-					
-					@Override
-					public String stringValue() {
-						return ifield.stringValue();
-					}
-					
-					@Override
-					public Reader readerValue() {
-						return ifield.readerValue();
-					}
-					
-					@Override
-					public Number numericValue() {
-						return ifield.numericValue();
-					}
-					
-					@Override
-					public String name() {
-						return fieldName ;
-					}
-					
-					@Override
-					public IndexableFieldType fieldType() {
-						return newField.fieldType(); // redefine
-					}
-					
-					@Override
-					public float boost() {
-						return newField.boost();
-					}
-					
-					@Override
-					public BytesRef binaryValue() {
-						return ifield.binaryValue();
-					}
-				}) ;
+				sinfos.addField(doc, myField, ifield);
 			}
 		};
 	}

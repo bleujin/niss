@@ -201,7 +201,7 @@
 			$("#remove-searcher-confirm" ).dialog({
 				modal: true,
 				buttons: {
-					"Remove Searcher": function() {
+					"${m.asString('menu.searchers.remove')}": function() {
 						var win = $( this ) ;
 						$.ajax({
 							type: "DELETE",
@@ -218,7 +218,7 @@
 							}
 						}) ;	
 					},
-					Cancel: function() {
+					"${m.asString('buttons.modal.cancel')}": function() {
 						$( this ).dialog( "close" );
 					}
 				}

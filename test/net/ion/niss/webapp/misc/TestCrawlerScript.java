@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
@@ -22,6 +24,7 @@ import net.ion.icrawler.processor.PageProcessor;
 import net.ion.icrawler.scheduler.MaxLimitScheduler;
 import net.ion.icrawler.scheduler.QueueScheduler;
 import net.ion.icrawler.selector.Link;
+import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
@@ -72,9 +75,10 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 	public void runScript(InputStream input) throws Exception {
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
 		final JScriptEngine jengine = ss.treeContext().getAttributeObject(JScriptEngine.EntryName, JScriptEngine.class) ;
-		ScriptWeb sweb = new ScriptWeb(rentry, jengine) ;
+		EventSourceEntry esentry = EventSourceEntry.create() ;
+		ScriptWeb sweb = new ScriptWeb(rentry, jengine, esentry) ;
 		
-		Response response = sweb.instantRunScript(null, IOUtil.toStringWithClose(input)) ;
+		Response response = sweb.runTestScript("test", new MultivaluedMapImpl<String, String>(), IOUtil.toStringWithClose(input)) ;
 		Debug.line(response.getEntity()) ;
 	}
 }

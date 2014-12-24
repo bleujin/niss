@@ -30,18 +30,31 @@ public class MyField {
 	private boolean ignoreBody;
 
 	private final Field ifield;
-	private MyFieldType mtype; 
+	private MyFieldType mtype;
+	private String unknownValue = StringUtil.EMPTY ;
 
 	public MyField(Field ifield, MyFieldType mtype){
 		this.ifield = ifield ;
 		this.mtype = mtype ;
+		this.unknownValue = ifield.stringValue() ;
+	}
+
+	public MyField(Field ifield, String value){
+		this.ifield = ifield ;
+		this.mtype = MyFieldType.Unknown ;
+		this.unknownValue = value ;
 	}
 	
 	public String name() {
 		return ifield.name() ;
 	}
+	
 	public String stringValue() {
 		return ifield.stringValue() ;
+	}
+	
+	public String unknownValue(){
+		return unknownValue ;
 	}
 	
 	public MyField boost(float boost){
@@ -168,12 +181,7 @@ public class MyField {
 	}
 	
 	public static MyField unknown(String name, String value){
-		if (StringUtil.isNotBlank(value) && StringUtil.isNumeric(value)) {
-			return number(name, Long.parseLong(value)) ;
-		} else if (StringUtil.isAlphanumericUnderbar(value)){
-			return keyword(name, value) ;
-		} else
-			return new MyField(new TextField(name, value, Store.YES), MyFieldType.Unknown);
+		return new MyField(new TextField(name, StringUtil.substring(value, 0, 100), Store.YES), value);
 	}
 
 	public static MyField manual(String name, String value, Store store, boolean analyze, MyFieldType fieldType){

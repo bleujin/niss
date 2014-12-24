@@ -1,0 +1,227 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i>${m.asString("scripters.schedule.title")}
+		</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="save_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<section id="widget-grid" class="">
+	<div class="row">
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-blueLight" id="scripter-schedule-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+			<header>
+				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+				<h2>${m.asString("scripters.schedule.table-header")}</h2>				
+			</header>
+
+			<div>
+				<div class="jarviswidget-editbox">
+					<input class="form-control" type="text">	
+				</div>
+				
+				<div class="widget-body">
+						
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<form class="smart-form" id="scripter-schedule-form" method="post" action="scripters/query" novalidate="novalidate">
+							<fieldset style="padding: 0px">					
+								<div class="row">
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.minute")}</label>
+										<label class="input">
+											<input type="text" name="minute" placeholder="0-59" />
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.hour")}</label>
+										<label class="input">
+											<input type="text" name="hour" placeholder="0-23" />
+										</label>
+									</section>
+								</div>
+								<div class="row">
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.day")}</label>
+										<label class="input">
+											<input type="text" name="day" placeholder="1-31" />
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.month")}</label>
+										<label class="input">
+											<input type="text" name="month" placeholder="1-12" />
+										</label>
+									</section>
+								</div>
+								<div class="row">
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.week")}</label>
+										<label class="input">
+											<input type="text" name="week" placeholder="1-7" />
+										</label>
+									</section>
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.year")}</label>
+										<label class="input">
+											<input type="text" name="year" placeholder="2014-2020" />
+										</label>
+									</section>
+								</div>
+
+								<div class="row">
+									<section class="col col-6">
+										<label class="label">${m.asString("scripters.schedule.matchtime")}</label>
+										<label class="input">
+											<input type="text" name="matchtime" placeholder="-1" />
+										</label>
+									</section>
+									<section class="col col-6">
+										
+									</section>
+								</div>
+								<div class="row">
+									<section class="col col-12">
+										<label class="checkbox"><input type="checkbox" name="enable" /><i></i>${m.asString("scripters.schedule.enable")}</label>
+									</section>
+								</div>
+								
+							</fieldset>
+							
+							<div id="save-message" class="alert alert-success fade in message">
+								<i class="fa-fw fa fa-check"></i>
+								<strong>Success</strong> <span></span>
+							</div>
+														
+							<footer>
+								<button class="btn btn-primary" type="button" name="btn_set">${m.asString("scripters.schedule.buttons.set")}</button>
+							</footer>
+							
+						</form>
+				
+					</div>
+					
+					<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7">
+						<div class="widget-body no-padding">
+						<table id="example" class="table table-bordered table-hover" width="100%">
+						</table>
+						</div>
+					</div>
+		
+				</div>
+			</div>
+			</div>
+			
+		</article>
+			
+	</div>
+
+	
+
+</section>
+<!-- end widget grid -->
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/scripters",
+				data: { content: aHTML, field: "schedule" }
+			});
+			$('.click2edit').destroy();
+		});
+		
+		var scripterId = $("#scripters option:selected").val() ;
+		if (scripterId == undefined) return ;
+
+		var _scheduleForm = $("#scripter-schedule-form") ;
+		var _minute = _scheduleForm.find("input[name=minute]") ;
+		var _hour = _scheduleForm.find("input[name=hour]") ;
+		var _day = _scheduleForm.find("input[name=day]") ;
+		var _month = _scheduleForm.find("input[name=month]") ;
+		var _week = _scheduleForm.find("input[name=week]") ;
+		var _matchtime = _scheduleForm.find("input[name=matchtime]") ;
+		var _year = _scheduleForm.find("input[name=year]") ;
+
+		var _enable = _scheduleForm.find("input[name=enable]") ;
+		var _btn_set = _scheduleForm.find("button[name=btn_set]") ;
+		
+		$.ajax({
+			url:'/admin/scripters/' + scripterId + "/schedule",
+			dataType:'json',
+			success:function(data){
+				var info = data['info'];
+				$("#info").html(info) ;
+				
+				var sinfo = data['sinfo'];
+				_minute.val(sinfo['minute']) ;
+				_hour.val(sinfo['hour']) ;
+				_day.val(sinfo['day']) ;
+				_month.val(sinfo['month']) ;
+				_week.val(sinfo['week']) ;
+				_matchtime.val(sinfo['matchtime']) ;
+				_year.val(sinfo['year']) ;
+				_enable.attr("checked", sinfo['enable']) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		_btn_set.click(function() {
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/scripters/" + scripterId + "/schedule",
+				data: { minute: _minute.val(), hour: _hour.val(), day: _day.val(), month: _month.val(), week: _week.val(), matchtime: _matchtime.val(), year: _year.val(), enable: _enable.is(":checked") ? true : false}, 
+				success :  function(data) {
+					$("#save-message span").html(data) ;
+					$("#save-message").removeClass("message") ;
+					setTimeout(function() {
+						$("#save-message").addClass("message") ;
+					}, 2000);
+				}, 
+				error:function(request,status,error){
+					console.log('response', request, status, error) ;
+				}
+			}) ;
+			
+			
+			
+		});
+		
+	};
+
+	// run pagefunction on load
+	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
+
+</script>

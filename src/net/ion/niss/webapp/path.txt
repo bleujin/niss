@@ -2,6 +2,9 @@
 /indexers/{iid}/schema/{schemaid} [schematype, analyzer, analyze, store, boost]
 /sections/{sid}
 /loaders/{lid}
+/scripts/{sid}
+		/{sid}/slogs
+		/{sid}/schedule
 
 
 /trace/{userId}

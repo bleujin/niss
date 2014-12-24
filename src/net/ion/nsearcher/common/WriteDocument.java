@@ -86,7 +86,7 @@ public class WriteDocument extends AbDocument {
 			field.indexField(strategy, doc);
 
 //			if (isession.handleBody() && (!field.isManual())) bodyBuilder.append(field.stringValue() + " ");
-			if (isession.handleBody() && (!field.ignoreBody())) bodyBuilder.append(field.stringValue() + " ");
+			if (isession.handleBody() && (!field.ignoreBody())) bodyBuilder.append(field.unknownValue() + " ");
 		}
 
 		MyField.keyword(DocKey, idValue(), Store.YES).indexField(strategy, doc);
@@ -155,7 +155,7 @@ public class WriteDocument extends AbDocument {
 
 	public WriteDocument unknown(Map<String, String> values) {
 		for (Entry<String, String> entry : values.entrySet()) {
-			this.add(new MyField(new TextField(entry.getKey(), entry.getValue(), Store.NO), MyFieldType.Unknown)) ;
+			this.add(new MyField(new TextField(entry.getKey(), entry.getValue(), Store.NO), entry.getValue())) ;
 		}
 		return this ;
 	}
