@@ -78,6 +78,7 @@ public class Def {
 	public static class Script {
 		public static final String Sid = "sid" ;
 		public static final String Content = "content" ;
+		public static final String Running = "running" ;
 	}
 	
 

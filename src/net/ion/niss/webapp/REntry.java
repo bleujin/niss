@@ -51,6 +51,7 @@ import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.Schedule;
+import net.ion.niss.webapp.common.Def.Script;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
@@ -387,11 +388,25 @@ public class REntry implements Closeable {
 				return new ScheduledRunnable() {
 					@Override
 					public void run() {
-						String scriptContent = rsession.ghostBy("/scripts/" + scriptId).property(Def.Script.Content).asString();
+						final ReadNode scriptNode = rsession.ghostBy("/scripts/" + scriptId);
+
+						// should check running(in distribute mode)
+						if (scriptNode.property(Script.Running).asBoolean()) return ;
+						rsession.tran(new TransactionJob<Void>() {
+							@Override
+							public Void handle(WriteSession wsession) throws Exception {
+								wsession.pathBy(scriptNode.fqn()).property(Script.Running, true) ;
+								return null;
+							}
+						}) ;
+						// 
+						
+						
+						
+						String scriptContent = scriptNode.property(Def.Script.Content).asString();
 						StringWriter result = new StringWriter();
 						final JsonWriter jwriter = new JsonWriter(result);
 
-						// should check running(in distribute mode)
 						
 						
 						try {
@@ -405,6 +420,14 @@ public class REntry implements Closeable {
 									try {
 										jwriter.beginObject().name("return").value(ObjectUtil.toString(result));
 									} catch (IOException ignore) {
+									} finally {
+										rsession.tran(new TransactionJob<Void>() {
+											@Override
+											public Void handle(WriteSession wsession) throws Exception {
+												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false) ;
+												return null;
+											}
+										}) ;
 									}
 									return new String[]{"schedule success", ObjectUtil.toString(result)};
 								}
@@ -414,6 +437,14 @@ public class REntry implements Closeable {
 									try {
 										jwriter.beginObject().name("return").value("").name("exception").value(ex.getMessage());
 									} catch (IOException e) {
+									} finally {
+										rsession.tran(new TransactionJob<Void>() {
+											@Override
+											public Void handle(WriteSession wsession) throws Exception {
+												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false) ;
+												return null;
+											}
+										}) ;
 									}
 									return new String[]{"schedule fail", ex.getMessage()};
 								}
@@ -470,6 +501,7 @@ public class REntry implements Closeable {
 				IteratorList<WriteNode> scripts = wsession.pathBy("/scripts").children().iterator() ;
 				while(scripts.hasNext()){
 					WriteNode wnode = scripts.next() ;
+					wnode.property(Script.Running, false) ;
 					if (wnode.hasChild("schedule")){
 						WriteNode scheduleNode = wnode.child("schedule");
 						if (scheduleNode.property(Def.Schedule.ENABLE).asBoolean()){

@@ -5,6 +5,10 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2014.12.26
+	popular query
+	scheduled job should executed in only single machine(should check running)
+
 2014.12.24
 	add script schedule(move top menu)
 	debug define unknown field type in script(if unkown && containSchema then apply schema type) 

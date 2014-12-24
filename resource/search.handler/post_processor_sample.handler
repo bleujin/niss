@@ -3,7 +3,8 @@ new function(){
 
 	importPackage(java.lang) 
 	importPackage(net.ion.nsearcher.search.filter)
-	importPackage(net.ion.nsearcher.search.processor)  
+	importPackage(net.ion.nsearcher.search.processor)
+	importPackage(net.ion.niss.webapp.scripters) ;  
 
 	this.postProcessor = function(rsession, sid){
 		return new net.ion.nsearcher.search.processor.PostProcessor({
@@ -12,7 +13,9 @@ new function(){
 				rsession.tran(new net.ion.craken.node.TransactionJob({
 					handle : function(wsession){
 					    var query = ireq.query().toString() ;
-						wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query).property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') ;
+						wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query)
+							.property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') 
+							.property('d' + ScheduleUtil.nextDate(1), 0).property('d' + ScheduleUtil.nextDate(2), 0).property('d' + ScheduleUtil.nextDate(), 0) ;
 					}
 				})) ;
 			} 
