@@ -37869,3 +37869,837 @@ Caused by: java.lang.ClassCastException
 [main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
 [main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
 [main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:sec1 searcher defined
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-1] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[nworker-thread-0] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher defined
+[radon-thread-0] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-5] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-9] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+org.apache.lucene.store.AlreadyClosedException: this IndexReader is closed
+	at org.apache.lucene.index.IndexReader.ensureOpen(IndexReader.java:252)
+	at org.apache.lucene.index.SegmentReader.getLiveDocs(SegmentReader.java:106)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:621)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:584)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:536)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:507)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:326)
+	at net.ion.nsearcher.search.SingleSearcher.search(SingleSearcher.java:57)
+	at net.ion.nsearcher.search.SearcherImpl.search(SearcherImpl.java:79)
+	at net.ion.nsearcher.search.SearchRequest.find(SearchRequest.java:136)
+	at net.ion.nsearcher.search.SearchRequest.findOne(SearchRequest.java:140)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:172)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.containsKey(CacheImpl.java:358)
+	at org.infinispan.CacheImpl.containsKey(CacheImpl.java:351)
+	at net.ion.craken.node.Workspace.exists(Workspace.java:251)
+	at net.ion.craken.node.AbstractReadSession.exists(AbstractReadSession.java:70)
+	at net.ion.craken.node.AbstractReadSession.pathBy(AbstractReadSession.java:48)
+	at net.ion.craken.node.AbstractReadSession.ghostBy(AbstractReadSession.java:40)
+	at net.ion.niss.webapp.searchers.SearcherWeb.viewPopularQuery(SearcherWeb.java:186)
+	at sun.reflect.GeneratedMethodAccessor11.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-30] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher defined
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-0] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher defined
+[radon-thread-3] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher defined
+[radon-thread-3] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher defined
+[radon-thread-3] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher defined
+[main] INFO  net.ion.craken.node.Repository  - Workspace[test, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - emanon started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.craken.node.Repository  - emanon shutdowned
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[radon-thread-2] ERROR org.infinispan.interceptors.InvocationContextInterceptor  - ISPN000136: Execution error
+org.apache.lucene.store.AlreadyClosedException: this IndexReader is closed
+	at org.apache.lucene.index.IndexReader.ensureOpen(IndexReader.java:252)
+	at org.apache.lucene.index.CompositeReader.getContext(CompositeReader.java:102)
+	at org.apache.lucene.index.CompositeReader.getContext(CompositeReader.java:56)
+	at org.apache.lucene.index.IndexReader.leaves(IndexReader.java:502)
+	at org.apache.lucene.index.MultiFields.getFields(MultiFields.java:62)
+	at org.apache.lucene.index.MultiFields.getTerms(MultiFields.java:126)
+	at org.apache.lucene.search.IndexSearcher.collectionStatistics(IndexSearcher.java:947)
+	at org.apache.lucene.search.TermQuery$TermWeight.<init>(TermQuery.java:55)
+	at org.apache.lucene.search.TermQuery.createWeight(TermQuery.java:176)
+	at org.apache.lucene.search.IndexSearcher.createNormalizedWeight(IndexSearcher.java:687)
+	at org.apache.lucene.search.IndexSearcher.search(IndexSearcher.java:326)
+	at net.ion.nsearcher.search.SingleSearcher.search(SingleSearcher.java:57)
+	at net.ion.nsearcher.search.SearcherImpl.search(SearcherImpl.java:81)
+	at net.ion.nsearcher.search.SearchRequest.find(SearchRequest.java:146)
+	at net.ion.nsearcher.search.SearchRequest.findOne(SearchRequest.java:150)
+	at net.ion.craken.loaders.CrakenStore._load(CrakenStore.java:172)
+	at net.ion.craken.loaders.CrakenStore.load(CrakenStore.java:152)
+	at org.infinispan.persistence.manager.PersistenceManagerImpl.loadFromAllStores(PersistenceManagerImpl.java:430)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeeded(CacheLoaderInterceptor.java:263)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.loadIfNeededAndUpdateStats(CacheLoaderInterceptor.java:335)
+	at org.infinispan.interceptors.CacheLoaderInterceptor.visitGetKeyValueCommand(CacheLoaderInterceptor.java:105)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.EntryWrappingInterceptor.visitGetKeyValueCommand(EntryWrappingInterceptor.java:116)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.interceptors.locking.AbstractTxLockingInterceptor.visitGetKeyValueCommand(AbstractTxLockingInterceptor.java:60)
+	at org.infinispan.interceptors.locking.OptimisticLockingInterceptor.visitGetKeyValueCommand(OptimisticLockingInterceptor.java:108)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.base.CommandInterceptor.handleDefault(CommandInterceptor.java:112)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.TxInterceptor.enlistReadAndInvokeNext(TxInterceptor.java:226)
+	at org.infinispan.interceptors.TxInterceptor.visitGetKeyValueCommand(TxInterceptor.java:221)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.CacheMgmtInterceptor.visitGetKeyValueCommand(CacheMgmtInterceptor.java:92)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleAll(InvocationContextInterceptor.java:110)
+	at org.infinispan.interceptors.InvocationContextInterceptor.handleDefault(InvocationContextInterceptor.java:73)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.base.CommandInterceptor.invokeNextInterceptor(CommandInterceptor.java:98)
+	at org.infinispan.interceptors.BatchingInterceptor.handleDefault(BatchingInterceptor.java:66)
+	at org.infinispan.commands.AbstractVisitor.visitGetKeyValueCommand(AbstractVisitor.java:74)
+	at org.infinispan.commands.read.GetKeyValueCommand.acceptVisitor(GetKeyValueCommand.java:40)
+	at org.infinispan.interceptors.InterceptorChain.invoke(InterceptorChain.java:333)
+	at org.infinispan.CacheImpl.containsKey(CacheImpl.java:358)
+	at org.infinispan.CacheImpl.containsKey(CacheImpl.java:351)
+	at net.ion.craken.node.Workspace.exists(Workspace.java:251)
+	at net.ion.craken.node.AbstractReadSession.exists(AbstractReadSession.java:70)
+	at net.ion.craken.node.AbstractReadSession.pathBy(AbstractReadSession.java:48)
+	at net.ion.craken.node.AbstractReadSession.ghostBy(AbstractReadSession.java:32)
+	at net.ion.niss.webapp.searchers.PopularQueryEntry$1.call(PopularQueryEntry.java:52)
+	at net.ion.niss.webapp.searchers.PopularQueryEntry$1.call(PopularQueryEntry.java:1)
+	at com.google.common.cache.LocalCache$LocalManualCache$1.load(LocalCache.java:4800)
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3559)
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2349)
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2312)
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2227)
+	at com.google.common.cache.LocalCache.get(LocalCache.java:3979)
+	at com.google.common.cache.LocalCache$LocalManualCache.get(LocalCache.java:4796)
+	at net.ion.niss.webapp.searchers.PopularQueryEntry.result(PopularQueryEntry.java:48)
+	at net.ion.niss.webapp.searchers.SearcherWeb.viewPopularQuery(SearcherWeb.java:189)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+[monitor-message-thread-0] INFO  net.ion.niss.webapp.HTMLTemplateEngine  - .\resource\message\messages.utf8.xml changed

@@ -3,9 +3,13 @@ package net.ion.niss.webapp.searchers;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -36,6 +40,7 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.FileUtil;
+import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.SetUtil;
@@ -53,6 +58,7 @@ import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
+import net.ion.niss.webapp.scripters.ScheduleUtil;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.ReadDocument;
@@ -63,12 +69,15 @@ import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 
+import org.apache.ecs.xhtml.tr;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpRequest;
 
 import com.google.common.base.Function;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 
 @Path("/searchers")
 public class SearcherWeb implements Webapp {
@@ -76,11 +85,13 @@ public class SearcherWeb implements Webapp {
 	private ReadSession rsession;
 	private SearchManager smanager;
 	private QueryTemplateEngine qengine;
+	private PopularQueryEntry pqentry;
 
-	public SearcherWeb(@ContextParam("rentry") REntry rentry, @ContextParam("qtemplate") QueryTemplateEngine qengine) throws IOException {
+	public SearcherWeb(@ContextParam(REntry.EntryName) REntry rentry, @ContextParam(QueryTemplateEngine.EntryName) QueryTemplateEngine qengine, @ContextParam(PopularQueryEntry.EntryName) PopularQueryEntry pqentry) throws IOException {
 		this.rsession = rentry.login();
 		this.smanager = rentry.searchManager();
 		this.qengine = qengine ;
+		this.pqentry = pqentry;
 	}
 
 	@GET
@@ -167,7 +178,36 @@ public class SearcherWeb implements Webapp {
 			.put("popular", popular) ;
 	}
 	
+	
+	@GET
+	@Path("/{sid}/popularquery")
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
+	public JsonObject viewPopularQuery(@PathParam("sid") final String sid) throws ExecutionException{
+		ReadNode found = rsession.ghostBy(fqnBy(sid, "popularquery"));
+		String qtemplate = found.property(Def.Searcher.Popular.Template).defaultValue(pqentry.DFT_TEMPLATE) ;
+		
+		String transformd = pqentry.result(sid) ;
+		
+		return new JsonObject().put("qtemplate", JsonParser.fromString(qtemplate)).put("transformed", transformd).put("dayrange", found.property("dayrange").intValue(3)) ;
+	}
+	
 
+	@POST
+	@Path("/{sid}/popularquery")
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
+	public String editPopularQuery(@PathParam("sid") final String sid, final @FormParam("ptemplate") String mypopularTemplate, @DefaultValue("3") @FormParam("dayrange") final int dayRange){
+		rsession.tran(new TransactionJob<Void>() {
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy(fqnBy(sid, "popularquery")).property(Def.Searcher.Popular.Template, mypopularTemplate).property(Def.Searcher.Popular.DayRange, dayRange) ;
+				return null;
+			}
+		}) ;
+		
+		pqentry.invalidate(sid) ;
+		
+		return "popular query edited" ;
+	}
+	
 
 	
 	@GET
@@ -506,4 +546,9 @@ public class SearcherWeb implements Webapp {
 	private Fqn fqnBy(String sid) {
 		return Fqn.fromString("/searchers/" + IdString.create(sid).idString());
 	}
+
+	private Fqn fqnBy(String sid, String child) {
+		return Fqn.fromString("/searchers/" + IdString.create(sid).idString() + "/" + child);
+	}
+
 }

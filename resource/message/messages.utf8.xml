@@ -196,6 +196,14 @@
             <title kr="검색기 정보">Overview</title>
             <recent_query kr="최근 쿼리">Recent Query</recent_query>
             <popular_query kr="자주쓰는 쿼리">Popular Query</popular_query>
+            <popularquery>
+                <table-header>Define Popular Query</table-header>
+                <dayrange>Day Range</dayrange>
+            </popularquery>
+            <buttons>
+                <add kr="표현식 추가">Add Expression</add>
+                <save kr="저장">Save</save>
+            </buttons>
         </overview>
         <defined>
             <title kr="검색기 설정">Define Searcher</title>
@@ -272,6 +280,7 @@
             <eventid kr="이벤트ID">Event ID</eventid>
             <time kr="시간">Run Time</time>
             <status kr="상태">Status</status>
+            <result kr="결과">Result</result>
             <buttons><view-detail kr="자세히 보기">View Detail</view-detail></buttons>
 		</overview>
 		<defined>

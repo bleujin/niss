@@ -126,6 +126,35 @@
 	</div>
 </div>
 
+
+<div id="create_popular_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width:70%">
+			<div class="modal-header"><h5>${m.asString("searchers.popular.create")}</h5></div>
+
+			<div class="modal-body">
+			<form class="smart-form" id="create_popular_form" method="post" action="searchers/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">${m.asString("searchers.popular.expression")}</label>
+					<label class="input">
+						<input type="text" name="newPopular" placeholder="new popular expression" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_popular">${m.asString("indexers.create.button")}</button>
+			</div>  
+
+		</div>
+	</div>
+</div>
+
+
 <script type="text/javascript">
 
 	pageSetUp();
@@ -265,6 +294,25 @@
 			$("#create_schema_form").submit() ;
 		});
 
+		
+		$("#create_popular_modal button[name=create_popular]").click(function(){
+			var itemExpr = $("#create_popular_modal").find("input[name=newPopular]").val() ;
+			if (itemExpr < ' ') return ; 
+			var newItem = '<li class="dd-item dd3-item" data-id="' +  itemExpr + '"><div class="dd-handle dd3-handle">.</div><div class="dd3-content">' + itemExpr + '<div class="pull-right remove-item">X</div></div></li>' ;
+			
+			$(newItem).appendTo($('#searcher-popular-win .dd-list'));
+			console.log($(newItem).find('.remove-item')) ;
+			
+			$('#searcher-popular-win').find('.remove-item').unbind('click') ;
+			$('#searcher-popular-win').find('.remove-item').click(function(){
+				$(this).parent().parent().remove() ;
+			}) ;
+
+			$("#create_popular_modal").modal('hide') ;
+		});
+
+		
+		
 	
 		$("#create_searcher_form").validate({
 			rules : {

@@ -1,0 +1,137 @@
+
+<!-- widget grid -->
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-blueLight" id="searcher-popular-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+			<header>
+				<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+				<h2>${m.asString("searchers.overview.table-header")}</h2>				
+			</header>
+
+			<div>
+				<div class="jarviswidget-editbox">
+					<input class="form-control" type="text">	
+				</div>
+				
+				
+				<div class="widget-body">
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="dd" id="nestable">
+							<ol class="dd-list"></ol>
+							<button class="btn btn-sm btn-primary" type="button" name="btn_add"><i class="fa fa-check"></i> ${m.asString("searchers.defined.buttons.add")}</button>
+						</div>
+					</div>
+					
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+						<div class="alert alert-info alert-block" id="query_url"></div>
+						<div><pre id="query_result"></pre></div>
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<form class="smart-form" id="searcher_template_form" method="post" action="searchers/template" novalidate="novalidate">
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+						
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" name="btn_save"><i class="fa fa-check"></i> ${m.asString("searchers.defined.buttons.save")}</button>
+						</footer>
+					</form>
+					</div>
+				</div>
+			</div>
+			</div>
+			
+		</article>
+
+	</div>
+
+
+</section>
+
+
+
+
+
+<script type="text/javascript">
+	pageSetUp();
+
+	var pagefunction = function() {
+
+		
+		var searcherId = 'searcher' ;
+		
+		$.ajax({
+			url:'/admin/searchers/' + searcherId +'/popularquery',
+			dataType:'json',
+			success:function(data){
+				var qtemplate = data['qtemplate'];
+
+				for(var idx in qtemplate){
+					var rowEntry = '<li class="dd-item dd3-item" data-id="' + qtemplate[idx]['id'] + '"><div class="dd-handle dd3-handle">.</div><div class="dd3-content">' + qtemplate[idx]['id'] + '<div class="pull-right remove-item">X</div></div></li>' ;
+					$(rowEntry).appendTo($("#nestable").find(".dd-list")) ;
+				}
+				$('.remove-item').click(function(){
+					$(this).parent().parent().remove() ;
+				}) ;
+
+				var updateOutput = function(e) {
+					var list = e.length ? e : $(e.target) ; //, output = list.data('output');
+					if (window.JSON) {
+						list.nestable('serialize');
+					} 
+				};
+
+				// output initial serialised data
+				updateOutput($('#nestable'));
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		
+		
+		var _popularWin = $("#searcher-popular-win");
+		var _btn_save = _popularWin.find("button[name=btn_save]") ;
+		var _btn_add = _popularWin.find("button[name=btn_add]") ;
+		
+		_btn_add.click(function(){
+			$('#create_popular_modal').modal({
+			});
+		}) ;
+		
+		_btn_save.click(function() {
+			
+			var e = $('#nestable') ;
+			var list = e.length ? e : $(e.target) ;
+			var listVal = window.JSON.stringify(list.nestable('serialize')) ;
+
+			$.ajax({
+				type: "POST",
+				dataType : 'text', 
+				url: "/admin/searchers/" + searcherId + "/popularquery",
+				data: { 'ptemplate': listVal}, 
+				complete : function(){ 
+					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";
+					$("#query_url").html(targetURL) ;
+				}, 
+				success :  function(data) {
+					$("#query_result").text(data) ;
+				}
+			}) ;
+		});
+		
+	};
+	
+	// end pagefunction
+	
+	// load nestable.min.js then run pagefunction
+	loadScript("js/plugin/jquery-nestable/jquery.nestable.min.js", pagefunction);
+	
+</script>

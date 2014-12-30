@@ -1,0 +1,26 @@
+// read from craken sample
+new function(){
+
+	importPackage(java.lang) ;
+	importPackage(net.ion.framework.util) ; 
+
+	this.toStringFn = function(){
+		return new com.google.common.base.Function({
+			apply : function(cresponse) {
+				var iter = cresponse.iterator() ;
+				var list = ListUtil.newList() ;
+				while (iter.hasNext()){
+					var rnode = iter.next() ;
+					list.add(rnode.property("query").asString()) ;
+				}
+				return StringUtil.join(list, ',');
+			}
+		}) ;
+	}
+
+	this.handle = function(writer, session, params){
+		var commSeperatedTerm = session.ghostBy("/searchlogs/" + params.getFirst('sid')).childQuery(params.getFirst('query') + '*').offset(10).find().transformer(this.toStringFn());
+		return commSeperatedTerm ;
+	}
+
+} ;

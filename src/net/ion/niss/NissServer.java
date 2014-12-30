@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -37,6 +38,7 @@ import net.ion.niss.webapp.misc.ScriptWeb;
 import net.ion.niss.webapp.misc.TraceWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
 import net.ion.niss.webapp.searchers.OpenSearchWeb;
+import net.ion.niss.webapp.searchers.PopularQueryEntry;
 import net.ion.niss.webapp.searchers.QueryTemplateEngine;
 import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.niss.webapp.searchers.TemplateWeb;
@@ -90,6 +92,9 @@ public class NissServer {
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder.createThreadFactory("script-monitor-thread-%d")), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
 
+		ExecutorService nworker = Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("nworker-thread-%d")) ;
+		builder.context(PopularQueryEntry.EntryName, new PopularQueryEntry(rentry.login(), nworker)) ;
+		
 		final QueryTemplateEngine ve = builder.context(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login()));
 
 		this.radon = builder.createRadon();

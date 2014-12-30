@@ -48,6 +48,12 @@ public class Def {
 		public static final String StopWord = "stopword";
 		public static final String QueryAnalyzer = "queryanalyzer" ;
 		public static final String ApplyStopword = "applystopword";
+		public static class Popular {
+			public static final String Template = "ptemplate" ;
+			public static final String DayRange = "dayrange" ;
+			public static final String Transformed = "transformed";
+		}
+		
 	}
 
 	public static class SearchSchema extends IndexSchema{

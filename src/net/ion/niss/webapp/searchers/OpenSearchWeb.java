@@ -1,6 +1,7 @@
 package net.ion.niss.webapp.searchers;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -14,9 +15,11 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.StreamingOutput;
 
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
 
@@ -27,10 +30,20 @@ import org.jboss.resteasy.spi.HttpRequest;
 public class OpenSearchWeb implements Webapp{
 	private SearcherWeb referWeb;
 
-	public OpenSearchWeb(@ContextParam("rentry") REntry rentry, @ContextParam("qtemplate") QueryTemplateEngine qengine) throws IOException {
-		this.referWeb = new SearcherWeb(rentry, qengine) ;
+	public OpenSearchWeb(@ContextParam(REntry.EntryName) REntry rentry, @ContextParam(QueryTemplateEngine.EntryName) QueryTemplateEngine qengine, @ContextParam(PopularQueryEntry.EntryName) PopularQueryEntry pqentry) throws IOException {
+		this.referWeb = new SearcherWeb(rentry, qengine, pqentry) ;
 	}
 
+	// popular query
+	
+	@GET
+	@Path("/{sid}/popularquery")
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
+	public JsonObject viewPopularQuery(@PathParam("sid") final String sid) throws ExecutionException{
+		return referWeb.viewPopularQuery(sid) ;
+	}
+	
+	
 	// --- query
 	@GET
 	@Path("/{sid}/query")

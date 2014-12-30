@@ -5,6 +5,13 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2014.12.30
+	add user define popular query(order or static)
+	add recommand script(condition : define searcher 'popularquery_sample.handler', define script 'recommand_word.script' as 'recommand', call /open/script/run/recommand?query=bl&sid=rsearcher
+	dev effect : 
+		isearcher : redefine searcher, searchRequest 
+		craken : childqueryrequest 
+		
 2014.12.26
 	popular query
 	scheduled job should executed in only single machine(should check running)

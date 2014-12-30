@@ -1,9 +1,9 @@
 // define with termFilter
 new function(){
 
-	importPackage(java.lang) 
-	importPackage(net.ion.nsearcher.search.filter)
-	importPackage(net.ion.nsearcher.search.processor)
+	importPackage(java.lang) ; 
+	importPackage(net.ion.nsearcher.search.filter) ;
+	importPackage(net.ion.nsearcher.search.processor) ;
 	importPackage(net.ion.niss.webapp.scripters) ;  
 
 	this.postProcessor = function(rsession, sid){
@@ -13,14 +13,17 @@ new function(){
 				rsession.tran(new net.ion.craken.node.TransactionJob({
 					handle : function(wsession){
 					    var query = ireq.query().toString() ;
-						wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query)
-							.property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') 
-							.property('d' + ScheduleUtil.nextDate(1), 0).property('d' + ScheduleUtil.nextDate(2), 0).property('d' + ScheduleUtil.nextDate(), 0) ;
+					    var se = new ScheduleUtil() ;
+						var wnode = wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query)
+							.property('found', response.totalCount()).property('time', System.currentTimeMillis()) 
+							.property('d' + se.nextDate(1), 0).property('d' + se.nextDate(2), 0); 
+						wnode.increase('d' + se.nextDate(0)) ; 
+						wnode.increase('count');
 					}
 				})) ;
 			} 
 		});
-	} 
+	}, 
 	
 	this.handle = function(searcher, rsession, sid){
 		return searcher.addPostListener(this.postProcessor(rsession, sid)) ;
