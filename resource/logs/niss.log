@@ -39183,3 +39183,57 @@ org.apache.lucene.store.AlreadyClosedException: this IndexReader is closed
 [pool-29-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/product/index.html
 [pool-29-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/prcenter/index.html
 [pool-29-thread-1] INFO  net.ion.icrawler.downloader.AClientDownloader  - downloading page http://www.i-on.net/people/index.html
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000
+[main] INFO  net.ion.craken.node.Repository  - Workspace[admin, LOCAL] defined
+[main] INFO  net.ion.craken.node.Repository  - niss started
+[main] INFO  org.infinispan.factories.GlobalComponentRegistry  - ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+[main] WARN  org.infinispan.transaction.lookup.GenericTransactionManagerLookup  - ISPN000104: Falling back to DummyTransactionManager from Infinispan
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer3 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer3 indexer loaded
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  org.infinispan.jmx.CacheJmxRegistration  - ISPN000031: MBeans were successfully registered to the platform MBean server.
+[main] INFO  net.ion.niss.webapp.REntry  - newindexer2 Index ClusterMode : LOCAL
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:newindexer2 indexer loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher2 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher3 searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:rsearcher searcher loaded
+[main] INFO  net.ion.niss.webapp.REntry  - IdString:searcher searcher loaded
+[scripter] INFO  net.ion.framework.schedule.Scheduler  - Scheduler started. :{name=scripter,jobs={}}
+[main] INFO  net.ion.niss.webapp.loaders.JScriptEngine  - Has not Extension libPath : ./resource/loader/lib
+[RADON-STARTUP-THREAD] WARN  net.ion.nradon.netty.NettyWebServer  - PORT 9000

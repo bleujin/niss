@@ -265,9 +265,12 @@ public class ScriptWeb implements Webapp{
 			public Void onFail(Exception ex, Object... args) {
 				try {
 					writer.write("\nexception occured : " + ex.getMessage() + "\n") ;
+					Thread.sleep(500); // wait flush & close
 					writer.flush(); 
 					ex.printStackTrace(); 
 				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
 					IOUtil.closeQuietly(writer);

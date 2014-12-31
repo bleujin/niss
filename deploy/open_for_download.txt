@@ -8,6 +8,7 @@ HISTORY :
 2014.12.31
 	remove loader (-to craken script)
 	remove summernote's toolbar in html
+	debug wait flush when script exception occured 
 
 2014.12.30
 	add user define popular query(order or static)
