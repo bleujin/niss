@@ -52,6 +52,10 @@ public class FileIndexer {
 		this.targets = targets;
 	}
 
+	public <T> Future<List<T>> index(final FileIndexHandler<T> fileIndexHandler) {
+		return index(central.indexConfig().indexAnalyzer(), fileIndexHandler);
+	}
+
 	public <T> Future<List<T>> index(final Analyzer analyzer, final FileIndexHandler<T> fileIndexHandler) {
 		return es.submit(new Callable<List<T>>() {
 			@Override
@@ -74,9 +78,6 @@ public class FileIndexer {
 		});
 	}
 
-	public <T> Future<List<T>> index(final FileIndexHandler<T> fileIndexHandler) {
-		return index(central.indexConfig().indexAnalyzer(), fileIndexHandler);
-	}
 }
 
 class AutoDetectTika {

@@ -5,6 +5,9 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2014.12.31
+	remove loader (-to craken script)
+
 2014.12.30
 	add user define popular query(order or static)
 	add recommand script(condition : define searcher 'popularquery_sample.handler', define script 'recommand_word.script' as 'recommand', call /open/script/run/recommand?query=bl&sid=rsearcher

@@ -1,0 +1,65 @@
+// Sample Crawl Collect Image Link To Tistory
+new function(){
+	importPackage(java.util) 
+	importPackage(net.ion.icrawler) 
+	importPackage(net.ion.icrawler.pipeline) 
+	importPackage(net.ion.icrawler.processor) 
+	importPackage(net.ion.icrawler.scheduler)
+	importPackage(net.ion.niss.webapp.loaders)  
+	importPackage(net.ion.icrawler.selector) 
+	
+	this.scheduler = function(){
+		return new MaxLimitScheduler(new QueueScheduler(), 10) ;
+	}, 
+	
+	this.processor = function(images, writer){
+		var urlPattern = "(" + "http://bleujin.tistory.com/*".replace(".", "\\.").replace("*", "[^\"'#]*") + ")";
+	
+		return new PageProcessor({
+			process : function(page){
+				try {
+					var found = page.getHtml().xpath("//img/@src").all(); 
+					found.removeAll(images) ;
+					var changed = images.addAll(found) ;
+					
+					page.addTargets(page.getHtml().links().regex(urlPattern).targets());// add urls to fetch
+					page.putField("changed", changed);
+					page.putField("found", found);
+				} catch(ex){
+					writer.write(ex) ;
+				}
+			} 
+		});
+	}, 
+	
+	this.pipeline = function(writer) {
+		return new Pipeline({
+			process : function(ritems, task){
+				try {
+					if (ritems.asString("changed").equals('true')){
+						writer.write(ritems.getRequest().getUrl() + "new image founded")	 ;
+						writer.write("\n") ;
+						writer.flush() ;
+					}
+				} catch(ex){
+					writer.write(ex) ;
+				}
+			}
+		}) ;
+	}, 
+	
+	this.handle = function(writer){
+		try {
+			var images = new Vector() ;
+			var spider = Site.create().sleepTime(50).newSpider(this.processor(images, writer)).scheduler(this.scheduler()).addUrl(["http://bleujin.tistory.com/"]);
+	
+			spider.addPipeline(this.pipeline(writer)).run();
+			spider.close() ;
+			
+			writer.write('images : ' + images) ;
+			
+		} catch(ex){
+			writer.write("" + ex) ;
+		}
+	}
+} ;

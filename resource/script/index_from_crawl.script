@@ -1,0 +1,65 @@
+// index from db sample 
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(net.ion.icrawler)
+	importPackage(net.ion.icrawler.pipeline) 
+	importPackage(net.ion.icrawler.scheduler) 
+	importPackage(net.ion.icrawler.processor) 
+	importPackage(net.ion.niss.webapp.loaders)
+	importPackage(net.ion.nsearcher.index.crawl)
+	importPackage(net.ion.nsearcher.search)
+
+	this.handle = function(writer, session, param, rentry, jengine){
+	
+		var iid = "newindexer3" ;
+		var imanager = rentry.indexManager();
+		
+		if (! imanager.hasIndex(iid)) {
+			writer.append(iid + " not exist");
+			return ;
+		}
+		
+		var hostPattern = "http://www.i-on.net/*";
+		var urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^\"'#]*")).append(")").toString();
+		var processor = new PageProcessor({
+			process : function(page) {
+				var links = page.getHtml().links().regex(urlPattern) ;
+				page.putField("url", page.getRequest().getUrl()) ;
+				page.putField("title", page.getHtml().xpath("//title/text()").get()) ;
+				page.putField("links", page.getHtml().links().regex(urlPattern).targets()) ;
+				
+				page.addTargets(links.targets());
+			}
+		});
+		
+		var spider = Site.create("http://www.i-on.net/index.html").sleepTime(100).newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 10))
+			.addPipeline(new Pipeline({
+				process : function(ritems, task) {
+					writer.append(ritems.getRequest().getUrl() + " processed\n");
+				}
+			})) ;
+
+		
+		var cindexer = CrawlIndexBuilder.create(imanager.index(iid))
+			.spider(spider)
+			.executors(new WithinThreadExecutor())
+			.build(imanager.fieldIndexStrategy(session, iid)) ;
+
+		var result = cindexer.index(new CrawlIndexHandler({
+			onSuccess : function(isession, ritems, task) {
+				isession.newDocument(ritems.getRequest().getUrl()).keyword("url", ritems.getRequest().getUrl()).unknown("name", ritems.asString("title")).updateVoid() ;
+				return true ;
+			}, 
+			onFail : function(isession, ritems, task, ex) {
+				writer.append(ex.getMessage()) ;
+				return false;
+			}
+		})) ;
+		
+		writer.append('index started') ;
+		return result ;
+	
+	}
+
+} ;
