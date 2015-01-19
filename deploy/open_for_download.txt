@@ -5,6 +5,10 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2015.1.19 
+    add method : searchRequest.userDefine() 
+ 	mod : popularquery_sample.handler
+
 2014.12.31
 	remove loader (-to craken script)
 	remove summernote's toolbar in html

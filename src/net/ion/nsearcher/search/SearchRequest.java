@@ -35,11 +35,19 @@ public class SearchRequest {
 	private final Searcher searcher ;
 	private Set<String> columns = SetUtil.newSet() ;
 	private Set<String> lazyColumns = SetUtil.newSet() ;
+	private String userDefine = "";
 	
 	SearchRequest(Searcher searcher, Query query){
 		this.searcher = searcher ;
 		this.query = query ;
 	}
+
+	SearchRequest(Searcher searcher, Query query, String userDefine){
+		this.searcher = searcher ;
+		this.query = query ;
+		this.userDefine = userDefine ;
+	}
+
 	
 	public SearchRequest skip(int skip){
 		this.skip = skip ;
@@ -52,6 +60,10 @@ public class SearchRequest {
 	
 	public Query query() {
 		return query;
+	}
+	
+	public String userDefine(){
+		return userDefine ;
 	}
 	
 	public Term[] queryTerms() throws IOException{

@@ -86,10 +86,10 @@ public class CompositeSearcher implements Searcher {
 
 	public SearchRequest createRequest(String query, Analyzer analyzer) throws ParseException {
 		if (StringUtil.isBlank(query)){
-			return new SearchRequest(this, new MatchAllDocsQuery()) ;
+			return new SearchRequest(this, new MatchAllDocsQuery(), query) ;
 		}
 		
-		final SearchRequest result = new SearchRequest(this, sconfig.parseQuery(analyzer, query));
+		final SearchRequest result = new SearchRequest(this, sconfig.parseQuery(analyzer, query), query);
 		return result;
 	}
 	

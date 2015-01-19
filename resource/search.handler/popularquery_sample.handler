@@ -12,16 +12,14 @@ new function(){
 				var ireq = request ;
 				rsession.tran(new net.ion.craken.node.TransactionJob({
 					handle : function(wsession){
-					    var terms = ireq.queryTerms() ;
-					    for(var idx in terms){
-					    	var query = terms[idx];
-						    var se = new ScheduleUtil() ;
-							var wnode = wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode()).property("query", query.text())
-								.property('found', response.totalCount()).property('time', System.currentTimeMillis()) 
-								.property('d' + se.nextDate(1), 0).property('d' + se.nextDate(2), 0); 
-							wnode.increase('d' + se.nextDate(0)) ; 
-							wnode.increase('count');
-					    }
+					    var query = ireq.userDefine() ;
+					    var se = new ScheduleUtil() ;
+						var wnode = wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode())
+							.property("query", query)
+							.property('found', response.totalCount()).property('time', System.currentTimeMillis()) 
+							.property('d' + se.nextDate(1), 0).property('d' + se.nextDate(2), 0); 
+						wnode.increase('d' + se.nextDate(0)) ; 
+						wnode.increase('count');
 					}
 				})) ;
 			} 

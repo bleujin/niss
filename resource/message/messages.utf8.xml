@@ -205,6 +205,11 @@
                 <save kr="저장">Save</save>
             </buttons>
         </overview>
+        <popular>
+            <create kr="자주쓰는 쿼리 생성">Create Popular Query</create>
+            <expression kr="쿼리 표현식">Query Expression</expression>
+        </popular>
+            
         <defined>
             <title kr="검색기 설정">Define Searcher</title>
             <table-header kr="설정">Detail</table-header>

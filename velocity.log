@@ -523,3 +523,754 @@ org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered:
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
 	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 14:46:46,529 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 91]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:392)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:118)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 14:48:13,533 - Parser Exception: /ajax/image-editor.html
+org.apache.velocity.runtime.parser.ParseException: Encountered ");\r\n\t\t\t});\r\n\r\n\t\t\tfunction updatePreview(c) {\r\n\t\t\t\tif (parseInt(c.w) > 0) {\r\n\t\t\t\t\tvar rx = xsize / c.w;\r\n\t\t\t\t\tvar ry = ysize / c.h;\r\n\r\n\t\t\t\t\t" at line 728, column 70.
+Was expecting one of:
+    "[" ...
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.Method(Parser.java:1364)
+	at org.apache.velocity.runtime.parser.Parser.Reference(Parser.java:1446)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:357)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:392)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:118)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 14:48:13,534 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered ");\r\n\t\t\t});\r\n\r\n\t\t\tfunction updatePreview(c) {\r\n\t\t\t\tif (parseInt(c.w) > 0) {\r\n\t\t\t\t\tvar rx = xsize / c.w;\r\n\t\t\t\t\tvar ry = ysize / c.h;\r\n\r\n\t\t\t\t\t" at /ajax/image-editor.html[line 728, column 70]
+Was expecting one of:
+    "[" ...
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:392)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:118)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 15:10:11,702 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 91]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:392)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:118)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:05,204 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered "net" at line 7, column 12.
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    "[" ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2644)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:05,204 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered "net" at line 7, column 12.
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    "[" ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2644)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:05,206 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered "net" at /searchers/searcher.template[line 7, column 12]
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    "[" ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:05,206 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered "net" at /searchers/searcher.template[line 7, column 12]
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    "[" ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:19,096 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered ")" at line 7, column 82.
+Was expecting one of:
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.Method(Parser.java:1364)
+	at org.apache.velocity.runtime.parser.Parser.Reference(Parser.java:1446)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2611)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:19,096 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered ")" at line 7, column 82.
+Was expecting one of:
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.Method(Parser.java:1364)
+	at org.apache.velocity.runtime.parser.Parser.Reference(Parser.java:1446)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2611)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:19,096 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered ")" at /searchers/searcher.template[line 7, column 82]
+Was expecting one of:
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:03:19,096 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered ")" at /searchers/searcher.template[line 7, column 82]
+Was expecting one of:
+    "," ...
+    ")" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:11:19,296 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered "params" at line 12, column 13.
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <WHITESPACE> ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2590)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2639)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:11:19,296 - Parser Exception: /searchers/searcher.template
+org.apache.velocity.runtime.parser.ParseException: Encountered "params" at line 12, column 13.
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <WHITESPACE> ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.runtime.parser.Parser.generateParseException(Parser.java:3679)
+	at org.apache.velocity.runtime.parser.Parser.jj_consume_token(Parser.java:3558)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2590)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.PrimaryExpression(Parser.java:2639)
+	at org.apache.velocity.runtime.parser.Parser.UnaryExpression(Parser.java:2586)
+	at org.apache.velocity.runtime.parser.Parser.MultiplicativeExpression(Parser.java:2435)
+	at org.apache.velocity.runtime.parser.Parser.AdditiveExpression(Parser.java:2359)
+	at org.apache.velocity.runtime.parser.Parser.RelationalExpression(Parser.java:2227)
+	at org.apache.velocity.runtime.parser.Parser.EqualityExpression(Parser.java:2151)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalAndExpression(Parser.java:2111)
+	at org.apache.velocity.runtime.parser.Parser.ConditionalOrExpression(Parser.java:2071)
+	at org.apache.velocity.runtime.parser.Parser.Expression(Parser.java:2018)
+	at org.apache.velocity.runtime.parser.Parser.SetDirective(Parser.java:1971)
+	at org.apache.velocity.runtime.parser.Parser.Statement(Parser.java:369)
+	at org.apache.velocity.runtime.parser.Parser.process(Parser.java:317)
+	at org.apache.velocity.runtime.parser.Parser.parse(Parser.java:117)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1226)
+	at org.apache.velocity.runtime.RuntimeInstance.parse(RuntimeInstance.java:1181)
+	at org.apache.velocity.Template.process(Template.java:134)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:11:19,297 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered "params" at /searchers/searcher.template[line 12, column 13]
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <WHITESPACE> ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-02 17:11:19,297 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Encountered "params" at /searchers/searcher.template[line 12, column 13]
+Was expecting one of:
+    "[" ...
+    "{" ...
+    "(" ...
+    <WHITESPACE> ...
+    <STRING_LITERAL> ...
+    "true" ...
+    "false" ...
+    <INTEGER_LITERAL> ...
+    <FLOATING_POINT_LITERAL> ...
+    <IDENTIFIER> ...
+    "{" ...
+    <WHITESPACE> ...
+    
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1514)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:373)
+	at net.ion.niss.webapp.searchers.QueryTemplateEngine.merge(QueryTemplateEngine.java:51)
+	at net.ion.niss.webapp.searchers.SearcherWeb.tquery(SearcherWeb.java:424)
+	at net.ion.niss.webapp.searchers.OpenSearchWeb.tquery(OpenSearchWeb.java:88)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at net.ion.radon.core.RadonMethodInjectorImpl.invoke(RadonMethodInjectorImpl.java:142)
+	at org.jboss.resteasy.core.ResourceMethod.invokeOnTarget(ResourceMethod.java:241)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:208)
+	at org.jboss.resteasy.core.ResourceMethod.invoke(ResourceMethod.java:199)
+	at org.jboss.resteasy.core.SynchronousDispatcher.getResponse(SynchronousDispatcher.java:442)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:429)
+	at org.jboss.resteasy.core.SynchronousDispatcher.invoke(SynchronousDispatcher.java:114)
+	at net.ion.radon.core.let.PathHandler.handleHttpRequest(PathHandler.java:95)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:37)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.URIPathMatchHandler.handleHttpRequest(URIPathMatchHandler.java:39)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:75)
+	at net.ion.nradon.netty.NettyHttpControl.nextHandler(NettyHttpControl.java:61)
+	at net.ion.nradon.wrapper.HttpControlWrapper.nextHandler(HttpControlWrapper.java:40)
+	at net.ion.nradon.handler.AbstractResourceHandler$IOWorker$1.run(AbstractResourceHandler.java:181)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)
+2015-01-14 15:11:05,560 - ResourceManager.getResource() parse exception
+org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered: "+" (43), after : "" at /icss/dashboard.html[line 914, column 91]
+	at org.apache.velocity.Template.process(Template.java:151)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.loadResource(ResourceManagerImpl.java:437)
+	at org.apache.velocity.runtime.resource.ResourceManagerImpl.getResource(ResourceManagerImpl.java:352)
+	at org.apache.velocity.runtime.RuntimeInstance.getTemplate(RuntimeInstance.java:1533)
+	at org.apache.velocity.app.VelocityEngine.getTemplate(VelocityEngine.java:392)
+	at net.ion.niss.webapp.HTMLTemplateEngine.process(HTMLTemplateEngine.java:118)
+	at net.ion.nradon.handler.AbstractResourceHandler$1.run(AbstractResourceHandler.java:99)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
+	at java.lang.Thread.run(Thread.java:662)

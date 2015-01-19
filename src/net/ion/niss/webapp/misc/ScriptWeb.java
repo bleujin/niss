@@ -251,7 +251,10 @@ public class ScriptWeb implements Webapp{
 					writer.write("\ncomplete :\n");
 					writer.write(ObjectUtil.toString(result));
 					writer.flush(); 
+					Thread.sleep(200); // wait flush & close
 				} catch (IOException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
 					IOUtil.closeQuietly(writer);
@@ -265,8 +268,8 @@ public class ScriptWeb implements Webapp{
 			public Void onFail(Exception ex, Object... args) {
 				try {
 					writer.write("\nexception occured : " + ex.getMessage() + "\n") ;
-					Thread.sleep(500); // wait flush & close
 					writer.flush(); 
+					Thread.sleep(200); // wait flush & close
 					ex.printStackTrace(); 
 				} catch (IOException e) {
 					e.printStackTrace();

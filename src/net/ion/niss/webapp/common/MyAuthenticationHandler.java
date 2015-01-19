@@ -1,10 +1,5 @@
 package net.ion.niss.webapp.common;
 
-import java.io.FileInputStream;
-
-import javax.ws.rs.core.HttpHeaders;
-
-import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.HttpControl;
 import net.ion.nradon.HttpRequest;

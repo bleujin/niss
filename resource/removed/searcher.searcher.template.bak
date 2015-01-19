@@ -1,9 +1,18 @@
 <ul>
-	<li>elapsedTime : $response.elapsedTime()
+	<li>elapsedTime : $response.elapsedTime(), $request
 	<li>size : $response.size()
 	<li>totalCount : $response.totalCount()
 	<li>params : $params
 </ul>
+
+#set($myarr = ["a","b","c"] )
+$myarr 
+
+$params.getFirst('query').substring(2)
+
+#set($q = $params.get('query'))
+$q.substring(3)
+
 
 <table>
 <tr>

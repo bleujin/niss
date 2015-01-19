@@ -44,7 +44,7 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 				
 				JsonObject json = new JsonObject() ;
 				json.put("url", page.getRequest().getUrl()) ;
-				json.put("title", page.getHtml().xpath("//title").get()) ;
+				json.put("title", page.getHtml().xpath("//title/text()").get()) ;
 				json.put("images", new JsonArray().adds(page.getHtml().xpath("//img/@src").all().toArray(new String[0]))) ;
 				json.put("links", new JsonArray().adds(links.toArray(new Link[0])));
 				
@@ -67,6 +67,52 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 		spider.addPipeline(debug).run();
 		Debug.line(writer);
 	}
+	
+	public void makeSiteMapFromION() throws Exception {
+		Site site = Site.create("http://www.i-on.net/index.html").sleepTime(50);
+
+		String hostPattern = "http://www.i-on.net/*";
+		final String urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^\"'#]*")).append(")").toString();
+
+		
+		final MultivaluedMapImpl<String, String> refs = new MultivaluedMapImpl<String, String>() ;
+		
+		PageProcessor processor = new PageProcessor() {
+			public void process(Page page) {
+				List<Link> links = page.getHtml().links().regex(urlPattern).targets();
+				
+				JsonObject json = new JsonObject() ;
+				json.put("url", page.getRequest().getUrl()) ;
+				json.put("title", page.getHtml().xpath("//title/text()").get()) ;
+				json.put("images", new JsonArray().adds(page.getHtml().xpath("//img/@src").all().toArray(new String[0]))) ;
+				json.put("links", new JsonArray().adds(links.toArray(new Link[0])));
+		
+				for (Link link : links) {
+					refs.add(link.target(), page.getRequest().getUrl()) ;
+				}
+				
+				
+				page.putField("result", json);
+				page.addTargets(links);
+			}
+		};
+
+		final Gson gson = new GsonBuilder().setPrettyPrinting().create() ;
+		final StringWriter writer = new StringWriter(16000);
+		Pipeline debug = new Pipeline() {
+			@Override
+			public void process(ResultItems ritems, Task task) {
+				JsonObject json = ritems.asObject("result");
+				json.add("refs", new JsonArray().adds(refs.getList(json.asString("url"))));
+				gson.toJson(json, writer) ;
+			}
+		};
+
+		Spider spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 10));
+		spider.addPipeline(debug).run();
+		Debug.line(writer);
+	}
+	
 	
 	public void testRunScript() throws Exception {
 		runScript(getClass().getResourceAsStream("working.script"));
