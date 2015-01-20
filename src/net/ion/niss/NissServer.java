@@ -95,7 +95,7 @@ public class NissServer {
 		ExecutorService nworker = Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("nworker-thread-%d")) ;
 		builder.context(PopularQueryEntry.EntryName, new PopularQueryEntry(rentry.login(), nworker)) ;
 		
-//		final QueryTemplateEngine ve = builder.context(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login()));
+		final QueryTemplateEngine ve = builder.context(QueryTemplateEngine.EntryName, QueryTemplateEngine.create("my.craken", rentry.login()));
 
 		this.radon = builder.createRadon();
 

@@ -1,0 +1,58 @@
+// crawl i-on sample 
+new function(){
+
+	importPackage(java.lang) 
+	importPackage(java.util)
+
+	importPackage(net.ion.framework.parse.gson) 
+	importPackage(net.ion.icrawler)
+	importPackage(net.ion.icrawler.pipeline)
+	importPackage(net.ion.icrawler.processor)
+	importPackage(net.ion.icrawler.scheduler)
+	importPackage(net.ion.icrawler.selector)
+
+	this.handle = function(writer, session){
+
+		var site = Site.create("http://www.i-on.net/index.html").sleepTime(50);
+		var hostPattern = "http://www.i-on.net/*";
+		var urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^\"'#]*")).append(")").toString();
+		var refs = new org.jboss.resteasy.specimpl.MultivaluedMapImpl() ;
+
+		var processor = new PageProcessor({
+			process : function(page) {
+				var links = page.getHtml().links().regex(urlPattern).targets();
+				
+				var json = new JsonObject() ;
+				
+				json.put("url", page.getRequest().getUrl()) ;
+				json.put("title", page.getHtml().xpath("//title/text()").get()) ;
+				json.put("images", new JsonArray().addCollection(page.getHtml().xpath("//img/@src").all())) ;
+				json.put("links", new JsonArray().addCollection(links));
+
+				for (var iterator = links.iterator(); iterator.hasNext();) {
+				        var link = iterator.next();
+					refs.add(link.target(), page.getRequest().getUrl()) ;
+				}
+				
+				page.putField("result", json);
+				page.addTargets(links);
+			}
+		});
+
+		var gson = new GsonBuilder().setPrettyPrinting().create() ;
+		var writerOut = new Pipeline({
+			process : function(ritems, task) {
+				var json = ritems.asObject("result");
+				json.add("refs", new JsonArray().addCollection(refs.getList(json.asString("url"))));
+				gson.toJson(json, writer) ;
+				writer.flush() ;
+			}
+		});
+
+		var spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 10));
+		spider.addPipeline(writerOut).run();
+	
+		return null ;
+	}
+
+} ;

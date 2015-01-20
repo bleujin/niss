@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ws.rs.core.Response;
 
+import org.apache.commons.collections.map.MultiValueMap;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 
 import net.ion.framework.parse.gson.Gson;
@@ -81,6 +82,7 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 			public void process(Page page) {
 				List<Link> links = page.getHtml().links().regex(urlPattern).targets();
 				
+				
 				JsonObject json = new JsonObject() ;
 				json.put("url", page.getRequest().getUrl()) ;
 				json.put("title", page.getHtml().xpath("//title/text()").get()) ;
@@ -103,7 +105,7 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 			@Override
 			public void process(ResultItems ritems, Task task) {
 				JsonObject json = ritems.asObject("result");
-				json.add("refs", new JsonArray().adds(refs.getList(json.asString("url"))));
+				json.add("refs", new JsonArray().addCollection(refs.getList(json.asString("url"))));
 				gson.toJson(json, writer) ;
 			}
 		};
@@ -111,6 +113,57 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 		Spider spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 10));
 		spider.addPipeline(debug).run();
 		Debug.line(writer);
+	}
+	
+	
+	public void testFind404FromION() throws Exception {
+		Site site = Site.create("http://www.i-on.net/index.html").sleepTime(50);
+
+		String hostPattern = "http://www.i-on.net/*";
+		final String urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^\"'#]*")).append(")").toString();
+
+		
+		final MultiValueMap refs = new MultiValueMap() ;
+		
+		PageProcessor processor = new PageProcessor() {
+			public void process(Page page) {
+				List<Link> links = page.getHtml().links().regex(urlPattern).targets();
+				
+				
+				JsonObject json = new JsonObject() ;
+				json.put("status", page.getStatusCode()) ;
+				json.put("url", page.getRequest().getUrl()) ;
+				json.put("title", page.getHtml().xpath("//title/text()").get()) ;
+				json.put("images", new JsonArray().adds(page.getHtml().xpath("//img/@src").all().toArray(new String[0]))) ;
+				json.put("links", new JsonArray().adds(links.toArray(new Link[0])));
+		
+				for (Link link : links) {
+					refs.put(link.target(), page.getRequest().getUrl()) ;
+				}
+				
+				page.putField("result", json);
+				page.addTargets(links);
+			}
+		};
+
+		final Gson gson = new GsonBuilder().setPrettyPrinting().create() ;
+		final StringWriter writer = new StringWriter(16000);
+		Pipeline debug = new Pipeline() {
+			@Override
+			public void process(ResultItems ritems, Task task) {
+				JsonObject json = ritems.asObject("result");
+				json.add("refs", new JsonArray().adds(refs.getCollection(json.asString("url")).toArray()));
+				if (json.asInt("status") == 404) gson.toJson(json, writer) ;
+			}
+		};
+
+		Spider spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), Integer.MAX_VALUE));
+		spider.addPipeline(debug).run();
+		Debug.line(writer);
+		
+
+
+		
 	}
 	
 	
