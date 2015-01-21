@@ -44,6 +44,7 @@ import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.SetUtil;
 import net.ion.framework.util.StringUtil;
+import net.ion.niss.NissServer;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
@@ -180,7 +181,7 @@ public class IndexerWeb implements Webapp {
 	@GET
 	@Path("/{iid}/dirInfo")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject viewDirInfo(@PathParam("iid") final String iid) throws IOException{
+	public JsonObject viewDirInfo(@PathParam("iid") final String iid, @ContextParam("net.ion.niss.NissServer") final NissServer nserver) throws IOException{
 		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
 			@Override
 			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
@@ -190,6 +191,8 @@ public class IndexerWeb implements Webapp {
 				json.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
 				if (dreader.directory() instanceof FSDirectory){
 					json.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory()) ;
+				} else {
+					json.put("FileStore Path", nserver.config().repoConfig().indexHomeDir() + "/" + iid) ;
 				}
 				
 				return json;
@@ -201,7 +204,7 @@ public class IndexerWeb implements Webapp {
 	@GET
 	@Path("/{iid}/overview")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject overview(@PathParam("iid") final String iid) throws IOException{
+	public JsonObject overview(@PathParam("iid") final String iid, @ContextParam("net.ion.niss.NissServer") final NissServer nserver) throws IOException{
 		
 		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
 			@Override
@@ -224,6 +227,8 @@ public class IndexerWeb implements Webapp {
 				dirInfo.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
 				if (dreader.directory() instanceof FSDirectory){
 					dirInfo.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory().getCanonicalPath()) ;
+				}else {
+					dirInfo.put("FileStore Path", nserver.config().repoConfig().indexHomeDir() + iid) ;
 				}
 				
 				result.add("dirInfo", dirInfo);

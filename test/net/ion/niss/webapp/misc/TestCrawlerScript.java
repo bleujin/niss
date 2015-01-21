@@ -120,16 +120,16 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 		Site site = Site.create("http://www.i-on.net/index.html").sleepTime(50);
 
 		String hostPattern = "http://www.i-on.net/*";
-		final String urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^\"'#]*")).append(")").toString();
+		final String urlPattern = (new StringBuilder("(")).append(hostPattern.replace(".", "\\.").replace("*", "[^#\"']*")).append(")").toString();
 
+		Debug.debug(urlPattern);
 		
 		final MultiValueMap refs = new MultiValueMap() ;
 		
 		PageProcessor processor = new PageProcessor() {
 			public void process(Page page) {
-				List<Link> links = page.getHtml().links().regex(urlPattern).targets();
-				
-				
+				List<Link> links = page.getHtml().links().regex(urlPattern).matches("[^#]*").targets();
+
 				JsonObject json = new JsonObject() ;
 				json.put("status", page.getStatusCode()) ;
 				json.put("url", page.getRequest().getUrl()) ;
@@ -153,17 +153,15 @@ public class TestCrawlerScript extends TestBaseIndexWeb {
 			public void process(ResultItems ritems, Task task) {
 				JsonObject json = ritems.asObject("result");
 				json.add("refs", new JsonArray().adds(refs.getCollection(json.asString("url")).toArray()));
-				if (json.asInt("status") == 404) gson.toJson(json, writer) ;
+//				if (json.asInt("status") == 404) 
+					gson.toJson(json, writer) ;
 			}
 		};
 
-		Spider spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), Integer.MAX_VALUE));
+		Spider spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 30));
 		spider.addPipeline(debug).run();
 		Debug.line(writer);
-		
 
-
-		
 	}
 	
 	
