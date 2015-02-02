@@ -220,8 +220,11 @@ public class SearcherWeb implements Webapp {
 		return rsession.pathBy(fqnBy(sid)).transformer(new Function<ReadNode, JsonObject>() {
 			@Override
 			public JsonObject apply(ReadNode node) {
-				JsonObject result = new JsonObject().put("info", rsession.ghostBy("/menus/searchers").property("define").asString()).put("indexers", colNames).put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
-						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0])).put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
+				JsonObject result = new JsonObject()
+						.put("info", rsession.ghostBy("/menus/searchers").property("define").asString()).put("indexers", colNames)
+						.put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
+						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0]))
+						.put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
 						.put("samples", WebUtil.findSearchHandlers())
 						.put(Def.Searcher.StopWord, node.property(Def.Searcher.StopWord).asString()).put(Def.Searcher.ApplyStopword, node.property(Def.Searcher.ApplyStopword).asBoolean());
 
@@ -475,6 +478,7 @@ public class SearcherWeb implements Webapp {
 	
 	@GET
 	@Path("/{sid}/browsing")
+	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject browsing(@PathParam("sid") final String sid, @DefaultValue("") @QueryParam("searchQuery") final String searchQuery, @DefaultValue("101") @QueryParam("offset") final int offset) throws IOException, ParseException{
 		
 		final SearchResponse response = smanager.searcher(sid).createRequest(searchQuery).offset(offset).find() ;

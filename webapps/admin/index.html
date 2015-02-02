@@ -71,9 +71,7 @@
 
 				<!-- Suggestion: populate this list with fetch and push technique -->
 				<ul class="dropdown-menu">
-					<li><a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a></li>
-					<li class="divider"></li>
-					<li><a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a></li>
+					
 				</ul>
 				<!-- end dropdown-menu-->
 
@@ -335,7 +333,22 @@
 						$(".project-context .dropdown-menu").append('<li><a href="javascript:void(0);">' + tlist[idx]['method'] + ' : ' + tlist[idx]['uri'] + '</a></li>');
 					}
 					$(".project-context .dropdown-menu").append('<li class="divider"></li>');
-					$(".project-context .dropdown-menu").append('<li><a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a></li>');
+					$(".project-context .dropdown-menu").append('<li><a href="javascript:void(0);" id="clearTrace"><i class="fa fa-power-off"></i> Clear</a></li>');
+					$("#clearTrace").click(function(){
+						$.ajax({
+							url:'/admin/traces/${request.data("user")}' ,
+							type:'DELETE',
+							dataType:'text',
+							data:{}, 
+							success:function(data){
+								// location.reload() ;
+							}, 
+							error:function(request,status,error){
+								console.log('response', request, status, error) ;
+							}
+						}) ;
+						// console.log('clear Trace') ;
+					}) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;

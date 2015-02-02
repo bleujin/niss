@@ -9,6 +9,8 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import javax.script.ScriptException;
 import javax.ws.rs.DELETE;
@@ -241,7 +243,9 @@ public class ScriptWeb implements Webapp{
 	public Response instantRunScript(@PathParam("sid") final String sid, @PathParam("eventid") String eventId, @DefaultValue("") @FormParam("content") String content) throws IOException, ScriptException{
 
 		final MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>() ;
-		final ScriptOutWriter writer = new ScriptOutWriter(esentry, eventId) ;
+		
+		final CountDownLatch latch = esentry.createEvent(eventId) ;
+		final ScriptOutWriter writer = new ScriptOutWriter(esentry, eventId, latch) ;
 
 		InstantJavaScript script = jengine.createScript(IdString.create(sid), "", new StringReader(content)) ;
 		script.execAsync(new ResultHandler<Void>() {
@@ -251,10 +255,7 @@ public class ScriptWeb implements Webapp{
 					writer.write("\ncomplete :\n");
 					writer.write(ObjectUtil.toString(result));
 					writer.flush(); 
-					Thread.sleep(200); // wait flush & close
 				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
 					IOUtil.closeQuietly(writer);
@@ -269,11 +270,8 @@ public class ScriptWeb implements Webapp{
 				try {
 					writer.write("\nexception occured : " + ex.getMessage() + "\n") ;
 					writer.flush(); 
-					Thread.sleep(200); // wait flush & close
 					ex.printStackTrace(); 
 				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
 					e.printStackTrace();
 				} finally {
 					IOUtil.closeQuietly(writer);
@@ -441,10 +439,12 @@ class ScriptOutWriter extends Writer{
 	private String eventId;
 	private EventSourceEntry ese;
 	private StringBuilder buffer = new StringBuilder() ;
+	private CountDownLatch latch;
 
-	public ScriptOutWriter(EventSourceEntry ese, String eventId) throws IOException {
+	public ScriptOutWriter(EventSourceEntry ese, String eventId, CountDownLatch latch) throws IOException {
 		this.ese = ese ;
 		this.eventId = eventId ;
+		this.latch = latch ;
  	}
 
 	@Override
@@ -460,6 +460,11 @@ class ScriptOutWriter extends Writer{
 
 	@Override
 	public void flush() throws IOException {
+		try {
+			latch.await(1, TimeUnit.SECONDS) ;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		ese.sendTo(eventId, buffer.toString()) ;
 		buffer.setLength(0);
 	}

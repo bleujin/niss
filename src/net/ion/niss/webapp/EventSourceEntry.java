@@ -6,11 +6,14 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
 import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.util.CopyOnWriteMap;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceMessage;
@@ -19,6 +22,7 @@ public class EventSourceEntry implements Closeable{
 
 	public final static String EntryName = "esentry" ;
 	private CopyOnWriteMap<Object, EventSourceConnection> connMap = new CopyOnWriteMap<Object, EventSourceConnection>() ;
+	private Map<Object, CountDownLatch> latchs = MapUtil.newMap() ;
 	
 	private EventSourceEntry(){
 	}
@@ -33,12 +37,19 @@ public class EventSourceEntry implements Closeable{
 	}
 
 	public EventSourceEntry onOpen(EventSourceConnection conn) {
-		connMap.put(conn.data("id"), conn) ;
+		Object eventId = conn.data("id");
+		CountDownLatch latch = latchs.get(eventId) ;
+		if (latch != null) latch.countDown(); 
+		
+		connMap.put(eventId, conn) ;
 		return this ;
 	}
 
 	public EventSourceEntry onClose(EventSourceConnection conn) {
-		connMap.remove(conn.data("id")) ;
+		Object eventId = conn.data("id");
+
+		latchs.remove(eventId) ;
+		connMap.remove(eventId) ;
 		return this ;
 	}
 
@@ -59,6 +70,12 @@ public class EventSourceEntry implements Closeable{
 			econn.close() ;
 		}
 		
+	}
+	
+	public CountDownLatch createEvent(String eventId) {
+		CountDownLatch latch = new CountDownLatch(1) ;
+		latchs.put(eventId, latch) ;
+		return latch ;
 	}
 }
 

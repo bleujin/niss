@@ -21,13 +21,13 @@ new function(){
 						jwriter.flush() ;
 					}
 					jwriter.endArray() ;
-					jwriter.close() ;
+					// jwriter.close() ;
 					return null ;
 				} catch(ex){
 					// throw new SQLException(ex) ;
 					jwriter.name('exception').value(ex) ;
 				} finally {
-					jwriter.close() ;
+					// jwriter.close() ;
 				}
 			} 
 		});
@@ -41,7 +41,7 @@ new function(){
 		} catch(ex){
 			// writer.write(ex.toString()) ;
 			writer.write(ex) ;
-			writer.close() ;
+			// writer.close() ;
 		}
 	}
 

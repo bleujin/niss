@@ -3,6 +3,7 @@ package net.ion.niss.webapp.misc;
 import java.io.IOException;
 import java.util.Iterator;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -11,6 +12,8 @@ import javax.ws.rs.QueryParam;
 
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
+import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.REntry;
@@ -50,5 +53,19 @@ public class TraceWeb implements Webapp {
 		JsonArray jsonTrace = rsession.ghostBy("/traces/"+ userId).children().descending("time").offset(offset).transform(fn) ;
 		
 		return new JsonObject().put("traces", jsonTrace);
+	}
+	
+	@Path("/{userid}")
+	@DELETE
+	public String removeActivity(@PathParam("userid") final String userId){
+		rsession.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy("/traces/" + userId).removeChildren() ;
+				return null;
+			}
+		})  ;
+		
+		return "removed " + userId;
 	}
 }
