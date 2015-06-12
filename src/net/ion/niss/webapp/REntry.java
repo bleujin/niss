@@ -113,6 +113,9 @@ public class REntry implements Closeable {
 		final JScriptEngine jsengine = JScriptEngine.create();
 
 		// load index
+		
+		session.ghostBy("/indexers").children().debugPrint(); 
+		
 		session.ghostBy("/indexers").children().eachNode(new ReadChildrenEach<Void>() {
 			@Override
 			public Void handle(ReadChildrenIterator iter) {
@@ -633,11 +636,13 @@ public class REntry implements Closeable {
 		String name = iid.idString();
 		DefaultCacheManager dm = r.dm();
 		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name;
-		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
+				.addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
 				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
 		dm.defineConfiguration(name + "-meta", meta_config);
 
-		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(false).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
+				.addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
 				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
 		dm.defineConfiguration(name + "-chunk", chunk_config);
 

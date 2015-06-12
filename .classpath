@@ -20,11 +20,11 @@
 	<classpathentry kind="lib" path="lib/reflib/oro-2.0.8.jar"/>
 	<classpathentry kind="lib" path="lib/ref/iframework_2.3.jar"/>
 	<classpathentry kind="lib" path="lib/common/extractfile_fat_1.8.jar"/>
-	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
-	<classpathentry kind="lib" path="lib/reflib/search4104_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/craken_0.9.jar"/>
-	<classpathentry kind="lib" path="lib/ref/isearcher_4.10.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/infinispan722_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/infinispan-embedded-query-7.2.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/search4104_fat.jar"/>
+	<classpathentry kind="lib" path="lib/ref/isearcher_4.10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

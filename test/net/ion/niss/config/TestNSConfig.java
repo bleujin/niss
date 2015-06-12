@@ -61,8 +61,8 @@ public class TestNSConfig extends TestCase {
 		
 		DefaultCacheManager dm = entry.repository().dm() ;
 		
-		assertEquals(CacheMode.DIST_SYNC, dm.getCache("admin").getCacheConfiguration().clustering().cacheMode());
-		assertEquals(CacheMode.DIST_SYNC, dm.getDefaultCacheConfiguration().clustering().cacheMode());
+		assertEquals(CacheMode.REPL_SYNC, dm.getCache("admin").getCacheConfiguration().clustering().cacheMode());
+//		assertEquals(CacheMode.DIST_SYNC, dm.getDefaultCacheConfiguration().clustering().cacheMode());
 		
 		ns.shutdown() ;
 	}

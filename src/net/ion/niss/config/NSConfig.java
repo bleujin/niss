@@ -38,7 +38,7 @@ public class NSConfig {
 	
 	public REntry createREntry() throws IOException{
 		Craken r = Craken.create(new DefaultCacheManager(repoConfig.crakenConfig()), serverConfig.id());
-		r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.indexDir(repoConfig.adminHomeDir()));
+		r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.oldDir(repoConfig.adminHomeDir()));
 		r.start();
 
 		return new REntry(r, repoConfig.wsName(), this);
