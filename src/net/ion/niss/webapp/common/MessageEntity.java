@@ -3,7 +3,6 @@ package net.ion.niss.webapp.common;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonUtil;
-import net.ion.framework.util.StringUtil;
 
 public abstract class MessageEntity {
 	private JsonObject inner = new JsonObject();

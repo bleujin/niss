@@ -5,9 +5,9 @@ import java.util.Set;
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.WorkspaceConfigBuilder;
-import net.ion.craken.tree.PropertyId;
+import net.ion.craken.node.crud.Craken;
+import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
+import net.ion.craken.node.crud.tree.impl.PropertyId;
 import net.ion.framework.util.Debug;
 import net.ion.niss.NissServer;
 import net.ion.niss.config.builder.ConfigBuilder;
@@ -25,8 +25,8 @@ public class TestNSConfig extends TestCase {
 		NSConfig nsConfig = ConfigBuilder.createDefault(9000).build() ;
 
 		RepositoryConfig repoConfig = nsConfig.repoConfig() ;
-		RepositoryImpl r = RepositoryImpl.create(new DefaultCacheManager(repoConfig.crakenConfig()), "niss");
-		r.createWorkspace("admin", WorkspaceConfigBuilder.directory(repoConfig.adminHomeDir()));
+		Craken r = Craken.create(new DefaultCacheManager(repoConfig.crakenConfig()), "niss");
+		r.createWorkspace("admin", WorkspaceConfigBuilder.indexDir(repoConfig.adminHomeDir()));
 		r.start();
 		
 		ReadSession session = r.login("admin");
@@ -42,8 +42,8 @@ public class TestNSConfig extends TestCase {
 	}
 	
 	public void testLoad() throws Exception {
-		RepositoryImpl r = RepositoryImpl.create(new DefaultCacheManager("./resource/config/craken-dist-config.xml"), "niss") ;
-		r.defineWorkspace("search") ;
+		Craken r = Craken.create(new DefaultCacheManager("./resource/config/craken-dist-config.xml"), "niss") ;
+		r.createWorkspace("search") ;
 		ReadSession session = r.login("search") ;
 		
 		

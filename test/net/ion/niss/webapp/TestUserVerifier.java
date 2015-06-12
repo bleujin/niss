@@ -2,8 +2,8 @@ package net.ion.niss.webapp;
 
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.WorkspaceConfigBuilder;
+import net.ion.craken.node.crud.Craken;
+import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
 import net.ion.niss.webapp.common.MyVerifier;
 
 import org.infinispan.manager.DefaultCacheManager;
@@ -16,8 +16,8 @@ public class TestUserVerifier extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		RepositoryImpl r = RepositoryImpl.create(new DefaultCacheManager("./resource/config/craken-local-config.xml"), "emanon") ;
-		r.createWorkspace("test", WorkspaceConfigBuilder.directory("./resource/store/temp")) ;
+		Craken r = Craken.create(new DefaultCacheManager("./resource/config/craken-local-config.xml"), "emanon") ;
+		r.createWorkspace("test", WorkspaceConfigBuilder.indexDir("./resource/store/temp")) ;
 		
 		this.session = r.login("test") ;
 	}

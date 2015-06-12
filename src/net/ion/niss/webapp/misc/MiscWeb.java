@@ -3,7 +3,6 @@ package net.ion.niss.webapp.misc;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.DELETE;
@@ -24,7 +23,7 @@ import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ChildQueryResponse;
-import net.ion.craken.tree.PropertyId;
+import net.ion.craken.node.crud.tree.impl.PropertyId;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;

@@ -2,18 +2,15 @@ package net.ion.nsearcher.index.file;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Future;
 
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
-import net.ion.framework.util.StringUtil;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexSession;
-import net.sf.jsqlparser.statement.insert.Insert;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.infinispan.util.concurrent.WithinThreadExecutor;

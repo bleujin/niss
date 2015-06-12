@@ -1,38 +1,11 @@
 package net.ion.niss.webapp.indexers;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.util.Date;
-
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.DoubleField;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.LongField;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.index.IndexableField;
-import org.apache.lucene.index.IndexableFieldType;
-import org.apache.lucene.util.BytesRef;
-
-import net.ion.framework.util.DateUtil;
-import net.ion.framework.util.NumberUtil;
-import net.ion.framework.util.StringUtil;
-import net.ion.niss.webapp.REntry;
-import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.IKeywordField;
-import net.ion.nsearcher.common.MyField;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.common.MyField.MyFieldType;
+import junit.framework.TestCase;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
-import net.ion.radon.client.StubServer;
-import junit.framework.TestCase;
 
 public class TestIndexManager extends TestCase {
 

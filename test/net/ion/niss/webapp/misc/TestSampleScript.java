@@ -27,10 +27,8 @@ import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
@@ -43,7 +41,6 @@ import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
 
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.WildcardQuery;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;

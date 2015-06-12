@@ -9,14 +9,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
-import java.util.concurrent.Callable;
+import java.util.Set;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 import javax.script.ScriptException;
-import javax.swing.JEditorPane;
 import javax.ws.rs.core.MultivaluedMap;
 
 import net.ion.craken.listener.CDDHandler;
@@ -28,21 +25,19 @@ import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
+import net.ion.craken.node.crud.Craken;
 import net.ion.craken.node.crud.ReadChildren;
 import net.ion.craken.node.crud.ReadChildrenEach;
 import net.ion.craken.node.crud.ReadChildrenIterator;
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.WriteChildren;
-import net.ion.craken.tree.Fqn;
-import net.ion.craken.tree.PropertyId;
-import net.ion.craken.tree.PropertyValue;
+import net.ion.craken.node.crud.tree.Fqn;
+import net.ion.craken.node.crud.tree.impl.PropertyId;
+import net.ion.craken.node.crud.tree.impl.PropertyValue;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.schedule.AtTime;
 import net.ion.framework.schedule.Job;
 import net.ion.framework.schedule.ScheduledRunnable;
 import net.ion.framework.schedule.Scheduler;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.ObjectUtil;
@@ -50,7 +45,6 @@ import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
-import net.ion.niss.webapp.common.Def.Schedule;
 import net.ion.niss.webapp.common.Def.Script;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SearchManager;
@@ -67,7 +61,6 @@ import net.ion.nsearcher.search.Searcher;
 
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.miscellaneous.PerFieldAnalyzerWrapper;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
@@ -88,7 +81,7 @@ public class REntry implements Closeable {
 
 	public final static String EntryName = "rentry";
 
-	private RepositoryImpl r;
+	private Craken r;
 	private String wsName;
 	private NSConfig nsconfig;
 
@@ -99,7 +92,7 @@ public class REntry implements Closeable {
 	private final Log log = LogFactory.getLog(REntry.class);
 	private Scheduler scheduler = new Scheduler("scripter", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("scripters-thread-%d")));
 
-	public REntry(RepositoryImpl r, String wsName, NSConfig nsconfig) throws IOException {
+	public REntry(Craken r, String wsName, NSConfig nsconfig) throws IOException {
 		this.r = r;
 		this.wsName = wsName;
 		this.nsconfig = nsconfig;
@@ -681,7 +674,7 @@ public class REntry implements Closeable {
 		return r.login(wsName);
 	}
 
-	public RepositoryImpl repository() {
+	public Craken repository() {
 		return r;
 	}
 

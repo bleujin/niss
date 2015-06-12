@@ -1,14 +1,10 @@
 package net.ion.niss.webapp.searchers;
 
-import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.radon.client.StubServer;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 

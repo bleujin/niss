@@ -1,29 +1,24 @@
 package net.ion.niss.webapp.scripters;
 
-import java.util.Calendar;
-
-import org.apache.commons.lang.time.DateUtils;
-import org.bson.types.ObjectId;
-
+import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.framework.util.DateUtil;
+import net.ion.craken.node.crud.Craken;
 import net.ion.framework.util.Debug;
-import net.sf.jsqlparser.statement.select.FromItem;
-import junit.framework.TestCase;
+
+import org.bson.types.ObjectId;
 
 public class TestRecent101 extends TestCase {
 
 	
-	private RepositoryImpl r;
+	private Craken r;
 	private ReadSession session;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.r = RepositoryImpl.inmemoryCreateWithTest() ;
+		this.r = Craken.inmemoryCreateWithTest() ;
 		this.session = r.login("test") ;
 	}
 	

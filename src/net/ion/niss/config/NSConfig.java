@@ -2,8 +2,8 @@ package net.ion.niss.config;
 
 import java.io.IOException;
 
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.WorkspaceConfigBuilder;
+import net.ion.craken.node.crud.Craken;
+import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
 import net.ion.niss.webapp.REntry;
 
 import org.infinispan.manager.DefaultCacheManager;
@@ -37,8 +37,8 @@ public class NSConfig {
 
 	
 	public REntry createREntry() throws IOException{
-		RepositoryImpl r = RepositoryImpl.create(new DefaultCacheManager(repoConfig.crakenConfig()), serverConfig.id());
-		r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.directory(repoConfig.adminHomeDir()));
+		Craken r = Craken.create(new DefaultCacheManager(repoConfig.crakenConfig()), serverConfig.id());
+		r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.indexDir(repoConfig.adminHomeDir()));
 		r.start();
 
 		return new REntry(r, repoConfig.wsName(), this);
@@ -46,7 +46,7 @@ public class NSConfig {
 
 
 	public REntry testREntry() throws IOException {
-		RepositoryImpl r = RepositoryImpl.inmemoryCreateWithTest() ;
+		Craken r = Craken.inmemoryCreateWithTest() ;
 		r.start();
 
 		return new REntry(r, "test", this);

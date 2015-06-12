@@ -14,7 +14,7 @@
 	<property name="manifest.main.class" value="net.ion.niss.Main" />
 	<property name="manifest.classpath" value="lib/ref/* lib/common/* lib/reflib/*" />
 	<property name="version.number" value="0" />
-	<property name="build.number" value="7" />
+	<property name="build.number" value="9" />
 	
 	<manifestclasspath property="dynamic.manifest.classpath" jarfile="niss_${version.number}.${build.number}.jar">
 		<classpath>

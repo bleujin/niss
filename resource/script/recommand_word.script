@@ -14,6 +14,10 @@ new function(){
 					list.add(rnode.property("query").asString()) ;
 				}
 				return StringUtil.join(list, ',');
+			}, 
+			
+			equals : function(obj){
+				return false ;
 			}
 		}) ;
 	}

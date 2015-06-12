@@ -2,14 +2,10 @@ package net.ion.niss.webapp.searchers;
 
 import java.io.FileInputStream;
 
-import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
-import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.radon.client.StubServer;
 
 public class TestTemplate extends TestBaseSearcher {
 

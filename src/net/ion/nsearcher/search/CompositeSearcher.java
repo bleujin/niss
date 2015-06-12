@@ -9,8 +9,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-import net.ion.framework.util.Debug;
-import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.framework.util.WithinThreadExecutor;
@@ -18,9 +16,7 @@ import net.ion.nsearcher.common.IKeywordField;
 import net.ion.nsearcher.common.ReadDocument;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.config.SearchConfig;
-import net.ion.nsearcher.config.SearchConfigBuilder;
 import net.ion.nsearcher.reader.InfoReader;
 import net.ion.nsearcher.search.filter.FilterUtil;
 import net.ion.nsearcher.search.processor.PostProcessor;

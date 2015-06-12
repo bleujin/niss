@@ -1,6 +1,5 @@
 package net.ion.niss.webapp.loaders;
 
-import java.io.Writer;
 import java.util.concurrent.Future;
 
 public class InstantJavaScript {

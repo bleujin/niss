@@ -5,7 +5,6 @@ import java.io.Reader;
 import java.util.Date;
 
 import net.ion.framework.util.DateUtil;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.nsearcher.common.MyField.MyFieldType;
@@ -15,12 +14,9 @@ import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.DoubleField;
 import org.apache.lucene.document.Field;
-import org.apache.lucene.document.IntField;
+import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.document.LongField;
 import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.Field.Index;
-import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexableField;
 import org.apache.lucene.index.IndexableFieldType;
 import org.apache.lucene.util.BytesRef;
@@ -86,8 +82,8 @@ public abstract class FieldIndexingStrategy {
 					return ifield.binaryValue();
 				}
 
-				public TokenStream tokenStream(Analyzer analyzer) throws IOException {
-					return ifield.tokenStream(analyzer);
+				public TokenStream tokenStream(Analyzer analyzer, TokenStream tstream) throws IOException {
+					return ifield.tokenStream(analyzer, tstream);
 				}
 
 			});

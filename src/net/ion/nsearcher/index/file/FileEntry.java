@@ -3,8 +3,6 @@ package net.ion.nsearcher.index.file;
 import java.io.File;
 import java.util.Map;
 
-import net.ion.framework.util.MapUtil;
-
 public class FileEntry {
 
 	private File file;

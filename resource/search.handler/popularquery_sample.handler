@@ -12,6 +12,8 @@ new function(){
 				var ireq = request ;
 				rsession.tran(new net.ion.craken.node.TransactionJob({
 					handle : function(wsession){
+						wsession.iwconfig().keyword("query") ;
+					
 					    var query = ireq.userDefine() ;
 					    var se = new ScheduleUtil() ;
 						var wnode = wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode())

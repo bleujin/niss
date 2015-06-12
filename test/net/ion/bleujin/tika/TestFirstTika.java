@@ -20,7 +20,6 @@ import org.xml.sax.SAXException;
 
 import rcc.h2tlib.parser.H2TParser;
 import rcc.h2tlib.parser.HWPMeta;
-import rcc.h2tlib.parser.HWPVER;
 
 public class TestFirstTika extends TestCase {
 

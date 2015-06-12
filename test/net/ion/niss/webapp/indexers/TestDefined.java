@@ -1,7 +1,5 @@
 package net.ion.niss.webapp.indexers;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
 import net.ion.craken.node.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.common.Def;
@@ -9,7 +7,9 @@ import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
+
+import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class TestDefined extends TestBaseIndexWeb {
 

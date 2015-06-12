@@ -4,8 +4,8 @@ import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.RepositoryImpl;
-import net.ion.craken.node.crud.WorkspaceConfigBuilder;
+import net.ion.craken.node.crud.Craken;
+import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
 
 import org.infinispan.manager.DefaultCacheManager;
 
@@ -17,8 +17,8 @@ public class TestRead extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		RepositoryImpl r = RepositoryImpl.create(new DefaultCacheManager("./resource/config/craken-local-config.xml"), "niss") ;
-		r.createWorkspace("admin", WorkspaceConfigBuilder.directory("./resource/admin")) ;
+		Craken r = Craken.create(new DefaultCacheManager("./resource/config/craken-local-config.xml"), "niss") ;
+		r.createWorkspace("admin", WorkspaceConfigBuilder.indexDir("./resource/admin")) ;
 		
 		this.session = r.login("admin") ;
 	}
@@ -30,7 +30,6 @@ public class TestRead extends TestCase {
 	}
 	
 	public void testWrite() throws Exception {
-		
 		session.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {

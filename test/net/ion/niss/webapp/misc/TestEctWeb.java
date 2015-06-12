@@ -7,10 +7,10 @@ import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.searchers.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer;
 import net.ion.radon.client.StubServer;
 
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
 
 public class TestEctWeb extends TestCase {
 

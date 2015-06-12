@@ -19,17 +19,15 @@ import java.util.Map.Entry;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonUtil;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.StringUtil;
-import net.ion.nsearcher.common.MyField.MyFieldType;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.event.CollectorEvent;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.lucene.document.Document;
-import org.apache.lucene.document.TextField;
 import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.TextField;
 
 import com.google.common.collect.ArrayListMultimap;
 

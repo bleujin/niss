@@ -1,22 +1,20 @@
 package net.ion.niss.webapp.common;
 
+import junit.framework.TestCase;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.convert.Functions;
-import net.ion.craken.node.crud.RepositoryImpl;
+import net.ion.craken.node.crud.Craken;
 import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.indexers.TestIndexQuery;
-import junit.framework.TestCase;
 
 public class TestTrans  extends TestCase {
 
-	private RepositoryImpl r;
+	private Craken r;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.r = RepositoryImpl.inmemoryCreateWithTest() ;
+		this.r = Craken.inmemoryCreateWithTest() ;
 	}
 	
 	@Override

@@ -1,7 +1,6 @@
 package net.ion.bleujin;
 
 import junit.framework.TestCase;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexJob;

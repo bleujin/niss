@@ -9,7 +9,6 @@ import java.net.URLClassLoader;
 
 import junit.framework.TestCase;
 import net.ion.craken.util.StringInputStream;
-import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.util.Debug;
 import net.ion.niss.cloader.DirClassLoader;
 import net.ion.niss.webapp.IdString;

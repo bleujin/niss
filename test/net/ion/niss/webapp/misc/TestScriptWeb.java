@@ -3,6 +3,8 @@ package net.ion.niss.webapp.misc;
 import junit.framework.TestCase;
 import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
+import net.ion.craken.node.TransactionJob;
+import net.ion.craken.node.WriteSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
@@ -84,6 +86,21 @@ public class TestScriptWeb extends TestCase {
 		assertEquals("1-7", sinfo.property("week").asString()) ;
 		assertEquals("-1", sinfo.property("matchtime").asString()) ;
 		assertEquals("2014-2020", sinfo.property("year").asString()) ;
+	}
+
+	
+	public void testHanja() throws Exception {
+		ReadSession session = rentry.login() ;
+		
+		session.tran(new TransactionJob<Void>() {
+			@Override
+			public Void handle(WriteSession wsession) throws Exception {
+				wsession.pathBy("/emp/bleujin").property("name", "三星電氣") ;
+				return null;
+			}
+		}) ;
+		
+		session.root().childQuery("name:三星*", true).find().debugPrint(); 
 	}
 
 }

@@ -14,7 +14,7 @@ import net.ion.craken.node.ReadNode;
 import net.ion.craken.node.ReadSession;
 import net.ion.craken.node.TransactionJob;
 import net.ion.craken.node.WriteSession;
-import net.ion.craken.tree.PropertyValue;
+import net.ion.craken.node.crud.tree.impl.PropertyValue;
 import net.ion.framework.mte.Engine;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;

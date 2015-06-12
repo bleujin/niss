@@ -1,17 +1,11 @@
 package net.ion.nsearcher.index.crawl;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-
-import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.util.ListUtil;
 import net.ion.icrawler.ResultItems;
 import net.ion.icrawler.Spider;
@@ -22,7 +16,8 @@ import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.index.rdb.RDBIndexHandler;
+
+import org.apache.lucene.analysis.Analyzer;
 
 public class CrawlIndexer {
 

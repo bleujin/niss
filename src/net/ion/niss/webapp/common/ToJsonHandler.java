@@ -4,7 +4,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.Debug;
 import net.ion.framework.util.StringUtil;
 
 import org.xml.sax.Attributes;

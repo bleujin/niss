@@ -13,7 +13,7 @@ import net.ion.craken.node.WriteNode;
 import net.ion.craken.node.WriteSession;
 import net.ion.craken.node.crud.ChildQueryRequest;
 import net.ion.craken.node.crud.ChildQueryResponse;
-import net.ion.craken.node.crud.RepositoryImpl;
+import net.ion.craken.node.crud.Craken;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.RandomUtil;
@@ -32,13 +32,13 @@ import com.google.common.base.Function;
 public class TestRecommand extends TestCase{
 	
 	
-	private RepositoryImpl r;
+	private Craken r;
 	private ReadSession session;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.r = RepositoryImpl.inmemoryCreateWithTest() ;
+		this.r = Craken.inmemoryCreateWithTest() ;
 		this.session = r.login("test") ;
 	}
 	

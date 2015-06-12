@@ -5,6 +5,10 @@ http://niss.s3.amazonaws.com/niss_0.7.zip
 
 HISTORY : 
 
+2015.2.2 
+	add wrapper service on windows(service/bin/installService)
+	confirm wrapper.java.app.jar in service/conf/wrapper.conf
+
 2015.1.19 
     add method : searchRequest.userDefine() 
  	mod : popularquery_sample.handler
