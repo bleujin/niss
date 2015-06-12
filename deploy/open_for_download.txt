@@ -1,9 +1,14 @@
-http://niss.s3.amazonaws.com/niss_0.7.zip
+http://niss.s3.amazonaws.com/niss_0.9.zip
 
 
 
 
 HISTORY : 
+
+2015.6.12
+	apply craken 0.9
+	not backward compatibility alert.
+	jdk 1.7 higher
 
 2015.2.2 
 	add wrapper service on windows(service/bin/installService)
