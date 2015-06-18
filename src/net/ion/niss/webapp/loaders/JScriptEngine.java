@@ -25,6 +25,7 @@ import net.ion.jci.monitor.AbstractListener;
 import net.ion.jci.monitor.FileAlterationMonitor;
 import net.ion.niss.cloader.DirClassLoader;
 import net.ion.niss.webapp.IdString;
+import net.ion.niss.webapp.util.ScriptJDK;
 import net.ion.radon.cload.cloader.OuterClassLoader;
 
 import org.apache.commons.io.monitor.FileAlterationObserver;
@@ -105,7 +106,7 @@ public class JScriptEngine {
 	}
 	
 	public InstantJavaScript createScript(IdString lid, String explain, Reader reader) throws IOException, ScriptException{
-		String script = IOUtil.toStringWithClose(reader) ;
+		String script = ScriptJDK.trans(reader) ;
 
 		Object compiledScript = sengine.eval(script);
 		InstantJavaScript result = InstantJavaScript.create(this, explain, compiledScript) ;

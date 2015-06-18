@@ -85,7 +85,7 @@ public class TestScriptClassLoader extends TestCase {
 					+ " importPackage(java.lang) \n"
 					+ " this.handle = function(writer) {\n"
 					+ "   var clz = Class.forName('net.ion.bleujin.cloader.Namaste', false, dirloader) ; \n"
-					+ "   writer.write(clz.newInstance()) ; \n"
+					+ "   writer.write(clz.newInstance().toString()) ; \n"
 //					+ "   writer.write(dirloader.findClass('net.ion.bleujin.cloader.Namaste').newInstance()) ; \n"
 					+ "   return 'Hello'; \n"
 					+ " }"
