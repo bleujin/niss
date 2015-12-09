@@ -52,9 +52,11 @@ import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
 import net.ion.niss.webapp.misc.ScriptWeb;
+import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
+import net.ion.nsearcher.config.IndexConfig;
 import net.ion.nsearcher.config.SearchConfig;
 import net.ion.nsearcher.search.CompositeSearcher;
 import net.ion.nsearcher.search.Searcher;
@@ -64,6 +66,7 @@ import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.util.Version;
 import org.infinispan.Cache;
@@ -592,14 +595,15 @@ public class REntry implements Closeable {
 			}
 
 			Analyzer queryAnalyzer = makeAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString());
-			SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
+			SearchConfig sconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
+			IndexConfig iconfig = IndexConfig.create( SearchConstant.LuceneVersion, new WithinThreadExecutor(), queryAnalyzer, new IndexWriterConfig(SearchConstant.LuceneVersion, queryAnalyzer), FieldIndexingStrategy.DEFAULT);
 
 			ReadChildren schemas = session.ghostBy(rnode.fqn().toString() + "/schema").children();
 			for (ReadNode schemaNode : schemas.toList()) {
-				nconfig.fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
+				sconfig.fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
 			}
 
-			searcher = CompositeSearcher.create(nconfig, target);
+			searcher = CompositeSearcher.create(sconfig, iconfig, target);
 		}
 
 		String scontent = rnode.property(Def.Searcher.Handler).asString();

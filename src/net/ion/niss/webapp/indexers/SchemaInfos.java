@@ -52,7 +52,7 @@ public class SchemaInfos {
 
 	public void addField(Document doc, MyField myField, Field ifield) {
 		String name = myField.name() ;
-		String value = myField.unknownValue() ;
+		String value = myField.stringValue();
 		if (IKeywordField.Field.reservedId(name)) {
 			doc.add(ifield) ;
 		} else if (myField.myFieldtype() == MyFieldType.Unknown && infos.containsKey(myField.name())){

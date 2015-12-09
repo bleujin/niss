@@ -7,9 +7,11 @@ import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
+import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
+import net.ion.nsearcher.config.IndexConfig;
 import net.ion.nsearcher.config.SearchConfig;
 import net.ion.nsearcher.index.IndexJobs;
 import net.ion.nsearcher.search.CompositeSearcher;
@@ -20,6 +22,7 @@ import net.ion.nsearcher.search.filter.TermFilter;
 import net.ion.nsearcher.search.processor.PostProcessor;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.index.IndexWriterConfig;
 import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class TestScriptFilter extends TestCase {
@@ -32,8 +35,10 @@ public class TestScriptFilter extends TestCase {
 		Central c1 = CentralConfig.newRam().build();
 		Central c2 = CentralConfig.newRam().build();
 
-		SearchConfig nconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, new StandardAnalyzer(SearchConstant.LuceneVersion), SearchConstant.ISALL_FIELD);
-		this.searcher = CompositeSearcher.create(nconfig, ListUtil.toList(c1, c2));
+		StandardAnalyzer anal = new StandardAnalyzer(SearchConstant.LuceneVersion);
+		SearchConfig sconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, anal, SearchConstant.ISALL_FIELD);
+		IndexConfig iconfig = IndexConfig.create( SearchConstant.LuceneVersion, new WithinThreadExecutor(), anal, new IndexWriterConfig(SearchConstant.LuceneVersion, anal), FieldIndexingStrategy.DEFAULT);
+		this.searcher = CompositeSearcher.create(sconfig, iconfig, ListUtil.toList(c1, c2));
 
 		c1.newIndexer().index(IndexJobs.create("bleujin", 2));
 		c2.newIndexer().index(IndexJobs.create("hero", 2));
