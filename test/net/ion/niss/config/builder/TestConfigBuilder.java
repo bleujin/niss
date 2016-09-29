@@ -1,6 +1,7 @@
 package net.ion.niss.config.builder;
 
 import junit.framework.TestCase;
+import net.ion.framework.util.Debug;
 import net.ion.niss.config.NSConfig;
 
 public class TestConfigBuilder extends TestCase{
@@ -14,5 +15,6 @@ public class TestConfigBuilder extends TestCase{
 		assertEquals("./resource/index/", nsconfig.repoConfig().indexHomeDir());
 		assertEquals("./resource/admin/", nsconfig.repoConfig().adminHomeDir());
 
+		Debug.debug("./resource/admin/", nsconfig.repoConfig().store());
 	}
 }

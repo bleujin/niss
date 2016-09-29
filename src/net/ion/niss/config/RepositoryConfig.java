@@ -7,12 +7,14 @@ public class RepositoryConfig {
 	private String adminHomeDir ;
 	private String indexHomeDir ;
 	private String wsName ;
+	private String store;
 	
-	public RepositoryConfig(String crakenConfig, String adminHomeDir, String indexHomeDir, String wsName) { 
+	public RepositoryConfig(String crakenConfig, String adminHomeDir, String indexHomeDir, String wsName, String store) { 
 		this.crakenConfig = crakenConfig ;
 		this.adminHomeDir = adminHomeDir ;
 		this.indexHomeDir = indexHomeDir ;
 		this.wsName = wsName ;
+		this.store = store ;
 	}
 
 	
@@ -30,6 +32,11 @@ public class RepositoryConfig {
 	
 	public String wsName(){
 		return wsName ;
+	}
+
+
+	public String store() {
+		return store;
 	}
 
 }

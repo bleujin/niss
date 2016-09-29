@@ -13,10 +13,12 @@ import org.w3c.dom.Node;
 public class RepositoryConfigBuilder {
 
 	private String wsName = "admin" ;
+	
 	private String adminHomeDir = "./resource/admin/" ;
 	private String indexHomeDir = "./resource/index/" ;
 	private ConfigBuilder parent;
 	private String crakenConfig = "./resource/config/craken-local-config.xml";
+	private String store = "";
 
 	public RepositoryConfigBuilder(ConfigBuilder parent){
 		this.parent = parent ;
@@ -30,8 +32,14 @@ public class RepositoryConfigBuilder {
 		Node adminNode = (Node) xpath.evaluate("admin-home", rconfig, XPathConstants.NODE);
 		Node indexNode = (Node) xpath.evaluate("index-home", rconfig, XPathConstants.NODE);
 		String wname = rconfig.getAttributes().getNamedItem("wsname").getTextContent() ;
+		String store = rconfig.getAttributes().getNamedItem("store") == null ?  "grid" : rconfig.getAttributes().getNamedItem("store").getTextContent() ;
 		
-		return configLoc(configNode.getTextContent()).adminHomeDir(adminNode.getTextContent()).indexHomeDir(indexNode.getTextContent()).wsName(wname);
+		return configLoc(configNode.getTextContent()).adminHomeDir(adminNode.getTextContent()).indexHomeDir(indexNode.getTextContent()).wsName(wname).store(store);
+	}
+
+	private RepositoryConfigBuilder store(String store) {
+		this.store = store ;
+		return this;
 	}
 
 	public RepositoryConfigBuilder adminHomeDir(String adminHomeDir){
@@ -62,7 +70,7 @@ public class RepositoryConfigBuilder {
 
 
 	public RepositoryConfig build() {
-		return new RepositoryConfig(crakenConfig, adminHomeDir, indexHomeDir, wsName);
+		return new RepositoryConfig(crakenConfig, adminHomeDir, indexHomeDir, wsName, store);
 	}
 	
 	

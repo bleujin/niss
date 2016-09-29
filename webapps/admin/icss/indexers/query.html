@@ -178,7 +178,7 @@
 				type: "GET",
 				dataType : 'text', 
 				url: "/admin/indexers/" + indexerId + "/query." + _rtype.val() + (  _parameter.val() ? "?" + _parameter.val() : ""),
-				data: { query: _query.val(), sort: _sort.val(), skip: _skip.val(), offset: _offset.val() , indent: _indent.is(":checked") ? true : false, debug: _debug.is(":checked") ? true : false}, 
+				data: { query: encodeURIComponent(_query.val()), sort: encodeURIComponent(_sort.val()), skip: _skip.val(), offset: _offset.val() , indent: _indent.is(":checked") ? true : false, debug: _debug.is(":checked") ? true : false}, 
 				complete : function(){ 
 					var targetURL = "<a href='http://" + document.location.host +  this.url + "' target='_blank'>" + this.url + "</a>";
 					$("#query_url").html(targetURL) ;
