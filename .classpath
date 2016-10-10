@@ -26,8 +26,8 @@
 	<classpathentry kind="lib" path="lib/reflib/infinispan-embedded-query-7.2.2.Final.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search4104_fat.jar"/>
-	<classpathentry kind="lib" path="lib/ref/iframework_2.4.jar"/>
 	<classpathentry kind="lib" path="lib/ref/postgresql-9.4.1208.jre7.jar"/>
 	<classpathentry kind="lib" path="lib/ref/thumbnailator-0.4.3.jar"/>
+	<classpathentry kind="lib" path="lib/ref/iframework_2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
