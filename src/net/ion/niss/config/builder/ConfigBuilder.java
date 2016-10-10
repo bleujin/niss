@@ -22,16 +22,18 @@ public class ConfigBuilder {
 	private ServerConfigBuilder sbuilder;
 	private RepositoryConfigBuilder rbuilder;
 	private LogConfigBuilder lbuilder;
+	private SiteSearchConfigBuilder ssbuilder ;
 
 	public ConfigBuilder(){
 		this.sbuilder = new ServerConfigBuilder(this) ;
 		this.rbuilder = new RepositoryConfigBuilder(this) ;
 		this.lbuilder = new LogConfigBuilder(this) ;
+		this.ssbuilder = new SiteSearchConfigBuilder(this) ;
 	}
 	
 	
 	public NSConfig build(){
-		return new NSConfig(sbuilder.build(), rbuilder.build(), lbuilder.build()) ;
+		return new NSConfig(sbuilder.build(), rbuilder.build(), lbuilder.build(), ssbuilder.build()) ;
 	}
 	
 	
@@ -56,9 +58,10 @@ public class ConfigBuilder {
 			Node sconfig = (Node) xpath.evaluate("//server-config", document, XPathConstants.NODE);
 			Node logconfig = (Node) xpath.evaluate("//log-config-file", document, XPathConstants.NODE);
 			Node rconfig = (Node) xpath.evaluate("//repository-config", document, XPathConstants.NODE);
-
 			
-			return new ConfigBuilder().sbuilder.node(sconfig).parent().lbuilder.node(logconfig).parent().rbuilder.node(rconfig).parent() ;
+			Node ssconfig = (Node) xpath.evaluate("//sitesearch-config", document, XPathConstants.NODE);
+			
+			return new ConfigBuilder().sbuilder.node(sconfig).parent().lbuilder.node(logconfig).parent().rbuilder.node(rconfig).parent().ssbuilder.node(ssconfig).parent() ;
 			
 		} catch (SAXException ex) {
 			throw new IOException(ex);

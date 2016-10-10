@@ -1,0 +1,23 @@
+
+<ul>
+	<li>elapsedTime : $response.elapsedTime()
+	<li>size : $response.size()
+	<li>totalCount : $response.totalCount()
+	<li>params : $params
+</ul>
+
+<table border=1>
+<tr>
+	<th>capture</th>
+	<th>Id</th>
+	<th>Title</th>
+</tr>
+
+#foreach($doc in $response.getDocument())
+<tr>
+	<td><a href="$doc.getField("relurl").stringValue()"><img src="/admin/sites/first/capture_thumbnail/${doc.getField("crawlid").stringValue()}/${doc.getField("relurl").stringValue()}.png" width=100 height=70 /></a></td>
+	<td>$doc.getField("title").stringValue()</td>
+	<td>$doc.getField("relurl").stringValue()</td>
+</tr>
+#end
+</table>

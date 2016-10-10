@@ -18,7 +18,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.transform.Source;
 
@@ -407,8 +409,8 @@ public class SearcherWeb implements Webapp {
 	@GET
 	@Path("/{sid}/query.template")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String tquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
-			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
+	public Response tquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
+			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @QueryParam("ishtml") boolean ishtml, @Context HttpRequest request) throws IOException, ParseException {
 
 		try {
 			MultivaluedMap<String, String> map = request.getUri().getQueryParameters();
@@ -417,11 +419,11 @@ public class SearcherWeb implements Webapp {
 			String resourceName = fqnBy(sid).toString() + ".template" ;
 			StringWriter writer = new StringWriter();
 			qengine.merge(resourceName, MapUtil.<String, Object> chainMap().put("response", sresponse).put("params", map).toMap(), writer);
-			
-			return writer.toString() ;
+
+			return Response.ok(writer.toString(), ishtml ? ExtMediaType.TEXT_HTML_UTF8 : ExtMediaType.TEXT_PLAIN_UTF8).build() ;
 		} catch (org.apache.velocity.exception.ParseErrorException tex) {
 			tex.printStackTrace(); 
-			return tex.getMessage();
+			return Response.status(500).entity(tex.getMessage()).build();
 		}
 	}
 

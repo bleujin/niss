@@ -1,6 +1,7 @@
 package net.ion.niss.webapp;
 
 import java.io.Closeable;
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -52,6 +53,7 @@ import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
 import net.ion.niss.webapp.misc.ScriptWeb;
+import net.ion.niss.webapp.sites.SiteManager;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
@@ -63,6 +65,7 @@ import net.ion.nsearcher.search.Searcher;
 
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
@@ -90,6 +93,7 @@ public class REntry implements Closeable {
 
 	private IndexManager indexManager = new IndexManager();
 	private SearchManager searchManager = new SearchManager();
+	private SiteManager siteManager = new SiteManager(indexManager);
 
 	private ReadSession rsession;
 	private final Log log = LogFactory.getLog(REntry.class);
@@ -108,6 +112,7 @@ public class REntry implements Closeable {
 	public void reload() {
 		indexManager = new IndexManager();
 		searchManager = new SearchManager();
+		siteManager = new SiteManager(indexManager) ;
 		initCDDListener(rsession);
 	}
 
@@ -116,9 +121,8 @@ public class REntry implements Closeable {
 		final JScriptEngine jsengine = JScriptEngine.create();
 
 		// load index
-		
-		session.ghostBy("/indexers").children().debugPrint(); 
-		
+		// session.ghostBy("/indexers").children().debugPrint();
+
 		session.ghostBy("/indexers").children().eachNode(new ReadChildrenEach<Void>() {
 			@Override
 			public Void handle(ReadChildrenIterator iter) {
@@ -126,7 +130,7 @@ public class REntry implements Closeable {
 					for (ReadNode indexNode : iter) {
 						IdString cid = IdString.create(indexNode.fqn().name());
 
-						Central central = createCentral(cid);
+						Central central = createIndexerCentral(cid);
 
 						Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
 						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
@@ -305,7 +309,7 @@ public class REntry implements Closeable {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
 					if (!indexManager.hasIndex(iid)) { // created
-						Central central = createCentral(iid);
+						Central central = createIndexerCentral(iid);
 
 						indexManager.newIndex(iid, central);
 						log.info(iid + " indexer defined");
@@ -363,7 +367,7 @@ public class REntry implements Closeable {
 			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
 				String sid = rmap.get("sid");
 				scheduler.removeJob(sid);
-				
+
 				return null;
 			}
 
@@ -390,24 +394,21 @@ public class REntry implements Closeable {
 						final ReadNode scriptNode = rsession.ghostBy("/scripts/" + scriptId);
 
 						// should check running(in distribute mode)
-						if (scriptNode.property(Script.Running).asBoolean()) return ;
+						if (scriptNode.property(Script.Running).asBoolean())
+							return;
 						rsession.tran(new TransactionJob<Void>() {
 							@Override
 							public Void handle(WriteSession wsession) throws Exception {
-								wsession.pathBy(scriptNode.fqn()).property(Script.Running, true) ;
+								wsession.pathBy(scriptNode.fqn()).property(Script.Running, true);
 								return null;
 							}
-						}) ;
-						// 
-						
-						
-						
+						});
+						//
+
 						String scriptContent = scriptNode.property(Def.Script.Content).asString();
 						StringWriter result = new StringWriter();
 						final JsonWriter jwriter = new JsonWriter(result);
 
-						
-						
 						try {
 							StringWriter writer = new StringWriter();
 							MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>();
@@ -423,12 +424,12 @@ public class REntry implements Closeable {
 										rsession.tran(new TransactionJob<Void>() {
 											@Override
 											public Void handle(WriteSession wsession) throws Exception {
-												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false) ;
+												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false);
 												return null;
 											}
-										}) ;
+										});
 									}
-									return new String[]{"schedule success", ObjectUtil.toString(result)};
+									return new String[] { "schedule success", ObjectUtil.toString(result) };
 								}
 
 								@Override
@@ -440,12 +441,12 @@ public class REntry implements Closeable {
 										rsession.tran(new TransactionJob<Void>() {
 											@Override
 											public Void handle(WriteSession wsession) throws Exception {
-												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false) ;
+												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false);
 												return null;
 											}
-										}) ;
+										});
 									}
-									return new String[]{"schedule fail", ex.getMessage()};
+									return new String[] { "schedule fail", ex.getMessage() };
 								}
 							}, writer, rsession, params, REntry.this, jsengine);
 
@@ -463,11 +464,11 @@ public class REntry implements Closeable {
 							jwriter.endArray();
 							jwriter.endObject();
 							jwriter.close();
-							rsession.tran(ScriptWeb.end(scriptId, execResult[0], execResult[1])) ;
+							rsession.tran(ScriptWeb.end(scriptId, execResult[0], execResult[1]));
 						} catch (IOException ex) {
-							rsession.tran(ScriptWeb.end(scriptId, "schedule fail", ex.getMessage())) ; 
-						} catch(ScriptException ex){
-							rsession.tran(ScriptWeb.end(scriptId, "schedule fail", ex.getMessage())) ;
+							rsession.tran(ScriptWeb.end(scriptId, "schedule fail", ex.getMessage()));
+						} catch (ScriptException ex) {
+							rsession.tran(ScriptWeb.end(scriptId, "schedule fail", ex.getMessage()));
 						} finally {
 							IOUtil.close(jwriter);
 						}
@@ -478,41 +479,35 @@ public class REntry implements Closeable {
 			}
 
 			private AtTime makeAtTime(ReadNode sinfo) {
-				String expr = StringUtil.coalesce(sinfo.property("minute").asString(), "*") + " " 
-						+ StringUtil.coalesce(sinfo.property("hour").asString(), "*") + " " 
-						+ StringUtil.coalesce(sinfo.property("day").asString(), "*") + " " 
-						+ StringUtil.coalesce(sinfo.property("month").asString(), "*") + " " 
-						+ StringUtil.coalesce(sinfo.property("week").asString(), "*") + " "
-						+ StringUtil.coalesce(sinfo.property("matchtime").asString(), "*") + " " 
-						+ StringUtil.coalesce(sinfo.property("year").asString(), "*");
+				String expr = StringUtil.coalesce(sinfo.property("minute").asString(), "*") + " " + StringUtil.coalesce(sinfo.property("hour").asString(), "*") + " " + StringUtil.coalesce(sinfo.property("day").asString(), "*") + " " + StringUtil.coalesce(sinfo.property("month").asString(), "*")
+						+ " " + StringUtil.coalesce(sinfo.property("week").asString(), "*") + " " + StringUtil.coalesce(sinfo.property("matchtime").asString(), "*") + " " + StringUtil.coalesce(sinfo.property("year").asString(), "*");
 
 				return new AtTime(expr);
 			}
 
 		});
-		
-		scheduler.start(); 
-		
+
+		scheduler.start();
+
 		// register schedule job
 		session.tran(new TransactionJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
-				IteratorList<WriteNode> scripts = wsession.pathBy("/scripts").children().iterator() ;
-				while(scripts.hasNext()){
-					WriteNode wnode = scripts.next() ;
-					wnode.property(Script.Running, false) ;
-					if (wnode.hasChild("schedule")){
+				IteratorList<WriteNode> scripts = wsession.pathBy("/scripts").children().iterator();
+				while (scripts.hasNext()) {
+					WriteNode wnode = scripts.next();
+					wnode.property(Script.Running, false);
+					if (wnode.hasChild("schedule")) {
 						WriteNode scheduleNode = wnode.child("schedule");
-						if (scheduleNode.property(Def.Schedule.ENABLE).asBoolean()){
-							scheduleNode.property(Def.Schedule.ENABLE, true) ;
+						if (scheduleNode.property(Def.Schedule.ENABLE).asBoolean()) {
+							scheduleNode.property(Def.Schedule.ENABLE, true);
 						}
 					}
 				}
 				return null;
 			}
-		}) ;
-		
-		
+		});
+
 	}
 
 	// create analyzer
@@ -596,7 +591,7 @@ public class REntry implements Closeable {
 
 			Analyzer queryAnalyzer = makeAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString());
 			SearchConfig sconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
-			IndexConfig iconfig = IndexConfig.create( SearchConstant.LuceneVersion, new WithinThreadExecutor(), queryAnalyzer, new IndexWriterConfig(SearchConstant.LuceneVersion, queryAnalyzer), FieldIndexingStrategy.DEFAULT);
+			IndexConfig iconfig = IndexConfig.create(SearchConstant.LuceneVersion, new WithinThreadExecutor(), queryAnalyzer, new IndexWriterConfig(SearchConstant.LuceneVersion, queryAnalyzer), FieldIndexingStrategy.DEFAULT);
 
 			ReadChildren schemas = session.ghostBy(rnode.fqn().toString() + "/schema").children();
 			for (ReadNode schemaNode : schemas.toList()) {
@@ -635,18 +630,16 @@ public class REntry implements Closeable {
 		return sid;
 	}
 
-	private Central createCentral(IdString iid) throws CorruptIndexException, IOException {
+	private Central createIndexerCentral(IdString iid) throws CorruptIndexException, IOException {
 
 		String name = iid.idString();
 		DefaultCacheManager dm = r.dm();
 		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name;
-		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
-				.addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
 				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
 		dm.defineConfiguration(name + "-meta", meta_config);
 
-		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false)
-				.addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
 				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
 		dm.defineConfiguration(name + "-chunk", chunk_config);
 
@@ -700,6 +693,13 @@ public class REntry implements Closeable {
 		return searchManager;
 	}
 
+	public SiteManager siteManager() {
+		return siteManager;
+	}
+
+	public NSConfig nsConfig(){
+		return nsconfig ;
+	}
 }
 
 interface PropertyReadable {

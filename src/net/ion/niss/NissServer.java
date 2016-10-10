@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
+import net.ion.framework.db.IDBController;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.util.ListUtil;
 import net.ion.niss.config.NSConfig;
@@ -42,6 +44,7 @@ import net.ion.niss.webapp.searchers.PopularQueryEntry;
 import net.ion.niss.webapp.searchers.QueryTemplateEngine;
 import net.ion.niss.webapp.searchers.SearcherWeb;
 import net.ion.niss.webapp.searchers.TemplateWeb;
+import net.ion.niss.webapp.sites.SiteWeb;
 import net.ion.nradon.EventSourceConnection;
 import net.ion.nradon.EventSourceHandler;
 import net.ion.nradon.HttpControl;
@@ -69,6 +72,7 @@ public class NissServer {
 
 	private AtomicReference<Status> status = new AtomicReference<NissServer.Status>(Status.STOPED);
 	private REntry rentry;
+	private IDBController dc ;
 
 	NissServer(NSConfig nsconfig) {
 		this.nsconfig = nsconfig;
@@ -88,6 +92,9 @@ public class NissServer {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
 		this.rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
+		this.dc = builder.context("IDBController", nsconfig.createDC()) ;
+		this.dc.initSelf();  
+
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder.createThreadFactory("script-monitor-thread-%d")), true));
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d")));
@@ -107,7 +114,7 @@ public class NissServer {
 				.add(new LoggingHandler(new AppLogSink(elogger)))
 				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
 				// .add(new WhoAmIHttpHandler())
-				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
+				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, SiteWeb.class,  MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
 				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
 				.add("/logging/event/*", new EventSourceHandler() {
 					@Override
@@ -191,6 +198,12 @@ public class NissServer {
 		if (status.get() == Status.STOPED)
 			return this;
 
+		try {
+			dc.destroySelf() ;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		radon.stop().get();
 		status.set(Status.STOPED);
 		return this;

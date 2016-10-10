@@ -6,6 +6,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="lib/ref/isearcher_4.10.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/netty-3.2.7.Final.jar"/>
+	<classpathentry kind="lib" path="lib/ref/selenium-server-standalone-3.0.0-beta3.jar"/>
 	<classpathentry kind="lib" path="lib/common/apache_extend_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/guava-jdk5-13.0.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/asm-3.3.1.jar"/>
@@ -26,5 +27,7 @@
 	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search4104_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/iframework_2.4.jar"/>
+	<classpathentry kind="lib" path="lib/ref/postgresql-9.4.1208.jre7.jar"/>
+	<classpathentry kind="lib" path="lib/ref/thumbnailator-0.4.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

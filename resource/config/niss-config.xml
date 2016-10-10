@@ -15,4 +15,10 @@
 	    <index-home>./resource/index/</index-home>
 	</repository-config>
 	
+	
+	<sitesearch-config>
+		<jdbcurl id="bleujin" pwd="bleujin">jdbc:postgresql://127.0.0.1:5432/crawl</jdbcurl>
+		<screen-home name="webdriver.chrome.driver" driver="d:/icsdata/chromedriver.exe">d:/icsdata/screen/</screen-home>
+	</sitesearch-config>
+	
 </root>

@@ -12,6 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 
 import net.ion.framework.parse.gson.JsonObject;
@@ -79,11 +80,10 @@ public class OpenSearchWeb implements Webapp{
 
 	@GET
 	@Path("/{sid}/query.template")
-	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String tquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
-			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @Context HttpRequest request) throws IOException, ParseException {
+	public Response tquery(@PathParam("sid") String sid, @DefaultValue("") @QueryParam("query") String query, @DefaultValue("") @QueryParam("sort") String sort, @DefaultValue("0") @QueryParam("skip") String skip, @DefaultValue("10") @QueryParam("offset") String offset,
+			@QueryParam("indent") boolean indent, @QueryParam("debug") boolean debug, @QueryParam("ishtml") boolean ishtml, @Context HttpRequest request) throws IOException, ParseException {
 
-		return referWeb.tquery(sid, query, sort, skip, offset, indent, debug, request) ;
+		return referWeb.tquery(sid, query, sort, skip, offset, indent, debug, ishtml, request) ;
 	}
 	
 
@@ -145,8 +145,7 @@ public class OpenSearchWeb implements Webapp{
 
 	@POST
 	@Path("/{sid}/query.template")
-	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
-	public String tqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
+	public Response tqueryPost(@PathParam("sid") String sid, @Context HttpRequest request) throws IOException, ParseException {
 
 		MultivaluedMap<String, String> queryParam = request.getUri().getQueryParameters() ;
 		MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
@@ -157,7 +156,8 @@ public class OpenSearchWeb implements Webapp{
 		String offset = StringUtil.coalesce(queryParam.getFirst("offset"), formParam.getFirst("offset"), "10") ;
 		boolean indent = Boolean.getBoolean(StringUtil.coalesce(queryParam.getFirst("indent"), formParam.getFirst("indent"), "false")) ;
 		boolean debug = Boolean.getBoolean(StringUtil.coalesce(queryParam.getFirst("debug"), formParam.getFirst("debug"), "false")) ;
+		boolean ishtml = Boolean.getBoolean(StringUtil.coalesce(queryParam.getFirst("ishtml"), formParam.getFirst("ishtml"), "false")) ;
 		
-		return referWeb.tquery(sid, query, sort, skip, offset, indent, debug, request) ;
+		return referWeb.tquery(sid, query, sort, skip, offset, indent, debug, ishtml, request) ;
 	}
 }

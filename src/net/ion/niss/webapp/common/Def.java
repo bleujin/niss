@@ -11,6 +11,14 @@ public class Def {
 		public static final String StopWord = "stopword";
 	}
 	
+	public static class Site {
+		public static final String Created = "created" ;
+		public static final String SiteUrl = "siteurl" ;
+		public static final String IndexAnalyzer = "indexanalyzer" ;
+		public static final String QueryAnalyzer = "queryanalyzer";
+		
+	}
+	
 	
 	public static class SchemaType {
 		public static final String MANUAL = "manual" ;

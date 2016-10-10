@@ -37,6 +37,13 @@
 		    <create kr="스크립트 등록">Create Script</create>
 			<remove kr="스크립트  삭제">Remove Script</remove>
 		</scripters>
+		<sites kr="Site Crawl">Site Crawl
+		    <overview kr="Overview">Overview</overview>
+		    <crawl kr="Run Crawl">Run Crawl</crawl>
+		    <page kr="Manage Page">Manage Page</page>
+		    <create kr="Create Crawl Site">Create Crawl Site</create>
+			<remove kr="Remove Crawl Site">Remove Crawl Site</remove>
+		</sites>
 		<misc kr="기타">Miscellaneous
 			<properties kr="자바 속성">Java Properties</properties>
 			<threaddump kr="쓰레드 덤프">Thread Dump</threaddump>
@@ -324,6 +331,51 @@
         </remove>
     </scripters>
     
+    
+    <sites>
+        <choose kr="스크립트 선택">Choose Crawl Site</choose>
+        <overview>
+            <title kr="Overview">Overview</title>
+            <status kr="상태">Status</status>
+            <result kr="결과">Result</result>
+		</overview>
+		<crawl>
+		    <title kr="Run Crawl">Run Crawl</title>
+		    <run-header kr="설정">Run</run-header>
+		    <buttons>
+		        <run kr="실행">Run</run>
+		        <save kr="저장">Save</save>
+		    </buttons>
+		    <remove><title>Remove Crawl Info</title><button>Remove</button></remove>
+		    <removeindex>remove index</removeindex>
+
+		    <index><title>Index Page</title><button>Index</button><target>Indxers</target></index>
+		    
+		    <capture><title>Capture Page</title><button>Capture Page</button></capture>
+		    
+		    		        
+		</crawl>
+		<page>
+		    <title kr="Manage Page">Manage Page</title>
+		    <crawl-header kr="Run List">Run List</crawl-header>
+		    <page-header kr="Page List">Page List</page-header>
+		    <link-header kr="Refer Link List">Refer Link List</link-header>
+		    <buttons>
+		        <run kr="실행">Run</run>
+		        <save kr="저장">Save</save>
+		    </buttons>
+		</page>
+		
+		
+		<buttons>
+			<crawl>
+			    <remove>Remove</remove>
+			    <index>Index</index>
+			    <capture>Capture</capture>
+			</crawl>
+		</buttons>
+		
+    </sites>
     
     <misc>
         <properties>

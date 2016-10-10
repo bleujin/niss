@@ -1,0 +1,152 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i>${m.asString("sites.crawl.title")}
+		</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="save_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+	<div class="row">
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-purple" id="site-crawl-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+					<h2>${m.asString("sites.crawl.run-header")}</h2>				
+				</header>
+
+				<div>
+					<div class="jarviswidget-editbox">
+						<input class="form-control" type="text">	
+					</div>
+					
+					<div class="widget-body">
+					<form class="smart-form" id="site-crawl-form" method="post" action="sites/crawl" novalidate="novalidate">
+						<fieldset>
+							<section>
+								<label class="label">${m.asString("sites.crawl.option")}</label>
+								<label class="textarea textarea-resizable">
+									<textarea name="option" rows="10">{"maxPage":50, "sleepTime":50, "startPageUrl":"http://www.meidensha.co.jp/index.html", "userId":"emanon"}</textarea>
+								</label>
+							</section>
+							
+							<hr class="simple">
+						</fieldset>
+						
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+						
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" name="btn_run"><i class="fa fa-check"></i> ${m.asString("sites.crawl.buttons.run")}</button>
+						</footer>
+					</form>
+					</div>
+				</div>
+				
+			</div>
+		</article>
+	</div>
+</section>
+
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+
+		$( "#edit_explain" ).click(function() {
+			$('.click2edit').summernote({
+				focus : true, toolbar: [
+				                        //['style', ['style']], // no style button
+				                        ['style', ['bold', 'italic', 'underline', 'clear']],
+				                        ['fontsize', ['fontsize']],
+				                        ['color', ['color']],
+				                        ['para', ['ul', 'ol', 'paragraph']],
+				                        ['height', ['height']],
+				                        //['insert', ['picture', 'link']], // no insert buttons
+				                        ['table', ['table']], // no table button
+				                        // ['help', ['help']] //no help button
+				                      ]
+			});
+		});
+
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/sites",
+				data: { content: aHTML, field: "crawl" }
+			});
+			$('.click2edit').destroy();
+		});
+		
+		
+		var siteId = $("#sites option:selected").val() ;
+		if (siteId == undefined) return ;
+		
+		
+		var _crawlForm = $("#site-crawl-form") ;
+		var _coption = _crawlForm.find("textarea[name=coption]") ;
+		var _btn_run = _crawlForm.find("button[name=btn_run]") ;
+			
+		
+		$.ajax({
+			url:'/admin/sites/' + siteId +'/crawl',
+			dataType:'json',
+			success:function(data){
+				$("#info").html(data['info']) ;
+				
+				_coption.text(data['coption']);
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+		
+		_btn_run.click(function() {
+			$.ajax({
+				type: "POST",
+				url: "/admin/sites/" + siteId + "/crawl",
+				data: { coption:_coption.val()}, 
+				success :  function(data) {
+					$("#save-message span").html(data) ;
+					$("#save-message").removeClass("message") ;
+					setTimeout(function() {
+						$("#save-message").addClass("message") ;
+					}, 2000);
+				}
+			}
+			).done(function( msg ) {
+				// console.log( "Data Saved: " + msg );
+			});
+		});
+		
+
+	};
+
+	// run pagefunction on load
+	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
+
+</script>
