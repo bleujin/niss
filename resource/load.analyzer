@@ -2,7 +2,7 @@ org.apache.lucene.analysis.cjk.CJKAnalyzer
 org.apache.lucene.analysis.core.KeywordAnalyzer
 org.apache.lucene.analysis.core.SimpleAnalyzer
 org.apache.lucene.analysis.core.WhitespaceAnalyzer
-net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer
+// net.ion.nsearcher.search.analyzer.MyKoreanAnalyzer
 // org.apache.lucene.analysis.hu.HungarianAnalyzer
 // org.apache.lucene.analysis.cz.CzechAnalyzer
 // org.apache.lucene.analysis.bg.BulgarianAnalyzer

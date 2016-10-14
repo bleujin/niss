@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import net.ion.craken.node.crud.Craken;
 import net.ion.craken.node.crud.store.FileSystemWorkspaceConfigBuilder;
+import net.ion.craken.node.crud.store.PGWorkspaceConfigBuilder;
 import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
 import net.ion.framework.db.IDBController;
 import net.ion.niss.webapp.REntry;
@@ -49,8 +50,11 @@ public class NSConfig {
 	
 	public REntry createREntry() throws IOException{
 		Craken r = Craken.create(new DefaultCacheManager(repoConfig.crakenConfig()), serverConfig.id());
+		
 		if ("fs".equals(repoConfig.store())){
 			r.createWorkspace(repoConfig.wsName(), new FileSystemWorkspaceConfigBuilder(repoConfig.adminHomeDir()));
+		} else if ("pg".equals(repoConfig.store())){
+			r.createWorkspace(repoConfig.wsName(), new PGWorkspaceConfigBuilder("./resource/pgindex")) ;
 		} else {
 			r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.gridDir(repoConfig.adminHomeDir()));
 		}

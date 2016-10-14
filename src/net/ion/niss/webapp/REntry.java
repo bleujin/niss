@@ -155,7 +155,7 @@ public class REntry implements Closeable {
 			}
 
 		});
-
+		
 		// load searcher
 		session.ghostBy("/searchers").children().eachNode(new ReadChildrenEach<Void>() {
 			@Override
