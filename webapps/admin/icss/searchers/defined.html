@@ -67,7 +67,7 @@
 							<section>
 								<label class="label">${m.asString("searchers.defined.handler")}</label>
 								<label class="textarea textarea-resizable">
-									<textarea name="handler" rows="15">new function(){}</textarea>
+									<textarea name="handler" rows="15" id="handler_content">new function(){}</textarea>
 								</label>
 								<label class="checkbox"><input type="checkbox" name="applyhandler" /><i></i>${m.asString("searchers.defined.apply-handler")}</label>
 							</section>
@@ -102,6 +102,20 @@
 </section>
 <!-- end widget grid -->
 
+
+<script src="../../cm519/addon/edit/matchbrackets.js"></script>
+<script src="../../cm519/addon/comment/continuecomment.js"></script>
+<script src="../../cm519/addon/comment/comment.js"></script>
+<script src="../../cm519/mode/javascript/javascript.js"></script>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("handler_content"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"}
+  });
+</script>
 
 <script type="text/javascript">
 
@@ -181,8 +195,7 @@
 					option.appendTo(_handler_samples) ;
 				}
 
-				
-				_handler.val(data["handler"]) ;
+				editor.getDoc().setValue(data["handler"]) ; 
 				_applyhandler.attr('checked', data["applyhandler"]) ;
 
 				_stopword.val(data["stopword"]) ;
@@ -208,7 +221,7 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					_handler.val(data) ;
+					editor.getDoc().setValue(data) ;
 				}, 
 				error:function(request,status,error){
 					console.log('response', request, status, error) ;
@@ -233,7 +246,7 @@
 					type: "POST",
 					dataType : 'text', 
 					url: "/admin/searchers/" + searcherId + "/define",
-					data: { 'target': targets.toString(), queryanalyzer: _query_analyzer.val(), handler: _handler.val(), applyhandler: _applyhandler.is(":checked") ? true : false, stopword: _stopword.val(), applystopword: _applystopword.is(":checked") ? true : false}, 
+					data: { 'target': targets.toString(), queryanalyzer: _query_analyzer.val(), handler: editor.getDoc().getValue(), applyhandler: _applyhandler.is(":checked") ? true : false, stopword: _stopword.val(), applystopword: _applystopword.is(":checked") ? true : false}, 
 					complete : function(){ 
 					}, 
 					success :  function(data) {

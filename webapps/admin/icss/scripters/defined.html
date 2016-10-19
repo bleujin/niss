@@ -56,7 +56,7 @@
 								<label class="label">${m.asString("scripters.defined.content")}</label>
 								<label class="textarea textarea-resizable">
 									<i class="icon-append fa fa-question-circle"/> 										
-									<textarea rows="12" class="custom-scroll" placeholder="script content" name="scontent"></textarea>
+									<textarea rows="12" class="custom-scroll" placeholder="script content" name="scontent" id="script_content"></textarea>
 									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("scripters.defined.content")}</b> 
 								</label>
 							</section>
@@ -103,6 +103,21 @@
 
 </section>
 <!-- end widget grid -->
+
+
+<script src="../../cm519/addon/edit/matchbrackets.js"></script>
+<script src="../../cm519/addon/comment/continuecomment.js"></script>
+<script src="../../cm519/addon/comment/comment.js"></script>
+<script src="../../cm519/mode/javascript/javascript.js"></script>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("script_content"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"}
+  });
+</script>
 
 
 <!-- SCRIPTS ON PAGE EVENT -->
@@ -154,7 +169,7 @@
 				type: "POST",
 				dataType : 'text', 
 				url: "/admin/scripters/" + sid + "/instantrun/" + eventId,
-				data: { content: _scontent.val()}, 
+				data: { content: editor.getDoc().getValue()}, // _scontent.val() 
 				complete : function(){ 
 					var result_text = 'Path : ' + this.url + '<br/>';
 					result_text += '<strong>External Run Path : ' + "/open/script/run/" + sid + '</strong><br/>';
@@ -184,7 +199,8 @@
 				}
 				
 				$("#info").html(info) ;
-				_scontent.val(data["content"]) ;
+				// _scontent.val(data["content"]) ;
+				editor.getDoc().setValue(data["content"]) ;
 			}, 
 			error:function(request,status,error){
 				console.log('response', request, status, error) ;
@@ -204,7 +220,8 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					_scontent.val(data) ;
+					editor.getDoc().setValue(data) ;
+					// _scontent.val(data) ;
 				}
 			}) ;
 		}) ;
@@ -226,7 +243,7 @@
 						type: "POST",
 						dataType : 'text', 
 						url: "/admin/scripters/" + scripterId + "/define",
-						data: { content: _scontent.val()}, 
+						data: { content: editor.getDoc().getValue()}, // _scontent.val() 
 						complete : function(){ 
 							
 						}, 
@@ -290,6 +307,10 @@
 			command = 'run' ;
 			_defineForm.submit() ;
 		});
+		
+		
+		
+		
 		
 	};
 

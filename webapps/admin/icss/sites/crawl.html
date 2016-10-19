@@ -44,7 +44,7 @@
 							<section>
 								<label class="label">${m.asString("sites.crawl.option")}</label>
 								<label class="textarea textarea-resizable">
-									<textarea name="option" rows="10">{"maxPage":50, "sleepTime":50, "startPageUrl":"http://www.meidensha.co.jp/index.html", "userId":"emanon"}</textarea>
+									<textarea name="option" rows="10" id="option_content">{"maxPage":50, "sleepTime":50, "startPageUrl":"http://www.meidensha.co.jp/index.html", "userId":"emanon"}</textarea>
 								</label>
 							</section>
 							
@@ -68,6 +68,20 @@
 	</div>
 </section>
 
+
+<script src="../../cm519/addon/edit/matchbrackets.js"></script>
+<script src="../../cm519/addon/comment/continuecomment.js"></script>
+<script src="../../cm519/addon/comment/comment.js"></script>
+<script src="../../cm519/mode/javascript/javascript.js"></script>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("option_content"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"}
+  });
+</script>
 
 <script type="text/javascript">
 
@@ -117,7 +131,7 @@
 			success:function(data){
 				$("#info").html(data['info']) ;
 				
-				_coption.text(data['coption']);
+				if (data['coption']) editor.getDoc().setValue(data['coption']);
 			}, 
 			error:function(request,status,error){
 				console.log('response', request, status, error) ;
@@ -129,7 +143,7 @@
 			$.ajax({
 				type: "POST",
 				url: "/admin/sites/" + siteId + "/crawl",
-				data: { coption:_coption.val()}, 
+				data: { coption:editor.getDoc().getValue()}, 
 				success :  function(data) {
 					$("#save-message span").html(data) ;
 					$("#save-message").removeClass("message") ;
