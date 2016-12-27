@@ -1298,3 +1298,32 @@ org.apache.velocity.exception.ParseErrorException: Lexical error,   Encountered:
 	at java.util.concurrent.ThreadPoolExecutor$Worker.runTask(ThreadPoolExecutor.java:895)
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:918)
 	at java.lang.Thread.run(Thread.java:662)
+2016-12-06 10:51:43,812 - Log4JLogChute initialized using file 'velocity.log'
+2016-12-06 10:51:43,812 - Initializing Velocity, Calling init()...
+2016-12-06 10:51:43,813 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2016-12-06 10:51:43,813 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2016-12-06 10:51:43,813 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2016-12-06 10:51:43,813 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2016-12-06 10:51:43,813 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-12-06 10:51:43,813 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2016-12-06 10:51:43,817 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.FileResourceLoader
+2016-12-06 10:51:43,819 - Do unicode file recognition:  false
+2016-12-06 10:51:43,819 - FileResourceLoader : adding path 'D:\newgit\niss/test/net/ion/bleujin/velocity'
+2016-12-06 10:51:43,832 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2016-12-06 10:51:43,834 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2016-12-06 10:51:43,835 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2016-12-06 10:51:43,835 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2016-12-06 10:51:43,836 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2016-12-06 10:51:43,837 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2016-12-06 10:51:43,838 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2016-12-06 10:51:43,839 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2016-12-06 10:51:43,840 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2016-12-06 10:51:43,841 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2016-12-06 10:51:43,903 - Created '20' parsers.
+2016-12-06 10:51:43,909 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2016-12-06 10:51:43,909 - Velocimacro : Default library not found.
+2016-12-06 10:51:43,909 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2016-12-06 10:51:43,909 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2016-12-06 10:51:43,909 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2016-12-06 10:51:43,909 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2016-12-06 10:51:43,941 - ResourceManager : found hello.txt with loader org.apache.velocity.runtime.resource.loader.FileResourceLoader

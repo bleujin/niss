@@ -41,9 +41,15 @@ new function(){
 				writer.flush() ;
 			}
 		});
+		
+		var sysOut = new Pipeline({
+			process : function(ritems, task) {
+				System.out.println(ritems.asObject("result")) ;
+			}
+		});
 
 		var spider = site.newSpider(processor).scheduler(new MaxLimitScheduler(new QueueScheduler(), 10));
-		spider.addPipeline(writerOut).run();
+		spider.addPipeline(writerOut).addPipeline(sysOut).run();
 	
 		return null ;
 	}
