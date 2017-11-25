@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java8u40"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
 	<classpathentry kind="lib" path="lib/ref/isearcher_4.10.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/netty-3.2.7.Final.jar"/>
@@ -23,7 +23,7 @@
 	<classpathentry kind="lib" path="lib/common/extractfile_fat_1.8.jar"/>
 	<classpathentry kind="lib" path="lib/ref/craken_0.9.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/infinispan722_fat.jar"/>
-	<classpathentry kind="lib" path="lib/reflib/infinispan-embedded-query-7.2.2.Final.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/infinispan-embedded-query-7.2.2.Final.jar" sourcepath="C:/Users/bleujin/AppData/Local/Temp/.org.sf.feeling.decompiler1511422217277/source/infinispan-embedded-query-7.2.2.Final-sources.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search4104_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/postgresql-9.4.1208.jre7.jar"/>
