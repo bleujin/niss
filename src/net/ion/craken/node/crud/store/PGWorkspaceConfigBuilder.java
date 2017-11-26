@@ -34,16 +34,14 @@ import net.ion.nsearcher.config.CentralConfig;
 
 public class PGWorkspaceConfigBuilder extends WorkspaceConfigBuilder{
 
-	private File rootDir;
 	private GridFilesystem gfs;
 	private Central central;
 	private File indexDir;
 	private DBController dc;
 	
-	public PGWorkspaceConfigBuilder(String rootPath) throws CorruptIndexException, IOException {
-		this.rootDir = new File(rootPath) ;
-		this.indexDir = new File(rootDir, "index") ;
-		this.dc = new DBController(new PostSqlDataSource("jdbc:postgresql://127.0.0.1:5432/crawl", "bleujin", "bleujin")) ;
+	public PGWorkspaceConfigBuilder(String jdbcUrl, String jdbcId, String jdbcPwd, String indexPath) throws CorruptIndexException, IOException {
+		this.indexDir = new File(indexPath) ;
+		this.dc = new DBController(new PostSqlDataSource(jdbcUrl, jdbcId, jdbcPwd)) ;
 		if (! indexDir.exists()){
 			indexDir.mkdirs() ;
 		}
@@ -77,7 +75,7 @@ public class PGWorkspaceConfigBuilder extends WorkspaceConfigBuilder{
 	}
 
 	public static WorkspaceConfigBuilder test() throws CorruptIndexException, IOException {
-		return new PGWorkspaceConfigBuilder("./resource/fstemp");
+		return new PGWorkspaceConfigBuilder("jdbc:postgresql://127.0.0.1:5432/crawl", "bleujin", "bleujin", "./resource/fstemp");
 	}
 	
 	private GridFilesystem makeGridSystem(DefaultCacheManager dm, String wsName) {

@@ -54,7 +54,7 @@ public class NSConfig {
 		if ("fs".equals(repoConfig.store())){
 			r.createWorkspace(repoConfig.wsName(), new FileSystemWorkspaceConfigBuilder(repoConfig.adminHomeDir()));
 		} else if ("pg".equals(repoConfig.store())){
-			r.createWorkspace(repoConfig.wsName(), new PGWorkspaceConfigBuilder("./resource/pgindex")) ;
+			r.createWorkspace(repoConfig.wsName(), new PGWorkspaceConfigBuilder(repoConfig.jdbcUrl(), repoConfig.jdbcId(), repoConfig.jdbcPwd(), repoConfig.indexHomeDir())) ;
 		} else {
 			r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.gridDir(repoConfig.adminHomeDir()));
 		}

@@ -61,7 +61,7 @@ public class ConfigBuilder {
 			
 			Node ssconfig = (Node) xpath.evaluate("//sitesearch-config", document, XPathConstants.NODE);
 			
-			return new ConfigBuilder().sbuilder.node(sconfig).parent().lbuilder.node(logconfig).parent().rbuilder.node(rconfig).parent().ssbuilder.node(ssconfig).parent() ;
+			return new ConfigBuilder().sbuilder.node(sconfig).parent().lbuilder.node(logconfig).parent().rbuilder.node(rconfig).parent().ssbuilder.node(rconfig, ssconfig).parent() ;
 			
 		} catch (SAXException ex) {
 			throw new IOException(ex);
