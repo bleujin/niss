@@ -4,7 +4,6 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/CrakenRedis"/>
 	<classpathentry kind="lib" path="lib/ref/isearcher_4.10.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/netty-3.2.7.Final.jar"/>
 	<classpathentry kind="lib" path="lib/ref/selenium-server-standalone-3.0.0-beta3.jar"/>

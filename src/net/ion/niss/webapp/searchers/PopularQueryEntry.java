@@ -59,7 +59,7 @@ public class PopularQueryEntry {
 									public String apply(Iterable<ReadNode> iter) {
 										
 										ScheduleUtil su = new ScheduleUtil() ; 
-										int dayRange = snode.property(Def.Searcher.Popular.DayRange).defaultValue(3) ;
+										int dayRange = snode.property(Def.Searcher.Popular.DayRange).defaultValue(3L).intValue() ;
 										
 										List<String> props =  ListUtil.newList() ;
 										for (int i = 0; i < dayRange; i++) {
@@ -75,7 +75,7 @@ public class PopularQueryEntry {
 										for(ReadNode rnode : iter){
 											int sum = 0 ;
 											for(String prop : props){
-												sum+= rnode.property(prop).defaultValue(0) ;
+												sum+= rnode.property(prop).defaultValue(0L).intValue() ;
 											}
 											coll.add(new JsonObject().put("query", rnode.property("query").asString()).put("sum", sum)) ;
 										}

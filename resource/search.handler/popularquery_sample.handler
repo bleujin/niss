@@ -13,8 +13,6 @@ new function(){
 				var ireq = request ;
 				rsession.tran(new WriteJob({
 					handle : function(wsession){
-						wsession.iwconfig().keyword("query") ;
-					
 					    var query = ireq.userDefine() ;
 					    var se = new ScheduleUtil() ;
 						var wnode = wsession.pathBy("/searchlogs/" + sid + "/" + query.hashCode())
@@ -22,7 +20,7 @@ new function(){
 							.property('found', response.totalCount()).property('time', System.currentTimeMillis()) 
 							.property('d' + se.nextDate(1), 0).property('d' + se.nextDate(2), 0); 
 						wnode.increase('d' + se.nextDate(0)) ; 
-						wnode.increase('count');
+						wnode.increase('count').merge();
 					}
 				})) ;
 			} 
