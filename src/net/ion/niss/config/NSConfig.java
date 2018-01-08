@@ -5,7 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import net.bleujin.rcraken.Craken;
 import net.bleujin.rcraken.CrakenConfig;
-import net.bleujin.rcraken.store.MapConfig;
 import net.ion.niss.webapp.REntry;
 
 
@@ -55,5 +54,6 @@ public class NSConfig {
 
 		return new REntry(r, "test", this);
 	}
-	
+
+
 }

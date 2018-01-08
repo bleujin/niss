@@ -196,14 +196,15 @@
 							var tableData = table.DataTable() ;
 
 							table.find('tbody').on('click', 'tr', function () {
-								$(this).parent().removeClass('selected2');
+								// $(this).parent().removeClass('selected2');
+								tableData.$('tr.selected2').removeClass('selected2');
 								$(this).addClass('selected2');
 								
-								var urlHash = $(this).children('td:last').text() ;
+								var pageno = $(this).children('td:last').text() ;
 								
 								
 								$.ajax({
-									url:"/admin/sites/" + siteId + "/" + crawlId + "/" + urlHash + "/linklist",
+									url:"/admin/sites/" + siteId + "/" + crawlId + "/" + pageno + "/linklist",
 									type:'GET', 
 									dataType:'json',
 									data : {}, 

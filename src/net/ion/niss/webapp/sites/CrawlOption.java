@@ -16,6 +16,7 @@ public class CrawlOption {
 	private String startPageUrl ;
 	private String userId = "emanon";
 	private String siteUrl = "" ;
+	private String sid = "";
 	
 	public CrawlOption(){
 		this.crawlId = new ObjectId().toString() ;
@@ -82,7 +83,7 @@ public class CrawlOption {
 		return userId;
 	}
 
-	public Object toJsonString() {
+	public String toJsonString() {
 		return JsonObject.create().put("sleepTime", sleepTime).put("maxPage", maxPage).put("startPageUrl", startPageUrl).toString();
 	}
 
@@ -90,9 +91,14 @@ public class CrawlOption {
 		return siteUrl;
 	}
 
-	public CrawlOption siteUrl(String siteUrl) {
+	public CrawlOption siteInfo(String sid, String siteUrl) {
+		this.sid = sid ;
 		this.siteUrl = siteUrl ;
 		return this ;
+	}
+
+	public String siteId() {
+		return sid;
 	}
 
 }

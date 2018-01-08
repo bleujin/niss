@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -13,7 +12,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import org.apache.lucene.analysis.Analyzer;
 
-import net.ion.framework.db.IDBController;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.util.ListUtil;
 import net.ion.niss.config.NSConfig;
@@ -72,7 +70,6 @@ public class NissServer {
 
 	private AtomicReference<Status> status = new AtomicReference<NissServer.Status>(Status.STOPED);
 	private REntry rentry;
-	private IDBController dc ;
 
 	NissServer(NSConfig nsconfig) {
 		this.nsconfig = nsconfig;
@@ -196,12 +193,6 @@ public class NissServer {
 		if (status.get() == Status.STOPED)
 			return this;
 
-		try {
-			dc.destroySelf() ;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
 		radon.stop().get();
 		status.set(Status.STOPED);
 		return this;
