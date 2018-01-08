@@ -14,15 +14,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import net.ion.framework.parse.gson.JsonArray;
-import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.ListUtil;
-import net.ion.framework.util.StringUtil;
-import net.ion.niss.webapp.Webapp;
-import net.ion.niss.webapp.common.ExtMediaType;
-import net.ion.nsearcher.common.SearchConstant;
-
 import org.apache.commons.collections.set.ListOrderedSet;
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
@@ -32,6 +23,15 @@ import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
 import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.util.Version;
+
+import net.ion.framework.parse.gson.JsonArray;
+import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.ListUtil;
+import net.ion.framework.util.StringUtil;
+import net.ion.niss.webapp.Webapp;
+import net.ion.niss.webapp.common.ExtMediaType;
+import net.ion.nsearcher.common.SearchConstant;
 
 @Path("/analysis")
 public class AnalysisWeb implements Webapp {

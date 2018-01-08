@@ -5,13 +5,13 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.ion.craken.node.ReadSession;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
+
+import net.bleujin.rcraken.ReadSession;
 
 public class QueryTemplateEngine {
 

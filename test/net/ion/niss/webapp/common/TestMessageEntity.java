@@ -2,17 +2,17 @@ package net.ion.niss.webapp.common;
 
 import java.io.FileInputStream;
 
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
+
 import junit.framework.TestCase;
-import net.ion.craken.util.StringInputStream;
+import net.bleujin.rcraken.script.StringInputStream;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.Webapp;
-
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-import org.xml.sax.helpers.XMLReaderFactory;
 
 public class TestMessageEntity extends TestCase {
 

@@ -7,13 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-import org.apache.ecs.rtf.Title;
-import org.eclipse.jetty.io.EofException;
-
 import junit.framework.TestCase;
 import net.ion.framework.db.bean.handlers.CSVReader;
 import net.ion.framework.util.Debug;
-import net.ion.framework.util.ListUtil;
 
 public class TestDiff extends TestCase {
 

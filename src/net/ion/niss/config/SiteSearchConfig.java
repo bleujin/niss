@@ -2,8 +2,6 @@ package net.ion.niss.config;
 
 import java.io.File;
 
-import org.apache.fontbox.ttf.PostScriptTable;
-
 import net.ion.framework.db.DBController;
 import net.ion.framework.db.IDBController;
 import net.ion.framework.db.manager.PostSqlDataSource;

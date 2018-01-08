@@ -5,9 +5,9 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.concurrent.ExecutorService;
 
-import net.ion.framework.util.StackTrace;
-
 import org.apache.log4j.Logger;
+
+import net.ion.framework.util.StackTrace;
 
 public class Scheduler extends Thread {
 	private String name = null;

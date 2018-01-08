@@ -4,7 +4,7 @@ import java.nio.charset.Charset;
 import java.util.concurrent.Executors;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.util.InfinityThread;
 import net.ion.niss.webapp.AppLogSink;

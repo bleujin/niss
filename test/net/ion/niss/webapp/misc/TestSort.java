@@ -1,9 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.niss.webapp.REntry;
 
 public class TestSort extends TestCase {
@@ -12,14 +10,11 @@ public class TestSort extends TestCase {
 		REntry re = REntry.test() ;
 		
 		ReadSession session = re.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				for (int i = 0; i < 10; i++) {
-					wsession.pathBy("/bleujin/" + i).property("dummy", 1L * i) ;
-				}
-				return null;
+		session.tran(wsession -> {
+			for (int i = 0; i < 10; i++) {
+				wsession.pathBy("/bleujin/" + i).property("dummy", 1L * i).merge();
 			}
+			return null ;
 		}) ;
 		
 		session.pathBy("/bleujin").childQuery("").descending("dummy").find().debugPrint(); 

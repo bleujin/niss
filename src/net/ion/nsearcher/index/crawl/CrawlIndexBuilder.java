@@ -2,11 +2,11 @@ package net.ion.nsearcher.index.crawl;
 
 import java.util.concurrent.ExecutorService;
 
+import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.icrawler.Spider;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.config.Central;
 
-import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class CrawlIndexBuilder {
 

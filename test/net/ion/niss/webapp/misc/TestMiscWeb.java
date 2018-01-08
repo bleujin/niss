@@ -1,7 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;

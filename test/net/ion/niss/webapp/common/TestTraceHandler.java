@@ -1,5 +1,7 @@
 package net.ion.niss.webapp.common;
 
+import org.jboss.netty.handler.codec.http.HttpMethod;
+
 import junit.framework.TestCase;
 import net.ion.framework.util.InfinityThread;
 import net.ion.niss.webapp.REntry;
@@ -13,8 +15,6 @@ import net.ion.radon.aclient.Realm.RealmBuilder;
 import net.ion.radon.aclient.RequestBuilder;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.core.let.PathHandler;
-
-import org.jboss.netty.handler.codec.http.HttpMethod;
 
 public class TestTraceHandler extends TestCase {
 

@@ -2,9 +2,7 @@ package net.ion.niss.webapp.indexers;
 
 import java.util.List;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
@@ -90,12 +88,8 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 		Indexer indexer = im.newIndexer() ;
 
 		ReadSession session = rentry.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1/schema/explain").property("schematype", "manual").property("analyze", true).property("store", true).property("boost", 2.0f) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1/schema/explain").property("schematype", "manual").property("analyze", true).property("store", true).property("boost", 2.0f).merge();
 		}) ;
 		
 		

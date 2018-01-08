@@ -2,7 +2,6 @@
 new function(){
 
 	importPackage(java.lang) 
-	importPackage(net.ion.craken.node.convert)
 	importPackage(java.util.concurrent) 
 	importPackage(net.ion.niss.webapp.loaders)
 	importPackage(net.ion.framework.db.bean)

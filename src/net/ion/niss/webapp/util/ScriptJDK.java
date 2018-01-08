@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import net.ion.framework.util.IOUtil;
-
 import org.apache.commons.lang.SystemUtils;
+
+import net.ion.framework.util.IOUtil;
 
 public class ScriptJDK {
 

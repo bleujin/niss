@@ -6,12 +6,11 @@ import java.sql.SQLException;
 import java.util.concurrent.Future;
 
 import junit.framework.TestCase;
+import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.webapp.loaders.RDB;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexSession;
-
-import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class TestIndexFromRDB extends TestCase {
 

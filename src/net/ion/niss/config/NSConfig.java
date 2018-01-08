@@ -1,15 +1,12 @@
 package net.ion.niss.config;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
-import net.ion.craken.node.crud.Craken;
-import net.ion.craken.node.crud.store.FileSystemWorkspaceConfigBuilder;
-import net.ion.craken.node.crud.store.PGWorkspaceConfigBuilder;
-import net.ion.craken.node.crud.store.WorkspaceConfigBuilder;
-import net.ion.framework.db.IDBController;
+import net.bleujin.rcraken.Craken;
+import net.bleujin.rcraken.CrakenConfig;
+import net.bleujin.rcraken.store.MapConfig;
 import net.ion.niss.webapp.REntry;
-
-import org.infinispan.manager.DefaultCacheManager;
 
 
 public class NSConfig {
@@ -43,29 +40,17 @@ public class NSConfig {
 	public SiteSearchConfig siteConfig(){
 		return siteConfig ;
 	}
-	
-	public IDBController createDC(){
-		return siteConfig.createDC();
-	}
-	
-	public REntry createREntry() throws IOException{
-		Craken r = Craken.create(new DefaultCacheManager(repoConfig.crakenConfig()), serverConfig.id());
-		
-		if ("fs".equals(repoConfig.store())){
-			r.createWorkspace(repoConfig.wsName(), new FileSystemWorkspaceConfigBuilder(repoConfig.adminHomeDir()));
-		} else if ("pg".equals(repoConfig.store())){
-			r.createWorkspace(repoConfig.wsName(), new PGWorkspaceConfigBuilder(repoConfig.jdbcUrl(), repoConfig.jdbcId(), repoConfig.jdbcPwd(), repoConfig.indexHomeDir())) ;
-		} else {
-			r.createWorkspace(repoConfig.wsName(), WorkspaceConfigBuilder.gridDir(repoConfig.adminHomeDir()));
-		}
-		r.start();
 
-		return new REntry(r, repoConfig.wsName(), this);
+	
+	public REntry createREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+		Craken craken = repoConfig.crakenConfig().build().start() ;
+
+		return new REntry(craken, repoConfig.wsName(), this);
 	}
 
 
-	public REntry testREntry() throws IOException {
-		Craken r = Craken.inmemoryCreateWithTest() ;
+	public REntry testREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Craken r = CrakenConfig.mapMemory().build() ;
 		r.start();
 
 		return new REntry(r, "test", this);

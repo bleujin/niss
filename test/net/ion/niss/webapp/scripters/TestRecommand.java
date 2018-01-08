@@ -1,19 +1,21 @@
 package net.ion.niss.webapp.scripters;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
+
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.Query;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.IteratorList;
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.ChildQueryRequest;
-import net.ion.craken.node.crud.ChildQueryResponse;
-import net.ion.craken.node.crud.Craken;
+import net.bleujin.rcraken.Craken;
+import net.bleujin.rcraken.CrakenConfig;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.ReadStream;
+import net.bleujin.rcraken.WriteNode;
+import net.bleujin.rcraken.extend.ChildQueryRequest;
+import net.bleujin.rcraken.extend.ChildQueryResponse;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.RandomUtil;
@@ -24,11 +26,6 @@ import net.ion.nsearcher.index.IndexJobs;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.Searcher;
 
-import org.apache.lucene.index.Term;
-import org.apache.lucene.search.Query;
-
-import com.google.common.base.Function;
-
 public class TestRecommand extends TestCase{
 	
 	
@@ -38,7 +35,7 @@ public class TestRecommand extends TestCase{
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.r = Craken.inmemoryCreateWithTest() ;
+		this.r = CrakenConfig.mapMemory().build().start() ;
 		this.session = r.login("test") ;
 	}
 	
@@ -49,17 +46,13 @@ public class TestRecommand extends TestCase{
 	}
 	
 	public void testFind() throws Exception {
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/logs/1").property("query", "bleujin") ;
-				wsession.pathBy("/logs/2").property("query", "jin") ;
-				wsession.pathBy("/logs/3").property("query", "hero") ;
-				wsession.pathBy("/logs/4").property("query", "novision") ;
-				wsession.pathBy("/logs/5").property("query", "yucea") ;
-				wsession.pathBy("/logs/6").property("query", "mint") ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/logs/1").property("query", "bleujin").merge();
+			wsession.pathBy("/logs/2").property("query", "jin").merge() ;
+			wsession.pathBy("/logs/3").property("query", "hero").merge() ;
+			wsession.pathBy("/logs/4").property("query", "novision").merge() ;
+			wsession.pathBy("/logs/5").property("query", "yucea").merge() ;
+			wsession.pathBy("/logs/6").property("query", "mint").merge() ;
 		}) ;
 		
 		session.pathBy("/logs").childQuery("query:no*").find().debugPrint();
@@ -67,25 +60,21 @@ public class TestRecommand extends TestCase{
 
 	
 	public void testFindInArray() throws Exception {
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/logs/1").append("query", "bleujin", "hero") ;
-				wsession.pathBy("/logs/2").property("query", "jin") ;
-				return null ;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/logs/1").property("query", "bleujin", "hero").merge();
+			wsession.pathBy("/logs/2").property("query", "jin").merge() ;
 		}) ;
 		
 		ChildQueryRequest request = session.pathBy("/logs").childQuery("hero");
 		request.find().debugPrint();
 		
-		String result = request.find().transformer(new Function<ChildQueryResponse, String>() {
+		String result = request.find().transformer(new com.google.common.base.Function<ChildQueryResponse, String>() {
 			@Override
 			public String apply(ChildQueryResponse cresponse) {
-				IteratorList<ReadNode> iter = cresponse.iterator() ;
+				ReadStream iter = cresponse.stream() ;
 				List list = ListUtil.newList() ;
-				while(iter.hasNext()){
-					list.add(iter.next().property("query").asString()) ;
+				for(ReadNode node : iter){
+					list.add(node.property("query").asString()) ;
 				}
 				return StringUtil.join(list, ',');
 			}
@@ -116,29 +105,24 @@ public class TestRecommand extends TestCase{
 	
 
 	public void testDateRange() throws Exception {
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				for (int i = 0; i <= 20; i++) {
-					WriteNode queryNode = wsession.pathBy("/logs/" + RandomUtil.nextRandomString(10)) ;
-					for (int j = 1; j <= 31; j++) {
-						queryNode.property("d" + j, RandomUtil.nextInt(20)) ;
-					}
+		session.tran(wsession -> {
+			for (int i = 0; i <= 20; i++) {
+				WriteNode queryNode = wsession.pathBy("/logs/" + RandomUtil.nextRandomString(10)) ;
+				for (int j = 1; j <= 31; j++) {
+					queryNode.property("d" + j, RandomUtil.nextInt(20)).merge() ;
 				}
-				return null;
 			}
+			return null;
 		}) ;
 		
 		
-		session.pathBy("/logs").children().transform(new Function<Iterator<ReadNode>, List<String>>(){
+		session.pathBy("/logs").children().stream().transform(new Function<Iterable<ReadNode>, List<String>>(){
 			@Override
-			public List<String> apply(Iterator<ReadNode> iter) {
+			public List<String> apply(Iterable<ReadNode> iter) {
 				ScheduleUtil su = new ScheduleUtil() ;
-				
-				
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
-					long sum = node.property("d" + su.nextDate(-2)).asLong(0) + node.property("d" + su.nextDate(-1)).asLong(0) +node.property("d" + su.nextDate(0)).asLong(0) ;
+
+				for(ReadNode node : iter){
+					long sum = node.property("d" + su.nextDate(-2)).asLong() + node.property("d" + su.nextDate(-1)).asLong() +node.property("d" + su.nextDate(0)).asLong() ;
 					node.fqn().name() ;
 				}
 				

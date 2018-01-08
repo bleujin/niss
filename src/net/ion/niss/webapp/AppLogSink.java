@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.SocketAddress;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.util.WebUtil;
@@ -15,8 +17,6 @@ import net.ion.nradon.HttpRequest;
 import net.ion.nradon.HttpResponse;
 import net.ion.nradon.WebSocketConnection;
 import net.ion.nradon.handler.logging.LogSink;
-
-import org.apache.log4j.Logger;
 
 public class AppLogSink implements LogSink {
 

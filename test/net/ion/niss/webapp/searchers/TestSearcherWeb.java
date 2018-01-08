@@ -1,12 +1,12 @@
 package net.ion.niss.webapp.searchers;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.nradon.stub.StubHttpResponse;
-
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class TestSearcherWeb extends TestBaseSearcher {
 

@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Function;
 
 import javax.script.ScriptException;
 import javax.ws.rs.DELETE;
@@ -25,11 +25,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.WriteJob;
+import net.bleujin.rcraken.WriteNode;
+import net.bleujin.rcraken.WriteSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
@@ -53,11 +56,6 @@ import net.ion.niss.webapp.loaders.ResultHandler;
 import net.ion.niss.webapp.util.WebUtil;
 import net.ion.radon.core.ContextParam;
 
-import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
-import org.jboss.resteasy.spi.HttpRequest;
-
-import com.google.common.base.Function;
-
 @Path("/scripters")
 public class ScriptWeb implements Webapp{
 
@@ -78,13 +76,12 @@ public class ScriptWeb implements Webapp{
 	@GET
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listScript(){
-		JsonArray jarray = rsession.ghostBy("/scripts").children().transform(new Function<Iterator<ReadNode>, JsonArray>(){
+		JsonArray jarray = rsession.pathBy("/scripts").children().stream().transform(new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
 				try {
-					while (iter.hasNext()) {
-						ReadNode node = iter.next();
+					for (ReadNode node : iter) {
 						JsonArray userProp = new JsonArray();
 						userProp.add(new JsonPrimitive(node.fqn().name()));
 //						userProp.add(new JsonPrimitive("/open/script/run/" + node.fqn().name()));
@@ -99,7 +96,7 @@ public class ScriptWeb implements Webapp{
 			}
 		}) ;
 		return new JsonObject()
-				.put("info", rsession.ghostBy("/menus/misc").property("script").asString())
+				.put("info", rsession.pathBy("/menus/misc").property("script").asString())
 				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Run Path'},{'title':'Explain'}]").getAsJsonArray())
 //				.put("samples", WebUtil.findScripts())
 				.put("scripters", jarray) ;
@@ -111,15 +108,14 @@ public class ScriptWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject overview(@PathParam(Def.Script.Sid) final String sid){
 		
-		JsonArray slogs = rsession.ghostBy("/scripts/" + sid + "/slogs").children().descending(SLog.Runtime).transform(new Function<Iterator<ReadNode>, JsonArray>(){
+		JsonArray slogs = rsession.pathBy("/scripts/" + sid + "/slogs").children().stream().descending(SLog.Runtime).transform(new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
+				for (ReadNode node : iter) {
 					JsonArray userProp = new JsonArray() ;
 					userProp.add(new JsonPrimitive(node.fqn().name())) ;
-					userProp.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property(SLog.Runtime).asLong(0)))) ;
+					userProp.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property(SLog.Runtime).asLong()))) ;
 					userProp.add(new JsonPrimitive(node.property(SLog.Status).asString())) ;
 					userProp.add(new JsonPrimitive(node.property(SLog.Result).asString())) ;
 					result.add(userProp) ;
@@ -132,7 +128,7 @@ public class ScriptWeb implements Webapp{
 		JsonObject result = new JsonObject() ;
 		result.add("slogs", slogs); 
 		result.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Run Time'},{'title':'Status'}]").getAsJsonArray()) ;		
-		result.put("info", rsession.ghostBy("/menus/scripters").property("overview").asString()) ;
+		result.put("info", rsession.pathBy("/menus/scripters").property("overview").asString()) ;
 		
 		return result ;
 	}
@@ -141,14 +137,10 @@ public class ScriptWeb implements Webapp{
 	@Path("/{sid}")
 	@DELETE
 	public String removeScript(@PathParam(Def.Script.Sid) final String sid){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy("/scripts/" + sid);
-				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
-				found.removeSelf() ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy("/scripts/" + sid);
+			FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
+			found.removeSelf() ;
 		}) ;
 		return sid + " removed" ;
 	}
@@ -158,11 +150,11 @@ public class ScriptWeb implements Webapp{
 	@GET
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewScript(@PathParam(Def.Script.Sid) final String sid){
-		ReadNode found = rsession.ghostBy("/scripts/" + sid) ;
+		ReadNode found = rsession.pathBy("/scripts/" + sid) ;
 		return new JsonObject()
 			.put("sid", found.fqn().name())
 			.put("samples", WebUtil.findScripts())
-			.put("info", rsession.ghostBy("/menus/scripters").property("define").asString()) 
+			.put("info", rsession.pathBy("/menus/scripters").property("define").asString()) 
 			.put("content", found.property("content").asString()) ;
 	}
 	
@@ -171,15 +163,11 @@ public class ScriptWeb implements Webapp{
 	@Path("/{sid}/define")
 	@POST
 	public String defineScript(@PathParam(Def.Script.Sid) final String sid, @DefaultValue("") @FormParam(Def.Script.Content) final String content){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy("/scripts/" + sid);
-				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
-				
-				found.property(Def.Script.Content, content) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy("/scripts/" + sid);
+			FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".misc.script.bak"), found.property(Def.Script.Content).asString());
+			
+			found.property(Def.Script.Content, content).merge();
 		}) ;
 		return sid + " created" ;
 	}
@@ -197,14 +185,10 @@ public class ScriptWeb implements Webapp{
 	@POST
 	@Path("/{sid}/removes")
 	public String removeScripts(@FormParam("scripts") final String scripts){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				String[] targets = StringUtil.split(scripts, ",") ;
-				for (String userId : targets) {
-					wsession.pathBy("/scripts/" + userId).removeSelf() ;
-				}
-				return null ;
+		rsession.tran( wsession -> {
+			String[] targets = StringUtil.split(scripts, ",") ;
+			for (String userId : targets) {
+				wsession.pathBy("/scripts/" + userId).removeSelf() ;
 			}
 		});
 		return "removed " + scripts ; 
@@ -215,16 +199,10 @@ public class ScriptWeb implements Webapp{
 	@POST
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public Response runScript(@PathParam(Def.Script.Sid) String sid, @Context HttpRequest request) throws IOException, ScriptException{
-		MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>();
-		for (Entry<String, List<String>> entry : request.getUri().getQueryParameters().entrySet()) {
-			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
-		}
 		
-		for (Entry<String, List<String>> entry : request.getDecodedFormParameters().entrySet()) {
-			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
-		}
-
-		String content = rsession.ghostBy("/scripts/" + sid).property(Def.Script.Content).asString() ;
+		HttpParams params = HttpParams.create(request) ;
+		
+		String content = rsession.pathBy("/scripts/" + sid).property(Def.Script.Content).asString() ;
 		StringWriter writer = new StringWriter();
 		return runScript(sid, writer, params, content);
 	}
@@ -240,7 +218,7 @@ public class ScriptWeb implements Webapp{
 	@POST
 	public Response instantRunScript(@PathParam("sid") final String sid, @PathParam("eventid") String eventId, @DefaultValue("") @FormParam("content") String content) throws IOException, ScriptException{
 
-		final MultivaluedMap<String, String> params = new MultivaluedMapImpl<String, String>() ;
+		final HttpParams params = new HttpParams() ;
 		
 		final CountDownLatch latch = esentry.createEvent(eventId) ;
 		final ScriptOutWriter writer = new ScriptOutWriter(esentry, eventId, latch) ;
@@ -284,14 +262,14 @@ public class ScriptWeb implements Webapp{
 	}
 
 	
-	public static TransactionJob<Void> end(final String sid, final String status, final Object result){
-		return new TransactionJob<Void>() {
+	public static WriteJob<Void> end(final String sid, final String status, final Object result){
+		return new WriteJob<Void>() {
 			@Override
 			public Void handle(WriteSession wsession) throws Exception {
 				WriteNode logNode = wsession.pathBy(SLog.path(sid));
-				long cindex = logNode.property(SLog.CIndex).asLong(0) ;
-				logNode.child("c" + cindex).property(SLog.Runtime, System.currentTimeMillis()).property(SLog.Status, status).property(SLog.Result, ObjectUtil.toString(result)) ;
-				logNode.property(SLog.CIndex, (++cindex) % 101) ;
+				long cindex = logNode.property(SLog.CIndex).asLong() ;
+				logNode.child("c" + cindex).property(SLog.Runtime, System.currentTimeMillis()).property(SLog.Status, status).property(SLog.Result, ObjectUtil.toString(result)).merge();
+				logNode.property(SLog.CIndex, (++cindex) % 101).merge();
 				return null;
 			}
 		} ;
@@ -359,7 +337,7 @@ public class ScriptWeb implements Webapp{
 	@GET
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewScheduleInfo(@PathParam(Def.Script.Sid) final String sid){
-		ReadNode sinfo = rsession.ghostBy("/scripts/" + sid + "/schedule") ;
+		ReadNode sinfo = rsession.pathBy("/scripts/" + sid + "/schedule") ;
 
 		
 		JsonObject sinfoJson = new JsonObject()
@@ -372,22 +350,21 @@ public class ScriptWeb implements Webapp{
 			.put(Def.Schedule.YEAR, sinfo.property(Def.Schedule.YEAR).defaultValue(""))
 			.put(Def.Schedule.ENABLE, sinfo.property(Def.Schedule.ENABLE).defaultValue(false)) ;
 		
-		JsonArray slogs = rsession.ghostBy("/scripts/" + sid + "/slogs").children().transform(new Function<Iterator<ReadNode>, JsonArray>(){
+		JsonArray slogs = rsession.pathBy("/scripts/" + sid + "/slogs").children().stream().transform(new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
+				for (ReadNode node : iter) {
 					JsonArray userProp = new JsonArray() ;
 					userProp.add(new JsonPrimitive(node.fqn().name())) ;
-					userProp.add(new JsonPrimitive(node.property("runtime").asLong(0))) ;
+					userProp.add(new JsonPrimitive(node.property("runtime").asLong())) ;
 					result.add(userProp) ;
 				}
 
 				return result;
 			}
 		}) ;
-		return new JsonObject().put("info", rsession.ghostBy("/menus/scripters").property("schedule").asString())
+		return new JsonObject().put("info", rsession.pathBy("/menus/scripters").property("schedule").asString())
 				.put("sinfo", sinfoJson)
 				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Run Time'}]").getAsJsonArray())
 				.put("slogs", slogs) ;
@@ -405,20 +382,16 @@ public class ScriptWeb implements Webapp{
 			@DefaultValue("2014-2020") @FormParam(Def.Schedule.YEAR) final String year, @DefaultValue("false") @FormParam(Def.Schedule.ENABLE) final boolean enable){
 		
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy("/scripts/" + sid + "/schedule");
-				found.property(Def.Schedule.MINUTE, minute)
-					.property(Def.Schedule.HOUR, hour)
-					.property(Def.Schedule.DAY, day)
-					.property(Def.Schedule.MONTH, month)
-					.property(Def.Schedule.WEEK, week)
-					.property(Def.Schedule.MATCHTIME, matchtime)
-					.property(Def.Schedule.YEAR, year) 
-					.property(Def.Schedule.ENABLE, enable);
-				return null;
-			}
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy("/scripts/" + sid + "/schedule");
+			found.property(Def.Schedule.MINUTE, minute)
+				.property(Def.Schedule.HOUR, hour)
+				.property(Def.Schedule.DAY, day)
+				.property(Def.Schedule.MONTH, month)
+				.property(Def.Schedule.WEEK, week)
+				.property(Def.Schedule.MATCHTIME, matchtime)
+				.property(Def.Schedule.YEAR, year) 
+				.property(Def.Schedule.ENABLE, enable).merge();
 		}) ;
 		
 		return sid + (enable ? " rescheduled" : " canceled" );

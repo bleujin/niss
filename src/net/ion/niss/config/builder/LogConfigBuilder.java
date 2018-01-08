@@ -1,9 +1,9 @@
 package net.ion.niss.config.builder;
 
+import org.w3c.dom.Node;
+
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.LogConfig;
-
-import org.w3c.dom.Node;
 
 public class LogConfigBuilder {
 

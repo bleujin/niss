@@ -1,9 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.niss.webapp.REntry;
 import net.ion.radon.client.StubServer;
 
@@ -19,12 +17,9 @@ public class TestLoginWeb extends TestCase {
 		REntry rentry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
 		
 		ReadSession session = rentry.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/users/bleujin@i-on.net").property("password", "1") ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/users/bleujin@i-on.net").property("password", "1").merge();
+			return null;
 		}) ;
 	}
 	

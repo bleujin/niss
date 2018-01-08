@@ -1,10 +1,8 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
@@ -76,7 +74,7 @@ public class TestScriptWeb extends TestCase {
 		ss.request("/scripters/test0/schedule").postParam("minute", "1").post() ;
 		
 		ReadSession session = rentry.login();
-		assertEquals(true, session.exists("/scripts/test0/schedule")) ;
+		assertEquals(true, session.exist("/scripts/test0/schedule")) ;
 		
 		ReadNode sinfo = session.pathBy("/scripts/test0/schedule") ;
 		assertEquals("1", sinfo.property("minute").asString()) ;
@@ -92,12 +90,8 @@ public class TestScriptWeb extends TestCase {
 	public void testHanja() throws Exception {
 		ReadSession session = rentry.login() ;
 		
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/emp/bleujin").property("name", "三星電氣") ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/emp/bleujin").property("name", "三星電氣").merge();
 		}) ;
 		
 		session.root().childQuery("name:三星*", true).find().debugPrint(); 

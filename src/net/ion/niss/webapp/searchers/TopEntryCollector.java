@@ -4,9 +4,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import net.ion.framework.util.ListUtil;
-
 import org.apache.http.annotation.NotThreadSafe;
+
+import net.ion.framework.util.ListUtil;
 
 @NotThreadSafe
 public class TopEntryCollector<T> {

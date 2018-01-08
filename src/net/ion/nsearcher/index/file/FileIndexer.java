@@ -16,14 +16,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
-import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.ListUtil;
-import net.ion.framework.util.MapUtil;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.tika.exception.TikaException;
@@ -35,6 +27,13 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
+import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.ListUtil;
+import net.ion.framework.util.MapUtil;
+import net.ion.nsearcher.config.Central;
+import net.ion.nsearcher.index.IndexJob;
+import net.ion.nsearcher.index.IndexSession;
+import net.ion.nsearcher.index.Indexer;
 import rcc.h2tlib.parser.H2TParser;
 import rcc.h2tlib.parser.HWPMeta;
 import rcc.h2tlib.parser.HWPVER;

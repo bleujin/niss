@@ -9,9 +9,7 @@ import java.io.Writer;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.util.CopyOnWriteMap;
@@ -117,19 +115,15 @@ class EventSourceWriter extends Writer{
 		flush(); 
 //		IOUtil.closeQuietly(fwriter);
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				FileInputStream fis = new FileInputStream(targetFile);
-				
-				wsession.pathBy("/events/loaders/" + EventSourceWriter.this.eventId)
-					.property("status", "end")
-					.refTo("loader", "/loaders/" + EventSourceWriter.this.lid)
-					.blob("content", fis) ;
-				IOUtil.close(fis);
-				ese.closeEvent(EventSourceWriter.this.eventId) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			FileInputStream fis = new FileInputStream(targetFile);
+			
+			wsession.pathBy("/events/loaders/" + EventSourceWriter.this.eventId)
+				.property("status", "end")
+				.refTo("loader", "/loaders/" + EventSourceWriter.this.lid)
+				.property("content", fis).merge();
+			IOUtil.close(fis);
+			ese.closeEvent(EventSourceWriter.this.eventId) ;
 		}) ;
 	}
 }

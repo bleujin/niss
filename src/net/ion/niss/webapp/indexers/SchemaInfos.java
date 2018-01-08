@@ -1,10 +1,16 @@
 package net.ion.niss.webapp.indexers;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import net.ion.craken.node.ReadNode;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.Field.Store;
+import org.apache.lucene.document.LongField;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
+
+import net.bleujin.rcraken.ReadNode;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
@@ -15,13 +21,6 @@ import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.common.MyField.MyFieldType;
 import net.ion.nsearcher.common.WriteDocument;
 
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.document.LongField;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
-
 public class SchemaInfos {
 
 	private Map<String, SchemaInfo> infos = MapUtil.newMap();
@@ -29,10 +28,10 @@ public class SchemaInfos {
 	private SchemaInfos(){
 	}
 
-	public static SchemaInfos create(Iterator<ReadNode> iter) {
+	public static SchemaInfos create(Iterable<ReadNode> iter) {
 		SchemaInfos result = new SchemaInfos() ;
-		while(iter.hasNext()){
-			SchemaInfo sinfo = SchemaInfo.create(iter.next()) ;
+		for(ReadNode node : iter){
+			SchemaInfo sinfo = SchemaInfo.create(node) ;
 			result.put(sinfo.fieldId(), sinfo) ;
 		}
 		return result;
@@ -136,7 +135,7 @@ public class SchemaInfos {
 				result = MyField.unknown(ifield.name(), ifield.stringValue()) ;
 			}
 			if (sinfo.isAnalyze()) {
-				result.boost(sinfo.boost()) ;
+				result.boost(Double.valueOf(sinfo.boost()).floatValue()) ;
 			}
 			return result ;
 //			if (sinfo.isManualType()) {

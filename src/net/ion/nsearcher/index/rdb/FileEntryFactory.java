@@ -12,10 +12,6 @@ import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.MapUtil;
-import net.ion.nsearcher.index.file.FileEntry;
-
 import org.apache.commons.io.FilenameUtils;
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
@@ -26,6 +22,9 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
+import net.ion.framework.util.IOUtil;
+import net.ion.framework.util.MapUtil;
+import net.ion.nsearcher.index.file.FileEntry;
 import rcc.h2tlib.parser.H2TParser;
 import rcc.h2tlib.parser.HWPMeta;
 import rcc.h2tlib.parser.HWPVER;

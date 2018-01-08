@@ -4,48 +4,32 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 import java.util.logging.Logger;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.framework.db.IDBController;
-import net.ion.framework.db.Rows;
-import net.ion.framework.db.bean.ResultSetHandler;
-import net.ion.framework.db.procedure.IUserProcedureBatch;
-import net.ion.framework.logging.LogBroker;
-import net.ion.framework.parse.gson.JsonArray;
-import net.ion.framework.parse.gson.JsonObject;
-import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.MapUtil;
-import net.ion.framework.util.ObjectId;
-import net.ion.framework.util.ObjectUtil;
-import net.ion.framework.util.StringUtil;
-import net.ion.icrawler.Spider;
-import net.ion.niss.webapp.IdString;
-import net.ion.niss.webapp.common.Def.IndexSchema;
-import net.ion.niss.webapp.indexers.IndexManager;
-import net.ion.niss.webapp.indexers.SchemaInfos;
-import net.ion.nsearcher.common.MyField;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.search.SearchResponse;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.Term;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import com.google.common.base.Function;
+import net.ion.framework.db.IDBController;
+import net.ion.framework.db.Rows;
+import net.ion.framework.db.bean.ResultSetHandler;
+import net.ion.framework.logging.LogBroker;
+import net.ion.framework.parse.gson.JsonArray;
+import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.parse.gson.JsonPrimitive;
+import net.ion.framework.util.StringUtil;
+import net.ion.icrawler.Spider;
+import net.ion.niss.webapp.IdString;
+import net.ion.niss.webapp.indexers.IndexManager;
+import net.ion.niss.webapp.indexers.SchemaInfos;
+import net.ion.nsearcher.common.WriteDocument;
+import net.ion.nsearcher.config.Central;
+import net.ion.nsearcher.index.IndexJob;
+import net.ion.nsearcher.index.IndexSession;
+import net.ion.nsearcher.index.Indexer;
 
 public class SiteManager {
 

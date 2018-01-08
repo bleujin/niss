@@ -3,7 +3,6 @@ package net.ion.niss.webapp.sites;
 import java.sql.SQLException;
 import java.util.List;
 
-import net.ion.framework.db.DBController;
 import net.ion.framework.db.IDBController;
 import net.ion.framework.db.procedure.IUserProcedureBatch;
 import net.ion.framework.db.procedure.IUserProcedures;

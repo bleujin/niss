@@ -10,6 +10,12 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Source;
 import javax.xml.transform.dom.DOMSource;
 
+import org.apache.ecs.xml.XML;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import com.google.common.base.Function;
+
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.StringUtil;
@@ -18,12 +24,6 @@ import net.ion.nsearcher.search.ISearchable;
 import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.nsearcher.search.TransformerKey;
-
-import org.apache.ecs.xml.XML;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import com.google.common.base.Function;
 
 public class Responses {
 

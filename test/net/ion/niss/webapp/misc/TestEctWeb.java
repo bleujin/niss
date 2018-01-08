@@ -1,5 +1,8 @@
 package net.ion.niss.webapp.misc;
 
+import org.apache.lucene.analysis.core.SimpleAnalyzer;
+import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
+
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
@@ -8,9 +11,6 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.searchers.TemplateWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
-
-import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
 
 public class TestEctWeb extends TestCase {
 

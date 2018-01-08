@@ -10,9 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.ExtMediaType;
@@ -38,12 +36,8 @@ public class TemplateWeb  implements Webapp{
 	@Path("/{tid}") 
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String editTemplate(@PathParam("tid") final String tid, @DefaultValue("") @FormParam("content") final String content) throws Exception{
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/templates/" + tid).property("content", content) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy("/templates/" + tid).property("content", content).merge();
 		}) ;
 		
 		return "edit template" ;

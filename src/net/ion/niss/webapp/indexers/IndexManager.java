@@ -1,11 +1,12 @@
 package net.ion.niss.webapp.indexers;
 
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.IdString;
@@ -13,11 +14,6 @@ import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.nsearcher.common.FieldIndexingStrategy;
 import net.ion.nsearcher.common.MyField;
 import net.ion.nsearcher.config.Central;
-
-import org.apache.lucene.document.Document;
-import org.apache.lucene.document.Field;
-
-import com.google.common.base.Function;
 
 public class IndexManager {
 
@@ -51,14 +47,8 @@ public class IndexManager {
 
 	public FieldIndexingStrategy fieldIndexStrategy(ReadSession session, String iid){
 	
-		final SchemaInfos sinfos = session.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
-			@Override
-			public SchemaInfos apply(Iterator<ReadNode> iter) {
-				return SchemaInfos.create(iter) ;
-			}
-		}) ;
-		
-		
+		final SchemaInfos sinfos = SchemaInfos.create(session.pathBy(IndexSchema.path(iid)).children()) ;
+
 		return new FieldIndexingStrategy() {
 			@Override
 			public void save(final Document doc, final MyField myField, final Field ifield) {

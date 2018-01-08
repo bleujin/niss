@@ -1,6 +1,6 @@
 package net.ion.niss.webapp.indexers;
 
-import net.ion.craken.node.ReadNode;
+import net.bleujin.rcraken.ReadNode;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.IndexSchema;
 import net.ion.nsearcher.common.MyField.MyFieldType;
@@ -28,8 +28,8 @@ public class SchemaInfo {
 		return node.property(Def.IndexSchema.Analyze).asBoolean() ;
 	}
 	
-	public float boost(){
-		return node.property(Def.IndexSchema.Boost).asFloat(1.0f) ;
+	public double boost(){
+		return node.property(Def.IndexSchema.Boost).asDouble() ;
 	}
 	
 	public boolean isStore(){

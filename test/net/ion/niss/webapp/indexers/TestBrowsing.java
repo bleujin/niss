@@ -3,7 +3,7 @@ package net.ion.niss.webapp.indexers;
 import java.net.URLDecoder;
 import java.util.List;
 
-import net.ion.craken.node.ReadSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.util.Debug;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.common.ReadDocument;
@@ -21,7 +21,7 @@ public class TestBrowsing extends TestBaseIndexWeb {
 	
 	public void testSchema() throws Exception {
 		ReadSession session = entry.login() ;
-		session.ghostBy("/indexers/col1/schema").children().debugPrint(); 
+		session.pathBy("/indexers/col1/schema").children().debugPrint(); 
 	}
 	
 	public void testSearchField() throws Exception {

@@ -5,10 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
 
-import junit.framework.TestCase;
-import net.ion.framework.util.Debug;
-import net.ion.framework.util.IOUtil;
-
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -18,6 +14,9 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
+import junit.framework.TestCase;
+import net.ion.framework.util.Debug;
+import net.ion.framework.util.IOUtil;
 import rcc.h2tlib.parser.H2TParser;
 import rcc.h2tlib.parser.HWPMeta;
 

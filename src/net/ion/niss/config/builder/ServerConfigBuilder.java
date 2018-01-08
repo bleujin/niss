@@ -1,10 +1,10 @@
 package net.ion.niss.config.builder;
 
+import org.w3c.dom.Node;
+
 import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.ServerConfig;
-
-import org.w3c.dom.Node;
 
 public class ServerConfigBuilder {
 

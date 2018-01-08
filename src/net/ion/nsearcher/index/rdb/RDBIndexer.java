@@ -7,14 +7,14 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+import org.apache.lucene.analysis.Analyzer;
+
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.niss.webapp.loaders.RDB;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
-
-import org.apache.lucene.analysis.Analyzer;
 
 public class RDBIndexer {
 

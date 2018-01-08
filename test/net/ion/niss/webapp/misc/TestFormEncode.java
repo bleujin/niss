@@ -8,6 +8,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
+import org.jboss.resteasy.spi.HttpRequest;
+
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.nradon.Radon;
@@ -16,8 +18,6 @@ import net.ion.radon.aclient.ListenableFuture;
 import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.core.let.PathHandler;
-
-import org.jboss.resteasy.spi.HttpRequest;
 
 public class TestFormEncode extends TestCase {
 

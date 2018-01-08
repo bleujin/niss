@@ -2,13 +2,13 @@
 new function(){
 
 	importPackage(java.lang) 
-	importPackage(net.ion.craken.node)
+	importPackage(net.bleujin.rcraken)
 
 	this.handle = function(writer, session, param){
 
-		var name = session.tranSync(new TransactionJob( {
+		var name = session.tranSync(new WriteJob( {
 			handle : function(wsession) {
-				wsession.pathBy("/mydata").property("name", param.getFirst("name")) ;
+				wsession.pathBy("/mydata").property("name", param.getFirst("name", "")).merge() ;
 				return param.getFirst("name");
 			}
 		})) ;

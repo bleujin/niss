@@ -1,13 +1,11 @@
 package net.ion.niss.webapp.scripters;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.Craken;
+import net.bleujin.rcraken.Craken;
+import net.bleujin.rcraken.CrakenConfig;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.util.Debug;
-
-import org.bson.types.ObjectId;
+import net.ion.framework.util.ObjectId;
 
 public class TestRecent101 extends TestCase {
 
@@ -18,7 +16,7 @@ public class TestRecent101 extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		this.r = Craken.inmemoryCreateWithTest() ;
+		this.r = CrakenConfig.mapMemory().build().start() ;
 		this.session = r.login("test") ;
 	}
 	
@@ -29,18 +27,15 @@ public class TestRecent101 extends TestCase {
 	}
 	
 	public void testScheduleLog() throws Exception {
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				for (int i = 0; i < 240 ; i++) {
-					wsession.pathBy("/scripts/abcd/" + (i % 101)).property("time", new ObjectId().toString()) ;
-				}
-				return null;
+		session.tran(wsession -> {
+			for (int i = 0; i < 240 ; i++) {
+				wsession.pathBy("/scripts/abcd/" + (i % 101)).property("time", new ObjectId().toString()).merge();
 			}
+			return null;
 		}) ;
 		
-		assertEquals(101, session.pathBy("/scripts/abcd").children().count()) ;
-		session.pathBy("/scripts/abcd").children().ascending("time").debugPrint(); ;
+		assertEquals(101, session.pathBy("/scripts/abcd").children().stream().count()) ;
+		session.pathBy("/scripts/abcd").children().stream().ascending("time").debugPrint(); ;
 	}
 	
 	public void testProperty() throws Exception {

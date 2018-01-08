@@ -4,13 +4,14 @@ new function(){
 	importPackage(java.lang) ; 
 	importPackage(net.ion.nsearcher.search.filter) ;
 	importPackage(net.ion.nsearcher.search.processor) ;
-	importPackage(net.ion.niss.webapp.scripters) ;  
+	importPackage(net.ion.niss.webapp.scripters) ;
+	importPackage(net.bleujin.rcraken) ;  
 
 	this.postProcessor = function(rsession, sid){
-		return new net.ion.nsearcher.search.processor.PostProcessor({
+		return new PostProcessor({
 			postNotify : function(request, response){
 				var ireq = request ;
-				rsession.tran(new net.ion.craken.node.TransactionJob({
+				rsession.tran(new WriteJob({
 					handle : function(wsession){
 					    var query = ireq.query().toString() ;
 					    var se = new ScheduleUtil() ;

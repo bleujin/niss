@@ -8,20 +8,21 @@ import java.io.Writer;
 import java.net.URLEncoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+import java.util.function.Function;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.convert.Functions;
-import net.ion.craken.node.crud.util.TraversalStrategy;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.WildcardQuery;
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.convert.Functions;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
@@ -40,12 +41,6 @@ import net.ion.nsearcher.index.IndexJob;
 import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.Indexer;
 import net.ion.nsearcher.search.Searcher;
-
-import org.apache.lucene.index.Term;
-import org.apache.lucene.search.WildcardQuery;
-import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
-
-import com.google.common.base.Function;
 
 public class TestSampleScript extends TestBaseIndexWeb {
 
@@ -118,7 +113,7 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
 		ReadSession session = rentry.login() ;
 		
-		JsonObject json = session.ghostBy("/indexers").children().transform(Functions.CHILDLIST);
+		JsonObject json = session.pathBy("/indexers").children().stream().transform(Functions.CHILDLIST);
 		Debug.line(json);
 		
 		runScript(new FileInputStream("./resource/script/read_from_craken.script"));
@@ -130,12 +125,9 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		final MultivaluedMap<String, String> param = new MultivaluedMapImpl<String, String>() ;
 		param.putSingle("name", "bleujin");
 		
-		String name = session.tranSync(new TransactionJob<String>() {
-			@Override
-			public String handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/mydata").property("name", param.getFirst("name")) ;
-				return param.getFirst("name");
-			}
+		String name = session.tranSync(wsession -> {
+			wsession.pathBy("/mydata").property("name", param.getFirst("name")).merge();
+			return param.getFirst("name");
 		}) ;
 		
 		Debug.line(name);
@@ -164,14 +156,13 @@ public class TestSampleScript extends TestBaseIndexWeb {
 		session.root().transformer(new Function<ReadNode, Void>(){
 			@Override
 			public Void apply(ReadNode target) {
-				target.walkChildren().asTreeChildren().includeSelf(true).strategy(TraversalStrategy.BreadthFirst).transform(new Function<Iterator<ReadNode>, Void>() {
+				target.walkBreadth(true, 10).stream().transform(new Function<Iterable<ReadNode>, Void>() {
 					@Override
-					public Void apply(Iterator<ReadNode> decent) {
+					public Void apply(Iterable<ReadNode> decent) {
 						try {
 							jwriter.beginObject() ;
-							while(decent.hasNext()){
-								ReadNode node = decent.next() ;
-								jwriter.jsonElement(node.fqn().toString(), node.toValueJson()) ;
+							for(ReadNode node : decent){
+								jwriter.jsonElement(node.fqn().toString(), node.toJson()) ;
 							}
 							jwriter.endObject() ;
 							

@@ -1,7 +1,5 @@
 package net.ion.niss.webapp.sites;
 
-import javax.ws.rs.FormParam;
-
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.StringUtil;

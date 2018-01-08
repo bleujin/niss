@@ -11,6 +11,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicReference;
 
+import org.apache.lucene.analysis.Analyzer;
+
 import net.ion.framework.db.IDBController;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.util.ListUtil;
@@ -58,8 +60,6 @@ import net.ion.nradon.handler.event.ServerEvent.EventType;
 import net.ion.nradon.handler.logging.LoggingHandler;
 import net.ion.radon.core.let.PathHandler;
 
-import org.apache.lucene.analysis.Analyzer;
-
 public class NissServer {
 
 	private RadonConfigurationBuilder builder;
@@ -92,8 +92,6 @@ public class NissServer {
 		this.builder = RadonConfiguration.newBuilder(nsconfig.serverConfig().port());
 
 		this.rentry = builder.context(REntry.EntryName, REntry.create(nsconfig));
-		this.dc = builder.context("IDBController", nsconfig.createDC()) ;
-		this.dc.initSelf();  
 
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create());
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder.createThreadFactory("script-monitor-thread-%d")), true));

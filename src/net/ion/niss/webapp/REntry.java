@@ -13,26 +13,34 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 import javax.script.ScriptException;
 import javax.ws.rs.core.MultivaluedMap;
 
-import net.ion.craken.listener.CDDHandler;
-import net.ion.craken.listener.CDDModifiedEvent;
-import net.ion.craken.listener.CDDRemovedEvent;
-import net.ion.craken.node.IteratorList;
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.Craken;
-import net.ion.craken.node.crud.ReadChildren;
-import net.ion.craken.node.crud.ReadChildrenEach;
-import net.ion.craken.node.crud.ReadChildrenIterator;
-import net.ion.craken.node.crud.tree.Fqn;
-import net.ion.craken.node.crud.tree.impl.PropertyId;
-import net.ion.craken.node.crud.tree.impl.PropertyValue;
+import org.apache.commons.lang.reflect.ConstructorUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.util.CharArraySet;
+import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.util.Version;
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
+import net.bleujin.rcraken.Craken;
+import net.bleujin.rcraken.Fqn;
+import net.bleujin.rcraken.Property;
+import net.bleujin.rcraken.ReadChildren;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.WriteJobNoReturn;
+import net.bleujin.rcraken.WriteNode;
+import net.bleujin.rcraken.WriteStream;
+import net.bleujin.rcraken.extend.CDDHandler;
+import net.bleujin.rcraken.extend.CDDModifiedEvent;
+import net.bleujin.rcraken.extend.CDDRemovedEvent;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.schedule.AtTime;
@@ -43,6 +51,7 @@ import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
+import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
@@ -63,26 +72,6 @@ import net.ion.nsearcher.config.SearchConfig;
 import net.ion.nsearcher.search.CompositeSearcher;
 import net.ion.nsearcher.search.Searcher;
 
-import org.apache.commons.lang.reflect.ConstructorUtils;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.cjk.CJKAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.util.CharArraySet;
-import org.apache.lucene.index.CorruptIndexException;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.store.Directory;
-import org.apache.lucene.util.Version;
-import org.infinispan.Cache;
-import org.infinispan.configuration.cache.Configuration;
-import org.infinispan.configuration.cache.ConfigurationBuilder;
-import org.infinispan.lucene.directory.BuildContext;
-import org.infinispan.lucene.directory.DirectoryBuilder;
-import org.infinispan.manager.DefaultCacheManager;
-import org.infinispan.util.concurrent.WithinThreadExecutor;
-import org.infinispan.util.logging.Log;
-import org.infinispan.util.logging.LogFactory;
-import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
-
 public class REntry implements Closeable {
 
 	public final static String EntryName = "rentry";
@@ -99,7 +88,7 @@ public class REntry implements Closeable {
 	private final Log log = LogFactory.getLog(REntry.class);
 	private Scheduler scheduler = new Scheduler("scripter", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("scripters-thread-%d")));
 
-	public REntry(Craken r, String wsName, NSConfig nsconfig) throws IOException {
+	public REntry(Craken r, String wsName, NSConfig nsconfig) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		this.r = r;
 		this.wsName = wsName;
 		this.nsconfig = nsconfig;
@@ -109,88 +98,58 @@ public class REntry implements Closeable {
 	}
 
 	// use test only (central not finished)
-	public void reload() {
+	public void reload() throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, CorruptIndexException, IOException {
 		indexManager = new IndexManager();
 		searchManager = new SearchManager();
 		siteManager = new SiteManager(indexManager) ;
 		initCDDListener(rsession);
 	}
 
-	private void initCDDListener(final ReadSession session) {
+	private void initCDDListener(final ReadSession session) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, CorruptIndexException, IOException {
 
 		final JScriptEngine jsengine = JScriptEngine.create();
 
 		// load index
 		// session.ghostBy("/indexers").children().debugPrint();
 
-		session.ghostBy("/indexers").children().eachNode(new ReadChildrenEach<Void>() {
-			@Override
-			public Void handle(ReadChildrenIterator iter) {
-				try {
-					for (ReadNode indexNode : iter) {
-						IdString cid = IdString.create(indexNode.fqn().name());
+		for(ReadNode indexNode :session.pathBy("/indexers").children().stream()) {
+				IdString cid = IdString.create(indexNode.fqn().name());
 
-						Central central = createIndexerCentral(cid);
+				Central central = createIndexerCentral(cid);
 
-						Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
-						Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
+				Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
+				Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
 
-						central.indexConfig().indexAnalyzer(indexAnal);
-						central.searchConfig().queryAnalyzer(queryAnal);
+				central.indexConfig().indexAnalyzer(indexAnal);
+				central.searchConfig().queryAnalyzer(queryAnal);
 
-						ReadChildren schemas = session.ghostBy(indexNode.fqn().toString() + "/schema").children();
-						for (ReadNode schemaNode : schemas.toList()) {
-							if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.IndexSchema.SchemaType).asString())) {
-								central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
-							}
-						}
-
-						indexManager.newIndex(cid, central);
-						log.info(cid + " indexer loaded");
+				ReadChildren schemas = session.pathBy(indexNode.fqn().toString() + "/schema").children();
+				for (ReadNode schemaNode : schemas) {
+					if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.IndexSchema.SchemaType).asString())) {
+						central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
 					}
-				} catch (Exception ex) {
-					throw new IllegalStateException(ex);
 				}
-				return null;
-			}
 
-		});
+				indexManager.newIndex(cid, central);
+				log.info(cid + " indexer loaded");
+		};
 		
 		// load searcher
-		session.ghostBy("/searchers").children().eachNode(new ReadChildrenEach<Void>() {
-			@Override
-			public Void handle(ReadChildrenIterator iter) {
+		for(ReadNode sec : session.pathBy("/searchers").children().stream()){
+			IdString sid = registerSearcher(session, new RNodePropertyReadable(sec), jsengine);
+			log.info(sid + " searcher loaded");
+		};
 
-				try {
-					for (ReadNode sec : iter) {
-						IdString sid = registerSearcher(session, new RNodePropertyReadable(sec), jsengine);
-						log.info(sid + " searcher loaded");
-					}
-				} catch (IOException ex) {
-					throw new IllegalStateException(ex);
-				} catch (ClassNotFoundException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InstantiationException ex) {
-					throw new IllegalStateException(ex);
-				} catch (IllegalAccessException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InvocationTargetException ex) {
-					throw new IllegalStateException(ex);
-				}
-
-				return null;
-			}
-
-		});
-
-		session.workspace().cddm().add(new CDDHandler() {
+		session.workspace().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
 				return "/searchers/{sid}";
 			}
+			public String id() {
+				return "niss.searchers";
+			}
 
-			@Override
-			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				try {
 					IdString sid = registerSearcher(session, new EventPropertyReadable(cevent), jsengine);
 					log.info(sid + " searcher defined");
@@ -208,22 +167,24 @@ public class REntry implements Closeable {
 				return null;
 			}
 
-			@Override
-			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
 				IdString sid = IdString.create(rmap.get("sid"));
 				searchManager.removeSearcher(sid);
 				return null;
 			}
 		});
 
-		session.workspace().cddm().add(new CDDHandler() {
+		session.workspace().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
 				return "/indexers/{iid}/schema/{schemaid}";
 			}
+			public String id() {
+				return "niss.indexers.schema";
+			}
 
 			@Override
-			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent event) {
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent event) {
 				IdString iid = IdString.create(rmap.get("iid"));
 				String schemaid = rmap.get("schemaid");
 				if (!indexManager.hasIndex(iid))
@@ -236,17 +197,17 @@ public class REntry implements Closeable {
 			}
 
 			@Override
-			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent event) {
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent event) {
 				IdString iid = IdString.create(rmap.get("iid"));
 				String schemaid = rmap.get("schemaid");
 
 				if (!indexManager.hasIndex(iid))
 					return null;
-				event.getValue();
-				if (Def.SchemaType.MANUAL.equals(event.property(Def.IndexSchema.SchemaType).asString()) && StringUtil.isNotBlank(event.property(Def.IndexSchema.Analyzer).asString())) {
+
+				if (Def.SchemaType.MANUAL.equals(event.newProperty(Def.IndexSchema.SchemaType).asString()) && StringUtil.isNotBlank(event.newProperty(Def.IndexSchema.Analyzer).asString())) {
 					try {
 						Central saved = indexManager.index(iid);
-						Analyzer analClz = makeAnalyzer(event.property(Def.IndexSchema.Analyzer).asString());
+						Analyzer analClz = makeAnalyzer(event.newProperty(Def.IndexSchema.Analyzer).asString());
 						saved.indexConfig().fieldAnalyzer(schemaid, analClz);
 
 					} catch (Exception e) {
@@ -259,14 +220,16 @@ public class REntry implements Closeable {
 			}
 		});
 
-		session.workspace().cddm().add(new CDDHandler() {
+		session.workspace().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
 				return "/searchers/{sid}/schema/{schemaid}";
 			}
+			public String id() {
+				return "niss.searchers.schema";
+			}
 
-			@Override
-			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent event) {
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent event) {
 				IdString sid = IdString.create(rmap.get("sid"));
 				String schemaid = rmap.get("schemaid");
 				if (!searchManager.hasSearch(sid))
@@ -277,8 +240,7 @@ public class REntry implements Closeable {
 				return null;
 			}
 
-			@Override
-			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent event) {
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent event) {
 				IdString sid = IdString.create(rmap.get("sid"));
 				String schemaid = rmap.get("schemaid");
 
@@ -286,7 +248,7 @@ public class REntry implements Closeable {
 					return null;
 				try {
 					Searcher saved = searchManager.searcher(sid);
-					Analyzer analClz = makeAnalyzer(event.property(Def.IndexSchema.Analyzer).asString());
+					Analyzer analClz = makeAnalyzer(event.newProperty(Def.IndexSchema.Analyzer).asString());
 					saved.config().fieldAnalyzer(schemaid, analClz);
 
 				} catch (Exception e) {
@@ -298,14 +260,17 @@ public class REntry implements Closeable {
 		});
 
 		// add index listener
-		session.workspace().cddm().add(new CDDHandler() {
+		session.workspace().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
 				return "/indexers/{iid}";
 			}
 
-			@Override
-			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
+			public String id() {
+				return "niss.indexers";
+			}
+
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
 					if (!indexManager.hasIndex(iid)) { // created
@@ -317,10 +282,10 @@ public class REntry implements Closeable {
 
 						Central saved = indexManager.index(iid);
 
-						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName());
+						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName());
 						saved.indexConfig().indexAnalyzer(makeAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
 
-						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.property(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName());
+						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName());
 						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
 
 						log.info(iid + " indexer defined");
@@ -328,19 +293,7 @@ public class REntry implements Closeable {
 						throw new IllegalArgumentException("not have index " + iid.idString());
 					}
 
-				} catch (IOException ex) {
-					throw new IllegalStateException(ex);
-				} catch (ClassNotFoundException ex) {
-					throw new IllegalStateException(ex);
-				} catch (IllegalArgumentException ex) {
-					throw new IllegalStateException(ex);
-				} catch (SecurityException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InstantiationException ex) {
-					throw new IllegalStateException(ex);
-				} catch (IllegalAccessException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InvocationTargetException ex) {
+				} catch (ClassNotFoundException | IllegalArgumentException | SecurityException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
 					throw new IllegalStateException(ex);
 				}
 
@@ -348,7 +301,7 @@ public class REntry implements Closeable {
 			}
 
 			@Override
-			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
 				IdString iid = IdString.create(rmap.get("iid"));
 
 				indexManager.removeIndex(iid);
@@ -357,26 +310,28 @@ public class REntry implements Closeable {
 			}
 		});
 
-		session.workspace().cddm().add(new CDDHandler() {
+		session.workspace().add(new CDDHandler() {
 			@Override
 			public String pathPattern() {
 				return "/scripts/{sid}/schedule";
 			}
 
-			@Override
-			public TransactionJob<Void> deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
+			public String id() {
+				return "niss.scripts";
+			}
+
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
 				String sid = rmap.get("sid");
 				scheduler.removeJob(sid);
 
 				return null;
 			}
 
-			@Override
-			public TransactionJob<Void> modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
 				EventPropertyReadable rnode = new EventPropertyReadable(cevent);
 				String jobId = rmap.get("sid");
 				if (rnode.property(Def.Schedule.ENABLE).asBoolean()) {
-					ReadNode sinfo = rsession.ghostBy("/scripts/" + jobId + "/schedule");
+					ReadNode sinfo = rsession.pathBy("/scripts/" + jobId + "/schedule");
 					scheduler.removeJob(jobId);
 					AtTime at = makeAtTime(sinfo);
 					scheduler.addJob(new Job(jobId, makeCallable(jobId), at));
@@ -391,17 +346,13 @@ public class REntry implements Closeable {
 				return new ScheduledRunnable() {
 					@Override
 					public void run() {
-						final ReadNode scriptNode = rsession.ghostBy("/scripts/" + scriptId);
+						final ReadNode scriptNode = rsession.pathBy("/scripts/" + scriptId);
 
 						// should check running(in distribute mode)
 						if (scriptNode.property(Script.Running).asBoolean())
 							return;
-						rsession.tran(new TransactionJob<Void>() {
-							@Override
-							public Void handle(WriteSession wsession) throws Exception {
-								wsession.pathBy(scriptNode.fqn()).property(Script.Running, true);
-								return null;
-							}
+						rsession.tran(wsession -> {
+							wsession.pathBy(scriptNode.fqn()).property(Script.Running, true).merge();
 						});
 						//
 
@@ -421,12 +372,8 @@ public class REntry implements Closeable {
 										jwriter.beginObject().name("return").value(ObjectUtil.toString(result));
 									} catch (IOException ignore) {
 									} finally {
-										rsession.tran(new TransactionJob<Void>() {
-											@Override
-											public Void handle(WriteSession wsession) throws Exception {
-												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false);
-												return null;
-											}
+										rsession.tran(wsession -> {
+											wsession.pathBy(scriptNode.fqn()).property(Script.Running, false).merge();
 										});
 									}
 									return new String[] { "schedule success", ObjectUtil.toString(result) };
@@ -438,12 +385,8 @@ public class REntry implements Closeable {
 										jwriter.beginObject().name("return").value("").name("exception").value(ex.getMessage());
 									} catch (IOException e) {
 									} finally {
-										rsession.tran(new TransactionJob<Void>() {
-											@Override
-											public Void handle(WriteSession wsession) throws Exception {
-												wsession.pathBy(scriptNode.fqn()).property(Script.Running, false);
-												return null;
-											}
+										rsession.tran(wsession -> {
+											wsession.pathBy(scriptNode.fqn()).property(Script.Running, false).merge();
 										});
 									}
 									return new String[] { "schedule fail", ex.getMessage() };
@@ -490,52 +433,47 @@ public class REntry implements Closeable {
 		scheduler.start();
 
 		// register schedule job
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				IteratorList<WriteNode> scripts = wsession.pathBy("/scripts").children().iterator();
-				while (scripts.hasNext()) {
-					WriteNode wnode = scripts.next();
-					wnode.property(Script.Running, false);
-					if (wnode.hasChild("schedule")) {
-						WriteNode scheduleNode = wnode.child("schedule");
-						if (scheduleNode.property(Def.Schedule.ENABLE).asBoolean()) {
-							scheduleNode.property(Def.Schedule.ENABLE, true);
-						}
+		session.tran(wsession -> {
+			WriteStream scripts = wsession.pathBy("/scripts").children().stream() ;
+			for (WriteNode wnode : scripts){
+				wnode.property(Script.Running, false);
+				if (wnode.hasChild("schedule")) {
+					WriteNode scheduleNode = wnode.child("schedule");
+					if (scheduleNode.property(Def.Schedule.ENABLE).asBoolean()) {
+						scheduleNode.property(Def.Schedule.ENABLE, true).merge();
 					}
 				}
-				return null;
 			}
 		});
 
 	}
 
 	// create analyzer
-	private Analyzer makeAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		if (StringUtil.isBlank(modValue))
-			return new StandardAnalyzer(SearchConstant.LuceneVersion);
+	private Analyzer makeAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+			if (StringUtil.isBlank(modValue))
+				return new StandardAnalyzer(SearchConstant.LuceneVersion);
 
-		Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
+			Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
 
-		Analyzer resultAnalyzer = null;
-		Constructor con = null;
-		if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class, CharArraySet.class })) != null) {
+			Analyzer resultAnalyzer = null;
+			Constructor con = null;
+			if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class, CharArraySet.class })) != null) {
 
-			boolean useStopword = rnode.property(Def.Indexer.ApplyStopword).asBoolean();
-			Collection<String> stopWord = ListUtil.EMPTY;
-			if (useStopword) {
-				String stopwords = rnode.property(Def.Indexer.StopWord).asString();
-				stopWord = ListUtil.toList(StringUtil.split(stopwords, " ,\n"));
+				boolean useStopword = rnode.property(Def.Indexer.ApplyStopword).asBoolean();
+				Collection<String> stopWord = ListUtil.EMPTY;
+				if (useStopword) {
+					String stopwords = rnode.property(Def.Indexer.StopWord).asString();
+					stopWord = ListUtil.toList(StringUtil.split(stopwords, " ,\n"));
+				}
+
+				resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false));
+			} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class })) != null) {
+				resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion);
+			} else {
+				con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]);
+				resultAnalyzer = (Analyzer) con.newInstance();
 			}
-
-			resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false));
-		} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class })) != null) {
-			resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion);
-		} else {
-			con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]);
-			resultAnalyzer = (Analyzer) con.newInstance();
-		}
-		return resultAnalyzer;
+			return resultAnalyzer;
 	}
 
 	// create sub per field analayzer
@@ -575,7 +513,7 @@ public class REntry implements Closeable {
 	}
 
 	private IdString registerSearcher(ReadSession session, PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		Set<String> cols = rnode.property(Def.Searcher.Target).asSet();
+		Set<String> cols = rnode.property(Def.Searcher.Target).asSet().stream().map(s -> s.toString()).collect(Collectors.toSet());
 		IdString sid = IdString.create(rnode.fqn().name());
 
 		Searcher searcher = null;
@@ -593,8 +531,8 @@ public class REntry implements Closeable {
 			SearchConfig sconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
 			IndexConfig iconfig = IndexConfig.create(SearchConstant.LuceneVersion, new WithinThreadExecutor(), queryAnalyzer, new IndexWriterConfig(SearchConstant.LuceneVersion, queryAnalyzer), FieldIndexingStrategy.DEFAULT);
 
-			ReadChildren schemas = session.ghostBy(rnode.fqn().toString() + "/schema").children();
-			for (ReadNode schemaNode : schemas.toList()) {
+			ReadChildren schemas = session.pathBy(rnode.fqn().toString() + "/schema").children();
+			for (ReadNode schemaNode : schemas.stream()) {
 				sconfig.fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
 			}
 
@@ -630,44 +568,48 @@ public class REntry implements Closeable {
 		return sid;
 	}
 
-	private Central createIndexerCentral(IdString iid) throws CorruptIndexException, IOException {
+	private Central createIndexerCentral(IdString iid) {
 
-		String name = iid.idString();
-		DefaultCacheManager dm = r.dm();
-		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name;
-		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
-				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
-		dm.defineConfiguration(name + "-meta", meta_config);
-
-		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
-				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
-		dm.defineConfiguration(name + "-chunk", chunk_config);
-
-		Cache<?, ?> metaCache = dm.getCache(name + "-meta");
-		Cache<?, ?> chunkCache = dm.getCache(name + "-chunk");
-
-		BuildContext bcontext = DirectoryBuilder.newDirectoryInstance(metaCache, chunkCache, metaCache, name);
-		bcontext.chunkSize(16384 * 8);
-		Directory directory = bcontext.create();
-		Central central = CentralConfig.oldFromDir(directory).build();
-
-		log.info(name + " Index ClusterMode : " + metaCache.getCacheConfiguration().clustering().cacheMode());
-
-		return central;
-		// return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
+//		String name = iid.idString();
+//		DefaultCacheManager dm = r.dm();
+//		String path = nsconfig.repoConfig().indexHomeDir() + "/" + name;
+//		Configuration meta_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+//				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
+//		dm.defineConfiguration(name + "-meta", meta_config);
+//
+//		Configuration chunk_config = new ConfigurationBuilder().read(dm.getDefaultCacheConfiguration()).persistence().passivation(false).addSingleFileStore().fetchPersistentState(true).preload(true).shared(false).purgeOnStartup(false).ignoreModifications(false).location(path).async().enable()
+//				.flushLockTimeout(300000).shutdownTimeout(2000).modificationQueueSize(10).threadPoolSize(3).build();
+//		dm.defineConfiguration(name + "-chunk", chunk_config);
+//
+//		Cache<?, ?> metaCache = dm.getCache(name + "-meta");
+//		Cache<?, ?> chunkCache = dm.getCache(name + "-chunk");
+//
+//		BuildContext bcontext = DirectoryBuilder.newDirectoryInstance(metaCache, chunkCache, metaCache, name);
+//		bcontext.chunkSize(16384 * 8);
+//		Directory directory = bcontext.create();
+//		Central central = CentralConfig.oldFromDir(directory).build();
+//
+//		log.info(name + " Index ClusterMode : " + metaCache.getCacheConfiguration().clustering().cacheMode());
+//
+//		return central;
+		try {
+			return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
+		} catch (IOException e) {
+			throw new IllegalStateException(e) ;
+		}
 	}
 
 	// test
-	public final static REntry create() throws CorruptIndexException, IOException {
+	public final static REntry create() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build();
 		return create(nsconfig);
 	}
 
-	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException {
+	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		return nsconfig.createREntry();
 	}
 
-	public final static REntry test() throws CorruptIndexException, IOException {
+	public final static REntry test() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build();
 		return nsconfig.testREntry();
 	}
@@ -703,9 +645,7 @@ public class REntry implements Closeable {
 }
 
 interface PropertyReadable {
-	public PropertyValue property(String propId);
-
-	public PropertyValue property(PropertyId propId);
+	public Property property(String propId);
 
 	public Fqn fqn();
 }
@@ -719,17 +659,13 @@ class EventPropertyReadable implements PropertyReadable {
 	}
 
 	@Override
-	public PropertyValue property(String propId) {
-		return event.property(propId);
+	public Property property(String propId) {
+		return event.newProperty(propId);
 	}
 
-	@Override
-	public PropertyValue property(PropertyId propId) {
-		return event.property(propId);
-	}
 
 	public Fqn fqn() {
-		return event.getKey().getFqn();
+		return event.getKey() ;
 	}
 }
 
@@ -742,14 +678,10 @@ class RNodePropertyReadable implements PropertyReadable {
 	}
 
 	@Override
-	public PropertyValue property(String propId) {
+	public Property property(String propId) {
 		return rnode.property(propId);
 	}
 
-	@Override
-	public PropertyValue property(PropertyId propId) {
-		return rnode.propertyId(propId);
-	}
 
 	public Fqn fqn() {
 		return rnode.fqn();

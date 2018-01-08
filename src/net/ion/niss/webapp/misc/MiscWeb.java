@@ -1,9 +1,9 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -17,13 +17,13 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.ChildQueryResponse;
-import net.ion.craken.node.crud.tree.impl.PropertyId;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.WriteNode;
+import net.bleujin.rcraken.extend.ChildQueryResponse;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonParser;
@@ -35,11 +35,6 @@ import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
-
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jboss.resteasy.spi.HttpRequest;
-
-import com.google.common.base.Function;
 
 @Path("/misc")
 public class MiscWeb implements Webapp{
@@ -97,7 +92,7 @@ public class MiscWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject logHistory(@DefaultValue("") @QueryParam("searchQuery") String query) throws IOException, ParseException{
 		
-		JsonArray jarray = rsession.ghostBy("/events/loaders").childQuery(query).descending("time").offset(1000).find().transformer(new Function<ChildQueryResponse, JsonArray>(){
+		JsonArray jarray = rsession.pathBy("/events/loaders").childQuery(query).descending("time").offset(1000).find().transformer(new com.google.common.base.Function<ChildQueryResponse, JsonArray>(){
 			@Override
 			public JsonArray apply(ChildQueryResponse res) {
 				List<ReadNode> nodes = res.toList() ;
@@ -105,8 +100,8 @@ public class MiscWeb implements Webapp{
 				for(ReadNode node : nodes){
 					JsonArray row = new JsonArray() ;
 					row.add(new JsonPrimitive(node.fqn().name()))
-						.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property("time").asLong(0))))
-						.add(new JsonPrimitive(node.propertyId(PropertyId.refer("loader")).asString()))
+						.add(new JsonPrimitive(DateUtil.timeMilliesToDay(node.property("time").asLong())))
+						.add(new JsonPrimitive(node.property("loader").asString()))
 						.add(new JsonPrimitive(node.property("status").asString())) ;
 					his.add(row) ;
 				}
@@ -117,7 +112,7 @@ public class MiscWeb implements Webapp{
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
 		result.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Time'},{'title':'LoaderId'},{'title':'Status'}]").getAsJsonArray()) ;
-		result.put("info", rsession.ghostBy("/menus/loaders").property("history").asString());
+		result.put("info", rsession.pathBy("/menus/loaders").property("history").asString());
 		return result ;
 	}
 	
@@ -128,12 +123,11 @@ public class MiscWeb implements Webapp{
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject userList() throws IOException, ParseException{
 
-		JsonArray jarray = rsession.ghostBy("/users").children().transform(new Function<Iterator<ReadNode>, JsonArray>(){
+		JsonArray jarray = rsession.pathBy("/users").children().stream().transform(new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
+				for(ReadNode node : iter){
 					JsonArray userProp = new JsonArray() ;
 					userProp.add(new JsonPrimitive(node.fqn().name())) ;
 					userProp.add(new JsonPrimitive(node.property("name").asString())) ;
@@ -143,7 +137,7 @@ public class MiscWeb implements Webapp{
 				return result;
 			}
 		}) ;
-		return new JsonObject().put("info", rsession.ghostBy("/menus/misc").property("user").asString())
+		return new JsonObject().put("info", rsession.pathBy("/menus/misc").property("user").asString())
 				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Name'}]").getAsJsonArray())
 				.put("users", jarray) ;
 	}
@@ -151,15 +145,11 @@ public class MiscWeb implements Webapp{
 	@POST
 	@Path("/users/{uid}")
 	public String addUser(@PathParam("uid") final String userId, @FormParam("name") final String name, @FormParam("password") final String password){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/users/" + userId)
-					.property("name", name)
-					.property("password", password)
-					.property("registered", System.currentTimeMillis()) ;
-				return null ;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy("/users/" + userId)
+				.property("name", name)
+				.property("password", password)
+				.property("registered", System.currentTimeMillis()).merge();
 		}) ;
 
 		return "registered " + userId ;
@@ -170,14 +160,10 @@ public class MiscWeb implements Webapp{
 	public String editUser(@PathParam("uid") final String userId, @Context HttpRequest request){
 		final MultivaluedMap<String, String> formParam = request.getDecodedFormParameters() ;
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy("/users/" + userId) ;
-				for (String key : formParam.keySet()) {
-					found.property(key, formParam.getFirst(key)) ;
-				}
-				return null;
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy("/users/" + userId) ;
+			for (String key : formParam.keySet()) {
+				found.property(key, formParam.getFirst(key)).merge();
 			}
 		}) ;
 		
@@ -189,14 +175,10 @@ public class MiscWeb implements Webapp{
 	@POST
 	@Path("/users_remove")
 	public String removeUsers(@FormParam("users") final String users){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				String[] targets = StringUtil.split(users, ",") ;
-				for (String userId : targets) {
-					wsession.pathBy("/users/" + userId).removeSelf() ;
-				}
-				return null ;
+		rsession.tran( wsession -> {
+			String[] targets = StringUtil.split(users, ",") ;
+			for (String userId : targets) {
+				wsession.pathBy("/users/" + userId).removeSelf() ;
 			}
 		});
 		return "removed " + users ; 
@@ -207,11 +189,9 @@ public class MiscWeb implements Webapp{
 	@DELETE
 	@Path("/users/{uid}")
 	public String removeUser(@PathParam("uid") final String userId) throws InterruptedException, ExecutionException{
-		Boolean removed = rsession.tran(new TransactionJob<Boolean>() {
-			@Override
-			public Boolean handle(WriteSession wsession) throws Exception {
-				return wsession.pathBy("/users/" + userId).removeSelf() ;
-			}
+		Boolean removed = rsession.tran(wsession -> {
+			wsession.pathBy("/users/" + userId).removeSelf() ;
+			return Boolean.TRUE ;
 		}).get() ;
 		
 		return removed ? "removed " + userId : "";

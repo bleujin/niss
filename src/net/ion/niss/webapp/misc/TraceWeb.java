@@ -1,7 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.function.Function;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -10,17 +10,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
-
-import com.google.common.base.Function;
 
 @Path("/traces")
 public class TraceWeb implements Webapp {
@@ -33,16 +29,15 @@ public class TraceWeb implements Webapp {
 	@GET
 	@Path("/{userid}")
 	public JsonObject recentActivity(@PathParam("userid") String userId, @DefaultValue("5") @QueryParam("offset") int offset){
-		Function<Iterator<ReadNode>, JsonArray> fn = new Function<Iterator<ReadNode>, JsonArray>(){
+		Function<Iterable<ReadNode>, JsonArray> fn = new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
+				for(ReadNode node : iter){
 					result.add(new JsonObject()
 						.put("path", node.fqn().toString())
 						.put("uri", node.property("uri").asString())
-						.put("time", node.property("time").asLong(0)) 
+						.put("time", node.property("time").asLong()) 
 						.put("address", node.property("address").asString()) 
 						.put("method", node.property("method").asString()) 
 					) ;
@@ -50,7 +45,7 @@ public class TraceWeb implements Webapp {
 				return result;
 			}
 		};
-		JsonArray jsonTrace = rsession.ghostBy("/traces/"+ userId).children().descending("time").offset(offset).transform(fn) ;
+		JsonArray jsonTrace = rsession.pathBy("/traces/"+ userId).children().stream().descending("time").limit(offset).transform(fn) ;
 		
 		return new JsonObject().put("traces", jsonTrace);
 	}
@@ -58,12 +53,8 @@ public class TraceWeb implements Webapp {
 	@Path("/{userid}")
 	@DELETE
 	public String removeActivity(@PathParam("userid") final String userId){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/traces/" + userId).removeChildren() ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy("/traces/" + userId).removeChild();
 		})  ;
 		
 		return "removed " + userId;

@@ -5,6 +5,10 @@ import java.io.Writer;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ecs.xml.XML;
+
+import com.google.common.base.Function;
+
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -15,10 +19,6 @@ import net.ion.nsearcher.search.SearchRequest;
 import net.ion.nsearcher.search.SearchResponse;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.util.csv.CsvWriter;
-
-import org.apache.ecs.xml.XML;
-
-import com.google.common.base.Function;
 
 public class ResFns {
 

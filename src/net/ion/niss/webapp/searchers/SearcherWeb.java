@@ -3,10 +3,10 @@ package net.ion.niss.webapp.searchers;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -18,21 +18,20 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.StreamingOutput;
 import javax.xml.transform.Source;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.ReadChildren;
-import net.ion.craken.node.crud.ReadChildrenEach;
-import net.ion.craken.node.crud.ReadChildrenIterator;
-import net.ion.craken.node.crud.tree.Fqn;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.ReadStream;
+import net.bleujin.rcraken.WriteNode;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -66,13 +65,6 @@ import net.ion.nsearcher.search.Searcher;
 import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jboss.resteasy.spi.HttpRequest;
-
-import com.google.common.base.Function;
-
 @Path("/searchers")
 public class SearcherWeb implements Webapp {
 
@@ -92,14 +84,13 @@ public class SearcherWeb implements Webapp {
 	@Path("")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listSection() {
-		ReadChildren children = rsession.ghostBy("/searchers").children().ascending(Def.Searcher.Created);
+		ReadStream children = rsession.pathBy("/searchers").children().stream().ascending(Def.Searcher.Created);
 
-		return children.transform(new Function<Iterator<ReadNode>, JsonArray>() {
+		return children.transform(new Function<Iterable<ReadNode>, JsonArray>() {
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray();
-				while (iter.hasNext()) {
-					ReadNode node = iter.next();
+				for (ReadNode node : iter) {
 					result.add(new JsonObject().put("sid", node.fqn().name()).put("name", node.fqn().name()));
 				}
 				return result;
@@ -113,13 +104,10 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String create(@PathParam("sid") final String sid) throws Exception {
-		return rsession.tranSync(new TransactionJob<String>() {
-			@Override
-			public String handle(WriteSession wsession) throws Exception {
-				if (wsession.readSession().exists(fqnBy(sid))) return "already exist : " + sid ;
-				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Created, System.currentTimeMillis());
-				return "created " + sid;
-			}
+		return rsession.tranSync(wsession -> {
+			if (wsession.exist(fqnBy(sid))) return "already exist : " + sid ;
+			wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Created, System.currentTimeMillis()).merge();
+			return "created " + sid;
 		});
 	}
 
@@ -127,19 +115,15 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSearch(@PathParam("sid") final String sid) {
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy(fqnBy(sid));
-				JsonObject decent = found.toReadNode().transformer(Trans.DECENT) ;
-				StringBuilder sb = new StringBuilder();
-				new GsonBuilder().setPrettyPrinting().create().toJson(decent, sb) ;
-				
-				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR, "searcher." + sid + ".bak"), sb.toString()) ;
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy(fqnBy(sid));
+			JsonObject decent = found.toReadNode().transformer(Trans.DECENT) ;
+			StringBuilder sb = new StringBuilder();
+			new GsonBuilder().setPrettyPrinting().create().toJson(decent, sb) ;
+			
+			FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR, "searcher." + sid + ".bak"), sb.toString()) ;
 
-				found.removeSelf() ;
-				return null;
-			}
+			found.removeSelf() ;
 		});
 
 		return "removed " + sid;
@@ -152,22 +136,21 @@ public class SearcherWeb implements Webapp {
 	public JsonObject viewOverview(@PathParam("sid") final String sid){
 		
 		// wsession.pathBy("/searchlogs/" + query.hashCode()).property("query", query).property('found', response.totalCount()).property('time', System.currentTimeMillis()).increase('count') ;
-		Function<Iterator<ReadNode>, JsonArray> makeJson = new Function<Iterator<ReadNode>, JsonArray>(){
+		Function<Iterable<ReadNode>, JsonArray> makeJson = new Function<Iterable<ReadNode>, JsonArray>(){
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray() ;
-				while(iter.hasNext()){
-					ReadNode node = iter.next() ;
-					result.add(new JsonObject().put("query", node.property("query").asString()).put("count", node.property("count").asLong(1)).put("time", node.property("time").asLong(0))) ; 
+				for (ReadNode node : iter) {
+					result.add(new JsonObject().put("query", node.property("query").asString()).put("count", node.property("count").defaultValue(1)).put("time", node.property("time").asLong())) ; 
 				}
 				return result;
 			}
 		} ;
 		
-		JsonArray recent = rsession.ghostBy("/searchlogs/" + sid).children().descending("time").offset(10).transform(makeJson) ;
-		JsonArray popular = rsession.ghostBy("/searchlogs/" + sid).children().descending("count").offset(10).transform(makeJson) ;
+		JsonArray recent = rsession.pathBy("/searchlogs/" + sid).children().stream().descending("time").limit(10).transform(makeJson) ;
+		JsonArray popular = rsession.pathBy("/searchlogs/" + sid).children().stream().descending("count").limit(10).transform(makeJson) ;
 		
-		return new JsonObject().put("info", rsession.ghostBy("/menus/searchers").property("overview").asString())
+		return new JsonObject().put("info", rsession.pathBy("/menus/searchers").property("overview").asString())
 			.put("recent", recent)
 			.put("popular", popular) ;
 	}
@@ -177,12 +160,12 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/popularquery")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewPopularQuery(@PathParam("sid") final String sid) throws ExecutionException{
-		ReadNode found = rsession.ghostBy(fqnBy(sid, "popularquery"));
+		ReadNode found = rsession.pathBy(fqnBy(sid, "popularquery"));
 		String qtemplate = found.property(Def.Searcher.Popular.Template).defaultValue(pqentry.DFT_TEMPLATE) ;
 		
 		String transformd = pqentry.result(sid) ;
 		
-		return new JsonObject().put("qtemplate", JsonParser.fromString(qtemplate)).put("transformed", transformd).put("dayrange", found.property("dayrange").intValue(3)) ;
+		return new JsonObject().put("qtemplate", JsonParser.fromString(qtemplate)).put("transformed", transformd).put("dayrange", found.property("dayrange").defaultValue(3)) ;
 	}
 	
 
@@ -190,11 +173,8 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/popularquery")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public String editPopularQuery(@PathParam("sid") final String sid, final @FormParam("ptemplate") String mypopularTemplate, @DefaultValue("3") @FormParam("dayrange") final int dayRange){
-		rsession.tran(new TransactionJob<Void>() {
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(sid, "popularquery")).property(Def.Searcher.Popular.Template, mypopularTemplate).property(Def.Searcher.Popular.DayRange, dayRange) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy(fqnBy(sid, "popularquery")).property(Def.Searcher.Popular.Template, mypopularTemplate).property(Def.Searcher.Popular.DayRange, dayRange).merge();
 		}) ;
 		
 		pqentry.invalidate(sid) ;
@@ -209,13 +189,13 @@ public class SearcherWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewSearcher(@PathParam("sid") final String sid) {
 
-		final String[] colNames = rsession.ghostBy("/indexers").childrenNames().toArray(new String[0]);
+		final String[] colNames = rsession.pathBy("/indexers").childrenNames().toArray(new String[0]);
 
 		return rsession.pathBy(fqnBy(sid)).transformer(new Function<ReadNode, JsonObject>() {
 			@Override
 			public JsonObject apply(ReadNode node) {
 				JsonObject result = new JsonObject()
-						.put("info", rsession.ghostBy("/menus/searchers").property("define").asString()).put("indexers", colNames)
+						.put("info", rsession.pathBy("/menus/searchers").property("define").asString()).put("indexers", colNames)
 						.put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
 						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0]))
 						.put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
@@ -244,17 +224,12 @@ public class SearcherWeb implements Webapp {
 			@DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler, @FormParam("stopword") final String stopword, @DefaultValue("false") @FormParam("applystopword") final boolean applyStopword) {
 
 		final String[] targets = StringUtil.split(target, ",");
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy(fqnBy(sid)) ;
-				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.handler.bak"), found.property(Def.Searcher.Handler).asString());
-				
-				wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Target, targets).property(Def.Searcher.QueryAnalyzer, queryAnalyzer).property(Def.Searcher.Handler, handler).property(Def.Searcher.ApplyHandler, applyHandler).property(Def.Searcher.StopWord, stopword)
-						.property(Def.Searcher.ApplyStopword, applyStopword);
-
-				return null;
-			}
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy(fqnBy(sid)) ;
+			FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.handler.bak"), found.property(Def.Searcher.Handler).asString());
+			
+			wsession.pathBy(fqnBy(sid)).property(Def.Searcher.Target, targets).property(Def.Searcher.QueryAnalyzer, queryAnalyzer).property(Def.Searcher.Handler, handler).property(Def.Searcher.ApplyHandler, applyHandler).property(Def.Searcher.StopWord, stopword)
+					.property(Def.Searcher.ApplyStopword, applyStopword).merge();
 		});
 
 		return "defined searcher : " + sid;
@@ -281,15 +256,12 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/schema")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject listSchema(@PathParam("sid") String sid){
-		JsonArray schemas = rsession.ghostBy(SearchSchema.path(sid)).children().eachNode(new ReadChildrenEach<JsonArray>() {
-			@Override
-			public JsonArray handle(ReadChildrenIterator iter) {
-				JsonArray result = new JsonArray() ;
-				for(ReadNode node : iter){
-					result.add(new JsonArray().adds(node.fqn().name(), node.property(SearchSchema.Analyzer).asString())) ;
-				}
-				return result;
+		JsonArray schemas = rsession.pathBy(SearchSchema.path(sid)).children().stream().transform(iter -> {
+			JsonArray result = new JsonArray() ;
+			for(ReadNode node : iter){
+				result.add(new JsonArray().adds(node.fqn().name(), node.property(SearchSchema.Analyzer).asString())) ;
 			}
+			return result;
 		}) ;
 		
 		
@@ -301,7 +273,7 @@ public class SearcherWeb implements Webapp {
 		}
 		
 		return new JsonObject()
-				.put("info", rsession.ghostBy("/menus/searchers").property("schema").asString())
+				.put("info", rsession.pathBy("/menus/searchers").property("schema").asString())
 				.put("query_analyzer", iarray)
 				.put("schemaName", JsonParser.fromString("[{'title':'SchemaId'},{'title':'Analyzer'}]").getAsJsonArray())
 				.put("data", schemas) ;
@@ -313,13 +285,8 @@ public class SearcherWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String addSchema(@PathParam("sid") final String sid, @FormParam("schemaid") final String schemaid, @FormParam("analyzer") final String analyzer){
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(SearchSchema.path(sid, schemaid))
-					.property(SearchSchema.Analyzer, analyzer) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy(SearchSchema.path(sid, schemaid)).property(SearchSchema.Analyzer, analyzer).merge();
 		}) ;
 		
 		return "created search schema " + schemaid ;
@@ -330,12 +297,8 @@ public class SearcherWeb implements Webapp {
 	@Path("/{sid}/schema/{schemaid}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSchema(@PathParam("sid") final String sid, @PathParam("schemaid") final String schemaid){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(SearchSchema.path(sid, schemaid)).removeSelf() ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy(SearchSchema.path(sid, schemaid)).removeSelf() ;
 		}) ;
 		
 		return "removed schema " + schemaid ;
@@ -350,7 +313,7 @@ public class SearcherWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject query() throws IOException {
 		JsonObject result = new JsonObject();
-		result.put("info", rsession.ghostBy("/menus/searchers").property("query").asString());
+		result.put("info", rsession.pathBy("/menus/searchers").property("query").asString());
 		return result;
 	}
 
@@ -433,7 +396,7 @@ public class SearcherWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewTemplate(@PathParam("sid") final String sid) {
 		JsonObject result = new JsonObject();
-		result.put("info", rsession.ghostBy("/menus/searchers").property("template").asString());
+		result.put("info", rsession.pathBy("/menus/searchers").property("template").asString());
 		result.put("samples", WebUtil.findSearchTemplates()) ;
 		result.put("template", rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString());
 		return result;
@@ -456,15 +419,11 @@ public class SearcherWeb implements Webapp {
 	@POST
 	@Path("/{sid}/template")
 	public String editTemplate(@PathParam("sid") final String sid, @FormParam("template") final String template) {
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy(fqnBy(sid));
-				FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.template.bak"), found.property(Def.Searcher.Template).asString());
-				
-				found.property(Def.Searcher.Template, template);
-				return null;
-			}
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy(fqnBy(sid));
+			FileUtil.forceWriteUTF8(new File(Webapp.REMOVED_DIR,  sid + ".searcher.template.bak"), found.property(Def.Searcher.Template).asString());
+			
+			found.property(Def.Searcher.Template, template).merge();
 		});
 		return "modified template : " + sid;
 	}
@@ -478,10 +437,10 @@ public class SearcherWeb implements Webapp {
 		final SearchResponse response = smanager.searcher(sid).createRequest(searchQuery).offset(offset).find() ;
 		final Set<String> fnames = SetUtil.newOrdereddSet() ;
 		fnames.add("id") ;
-		fnames.addAll(rsession.ghostBy("/searchers/" + sid + "/schema").childrenNames()) ;
+		fnames.addAll(rsession.pathBy("/searchers/" + sid + "/schema").childrenNames()) ;
 
 		
-		return response.transformer(new Function<TransformerKey, JsonObject>() {
+		return response.transformer(new com.google.common.base.Function<TransformerKey, JsonObject>() {
 			@Override
 			public JsonObject apply(TransformerKey tkey) {
 				List<Integer> docs = tkey.docs();
@@ -500,7 +459,7 @@ public class SearcherWeb implements Webapp {
 				header.put("elapsedTime", response.elapsedTime());
 				JsonArray jarray = new JsonArray();
 				result.put("data", jarray);
-				result.put("info", rsession.ghostBy("/menus/searchers").property("browsing").asString()) ;
+				result.put("info", rsession.pathBy("/menus/searchers").property("browsing").asString()) ;
 
 				try {
 					
@@ -541,12 +500,12 @@ public class SearcherWeb implements Webapp {
 	
 	
 	
-	private Fqn fqnBy(String sid) {
-		return Fqn.fromString("/searchers/" + IdString.create(sid).idString());
+	private String fqnBy(String sid) {
+		return "/searchers/" + IdString.create(sid).idString();
 	}
 
-	private Fqn fqnBy(String sid, String child) {
-		return Fqn.fromString("/searchers/" + IdString.create(sid).idString() + "/" + child);
+	private String fqnBy(String sid, String child) {
+		return "/searchers/" + IdString.create(sid).idString() + "/" + child;
 	}
 
 }

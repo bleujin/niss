@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Set;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.ObjectId;
 import net.ion.framework.util.ObjectUtil;
@@ -45,39 +43,29 @@ public class TraceHandler extends AbstractHttpHandler{
 
 			@Override
 			public HttpResponseWrapper end() {
-				rsession.tran(new TransactionJob<Void>() {
-					@Override
-					public Void handle(WriteSession wsession) throws Exception {
-						
-						wsession.pathBy("/traces/" +  userName).child(new ObjectId().toString())
-							.property("method", request.method())
-							.property("uri", request.uri())
-							.property("address", iaddress.getAddress().getHostAddress())
-							.property("time", System.currentTimeMillis())
-							.property("params", params.toString())
-							.property("status", response.status());
-							
-						return null;
-					}
+				rsession.tran(wsession -> {
+					wsession.pathBy("/traces/" +  userName).child(new ObjectId().toString())
+						.property("method", request.method())
+						.property("uri", request.uri())
+						.property("address", iaddress.getAddress().getHostAddress())
+						.property("time", System.currentTimeMillis())
+						.property("params", params.toString())
+						.property("status", response.status()).merge();
 				}) ;
 				return super.end();
 			}
 
 			@Override
 			public HttpResponseWrapper error(final Throwable error) {
-				rsession.tran(new TransactionJob<Void>() {
-					@Override
-					public Void handle(WriteSession wsession) throws Exception {
-						wsession.pathBy("/traces/" +  userName).child(new ObjectId().toString())
-							.property("method", request.method())
-							.property("uri", request.uri())
-							.property("address", iaddress.getAddress().getHostAddress())
-							.property("exception", error.getMessage())
-							.property("time", System.currentTimeMillis())
-							.property("params", params.toString())
-							.property("status", response.status());
-						return null;
-					}
+				rsession.tran(wsession -> {
+					wsession.pathBy("/traces/" +  userName).child(new ObjectId().toString())
+					.property("method", request.method())
+					.property("uri", request.uri())
+					.property("address", iaddress.getAddress().getHostAddress())
+					.property("exception", error.getMessage())
+					.property("time", System.currentTimeMillis())
+					.property("params", params.toString())
+					.property("status", response.status()).merge() ;
 				}) ;
 				return super.error(error);
 			}

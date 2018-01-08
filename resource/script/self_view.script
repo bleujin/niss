@@ -2,10 +2,10 @@
 new function(){
 
 	importPackage(java.lang) 
-	importPackage(net.ion.craken.node.convert)
+	importPackage(net.bleujin.rcraken.convert)
 
 	this.handle = function(writer, session, param){
-		var json = session.ghostBy("/scripts").children().transform(Functions.CHILDLIST) ;
+		var json = session.pathBy("/scripts").children().stream().transform(Functions.CHILDLIST) ;
 		writer.append("name param : " + param.getFirst("name")) ;
 		return json ;
 	}

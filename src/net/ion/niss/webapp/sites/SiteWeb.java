@@ -1,17 +1,12 @@
 package net.ion.niss.webapp.sites;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.function.Function;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
@@ -25,24 +20,21 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import net.coobird.thumbnailator.Thumbnailator;
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import net.bleujin.rcraken.Fqn;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.ReadStream;
+import net.bleujin.rcraken.WriteNode;
 import net.coobird.thumbnailator.Thumbnails;
-import net.coobird.thumbnailator.builders.ThumbnailParameterBuilder;
-import net.coobird.thumbnailator.tasks.StreamThumbnailTask;
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
-import net.ion.craken.node.crud.ReadChildren;
-import net.ion.craken.node.crud.tree.Fqn;
 import net.ion.framework.db.IDBController;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.DateUtil;
-import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.webapp.IdString;
@@ -54,11 +46,6 @@ import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.niss.webapp.common.MyAuthenticationHandler;
 import net.ion.niss.webapp.indexers.SchemaInfos;
 import net.ion.radon.core.ContextParam;
-
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jboss.resteasy.spi.HttpRequest;
-
-import com.google.common.base.Function;
 
 
 @Path("/sites")
@@ -81,14 +68,13 @@ public class SiteWeb implements Webapp {
 	@Path("")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonArray listSite() {
-		ReadChildren children = rsession.ghostBy("/sites").children().ascending(Def.Site.Created);
+		ReadStream children = rsession.pathBy("/sites").children().stream().ascending(Def.Site.Created);
 
-		return children.transform(new Function<Iterator<ReadNode>, JsonArray>() {
+		return children.transform(new Function<Iterable<ReadNode>, JsonArray>() {
 			@Override
-			public JsonArray apply(Iterator<ReadNode> iter) {
+			public JsonArray apply(Iterable<ReadNode> iter) {
 				JsonArray result = new JsonArray();
-				while (iter.hasNext()) {
-					ReadNode node = iter.next();
+				for (ReadNode node : iter) {
 					String name = node.fqn().name();
 					result.add(new JsonObject().put("sid", name).put("name", name));
 				}
@@ -103,13 +89,10 @@ public class SiteWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String createSite(@PathParam("sid") final String sid, @FormParam("siteurl") final String siteUrl) throws Exception {
 
-		return rsession.tranSync(new TransactionJob<String>() {
-			@Override
-			public String handle(WriteSession wsession) throws Exception {
-				if (wsession.readSession().exists(fqnBy(sid))) return "already exist : " + sid ;
-				wsession.pathBy(fqnBy(sid)).property(Def.Site.SiteUrl, siteUrl).property(Def.Site.Created, System.currentTimeMillis());
-				return "created " + sid;
-			}
+		return rsession.tranSync(wsession -> {
+			if (wsession.exist(fqnBy(sid))) return "already exist : " + sid ;
+			wsession.pathBy(fqnBy(sid)).property(Def.Site.SiteUrl, siteUrl).property(Def.Site.Created, System.currentTimeMillis()).merge();
+			return "created " + sid;
 		});
 	}
 	
@@ -119,18 +102,14 @@ public class SiteWeb implements Webapp {
 	@Path("/{sid}")
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String removeSite(@PathParam("sid") final String sid){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				WriteNode found = wsession.pathBy(fqnBy(sid));
-				Set<String> names = found.childrenNames() ;
-				for (String crawlId : names) {
-					dc.createUserProcedure("Crawl@removeWith(?)").addParam(crawlId).execUpdate() ;
-				}
-				
-				found.removeSelf() ;
-				return null;
+		rsession.tran(wsession -> {
+			WriteNode found = wsession.pathBy(fqnBy(sid));
+			Set<String> names = found.childrenNames() ;
+			for (String crawlId : names) {
+				dc.createUserProcedure("Crawl@removeWith(?)").addParam(crawlId).execUpdate() ;
 			}
+			
+			found.removeSelf() ;
 		}) ;
 		
 		return "removed " + sid;
@@ -143,15 +122,15 @@ public class SiteWeb implements Webapp {
 	public JsonObject overview(@PathParam("sid") final String sid) throws IOException{
 		
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.ghostBy("/menus/sites").property("overview").asString()) ;
+		result.put("info", rsession.pathBy("/menus/sites").property("overview").asString()) ;
 		
 		ReadNode snode = rsession.pathBy("/sites/" + sid) ;
 		
 		JsonObject status = new JsonObject() ;
 		status.put("siteUrl", snode.property(Def.Site.SiteUrl).asString()) ;
 		JsonArray clist = new JsonArray() ;
-		for(ReadNode cnode : snode.children().descending("created").offset(5).iterator()){
-			String json = new JsonObject().put("created", DateUtil.longToCalendar(cnode.property("created").asLong(0))).put("creUserId", cnode.property("creuserid").asString()).toString() ;
+		for(ReadNode cnode : snode.children().stream().descending("created").limit(5).toList()){
+			String json = new JsonObject().put("created", DateUtil.longToCalendar(cnode.property("created").asLong())).put("creUserId", cnode.property("creuserid").asString()).toString() ;
 			clist.add(new JsonPrimitive(json)) ;
 		}
 		status.put("recent crawl", clist) ;
@@ -167,7 +146,7 @@ public class SiteWeb implements Webapp {
 	public JsonObject crawlView(@PathParam("sid") final String sid) throws IOException{
 		
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.ghostBy("/menus/sites").property("crawl").asString()) ;
+		result.put("info", rsession.pathBy("/menus/sites").property("crawl").asString()) ;
 		
 		return result;
 	}
@@ -182,14 +161,10 @@ public class SiteWeb implements Webapp {
 		final CrawlOption coption = CrawlOption.loadFrom(jsonotpion) ;
 		coption.siteUrl(snode.property(Def.Site.SiteUrl).asString()) ;
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				String userName = ObjectUtil.coalesce(request.getAttribute(MyAuthenticationHandler.USERNAME), "anonymous").toString();
-				wsession.pathBy(fqnBy(sid)).child(coption.crawlId()).property("created", new Date().getTime()).property("creuserid", userName) ;
-				smanager.crawlSite(dc, coption);
-				return null;
-			}
+		rsession.tran(wsession -> {
+			String userName = ObjectUtil.coalesce(request.getAttribute(MyAuthenticationHandler.USERNAME), "anonymous").toString();
+			wsession.pathBy(fqnBy(sid)).child(coption.crawlId()).property("created", new Date().getTime()).property("creuserid", userName).merge();
+			smanager.crawlSite(dc, coption);
 		}) ;
 		
 		return coption.crawlId() ;
@@ -203,21 +178,12 @@ public class SiteWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexSite(@PathParam("sid") final String sid, @FormParam("crawlid") final String crawlId, @FormParam("iid") final String iid, @Context final HttpRequest request) throws Exception{
 		
-		final SchemaInfos sinfos = rsession.ghostBy(IndexSchema.path(iid)).children().transform(new Function<Iterator<ReadNode>, SchemaInfos>(){
-			@Override
-			public SchemaInfos apply(Iterator<ReadNode> iter) {
-				return SchemaInfos.create(iter) ;
-			}
-		}) ;
+		final SchemaInfos sinfos = SchemaInfos.create(rsession.pathBy(IndexSchema.path(iid)).children()) ;
 		
 		smanager.indexCrawlSite(dc, sinfos, iid, crawlId); 
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/sites/" + sid, crawlId).property("indexed", true).property("iid", iid) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy("/sites/" + sid, crawlId).property("indexed", true).property("iid", iid).merge();
 		}) ;
 		return crawlId ;
 	}
@@ -231,12 +197,8 @@ public class SiteWeb implements Webapp {
 		
 		smanager.makeCapture(dc, crawlId); 
 		
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/sites/" + sid, crawlId).property("captured", true) ;
-				return null;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy("/sites/" + sid, crawlId).property("captured", true).merge();
 		}) ;
 		return crawlId ;
 	}
@@ -284,7 +246,7 @@ public class SiteWeb implements Webapp {
 	public JsonObject browsingCrawl(@PathParam("sid") String sid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
 		final JsonObject result = new JsonObject() ;
 
-		result.put("info", rsession.ghostBy("/menus/sites").property("browsing").asString()) ;
+		result.put("info", rsession.pathBy("/menus/sites").property("browsing").asString()) ;
 
 		JsonArray schemaNames = new JsonArray();
 		schemaNames.add(new JsonObject().put("title", "crawlId")) ;
@@ -296,11 +258,11 @@ public class SiteWeb implements Webapp {
 		
 		
 		JsonArray dataArray = new JsonArray() ;
-		for (ReadNode cnode : rsession.ghostBy("/sites/" + sid).children().descending("created").iterator()) {
+		for (ReadNode cnode : rsession.pathBy("/sites/" + sid).children().stream().descending("created")) {
 			
 			JsonArray rowArray = new JsonArray() ;
 			rowArray.add(new JsonPrimitive(cnode.fqn().name())) ;
-			rowArray.add(new JsonPrimitive(cnode.property("created").asLong(0))) ;
+			rowArray.add(new JsonPrimitive(cnode.property("created").asLong())) ;
 			rowArray.add(new JsonPrimitive(cnode.property("creuserid").asString())) ;
 			rowArray.add(new JsonPrimitive(cnode.property("indexed").asBoolean())) ;
 			rowArray.add(new JsonPrimitive(cnode.property("captured").asBoolean())) ;
@@ -315,20 +277,16 @@ public class SiteWeb implements Webapp {
 	@Path("/{sid}/crawllist")
 	public String removeCrawl(@PathParam("sid") final String sid, @DefaultValue("") @FormParam("crawlid") final String crawlid, @FormParam("removeindex") boolean removeindex){
 		
-		Boolean indexed = rsession.ghostBy(fqnBy(sid, crawlid)).property("indexed").asBoolean() ;
-		String iid = rsession.ghostBy(fqnBy(sid, crawlid)).property("iid").asString() ;
+		Boolean indexed = rsession.pathBy(fqnBy(sid, crawlid)).property("indexed").asBoolean() ;
+		String iid = rsession.pathBy(fqnBy(sid, crawlid)).property("iid").asString() ;
 		
 		if (removeindex && indexed && smanager.hasIndex(iid)){
 			smanager.indexRemove(iid, crawlid) ;
 		}
 		
-		rsession.tran(new TransactionJob<Integer>() {
-			@Override
-			public Integer handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(fqnBy(sid)).child(crawlid).removeSelf() ;
-				dc.createUserProcedure("crawl@removeWith(?)").addParam(crawlid).execUpdate() ;
-				return 1;
-			}
+		rsession.tran(wsession -> {
+			wsession.pathBy(fqnBy(sid)).child(crawlid).removeSelf() ;
+			dc.createUserProcedure("crawl@removeWith(?)").addParam(crawlid).execUpdate() ;
 		}) ;
 		
 		return " removed" ;
@@ -411,8 +369,8 @@ public class SiteWeb implements Webapp {
 	
 	
 	
-	private Fqn fqnBy(String sid) {
-		return Fqn.fromString("/sites/" + IdString.create(sid).idString());
+	private String fqnBy(String sid) {
+		return "/sites/" + IdString.create(sid).idString();
 	}
 
 	private Fqn fqnBy(String sid, String crawlId) {

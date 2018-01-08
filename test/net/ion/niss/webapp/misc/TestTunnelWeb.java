@@ -1,8 +1,6 @@
 package net.ion.niss.webapp.misc;
 
 import junit.framework.TestCase;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
 import net.ion.radon.client.StubServer;
@@ -17,12 +15,8 @@ public class TestTunnelWeb extends TestCase {
 		super.setUp();
 		this.ss = StubServer.create(TunnelWeb.class) ;
 		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
-		entry.login().tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/users/bleujin").property("name", "bleujin").child("address").property("address", "seoul");
-				return null;
-			}
+		entry.login().tran(wsession -> {
+			wsession.pathBy("/users/bleujin").property("name", "bleujin").child("address").property("address", "seoul").merge();
 		}) ;
 		
 	}

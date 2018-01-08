@@ -10,14 +10,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 
-import net.ion.craken.node.ReadSession;
+import org.jboss.resteasy.spi.HttpRequest;
+
+import net.bleujin.rcraken.ReadSession;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.radon.core.ContextParam;
-
-import org.jboss.resteasy.spi.HttpRequest;
 
 @Path("/script")
 public class OpenScriptWeb implements Webapp{

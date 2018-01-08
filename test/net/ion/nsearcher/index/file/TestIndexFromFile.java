@@ -5,15 +5,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.nsearcher.common.SearchConstant;
 import net.ion.nsearcher.config.Central;
 import net.ion.nsearcher.config.CentralConfig;
 import net.ion.nsearcher.index.IndexSession;
-
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.infinispan.util.concurrent.WithinThreadExecutor;
 
 public class TestIndexFromFile extends TestCase {
 

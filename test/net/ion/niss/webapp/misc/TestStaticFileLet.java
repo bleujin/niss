@@ -1,5 +1,7 @@
 package net.ion.niss.webapp.misc;
 
+import org.jboss.resteasy.util.HttpHeaderNames;
+
 import junit.framework.TestCase;
 import net.ion.framework.util.Debug;
 import net.ion.nradon.Radon;
@@ -10,8 +12,6 @@ import net.ion.radon.aclient.NewClient;
 import net.ion.radon.aclient.Response;
 import net.ion.radon.client.StubServer;
 import net.ion.radon.core.let.PathHandler;
-
-import org.jboss.resteasy.util.HttpHeaderNames;
 
 public class TestStaticFileLet extends TestCase{
 

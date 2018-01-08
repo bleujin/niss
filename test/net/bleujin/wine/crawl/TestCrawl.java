@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.io.StringReader;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -18,11 +15,7 @@ import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
-import org.apache.http.client.utils.URIUtils;
-import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.pdfbox.io.RandomAccessFileOutputStream;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
@@ -33,7 +26,6 @@ import net.ion.framework.util.ArrayUtil;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.IOUtil;
-import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.icrawler.Page;
@@ -45,9 +37,6 @@ import net.ion.icrawler.pipeline.Pipeline;
 import net.ion.icrawler.processor.PageProcessor;
 import net.ion.icrawler.scheduler.MaxLimitScheduler;
 import net.ion.icrawler.scheduler.QueueScheduler;
-import net.ion.icrawler.selector.Link;
-import net.ion.icrawler.utils.UrlUtils;
-import sun.swing.StringUIClientPropertyKey;
 
 public class TestCrawl extends TestCase {
 

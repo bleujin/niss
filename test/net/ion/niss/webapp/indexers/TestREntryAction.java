@@ -1,8 +1,10 @@
 package net.ion.niss.webapp.indexers;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import org.apache.lucene.analysis.cjk.CJKAnalyzer;
+import org.apache.lucene.analysis.core.KeywordAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.util.Debug;
@@ -11,10 +13,6 @@ import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.nsearcher.config.Central;
-
-import org.apache.lucene.analysis.cjk.CJKAnalyzer;
-import org.apache.lucene.analysis.core.KeywordAnalyzer;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 public class TestREntryAction extends TestBaseIndexWeb {
 
@@ -42,23 +40,15 @@ public class TestREntryAction extends TestBaseIndexWeb {
 		assertEquals(StandardAnalyzer.class, cen.indexConfig().indexAnalyzer().getClass()) ;
 		
 		ReadSession session = entry.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1").property(Def.Indexer.IndexAnalyzer, KeywordAnalyzer.class.getCanonicalName()) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1").property(Def.Indexer.IndexAnalyzer, KeywordAnalyzer.class.getCanonicalName()).merge();
 		}).get() ;
 		
 		assertEquals(KeywordAnalyzer.class, cen.indexConfig().indexAnalyzer().getClass()) ;
 
 		
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1").property(Def.Indexer.IndexAnalyzer, CJKAnalyzer.class.getCanonicalName()) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1").property(Def.Indexer.IndexAnalyzer, CJKAnalyzer.class.getCanonicalName()).merge();
 		}).get() ;
 		
 		assertEquals(CJKAnalyzer.class, cen.indexConfig().indexAnalyzer().getClass()) ;
@@ -72,23 +62,15 @@ public class TestREntryAction extends TestBaseIndexWeb {
 		assertEquals(StandardAnalyzer.class, cen.searchConfig().queryAnalyzer().getClass()) ;
 		
 		ReadSession session = entry.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1").property(Def.Indexer.QueryAnalyzer, KeywordAnalyzer.class.getCanonicalName()) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1").property(Def.Indexer.QueryAnalyzer, KeywordAnalyzer.class.getCanonicalName()).merge();
 		}).get() ;
 		
 		assertEquals(KeywordAnalyzer.class, cen.searchConfig().queryAnalyzer().getClass()) ;
 
 		
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1").property(Def.Indexer.QueryAnalyzer, CJKAnalyzer.class.getCanonicalName()) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1").property(Def.Indexer.QueryAnalyzer, CJKAnalyzer.class.getCanonicalName()).merge();
 		}).get() ;
 		
 		assertEquals(CJKAnalyzer.class, cen.searchConfig().queryAnalyzer().getClass()) ;
@@ -107,15 +89,11 @@ public class TestREntryAction extends TestBaseIndexWeb {
 
 		
 		ReadSession session = entry.login() ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1")
-					.property(Def.Indexer.IndexAnalyzer, CJKAnalyzer.class.getCanonicalName())
-					.property(Def.Indexer.ApplyStopword, "true")
-					.property(Def.Indexer.StopWord, "바람");
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1")
+				.property(Def.Indexer.IndexAnalyzer, CJKAnalyzer.class.getCanonicalName())
+				.property(Def.Indexer.ApplyStopword, "true")
+				.property(Def.Indexer.StopWord, "바람").merge();
 		}).get() ;
 
 		JsonArray marray = AnalysisWeb.analParse(cen.indexConfig().indexAnalyzer(), "태극기가 바람에 펄럭입니다") ;
@@ -124,13 +102,9 @@ public class TestREntryAction extends TestBaseIndexWeb {
 			if ("바람".equals(je.getAsJsonObject().asString("term"))) fail(); 
 		}
 
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/indexers/col1")
-					.property(Def.Indexer.ApplyStopword, "false") ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy("/indexers/col1")
+				.property(Def.Indexer.ApplyStopword, "false").merge();
 		}).get() ;
 
 

@@ -3,7 +3,7 @@ package net.ion.niss.webapp.misc;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.util.Iterator;
+import java.util.function.Function;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,16 +12,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.crud.util.TraversalStrategy;
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.ExtMediaType;
 import net.ion.radon.core.ContextParam;
-
-import com.google.common.base.Function;
 
 @Path("/export")
 public class ExportWeb implements Webapp {
@@ -51,18 +48,17 @@ public class ExportWeb implements Webapp {
 				final JsonWriter jwriter = new JsonWriter(new OutputStreamWriter(output, "UTF-8"));
 				jwriter.setIndent("    ");
 				try {
-					ReadNode find = rsession.ghostBy(path);
+					ReadNode find = rsession.pathBy(path);
 					find.transformer(new Function<ReadNode, Void>() {
 						@Override
 						public Void apply(ReadNode target) {
-							target.walkChildren().asTreeChildren().includeSelf(true).strategy(TraversalStrategy.BreadthFirst).transform(new Function<Iterator<ReadNode>, Void>() {
+							target.walkBreadth(true, 10).stream().transform(new Function<Iterable<ReadNode>, Void>() {
 								@Override
-								public Void apply(Iterator<ReadNode> decent) {
+								public Void apply(Iterable<ReadNode> decent) {
 									try {
 										jwriter.beginObject();
-										while (decent.hasNext()) {
-											ReadNode node = decent.next();
-											jwriter.jsonElement(node.fqn().toString(), node.toValueJson());
+										for (ReadNode node : decent) {
+											jwriter.jsonElement(node.fqn().toString(), node.toJson());
 										}
 										jwriter.endObject();
 

@@ -2,7 +2,6 @@
 new function(){
 
 	importPackage(java.lang) 
-	importPackage(net.ion.craken.node.convert)
 	importPackage(java.util.concurrent) 
 	importPackage(net.ion.niss.webapp.loaders)
 	importPackage(net.ion.framework.db.bean)
@@ -14,7 +13,7 @@ new function(){
 	
 
 	this.handle = function(writer, session, param, rentry, jengine){
-		var iid = "newindexer";
+		var iid = "myindexer";
 		var imanager = rentry.indexManager();
 		
 		if (! imanager.hasIndex(iid)) {

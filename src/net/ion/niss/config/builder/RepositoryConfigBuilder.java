@@ -1,14 +1,19 @@
 package net.ion.niss.config.builder;
 
+import java.io.File;
+
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.w3c.dom.Node;
+
+import net.bleujin.rcraken.CrakenConfig;
+import net.bleujin.rcraken.store.MapConfig;
+import net.bleujin.rcraken.store.RedisConfig;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.RepositoryConfig;
-
-import org.w3c.dom.Node;
 
 public class RepositoryConfigBuilder {
 
@@ -17,11 +22,9 @@ public class RepositoryConfigBuilder {
 	private String adminHomeDir = "./resource/admin/" ;
 	private String indexHomeDir = "./resource/index/" ;
 	private ConfigBuilder parent;
-	private String crakenConfig = "./resource/config/craken-local-config.xml";
-	private String store = "";
 
-	private Node jdbcNode;
-
+	private CrakenConfig crakenConfig ;
+	
 	public RepositoryConfigBuilder(ConfigBuilder parent){
 		this.parent = parent ;
 	}
@@ -30,46 +33,53 @@ public class RepositoryConfigBuilder {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
 		
-		Node configNode = (Node) xpath.evaluate("craken-config", rconfig, XPathConstants.NODE);
 		Node adminNode = (Node) xpath.evaluate("admin-home", rconfig, XPathConstants.NODE);
 		Node indexNode = (Node) xpath.evaluate("index-home", rconfig, XPathConstants.NODE);
-		Node jdbcNode = (Node) xpath.evaluate("jdbcurl", rconfig, XPathConstants.NODE);
 		
 		String wname = rconfig.getAttributes().getNamedItem("wsname").getTextContent() ;
-		String store = rconfig.getAttributes().getNamedItem("store") == null ?  "grid" : rconfig.getAttributes().getNamedItem("store").getTextContent() ;
+		String store = rconfig.getAttributes().getNamedItem("store") == null ?  "memory" : rconfig.getAttributes().getNamedItem("store").getTextContent() ;
 		
-		return configLoc(configNode.getTextContent()).adminHomeDir(adminNode.getTextContent()).indexHomeDir(indexNode.getTextContent()).wsName(wname).store(store).jdbcNode(jdbcNode);
+		adminHomeDir(adminNode.getTextContent()).indexHomeDir(indexNode.getTextContent()).wsName(wname) ;
+		
+
+		if ("fs".equals(store)) {
+			crakenConfig = MapConfig.file(mapDBFile());
+		} else if("redis".equals(store)){
+			Node redisNode = (Node) xpath.evaluate("store-redis", rconfig, XPathConstants.NODE);
+			// <store-redis address="redis://127.0.0.1:6379" cluster="no" />
+			String cluster = redisNode.getAttributes().getNamedItem("cluster").getTextContent() ;
+			String address = redisNode.getAttributes().getNamedItem("address").getTextContent() ;
+			if ("yes".equals(cluster)) {
+				crakenConfig = RedisConfig.redisCluster(StringUtil.split(address, ",: ")) ;
+			} else {
+				crakenConfig = RedisConfig.redisSingle(address) ;
+			}
+		} else {
+			crakenConfig = CrakenConfig.mapMemory() ;
+		}
+		
+		return this ;
 	}
 
-	private RepositoryConfigBuilder store(String store) {
-		this.store = store ;
-		return this;
+	private File mapDBFile(){
+		File adminHome = new File(adminHomeDir);
+		if (! adminHome.exists()) {
+			adminHome.mkdirs() ;
+		}
+		return new File(adminHomeDir, "mapdb.db") ;
 	}
 
+	
 	public RepositoryConfigBuilder adminHomeDir(String adminHomeDir){
 		this.adminHomeDir = StringUtil.defaultIfEmpty(adminHomeDir, "./resource/admin/") ;
 		return this ;
 	}
 
-	public RepositoryConfigBuilder configLoc(String configLoc){
-		this.crakenConfig = StringUtil.defaultIfEmpty(configLoc, "./resource/config/craken-local-config.xml") ;
-		return this ;
-	}
-
-	
 	public RepositoryConfigBuilder indexHomeDir(String indexHomeDir){
 		this.indexHomeDir = StringUtil.defaultIfEmpty(indexHomeDir, "./resource/index/") ;
 		return this ;
 	}
 
-	
-	public RepositoryConfigBuilder jdbcNode(Node jdbcNode) {
-		this.jdbcNode = jdbcNode ;
-		return this;
-	}
-
-
-	
 	public RepositoryConfigBuilder wsName(String wsName){
 		this.wsName = StringUtil.defaultIfEmpty(wsName, "admin") ;
 		return this ;
@@ -82,7 +92,7 @@ public class RepositoryConfigBuilder {
 
 
 	public RepositoryConfig build() {
-		return new RepositoryConfig(crakenConfig, adminHomeDir, indexHomeDir, wsName, store, jdbcNode);
+		return new RepositoryConfig(crakenConfig, adminHomeDir, indexHomeDir, wsName);
 	}
 	
 	

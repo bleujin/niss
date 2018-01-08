@@ -14,12 +14,12 @@ import java.text.DecimalFormatSymbols;
 import java.util.Date;
 import java.util.Locale;
 
+import org.apache.log4j.Logger;
+import org.apache.lucene.LucenePackage;
+
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.IOUtil;
 import net.ion.nsearcher.config.Central;
-
-import org.apache.log4j.Logger;
-import org.apache.lucene.LucenePackage;
 
 public class SystemInfo {
 

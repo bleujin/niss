@@ -5,7 +5,7 @@ new function(){
 	importPackage(net.ion.framework.util) ; 
 
 	this.toStringFn = function(){
-		return new com.google.common.base.Function({
+		return new java.util.Function({
 			apply : function(cresponse) {
 				var iter = cresponse.iterator() ;
 				var list = ListUtil.newList() ;
@@ -23,7 +23,7 @@ new function(){
 	}
 
 	this.handle = function(writer, session, params){
-		var commSeperatedTerm = session.ghostBy("/searchlogs/" + params.getFirst('sid')).childQuery(params.getFirst('query') + '*').offset(10).find().transformer(this.toStringFn());
+		var commSeperatedTerm = session.pathBy("/searchlogs/" + params.getFirst('sid')).childQuery(params.getFirst('query') + '*').limit(10).find().transformer(this.toStringFn());
 		return commSeperatedTerm ;
 	}
 

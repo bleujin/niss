@@ -10,9 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.radon.core.ContextParam;
@@ -32,12 +30,8 @@ public class MenuWeb implements Webapp{
 	@POST
 	@Path("/{menu : .*}")
 	public String updateInfo(@PathParam("menu") final String menu, @DefaultValue("overview") @FormParam("field") final String field, @DefaultValue("") @FormParam("content") final String content){
-		rsession.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy("/menus/" + menu).property(field, content) ;
-				return null;
-			}
+		rsession.tran( wsession -> {
+			wsession.pathBy("/menus/" + menu).property(field, content).merge();
 		}) ;
 		
 		return "update info" ;
@@ -47,6 +41,6 @@ public class MenuWeb implements Webapp{
 	@GET
 	@Path("/{menu}")
 	public String viewInfo(@PathParam("menu") final String menu, @DefaultValue("overview") @QueryParam("field") final String field){
-		return rsession.ghostBy("/menus/" + menu).property(field).asString() ;
+		return rsession.pathBy("/menus/" + menu).property(field).asString() ;
 	}
 }

@@ -1,12 +1,10 @@
 package net.ion.niss.webapp.searchers;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteSession;
-import net.ion.framework.util.StringUtil;
-
 import org.apache.velocity.runtime.resource.util.StringResource;
 import org.apache.velocity.runtime.resource.util.StringResourceRepository;
+
+import net.bleujin.rcraken.ReadSession;
+import net.ion.framework.util.StringUtil;
 
 public class CrakenResourceRepository implements StringResourceRepository {
 
@@ -18,17 +16,13 @@ public class CrakenResourceRepository implements StringResourceRepository {
 
 	public StringResource getStringResource(String path) {
 		final String[] vals = StringUtil.split(path, ".") ;
-		return new StringResource(session.ghostBy(vals[0]).property(vals[1]).asString(), encoding) ;
+		return new StringResource(session.pathBy(vals[0]).property(vals[1]).asString(), encoding) ;
 	}
 
 	public void removeStringResource(String path) {
 		final String[] vals = StringUtil.split(path, ".") ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(vals[0]).unset(vals[1]) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy(vals[0]).unsetWith(vals[1]).merge();
 		}) ;
 	}
 
@@ -42,12 +36,8 @@ public class CrakenResourceRepository implements StringResourceRepository {
 
 	public void putStringResource(String path, final String body) {
 		final String[] vals = StringUtil.split(path, ".") ;
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				wsession.pathBy(vals[0]).property(vals[1], body) ;
-				return null;
-			}
+		session.tran(wsession -> {
+			wsession.pathBy(vals[0]).property(vals[1], body).merge();
 		}) ;
 	}
 

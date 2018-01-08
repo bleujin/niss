@@ -5,10 +5,9 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
-import net.ion.niss.config.SiteSearchConfig;
-
-import org.apache.ecs.xhtml.del;
 import org.w3c.dom.Node;
+
+import net.ion.niss.config.SiteSearchConfig;
 
 public class SiteSearchConfigBuilder {
 
@@ -26,10 +25,10 @@ public class SiteSearchConfigBuilder {
 		this.parent = parent ;
 	}
 	
-	public SiteSearchConfigBuilder node(Node rconfig, Node ssconfig) throws XPathExpressionException {
+	public SiteSearchConfigBuilder node(Node ssconfig) throws XPathExpressionException {
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		
-		Node jdbcNode 	= (Node) xpath.evaluate("jdbcurl", rconfig, XPathConstants.NODE);
+		Node jdbcNode 	= (Node) xpath.evaluate("jdbcurl", ssconfig, XPathConstants.NODE);
 		Node screenNode = (Node) xpath.evaluate("screen-home", ssconfig, XPathConstants.NODE);
 		
 		return 	jdbcUrl(jdbcNode.getTextContent(), jdbcNode.getAttributes().getNamedItem("id").getTextContent(), jdbcNode.getAttributes().getNamedItem("pwd").getTextContent())

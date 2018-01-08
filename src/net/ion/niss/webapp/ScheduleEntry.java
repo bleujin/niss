@@ -3,16 +3,18 @@ package net.ion.niss.webapp;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Function;
 
 import javax.ws.rs.core.MultivaluedMap;
 
-import net.ion.craken.node.ReadNode;
-import net.ion.craken.node.ReadSession;
+import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
+
+import net.bleujin.rcraken.ReadNode;
+import net.bleujin.rcraken.ReadSession;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.schedule.AtTime;
 import net.ion.framework.schedule.Job;
@@ -22,10 +24,6 @@ import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
-
-import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
-
-import com.google.common.base.Function;
 
 public class ScheduleEntry {
 
@@ -45,11 +43,10 @@ public class ScheduleEntry {
 	public void addRegisterdSchedule(final JScriptEngine jengine, final REntry rentry) throws IOException {
 
 		ReadSession rsession = rentry.login() ;
-		rsession.ghostBy("/scripts").children().transform(new Function<Iterator<ReadNode>, Void>(){
+		rsession.pathBy("/scripts").children().stream().transform(new Function<Iterable<ReadNode>, Void>(){
 			@Override
-			public Void apply(Iterator<ReadNode> iter) {
-				while(iter.hasNext()){
-					ReadNode snode = iter.next() ;
+			public Void apply(Iterable<ReadNode> iter) {
+				for(ReadNode snode : iter){
 					final String scriptId = snode.fqn().name() ;
 					final String scriptContent = snode.property(Def.Script.Content).asString() ;
 					if (snode.hasChild("schedule")){
@@ -60,13 +57,7 @@ public class ScheduleEntry {
 						
 						AtTime attime = makeAtTime(sinfo) ;
 						Callable<Void> callable = makeCallable(jengine, rentry, scriptId);
-						
-						
 
-						
-
-						
-						
 					}
 				}
 				return null;
@@ -77,7 +68,7 @@ public class ScheduleEntry {
 					@Override
 					public Void call() throws Exception {
 						ReadSession rsession = rentry.login() ;
-						String scriptContent = rsession.ghostBy("/scripts/" + scriptId).property(Def.Script.Content).asString() ;
+						String scriptContent = rsession.pathBy("/scripts/" + scriptId).property(Def.Script.Content).asString() ;
 						
 						
 						StringWriter writer = new StringWriter() ;

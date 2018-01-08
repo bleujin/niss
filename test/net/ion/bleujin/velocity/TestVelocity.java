@@ -4,18 +4,18 @@ import java.io.File;
 import java.io.StringWriter;
 import java.util.Vector;
 
-import junit.framework.TestCase;
-import net.ion.craken.node.ReadSession;
-import net.ion.framework.util.Debug;
-import net.ion.niss.webapp.REntry;
-import net.ion.niss.webapp.searchers.CrakenResourceRepository;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.log.SystemLogChute;
 import org.apache.velocity.runtime.resource.loader.StringResourceLoader;
+
+import junit.framework.TestCase;
+import net.bleujin.rcraken.ReadSession;
+import net.ion.framework.util.Debug;
+import net.ion.niss.webapp.REntry;
+import net.ion.niss.webapp.searchers.CrakenResourceRepository;
 public class TestVelocity extends TestCase {
 
 	

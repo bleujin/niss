@@ -3,10 +3,8 @@ package net.ion.niss.webapp.searchers;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import net.ion.craken.node.ReadSession;
-import net.ion.craken.node.TransactionJob;
-import net.ion.craken.node.WriteNode;
-import net.ion.craken.node.WriteSession;
+import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.WriteNode;
 import net.ion.framework.mte.Engine;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -40,20 +38,18 @@ public class TestSearcherOverview extends TestBaseSearcher {
 	public void testGetPopularQuery() throws Exception {
 		final ReadSession session = rentry.login() ;
 		
-		session.tran(new TransactionJob<Void>() {
-			@Override
-			public Void handle(WriteSession wsession) throws Exception {
-				String[] querys = new String[]{"bleujin", "jin", "hero"} ;
-				
-				for (int i = 0; i < querys.length; i++) {
-					WriteNode wnode = wsession.pathBy("/searchlogs/sec1/" + querys[i]).property("query", querys[i]) ;
-					for (int m = 1; m <= 31; m++) {
-						if (m % (i+1) == 0) wnode.property("d" + m, i) ;
-					}
+		session.tran(wsession -> {
+			String[] querys = new String[]{"bleujin", "jin", "hero"} ;
+			
+			for (int i = 0; i < querys.length; i++) {
+				WriteNode wnode = wsession.pathBy("/searchlogs/sec1/" + querys[i]).property("query", querys[i]) ;
+				for (int m = 1; m <= 31; m++) {
+					if (m % (i+1) == 0) wnode.property("d" + m, i) ;
 				}
-				
-				return null;
+				wnode.merge();
 			}
+			
+			return null;
 		}) ;
 		
 		session.pathBy("/searchlogs/sec1").children().debugPrint();
