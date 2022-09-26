@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.Future;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.icrawler.Page;
@@ -20,11 +22,9 @@ import net.ion.icrawler.selector.PlainLink;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
-import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.crawl.CrawlIndexBuilder;
 import net.ion.nsearcher.index.crawl.CrawlIndexHandler;
 import net.ion.nsearcher.index.crawl.CrawlIndexer;
-import net.ion.nsearcher.search.Searcher;
 
 public class TestSampleScript3 extends TestBaseIndexWeb {
 

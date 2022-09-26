@@ -268,7 +268,7 @@ public class SiteWeb implements Webapp {
 	
 	@POST
 	@Path("/{sid}/crawllist")
-	public String removeCrawl(@PathParam("sid") final String sid, @DefaultValue("") @FormParam("crawlid") final String crawlid, @FormParam("removeindex") boolean removeindex){
+	public String removeCrawl(@PathParam("sid") final String sid, @DefaultValue("") @FormParam("crawlid") final String crawlid, @FormParam("removeindex") boolean removeindex) throws IOException{
 		
 		Boolean indexed = rsession.pathBy(fqnBy(sid, crawlid)).property("indexed").asBoolean() ;
 		String iid = rsession.pathBy(fqnBy(sid, crawlid)).property("iid").asString() ;

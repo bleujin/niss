@@ -1,19 +1,16 @@
 package net.ion.niss.webapp.indexers;
 
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.search.Searcher;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 
 public class TestIndexQuery extends TestBaseIndexWeb {
 	
 	public void testSort() throws Exception {
-		Central central = entry.indexManager().index("col1") ;
+		SearchController central = entry.indexManager().index("col1") ;
 		
-		Indexer indexer = central.newIndexer() ;
-		
-		indexer.index(new IndexJob<Void>() {
+		central.index(new IndexJob<Void>() {
 
 			@Override
 			public Void handle(IndexSession isession) throws Exception {

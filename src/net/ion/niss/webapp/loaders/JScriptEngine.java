@@ -43,7 +43,7 @@ public class JScriptEngine {
 
 	private JScriptEngine(ClassLoader cloader){
 		this.manager = new ScriptEngineManager();
-		this.sengine = manager.getEngineByName("JavaScript");
+		this.sengine = manager.getEngineByName("JavaScript"); 
 		Bindings bindings = new SimpleBindings();
 		bindings.put("dirloader", cloader) ;
 		sengine.setBindings(bindings, ScriptContext.GLOBAL_SCOPE);

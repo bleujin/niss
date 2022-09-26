@@ -2,9 +2,9 @@ package net.ion.nsearcher.index.crawl;
 
 import java.io.IOException;
 
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.icrawler.ResultItems;
 import net.ion.icrawler.Task;
-import net.ion.nsearcher.index.IndexSession;
 
 public interface CrawlIndexHandler<T> {
 	

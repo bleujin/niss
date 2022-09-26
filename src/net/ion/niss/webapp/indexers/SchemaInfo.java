@@ -1,9 +1,9 @@
 package net.ion.niss.webapp.indexers;
 
 import net.bleujin.rcraken.ReadNode;
+import net.bleujin.searcher.common.MyField.MyFieldType;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.IndexSchema;
-import net.ion.nsearcher.common.MyField.MyFieldType;
 
 public class SchemaInfo {
 

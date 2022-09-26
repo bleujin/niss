@@ -2,9 +2,9 @@ package net.ion.niss.webapp.indexers;
 
 import java.util.Map;
 
+import net.bleujin.searcher.Searcher;
 import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.IdString;
-import net.ion.nsearcher.search.Searcher;
 
 public class SearchManager {
 

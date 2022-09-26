@@ -1,21 +1,21 @@
 package net.ion.niss.webapp.searchers;
 
 import junit.framework.TestCase;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.search.SearchResponse;
 import net.ion.framework.mte.Engine;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.MapUtil;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexJobs;
-import net.ion.nsearcher.search.SearchResponse;
+import net.ion.niss.webapp.indexers.IndexJobs;
 
 public class TestArgument extends TestCase {
 
 	public void testReadDoc() throws Exception {
-		Central c = CentralConfig.newRam().build();
+		SearchController c = SearchControllerConfig.newRam().build();
 
-		c.newIndexer().index(IndexJobs.create("/bleujin", 10));
+		c.index(IndexJobs.create("/bleujin", 10));
 		SearchResponse response = c.newSearcher().search("");
 
 		Engine engine = Engine.createDefaultEngine();

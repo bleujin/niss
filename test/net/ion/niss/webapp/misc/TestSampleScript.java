@@ -23,6 +23,12 @@ import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
 import net.bleujin.rcraken.convert.Functions;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.common.FieldIndexingStrategy;
+import net.bleujin.searcher.common.WriteDocument;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.db.bean.ResultSetHandler;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
@@ -34,13 +40,6 @@ import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.RDB;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.search.Searcher;
 
 public class TestSampleScript extends TestBaseIndexWeb {
 
@@ -49,7 +48,7 @@ public class TestSampleScript extends TestBaseIndexWeb {
 
 		final String iid = "col1" ;
 		final IndexManager imanager = rentry.indexManager();
-		final Indexer indexer = imanager.index(iid).newIndexer() ;
+		final SearchController central = imanager.index(iid);
 		final ReadSession rsession = rentry.login() ;
 
 		Callable<Void> callable = new Callable<Void>(){
@@ -57,7 +56,7 @@ public class TestSampleScript extends TestBaseIndexWeb {
 			public Void call() throws Exception {
 				RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs").handle(new ResultSetHandler<Void>() {
 					public Void handle(final ResultSet rs) throws SQLException {
-						indexer.index(new IndexJob<Void>() {
+						central.indexTran(new IndexJob<Void>() {
 							@Override
 							public Void handle(IndexSession isession) throws Exception {
 								
@@ -182,8 +181,8 @@ public class TestSampleScript extends TestBaseIndexWeb {
 
 	
 	public void testRemoveIndex() throws Exception {
-		Central central = entry.indexManager().index("col1") ;
-		central.newIndexer().index(new IndexJob<Void>() {
+		SearchController central = entry.indexManager().index("col1") ;
+		central.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				isession.deleteTerm(new Term("name", "bleujin")) ;

@@ -27,42 +27,40 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.SAXException;
 
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.MapUtil;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
 import rcc.h2tlib.parser.H2TParser;
 import rcc.h2tlib.parser.HWPMeta;
 import rcc.h2tlib.parser.HWPVER;
 
 public class FileIndexer {
 
-	private Central central;
+	private SearchController central;
 	private ExecutorService es;
 	private List<File> targets;
 
-	public FileIndexer(Central central, ExecutorService es, List<File> targets) {
+	public FileIndexer(SearchController central, ExecutorService es, List<File> targets) {
 		this.central = central;
 		this.es = es;
 		this.targets = targets;
 	}
 
 	public <T> Future<List<T>> index(final FileIndexHandler<T> fileIndexHandler) {
-		return index(central.indexConfig().indexAnalyzer(), fileIndexHandler);
+		return index(central.defaultIndexConfig().perFieldAnalyzer(), fileIndexHandler);
 	}
 
 	public <T> Future<List<T>> index(final Analyzer analyzer, final FileIndexHandler<T> fileIndexHandler) {
 		return es.submit(new Callable<List<T>>() {
 			@Override
 			public List<T> call() throws Exception {
-				Indexer indexer = central.newIndexer();
-				return indexer.index(analyzer, new IndexJob<List<T>>() {
+				return central.index(new IndexJob<List<T>>() {
 					@Override
 					public List<T> handle(IndexSession isession) throws Exception {
-
+						isession.indexConfig().indexAnalyzer(analyzer) ;
 						AutoDetectTika extractor = new AutoDetectTika();
 						List result = ListUtil.newList();
 						for (File file : targets) {

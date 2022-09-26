@@ -10,14 +10,14 @@ import org.apache.commons.io.filefilter.FileFileFilter;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.IOFileFilter;
 
+import net.bleujin.searcher.SearchController;
 import net.ion.framework.util.FileUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.WithinThreadExecutor;
-import net.ion.nsearcher.config.Central;
 
 public class FileIndexBuilder {
 
-	private Central central;
+	private SearchController central;
 	private File baseDir = new File("./");
 	private boolean recursive = false;
 	private ExecutorService executors = new WithinThreadExecutor();
@@ -25,12 +25,12 @@ public class FileIndexBuilder {
 	private String[] extNames = new String[] { "docx", "pptx", "rtf", "txt", "xls", "pdf", "hwp" };
 	private List<IOFileFilter> filters = ListUtil.newList();
 
-	public FileIndexBuilder(Central central) {
+	public FileIndexBuilder(SearchController central) {
 		this.central = central;
 		filters.add(FileFileFilter.FILE) ;
 	}
 
-	public static FileIndexBuilder create(Central central) {
+	public static FileIndexBuilder create(SearchController central) {
 		return new FileIndexBuilder(central);
 	}
 

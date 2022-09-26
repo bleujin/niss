@@ -1,16 +1,16 @@
 package net.ion.bleujin;
 
 import junit.framework.TestCase;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 
 public class TestRangeSearch extends TestCase{
-	private Central cen = null ; 
+	private SearchController cen = null ; 
 	public void setUp() throws Exception {
 		super.setUp() ;
-		cen = CentralConfig.newRam().build() ;
+		cen = SearchControllerConfig.newRam().build() ;
 	}
 
 	@Override
@@ -19,7 +19,7 @@ public class TestRangeSearch extends TestCase{
 		super.tearDown();
 	}
 	public void tegstRange() throws Exception {
-		cen.newIndexer().index(new IndexJob<Void>() {
+		cen.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				for (int i = 0; i < 10; i++) {

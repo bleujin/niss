@@ -6,6 +6,7 @@ import java.util.function.Function;
 
 import org.apache.lucene.index.Term;
 import org.apache.lucene.search.Query;
+import org.apache.lucene.search.QueryVisitor;
 
 import junit.framework.TestCase;
 import net.bleujin.rcraken.Craken;
@@ -16,15 +17,16 @@ import net.bleujin.rcraken.ReadStream;
 import net.bleujin.rcraken.WriteNode;
 import net.bleujin.rcraken.extend.ChildQueryRequest;
 import net.bleujin.rcraken.extend.ChildQueryResponse;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.SearchRequestWrapper;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.search.SearchRequest;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.RandomUtil;
 import net.ion.framework.util.StringUtil;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexJobs;
-import net.ion.nsearcher.search.SearchRequest;
-import net.ion.nsearcher.search.Searcher;
+import net.ion.niss.webapp.indexers.IndexJobs;
 
 public class TestRecommand extends TestCase{
 	
@@ -85,18 +87,19 @@ public class TestRecommand extends TestCase{
 	}
 	
 	
-	public void testQuerrRewrite() throws Exception {
-		Central central = CentralConfig.newRam().build() ;
-		central.newIndexer().index(IndexJobs.create("bleujin", 10));
+	public void testQueryRewrite() throws Exception {
+		SearchController central = SearchControllerConfig.newRam().build() ;
+		central.index(IndexJobs.create("bleujin", 10));
 		
 		Searcher searcher = central.newSearcher() ;
-		SearchRequest request = searcher.createRequest("bleujin name:hero") ;
+		SearchRequestWrapper request = searcher.createRequest("bleujin name:hero") ;
 		
 		Query query = request.query();
 		Debug.line(query);
-		query.rewrite(central.newReader().getIndexReader()) ;
+		query.rewrite(central.search(session -> session).indexReader()) ;
 		HashSet<Term> terms = new HashSet<Term>() ;
-		query.extractTerms(terms);
+		query.visit(QueryVisitor.termCollector(terms));
+		// query.extractTerms(terms);
 		
 		Debug.line(terms, terms.toArray(new Term[0])[0].text());
 		

@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.niss.webapp.loaders.RDB;
-import net.ion.nsearcher.index.IndexSession;
 
 public interface RDBIndexHandler<T> {
 

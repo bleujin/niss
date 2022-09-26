@@ -2,23 +2,23 @@ package net.ion.nsearcher.index.crawl;
 
 import java.util.concurrent.ExecutorService;
 
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.common.FieldIndexingStrategy;
 import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.icrawler.Spider;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.config.Central;
 
 
 public class CrawlIndexBuilder {
 
-	private Central central;
+	private SearchController central;
 	private Spider spider;
 	private ExecutorService executors = new WithinThreadExecutor();
 
-	public CrawlIndexBuilder(Central central) {
+	public CrawlIndexBuilder(SearchController central) {
 		this.central = central;
 	}
 
-	public static CrawlIndexBuilder create(Central central) {
+	public static CrawlIndexBuilder create(SearchController central) {
 		return new CrawlIndexBuilder(central);
 	}
 

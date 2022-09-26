@@ -3,19 +3,18 @@ package net.ion.niss.webapp.indexers;
 import java.util.List;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.common.ReadDocument;
+import net.bleujin.searcher.common.WriteDocument;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
+import net.bleujin.searcher.search.SearchResponse;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.MapUtil;
 import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.Searcher;
 
 public class TestIndexerWeb extends TestBaseIndexWeb {
 
@@ -36,7 +35,7 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 	
 	public void testBoost() throws Exception {
 		REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
-		rentry.indexManager().index("col1").newIndexer().index(new IndexJob<Void>() {
+		rentry.indexManager().index("col1").index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession indexsession) throws Exception {
 				indexsession.deleteAll() ;
@@ -84,8 +83,7 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 	public void testApplySchema() throws Exception {
 		
 		final REntry rentry = ss.treeContext().getAttributeObject(REntry.EntryName, REntry.class) ;
-		Central im = rentry.indexManager().index("col1");
-		Indexer indexer = im.newIndexer() ;
+		SearchController im = rentry.indexManager().index("col1");
 
 		ReadSession session = rentry.login() ;
 		session.tran(wsession -> {
@@ -93,13 +91,12 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 		}) ;
 		
 		
-		indexer.index(new IndexJob<Void>() {
+		im.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				isession.fieldIndexingStrategy(rentry.indexManager().fieldIndexStrategy(rentry.login(), "col1")) ;
-				
-				WriteDocument wdoc = isession.newDocument("test.doc").unknown(MapUtil.<String>chainKeyMap().put("name", "bleujin").put("age", "20").put("explain", "hello world").toMap()) ;
-				Debug.line(wdoc.update().toLuceneDoc().getField("explain").boost()) ;
+				WriteDocument wdoc = isession.newDocument("test.doc").unknown("name", "bleujin").unknown("age", "20").unknown("explain", "hello world") ;
+				// Debug.line(wdoc.update().toLuceneDoc().getField("explain").boost()) ;
 				return null;
 			}
 		}) ;
@@ -108,7 +105,7 @@ public class TestIndexerWeb extends TestBaseIndexWeb {
 		
 		ReadDocument doc = searcher.search("hello").first() ;
 		assertEquals("hello world", doc.asString("explain"));
-		Debug.line(doc.getField("explain").boost()) ;
+		// Debug.line(doc.getField("explain").boost()) ;
 	}
 
 	

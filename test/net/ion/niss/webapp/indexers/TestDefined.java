@@ -1,15 +1,15 @@
 package net.ion.niss.webapp.indexers;
 
-import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
+import org.apache.lucene.analysis.ko.KoreanAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.niss.webapp.common.Def;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
 
 public class TestDefined extends TestBaseIndexWeb {
 
@@ -17,10 +17,10 @@ public class TestDefined extends TestBaseIndexWeb {
 	
 	public void testDefineIndexer() throws Exception {
 		StubHttpResponse response = ss.request("/indexers/col1/defined")
-					.postParam(Def.Indexer.IndexAnalyzer, MyKoreanAnalyzer.class.getCanonicalName())
+					.postParam(Def.Indexer.IndexAnalyzer, KoreanAnalyzer.class.getCanonicalName())
 					.postParam("stopword", "bleu jin hero")
 					.postParam("applystopword", "true")
-					.postParam(Def.Indexer.QueryAnalyzer,  MyKoreanAnalyzer.class.getCanonicalName())
+					.postParam(Def.Indexer.QueryAnalyzer,  KoreanAnalyzer.class.getCanonicalName())
 					.post() ;
 		assertEquals("defined indexer : col1", response.contentsString());
 
@@ -48,9 +48,9 @@ public class TestDefined extends TestBaseIndexWeb {
 				.postParam(Def.Indexer.QueryAnalyzer,  StandardAnalyzer.class.getCanonicalName())
 				.post() ;
 		
-		Central central = entry.indexManager().index("col1") ;
+		SearchController central = entry.indexManager().index("col1") ;
 		
-		central.newIndexer().index(new IndexJob<Void>() {
+		central.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				isession.newDocument("newdoc").text("explain", "company cafe house").update() ;

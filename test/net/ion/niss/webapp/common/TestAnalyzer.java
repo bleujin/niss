@@ -5,12 +5,12 @@ import java.util.List;
 
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.cjk.CJKAnalyzer;
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
-import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
+import org.apache.lucene.analysis.ko.KoreanAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.util.Version;
 
 import junit.framework.TestCase;
@@ -24,7 +24,7 @@ public class TestAnalyzer extends TestCase{
 		
 		List<Class<? extends Analyzer>> alist = ListUtil.newList() ;
 		alist.add(SimpleAnalyzer.class) ;
-		alist.add(MyKoreanAnalyzer.class) ;
+		alist.add(KoreanAnalyzer.class) ;
 		alist.add(CJKAnalyzer.class) ;
 		alist.add(StandardAnalyzer.class) ;
 		alist.add(WhitespaceAnalyzer.class) ;

@@ -17,11 +17,11 @@ import javax.ws.rs.Produces;
 import org.apache.commons.collections.set.ListOrderedSet;
 import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.OffsetAttribute;
-import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.util.Version;
 
 import net.ion.framework.parse.gson.JsonArray;
@@ -31,7 +31,6 @@ import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.common.ExtMediaType;
-import net.ion.nsearcher.common.SearchConstant;
 
 @Path("/analysis")
 public class AnalysisWeb implements Webapp {
@@ -77,7 +76,7 @@ public class AnalysisWeb implements Webapp {
 		for (String clzName : StringUtil.split(clzNames, ",")) {
 			Class<? extends Analyzer> aclz = (Class<? extends Analyzer>) Class.forName(clzName) ;
 			
-			CharArraySet set = new CharArraySet(SearchConstant.LuceneVersion, ListUtil.toList(stopword.split("\\s+")), true) ;
+			CharArraySet set = new CharArraySet(ListUtil.toList(stopword.split("\\s+")), true) ;
 			
 			Constructor<? extends Analyzer> findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class, CharArraySet.class}) ;
 			Analyzer analyzer = null ;
@@ -87,10 +86,10 @@ public class AnalysisWeb implements Webapp {
 					findCon = aclz.getConstructor() ;
 					analyzer = findCon.newInstance() ;
 				} else {
-					analyzer = aclz.getConstructor(Version.class).newInstance(SearchConstant.LuceneVersion) ;
+					analyzer = aclz.getConstructor(Version.class).newInstance() ;
 				}
 			} else {
-				analyzer = findCon.newInstance(SearchConstant.LuceneVersion, set) ;
+				analyzer = findCon.newInstance(set) ;
 			}
 			
 			TokenStream tokenStream = analyzer.tokenStream("text", content);

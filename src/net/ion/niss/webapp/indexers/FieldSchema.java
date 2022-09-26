@@ -1,7 +1,7 @@
 package net.ion.niss.webapp.indexers;
 
+import net.bleujin.searcher.common.MyField;
 import net.ion.framework.parse.gson.JsonPrimitive;
-import net.ion.nsearcher.common.MyField;
 
 public interface FieldSchema {
 

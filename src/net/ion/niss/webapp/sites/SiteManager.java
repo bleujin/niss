@@ -2,7 +2,6 @@ package net.ion.niss.webapp.sites;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
@@ -18,9 +17,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import net.bleujin.rcraken.Fqn;
 import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
-import net.ion.framework.db.IDBController;
-import net.ion.framework.db.Rows;
-import net.ion.framework.db.bean.ResultSetHandler;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.common.WriteDocument;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.logging.LogBroker;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -30,11 +30,6 @@ import net.ion.icrawler.Spider;
 import net.ion.niss.webapp.IdString;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SchemaInfos;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
 
 public class SiteManager {
 
@@ -45,11 +40,11 @@ public class SiteManager {
 		this.indexManager = indexManager ;
 	}
 
-	public Central index(IdString iid){
+	public SearchController index(IdString iid){
 		return indexManager.index(iid) ;
 	}	
 	
-	public Central index(String iid){
+	public SearchController index(String iid){
 		return index(IdString.create(iid)) ;
 	}
 
@@ -79,7 +74,7 @@ public class SiteManager {
 	public void indexCrawlSite(final ReadSession rsession, final String siteId, final SchemaInfos sinfos, final String iid, String crawlId) throws Exception {
 		
 		
-		final Indexer indexer = index(iid).newIndexer() ;
+		final SearchController indexer = index(iid);
 		final AtomicLong count = new AtomicLong() ;
 		indexer.index(isession -> {
 			rsession.pathBy(Fqn.fromElements("sites", siteId, crawlId)).children().stream()
@@ -160,8 +155,8 @@ public class SiteManager {
 		}) ;
 	}
 
-	public void indexRemove(final String iid, final String crawlid) {
-		index(iid).newIndexer().index(new IndexJob<Void>() {
+	public void indexRemove(final String iid, final String crawlid) throws IOException {
+		index(iid).index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				isession.deleteTerm(new Term("crawlid", crawlid)) ;

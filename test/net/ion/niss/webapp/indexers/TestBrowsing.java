@@ -4,10 +4,10 @@ import java.net.URLDecoder;
 import java.util.List;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.common.ReadDocument;
 import net.ion.framework.util.Debug;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.config.Central;
 
 public class TestBrowsing extends TestBaseIndexWeb {
 
@@ -25,7 +25,7 @@ public class TestBrowsing extends TestBaseIndexWeb {
 	}
 	
 	public void testSearchField() throws Exception {
-		Central ic = entry.indexManager().index("col1") ;
+		SearchController ic = entry.indexManager().index("col1") ;
 		List<ReadDocument> docs = ic.newSearcher().createRequest("").selections("id", "age", "address", "name").find().getDocument() ; //.debugPrint();
 		for (ReadDocument doc : docs) {
 			Debug.line(doc.asString("name"), doc.asString("id"), doc.asString("age"));

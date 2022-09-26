@@ -1,7 +1,7 @@
 package net.ion.niss.webapp.searchers;
 
+import net.bleujin.searcher.Searcher;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.search.CompositeSearcher;
 
 public class TestListenerAction extends TestBaseSearcher {
 
@@ -10,9 +10,9 @@ public class TestListenerAction extends TestBaseSearcher {
 		assertEquals(true, rentry.indexManager().hasIndex("document")) ;
 		
 		assertEquals(true, rentry.searchManager().hasSearch("sec1")) ;
-		CompositeSearcher searcher = (CompositeSearcher) rentry.searchManager().searcher("sec1") ;
+		Searcher searcher = rentry.searchManager().searcher("sec1") ;
 		
-		assertEquals(2, searcher.readerCount());
+//		assertEquals(2, searcher.readerCount());
 	}
 	
 	public void testSearchAll() throws Exception {
@@ -29,8 +29,8 @@ public class TestListenerAction extends TestBaseSearcher {
 //					, @FormParam("handler") final String handler, @DefaultValue("false") @FormParam("applyhandler") final boolean applyHandler) {
 		StubHttpResponse response = ss.request("/sections/sec1/define").postParam("target_collection", "document").post() ;
 		
-		CompositeSearcher searcher = (CompositeSearcher) rentry.searchManager().searcher("sec1") ;
-		assertEquals(1, searcher.readerCount());
+//		CompositeSearcher searcher = (CompositeSearcher) rentry.searchManager().searcher("sec1") ;
+//		assertEquals(1, searcher.readerCount());
 	}
 
 }

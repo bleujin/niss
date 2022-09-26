@@ -6,17 +6,17 @@ import java.sql.SQLException;
 import java.util.concurrent.Future;
 
 import junit.framework.TestCase;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.webapp.loaders.RDB;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexSession;
 
 public class TestIndexFromRDB extends TestCase {
 
 	
 	public void testFromRDB() throws Exception {
-		Central cen = CentralConfig.newRam().build() ;
+		SearchController cen = SearchControllerConfig.newRam().build() ;
 		
 		RDBIndexer rindexer = RDBIndexBuilder.create(cen)
 			.rdb(RDB.oracle("61.250.201.239:1521:qm10g", "bleujin", "redf").query("select * from tabs"))

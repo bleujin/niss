@@ -8,25 +8,24 @@ import java.util.concurrent.Future;
 
 import org.apache.lucene.analysis.Analyzer;
 
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.common.FieldIndexingStrategy;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.ListUtil;
 import net.ion.icrawler.ResultItems;
 import net.ion.icrawler.Spider;
 import net.ion.icrawler.Task;
 import net.ion.icrawler.pipeline.Pipeline;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
 
 public class CrawlIndexer {
 
-	private Central central ;
+	private SearchController central ;
 	private Spider spider;
 	private ExecutorService es ;
 	private FieldIndexingStrategy fieldIndexStrategy;
 
-	public CrawlIndexer(Central central, Spider spider, ExecutorService es, FieldIndexingStrategy fieldIndexStrategy) {
+	public CrawlIndexer(SearchController central, Spider spider, ExecutorService es, FieldIndexingStrategy fieldIndexStrategy) {
 		this.central = central ;
 		this.spider = spider ;
 		this.es = es ;
@@ -34,7 +33,7 @@ public class CrawlIndexer {
 	}
 	
 	public <T> Future<T> index(CrawlIndexHandler crawlIndexHandler) {
-		return index(central.indexConfig().indexAnalyzer(), crawlIndexHandler) ;
+		return index(central.defaultIndexConfig().perFieldAnalyzer(), crawlIndexHandler) ;
 	}
 
 	public <T> Future<List<T>> index(final Analyzer analyzer, final CrawlIndexHandler<T> crawlIndexHandler) {
@@ -42,11 +41,11 @@ public class CrawlIndexer {
 
 			@Override
 			public List<T> call() throws Exception {
-				final Indexer indexer = central.newIndexer() ;
-				
-				return indexer.index(analyzer, new IndexJob<List<T>>() {
+				return central.index(new IndexJob<List<T>>() {
 					@Override
 					public List<T> handle(final IndexSession isession) throws Exception {
+						isession.indexConfig().indexAnalyzer(analyzer) ;
+						
 						isession.fieldIndexingStrategy(fieldIndexStrategy) ;
 						final List<T> result = ListUtil.newList() ;
 						spider.addPipeline(new Pipeline(){

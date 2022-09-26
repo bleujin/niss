@@ -9,15 +9,15 @@ import org.apache.ecs.xml.XML;
 
 import com.google.common.base.Function;
 
+import net.bleujin.searcher.common.ReadDocument;
+import net.bleujin.searcher.search.SearchRequest;
+import net.bleujin.searcher.search.SearchResponse;
+import net.bleujin.searcher.search.SearchSession;
+import net.bleujin.searcher.search.TransformerSearchKey;
 import net.ion.framework.parse.gson.Gson;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.stream.JsonWriter;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.search.ISearchable;
-import net.ion.nsearcher.search.SearchRequest;
-import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.util.csv.CsvWriter;
 
 public class ResFns {
@@ -49,19 +49,19 @@ public class ResFns {
 	};
 
 
-	public final static Function<TransformerKey, JsonObject> ResponseToJson = new Function<TransformerKey, JsonObject>() {
+	public final static Function<TransformerSearchKey, JsonObject> ResponseToJson = new Function<TransformerSearchKey, JsonObject>() {
 		@Override
-		public JsonObject apply(TransformerKey tkey) {
+		public JsonObject apply(TransformerSearchKey tkey) {
 			List<Integer> docs = tkey.docs();
 			SearchRequest request = tkey.request();
-			ISearchable searcher = tkey.searcher();
+			SearchSession searcher = tkey.session();
 			try {
 				JsonObject body = JsonObject.create();
 				body.put("numFound", docs.size());
 				JsonArray jarray = new JsonArray();
 				body.put("docs", jarray);
 				for (int did : docs) {
-					ReadDocument rdoc = searcher.doc(did, request);
+					ReadDocument rdoc = searcher.readDocument(did, request);
 					jarray.add(rdoc.transformer(ReadDocToJson));
 				}
 
@@ -72,11 +72,11 @@ public class ResFns {
 		}
 	};
 
-	public final static Function<TransformerKey, Void> createjsonWriterFn(final SearchResponse response, final Map<String, Object> addParam, final Writer writer) {
+	public final static Function<TransformerSearchKey, Void> createjsonWriterFn(final SearchResponse response, final Map<String, Object> addParam, final Writer writer) {
 		final Gson gson = new Gson() ;
-		return new Function<TransformerKey, Void>() {
+		return new Function<TransformerSearchKey, Void>() {
 			@Override
-			public Void apply(TransformerKey tkey) {
+			public Void apply(TransformerSearchKey tkey) {
 				JsonObject body = response.transformer(ResFns.ResponseToJson);
 				JsonObject result = JsonObject.create();
 
@@ -99,20 +99,20 @@ public class ResFns {
 		};
 	}
 
-	public static Function<TransformerKey, Void> createCSVWriterFn(SearchResponse response, final Writer swriter) {
-		return new Function<TransformerKey, Void>() {
+	public static Function<TransformerSearchKey, Void> createCSVWriterFn(SearchResponse response, final Writer swriter) {
+		return new Function<TransformerSearchKey, Void>() {
 			@Override
-			public Void apply(TransformerKey tkey) {
+			public Void apply(TransformerSearchKey tkey) {
 				CsvWriter writer = new CsvWriter(swriter);
 				
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				ISearchable searcher = tkey.searcher();
+				SearchSession searcher = tkey.session();
 				try {
 					boolean first = true ;
 					String[] fieldNames = null ;
 					for (int docId : docs) {
-						ReadDocument rdoc = searcher.doc(docId, request);
+						ReadDocument rdoc = searcher.readDocument(docId, request);
 						if (first){
 							fieldNames = rdoc.fieldNames() ;
 							writer.writeLine(fieldNames);

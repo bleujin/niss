@@ -2,21 +2,21 @@ package net.ion.nsearcher.index.rdb;
 
 import java.util.concurrent.ExecutorService;
 
+import net.bleujin.searcher.SearchController;
 import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.webapp.loaders.RDB;
-import net.ion.nsearcher.config.Central;
 
 public class RDBIndexBuilder {
 
-	private Central central;
+	private SearchController central;
 	private ExecutorService es = new WithinThreadExecutor() ;
 	private RDB rdb;
 	
-	public RDBIndexBuilder(Central central) {
+	public RDBIndexBuilder(SearchController central) {
 		this.central = central ;
 	}
 
-	public static RDBIndexBuilder create(Central cen) {
+	public static RDBIndexBuilder create(SearchController cen) {
 		return new RDBIndexBuilder(cen);
 	}
 	

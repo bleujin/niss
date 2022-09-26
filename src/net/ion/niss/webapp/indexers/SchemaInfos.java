@@ -6,20 +6,22 @@ import java.util.Map.Entry;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.Field.Store;
-import org.apache.lucene.document.LongField;
+import org.apache.lucene.document.NumericDocValuesField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.IndexableField;
+import org.apache.poi.util.LongField;
 
 import net.bleujin.rcraken.ReadNode;
+import net.bleujin.searcher.common.IKeywordField;
+import net.bleujin.searcher.common.MyField;
+import net.bleujin.searcher.common.MyField.MyFieldType;
+import net.bleujin.searcher.common.WriteDocument;
 import net.ion.framework.parse.gson.JsonElement;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.parse.gson.JsonPrimitive;
 import net.ion.framework.util.MapUtil;
 import net.ion.framework.util.NumberUtil;
-import net.ion.nsearcher.common.IKeywordField;
-import net.ion.nsearcher.common.MyField;
-import net.ion.nsearcher.common.MyField.MyFieldType;
-import net.ion.nsearcher.common.WriteDocument;
 
 public class SchemaInfos {
 
@@ -49,7 +51,7 @@ public class SchemaInfos {
 		}
 	}
 
-	public void addField(Document doc, MyField myField, Field ifield) {
+	public void addField(Document doc, MyField myField, IndexableField ifield) {
 		String name = myField.name() ;
 		String value = myField.stringValue();
 		if (IKeywordField.Field.reservedId(name)) {
@@ -57,7 +59,7 @@ public class SchemaInfos {
 		} else if (myField.myFieldtype() == MyFieldType.Unknown && infos.containsKey(myField.name())){
 			SchemaInfo sinfo = infos.get(name) ;
 			if (sinfo.getType() == MyFieldType.Keyword) doc.add(new StringField(name, value, Store.YES)) ;
-			else if (sinfo.getType() == MyFieldType.Number) doc.add(new LongField(name, NumberUtil.toLong(value, 0L), Store.YES)) ;
+			else if (sinfo.getType() == MyFieldType.Number) doc.add(new NumericDocValuesField(name, NumberUtil.toLong(value, 0L))) ;
 			else if (sinfo.getType() == MyFieldType.Text) doc.add(new TextField(name, value, Store.NO)) ;
 			else if ("manual".equals(sinfo.schemaType())) {
 				Store store = sinfo.isStore() ? Store.YES : Store.NO;
@@ -102,7 +104,7 @@ public class SchemaInfos {
 				else MyField.unknown(name, pvalue.getAsString()) ;
 			} else {
 				if (pvalue.isNumber()){
-					wdoc.add(MyField.number(name, pvalue.getAsDouble())) ;
+					wdoc.add(MyField.number(name, pvalue.getAsLong())) ;
 				} else wdoc.add(MyField.unknown(name, pvalue.getAsString())) ;
 			}
 		} else if (jvalue.isJsonArray()) {
@@ -128,15 +130,15 @@ public class SchemaInfos {
 			} else if (sinfo.getType() == MyFieldType.Text){
 				result = MyField.text(ifield.name(), ifield.stringValue(), sinfo.isStore() ? Store.YES : Store.NO) ;
 			} else if (sinfo.getType() == MyFieldType.Number){
-				result = MyField.number(ifield.name(), NumberUtil.toLong(ifield.stringValue()), sinfo.isStore() ? Store.YES : Store.NO) ;
+				result = MyField.number(ifield.name(), NumberUtil.toLong(ifield.stringValue())) ;
 			} else if ("manual".equals(sinfo.schemaType())){
 				result = MyField.manual(ifield.name(), ifield.stringValue(), sinfo.isStore() ? Store.YES : Store.NO, sinfo.isAnalyze(), sinfo.getType()) ;
 			} else {
 				result = MyField.unknown(ifield.name(), ifield.stringValue()) ;
 			}
-			if (sinfo.isAnalyze()) {
-				result.boost(Double.valueOf(sinfo.boost()).floatValue()) ;
-			}
+//			if (sinfo.isAnalyze()) {
+//				result.boost(Double.valueOf(sinfo.boost()).floatValue()) ;
+//			}
 			return result ;
 //			if (sinfo.isManualType()) {
 //				return MyField.manual(ifield.name(), ifield.stringValue(), sinfo.isStore() ? Store.YES : Store.NO, sinfo.isAnalyze(), sinfo.getType()).boost(sinfo.boost()) ;

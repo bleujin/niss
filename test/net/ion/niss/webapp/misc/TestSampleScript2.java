@@ -11,16 +11,15 @@ import java.util.concurrent.Future;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.common.FieldIndexingStrategy;
+import net.bleujin.searcher.common.WriteDocument;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.RDB;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.SearchConstant;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.index.IndexSession;
 import net.ion.nsearcher.index.file.FileEntry;
 import net.ion.nsearcher.index.file.FileIndexBuilder;
 import net.ion.nsearcher.index.file.FileIndexHandler;
@@ -61,7 +60,7 @@ public class TestSampleScript2 extends TestBaseIndexWeb {
 					.executors(new WithinThreadExecutor())
 					.build();
 
-		Future<List<Boolean>> future = findexer.index(new StandardAnalyzer(SearchConstant.LuceneVersion), new FileIndexHandler<Boolean>() {
+		Future<List<Boolean>> future = findexer.index(new StandardAnalyzer(), new FileIndexHandler<Boolean>() {
 			@Override
 			public Boolean onSuccess(IndexSession isession, FileEntry fentry) throws IOException {
 				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;

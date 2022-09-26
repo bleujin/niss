@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
@@ -22,11 +21,9 @@ import org.apache.commons.lang.reflect.ConstructorUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.analysis.util.CharArraySet;
 import org.apache.lucene.index.CorruptIndexException;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.util.Version;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
 
 import net.bleujin.rcraken.Craken;
@@ -41,17 +38,20 @@ import net.bleujin.rcraken.WriteStream;
 import net.bleujin.rcraken.extend.CDDHandler;
 import net.bleujin.rcraken.extend.CDDModifiedEvent;
 import net.bleujin.rcraken.extend.CDDRemovedEvent;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.Searcher;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.schedule.AtTime;
 import net.ion.framework.schedule.Job;
 import net.ion.framework.schedule.ScheduledRunnable;
 import net.ion.framework.schedule.Scheduler;
+import net.ion.framework.util.ArrayUtil;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
 import net.ion.framework.util.ObjectUtil;
 import net.ion.framework.util.StringUtil;
-import net.ion.framework.util.WithinThreadExecutor;
 import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
@@ -63,14 +63,6 @@ import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
 import net.ion.niss.webapp.misc.ScriptWeb;
 import net.ion.niss.webapp.sites.SiteManager;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.SearchConstant;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.config.IndexConfig;
-import net.ion.nsearcher.config.SearchConfig;
-import net.ion.nsearcher.search.CompositeSearcher;
-import net.ion.nsearcher.search.Searcher;
 
 public class REntry implements Closeable {
 
@@ -115,18 +107,18 @@ public class REntry implements Closeable {
 		for(ReadNode indexNode :session.pathBy("/indexers").children().stream()) {
 				IdString cid = IdString.create(indexNode.fqn().name());
 
-				Central central = createIndexerCentral(cid);
+				SearchController central = createIndexerCentral(cid);
 
 				Analyzer indexAnal = makeAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.IndexAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
 				Analyzer queryAnal = makeQueryAnalyzer(new RNodePropertyReadable(indexNode), indexNode.property(Def.Indexer.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()));
 
-				central.indexConfig().indexAnalyzer(indexAnal);
-				central.searchConfig().queryAnalyzer(queryAnal);
+				central.defaultIndexConfig().analyzer(indexAnal);
+				central.defaultSearchConfig().queryAnalyzer(queryAnal);
 
 				ReadChildren schemas = session.pathBy(indexNode.fqn().toString() + "/schema").children();
 				for (ReadNode schemaNode : schemas) {
 					if (StringUtil.equals(Def.SchemaType.MANUAL, schemaNode.property(Def.IndexSchema.SchemaType).asString())) {
-						central.indexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
+						central.defaultIndexConfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
 					}
 				}
 
@@ -190,8 +182,8 @@ public class REntry implements Closeable {
 				if (!indexManager.hasIndex(iid))
 					return null;
 
-				Central saved = indexManager.index(iid);
-				saved.indexConfig().removeFieldAnalyzer(schemaid);
+				SearchController saved = indexManager.index(iid);
+				saved.defaultIndexConfig().removeFieldAnalyzer(schemaid);
 
 				return null;
 			}
@@ -206,9 +198,9 @@ public class REntry implements Closeable {
 
 				if (Def.SchemaType.MANUAL.equals(event.newProperty(Def.IndexSchema.SchemaType).asString()) && StringUtil.isNotBlank(event.newProperty(Def.IndexSchema.Analyzer).asString())) {
 					try {
-						Central saved = indexManager.index(iid);
+						SearchController saved = indexManager.index(iid);
 						Analyzer analClz = makeAnalyzer(event.newProperty(Def.IndexSchema.Analyzer).asString());
-						saved.indexConfig().fieldAnalyzer(schemaid, analClz);
+						saved.defaultIndexConfig().fieldAnalyzer(schemaid, analClz);
 
 					} catch (Exception e) {
 						throw new IllegalStateException(e);
@@ -236,7 +228,7 @@ public class REntry implements Closeable {
 					return null;
 
 				Searcher saved = searchManager.searcher(sid);
-				saved.config().removeFieldAnalyzer(schemaid);
+				saved.sconfig().removeFieldAnalyzer(schemaid);
 				return null;
 			}
 
@@ -249,7 +241,7 @@ public class REntry implements Closeable {
 				try {
 					Searcher saved = searchManager.searcher(sid);
 					Analyzer analClz = makeAnalyzer(event.newProperty(Def.IndexSchema.Analyzer).asString());
-					saved.config().fieldAnalyzer(schemaid, analClz);
+					saved.sconfig().fieldAnalyzer(schemaid, analClz);
 
 				} catch (Exception e) {
 					throw new IllegalStateException(e);
@@ -274,19 +266,19 @@ public class REntry implements Closeable {
 				IdString iid = IdString.create(rmap.get("iid"));
 				try {
 					if (!indexManager.hasIndex(iid)) { // created
-						Central central = createIndexerCentral(iid);
+						SearchController central = createIndexerCentral(iid);
 
 						indexManager.newIndex(iid, central);
 						log.info(iid + " indexer defined");
 					} else if (indexManager.hasIndex(iid)) {
 
-						Central saved = indexManager.index(iid);
+						SearchController saved = indexManager.index(iid);
 
-						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.IndexAnalyzer).asString(), saved.indexConfig().indexAnalyzer().getClass().getCanonicalName());
-						saved.indexConfig().indexAnalyzer(makeAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
+						String indexAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.IndexAnalyzer).asString(), saved.defaultIndexConfig().analyzer().getClass().getCanonicalName());
+						saved.defaultIndexConfig().analyzer(makeAnalyzer(new EventPropertyReadable(cevent), indexAnalClzName));
 
-						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.QueryAnalyzer).asString(), saved.searchConfig().queryAnalyzer().getClass().getCanonicalName());
-						saved.searchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
+						String queryAnalClzName = StringUtil.defaultIfEmpty(cevent.newProperty(Def.Indexer.QueryAnalyzer).asString(), saved.defaultSearchConfig().queryAnalyzer().getClass().getCanonicalName());
+						saved.defaultSearchConfig().queryAnalyzer(makeQueryAnalyzer(new EventPropertyReadable(cevent), queryAnalClzName));
 
 						log.info(iid + " indexer defined");
 					} else {
@@ -451,13 +443,13 @@ public class REntry implements Closeable {
 	// create analyzer
 	private Analyzer makeAnalyzer(PropertyReadable rnode, String modValue) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 			if (StringUtil.isBlank(modValue))
-				return new StandardAnalyzer(SearchConstant.LuceneVersion);
+				return new StandardAnalyzer();
 
 			Class<Analyzer> indexAnalClz = (Class<Analyzer>) Class.forName(modValue);
 
 			Analyzer resultAnalyzer = null;
 			Constructor con = null;
-			if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class, CharArraySet.class })) != null) {
+			if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { CharArraySet.class })) != null) {
 
 				boolean useStopword = rnode.property(Def.Indexer.ApplyStopword).asBoolean();
 				Collection<String> stopWord = ListUtil.EMPTY;
@@ -466,9 +458,7 @@ public class REntry implements Closeable {
 					stopWord = ListUtil.toList(StringUtil.split(stopwords, " ,\n"));
 				}
 
-				resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false));
-			} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class })) != null) {
-				resultAnalyzer = (Analyzer) con.newInstance(SearchConstant.LuceneVersion);
+				resultAnalyzer = (Analyzer) con.newInstance(new CharArraySet(stopWord, false));
 			} else {
 				con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]);
 				resultAnalyzer = (Analyzer) con.newInstance();
@@ -483,11 +473,9 @@ public class REntry implements Closeable {
 
 		Analyzer indexAnal = null;
 		Constructor con = null;
-		if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class, CharArraySet.class })) != null) {
+		if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { CharArraySet.class })) != null) {
 			Collection<String> stopWord = ListUtil.EMPTY;
-			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, stopWord, false));
-		} else if ((con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[] { Version.class })) != null) {
-			indexAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion);
+			indexAnal = (Analyzer) con.newInstance(new CharArraySet(stopWord, false));
 		} else {
 			con = ConstructorUtils.getAccessibleConstructor(indexAnalClz, new Class[0]);
 			indexAnal = (Analyzer) con.newInstance();
@@ -501,10 +489,8 @@ public class REntry implements Closeable {
 
 		Analyzer queryAnal = null;
 		Constructor con = null;
-		if ((con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[] { Version.class, CharArraySet.class })) != null) {
-			queryAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion, new CharArraySet(SearchConstant.LuceneVersion, ListUtil.EMPTY, false));
-		} else if ((con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[] { Version.class })) != null) {
-			queryAnal = (Analyzer) con.newInstance(SearchConstant.LuceneVersion);
+		if ((con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[] { CharArraySet.class })) != null) {
+			queryAnal = (Analyzer) con.newInstance(new CharArraySet(ListUtil.EMPTY, false));
 		} else {
 			con = ConstructorUtils.getAccessibleConstructor(queryAnalClz, new Class[0]);
 			queryAnal = (Analyzer) con.newInstance();
@@ -513,31 +499,35 @@ public class REntry implements Closeable {
 	}
 
 	private IdString registerSearcher(ReadSession session, PropertyReadable rnode, JScriptEngine jsengine) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException {
-		Set<String> cols = rnode.property(Def.Searcher.Target).asSet().stream().map(s -> s.toString()).collect(Collectors.toSet());
+		String[] cols = rnode.property(Def.Searcher.Target).asSet().stream().map(s -> s.toString()).collect(Collectors.toSet()).toArray(new String[0]);
 		IdString sid = IdString.create(rnode.fqn().name());
 
 		Searcher searcher = null;
-		if (cols.size() == 0) {
-			searcher = CompositeSearcher.createBlank();
+		if (cols.length == 0) {
+			return sid ; // blank..
+		} else if(cols.length == 1) {
+			SearchController sdc = indexManager.index(cols[0]) ;
+			searcher = sdc.newSearcher() ;
 		} else {
-			List<Central> target = ListUtil.newList();
+			SearchController sdc = indexManager.index(cols[0]) ;
+			String[] appendCols = ArrayUtil.newSubArray(cols, 1, cols.length) ;
+			List<SearchController> target = ListUtil.newList();
 			for (String colId : cols) {
 				if (indexManager.hasIndex(colId)) {
 					target.add(indexManager.index(colId));
 				}
 			}
-
-			Analyzer queryAnalyzer = makeAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString());
-			SearchConfig sconfig = SearchConfig.create(new WithinThreadExecutor(), SearchConstant.LuceneVersion, queryAnalyzer, SearchConstant.ISALL_FIELD);
-			IndexConfig iconfig = IndexConfig.create(SearchConstant.LuceneVersion, new WithinThreadExecutor(), queryAnalyzer, new IndexWriterConfig(SearchConstant.LuceneVersion, queryAnalyzer), FieldIndexingStrategy.DEFAULT);
-
-			ReadChildren schemas = session.pathBy(rnode.fqn().toString() + "/schema").children();
-			for (ReadNode schemaNode : schemas.stream()) {
-				sconfig.fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
-			}
-
-			searcher = CompositeSearcher.create(sconfig, iconfig, target);
+			searcher = sdc.newSearcher(target.toArray(new SearchController[0])) ;
 		}
+		
+		Analyzer queryAnalyzer = makeAnalyzer(rnode, rnode.property(Def.Searcher.QueryAnalyzer).asString());
+		searcher.sconfig().queryAnalyzer(queryAnalyzer) ;
+
+		ReadChildren schemas = session.pathBy(rnode.fqn().toString() + "/schema").children();
+		for (ReadNode schemaNode : schemas.stream()) {
+			searcher.sconfig().fieldAnalyzer(schemaNode.fqn().name(), makeAnalyzer(schemaNode.property(Def.IndexSchema.Analyzer).asString()));
+		}
+
 
 		String scontent = rnode.property(Def.Searcher.Handler).asString();
 		if (rnode.property(Def.Searcher.ApplyHandler).asBoolean() && StringUtil.isNotBlank(scontent)) {
@@ -568,7 +558,7 @@ public class REntry implements Closeable {
 		return sid;
 	}
 
-	private Central createIndexerCentral(IdString iid) {
+	private SearchController createIndexerCentral(IdString iid) {
 
 //		String name = iid.idString();
 //		DefaultCacheManager dm = r.dm();
@@ -593,7 +583,7 @@ public class REntry implements Closeable {
 //
 //		return central;
 		try {
-			return CentralConfig.newLocalFile().dirFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
+			return SearchControllerConfig.newLocalFile(new File(nsconfig.repoConfig().indexHomeDir(), iid.idString()).getCanonicalPath()).build();
 		} catch (IOException e) {
 			throw new IllegalStateException(e) ;
 		}

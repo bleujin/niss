@@ -8,14 +8,14 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import junit.framework.TestCase;
 import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.common.ReadDocument;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.Debug;
 import net.ion.niss.webapp.REntry;
 import net.ion.nradon.stub.StubHttpResponse;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.search.Searcher;
 import net.ion.radon.client.StubServer;
 
 public class TestSchema extends TestCase {
@@ -89,7 +89,7 @@ public class TestSchema extends TestCase {
 		ReadDocument rdoc = searcher.search("name:'deview3'").first() ;
 
 		Debug.line(rdoc.getField("name").fieldType()) ;
-		Debug.line(rdoc.getField("name").fieldType().stored(), rdoc.getField("name").fieldType().indexed(), rdoc.getField("name").fieldType().tokenized()) ;
+		Debug.line(rdoc.getField("name").fieldType().stored(), rdoc.getField("name").fieldType().indexOptions(), rdoc.getField("name").fieldType().tokenized()) ;
 	}
 	
 	
@@ -99,17 +99,17 @@ public class TestSchema extends TestCase {
 		ReadSession rsession = entry.login() ;
 		
 		assertEquals(true, rsession.exist("/indexers/col1/schema/explain")) ;
-		Central cen = entry.indexManager().index("col1") ;
+		SearchController cen = entry.indexManager().index("col1") ;
 		
-		assertEquals(PerFieldAnalyzerWrapper.class.getCanonicalName(),  cen.indexConfig().indexAnalyzer().getClass().getCanonicalName());
+		assertEquals(PerFieldAnalyzerWrapper.class.getCanonicalName(),  cen.defaultIndexConfig().analyzer().getClass().getCanonicalName());
 		
 
 		entry.reload(); 
-		Debug.line(entry.indexManager().index("col1").indexConfig().indexAnalyzer()) ;
+		Debug.line(entry.indexManager().index("col1").defaultIndexConfig().analyzer()) ;
 
 		iw.removeSchema("col1", "explain") ;
 		cen = entry.indexManager().index("col1") ;
-		assertEquals(StandardAnalyzer.class.getCanonicalName(), cen.indexConfig().indexAnalyzer().getClass().getCanonicalName());
+		assertEquals(StandardAnalyzer.class.getCanonicalName(), cen.defaultIndexConfig().analyzer().getClass().getCanonicalName());
 	}
 	
 	

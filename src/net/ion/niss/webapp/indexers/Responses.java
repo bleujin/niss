@@ -16,24 +16,24 @@ import org.w3c.dom.Element;
 
 import com.google.common.base.Function;
 
+import net.bleujin.searcher.common.ReadDocument;
+import net.bleujin.searcher.search.SearchRequest;
+import net.bleujin.searcher.search.SearchResponse;
+import net.bleujin.searcher.search.SearchSession;
+import net.bleujin.searcher.search.TransformerSearchKey;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.StringUtil;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.search.ISearchable;
-import net.ion.nsearcher.search.SearchRequest;
-import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.TransformerKey;
 
 public class Responses {
 
-	public static Function<TransformerKey, JsonObject> toJson(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
-		return new Function<TransformerKey, JsonObject>() {
+	public static Function<TransformerSearchKey, JsonObject> toJson(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
+		return new Function<TransformerSearchKey, JsonObject>() {
 			@Override
-			public JsonObject apply(TransformerKey tkey) {
+			public JsonObject apply(TransformerSearchKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				ISearchable searcher = tkey.searcher();
+				SearchSession searcher = tkey.session();
 
 				JsonObject result = JsonObject.create();
 				JsonObject header = JsonObject.create();
@@ -51,7 +51,7 @@ public class Responses {
 
 				try {
 					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
+						ReadDocument rdoc = searcher.readDocument(did, request);
 						jarray.add(rdoc.transformer(ResFns.ReadDocToJson));
 					}
 
@@ -64,13 +64,13 @@ public class Responses {
 		};
 	}
 
-	public static Function<TransformerKey, XML> toXML(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
-		return new Function<TransformerKey, XML>() {
+	public static Function<TransformerSearchKey, XML> toXML(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
+		return new Function<TransformerSearchKey, XML>() {
 			@Override
-			public XML apply(TransformerKey tkey) {
+			public XML apply(TransformerSearchKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				ISearchable searcher = tkey.searcher();
+				SearchSession searcher = tkey.session();
 				XML result = new XML("response");
 
 				XML header = new XML("header");
@@ -90,7 +90,7 @@ public class Responses {
 				try {
 
 					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
+						ReadDocument rdoc = searcher.readDocument(did, request);
 						docsXML.addElement(rdoc.transformer(ResFns.ReadDocToXML));
 					}
 
@@ -102,11 +102,11 @@ public class Responses {
 		};
 	}
 
-	public static Function<TransformerKey, Source> toXMLSource(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
+	public static Function<TransformerSearchKey, Source> toXMLSource(final MultivaluedMap<String, String> paramMap, final SearchResponse response) {
 
-		return new Function<TransformerKey, Source>() {
+		return new Function<TransformerSearchKey, Source>() {
 			@Override
-			public Source apply(TransformerKey tkey) {
+			public Source apply(TransformerSearchKey tkey) {
 				try {
 					DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 					DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
@@ -120,7 +120,7 @@ public class Responses {
 
 					List<Integer> docs = tkey.docs();
 					SearchRequest request = tkey.request();
-					ISearchable searcher = tkey.searcher();
+					SearchSession searcher = tkey.session();
 
 					header.setAttribute("size", String.valueOf(docs.size()));
 					header.setAttribute("total", String.valueOf(response.totalCount()));
@@ -135,7 +135,7 @@ public class Responses {
 					rootElement.appendChild(docsEle);
 
 					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
+						ReadDocument rdoc = searcher.readDocument(did, request);
 						Element doc = xmlDoc.createElement("doc") ;
 						String[] fields = rdoc.fieldNames();
 						for (String field : fields) {

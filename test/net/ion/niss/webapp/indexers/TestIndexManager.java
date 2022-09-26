@@ -1,11 +1,10 @@
 package net.ion.niss.webapp.indexers;
 
 import junit.framework.TestCase;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
 
 public class TestIndexManager extends TestCase {
 
@@ -39,10 +38,9 @@ public class TestIndexManager extends TestCase {
 	
 	
 	public void testKeyword() throws Exception {
-		Central c = CentralConfig.newRam().build() ;
-		Indexer indexer = c.newIndexer() ;
+		SearchController c = SearchControllerConfig.newRam().build() ;
 		
-		indexer.index(new IndexJob<Void>() {
+		c.index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				isession.newDocument().unknown("name", "0708").insert() ;

@@ -15,11 +15,11 @@ import java.util.Date;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.apache.lucene.LucenePackage;
+import org.apache.lucene.analysis.Analyzer;
 
+import net.bleujin.searcher.SearchController;
 import net.ion.framework.parse.gson.JsonObject;
 import net.ion.framework.util.IOUtil;
-import net.ion.nsearcher.config.Central;
 
 public class SystemInfo {
 
@@ -171,13 +171,13 @@ public class SystemInfo {
 	private static JsonObject getLuceneInfo() {
 		JsonObject info = new JsonObject();
 
-		Package searcherPackage = Central.class.getPackage();
+		Package searcherPackage = SearchController.class.getPackage();
 		info.put("isearcher-spec-version", searcherPackage.getSpecificationVersion());
 		info.put("isearcher-impl-version", searcherPackage.getImplementationVersion());
 
-		Package lucenePackage = LucenePackage.class.getPackage();
-		info.put("lucene-spec-version", lucenePackage.getSpecificationVersion());
-		info.put("lucene-impl-version", lucenePackage.getImplementationVersion());
+		Package analyzerPackage = Analyzer.class.getPackage();
+		info.put("lucene-spec-version", analyzerPackage.getSpecificationVersion());
+		info.put("lucene-impl-version", analyzerPackage.getImplementationVersion());
 
 		return info;
 	}

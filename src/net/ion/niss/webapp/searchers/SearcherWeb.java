@@ -32,6 +32,13 @@ import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
 import net.bleujin.rcraken.ReadStream;
 import net.bleujin.rcraken.WriteNode;
+import net.bleujin.searcher.Searcher;
+import net.bleujin.searcher.common.IKeywordField;
+import net.bleujin.searcher.common.ReadDocument;
+import net.bleujin.searcher.search.SearchRequest;
+import net.bleujin.searcher.search.SearchResponse;
+import net.bleujin.searcher.search.SearchSession;
+import net.bleujin.searcher.search.TransformerSearchKey;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -56,13 +63,6 @@ import net.ion.niss.webapp.indexers.Responses;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.misc.AnalysisWeb;
 import net.ion.niss.webapp.util.WebUtil;
-import net.ion.nsearcher.common.IKeywordField;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.search.ISearchable;
-import net.ion.nsearcher.search.SearchRequest;
-import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.Searcher;
-import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 
 @Path("/searchers")
@@ -336,11 +336,11 @@ public class SearcherWeb implements Webapp {
 
 		Searcher searcher = smanager.searcher(sid);
 		
-		int defaultSkip = searcher.config().attrAsInt("skip", 0) ;
-		int defaultOffset = searcher.config().attrAsInt("offset", 10) ;
-		String defaultSort = searcher.config().attrAsString("sort", "") ;
+//		int defaultSkip = searcher.config().attrAsInt("skip", 0) ;
+//		int defaultOffset = searcher.config().attrAsInt("offset", 10) ;
+//		String defaultSort = searcher.config().attrAsString("sort", "") ;
 		
-		SearchResponse sresponse = searcher.createRequest(query).sort(StringUtil.coalesce(sort, defaultSort)).skip(NumberUtil.toInt(skip, defaultSkip)).offset(NumberUtil.toInt(offset, defaultOffset)).find();
+		SearchResponse sresponse = searcher.createRequest(query).sort(StringUtil.coalesce(sort, "")).skip(NumberUtil.toInt(skip, 0)).offset(NumberUtil.toInt(offset, 10)).find();
 		return sresponse;
 	}
 
@@ -440,12 +440,12 @@ public class SearcherWeb implements Webapp {
 		fnames.addAll(rsession.pathBy("/searchers/" + sid + "/schema").childrenNames()) ;
 
 		
-		return response.transformer(new com.google.common.base.Function<TransformerKey, JsonObject>() {
+		return response.transformer(new com.google.common.base.Function<TransformerSearchKey, JsonObject>() {
 			@Override
-			public JsonObject apply(TransformerKey tkey) {
+			public JsonObject apply(TransformerSearchKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				ISearchable searcher = tkey.searcher();
+				SearchSession searcher = tkey.session();
 
 				JsonObject result = JsonObject.create();
 				JsonObject header = JsonObject.create();
@@ -480,7 +480,7 @@ public class SearcherWeb implements Webapp {
 					
 					
 					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
+						ReadDocument rdoc = searcher.readDocument(did, request);
 						JsonArray rowArray = new JsonArray() ;
 						for(String fname : fnames){
 							if ("id".equals(fname)) rowArray.add(new JsonPrimitive(rdoc.reserved(IKeywordField.DocKey))) ;

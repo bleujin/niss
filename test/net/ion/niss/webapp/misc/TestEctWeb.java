@@ -1,7 +1,7 @@
 package net.ion.niss.webapp.misc;
 
 import org.apache.lucene.analysis.core.SimpleAnalyzer;
-import org.apache.lucene.analysis.ko.MyKoreanAnalyzer;
+import org.apache.lucene.analysis.ko.KoreanAnalyzer;
 
 import junit.framework.TestCase;
 import net.ion.framework.parse.gson.JsonObject;
@@ -53,7 +53,7 @@ public class TestEctWeb extends TestCase {
 
 	
 	public void testExecuteAnalysis() throws Exception {
-		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", MyKoreanAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
+		StubHttpResponse response = ss.request("/analysis").postParam("content", "태극기가 바람에 펄럭입니다").postParam("analyzer", KoreanAnalyzer.class.getCanonicalName()).postParam("stopword", "바람") .post() ;
 		JsonObject jo = JsonParser.fromString(response.contentsString()).getAsJsonObject() ;
 		
 		Debug.line(response.contentsString()) ;

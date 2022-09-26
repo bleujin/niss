@@ -25,9 +25,9 @@ import javax.xml.transform.Source;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.jboss.resteasy.spi.HttpRequest;
 
@@ -35,6 +35,17 @@ import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
 import net.bleujin.rcraken.ReadStream;
 import net.bleujin.rcraken.WriteNode;
+import net.bleujin.searcher.common.FieldIndexingStrategy;
+import net.bleujin.searcher.common.IKeywordField;
+import net.bleujin.searcher.common.ReadDocument;
+import net.bleujin.searcher.common.WriteDocument;
+import net.bleujin.searcher.index.IndexJob;
+import net.bleujin.searcher.index.IndexSession;
+import net.bleujin.searcher.reader.InfoHandler;
+import net.bleujin.searcher.search.SearchRequest;
+import net.bleujin.searcher.search.SearchResponse;
+import net.bleujin.searcher.search.SearchSession;
+import net.bleujin.searcher.search.TransformerSearchKey;
 import net.ion.framework.parse.gson.GsonBuilder;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
@@ -58,18 +69,6 @@ import net.ion.niss.webapp.common.JsonStreamOut;
 import net.ion.niss.webapp.common.SourceStreamOut;
 import net.ion.niss.webapp.common.Trans;
 import net.ion.niss.webapp.misc.AnalysisWeb;
-import net.ion.nsearcher.common.FieldIndexingStrategy;
-import net.ion.nsearcher.common.IKeywordField;
-import net.ion.nsearcher.common.ReadDocument;
-import net.ion.nsearcher.common.WriteDocument;
-import net.ion.nsearcher.index.IndexJob;
-import net.ion.nsearcher.index.IndexSession;
-import net.ion.nsearcher.index.Indexer;
-import net.ion.nsearcher.reader.InfoReader.InfoHandler;
-import net.ion.nsearcher.search.ISearchable;
-import net.ion.nsearcher.search.SearchRequest;
-import net.ion.nsearcher.search.SearchResponse;
-import net.ion.nsearcher.search.TransformerKey;
 import net.ion.radon.core.ContextParam;
 import net.ion.radon.util.csv.CsvReader;
 
@@ -144,17 +143,17 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/status")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewStatus(@PathParam("iid") String iid) throws IOException{
-		 return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
+		 return imanager.index(iid).info(new InfoHandler<JsonObject>() {
 				@Override
-				public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
+				public JsonObject view(IndexReader ireader, Directory dir) throws IOException {
 					JsonObject json = new JsonObject() ;
 					
-					json.put("Max Doc", dreader.maxDoc()) ;
-					json.put("Nums Docs", dreader.numDocs()) ;
-					json.put("Deleted Docs",  dreader.numDeletedDocs()) ;
-					json.put("Version", dreader.getVersion()) ;
-					json.put("Segment Count", dreader.getIndexCommit().getSegmentCount()) ;
-					json.put("Current", dreader.isCurrent()) ;
+					json.put("Max Doc", ireader.maxDoc()) ;
+					json.put("Nums Docs", ireader.numDocs()) ;
+					json.put("Deleted Docs",  ireader.numDeletedDocs()) ;
+//					json.put("Version", dir.getVersion()) ;
+//					json.put("Segment Count", dir.getIndexCommit().getSegmentCount()) ;
+//					json.put("Current", dir.isCurrent()) ;
 					
 					return json;
 				}
@@ -166,15 +165,16 @@ public class IndexerWeb implements Webapp {
 	@Path("/{iid}/dirInfo")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewDirInfo(@PathParam("iid") final String iid, @ContextParam("net.ion.niss.NissServer") final NissServer nserver) throws IOException{
-		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
+		return imanager.index(iid).info(new InfoHandler<JsonObject>() {
 			@Override
-			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
+			public JsonObject view(IndexReader ireader, Directory dir) throws IOException {
 				JsonObject json = new JsonObject() ;
 				
-				json.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
-				json.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
-				if (dreader.directory() instanceof FSDirectory){
-					json.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory()) ;
+				
+//				json.put("LockFactory", dir.directory().getLockFactory().getClass().getCanonicalName()) ;
+				json.put("Diretory Impl", dir.getClass().getCanonicalName()) ;
+				if (dir instanceof FSDirectory){
+					json.put("FileStore Path", ((FSDirectory)dir).getDirectory().toUri().toString()) ;
 				} else {
 					json.put("FileStore Path", nserver.config().repoConfig().indexHomeDir() + "/" + iid) ;
 				}
@@ -190,27 +190,27 @@ public class IndexerWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject overview(@PathParam("iid") final String iid, @ContextParam("net.ion.niss.NissServer") final NissServer nserver) throws IOException{
 		
-		return imanager.index(iid).newReader().info(new InfoHandler<JsonObject>() {
+		return imanager.index(iid).info(new InfoHandler<JsonObject>() {
 			@Override
-			public JsonObject view(IndexReader ireader, DirectoryReader dreader) throws IOException {
+			public JsonObject view(IndexReader ireader, Directory dir) throws IOException {
 				JsonObject result = new JsonObject() ;
 
 				result.put("info", rsession.pathBy("/menus/indexers").property("overview").asString()) ;
 				
 				JsonObject status = new JsonObject() ;
-				status.put("Max Doc", dreader.maxDoc()) ;
-				status.put("Nums Docs", dreader.numDocs()) ;
-				status.put("Deleted Docs",  dreader.numDeletedDocs()) ;
-				status.put("Version", dreader.getVersion()) ;
-				status.put("Segment Count", dreader.getIndexCommit().getSegmentCount()) ;
-				status.put("Current", dreader.isCurrent()) ;
+				status.put("Max Doc", ireader.maxDoc()) ;
+				status.put("Nums Docs", ireader.numDocs()) ;
+				status.put("Deleted Docs",  ireader.numDeletedDocs()) ;
+//				status.put("Version", ireader.getVersion()) ;
+//				status.put("Segment Count", dir.getIndexCommit().getSegmentCount()) ;
+//				status.put("Current", dir.isCurrent()) ;
 				result.add("status", status);
 				
 				JsonObject dirInfo = new JsonObject() ;
-				dirInfo.put("LockFactory", dreader.directory().getLockFactory().getClass().getCanonicalName()) ;
-				dirInfo.put("Diretory Impl", dreader.directory().getClass().getCanonicalName()) ;
-				if (dreader.directory() instanceof FSDirectory){
-					dirInfo.put("FileStore Path", ((FSDirectory)dreader.directory()).getDirectory().getCanonicalPath()) ;
+//				dirInfo.put("LockFactory", dir.getLockFactory().getClass().getCanonicalName()) ;
+				dirInfo.put("Diretory Impl", dir.getClass().getCanonicalName()) ;
+				if (dir instanceof FSDirectory){
+					dirInfo.put("FileStore Path", ((FSDirectory)dir).getDirectory().toUri().toString()) ;
 				}else {
 					dirInfo.put("FileStore Path", nserver.config().repoConfig().indexHomeDir() + iid) ;
 				}
@@ -398,13 +398,12 @@ public class IndexerWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJson(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") int within, @DefaultValue("1.0") @FormParam("boost") final float boost, @FormParam("overwrite") final boolean overwrite,
-			@Context HttpRequest request){
+			@Context HttpRequest request) throws IOException{
 
 		final SchemaInfos sinfos = SchemaInfos.create(rsession.pathBy(IndexSchema.path(iid)).children()) ;
 
 		
-		Indexer indexer = imanager.index(iid).newIndexer() ;
-		indexer.index(new IndexJob<Void>() {
+		imanager.index(iid).index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 				
@@ -414,7 +413,7 @@ public class IndexerWeb implements Webapp {
 				if (! json.has("id")) json.put("id", new ObjectId().toString()) ;
 				
 				WriteDocument wdoc = isession.newDocument(json.asString("id")) ;
-				wdoc.boost(boost) ;
+//				wdoc.boost(boost) ;
 				
 				sinfos.addFields(wdoc, json) ;
 //				wdoc.add(json) ;
@@ -439,12 +438,11 @@ public class IndexerWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public String indexJarray(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") final int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
-			@Context HttpRequest request){
-		Indexer indexer = imanager.index(iid).newIndexer() ;
+			@Context HttpRequest request) throws IOException{
 		final JsonArray jarray = JsonParser.fromString(documents).getAsJsonArray() ;
 		final SchemaInfos sinfos = SchemaInfos.create(rsession.pathBy(IndexSchema.path(iid)).children()) ;
 		
-		indexer.index(new IndexJob<Void>() {
+		imanager.index(iid).index(new IndexJob<Void>() {
 			@Override
 			public Void handle(IndexSession isession) throws Exception {
 //				isession.fieldIndexingStrategy(createIndexStrategy(iid)) ;
@@ -476,12 +474,11 @@ public class IndexerWeb implements Webapp {
 	public String indexCsv(@PathParam("iid") final String iid, @FormParam("documents") final String documents, 
 			@DefaultValue("1000") @FormParam("within") final int within, @DefaultValue("1.0") @FormParam("boost") double boost, @FormParam("overwrite") final boolean overwrite,
 			@Context HttpRequest request) throws IOException{
-		Indexer indexer = imanager.index(iid).newIndexer() ;
 		final CsvReader creader = new CsvReader(new StringReader(documents)) ;
 		final String[] headers = creader.readLine() ;
 		final SchemaInfos sinfos = SchemaInfos.create(rsession.pathBy(IndexSchema.path(iid)).children()) ;
 		
-		int sum = indexer.index(new IndexJob<Integer>() {
+		int sum = imanager.index(iid).index(new IndexJob<Integer>() {
 			@Override
 			public Integer handle(IndexSession isession) throws Exception {
 				String[] fields ;
@@ -576,12 +573,12 @@ public class IndexerWeb implements Webapp {
 		fnames.addAll(rsession.pathBy("/indexers/" + iid + "/schema").childrenNames()) ;
 
 		SearchResponse response = imanager.index(iid).newSearcher().createRequest(query).offset(101).find() ;
-		return response.transformer(new com.google.common.base.Function<TransformerKey, JsonObject>(){
+		return response.transformer(new com.google.common.base.Function<TransformerSearchKey, JsonObject>(){
 			@Override
-			public JsonObject apply(TransformerKey tkey) {
+			public JsonObject apply(TransformerSearchKey tkey) {
 				List<Integer> docs = tkey.docs();
 				SearchRequest request = tkey.request();
-				ISearchable searcher = tkey.searcher();
+				SearchSession searcher = tkey.session();
 				
 				try {
 					
@@ -594,7 +591,7 @@ public class IndexerWeb implements Webapp {
 					
 					JsonArray dataArray = new JsonArray() ;
 					for (int did : docs) {
-						ReadDocument rdoc = searcher.doc(did, request);
+						ReadDocument rdoc = searcher.readDocument(did, request);
 						JsonArray rowArray = new JsonArray() ;
 						for(String fname : fnames){
 							if ("id".equals(fname)) rowArray.add(new JsonPrimitive(rdoc.reserved(IKeywordField.DocKey))) ;
@@ -615,8 +612,8 @@ public class IndexerWeb implements Webapp {
 	
 	@POST
 	@Path("/{iid}/browsing")
-	public String removeIndexRow(@PathParam("iid") String iid, @DefaultValue("") @FormParam("indexIds") final String indexIds){
-		Integer count = imanager.index(iid).newIndexer().index(new IndexJob<Integer>() {
+	public String removeIndexRow(@PathParam("iid") String iid, @DefaultValue("") @FormParam("indexIds") final String indexIds) throws IOException{
+		Integer count = imanager.index(iid).index(new IndexJob<Integer>() {
 			@Override
 			public Integer handle(IndexSession isession) throws Exception {
 				String[] ids = StringUtil.split(indexIds, ",") ;

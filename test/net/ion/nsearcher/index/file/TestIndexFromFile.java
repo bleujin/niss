@@ -8,17 +8,17 @@ import java.util.concurrent.Future;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 
 import junit.framework.TestCase;
+import net.bleujin.searcher.SearchController;
+import net.bleujin.searcher.SearchControllerConfig;
+import net.bleujin.searcher.common.SearchConstant;
+import net.bleujin.searcher.index.IndexSession;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.WithinThreadExecutor;
-import net.ion.nsearcher.common.SearchConstant;
-import net.ion.nsearcher.config.Central;
-import net.ion.nsearcher.config.CentralConfig;
-import net.ion.nsearcher.index.IndexSession;
 
 public class TestIndexFromFile extends TestCase {
 
 	public void testInterface() throws Exception {
-		Central cen = CentralConfig.newRam().build();
+		SearchController cen = SearchControllerConfig.newRam().build();
 
 		FileIndexer findexer = FileIndexBuilder.create(cen)
 					.baseDir(new File("./resource")).recursive(true)
@@ -29,7 +29,7 @@ public class TestIndexFromFile extends TestCase {
 					.executors(new WithinThreadExecutor())
 					.build();
 
-		Future<List<Boolean>> future = findexer.index(new StandardAnalyzer(SearchConstant.LuceneVersion), new FileIndexHandler<Boolean>() {
+		Future<List<Boolean>> future = findexer.index(new StandardAnalyzer(), new FileIndexHandler<Boolean>() {
 			@Override
 			public Boolean onSuccess(IndexSession isession, FileEntry fentry) throws IOException {
 				Debug.debug(fentry.file());
