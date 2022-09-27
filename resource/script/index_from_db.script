@@ -6,8 +6,8 @@ new function(){
 	importPackage(net.ion.niss.webapp.loaders)
 	importPackage(net.ion.framework.db.bean)
 	importPackage(java.sql)
-	importPackage(net.ion.nsearcher.index)
-	importPackage(net.ion.nsearcher.index.rdb)
+	importPackage(net.bleujin.searcher.index)
+	importPackage(net.bleujin.searcher.index.rdb)
 
 	this.handle = function(writer, session, param, rentry, jengine){
 		var iid = "col1";
@@ -17,7 +17,7 @@ new function(){
 			writer.append(iid + " not exist");
 			return ;
 		}
-		var indexer = imanager.index(iid).newIndexer() ;
+		var indexer = imanager.index(iid) ;
 		var rsession = rentry.login() ;
 		
 		var rindexer = RDBIndexBuilder.create(imanager.index(iid))

@@ -26,10 +26,6 @@
 	<classpathentry kind="lib" path="lib/rcraken/mapdb_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
 	<classpathentry kind="lib" path="lib/rcraken/rcraken_0.2.jar"/>
-	<classpathentry kind="lib" path="lib/script/truffle-api-20.3.7.jar"/>
-	<classpathentry kind="lib" path="lib/script/graal-sdk-20.3.7.jar"/>
-	<classpathentry kind="lib" path="lib/script/js-20.3.7.jar"/>
-	<classpathentry kind="lib" path="lib/script/icu4j-71.1.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/lucene811_extend_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/lucene811_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/searcher_8.11.jar"/>

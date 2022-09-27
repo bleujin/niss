@@ -7,8 +7,8 @@ new function(){
 	importPackage(net.ion.icrawler.scheduler) 
 	importPackage(net.ion.icrawler.processor) 
 	importPackage(net.ion.niss.webapp.loaders)
-	importPackage(net.ion.nsearcher.index.crawl)
-	importPackage(net.ion.nsearcher.search)
+	importPackage(net.bleujin.searcher.index.crawl)
+	importPackage(net.bleujin.searcher.search)
 
 	this.handle = function(writer, session, param, rentry, jengine){
 	
