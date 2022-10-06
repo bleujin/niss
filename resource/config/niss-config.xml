@@ -9,17 +9,17 @@
 	<log-config-file>./resource/log4j.properties</log-config-file>
     
 	
-	<repository-config wsname="admin" store="fs"><!-- store : [fs | redis | memory] -->>
+	<repository-config wsname="admin" store="pg"><!-- store : [fs | redis | pg | memory] -->>
 	    <admin-home>./resource/admin/</admin-home>
 	    <index-home>./resource/index/</index-home>
-	    <store-fs filemmap="enable" closeonShutdown="yes" />
+	    <store-fs filemmap="enable" lobdir="./resource/lob" closeonShutdown="yes" />
 	    <store-redis address="redis://127.0.0.1:6379" cluster="no" />
+	    <store-pg jdbcurl="jdbc:postgresql://127.0.0.1:5432/ics6" userid="postgres" userpwd="postgres" lobdir="./resource/lob" cached="1000"/> <!-- schema : confirm net/bleujin/rcraken/store/rdb/pg.sql of crakenredis -->
 	    <store-memory />
 	</repository-config>
 	
-	
 	<sitesearch-config>
-		<screen-home name="webdriver.chrome.driver" driver="d:/icsdata/chromedriver.exe">d:/icsdata/screen/</screen-home>
+		<screen-home name="webdriver.chrome.driver" driver="d:/niss/chromedriver.exe">d:/niss/screen/</screen-home>
 	</sitesearch-config>
 	
 </root>

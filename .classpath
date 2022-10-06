@@ -25,11 +25,11 @@
 	<classpathentry kind="lib" path="lib/rcraken/eclipse-collections-api-9.0.0.jar"/>
 	<classpathentry kind="lib" path="lib/rcraken/mapdb_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/search_util_fat.jar"/>
-	<classpathentry kind="lib" path="lib/rcraken/rcraken_0.2.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/lucene811_extend_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/lucene811_fat.jar"/>
-	<classpathentry kind="lib" path="lib/ref/searcher_8.11.jar"/>
 	<classpathentry kind="lib" path="lib/ref/iframework_2.5.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/Searcher"/>
+	<classpathentry kind="lib" path="lib/ref/searcher_8.11.jar"/>
+	<classpathentry kind="lib" path="lib/rcraken/postgresql-42.5.0.jar"/>
+	<classpathentry kind="lib" path="lib/rcraken/rcraken_0.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

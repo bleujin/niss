@@ -9,9 +9,13 @@ import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Node;
 
+import net.bleujin.rcraken.Craken;
 import net.bleujin.rcraken.CrakenConfig;
 import net.bleujin.rcraken.store.MapConfig;
 import net.bleujin.rcraken.store.RedisConfig;
+import net.bleujin.rcraken.store.rdb.PGConfig;
+import net.bleujin.rcraken.store.rdb.PGCraken;
+import net.ion.framework.util.NumberUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.config.RepositoryConfig;
 
@@ -23,7 +27,7 @@ public class RepositoryConfigBuilder {
 	private String indexHomeDir = "./resource/index/" ;
 	private ConfigBuilder parent;
 
-	private CrakenConfig crakenConfig ;
+	private Craken craken ;
 	
 	public RepositoryConfigBuilder(ConfigBuilder parent){
 		this.parent = parent ;
@@ -43,20 +47,33 @@ public class RepositoryConfigBuilder {
 		
 
 		if ("fs".equals(store)) {
-			crakenConfig = MapConfig.file(mapDBFile());
+			Node fsNode = (Node) xpath.evaluate("store-fs", rconfig, XPathConstants.NODE);
+			String lobdir = fsNode.getAttributes().getNamedItem("lobdir").getTextContent() ;
+			craken = MapConfig.file(mapDBFile()).lobRootDir(new File(lobdir)).build();
 		} else if("redis".equals(store)){
 			Node redisNode = (Node) xpath.evaluate("store-redis", rconfig, XPathConstants.NODE);
 			// <store-redis address="redis://127.0.0.1:6379" cluster="no" />
 			String cluster = redisNode.getAttributes().getNamedItem("cluster").getTextContent() ;
 			String address = redisNode.getAttributes().getNamedItem("address").getTextContent() ;
 			if ("yes".equals(cluster)) {
-				crakenConfig = RedisConfig.redisCluster(StringUtil.split(address, ",: ")) ;
+				craken = RedisConfig.redisCluster(StringUtil.split(address, ",: ")).build() ;
 			} else {
-				crakenConfig = RedisConfig.redisSingle(address) ;
+				craken = RedisConfig.redisSingle(address).build() ;
 			}
+		} else if ("pg".equals(store)) {
+			Node pgNode = (Node) xpath.evaluate("store-pg", rconfig, XPathConstants.NODE);
+			String jdbcurl = pgNode.getAttributes().getNamedItem("jdbcurl").getTextContent() ;
+			String userid = pgNode.getAttributes().getNamedItem("userid").getTextContent() ;
+			String userpwd = pgNode.getAttributes().getNamedItem("userpwd").getTextContent() ;
+			String lobdir = pgNode.getAttributes().getNamedItem("lobdir").getTextContent() ;
+			String cached = pgNode.getAttributes().getNamedItem("cached").getTextContent() ;
+			int cacheSize = NumberUtil.toInt(cached, 0) ;
+			craken = new PGConfig().jdbcURL(jdbcurl).userId(userid).userPwd(userpwd).lobRootDir(new File(lobdir)).build() ;
+			if (cacheSize >= 1000) craken = ((PGCraken)craken).cached(cacheSize) ; // min 1000  
 		} else {
-			crakenConfig = CrakenConfig.mapMemory() ;
+			craken = CrakenConfig.mapMemory().build() ;
 		}
+		 
 		
 		return this ;
 	}
@@ -92,7 +109,7 @@ public class RepositoryConfigBuilder {
 
 
 	public RepositoryConfig build() {
-		return new RepositoryConfig(crakenConfig, adminHomeDir, indexHomeDir, wsName);
+		return new RepositoryConfig(craken, adminHomeDir, indexHomeDir, wsName);
 	}
 	
 	

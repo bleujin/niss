@@ -42,7 +42,7 @@ public class NSConfig {
 
 	
 	public REntry createREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
-		Craken craken = repoConfig.crakenConfig().build().start() ;
+		Craken craken = repoConfig.craken().start() ;
 
 		return new REntry(craken, repoConfig.wsName(), this);
 	}
