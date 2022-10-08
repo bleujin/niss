@@ -89,6 +89,9 @@
 
 	var pagefunction = function() {
 
+		var siteId = $("#sites option:selected").val() ;
+		if (siteId == undefined) return ;
+
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -109,15 +112,11 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/sites",
+				url: "/admin/menus/sites/" + siteId,
 				data: { content: aHTML, field: "crawl" }
 			});
 			$('.click2edit').destroy();
 		});
-		
-		
-		var siteId = $("#sites option:selected").val() ;
-		if (siteId == undefined) return ;
 		
 		
 		var _crawlForm = $("#site-crawl-form") ;

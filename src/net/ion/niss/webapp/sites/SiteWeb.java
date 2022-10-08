@@ -114,7 +114,7 @@ public class SiteWeb implements Webapp {
 	public JsonObject overview(@PathParam("sid") final String sid) throws IOException{
 		
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.pathBy("/menus/sites").property("overview").asString()) ;
+		result.put("info", rsession.pathBy("/sites/" + sid + "/info").property("overview").asString()) ;
 		
 		ReadNode snode = rsession.pathBy("/sites/" + sid) ;
 		
@@ -138,7 +138,7 @@ public class SiteWeb implements Webapp {
 	public JsonObject crawlView(@PathParam("sid") final String sid) throws IOException{
 		
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.pathBy("/menus/sites").property("crawl").asString()) ;
+		result.put("info", rsession.pathBy("/sites/" + sid + "/info").property("crawl").asString()) ;
 		
 		return result;
 	}
@@ -238,7 +238,7 @@ public class SiteWeb implements Webapp {
 	public JsonObject browsingCrawl(@PathParam("sid") String sid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
 		final JsonObject result = new JsonObject() ;
 
-		result.put("info", rsession.pathBy("/menus/sites").property("browsing").asString()) ;
+		result.put("info", rsession.pathBy("/sites/" + sid + "/info").property("page").asString()) ;
 
 		JsonArray schemaNames = new JsonArray();
 		schemaNames.add(new JsonObject().put("title", "crawlId")) ;

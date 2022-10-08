@@ -150,7 +150,7 @@ public class SearcherWeb implements Webapp {
 		JsonArray recent = rsession.pathBy("/searchlogs/" + sid).children().stream().descending("time").limit(10).transform(makeJson) ;
 		JsonArray popular = rsession.pathBy("/searchlogs/" + sid).children().stream().descending("count").limit(10).transform(makeJson) ;
 		
-		return new JsonObject().put("info", rsession.pathBy("/menus/searchers").property("overview").asString())
+		return new JsonObject().put("info", rsession.pathBy("/searchers/" + sid + "/info").property("overview").asString())
 			.put("recent", recent)
 			.put("popular", popular) ;
 	}
@@ -195,7 +195,7 @@ public class SearcherWeb implements Webapp {
 			@Override
 			public JsonObject apply(ReadNode node) {
 				JsonObject result = new JsonObject()
-						.put("info", rsession.pathBy("/menus/searchers").property("define").asString()).put("indexers", colNames)
+						.put("info", rsession.pathBy("/searchers/" + sid + "/info").property("define").asString()).put("indexers", colNames)
 						.put(Def.Searcher.QueryAnalyzer, node.property(Def.Searcher.QueryAnalyzer).defaultValue(StandardAnalyzer.class.getCanonicalName()))
 						.put("target", node.property(Def.Searcher.Target).asSet().toArray(new String[0]))
 						.put(Def.Searcher.Handler, node.property(Def.Searcher.Handler).asString()).put(Def.Searcher.ApplyHandler, node.property(Def.Searcher.ApplyHandler).asBoolean())
@@ -273,7 +273,7 @@ public class SearcherWeb implements Webapp {
 		}
 		
 		return new JsonObject()
-				.put("info", rsession.pathBy("/menus/searchers").property("schema").asString())
+				.put("info", rsession.pathBy("/searchers/" + sid + "/info").property("schema").asString())
 				.put("query_analyzer", iarray)
 				.put("schemaName", JsonParser.fromString("[{'title':'SchemaId'},{'title':'Analyzer'}]").getAsJsonArray())
 				.put("data", schemas) ;
@@ -311,9 +311,9 @@ public class SearcherWeb implements Webapp {
 	@GET
 	@Path("/{sid}/query")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject query() throws IOException {
+	public JsonObject query(@PathParam("sid") String sid) throws IOException {
 		JsonObject result = new JsonObject();
-		result.put("info", rsession.pathBy("/menus/searchers").property("query").asString());
+		result.put("info", rsession.pathBy("/searchers/" + sid + "/info").property("query").asString());
 		return result;
 	}
 
@@ -396,7 +396,7 @@ public class SearcherWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject viewTemplate(@PathParam("sid") final String sid) {
 		JsonObject result = new JsonObject();
-		result.put("info", rsession.pathBy("/menus/searchers").property("template").asString());
+		result.put("info", rsession.pathBy("/searchers/" + sid + "/info").property("template").asString());
 		result.put("samples", WebUtil.findSearchTemplates()) ;
 		result.put("template", rsession.pathBy(fqnBy(sid)).property(Def.Searcher.Template).asString());
 		return result;
@@ -459,7 +459,7 @@ public class SearcherWeb implements Webapp {
 				header.put("elapsedTime", response.elapsedTime());
 				JsonArray jarray = new JsonArray();
 				result.put("data", jarray);
-				result.put("info", rsession.pathBy("/menus/searchers").property("browsing").asString()) ;
+				result.put("info", rsession.pathBy("/searchers/" + sid + "/info").property("browsing").asString()) ;
 
 				try {
 					

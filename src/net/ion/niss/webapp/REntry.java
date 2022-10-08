@@ -7,6 +7,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,7 @@ import net.bleujin.rcraken.extend.CDDRemovedEvent;
 import net.bleujin.searcher.SearchController;
 import net.bleujin.searcher.SearchControllerConfig;
 import net.bleujin.searcher.Searcher;
+import net.ion.framework.db.DBController;
 import net.ion.framework.db.ThreadFactoryBuilder;
 import net.ion.framework.parse.gson.stream.JsonWriter;
 import net.ion.framework.schedule.AtTime;
@@ -56,12 +58,13 @@ import net.ion.niss.config.NSConfig;
 import net.ion.niss.config.builder.ConfigBuilder;
 import net.ion.niss.webapp.common.Def;
 import net.ion.niss.webapp.common.Def.Script;
+import net.ion.niss.webapp.dscripts.ScriptDBManger;
 import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.SearchManager;
 import net.ion.niss.webapp.loaders.InstantJavaScript;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.ResultHandler;
-import net.ion.niss.webapp.misc.ScriptWeb;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 import net.ion.niss.webapp.sites.SiteManager;
 
 public class REntry implements Closeable {
@@ -80,12 +83,21 @@ public class REntry implements Closeable {
 	private final Log log = LogFactory.getLog(REntry.class);
 	private Scheduler scheduler = new Scheduler("scripter", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("scripters-thread-%d")));
 
-	public REntry(Craken r, String wsName, NSConfig nsconfig) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	private ScriptDBManger sdbm;
+	private DBController scriptDc;
+
+	public REntry(Craken r, String wsName, NSConfig nsconfig) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
 		this.r = r;
 		this.wsName = wsName;
 		this.nsconfig = nsconfig;
 
 		this.rsession = login();
+		
+		ReadSession dsession = login("datas") ;
+		this.sdbm = ScriptDBManger.create(dsession) ;
+		this.scriptDc = new DBController("craken", sdbm);
+		this.scriptDc.initSelf(); 
+		
 		initCDDListener(rsession);
 	}
 
@@ -301,6 +313,33 @@ public class REntry implements Closeable {
 				return null;
 			}
 		});
+		
+		
+		session.workspace().add(new CDDHandler() {
+			@Override
+			public String pathPattern() {
+				return "/dscripts/{did}";
+			}
+
+			public String id() {
+				return "niss.datascript";
+			}
+
+			public WriteJobNoReturn modified(Map<String, String> rmap, CDDModifiedEvent cevent) {
+				IdString did = IdString.create(rmap.get("did"));
+				sdbm.loadPackage(did.idString(), cevent.newProperty("content").asString());
+				log.info(did + " package defined");
+
+				return null;
+			}
+
+			@Override
+			public WriteJobNoReturn deleted(Map<String, String> rmap, CDDRemovedEvent cevent) {
+				IdString did = IdString.create(rmap.get("did"));
+				sdbm.removePackage(did.idString()) ;
+				return null;
+			}
+		});
 
 		session.workspace().add(new CDDHandler() {
 			@Override
@@ -421,6 +460,9 @@ public class REntry implements Closeable {
 			}
 
 		});
+		
+		
+		
 
 		scheduler.start();
 
@@ -590,22 +632,26 @@ public class REntry implements Closeable {
 	}
 
 	// test
-	public final static REntry create() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public final static REntry create() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
 		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build();
 		return create(nsconfig);
 	}
 
-	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
 		return nsconfig.createREntry();
 	}
 
-	public final static REntry test() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public final static REntry test() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
 		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build();
 		return nsconfig.testREntry();
 	}
 
 	public ReadSession login() throws IOException {
 		return r.login(wsName);
+	}
+
+	public ReadSession login(String otherWsname) throws IOException {
+		return r.login(otherWsname);
 	}
 
 	public Craken repository() {
@@ -631,6 +677,10 @@ public class REntry implements Closeable {
 
 	public NSConfig nsConfig(){
 		return nsconfig ;
+	}
+	
+	public DBController scriptDBController() {
+		return scriptDc ;
 	}
 }
 

@@ -40,6 +40,7 @@ import net.ion.niss.webapp.indexers.IndexManager;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.RDB;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 
 public class TestSampleScript extends TestBaseIndexWeb {
 

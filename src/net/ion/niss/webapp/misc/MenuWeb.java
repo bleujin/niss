@@ -31,7 +31,7 @@ public class MenuWeb implements Webapp{
 	@Path("/{menu : .*}")
 	public String updateInfo(@PathParam("menu") final String menu, @DefaultValue("overview") @FormParam("field") final String field, @DefaultValue("") @FormParam("content") final String content){
 		rsession.tran( wsession -> {
-			wsession.pathBy("/menus/" + menu).property(field, content).merge();
+			wsession.pathBy("/" + menu + "/info").property(field, content).merge();
 		}) ;
 		
 		return "update info" ;
@@ -39,8 +39,8 @@ public class MenuWeb implements Webapp{
 	
 	
 	@GET
-	@Path("/{menu}")
+	@Path("/{menu : .*}")
 	public String viewInfo(@PathParam("menu") final String menu, @DefaultValue("overview") @QueryParam("field") final String field){
-		return rsession.pathBy("/menus/" + menu).property(field).asString() ;
+		return rsession.pathBy("/" + menu + "/info").property(field).asString() ;
 	}
 }

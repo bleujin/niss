@@ -17,6 +17,7 @@ import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.Webapp;
 import net.ion.niss.webapp.loaders.JScriptEngine;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 import net.ion.radon.core.ContextParam;
 
 @Path("/script")

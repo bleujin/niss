@@ -58,6 +58,9 @@
 
 	var pagefunction = function() {
 		
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId == undefined) return ;
+		
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
 			if($.browser.webkit)
@@ -89,15 +92,12 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/indexers",
+				url: "/admin/menus/indexers/" + indexerId,
 				data: { content: aHTML, field: "overview" }
 			});
 			$('.click2edit').destroy();
 		});
 		
-		
-		var indexerId = $("#indexers option:selected").val() ;
-		if (indexerId == undefined) return ;
 		
 		$.ajax({
 			url:'/admin/indexers/' + indexerId +'/overview',

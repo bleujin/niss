@@ -144,6 +144,9 @@
 	pageSetUp();
 
 	var pagefunction = function() {
+		var scripterId = $("#scripters option:selected").val() ;
+		if (scripterId == undefined) return ;
+
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -164,15 +167,12 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/scripters",
+				url: "/admin/menus/scripters/" + scripterId,
 				data: { content: aHTML, field: "schedule" }
 			});
 			$('.click2edit').destroy();
 		});
 		
-		var scripterId = $("#scripters option:selected").val() ;
-		if (scripterId == undefined) return ;
-
 		var _scheduleForm = $("#scripter-schedule-form") ;
 		var _minute = _scheduleForm.find("input[name=minute]") ;
 		var _hour = _scheduleForm.find("input[name=hour]") ;

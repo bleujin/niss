@@ -91,6 +91,9 @@
 
 	var pagefunction = function() {
 
+		var indexerId = $("#indexers option:selected").val() ;
+		if (indexerId == undefined) return ;
+		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -111,15 +114,12 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/indexers",
-				data: { content: aHTML, field: "defined" }
+				url: "/admin/menus/indexers/" + indexerId,
+				data: { content: aHTML, field: "define" }
 			});
 			$('.click2edit').destroy();
 		});
 		
-		
-		var indexerId = $("#indexers option:selected").val() ;
-		if (indexerId == undefined) return ;
 		
 		
 		var _defineForm = $("#indexer-define-form") ;

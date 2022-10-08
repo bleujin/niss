@@ -112,7 +112,7 @@ public class MiscWeb implements Webapp{
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
 		result.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Time'},{'title':'LoaderId'},{'title':'Status'}]").getAsJsonArray()) ;
-		result.put("info", rsession.pathBy("/menus/loaders").property("history").asString());
+//		result.put("info", rsession.pathBy("/menus/loaders").property("history").asString());
 		return result ;
 	}
 	
@@ -137,7 +137,8 @@ public class MiscWeb implements Webapp{
 				return result;
 			}
 		}) ;
-		return new JsonObject().put("info", rsession.pathBy("/menus/misc").property("user").asString())
+		return new JsonObject()
+//				.put("info", rsession.pathBy("/menus/misc").property("user").asString())
 				.put("schemaName", JsonParser.fromString("[{'title':'Id'},{'title':'Name'}]").getAsJsonArray())
 				.put("users", jarray) ;
 	}

@@ -29,6 +29,7 @@ import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.indexers.TestBaseIndexWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 
 public class TestCrawlerScript extends TestBaseIndexWeb {
 

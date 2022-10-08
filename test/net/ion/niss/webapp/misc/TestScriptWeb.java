@@ -9,6 +9,7 @@ import net.ion.framework.util.IOUtil;
 import net.ion.niss.webapp.EventSourceEntry;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.loaders.JScriptEngine;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 import net.ion.nradon.stub.StubHttpResponse;
 import net.ion.radon.client.StubServer;
 

@@ -49,6 +49,9 @@
 	pageSetUp();
 
 	var pagefunction = function() {
+		var searcherId = $("#searchers option:selected").val() ;
+		if (searcherId == undefined) return ;
+		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -69,14 +72,11 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/searchers",
+				url: "/admin/menus/searchers/" + searcherId,
 				data: { content: aHTML, field: "browsing" }
 			});
 			$('.click2edit').destroy();
 		});
-		
-		var searcherId = $("#searchers option:selected").val() ;
-		if (searcherId == undefined) return ;
 		
 		$.ajax({
 			url:"/admin/searchers/" + searcherId + "/browsing",

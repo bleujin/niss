@@ -47,8 +47,8 @@ public class OpenSearchWeb implements Webapp{
 	@GET
 	@Path("/{sid}/query")
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
-	public JsonObject query() throws IOException {
-		return referWeb.query() ;
+	public JsonObject query(@PathParam("sid") String sid) throws IOException {
+		return referWeb.query(sid) ;
 	}
 
 	@GET

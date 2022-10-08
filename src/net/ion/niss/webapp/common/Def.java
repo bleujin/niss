@@ -3,6 +3,42 @@ package net.ion.niss.webapp.common;
 
 public class Def {
 
+	public static class Info {
+		public static class Indexer {
+			public static final String Overview = "overview" ;
+			public static final String Define = "define" ;
+			public static final String Schema = "schema" ;
+			public static final String Index = "index" ;
+			public static final String Query = "query" ;
+			public static final String Browsing = "browsing" ;
+		}
+		
+		public static class Searcher {
+			public static final String Overview = "overview" ;
+			public static final String Define = "define" ;
+			public static final String Schema = "schema" ;
+			public static final String Query = "query" ;
+			public static final String Template = "template" ;
+			public static final String Browsing = "browsing" ;
+		}
+
+		public static class Script {
+			public static final String Overview = "overview" ;
+			public static final String Define = "define" ;
+			public static final String Schedule = "schedule" ;
+		}
+		public static class Data {
+			public static final String Overview = "overview" ;
+			public static final String Define = "define" ;
+		}
+
+		public static class Site {
+			public static final String Overview = "overview" ;
+			public static final String Crawl = "crawl" ;
+			public static final String Page = "page" ;
+		}
+	}
+	
 	public static class Indexer {
 		public static final String Created = "created" ;
 		public static final String IndexAnalyzer = "indexanalyzer" ;
@@ -94,6 +130,13 @@ public class Def {
 		public static final String Content = "content" ;
 		public static final String Running = "running" ;
 	}
+
+	public static class DScript {
+		public static final String Did = "did" ;
+		public static final String Content = "content" ;
+		public static final String Running = "running" ;
+	}
+
 	
 
 	public static class Schedule {

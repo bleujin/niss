@@ -37,6 +37,12 @@
 		    <create kr="스크립트 등록">Create Script</create>
 			<remove kr="스크립트  삭제">Remove Script</remove>
 		</scripters>
+		<dscripts kr="데이타 스크립트">Data Script
+		    <overview kr="데이타 스크립트 정보">Overview</overview>
+		    <defined kr="데이타 스크립트 설정">Define DScript</defined>
+		    <create kr="데이타 스크립트 등록">Create DScript</create>
+			<remove kr="데이타 스크립트 삭제">Remove DScript</remove>
+		</dscripts>
 		<sites kr="Site Crawl">Site Crawl
 		    <overview kr="Overview">Overview</overview>
 		    <crawl kr="Run Crawl">Run Crawl</crawl>
@@ -323,7 +329,7 @@
 		</schedule>
 		
 		<create kr="스크립트 등록">Create Scripter
-			<scripterid kr="로더 ID">Scripter ID</scripterid>
+			<scripterid kr="스크립트 ID">Scripter ID</scripterid>
 		</create>
         <remove>
             <title kr="스크립트 삭제">Remove Scripter</title>
@@ -331,6 +337,38 @@
         </remove>
     </scripters>
     
+    
+    
+    <dscripts>
+        <choose kr="스크립트 선택">Choose Data Scripter</choose>
+        <overview>
+            <title kr="스크립트 정보">Overview</title>
+            <table-header kr="로그 목록(Max:101)">Recent Scripter History(Max:101)</table-header>
+            <eventid kr="이벤트ID">Event ID</eventid>
+            <time kr="시간">Run Time</time>
+            <status kr="상태">Status</status>
+            <result kr="결과">Result</result>
+            <buttons><view-detail kr="자세히 보기">View Detail</view-detail></buttons>
+		</overview>
+		<defined>
+		    <title kr="스크립트 설정">Define DScripter</title>
+		    <table-header kr="설정">Detail</table-header>
+		    <view-sample kr="스크립트 샘플">View Sample DScript</view-sample>
+		    <content kr="스크립트">DScript Content</content>
+		    <output kr="결과">Output</output>
+		    <buttons>
+		        <run kr="실행">Run</run>
+		        <save kr="저장">Save</save>
+		    </buttons>
+		</defined>
+		<create kr="스크립트 등록">Create Data Scripter
+			<scripterid kr="스크립트 ID">Scripter ID</scripterid>
+		</create>
+        <remove>
+            <title kr="스크립트 삭제">Remove Scripter</title>
+            <scripter kr="스크립트 ID">Scripter ID</scripter>
+        </remove>
+    </dscripts>
     
     <sites>
         <choose kr="스크립트 선택">Choose Crawl Site</choose>

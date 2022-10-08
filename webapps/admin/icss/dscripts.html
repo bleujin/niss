@@ -1,0 +1,253 @@
+<div class="inbox-nav-bar no-content-padding"></div>
+
+<div id="inbox-content" class="inbox-body no-content-padding">
+
+	<div class="inbox-side-bar">
+
+		<div class="well no-padding">
+		<form class="smart-form no-padding" method="post" action="dscripts/left" novalidate="novalidate">
+			<fieldset>
+				<section class="no-padding">
+					<label class="label">${m.asString("dscripts.choose")}</label>
+					<label class="select">
+						<select class="input-sm choose-sub form-control" id="dscripts"></select>
+					</label>
+				</section>
+			</fieldset>
+		</form>
+		</div>
+		
+		<ul class="inbox-menu-lg">
+			<li class="submenu active"><a class="overview-load" href="javascript:void(0);">${m.asString("menu.dscripts.overview")}</a></li>
+			<li class="submenu"><a class="defined-load" href="javascript:void(0);">${m.asString("menu.dscripts.defined")}</a></li>
+			<li><br /><br /><li>
+			<li class="dd-item" data-id="1">
+				<div class="dd-handle create-open">
+					<span>${m.asString("menu.dscripts.create")}</span>
+				</div>
+			</li>
+		</ul>
+
+		<div class="air air-bottom inbox-space">
+		
+			&nbsp;<a href="javascript:void(0);" rel="tooltip" title="" data-placement="left" data-original-title='${m.asString("menu.dscripts.remove")}' class="pull-right txt-color-darken"><i class="fa fa-trash-o fa-lg"></i></a>
+			<div class="progress progress-micro">
+				<div class="progress-bar progress-primary" style="width: 0%;"></div>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="table-wrap custom-scroll animated fast fadeInRight">
+		<!-- ajax will fill this area -->
+		LOADING...
+	</div>
+
+
+</div>
+
+<div id="remove-scripter-confirm" title='${m.asString("dscripts.remove.title")}' style="display:none">
+	<form class="smart-form" id="remove-scripter-form" method="post" action="scripter/" novalidate="novalidate">
+		<fieldset style="padding: 0px">	
+			<section>
+				<label class="label">${m.asString("dscripts.remove.scripter")} : <span id="removeScripterId"></span></label>
+			</section>
+		</fieldset>
+	</form>
+</div>
+
+
+
+<div id="create_scripter_modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content" style="width:70%">
+			
+			<div class="modal-header"><h5 id="myModalLabel">${m.asString("dscripts.create")}</h5></div>
+
+			<div class="modal-body">
+			<form class="smart-form" id="create_scripter_form" method="post" action="dscripts/" novalidate="novalidate">
+			<fieldset style="padding: 0px">					
+				<section>
+					<label class="label">${m.asString("dscripts.create.scripterid")}</label>
+					<label class="input">
+						<input type="text" id="newScripterId" name="newsid" placeholder="new scripter id" />
+					</label>
+				</section>
+			</fieldset>
+			</form>
+			</div>
+			
+			<div class="modal-footer">
+			  <button class="btn" data-dismiss="modal" aria-hidden="true">${m.asString("buttons.modal.close")}</button>
+			  <button class="btn btn-primary" name="create_scripter">${m.asString("dscripts.create")}</button>
+			</div>  
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	
+	var pagefunction = function() {
+
+		function tableHeightSize() {
+			if ($('body').hasClass('menu-on-top')) {
+				var menuHeight = 68;
+				// nav height
+
+				var tableHeight = ($(window).height() - 224) - menuHeight;
+				if (tableHeight < (320 - menuHeight)) {
+					$('.table-wrap').css('height', (320 - menuHeight) + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+
+			} else {
+				var tableHeight = $(window).height() - 224;
+				if (tableHeight < 320) {
+					$('.table-wrap').css('height', 320 + 'px');
+				} else {
+					$('.table-wrap').css('height', tableHeight + 'px');
+				}
+			}
+		}
+		// fix table height
+		tableHeightSize();
+
+		$(window).resize(function() {
+			tableHeightSize()
+		}) ;
+
+
+		
+		
+		var lastScripterId = '' ;
+		var lastMenuHTML = 'overview.html' ;
+		
+		$.ajax({
+			url:'/admin/dscripts',
+			dataType:'json',
+			success:function(data){
+				var dscripts = data['dscripts'] ;
+				for(var idx in dscripts ){
+					var scripter = dscripts [idx] ;
+					var option = $('<option value="'+scripter[0]+'">'+scripter[0]+'</option>') ;
+					option.appendTo($("select.choose-sub")) ;
+				}
+				
+				//LOAD Overview MESSAGES
+				loadURL("icss/dscripts/overview.html", $('#inbox-content > .table-wrap')) ;
+				lastScripterId = $(".choose-sub").val() ;
+				
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+
+		
+		$(".choose-sub").change(function(){
+			loadURL("icss/dscripts/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+			lastScripterId = $(".choose-sub").val() ;
+		}) ;
+
+
+		$(".fa-trash-o").click(function(){
+			$("#remove-scripter-confirm" ).css('visibility', 'visible') ;
+			$("#removeScripterId").html($("#dscripts option:selected" ).text()) ;
+			$("#remove-scripter-confirm" ).dialog({
+				modal: true,
+				buttons: {
+					"${m.asString('menu.dscripts.remove')}": function() {
+						var win = $( this ) ;
+						$.ajax({
+							type: "DELETE",
+							dataType : 'text', 
+							url: "/admin/dscripts/" + $(".choose-sub").val(),
+							data: { }, 
+							complete : function(){ 
+								// $("#query_url").text(this.url) ;
+							}, 
+							success :  function(data) {
+								$("#dscripts option:selected").remove();
+								loadURL("icss/dscripts/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+								win.dialog( "close" );
+							}
+						}) ;	
+					},
+					"${m.asString('buttons.modal.cancel')}": function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		}) ;
+		
+		
+		$("li.submenu").click(function() {
+			$(this).siblings().removeClass("active");
+			$(this).addClass("active");
+		});
+		
+	
+		// Buttons (compose mail and inbox load)
+		$(".overview-load").click(function() {
+			loadURL("icss/dscripts/overview.html", $('#inbox-content > .table-wrap'))
+			lastMenuHTML = 'overview.html' ;
+		});
+		$(".defined-load").click(function() {
+			loadURL("icss/dscripts/defined.html", $('#inbox-content > .table-wrap')) ;
+			lastMenuHTML = 'defined.html' ;
+		});
+		
+		var $createForm = $("#create_scripter_form").validate({
+			rules : {
+				newsid : { required : true, pattern:"^[a-z][a-z0-9_]*$", minlength : 4, maxlength : 15 } 
+			},
+			messages : {
+				newsid : {required : "${m.asString('validation.required', 'scripter id')}", pattern : "${m.asString('validation.idpattern')}", minlength : "${m.asString('validation.minlength', 4)}", maxlength:"${m.asString('validation.maxlength', 15)}"}
+			},
+			submitHandler : function(form) {
+				var newId = $("#newScripterId").val() ;
+				$.ajax({
+					type: "POST",
+					dataType : 'text', 
+					url: "/admin/dscripts/" + newId + "/define",
+					data: {}, 
+					complete : function(){ 
+					}, 
+					success :  function(data) {
+						if ($('#dscripts option[value="' + newId + '"]').length > 0) $("#dscripts").val(newId);
+						else $("#dscripts").append('<option value="'+newId+'" selected="selected">'+newId+'</option>');
+						loadURL("icss/dscripts/" + lastMenuHTML, $('#inbox-content > .table-wrap')) ;
+						$('#create_scripter_modal').modal('hide');
+					}
+				}) ;
+			},
+
+			// Do not change code below
+			errorPlacement : function(error, element) {
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		$("#create_scripter_modal button[name=create_scripter]").click(function(){
+			$("#create_scripter_form").submit() ;
+		});
+		
+		$(".create-open").click(function() {
+			$('#create_scripter_modal').modal({});
+		});
+		
+	};
+	
+	// end pagefunction
+	
+	// load delete row plugin and run pagefunction
+
+	pagefunction();
+	
+</script>

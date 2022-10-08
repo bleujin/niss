@@ -52,6 +52,22 @@ public class WebUtil {
 		return IOUtil.toStringWithClose(new FileInputStream(new File(Webapp.SCRIPT_DIR, fileName))) ;
 	}
 
+	public static JsonArray findDataScripts(){
+		JsonArray result = new JsonArray() ;
+		for (File file : findFiles(Webapp.DSCRIPT_DIR, true, "script")) {
+			result.add(new JsonPrimitive(file.getName())) ;
+		}
+		return result ;
+	}
+
+	
+	public static String viewDataScript(String fileName) throws IOException{
+		return IOUtil.toStringWithClose(new FileInputStream(new File(Webapp.DSCRIPT_DIR, fileName))) ;
+	}
+	
+	
+	
+
 	public static JsonArray findSearchHandlers(){
 		JsonArray result = new JsonArray() ;
 		for (File file : findFiles(Webapp.SEARCH_HANDLER_DIR, true, "handler")) {

@@ -1,0 +1,50 @@
+
+// in vue script(when dscriptId is board)
+//      let params = {'proc' : "board@listPostBy(?,?,?)", "args" : ["freeboard", 0, 10] } 
+// 		// let params = {'proc' : "board@createPostWith(?,?,?,?)", 'update':'true', "args" : ["freeboard", 'hello subject', 'hello content', 'bleujin'] } ; 
+//      console.log(JSON.stringify(params)) ;
+//
+ //     this.$axios.post('/open/dscripts/api/query', JSON.stringify(params), {headers: {"Content-Type": 'application/json'}})
+ //     .then(res => {
+ //       this.items = res.data.node.rows ; 
+ //       console.log(res.data.node.rows) ;
+ //     }).catch(error => console.log(err.response))
+
+new function(){
+
+	importPackage(net.ion.framework.util)
+
+	this.createPostWith = function(boardId, subject, content, writerId) {
+		session.tranScript(function(wsession){
+			var boardno = wsession.workspace().sequence("boardno").incrementAndGet() ;
+			
+			wsession.pathBy('/boards/' + boardId + '/' + boardno) 
+				.property('boardno', boardno)
+				.property('subject', subject).property('content', content).property('writerid', writerId).property('regdate', DateUtil.currentDateString()).merge() ;
+		}) ;
+		return 1 ;
+	}, 
+
+	this.modifyPostWith = function(boardId, boardno, subject, content) {
+		session.tranScript(function(wsession){
+			wsession.pathBy('/boards/' + boardId + '/' + boardno)
+				.property('subject', subject).property('content', content).merge() ;
+		}) ;
+		return 1 ;
+	}, 
+
+
+	this.viewPostBy = function(boardId, boardno) {
+		return session.pathBy('/boards/' + boardId).toRows('boardno, subject, content, regdate, writerid') ;
+	}, 
+	
+	
+	this.listPostBy = function(boardId, skip, offset) {
+		return session.pathBy('/boards/' + boardId).children().stream().skip(skip).descending('regdate').limit(offset).toRows('boardno, subject, regdate, writerid') ;
+	}, 
+	
+	this.searchPostBy = function(boardId, query, skip, offset) {
+		return session.pathBy('/boards/' + boardId).childQuery(query).find().stream().skip(skip).descending('regdate').limit(offset).toRows('boardno, subject, regdate, writerid') ;
+	}
+} ; 
+

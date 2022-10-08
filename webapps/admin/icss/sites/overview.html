@@ -55,7 +55,10 @@
 	pageSetUp();
 
 	var pagefunction = function() {
-		
+
+		var siteId = $("#sites option:selected").val() ;
+		if (siteId == undefined) return ;
+
 		function htmlToText(divId) {
 			var ce = $("<pre />").html($("#" + divId).html());
 			if($.browser.webkit)
@@ -87,15 +90,12 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/sites",
+				url: "/admin/menus/sites/" + siteId,
 				data: { content: aHTML, field: "overview" }
 			});
 			$('.click2edit').destroy();
 		});
 		
-		
-		var siteId = $("#sites option:selected").val() ;
-		if (siteId == undefined) return ;
 		
 		$.ajax({
 			url:'/admin/sites/' + siteId +'/overview',

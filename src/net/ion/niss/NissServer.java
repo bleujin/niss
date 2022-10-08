@@ -27,6 +27,7 @@ import net.ion.niss.webapp.common.MyEventLog;
 import net.ion.niss.webapp.common.MyStaticFileHandler;
 import net.ion.niss.webapp.common.MyVerifier;
 import net.ion.niss.webapp.common.TraceHandler;
+import net.ion.niss.webapp.dscripts.DScriptWeb;
 import net.ion.niss.webapp.indexers.IndexerWeb;
 import net.ion.niss.webapp.loaders.JScriptEngine;
 import net.ion.niss.webapp.loaders.LoaderWeb;
@@ -35,10 +36,11 @@ import net.ion.niss.webapp.misc.CrakenLet;
 import net.ion.niss.webapp.misc.ExportWeb;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
+import net.ion.niss.webapp.misc.OpenDScriptWeb;
 import net.ion.niss.webapp.misc.OpenScriptWeb;
-import net.ion.niss.webapp.misc.ScriptWeb;
 import net.ion.niss.webapp.misc.TraceWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
+import net.ion.niss.webapp.scripters.ScriptWeb;
 import net.ion.niss.webapp.searchers.OpenSearchWeb;
 import net.ion.niss.webapp.searchers.PopularQueryEntry;
 import net.ion.niss.webapp.searchers.QueryTemplateEngine;
@@ -109,8 +111,8 @@ public class NissServer {
 				.add(new LoggingHandler(new AppLogSink(elogger)))
 				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
 				// .add(new WhoAmIHttpHandler())
-				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, SiteWeb.class,  MiscWeb.class, ScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
-				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class).prefixURI("open"))
+				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, SiteWeb.class,  MiscWeb.class, ScriptWeb.class, DScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
+				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class, OpenDScriptWeb.class).prefixURI("open"))
 				.add("/logging/event/*", new EventSourceHandler() {
 					@Override
 					public void onOpen(EventSourceConnection econn) throws Exception {

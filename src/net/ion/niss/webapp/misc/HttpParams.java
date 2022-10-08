@@ -71,6 +71,7 @@ public class HttpParams extends HashMap<String, List<String>> implements Multiva
 		for (Entry<String, List<String>> entry : request.getDecodedFormParameters().entrySet()) {
 			if (StringUtil.isNotBlank(entry.getKey())) params.put(entry.getKey(), entry.getValue()) ;
 		}
+		
 		return params ;
 	}
 }

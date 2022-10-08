@@ -1,0 +1,134 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i>${m.asString("dscripts.overview.title")}
+		</h1>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="well">
+			<blockquote>
+			  <div id="info" class="click2edit"></div>
+			</blockquote>
+			
+			<div class="">
+			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
+			<button id="save_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<div class="row">
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="jarviswidget jarviswidget-color-darken" id="dscripts-logs-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-table"></i> </span>
+					<h2>${m.asString("dscripts.overview.table-header")}</h2>
+				</header>
+				
+				<div>
+					<div class="jarviswidget-editbox"></div>
+					<div class="widget-body">
+						<table id="recent_logs" class="table table-bordered table-hover">
+						</table>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</section>
+
+
+<script type="text/javascript">
+
+	pageSetUp();
+
+	var pagefunction = function() {
+
+		var dscriptId = $("#dscripts option:selected").val() ;
+		if (dscriptId == undefined) return ;
+
+		function htmlToText(divId) {
+			var ce = $("<pre />").html($("#" + divId).html());
+			if($.browser.webkit)
+				ce.find("div").replaceWith(function() { return "\n" + this.innerHTML; });	
+			if($.browser.msie)
+				ce.find("p").replaceWith(function() { return this.innerHTML  +  "<br>"; });
+			if($.browser.mozilla || $.browser.opera ||$.browser.msie )
+				ce.find("br").replaceWith("\n");
+			return ce.text();
+		} ;
+
+		$( "#edit_explain" ).click(function() {
+			if (dataId == undefined) return ;
+			
+			$('.click2edit').summernote({
+				focus : true, toolbar: [
+				                        //['style', ['style']], // no style button
+				                        ['style', ['bold', 'italic', 'underline', 'clear']],
+				                        ['fontsize', ['fontsize']],
+				                        ['color', ['color']],
+				                        ['para', ['ul', 'ol', 'paragraph']],
+				                        ['height', ['height']],
+				                        //['insert', ['picture', 'link']], // no insert buttons
+				                        ['table', ['table']], // no table button
+				                        // ['help', ['help']] //no help button
+				                      ]
+			});
+		});
+
+		
+		$( "#save_explain" ).click(function() {
+			var aHTML = $('.click2edit').code() ;
+			$.ajax({
+				type: "POST",
+				url: "/admin/menus/dscripts/" + dscriptId,
+				data: { content: aHTML, field: "overview" }
+			});
+			$('.click2edit').destroy();
+		});
+
+		
+		$.ajax({
+			url:'/admin/dscripts/' + dscriptId + "/overview",
+			dataType:'json',
+			success:function(data){
+				$("#info").html(data['info']) ;
+				var nodes = data['slogs'];
+				$("#recent_logs").dataTable({
+					"data":nodes,
+					"searching":false, 
+					"columns": [{'title':'${m.asString("dscripts.overview.eventid")}'},{'title':'${m.asString("dscripts.overview.time")}'},{'title':'${m.asString("dscripts.overview.status")}'},{'title':'${m.asString("dscripts.overview.result")}'}],  
+					"order" : [[1, "desc"]]
+				}) ;
+				
+				var tableFoot = '<tfoot><tr><td colspan="' + data['schemaName'].length + '" class="col-xs-12">' +
+				'				<fieldset class="smart-form">' +
+				'					<div class="row">' +
+				'						<section class="col col-12"><input type="button" class="btn btn-primary btn-sm" name="btn_detail" value="${m.asString("dscripts.overview.buttons.view-detail")}" disabled="disabled"/></section>' +
+				'					</div>' +
+				'				</fieldset>' +
+				'				</td></tr></tfoot>' ;
+				
+				// $(tableFoot).appendTo($("#recent_logs")) ;
+			}, 
+			error:function(request,status,error){
+				console.log('response', request, status, error) ;
+			}
+		}) ;
+		
+
+	};
+
+	// run pagefunction on load
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/datatables/dataTables.bootstrap.min.js", pagefunction);
+	});
+
+</script>

@@ -51,6 +51,9 @@
 
 	var pagefunction = function() {
 
+		var loaderId = $("#loaders option:selected").val() ;
+		if (loaderId == undefined) return ;
+		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -71,14 +74,11 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/loaders",
+				url: "/admin/menus/loaders/" + loaderId,
 				data: { content: aHTML, field: "overview" }
 			});
 			$('.click2edit').destroy();
 		});
-		
-		var loaderId = $("#loaders option:selected").val() ;
-		if (loaderId == undefined) return ;
 		
 		$.ajax({
 			url:"/admin/loaders/" + loaderId + "/overview",

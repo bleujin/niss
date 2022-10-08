@@ -195,7 +195,7 @@ public class IndexerWeb implements Webapp {
 			public JsonObject view(IndexReader ireader, Directory dir) throws IOException {
 				JsonObject result = new JsonObject() ;
 
-				result.put("info", rsession.pathBy("/menus/indexers").property("overview").asString()) ;
+				result.put("info", rsession.pathBy( "/indexers/" + iid + "/info").property("overview").asString()) ;
 				
 				JsonObject status = new JsonObject() ;
 				status.put("Max Doc", ireader.maxDoc()) ;
@@ -267,7 +267,7 @@ public class IndexerWeb implements Webapp {
 			public JsonObject apply(ReadNode target) {
 				JsonObject result = new JsonObject() ;
 				result
-					.put("info", rsession.pathBy("/menus/indexers").property("defined").asString())
+					.put("info", rsession.pathBy("/indexers/" + iid + "/info").property("define").asString())
 					.put(Def.Indexer.IndexAnalyzer, target.property(Def.Indexer.IndexAnalyzer).asString())
 					.put(Def.Indexer.StopWord, target.property(Def.Indexer.StopWord).asString())
 					.put(Def.Indexer.ApplyStopword, target.property(Def.Indexer.ApplyStopword).asBoolean())
@@ -343,7 +343,7 @@ public class IndexerWeb implements Webapp {
 		}
 		
 		return new JsonObject()
-				.put("info", rsession.pathBy("/menus/indexers").property("schema").asString())
+				.put("info", rsession.pathBy("/indexers/" + iid + "/info").property("schema").asString())
 				.put("index_analyzer", iarray)
 				.put("schemaName", JsonParser.fromString("[{'title':'SchemaId'},{'title':'Type'},{'title':'Option'}]").getAsJsonArray())
 				.put("data", schemas) ;
@@ -388,7 +388,7 @@ public class IndexerWeb implements Webapp {
 	@Produces(ExtMediaType.TEXT_PLAIN_UTF8)
 	public JsonObject indexView(@PathParam("iid") String iid){
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.pathBy("/menus/indexers").property("index").asString()) ;
+		result.put("info", rsession.pathBy("/indexers/" + iid + "/info").property("index").asString()) ;
 		return result ;
 	}
 	
@@ -516,7 +516,7 @@ public class IndexerWeb implements Webapp {
 	@Produces(ExtMediaType.APPLICATION_JSON_UTF8)
 	public JsonObject query(@PathParam("iid") String iid) throws IOException{
 		JsonObject result = new JsonObject() ;
-		result.put("info", rsession.pathBy("/menus/indexers").property("query").asString()) ;
+		result.put("info", rsession.pathBy("/indexers/" +  iid + "/info").property("query").asString()) ;
 		return result ;
 	}
 	
@@ -567,7 +567,7 @@ public class IndexerWeb implements Webapp {
 	public JsonObject browsing(@PathParam("iid") String iid, @QueryParam("searchQuery") String query, @Context HttpRequest request) throws IOException, ParseException{
 		final JsonObject result = new JsonObject() ;
 
-		result.put("info", rsession.pathBy("/menus/indexers").property("browsing").asString()) ;
+		result.put("info", rsession.pathBy("/indexers/" + iid + "/info").property("browsing").asString()) ;
 		final Set<String> fnames = SetUtil.newOrdereddSet() ;
 		fnames.add("id") ;
 		fnames.addAll(rsession.pathBy("/indexers/" + iid + "/schema").childrenNames()) ;

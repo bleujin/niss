@@ -2,6 +2,7 @@ package net.ion.niss.config;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 
 import net.bleujin.rcraken.Craken;
 import net.bleujin.rcraken.CrakenConfig;
@@ -41,14 +42,14 @@ public class NSConfig {
 	}
 
 	
-	public REntry createREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException{
+	public REntry createREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException{
 		Craken craken = repoConfig.craken().start() ;
 
 		return new REntry(craken, repoConfig.wsName(), this);
 	}
 
 
-	public REntry testREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public REntry testREntry() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
 		Craken r = CrakenConfig.mapMemory().build() ;
 		r.start();
 

@@ -6,20 +6,6 @@
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-sm-12">
-		<div class="well">
-			<blockquote>
-			  <div id="info" class="click2edit"></div>
-			</blockquote>
-			
-			<div class="">
-			<button id="edit_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.edit")}</button>
-			<button id="save_explain" class="btn btn-sm" type="button">${m.asString("buttons.info.save")}</button>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <section id="widget-grid" class="">
@@ -51,33 +37,6 @@
 	// pagefunction	
 	var pagefunction = function() {
 		//console.log("cleared");
-		
-		$( "#edit_explain" ).click(function() {
-			$('.click2edit').summernote({
-				focus : true, toolbar: [
-				                        //['style', ['style']], // no style button
-				                        ['style', ['bold', 'italic', 'underline', 'clear']],
-				                        ['fontsize', ['fontsize']],
-				                        ['color', ['color']],
-				                        ['para', ['ul', 'ol', 'paragraph']],
-				                        ['height', ['height']],
-				                        //['insert', ['picture', 'link']], // no insert buttons
-				                        ['table', ['table']], // no table button
-				                        // ['help', ['help']] //no help button
-				                      ]
-			});
-		});
-
-		$( "#save_explain" ).click(function() {
-			var aHTML = $('.click2edit').code() ;
-			$.ajax({
-				type: "POST",
-				url: "/admin/menus/misc",
-				data: { content: aHTML, field: "user" }
-			});
-			$('.click2edit').destroy();
-		});
-
 
 		$.ajax({
 			url:"/admin/misc/users",

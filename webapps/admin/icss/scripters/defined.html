@@ -127,6 +127,10 @@
 	pageSetUp();
 	
 	var pagefunction = function() {
+		
+		var scripterId = $("#scripters option:selected").val() ;
+		if (scripterId == undefined) return ;
+		
 		$( "#edit_explain" ).click(function() {
 			$('.click2edit').summernote({
 				focus : true, toolbar: [
@@ -147,7 +151,7 @@
 			var aHTML = $('.click2edit').code() ;
 			$.ajax({
 				type: "POST",
-				url: "/admin/menus/scripters",
+				url: "/admin/menus/scripters/" + scripterId,
 				data: { content: aHTML, field: "define" }
 			});
 			$('.click2edit').destroy();
@@ -159,9 +163,6 @@
 		var _saveButton = _defineForm.find("button[name=btn_save]") ;
 		var _sampleLoader = _defineForm.find("select[name=scripter_samples]") ;
 		
-		
-		var scripterId = $("#scripters option:selected").val() ;
-		if (scripterId.indexOf('-') == 0) return ;
 		
 		$.browser.chrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase());
 		var msgCall = function(sid, eventId){

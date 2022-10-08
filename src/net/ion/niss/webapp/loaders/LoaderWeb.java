@@ -145,7 +145,7 @@ public class LoaderWeb implements Webapp {
 		JsonObject result = new JsonObject() ;
 		result.add("history", jarray); 
 		result.put("schemaName", JsonParser.fromString("[{'title':'EventId'},{'title':'Run Time'},{'title':'Status'}]").getAsJsonArray()) ;		
-		result.put("info", rsession.pathBy("/menus/loaders").property("overview").asString()) ;
+		result.put("info", rsession.pathBy("/menus/loaders/" + lid).property("overview").asString()) ;
 		
 		return result ;
 	}
