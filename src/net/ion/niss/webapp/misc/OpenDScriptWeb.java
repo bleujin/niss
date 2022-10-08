@@ -54,7 +54,7 @@ public class OpenDScriptWeb implements Webapp{
 
 	@Path("/api/query")
 	@GET @POST
-	public JsonObject runScript(@FormParam("proc") String proc, @Context HttpRequest request) throws IOException, ScriptException, SQLException{
+	public JsonObject runScript(@Context HttpRequest request) throws IOException, ScriptException, SQLException{
 		String jsondata =  IOUtil.toStringWithClose(request.getInputStream(), "UTF-8") ;
 		JsonObject json = JsonObject.fromString(jsondata) ;
 		
