@@ -23,6 +23,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.CharArraySet;
+import org.apache.lucene.analysis.ko.KoreanAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.CorruptIndexException;
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl;
@@ -94,6 +95,9 @@ public class REntry implements Closeable {
 		this.rsession = login();
 		
 		ReadSession dsession = login("datas") ;
+		SearchController sc = SearchControllerConfig.newLocalFile("./resource/dindex").defaultAnalyzer(new KoreanAnalyzer()).build() ;
+		dsession.workspace().indexCntral(sc) ;
+		
 		this.sdbm = ScriptDBManger.create(dsession) ;
 		this.scriptDc = new DBController("craken", sdbm);
 		this.scriptDc.initSelf(); 
