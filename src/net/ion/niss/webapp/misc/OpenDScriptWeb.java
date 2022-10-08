@@ -19,6 +19,7 @@ import net.ion.framework.db.Rows;
 import net.ion.framework.db.procedure.IUserProcedure;
 import net.ion.framework.parse.gson.JsonArray;
 import net.ion.framework.parse.gson.JsonObject;
+import net.ion.framework.util.ArrayUtil;
 import net.ion.framework.util.Debug;
 import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.ListUtil;
@@ -60,7 +61,17 @@ public class OpenDScriptWeb implements Webapp{
 		String procName = json.asString("proc") ;
 		JsonArray jargs = json.asJsonArray("args") ;
 		List<Object> args = ListUtil.newList() ;  
-		jargs.forEach(jele -> args.add(jele.getAsJsonPrimitive().getValue())) ;
+		jargs.forEach(jele -> {
+			if (jele.isJsonPrimitive()) {
+				args.add(jele.getAsJsonPrimitive().getValue()) ;
+			} else if (jele.isJsonArray()) {
+				List subList = ListUtil.newList() ;
+				for(Object obj : jele.getAsJsonArray().toObjectArray()) {
+					subList.add(obj) ;
+				}
+				args.add(subList) ;
+			}
+		}) ;
 		
 		IUserProcedure uproc = dc.createUserProcedure(procName);
 		for (Object val : args) {

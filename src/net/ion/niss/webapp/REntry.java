@@ -143,6 +143,11 @@ public class REntry implements Closeable {
 			IdString sid = registerSearcher(session, new RNodePropertyReadable(sec), jsengine);
 			log.info(sid + " searcher loaded");
 		};
+		
+		for(ReadNode scr : session.pathBy("/dscripts").children().stream()) {
+			sdbm.loadPackage(scr.fqn().name(), scr.property(Def.DScript.Content).asString()) ;
+		}
+		
 
 		session.workspace().add(new CDDHandler() {
 			@Override
