@@ -37,6 +37,7 @@ import net.ion.niss.webapp.misc.ExportWeb;
 import net.ion.niss.webapp.misc.MenuWeb;
 import net.ion.niss.webapp.misc.MiscWeb;
 import net.ion.niss.webapp.misc.OpenDScriptWeb;
+import net.ion.niss.webapp.misc.OpenDatasWeb;
 import net.ion.niss.webapp.misc.OpenScriptWeb;
 import net.ion.niss.webapp.misc.TraceWeb;
 import net.ion.niss.webapp.misc.TunnelWeb;
@@ -112,7 +113,7 @@ public class NissServer {
 				.add(new MyStaticFileHandler("./webapps/admin/", Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("static-io-thread-%d")), new HTMLTemplateEngine(radon.getConfig().getServiceContext())).welcomeFile("index.html"))
 				// .add(new WhoAmIHttpHandler())
 				.add("/admin/*", new PathHandler(LoaderWeb.class, IndexerWeb.class, SearcherWeb.class, SiteWeb.class,  MiscWeb.class, ScriptWeb.class, DScriptWeb.class, MenuWeb.class, CrakenLet.class, TemplateWeb.class, AnalysisWeb.class, TraceWeb.class, TunnelWeb.class, ExportWeb.class).prefixURI("/admin"))
-				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class, OpenDScriptWeb.class).prefixURI("open"))
+				.add("/open/*", new PathHandler(OpenSearchWeb.class, OpenScriptWeb.class, OpenDScriptWeb.class, OpenDatasWeb.class).prefixURI("open"))
 				.add("/logging/event/*", new EventSourceHandler() {
 					@Override
 					public void onOpen(EventSourceConnection econn) throws Exception {

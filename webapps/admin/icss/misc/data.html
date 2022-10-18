@@ -1,0 +1,189 @@
+<div class="row">
+	<div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+		<h1 class="page-title txt-color-blueDark">
+			<i class="fa fa-edit fa-fw "></i>${m.asString("misc.data.title")}
+		</h1>
+	</div>
+</div>
+
+
+<section id="widget-grid" class="">
+
+	<!-- row -->
+	<div class="row">
+		
+		<!-- NEW WIDGET START -->
+		<article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<!-- Widget ID (each widget will need unique ID)-->
+			<div class="jarviswidget jarviswidget-color-darken" id="data-content-win" data-widget-editbutton="false" data-widget-deletebutton="false">
+				<header>
+					<span class="widget-icon"> <i class="fa fa-comments"></i> </span>
+					<h2>${m.asString("misc.data.table-header")}</h2>				
+				</header>
+
+
+				<div>
+					<div class="jarviswidget-editbox">
+						<input class="form-control" type="text">	
+					</div>
+
+					
+					<div class="widget-body">
+					<form class="smart-form" id="data-content-form" method="post" action="data/content" novalidate="novalidate">
+						<fieldset>
+							<section>
+								<div class="row">
+									<div class="col col-10">
+									<label class="input">
+										<input type="text" name="dfqn" id="data_fqn" placeholder="Fqn Path" value="/boards/freeboard/2" />
+									</label>
+									</div>
+								
+									<div class="col col-2">
+									<button class="btn btn-sm btn-success" type="button" name="btn_query">
+									<i class="fa fa-check"></i> ${m.asString("misc.data.buttons.query")}
+									</button>
+									</div>
+								</div>
+							</section>
+
+							<div class="row">
+							<section>
+								<label class="label">${m.asString("misc.data.content")}</label>
+								<label class="textarea textarea-resizable">
+									<i class="icon-append fa fa-question-circle"/> 										
+									<textarea rows="15" class="custom-scroll" placeholder="data content" name="dcontent" id="data_content"></textarea>
+									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("misc.data.content")}</b> 
+								</label>
+							</section>
+
+							<section>
+								<label class="label alert-info alert-block"><pre id="target_url"></pre></label>
+							</section>
+							</div>
+
+						</fieldset>
+						
+						<div id="save-message" class="alert alert-success fade in message">
+							<i class="fa-fw fa fa-check"></i>
+							<strong>Success</strong> <span></span>
+						</div>
+									
+						<footer>
+							<button class="btn btn-sm btn-success" type="button" name="btn_save">
+								<i class="fa fa-check"></i> ${m.asString("misc.data.buttons.save")}
+							</button>	
+						</footer>
+						
+					</form>
+					</div>
+				</div>
+				
+			</div>
+		</article>
+		
+	</div>
+	
+
+
+
+</section>
+<!-- end widget grid -->
+
+
+<script src="../../cm519/addon/edit/matchbrackets.js"></script>
+<script src="../../cm519/addon/comment/continuecomment.js"></script>
+<script src="../../cm519/addon/comment/comment.js"></script>
+<script src="../../cm519/mode/javascript/javascript.js"></script>
+
+<script>
+  var editor = CodeMirror.fromTextArea(document.getElementById("data_content"), {
+    lineNumbers: true,
+    matchBrackets: true,
+    continueComments: "Enter",
+    extraKeys: {"Ctrl-Q": "toggleComment"}
+  });
+</script>
+
+
+<!-- SCRIPTS ON PAGE EVENT -->
+<script type="text/javascript">
+
+	
+	pageSetUp();
+	
+	var pagefunction = function() {
+
+		var _contentForm = $("#data-content-form") ;
+		var _dfqn = _contentForm.find("input[name=dfqn]") ;
+		var _queryButton = _contentForm.find("button[name=btn_query]") ;
+		var _dcontent = _contentForm.find("textarea[name=dcontent]") ;
+		var _saveButton = _contentForm.find("button[name=btn_save]") ;
+		
+		
+		_queryButton.click(function() {
+			$.ajax({
+				type: "GET",
+				dataType : 'text', 
+				url: "/admin/misc/data",
+				data: {fqn: _dfqn.val()}, 
+				complete : function(){ 
+				}, 
+				success :  function(data) {
+					editor.getDoc().setValue(data) ;
+					// _scontent.val(data) ;
+				}
+			}) ;
+		}) ;
+		
+		
+		var command = '';
+		_contentForm.validate({
+			rules : {
+				dcontent : { required : true }
+			},
+
+			messages : {
+				dcontent : { required : "${m.asString('validation.required', 'data content')}"}
+			},
+
+			submitHandler : function(form) {
+				if (command == 'save') {
+					$.ajax({
+						type: "POST",
+						dataType : 'text', 
+						url: "/admin/misc/data",
+						data: { dcontent: editor.getDoc().getValue(), fqn:_dfqn.val()}, // _dcontent.val() 
+						complete : function(){ 
+							
+						}, 
+						success :  function(data) {
+							$("#save-message span").html(data) ;
+							$("#save-message").removeClass("message") ;
+							setTimeout(function() {
+								$("#save-message").addClass("message") ;
+							}, 2000);
+						}
+					}) ;
+				}
+			},
+
+			errorPlacement : function(error, element) { // Do not change code below
+				error.insertAfter(element.parent());
+			}
+		});
+		
+		
+		_saveButton.click(function() {
+			command = 'save' ;
+			_contentForm.submit() ;
+		});
+		
+		
+		
+	};
+
+	// run pagefunction on load
+	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
+	
+</script>

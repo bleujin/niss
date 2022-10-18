@@ -54,6 +54,7 @@
 			<properties kr="자바 속성">Java Properties</properties>
 			<threaddump kr="쓰레드 덤프">Thread Dump</threaddump>
 			<analyzer kr="분석기 확인">Analyzer Confirm</analyzer>
+			<data kr="데이터 노드">Data Node</data>
 			<history kr="로더 사용 내역">Loader History</history>
 			<logging kr="모니터링">Logging</logging>
 			<script kr="스크립트">Craken Script</script>
@@ -438,6 +439,15 @@
             <stopword kr="불용어">Stop Word</stopword>
             <buttons kr="결과보기">Analyze Value</buttons>
         </analyzer>
+        <data>
+            <title kr="데이터 노드">Data Node</title>
+            <table-header kr="데이터 노드 수정">Modify DataNode</table-header>
+            <content kr="데이터 노드">DataNode Content</content>
+            <buttons>
+                <query kr="노드 보기">Query By Fqn</query>
+                <save kr="저장">Save</save>
+            </buttons>
+        </data>
         <history>
             <title kr="로더 사용 내역">Loader History</title>
             <table-header kr="로그 목록">Log Tables</table-header>

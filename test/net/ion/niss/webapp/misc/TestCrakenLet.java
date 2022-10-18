@@ -19,7 +19,7 @@ public class TestCrakenLet extends TestCase {
 	protected void setUp() throws Exception {
 		re = REntry.test() ;
 		this.session = re.login() ;
-		session.tranSync(TransactionJobs.dummy("/bleujin", 10)) ;
+		session.tranSync(TransactionJobs.dummy("bleujin", 10)) ;
 	}
 	
 	@Override
@@ -31,9 +31,20 @@ public class TestCrakenLet extends TestCase {
 	
 	public void testRender() throws Exception {
 		Engine engine = session.workspace().parseEngine();
-		ReadNode find = session.pathBy("/") ;
+		ReadNode find = session.pathBy("/bleujin") ;
+		
+		Debug.line(find.toMap()) ;
+		
 		String result = engine.transform(IOUtil.toStringWithClose(getClass().getResourceAsStream("craken.tpl")), MapUtil.<String, Object>create("self", find)) ;
 		
 		Debug.line(result);
+	}
+	
+	public void testDirect() throws Exception {
+		ReadNode found = session.pathBy("/bleujin");
+		Engine engine = session.workspace().parseEngine();
+		
+		String result = engine.transform("${foreach self.children().stream().gte(dummy,3).lte(dummy,5).descending(dummy) child ,}${child}${end}", MapUtil.<String, Object>create("self", found)) ;
+		Debug.line(result) ;
 	}
 }

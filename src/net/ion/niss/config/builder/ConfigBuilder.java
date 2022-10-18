@@ -38,7 +38,9 @@ public class ConfigBuilder {
 	
 	
 	public final static ConfigBuilder createDefault(int port) {
-		return new ConfigBuilder().sbuilder.port(port).parent();
+		ConfigBuilder configBuilder = new ConfigBuilder();
+		configBuilder.ssbuilder.screen("d:/niss/screen/", "webdriver.chrome.driver", "d:/niss/chromedriver.exe") ;
+		return configBuilder.sbuilder.port(port).parent();
 	}
 
 	public final static ConfigBuilder create(String path) throws IOException {

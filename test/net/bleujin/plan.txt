@@ -1,0 +1,18 @@
+
+prefix
+
+/open/datas/{fqn}
+
+
+
+fqn.data get edit-form JsonData 
+fqn.data post edit JsonData
+
+fqn.propertyid.data get edit-form propertyid  
+fqn.propertyid.data post edit propertyid 
+
+fqn.list (find self list ref property(and list property) otherwise parent
+fqn.view get view jsondata
+
+// https://www.jqueryscript.net/other/Beautiful-JSON-Viewer-Editor.html
+// https://www.htmeditor.com/embed-html-editor/

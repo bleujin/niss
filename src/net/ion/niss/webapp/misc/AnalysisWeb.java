@@ -78,16 +78,11 @@ public class AnalysisWeb implements Webapp {
 			
 			CharArraySet set = new CharArraySet(ListUtil.toList(stopword.split("\\s+")), true) ;
 			
-			Constructor<? extends Analyzer> findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class, CharArraySet.class}) ;
+			Constructor<? extends Analyzer> findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{CharArraySet.class}) ;
 			Analyzer analyzer = null ;
 			if (findCon == null){
-				findCon = ConstructorUtils.getAccessibleConstructor(aclz, new Class[]{Version.class}) ;
-				if (findCon == null){
-					findCon = aclz.getConstructor() ;
-					analyzer = findCon.newInstance() ;
-				} else {
-					analyzer = aclz.getConstructor(Version.class).newInstance() ;
-				}
+				findCon = aclz.getConstructor() ;
+				analyzer = findCon.newInstance() ;
 			} else {
 				analyzer = findCon.newInstance(set) ;
 			}

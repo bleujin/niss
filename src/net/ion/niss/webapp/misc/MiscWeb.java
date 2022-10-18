@@ -20,6 +20,9 @@ import javax.ws.rs.core.MultivaluedMap;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.jboss.resteasy.spi.HttpRequest;
 
+import net.bleujin.rcraken.Fqn;
+import net.bleujin.rcraken.Property;
+import net.bleujin.rcraken.Property.PType;
 import net.bleujin.rcraken.ReadNode;
 import net.bleujin.rcraken.ReadSession;
 import net.bleujin.rcraken.WriteNode;
@@ -41,8 +44,10 @@ public class MiscWeb implements Webapp{
 
 	
 	private ReadSession rsession;
+	private ReadSession dsession;
 	public MiscWeb(@ContextParam("rentry") REntry rentry) throws IOException{
 		this.rsession = rentry.login() ;
+		this.dsession = rentry.login("datas") ;
 	}
 	
 	@GET
@@ -58,6 +63,42 @@ public class MiscWeb implements Webapp{
 		return new PropertyInfo().list() ;
 				
 	}
+	
+	
+
+	@GET
+	@Path("/data")
+	public String queryContent(@DefaultValue("") @QueryParam("fqn") String fqnPath){
+		if (fqnPath.contains(".")) { // property path
+			String fqn = StringUtil.substringBeforeLast(fqnPath, ".") ;
+			String pid = StringUtil.substringAfterLast(fqnPath, ".") ;
+			return dsession.pathBy(fqn).property(pid).asString() ;
+		} else {
+			return dsession.pathBy(fqnPath).toJson().toString() ; 
+		}
+	}
+	
+	@POST
+	@Path("/data")
+	public String editData(@FormParam("fqn") final String fqnPath, @FormParam("dcontent") final String dcontent){
+		String fpath = Fqn.from(fqnPath).name() ;
+		if (fpath.contains(".")) { // property path
+			String fqn = StringUtil.substringBeforeLast(fqnPath, ".") ;
+			String pid = StringUtil.substringAfterLast(fqnPath, ".") ;
+			dsession.tran(wsession -> {
+				wsession.pathBy(fqn).changeValue(pid, dcontent).merge() ;
+			}) ;
+			
+		} else {
+			dsession.tran(wsession -> {
+				wsession.readFrom(JsonObject.fromString(dcontent)).merge() ; // ReadNode.toJson() -> jsonObject -> WriteNode.readFrom() 
+			}) ;
+		}
+		
+		return "edited " + fqnPath ;
+	}
+		
+	
 	
 	@GET
 	@Path("/shutdown")

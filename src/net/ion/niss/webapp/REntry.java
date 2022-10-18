@@ -150,6 +150,7 @@ public class REntry implements Closeable {
 		
 		for(ReadNode scr : session.pathBy("/dscripts").children().stream()) {
 			sdbm.loadPackage(scr.fqn().name(), scr.property(Def.DScript.Content).asString()) ;
+			log.info(scr.fqn().name() + " dscript package loaded");
 		}
 		
 
@@ -166,15 +167,7 @@ public class REntry implements Closeable {
 				try {
 					IdString sid = registerSearcher(session, new EventPropertyReadable(cevent), jsengine);
 					log.info(sid + " searcher defined");
-				} catch (IOException ex) {
-					throw new IllegalStateException(ex);
-				} catch (ClassNotFoundException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InstantiationException ex) {
-					throw new IllegalStateException(ex);
-				} catch (IllegalAccessException ex) {
-					throw new IllegalStateException(ex);
-				} catch (InvocationTargetException ex) {
+				} catch (IOException | ClassNotFoundException | InstantiationException  | IllegalAccessException | InvocationTargetException ex) {
 					throw new IllegalStateException(ex);
 				}
 				return null;

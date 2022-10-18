@@ -7,7 +7,7 @@
 			<li class="submenu active"><a class="property-load" href="javascript:void(0);">${m.asString("menu.misc.properties")}</a></li>
 			<li class="submenu"><a class="thread-load" href="javascript:void(0);">${m.asString("menu.misc.threaddump")}</a></li>
 			<li class="submenu"><a class="analyzer-load" href="javascript:void(0);">${m.asString("menu.misc.analyzer")}</a></li>
-			<!-- li class="submenu"><a class="history-load" href="javascript:void(0);">${m.asString("menu.misc.history")}</a></li -->
+			<li class="submenu"><a class="data-load" href="javascript:void(0);">${m.asString("menu.misc.data")}</a></li>
 			<li class="submenu"><a class="logging-load" href="javascript:void(0);">${m.asString("menu.misc.logging")}</a></li>
 			<li class="submenu"><a class="user-load" href="javascript:void(0);">${m.asString("menu.misc.user")}</a></li>
 		</ul>
@@ -301,8 +301,8 @@
 		$(".analyzer-load").click(function() {
 			loadURL("icss/misc/analyzer.html", $('#inbox-content > .table-wrap')) ;
 		});
-		$(".history-load").click(function() {
-			loadURL("icss/misc/history.html", $('#inbox-content > .table-wrap')) ;
+		$(".data-load").click(function() {
+			loadURL("icss/misc/data.html", $('#inbox-content > .table-wrap')) ;
 		});
 		$(".logging-load").click(function() {
 			loadURL("icss/misc/logging.html", $('#inbox-content > .table-wrap')) ;
