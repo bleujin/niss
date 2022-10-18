@@ -65,7 +65,7 @@
 							</div>
 
 						</fieldset>
-						
+						<div id="open-message" class=""><span></span></div>
 						<div id="save-message" class="alert alert-success fade in message">
 							<i class="fa-fw fa fa-check"></i>
 							<strong>Success</strong> <span></span>
@@ -130,6 +130,7 @@
 					} else {
 						var jeditor = new JsonEditor('#json-display', JSON.parse(data));
 					}
+					$("#open-message span").html('<a href="/open/datas' + _dfqn.val() + '">' + _dfqn.val() + '[.json, .template etc]'+ '</a>') ;
 					// _scontent.val(data) ;
 				}
 			}) ;

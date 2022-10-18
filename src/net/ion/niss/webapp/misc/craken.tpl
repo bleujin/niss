@@ -21,7 +21,7 @@
 
     <h4>Children</h4>
 	<ul>
-	${foreach self.children() child }
+	${foreach self.children().stream().limit(5) child }
 		    <li><a href='/admin/craken${child.fqn}/'>${child.fqn}</a></li>
 	${end}</ul>
     

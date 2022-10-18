@@ -635,8 +635,8 @@ public class REntry implements Closeable {
 
 	// test
 	public final static REntry create() throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
-		NSConfig nsconfig = ConfigBuilder.createDefault(9000).build();
-		return create(nsconfig);
+		NSConfig nsconfig = ConfigBuilder.create("./resource/config/niss-config.xml").build();
+		return nsconfig.createREntry();
 	}
 
 	public final static REntry create(NSConfig nsconfig) throws CorruptIndexException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, SQLException {
