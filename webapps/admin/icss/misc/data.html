@@ -52,7 +52,9 @@
 								<label class="label">${m.asString("misc.data.content")}</label>
 								<label class="textarea textarea-resizable">
 									<i class="icon-append fa fa-question-circle"/> 										
-									<textarea rows="15" class="custom-scroll" placeholder="data content" name="dcontent" id="data_content"></textarea>
+									
+									<pre id="json-display"></pre>
+									
 									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("misc.data.content")}</b> 
 								</label>
 							</section>
@@ -96,14 +98,6 @@
 <script src="../../cm519/addon/comment/comment.js"></script>
 <script src="../../cm519/mode/javascript/javascript.js"></script>
 
-<script>
-  var editor = CodeMirror.fromTextArea(document.getElementById("data_content"), {
-    lineNumbers: true,
-    matchBrackets: true,
-    continueComments: "Enter",
-    extraKeys: {"Ctrl-Q": "toggleComment"}
-  });
-</script>
 
 
 <!-- SCRIPTS ON PAGE EVENT -->
@@ -117,7 +111,6 @@
 		var _contentForm = $("#data-content-form") ;
 		var _dfqn = _contentForm.find("input[name=dfqn]") ;
 		var _queryButton = _contentForm.find("button[name=btn_query]") ;
-		var _dcontent = _contentForm.find("textarea[name=dcontent]") ;
 		var _saveButton = _contentForm.find("button[name=btn_save]") ;
 		
 		
@@ -131,6 +124,7 @@
 				}, 
 				success :  function(data) {
 					editor.getDoc().setValue(data) ;
+					var jeditor = new JsonEditor('#json-display', JSON.parse(data));
 					// _scontent.val(data) ;
 				}
 			}) ;
@@ -140,20 +134,25 @@
 		var command = '';
 		_contentForm.validate({
 			rules : {
-				dcontent : { required : true }
 			},
 
 			messages : {
-				dcontent : { required : "${m.asString('validation.required', 'data content')}"}
 			},
 
 			submitHandler : function(form) {
 				if (command == 'save') {
+					try {
+						JSON.parse($("#json-display").text());
+					} catch(e){
+						alert('Wrong JSON Format: ' + e);
+						return ;
+					}
+					
 					$.ajax({
 						type: "POST",
 						dataType : 'text', 
 						url: "/admin/misc/data",
-						data: { dcontent: editor.getDoc().getValue(), fqn:_dfqn.val()}, // _dcontent.val() 
+						data: { dcontent: $("#json-display").text(), fqn:_dfqn.val()}, // _dcontent.val() 
 						complete : function(){ 
 							
 						}, 
@@ -184,6 +183,10 @@
 	};
 
 	// run pagefunction on load
-	loadScript("js/plugin/summernote/summernote.min.js", pagefunction());
+	
+	
+	loadScript("js/plugin/datatables/jquery.dataTables.min.js", function(){
+		loadScript("js/plugin/jquery.json-editor.min.js", pagefunction);
+	});
 	
 </script>

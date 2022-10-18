@@ -80,7 +80,7 @@ public class MiscWeb implements Webapp{
 	
 	@POST
 	@Path("/data")
-	public String editData(@FormParam("fqn") final String fqnPath, @FormParam("dcontent") final String dcontent){
+	public String editData(@FormParam("fqn") final String fqnPath, @FormParam("dcontent") final String dcontent) throws InterruptedException, ExecutionException{
 		String fpath = Fqn.from(fqnPath).name() ;
 		if (fpath.contains(".")) { // property path
 			String fqn = StringUtil.substringBeforeLast(fqnPath, ".") ;
@@ -89,13 +89,17 @@ public class MiscWeb implements Webapp{
 				wsession.pathBy(fqn).changeValue(pid, dcontent).merge() ;
 			}) ;
 			
+			
 		} else {
-			dsession.tran(wsession -> {
+			return dsession.tran(wsession -> {
 				wsession.readFrom(JsonObject.fromString(dcontent)).merge() ; // ReadNode.toJson() -> jsonObject -> WriteNode.readFrom() 
-			}) ;
+				return "edited node : " + fqnPath ;
+			}).exceptionally(e ->{
+				return e.getMessage() ;
+			}).get() ;
 		}
 		
-		return "edited " + fqnPath ;
+		return "edited property : " + fqnPath ;
 	}
 		
 	
