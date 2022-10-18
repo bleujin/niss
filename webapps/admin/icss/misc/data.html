@@ -123,8 +123,13 @@
 				complete : function(){ 
 				}, 
 				success :  function(data) {
-					editor.getDoc().setValue(data) ;
-					var jeditor = new JsonEditor('#json-display', JSON.parse(data));
+					// editor.getDoc().setValue(data) ;
+					 console.log(data) ;
+					if (_dfqn.val().includes('.')) { // edit property
+						$("#json-display").text(data) ;
+					} else {
+						var jeditor = new JsonEditor('#json-display', JSON.parse(data));
+					}
 					// _scontent.val(data) ;
 				}
 			}) ;
@@ -142,7 +147,7 @@
 			submitHandler : function(form) {
 				if (command == 'save') {
 					try {
-						JSON.parse($("#json-display").text());
+						if ( ! _dfqn.val().includes('.')) JSON.parse($("#json-display").text());
 					} catch(e){
 						alert('Wrong JSON Format: ' + e);
 						return ;
