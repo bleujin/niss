@@ -22,7 +22,7 @@ public class TestScriptWeb extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(ScriptWeb.class);
-		this.rentry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test());
+		this.rentry = ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup());
 		ss.treeContext().putAttribute(JScriptEngine.EntryName, JScriptEngine.create());
 		ss.treeContext().putAttribute(EventSourceEntry.EntryName, EventSourceEntry.create());
 	}

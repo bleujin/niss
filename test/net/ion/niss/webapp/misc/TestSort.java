@@ -7,7 +7,7 @@ import net.ion.niss.webapp.REntry;
 public class TestSort extends TestCase {
 
 	public void testSortLong() throws Exception {
-		REntry re = REntry.test() ;
+		REntry re = REntry.testStup() ;
 		
 		ReadSession session = re.login() ;
 		session.tran(wsession -> {

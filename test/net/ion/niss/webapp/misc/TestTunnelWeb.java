@@ -14,7 +14,7 @@ public class TestTunnelWeb extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(TunnelWeb.class) ;
-		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup()) ;
 		entry.login().tran(wsession -> {
 			wsession.pathBy("/users/bleujin").property("name", "bleujin").child("address").property("address", "seoul").merge();
 		}) ;

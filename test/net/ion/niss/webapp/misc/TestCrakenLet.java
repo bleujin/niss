@@ -17,7 +17,7 @@ public class TestCrakenLet extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		re = REntry.test() ;
+		re = REntry.testStup() ;
 		this.session = re.login() ;
 		session.tranSync(TransactionJobs.dummy("bleujin", 10)) ;
 	}

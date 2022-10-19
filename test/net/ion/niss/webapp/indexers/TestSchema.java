@@ -27,7 +27,7 @@ public class TestSchema extends TestCase {
 		super.setUp();
 
 		this.ss = StubServer.create(IndexerWeb.class);
-		this.entry = REntry.test();
+		this.entry = REntry.testStup();
 		ss.treeContext().putAttribute(REntry.EntryName, entry);
 
 		if (! entry.indexManager().hasIndex("col1")){

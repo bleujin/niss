@@ -41,7 +41,7 @@ public class TestSmartAdmin extends TestCase {
 		
 		RadonConfigurationBuilder builder = RadonConfiguration.newBuilder(9000) ;
 		
-		final REntry rentry = builder.context(REntry.EntryName, REntry.create()) ;
+		final REntry rentry = builder.context(REntry.EntryName, REntry.testCreate()) ;
 		final EventSourceEntry esentry = builder.context(EventSourceEntry.EntryName, EventSourceEntry.create()) ;
 		final JScriptEngine jsentry = builder.context(JScriptEngine.EntryName, JScriptEngine.create()) ;
 		jsentry.executorService(Executors.newCachedThreadPool(ThreadFactoryBuilder.createThreadFactory("jscript-thread-%d"))) ;

@@ -56,7 +56,7 @@ public class TestVelocity extends TestCase {
 	
 	public void testMyResourceLoader() throws Exception {
 		
-		REntry r = REntry.test() ;
+		REntry r = REntry.testStup() ;
 		ReadSession rsession = r.login() ;
 		
 		CrakenResourceRepository repo = new CrakenResourceRepository(rsession);

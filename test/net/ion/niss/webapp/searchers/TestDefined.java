@@ -17,7 +17,7 @@ public class TestDefined extends TestCase {
 		super.setUp();
 
 		this.ss = StubServer.create(SearcherWeb.class, MenuWeb.class, TemplateWeb.class) ;
-		this.rentry = REntry.test();
+		this.rentry = REntry.testStup();
 		ss.treeContext().putAttribute(REntry.EntryName, rentry) ;
 
 		StubHttpResponse response = ss.request("/searchers/sec1").post() ;

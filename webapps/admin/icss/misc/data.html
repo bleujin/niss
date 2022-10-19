@@ -32,6 +32,7 @@
 					<form class="smart-form" id="data-content-form" method="post" action="data/content" novalidate="novalidate">
 						<fieldset>
 							<section>
+								<div class="row">fqn or fqn.propertyid</div>
 								<div class="row">
 									<div class="col col-10">
 									<label class="input">
@@ -53,7 +54,8 @@
 								<label class="textarea textarea-resizable">
 									<i class="icon-append fa fa-question-circle"/> 										
 									
-									<pre id="json-display"></pre>
+									<pre id="json-display" style="white-space:pre-wrap; word-wrap:break-word;"></pre>
+									<div id="linker" style="visibility:hidden;display:none;"></div>
 									
 									<b class="tooltip tooltip-top-right"><i class="fa fa-warning txt-color-teal"/>${m.asString("misc.data.content")}</b> 
 								</label>
@@ -124,9 +126,9 @@
 				}, 
 				success :  function(data) {
 					// editor.getDoc().setValue(data) ;
-					 console.log(data) ;
 					if (_dfqn.val().includes('.')) { // edit property
-						$("#json-display").text(data) ;
+						var jeditor = new JsonEditor('#json-display', '') ;
+						$('#json-display').text(data) ;
 					} else {
 						var jeditor = new JsonEditor('#json-display', JSON.parse(data));
 					}
@@ -147,18 +149,23 @@
 
 			submitHandler : function(form) {
 				if (command == 'save') {
+					var jcontent ;
 					try {
-						if ( ! _dfqn.val().includes('.')) JSON.parse($("#json-display").text());
+						if (_dfqn.val().includes('.')) {
+							$("#linker").html($("#json-display").html().replace(/<br>/g, "\n")) ;
+							jcontent = $("#linker").text() ;
+						} else {
+							jcontent = JSON.parse($("#json-display").text());
+						}
 					} catch(e){
 						alert('Wrong JSON Format: ' + e);
 						return ;
 					}
-					
 					$.ajax({
 						type: "POST",
 						dataType : 'text', 
 						url: "/admin/misc/data",
-						data: { dcontent: $("#json-display").text(), fqn:_dfqn.val()}, // _dcontent.val() 
+						data: { dcontent: jcontent, fqn:_dfqn.val()}, // _dcontent.val() 
 						complete : function(){ 
 							
 						}, 
@@ -167,7 +174,7 @@
 							$("#save-message").removeClass("message") ;
 							setTimeout(function() {
 								$("#save-message").addClass("message") ;
-							}, 2000);
+							}, 3000);
 						}
 					}) ;
 				}

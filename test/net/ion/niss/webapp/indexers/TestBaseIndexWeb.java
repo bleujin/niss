@@ -19,7 +19,7 @@ public class TestBaseIndexWeb extends TestCase{
 		super.setUp();
 
 		this.ss = StubServer.create(IndexerWeb.class);
-		this.entry = REntry.test();
+		this.entry = REntry.testStup();
 		ss.treeContext().putAttribute(REntry.EntryName, entry);
 
 		final JScriptEngine jsentry = ss.treeContext().putAttribute(JScriptEngine.EntryName, JScriptEngine.create("./resource/loader/lib", Executors.newSingleThreadScheduledExecutor(), true));

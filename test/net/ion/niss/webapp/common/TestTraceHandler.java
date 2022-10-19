@@ -25,7 +25,7 @@ public class TestTraceHandler extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		REntry rentry = REntry.test();
+		REntry rentry = REntry.testStup();
 		this.radon = RadonConfiguration.newBuilder(9800)
 				.add(new MyAuthenticationHandler(new InMemoryPasswords().add("bleujin", "1")))
 				.add(new TraceHandler(rentry))

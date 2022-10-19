@@ -17,7 +17,7 @@ public class TestLoaderWeb extends TestCase {
 		super.setUp();
 
 		this.ss = StubServer.create(LoaderWeb.class) ;
-		ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup()) ;
 		ss.treeContext().putAttribute(EventSourceEntry.EntryName, EventSourceEntry.create()) ;
 		ss.treeContext().putAttribute(JScriptEngine.EntryName, JScriptEngine.create()) ;
 	}

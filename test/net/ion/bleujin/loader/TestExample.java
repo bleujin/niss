@@ -27,7 +27,7 @@ public class TestExample extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(LoaderWeb.class);
-		ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup()) ;
 	}
 	
 	public void testCall() throws Exception {

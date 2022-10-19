@@ -12,7 +12,7 @@ public class TestDataWeb extends TestCase{
 
 	@Override
 	protected void setUp() throws Exception {
-		this.re = REntry.create() ;
+		this.re = REntry.testCreate() ;
 		this.rsession = re.login("datas") ;
 	}
 	

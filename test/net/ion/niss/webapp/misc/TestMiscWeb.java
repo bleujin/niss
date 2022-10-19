@@ -16,7 +16,7 @@ public class TestMiscWeb extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(MiscWeb.class) ;
-		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		this.entry = ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup()) ;
 	}
 	
 	@Override

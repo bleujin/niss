@@ -21,7 +21,7 @@ public class TestEctWeb extends TestCase {
 		super.setUp();
 
 		this.ss = StubServer.create(MenuWeb.class, TemplateWeb.class, AnalysisWeb.class, TunnelWeb.class);
-		ss.treeContext().putAttribute(REntry.EntryName, REntry.test());
+		ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup());
 	}
 
 	@Override

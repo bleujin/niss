@@ -14,7 +14,7 @@ public class TestLoginWeb extends TestCase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		this.ss = StubServer.create(MiscWeb.class) ;
-		REntry rentry = ss.treeContext().putAttribute(REntry.EntryName, REntry.test()) ;
+		REntry rentry = ss.treeContext().putAttribute(REntry.EntryName, REntry.testStup()) ;
 		
 		ReadSession session = rentry.login() ;
 		session.tran(wsession -> {
