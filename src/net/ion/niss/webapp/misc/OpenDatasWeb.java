@@ -12,7 +12,9 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.resteasy.spi.HttpRequest;
 
 import net.bleujin.rcraken.ReadSession;
+import net.bleujin.rcraken.template.TemplateNode;
 import net.ion.framework.util.Debug;
+import net.ion.framework.util.IOUtil;
 import net.ion.framework.util.StringUtil;
 import net.ion.niss.webapp.REntry;
 import net.ion.niss.webapp.loaders.JScriptEngine;
@@ -29,8 +31,16 @@ public class OpenDatasWeb {
 		this.rentry = rentry ;
 		this.dsession = rentry.login("datas") ;
 		this.jengine = jengine ;
+		dsession.workspace().templateFac().addTemplate(TemplateNode.DftTemplatePropertyName, readStdTemplate()) ;
 	}
+
 	
+	@GET
+	@Path("/")
+	public String transbyRootTemplate(@Context HttpRequest request, @Context UriInfo uriInfo){
+		return transbyTemplate("", request, uriInfo) ;
+	}
+
 	
 	@GET
 	@Path("/{fpath : .*}")
@@ -41,5 +51,13 @@ public class OpenDatasWeb {
 		dsession.templateBy("/" + fpath).parameters(queryParam).transform(writer) ;
 		
 		return writer.toString() ;
+	}
+	
+	private String readStdTemplate() {
+		try {
+			return IOUtil.toStringWithClose(getClass().getResourceAsStream("datas_template.tpl")) ;
+		} catch (IOException e) {
+			return "${self}" ;
+		}
 	}
 }
