@@ -2,19 +2,19 @@
 
 <root version="0.1">
     
-    <server-config id="niss" port="9000" nodeid="mercury">
+    <server-config id="niss" port="9005" nodeid="mercury">
 
 	</server-config>
 
 	<log-config-file>./resource/log4j.properties</log-config-file>
     
 	
-	<repository-config wsname="admin" store="pg"><!-- store : [fs | redis | pg | memory] -->>
+	<repository-config wsname="admin" store="memory"><!-- store : [fs | redis | pg | memory] -->>
 	    <admin-home>./resource/admin/</admin-home>
 	    <index-home>./resource/index/</index-home>
 	    <store-fs filemmap="enable" lobdir="./resource/lob" closeonShutdown="yes" />
 	    <store-redis address="redis://127.0.0.1:6379" cluster="no" />
-	    <store-pg jdbcurl="jdbc:postgresql://127.0.0.1:5432/ics6" userid="postgres" userpwd="postgres" lobdir="./resource/lob" cached="1000"/> <!-- schema : confirm net/bleujin/rcraken/store/rdb/pg.sql of crakenredis -->
+	    <store-pg jdbcurl="jdbc:postgresql://127.0.0.1:5432/bleujin" userid="postgres" userpwd="redf" lobdir="./resource/lob" cached="1000"/> <!-- schema : confirm net/bleujin/rcraken/store/rdb/pg.sql of crakenredis -->
 	    <store-memory />
 	</repository-config>
 	

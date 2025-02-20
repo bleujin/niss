@@ -2,19 +2,21 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-17.0.12">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="lib/reflib/spring-core-6.1.6.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/netty-3.2.7.Final.jar"/>
-	<classpathentry kind="lib" path="lib/ref/selenium-server-standalone-3.0.0-beta3.jar"/>
 	<classpathentry kind="lib" path="lib/common/apache_extend_fat.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/guava-jdk5-13.0.jar"/>
-	<classpathentry kind="lib" path="lib/reflib/asm-3.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/jsr311_fat.jar"/>
 	<classpathentry kind="lib" path="lib/ref/icrawler_0.5.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/crawl_parse.jar"/>
 	<classpathentry kind="lib" path="lib/ref/aclient_0.5.jar"/>
 	<classpathentry kind="lib" path="lib/common/crawl_apache_common.jar"/>
-	<classpathentry kind="lib" path="lib/reflib/cglib-nodep-2.2.3.jar"/>
 	<classpathentry kind="lib" path="lib/ref/aradon311_0.9.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/velocity-1.7.jar"/>
 	<classpathentry kind="lib" path="lib/reflib/oro-2.0.8.jar"/>
@@ -30,7 +32,10 @@
 	<classpathentry kind="lib" path="lib/ref/iframework_2.5.jar"/>
 	<classpathentry kind="lib" path="lib/ref/searcher_8.11.jar"/>
 	<classpathentry kind="lib" path="lib/rcraken/postgresql-42.5.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/CrakenRedis"/>
+	<classpathentry kind="lib" path="lib/reflib/asm-all-5.2.jar"/>
+	<classpathentry kind="lib" path="lib/reflib/nashorn-core-15.6.jar"/>
 	<classpathentry kind="lib" path="lib/rcraken/rcraken_0.2.jar"/>
+	<classpathentry kind="lib" path="lib/ref/selenium-server-standalone-3.0.0-beta3.jar"/>
+	<classpathentry kind="lib" path="lib/common/common_apache_fat.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

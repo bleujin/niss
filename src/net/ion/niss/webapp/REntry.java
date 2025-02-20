@@ -96,7 +96,7 @@ public class REntry implements Closeable {
 		
 		ReadSession dsession = login("datas") ;
 		SearchController sc = SearchControllerConfig.newLocalFile("./resource/dindex").defaultAnalyzer(new KoreanAnalyzer()).build() ;
-		dsession.workspace().indexCntral(sc) ;
+		dsession.workspace().indexCentral(sc) ;
 		
 		this.sdbm = ScriptDBManger.create(dsession) ;
 		this.scriptDc = new DBController("craken", sdbm);
